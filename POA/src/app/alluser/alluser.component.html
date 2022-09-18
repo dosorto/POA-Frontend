@@ -1,0 +1,39 @@
+
+  <div class="container">
+  <div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Username</th>
+        <th scope="col">Rol</th>
+        <th scope="col">DNI</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellido</th>
+        <th scope="col">Telefono</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let x of userList">
+        <td>{{x.username}}</td>
+        <td>{{x.role.rol}}</td>
+        <td>{{x.empleado.dni}}</td>
+        <td>{{x.empleado.nombre}}</td>
+        <td>{{x.empleado.apellido}}</td>
+        <td>{{x.empleado.telefono}}</td>
+      </tr>
+      
+    </tbody>
+  </table>
+  <mat-paginator [length]="100"
+  [pageSize]="10"
+  [pageSizeOptions]="[5, 10, 25, 100]"
+  aria-label="Select page">
+</mat-paginator>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
