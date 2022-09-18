@@ -11,7 +11,7 @@ export class UserService {
 
   }
 
-  public signUp(username:string, password:string):any {
+  public signIn(username:string, password:string):any {
      const url = 'http://localhost:8080/auth/login';
 
      const params = new HttpParams({
@@ -27,7 +27,7 @@ export class UserService {
           'Content-Type': 'application/x-www-form-urlencoded'
         })
       };
-
       return this.http.post(url,params, httpOptions);
+      
    }
 }
