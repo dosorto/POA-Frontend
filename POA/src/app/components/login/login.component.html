@@ -1,0 +1,12 @@
+
+<form #login = 'ngForm' (ngSubmit)="validate(login.value)">
+<div class="login-wrap">
+  <h2>Login</h2>  
+  <div class="form">
+    <input type="text" placeholder="Usuario" name="username" ngModel />
+    <input type="password" placeholder="Contraseña" name="password" ngModel/>
+    <button type="submit">Ingresar</button>
+    <a href="#"> <p> Olvido su contraseña? </p></a>  
+  </div>
+</div>
+</form>
