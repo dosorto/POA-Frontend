@@ -10,11 +10,13 @@ import { HttpClientModule } from '@angular/common/http';
 import {MatCardModule} from '@angular/material/card';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { IdUserComponent } from './id-user/id-user.component';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    AlluserComponent
+    AlluserComponent,
+    IdUserComponent
   ],
   imports: [
     BrowserModule,

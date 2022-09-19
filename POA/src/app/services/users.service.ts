@@ -12,4 +12,9 @@ export class UsersService {
   getUsers(): any {
     return this.http.get('http://localhost:8080/auth/get-all');
   }
+  
+  getIdUser(id:string){
+    return this.http.get('http://localhost:8080/auth/get/'+id);
+  }
+  
 }

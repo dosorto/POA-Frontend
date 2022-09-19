@@ -1,19 +1,27 @@
 import { UsersService } from '../services/users.service';
 import { Component, OnInit } from '@angular/core';
 
+import {AfterViewInit, ViewChild} from '@angular/core';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatTableDataSource} from '@angular/material/table';
+
 @Component({
   selector: 'app-alluser',
   templateUrl: './alluser.component.html',
   styleUrls: ['./alluser.component.css']
 })
 export class AlluserComponent implements OnInit {
-  userList: any = [];
-  length = 100;
-  pageSize = 10;
-  pageSizeOptions: number[] = [5, 10, 25, 100];
+ userList: any = [];
+    id=String;
+  //dataSource = this.userList;
+
 
   // MatPaginator Output
-  
+  /*@ViewChild(MatPaginator) paginator!: MatPaginator;
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+  }*/
 
 
   constructor( private userService: UsersService) { 
@@ -22,7 +30,7 @@ export class AlluserComponent implements OnInit {
 
   ngOnInit(): void {
     console.log('El componente se ha inicializado');
-    //this.userService.getUsers().subscribe((response : any) => console.log(response));
+    //this.userService.getIdUser(this.id).subscribe((response : any) => console.log(response));
     this.userService.getUsers().subscribe((response:any) => this.userList = response.allusers);
   }
 
