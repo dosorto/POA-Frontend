@@ -1,9 +1,6 @@
 import { UsersService } from '../services/users.service';
 import { Component, OnInit } from '@angular/core';
 
-import {AfterViewInit, ViewChild} from '@angular/core';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatTableDataSource} from '@angular/material/table';
 
 @Component({
   selector: 'app-alluser',
@@ -13,12 +10,8 @@ import {MatTableDataSource} from '@angular/material/table';
 export class AlluserComponent implements OnInit {
  userList: any = [];
     id=String;
-  //dataSource = this.userList;
-
-
-  // MatPaginator Output
-  /*@ViewChild(MatPaginator) paginator!: MatPaginator;
-
+  //dataSource = this.userList;  // MatPaginator Output
+    /*@ViewChild(MatPaginator) paginator!: MatPaginator; 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }*/

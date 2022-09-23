@@ -11,12 +11,22 @@ import {MatCardModule} from '@angular/material/card';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { IdUserComponent } from './id-user/id-user.component';
+import { EmpleadoComponent } from './empleado/empleado.component';
+import { RolComponent } from './rol/rol.component';
+import { GetUserByIdComponent } from './get-user-by-id/get-user-by-id.component';
+import { objToArrayPipe } from './objToArray.pipe';
+
+
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     AlluserComponent,
-    IdUserComponent
+    IdUserComponent,
+    EmpleadoComponent,
+    RolComponent,
+    GetUserByIdComponent,
+    objToArrayPipe
   ],
   imports: [
     BrowserModule,
@@ -25,7 +35,8 @@ import { IdUserComponent } from './id-user/id-user.component';
     HttpClientModule,
     MatCardModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
