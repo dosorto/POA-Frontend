@@ -3,16 +3,25 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { ListPermisosComponent } from './components/list-permisos/list-permisos.component';
+import { AgregarEditarPermisoComponent } from './components/agregar-editar-permiso/agregar-editar-permiso.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+//Modulos
+import { SharedModule } from './shared/shared.module';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ListPermisosComponent,
+    AgregarEditarPermisoComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NoopAnimationsModule
+    BrowserAnimationsModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
