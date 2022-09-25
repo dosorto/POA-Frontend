@@ -9,13 +9,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 //Modulos
 import { SharedModule } from './shared/shared.module';
+import { ListPEIComponent } from './components/list-pei/list-pei.component';
+import { AllAgregarActualizarDesactivarPeiComponent } from './components/all-agregar-actualizar-desactivar-pei/all-agregar-actualizar-desactivar-pei.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     ListPermisosComponent,
-    AgregarEditarPermisoComponent
+    AgregarEditarPermisoComponent,
+    ListPEIComponent,
+    AllAgregarActualizarDesactivarPeiComponent
   ],
   imports: [
     BrowserModule,
