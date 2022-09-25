@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { catchError } from 'rxjs';
-import { UserService } from '../../services/user.service';
+import { Component, OnInit, ResolvedReflectiveFactory } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { UserService } from './login.service';
 
 @Component({
   selector: 'app-login',
@@ -13,13 +13,15 @@ export class LoginComponent implements OnInit {
       this.UserService.signIn(param.username,param.password)
       .subscribe((response:any) =>{
          this.auth = response;
-         
+         this.router.navigate(['/home']);
       }, (error:any) => {
         this.auth.check = error.status
       })
       
     }
-  constructor(private UserService:UserService) { }
+  constructor( private route: ActivatedRoute,
+               private router: Router,
+               private UserService:UserService) { }
   userList : any = [];
   ngOnInit(): void {   
   }
