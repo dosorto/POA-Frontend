@@ -15,6 +15,7 @@ import { EmpleadoComponent } from './empleado/empleado.component';
 import { RolComponent } from './rol/rol.component';
 import { GetUserByIdComponent } from './get-user-by-id/get-user-by-id.component';
 import { objToArrayPipe } from './objToArray.pipe';
+import { ObjetivosComponent } from './objetivos/objetivos.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { objToArrayPipe } from './objToArray.pipe';
     EmpleadoComponent,
     RolComponent,
     GetUserByIdComponent,
-    objToArrayPipe
+    objToArrayPipe,
+    ObjetivosComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +38,6 @@ import { objToArrayPipe } from './objToArray.pipe';
     MatCardModule,
     MatTableModule,
     MatPaginatorModule,
-
   ],
   providers: [],
   bootstrap: [AppComponent]
