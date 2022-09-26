@@ -1,0 +1,6 @@
+<select class="form-control" formControlName="rol">
+    <option selected>Selecciona un rol...</option>
+  <option value="{{x.id}}" *ngFor="let x of rolList">
+    {{x.rol}}
+ </option>
+</select>

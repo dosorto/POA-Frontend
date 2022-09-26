@@ -1,0 +1,8 @@
+
+    <select class="form-control" forControlName="empleado">
+        <option selected>Selecciona un Empleado...</option>
+      <option value="{{x.id}}" *ngFor="let x of empleadoList">
+        {{x.nombre}} {{x.apellido}}
+     </option>
+    </select>
+
