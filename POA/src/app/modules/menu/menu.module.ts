@@ -4,6 +4,7 @@ import { MenuComponent } from './menu.component';
 import { RouterModule } from '@angular/router';
 import { TopBarComponent } from 'src/app/_core/top-bar/top-bar.component';
 import { SidebarComponent } from 'src/app/_core/sidebar/sidebar.component';
+import { ObjetivosComponent } from 'src/app/objetivos/objetivos.component';
 
 const router = RouterModule.forChild([
   {path: '', component: MenuComponent}
@@ -13,7 +14,8 @@ const router = RouterModule.forChild([
   declarations: [
     MenuComponent,
     TopBarComponent,
-    SidebarComponent
+    SidebarComponent,
+    ObjetivosComponent
   ],
   imports: [
   CommonModule,

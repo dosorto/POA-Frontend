@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AlluserComponent } from './alluser/alluser.component';
+import { ObjetivosComponent } from './objetivos/objetivos.component';
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'login'},
@@ -9,7 +11,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  // import { LoginModule } from './components/login/login.module';
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

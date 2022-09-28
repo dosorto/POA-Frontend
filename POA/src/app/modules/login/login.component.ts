@@ -1,4 +1,4 @@
-import { Component, OnInit, ResolvedReflectiveFactory } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from './login.service';
 
