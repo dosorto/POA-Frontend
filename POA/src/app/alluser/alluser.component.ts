@@ -23,8 +23,7 @@ export class AlluserComponent implements OnInit {
 
   ngOnInit(): void {
     console.log('El componente se ha inicializado');
-    //this.userService.getIdUser(this.id).subscribe((response : any) => console.log(response));
-    this.userService.getUsers().subscribe((response:any) => this.userList = response.allusers);
+       this.userService.getUsers().subscribe((response:any) => this.userList = response.allusers);
   }
 
 }
