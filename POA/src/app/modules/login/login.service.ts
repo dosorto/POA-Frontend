@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { CallHttpService } from '../../_core/global-services/call-http.service';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +29,7 @@ export class UserService {
         })
       };
       return this.http.post(url,params, httpOptions);
+      //return CallHttpService.httpPost()
       
    }
 }

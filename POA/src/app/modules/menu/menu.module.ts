@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MenuComponent } from './menu.component';
 import { RouterModule } from '@angular/router';
 import { TopBarComponent } from 'src/app/_core/top-bar/top-bar.component';
+import { SidebarComponent } from 'src/app/_core/sidebar/sidebar.component';
 
 const router = RouterModule.forChild([
   {path: '', component: MenuComponent}
@@ -11,10 +12,11 @@ const router = RouterModule.forChild([
 @NgModule({
   declarations: [
     MenuComponent,
-    TopBarComponent
+    TopBarComponent,
+    SidebarComponent
   ],
   imports: [
-    CommonModule,
+  CommonModule,
     router
   ]
 })
