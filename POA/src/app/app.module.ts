@@ -16,6 +16,7 @@ import { RolComponent } from './rol/rol.component';
 import { GetUserByIdComponent } from './get-user-by-id/get-user-by-id.component';
 import { objToArrayPipe } from './objToArray.pipe';
 import { ObjetivosComponent } from './objetivos/objetivos.component';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { ObjetivosComponent } from './objetivos/objetivos.component';
     MatCardModule,
     MatTableModule,
     MatPaginatorModule,
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
