@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 
+import { RouterModule, Routes } from '@angular/router';
+import { InsertPEIComponent } from './components/new-pei/new-pei.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -12,11 +14,13 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatCardModule} from '@angular/material/card';
 import { objToArrayPipe } from './objToArray.pipe';
 
+
 @NgModule({
   declarations: [
     AppComponent,
     UserroleComponent,
-    objToArrayPipe
+    objToArrayPipe,
+    InsertPEIComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +30,8 @@ import { objToArrayPipe } from './objToArray.pipe';
     MatFormFieldModule,
     MatIconModule,
     MatCardModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
