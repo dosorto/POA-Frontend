@@ -4,6 +4,9 @@ import { Router } from '@angular/router';
 import { PEI } from 'src/app/models/pei';
 import { PEIService } from 'src/app/services/new-pei.service';
 
+import 'sweetalert2/src/sweetalert2.js'
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-new-pei',
   templateUrl: './new-pei.component.html',
@@ -26,18 +29,28 @@ export class InsertPEIComponent implements OnInit {
   ngOnInit(): void {
   }
   addPEI(){
+
     const PEIS: PEI = {
       name: this.PEIForm.get('name')?.value,
       initialYear: this.PEIForm.get('initialYear')?.value,
       finalYear: this.PEIForm.get('finalYear')?.value,
     }
     console.log(PEIS);
-this._peiService.createPEI(PEIS).subscribe(data =>{
-  console.log('Agregado');
-}, error =>
-  console.log(error));
-  this.PEIForm.reset();
+    Swal.fire({
+      icon: 'success',
+      title: '¡Nuevo PEI registrado exitosamente!',
+      showConfirmButton: false,
+      timer: 2500
+    })
+
+  this._peiService.createPEI(PEIS).subscribe(data =>{
+    console.log('Agregado');
+  }, error =>
+    console.log(error));
+    this.PEIForm.reset();
 
 
   }
+
 }
+

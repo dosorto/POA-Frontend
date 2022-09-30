@@ -2,7 +2,9 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
+import { MatTableModule } from '@angular/material/table';
 import { RouterModule, Routes } from '@angular/router';
 import { InsertPEIComponent } from './components/new-pei/new-pei.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -13,6 +15,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
 import {MatCardModule} from '@angular/material/card';
 import { objToArrayPipe } from './objToArray.pipe';
+import { DisablePEIComponent } from './components/disable-pei/disable-pei.component';
 
 
 @NgModule({
@@ -20,7 +23,8 @@ import { objToArrayPipe } from './objToArray.pipe';
     AppComponent,
     UserroleComponent,
     objToArrayPipe,
-    InsertPEIComponent
+    InsertPEIComponent,
+    DisablePEIComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +35,9 @@ import { objToArrayPipe } from './objToArray.pipe';
     MatIconModule,
     MatCardModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatTableModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
