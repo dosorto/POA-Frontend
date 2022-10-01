@@ -12,7 +12,7 @@ export class UsuarioService {
   }
 
 //Metodo para obtener el usuario con el ID
-getUser(id:string){
+public getUser(id:string){
   const url = environment.servidor + `auth/get/` + id;
   return this.http.get(url);
 };
