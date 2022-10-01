@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { NgFor } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -40,7 +41,8 @@ import { ToastrModule } from 'ngx-toastr';
     MatTableModule,
     MatPaginatorModule,
     ToastrModule.forRoot(),
-    FormsModule
+    FormsModule,
+    NgFor
   ],
   providers: [],
   bootstrap: [AppComponent]

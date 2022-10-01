@@ -1,65 +1,41 @@
-<div class="wrapper">
-  <!-- Sidebar  -->
-  <nav id="sidebar">
-      <div class="sidebar-header">
-          <h3>Bootstrap Sidebar</h3>
-          <strong>BS</strong>
-      </div>
 
-      <ul class="list-unstyled components">
-          <li class="active">
-              <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                  <i class="fas fa-home"></i>
-                  Home
-              </a>
-              <ul class="collapse list-unstyled" id="homeSubmenu">
-                  <li>
-                      <a href="#">Home 1</a>
-                  </li>
-                  <li>
-                      <a href="#">Home 2</a>
-                  </li>
-                  <li>
-                      <a href="#">Home 3</a>
-                  </li>
-              </ul>
-          </li>
-          <li>
-              <a href="#">
-                  <i class="fas fa-briefcase"></i>
-                  About
-              </a>
-              <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                  <i class="fas fa-copy"></i>
-                  Pages
-              </a>
-              <ul class="collapse list-unstyled" id="pageSubmenu">
-                  <li>
-                      <a href="#">Page 1</a>
-                  </li>
-                  <li>
-                      <a href="#">Page 2</a>
-                  </li>
-                  <li>
-                      <a href="#">Page 3</a>
-                  </li>
-              </ul>
-          </li>
-      </ul>
+<div class="sidenav" [ngClass]="collapsed ? 'sidenav-collapsed':''">
+    <br><br><br>
+    <div class="logo-container">
+        <button class="logo" (click)="collapsed = true">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-list-ul" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm-3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+              </svg>
+        </button>
+        <div class="logo-text" *ngIf="collapsed">POA</div>
+        <button class="btn-closed" *ngIf="collapsed" (click)="collapsed = false">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+              </svg>  
+        </button>
+    </div>
+    <ul class="sidenav-nav">
+        <!-- Ruta para el menu principal -->
+        <li class="sidenav-nav-item" *ngIf="(rutaActual !== 'home') && (permisos.includes('r_home'))" >
+            <a href="/home" class="sidenav-nav-link" [routerLink]="['home']" title="Menú Principal" (click)="link('home')">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-house-fill iconLink-poa" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
+                    <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
+                </svg>
+                <span class="sidenav-link-text" *ngIf="collapsed">Menú Principal</span>
+            </a>
+        </li>
+        
+        <!-- Ruta para gestionar instituciones(centros) -->
+        <li class="sidenav-nav-item" *ngIf="(rutaActual !== 'instituciones') && (permisos.includes('r_institucion'))">
+            <a href="/home" class="sidenav-nav-link" [routerLink]="['home']" title="Gestión Institución" (click)="link('login')">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-bank2 iconLink-poa" viewBox="0 0 16 16">
+                    <path d="M8.277.084a.5.5 0 0 0-.554 0l-7.5 5A.5.5 0 0 0 .5 6h1.875v7H1.5a.5.5 0 0 0 0 1h13a.5.5 0 1 0 0-1h-.875V6H15.5a.5.5 0 0 0 .277-.916l-7.5-5zM12.375 6v7h-1.25V6h1.25zm-2.5 0v7h-1.25V6h1.25zm-2.5 0v7h-1.25V6h1.25zm-2.5 0v7h-1.25V6h1.25zM8 4a1 1 0 1 1 0-2 1 1 0 0 1 0 2zM.5 15a.5.5 0 0 0 0 1h15a.5.5 0 1 0 0-1H.5z"/>
+                  </svg>
+                <span class="sidenav-link-text" *ngIf="collapsed">Gestión Institución</span>
+            </a>
+        </li>
 
-  </nav>
-
-  <!-- Page Content  -->
-  <div id="content">
-
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <div class="container-fluid">
-
-              <button type="button" id="sidebarCollapse" click="desplegar()" class="btn btn-info">
-                  <i class="fas fa-align-left"></i>
-                  <span>Toggle Sidebar</span>
-              </button>
-          </div>
-      </nav>
-  </div>
+        <!-- Siguientes rutas -->
+    </ul>
 </div>

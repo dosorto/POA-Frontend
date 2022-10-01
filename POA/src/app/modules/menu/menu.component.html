@@ -10,14 +10,19 @@
     <top-bar></top-bar>
 </div>
 <body>
-    <div class="container">
-        <!-- <app-sidebar></app-sidebar> -->
-        <aside class="col-2">
-            <app-sidebar></app-sidebar>
-        </aside>
-        <div class="container">
-            <app-objetivos></app-objetivos>
+    <br>
+    <div class="container-fluid ms-0 ps-0 mt-4">
+        <div class="row align-items-start">
+            <div class="col-1">
+                <app-sidebar [rutaActual]="rutaActual"></app-sidebar>
+            </div>
+
+            <div class="col-11 mt-5">
+                <app-objetivos></app-objetivos>
+                
+            </div>
         </div>
+        
     </div>
 </body>
 </html>

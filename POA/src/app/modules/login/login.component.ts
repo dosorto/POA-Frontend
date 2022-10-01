@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from './login.service';
+import { Storage } from 'src/app/_core/global-services/local_storage.service';
 
 @Component({
   selector: 'app-login',
@@ -13,6 +14,7 @@ export class LoginComponent implements OnInit {
       this.UserService.signIn(param.username,param.password)
       .subscribe((response:any) =>{
          this.auth = response;
+         this.local.create_storage("user", JSON.stringify(response));
          this.router.navigate(['/home']);
       }, (error:any) => {
         this.auth.check = error.status
@@ -21,7 +23,8 @@ export class LoginComponent implements OnInit {
     }
   constructor( private route: ActivatedRoute,
                private router: Router,
-               private UserService:UserService) { }
+               private UserService:UserService,
+               private local:Storage) { }
   userList : any = [];
   ngOnInit(): void {   
   }
