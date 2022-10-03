@@ -91,7 +91,8 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -101,6 +102,6 @@
     }
   },
   "cli": {
-    "analytics": "78dfbd75-746b-4d5a-8637-3ab9e63e2c44"
+    "analytics": "2c18bf4a-b0f1-47fc-a748-681bcffeed39"
   }
 }
