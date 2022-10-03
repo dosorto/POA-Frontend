@@ -17,7 +17,7 @@
     <ul class="sidenav-nav">
         <!-- Ruta para el menu principal -->
         <li class="sidenav-nav-item" *ngIf="(rutaActual !== 'home') && (permisos.includes('r_home'))" >
-            <a href="/home" class="sidenav-nav-link" [routerLink]="['home']" title="Menú Principal" (click)="link('home')">
+            <a href="/home" class="sidenav-nav-link"  title="Menú Principal" (click)="link('home')">
                 <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-house-fill iconLink-poa" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
                     <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
@@ -28,7 +28,7 @@
         
         <!-- Ruta para gestionar instituciones(centros) -->
         <li class="sidenav-nav-item" *ngIf="(rutaActual !== 'instituciones') && (permisos.includes('r_institucion'))">
-            <a href="/home" class="sidenav-nav-link" [routerLink]="['home']" title="Gestión Institución" (click)="link('login')">
+            <a href="/institucion" class="sidenav-nav-link"  title="Gestión Institución" (click)="link('institucion')">
                 <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-bank2 iconLink-poa" viewBox="0 0 16 16">
                     <path d="M8.277.084a.5.5 0 0 0-.554 0l-7.5 5A.5.5 0 0 0 .5 6h1.875v7H1.5a.5.5 0 0 0 0 1h13a.5.5 0 1 0 0-1h-.875V6H15.5a.5.5 0 0 0 .277-.916l-7.5-5zM12.375 6v7h-1.25V6h1.25zm-2.5 0v7h-1.25V6h1.25zm-2.5 0v7h-1.25V6h1.25zm-2.5 0v7h-1.25V6h1.25zM8 4a1 1 0 1 1 0-2 1 1 0 0 1 0 2zM.5 15a.5.5 0 0 0 0 1h15a.5.5 0 1 0 0-1H.5z"/>
                   </svg>
@@ -36,6 +36,15 @@
             </a>
         </li>
 
+        <!-- Ruta para gestionar dimensiones -->
+        <li class="sidenav-nav-item" *ngIf="(rutaActual !== 'dimensiones') && (permisos.includes('r_institucion'))">
+            <a href="/dimension" class="sidenav-nav-link"  title="Gestión Dimensión" (click)="link('institucion')">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-align-middle iconLink-poa" viewBox="0 0 16 16">
+                    <path d="M6 13a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1v10zM1 8a.5.5 0 0 0 .5.5H6v-1H1.5A.5.5 0 0 0 1 8zm14 0a.5.5 0 0 1-.5.5H10v-1h4.5a.5.5 0 0 1 .5.5z"/>
+                  </svg>
+                <span class="sidenav-link-text" *ngIf="collapsed">Gestión Dimensión</span>
+            </a>
+        </li>
         <!-- Siguientes rutas -->
     </ul>
 </div>

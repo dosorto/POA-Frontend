@@ -13,8 +13,5 @@ export class TopBarComponent implements OnInit {
   ngOnInit(): void {
     
   }
-  public desplegar(){
-    
-  }
 
 }

@@ -9,6 +9,11 @@
  .login_container{
     width: 800px;
     height: 400px;
+    min-height: 400px;
+    position: absolute;
+    left: 18%;
+    border-radius: 5px;
+    margin-top: 0;
  }
  .row_principal{
     height: 100%;
@@ -18,3 +23,4 @@
     background-image: url('../../../assets/image_login.png');
     background-size: 100% 100%;
  }
+

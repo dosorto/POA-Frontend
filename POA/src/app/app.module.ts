@@ -18,7 +18,8 @@ import { RolComponent } from './rol/rol.component';
 import { GetUserByIdComponent } from './get-user-by-id/get-user-by-id.component';
 import { objToArrayPipe } from './objToArray.pipe';
 import { ToastrModule } from 'ngx-toastr';
-
+import { TopBarComponent } from './_core/top-bar/top-bar.component';
+import { SidebarComponent } from './_core/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,9 @@ import { ToastrModule } from 'ngx-toastr';
     EmpleadoComponent,
     RolComponent,
     GetUserByIdComponent,
-    objToArrayPipe
+    objToArrayPipe,
+    TopBarComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,

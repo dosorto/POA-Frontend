@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpErrorResponse} from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpParams, HttpHeaders } from '@angular/common/http';
 import { catchError, Observable } from 'rxjs';
 
 @Injectable({
@@ -24,10 +24,17 @@ export class CallHttpService {
     return response;
   }
 
-  httpPut<T>(url: string, contentBody: any = {}): Observable<T> {    
-    var response = this.http.put<T>(url, contentBody)
-        .pipe(catchError(this.handleError()));
-    return response;
+  httpPut<T>(url: string, _params:{}): Observable<T> {    
+    const params = new HttpParams({
+      fromObject: _params
+      });
+
+      const httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/x-www-form-urlencoded'
+        })
+      };
+      return this.http.put<T>(url,params, httpOptions);
   }
 
   httpDelete<T>(url:string):Observable<T>{
