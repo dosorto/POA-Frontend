@@ -3,6 +3,8 @@ import { Storage } from 'src/app/_core/global-services/local_storage.service';
 import { DimensionService } from './dimension.service';
 import { DimensionModels } from './dimension.model';
 import { firstValueFrom } from 'rxjs';
+import { ThisReceiver } from '@angular/compiler';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-gestion-Dimension',
   templateUrl: './gestion-dimension.component.html',
@@ -17,7 +19,9 @@ export class GestionDimensionComponent implements OnInit {
   _delete:string="";
   data_update:Array<string>=[];
 
-  constructor(private Storage:Storage, private service:DimensionService) { }
+  constructor(private Storage:Storage, 
+              private service:DimensionService,
+              private router:Router) { }
   ngOnInit(): void {
     this.initData();
   }
@@ -44,20 +48,26 @@ export class GestionDimensionComponent implements OnInit {
 
   set_update(index:number){
     const instToUpdate = this.dimensiones[index]
-    this.data_update = [instToUpdate.nombre, instToUpdate.descripcion];//,instToUpdate.id
+    this.data_update = [instToUpdate.nombre, instToUpdate.descripcion, instToUpdate.idPei.toString(),instToUpdate.id.toString()];//,instToUpdate.id
   };
-  async update(nombre:string,descripcion:string){
-  //   const id = this.data_update[2]; // ahi se aloja el id
-  //   console.log(nombre);
-  //   try{
-  //   await this.service.updateDimension(nombre,descripcion,parseInt(id)).subscribe((res:any)=>{
-  //     console.log(res);
-  //     window.location.reload();
-  //   },(error:any)=>{
-  //     console.log(error);
-  //   });
-  // } catch(error){
-  //   console.log(error);
-  // }
+  update(nombre:string,descripcion:string, idPei:string){
+     const id = this.data_update[3]; // ahi se aloja el id
+     // validaciones
+    if((nombre === '')){nombre = this.data_update[0]}
+    if((descripcion === '')){descripcion= this.data_update[1]}
+    if((idPei === '')){idPei= this.data_update[2]}
+     try{
+     this.service.updateDimension(nombre,descripcion,parseInt(id),parseInt(idPei)).subscribe((res:any)=>{
+       console.log(res);
+       
+     },(error:any)=>{
+       console.log(error);
+       
+     });
+     this.router.navigate(['/dimension']);
+     
+   } catch(error){
+     console.log(error);
+   }
   }
 }

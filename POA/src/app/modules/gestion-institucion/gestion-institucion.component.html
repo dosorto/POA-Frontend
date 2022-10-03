@@ -113,7 +113,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form #Insti = 'ngForm' (ngSubmit)="update(Insti.value.nombre,Insti.value.descripcion)">
+                <form #updateIns = 'ngForm' (ngSubmit)="update(updateIns.value.nombre,updateIns.value.descripcion)">
                     <div class="col">
                         <!-- Campo para el nombre de institucion -->
                         <div class="mb-3 mx-2 px-2 row">
@@ -134,7 +134,7 @@
             
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="submit" class="btn btn-warning">Actualizar</button>
+                <button type="submit" class="btn btn-warning" data-bs-dismiss="modal">Actualizar</button>
             </div>
         </form>
         </div>

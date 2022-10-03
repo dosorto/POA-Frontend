@@ -93,7 +93,7 @@ export class DimensionService {
   }
 
   // alternativa a update
-  updateDimension(nombre: string, descripcion:string, id:number):any {
+  updateDimension(nombre: string, descripcion:string, id:number, idPei:number):any {
     const url = environment.servidor + 'dimension/update';
 
     const params = new HttpParams({
@@ -110,7 +110,7 @@ export class DimensionService {
       })
     };
     //return this.directHttp.put(url, params, httpOptions);
-    this.directHttp.put(url,{nombre:nombre,descripcion:descripcion,id:id}).subscribe((response:any)=>
+    this.directHttp.put(url,{nombre:nombre,descripcion:descripcion,id:id,idPei:idPei}).subscribe((response:any)=>
     {
       console.log(response);
       return response;
