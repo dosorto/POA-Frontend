@@ -59,12 +59,12 @@ export class GestionDimensionComponent implements OnInit {
      try{
      this.service.updateDimension(nombre,descripcion,parseInt(id),parseInt(idPei)).subscribe((res:any)=>{
        console.log(res);
-       
+       this.router.navigate(['/dimension']);
      },(error:any)=>{
        console.log(error);
        
      });
-     this.router.navigate(['/dimension']);
+     
      
    } catch(error){
      console.log(error);
