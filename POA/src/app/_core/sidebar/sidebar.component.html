@@ -46,5 +46,13 @@
             </a>
         </li>
         <!-- Siguientes rutas -->
+        <li class="sidenav-nav-item" *ngIf="(rutaActual !== 'dimensiones') && (permisos.includes('r_institucion'))">
+            <a href="/objetivos" class="sidenav-nav-link"  title="Gestión Dimensión" (click)="link('institucion')">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-bar-chart-steps" viewBox="0 0 16 16">
+                    <path d="M.5 0a.5.5 0 0 1 .5.5v15a.5.5 0 0 1-1 0V.5A.5.5 0 0 1 .5 0zM2 1.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-4a.5.5 0 0 1-.5-.5v-1zm2 4a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-1zm2 4a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-6a.5.5 0 0 1-.5-.5v-1zm2 4a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-1z"/>
+                  </svg>
+                <span class="sidenav-link-text" *ngIf="collapsed">Gestion Objetivos</span>
+            </a>
+        </li>
     </ul>
 </div>

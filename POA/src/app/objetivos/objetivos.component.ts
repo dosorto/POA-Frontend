@@ -43,5 +43,6 @@ export class ObjetivosComponent implements OnInit {
       console.log(error);
     })
   }
+  
 
 }

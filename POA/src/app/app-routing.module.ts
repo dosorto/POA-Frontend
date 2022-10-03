@@ -9,7 +9,8 @@ const routes: Routes = [
   {path: 'home', loadChildren: () => import('./modules/menu/menu.module').then(t => t.MenuModule)},
   {path: 'institucion', loadChildren: () => import('./modules/gestion-institucion/gestion-institucion.module').then(t => t.GestionInstitucionModule)},
   //{path: 'dimension', loadChildren: () => import('./modules/gestion-dimension/').then(t => t.GestionInstitucionModule)},
-
+  {path:'objetivos', component: ObjetivosComponent},
+  {path:'alluser', component:AlluserComponent}
 ];
 
 @NgModule({
