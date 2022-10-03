@@ -2,15 +2,20 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgFor } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
+import { MatTableModule } from '@angular/material/table';
+import { RouterModule, Routes } from '@angular/router';
+import { InsertPEIComponent } from './components/new-pei/new-pei.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './modules/login/login.component';
 //import { AlluserComponent } from './alluser/alluser.component';
-import { HttpClientModule } from '@angular/common/http';
+
 import {MatCardModule} from '@angular/material/card';
-import {MatTableModule} from '@angular/material/table';
+
 
 import { IdUserComponent } from './id-user/id-user.component';
 import { RolComponent } from './rol/rol.component';
