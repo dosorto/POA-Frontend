@@ -3,7 +3,7 @@ import { empleado } from '../models/user.interface';
 import { usuario } from '../models/userDatos.interface'
 import { UserService } from '../service/user.service';
 import Swal from 'sweetalert2';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { EmpleadoService } from '../empleado/empleado.service';
 import { RolService } from '../rol/rol.service';
@@ -18,6 +18,8 @@ export class CreateUserComponent implements OnInit {
   //listEmpleados: any = [];
    empleadoList: any = [];
    roleList: any = [];
+   password: any = {check:'null'};
+
 
   public usuario:FormGroup = new FormGroup({
     username: new FormControl('',[Validators.required, Validators.minLength(4)]),
@@ -25,7 +27,6 @@ export class CreateUserComponent implements OnInit {
     password2: new FormControl('',[Validators.required, Validators.minLength(8)]),
     idEmpleado: new FormControl('',[Validators.required]),
     idRol: new FormControl('',[Validators.required])
-
   })
 
   constructor(private UserService: UserService, private router:Router, private EmpleadoService: EmpleadoService, private RolService: RolService ) { }
@@ -60,7 +61,8 @@ export class CreateUserComponent implements OnInit {
     this.UserService.postUsuario(form).subscribe(data=>{
       console.log(data);
       this.usuario.reset();
-    })
+    },(error:any)=>{
+      this.password.check = error.status})
   }
 
 
