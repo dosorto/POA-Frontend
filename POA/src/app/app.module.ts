@@ -16,6 +16,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatCardModule} from '@angular/material/card';
 import { objToArrayPipe } from './objToArray.pipe';
 import { DisablePEIComponent } from './components/disable-pei/disable-pei.component';
+import { AllPEIComponent } from './components/all-pei/all-pei.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { DisablePEIComponent } from './components/disable-pei/disable-pei.compon
     UserroleComponent,
     objToArrayPipe,
     InsertPEIComponent,
-    DisablePEIComponent
+    DisablePEIComponent,
+    AllPEIComponent
   ],
   imports: [
     BrowserModule,

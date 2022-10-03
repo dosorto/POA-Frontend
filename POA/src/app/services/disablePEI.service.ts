@@ -7,13 +7,14 @@ import { PEI } from '../models/pei';
   providedIn: 'root'
 })
 export class DisablePEIService {
-  url1 = 'http://localhost:8080/auth/get_PEI/';
+  url1 = 'http://localhost:8080/get_PEI/';
   url2 = 'http://localhost:8080/auth/disablePEI/';
 
   constructor(private http: HttpClient) { }
 
-  getPEI(): Observable<any> {
-    return this.http.get(this.url1);
+  //Servicio para obtener todos los PEI
+  getPEI(): Observable<PEI[]> {
+    return this.http.get<PEI[]>(this.url1);
   }
 
   disablePEI(id: string): Observable<any>{
