@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ObjetivosService } from './objetivos.service';
 import { ToastrService } from 'ngx-toastr';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Objetivo } from './objetivos.model';
 
 @Component({
   selector: 'app-objetivos',
@@ -8,6 +11,8 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./objetivos.component.css']
 })
 export class ObjetivosComponent implements OnInit {
+  objetivosForm: FormGroup;
+
 
   objetivosList: any = [];
     //id=String;
@@ -18,8 +23,19 @@ export class ObjetivosComponent implements OnInit {
   }*/
 
 
-  constructor( private objetivosService:ObjetivosService,private toastr: ToastrService) { 
-    console.log('El componente se ha iniciado');
+  constructor( private objetivosService:ObjetivosService,
+              private fb: FormBuilder,
+              private router: Router,
+              private toastr: ToastrService) { 
+
+                this.objetivosForm = this.fb.group({
+                  nombre : ['', Validators.required],
+                  idDimension : ['', Validators.required],
+                  idPEI : ['', Validators.required]
+                })
+               
+
+
   }
 
   ngOnInit(): void {
@@ -43,6 +59,21 @@ export class ObjetivosComponent implements OnInit {
       console.log(error);
     })
   }
-  
+
+  agregarObjetivo(){
+    const OBJETIVO: Objetivo = {
+      nombre: this.objetivosForm.get('nombre')?.value,
+      idDimension: this.objetivosForm.get('idDimension')?.value,
+      idPEI: this.objetivosForm.get('idPEI')?.value,
+    }
+    console.log(OBJETIVO);
+this.objetivosService.insertarObjetivo(OBJETIVO).subscribe(data =>{
+  console.log('Agregado');
+}, error =>
+  console.log(error));
+  this.objetivosForm.reset();
+
+
+  }
 
 }

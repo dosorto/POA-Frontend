@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgFor } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -20,6 +20,7 @@ import { objToArrayPipe } from './objToArray.pipe';
 import { ToastrModule } from 'ngx-toastr';
 import { TopBarComponent } from './_core/top-bar/top-bar.component';
 import { SidebarComponent } from './_core/sidebar/sidebar.component';
+
 
 @NgModule({
   declarations: [
@@ -45,7 +46,9 @@ import { SidebarComponent } from './_core/sidebar/sidebar.component';
     MatPaginatorModule,
     ToastrModule.forRoot(),
     FormsModule,
-    NgFor
+    NgFor,
+    ReactiveFormsModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
