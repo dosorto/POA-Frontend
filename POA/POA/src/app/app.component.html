@@ -1,0 +1,30 @@
+ <router-outlet></router-outlet>
+<!-- <app-login></app-login> -->
+<div class="">
+    <div *ngIf="TopBar_sideBar">
+        <top-bar></top-bar>
+    </div>
+</div>
+
+<body>
+    <br>
+    <div class="container ms-0 ps-0 mt-4 w-100">
+        <div class="row align-items-start w-100">
+            <div *ngIf="TopBar_sideBar">
+                <div class="col-1">
+                    <app-sidebar></app-sidebar>
+                </div>
+
+                <div class="col-11 posicion_contenido">
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
+            <div *ngIf="!TopBar_sideBar">
+                <div class="col-12">
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
