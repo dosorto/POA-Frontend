@@ -1,0 +1,69 @@
+
+
+<div class="container login_container bg-light mt-5">
+    <!-- contenedor para dos columnas, el formulario del login y una imagen lateral -->
+    <div class="row row_principal border border-2 border-primary shadow">
+    <!-- formulario de login -->
+    <div class="col text-center">
+      <form #login = 'ngForm' (ngSubmit)="validate(login.value)">
+        <div class="login-wrap">
+          <!-- row para el titulo -->
+          <div class="row titulo">
+            <p class="fs-2">Iniciar Sesión</p>
+          </div>  
+          <div class="form">
+            <!-- row para input nombre de usuario -->
+            <div class="mb-3 mx-2 px-2 row">
+              <label for="username" class="col-sm-2 col-form-label" >Usuario</label>
+              <div class="col-sm-8 mx-4">
+                <input type="text" class="form-control" name="username" ngModel required>
+              </div>
+            </div>
+            <!-- row para contrase;a -->
+            <!-- <input type="password" placeholder="Contraseña" name="password" ngModel/> -->
+
+            <div class="mb-4 mx-2 px-2 row">
+              <label for="password" class="col-sm-2 col-form-label" >Contraseña</label>
+              <div class="col-sm-8 mx-4">
+                <input type="password" class="form-control" name="password" ngModel required>
+              </div>
+            </div>
+            <!-- row para boton ingresar -->
+            <div class="row justify-content-center mt-2 mb-2">
+              <button type="submit" class="btn btn-warning col-sm-3 center">Ingresar</button>
+            </div>
+            <!-- row para enlace de recuperacion de contrase;a -->
+            <a href="#" class="link-secondary"> <p> Olvido su contraseña? </p></a>  
+          </div>
+        </div>
+      </form>
+    </div>
+    <!-- espacio para una imagen informativa, puede ser logotipo con fondo -->
+    <div class="col" id="image_login">
+    </div>
+    </div>
+
+</div>
+
+
+<!-- TEMPORAL muestra un alert para notificar si fue correcto o hubo error -->
+<div *ngIf="auth.check == 'ok'" class="alert alert-success alertConexion text-center  position-absolute bottom-0 start-50 translate-middle" role="alert">
+  Se inicio sesión con exito
+  <button type="button" class="btn-close position-absolute end-0 ps-4" data-bs-dismiss="alert" aria-label="Close">  </button>
+</div>
+
+<div *ngIf="auth.check == '404'" class="alert alert-danger alertConexion text-center  position-absolute bottom-0 start-50 translate-middle" role="alert">
+  Usuario no encontrado
+  <button type="button" class="btn-close position-absolute end-0 ps-4" data-bs-dismiss="alert" aria-label="Close">  </button>
+</div>
+
+
+<div *ngIf="auth.check == '401'" class="alert alert-danger alertConexion text-center  position-absolute bottom-0 start-50 translate-middle" role="alert">
+  Por favor revise sus credenciales
+  <button type="button" class="btn-close position-absolute end-0 ps-4" data-bs-dismiss="alert" aria-label="Close">  </button>
+</div>
+
+
+
+
+
