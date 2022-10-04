@@ -7,7 +7,7 @@ export namespace DimensionModels {
         createdAt:   Date;
         updatedAt:   Date;
         idPei:       number;
-        PEI:         Pei;
+        pei:         Pei;
     }
     
     export interface Pei {

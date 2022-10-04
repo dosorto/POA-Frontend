@@ -28,6 +28,7 @@ export class GestionDimensionComponent implements OnInit {
   async initData(){
     let dimensiones = await firstValueFrom(this.service.getdimensiones())
     this.dimensiones = dimensiones;
+    console.log(dimensiones);
   }
   set_id_delete(nombre:string){
     this._delete = nombre;
@@ -35,7 +36,9 @@ export class GestionDimensionComponent implements OnInit {
   }
   async delete(){
     await this.service.eliminarDimension(this._delete);
-    window.location.reload();
+    setTimeout(function() {
+      window.location.reload();
+    },100);
   }
   async crear_Dimension(nombre:string,descripcion:string,idPei:number){
     await this.service.crearDimension(nombre,descripcion,idPei).subscribe((res:any)=>{
@@ -69,5 +72,8 @@ export class GestionDimensionComponent implements OnInit {
    } catch(error){
      console.log(error);
    }
+   setTimeout(function() {
+    window.location.reload();
+  },100);
   }
 }
