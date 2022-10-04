@@ -21,6 +21,7 @@ export class GestionPeiComponent implements OnInit {
   constructor(private Storage: Storage, private service: peiService) { }
   ngOnInit(): void {
     this.initData();
+    console.log(this.initData)
   }
   async initData() {
     let peis = await firstValueFrom(this.service.getPEI())
@@ -45,7 +46,7 @@ export class GestionPeiComponent implements OnInit {
       })
       setTimeout(function() {
         window.location.reload();
-      },3000);
+      },2500);
     }, (error: any) => {
       console.log(error);
     });

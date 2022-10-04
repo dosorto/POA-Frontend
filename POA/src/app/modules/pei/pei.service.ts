@@ -62,7 +62,7 @@ export class peiService {
 
 
   getPEI() {
-    return this.callHttp.httpGet<Array<peiModel.Pei>>(`${environment.servidor} PEI/get_PEI`)
+    return this.callHttp.httpGet<Array<peiModel.Pei>>(`http://localhost:8080/PEI/get_PEI`)
       .pipe(map(response => {
         this._peis = response;
         return response;
