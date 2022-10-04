@@ -1,0 +1,43 @@
+<div class="container login_container bg-light mt-5">
+  <!-- contenedor para dos columnas, el formulario del login y una imagen lateral -->
+  <div class="row row_principal border border-2 border-primary shadow">
+  <!-- formulario de login -->
+  <div class="col text-center">
+    <form>
+      <div class="login-wrap">
+        <!-- row para el titulo -->
+        <div class="row titulo">
+          <p class="fs-2">Obtener el rol de usuario</p>
+        </div>
+        <div class="form">
+          <!--row para input nombre de usuario -->
+          <div class="mb-3 mx-2 px-2 row">
+            <label for="username" class="col-sm-2 col-form-label" >Usuario</label>
+            <div class="col-sm-8 mx-4">
+              <input type="text" class="form-control" name="username" ngModel required>
+            </div>
+
+
+          </div>
+          <table>
+            <tr>
+              <th>Usuario</th>
+              <th>Rol</th>
+            </tr>
+            <tr *ngFor="let x of userroleList | objToArray">
+              <td>{{x.username}}</td>
+              <td>{{x.role}}</td>
+            </tr>
+          </table>
+          <!-- Boton mediante el cual al hacer click invocamos la funcion para obtener el rol de usuario -->
+          <button type="submit" (click)="getUserrole()" class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal">Obtener Usuario</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <!-- espacio para una imagen informativa, puede ser logotipo con fondo -->
+  <div class="col" id="image_login">
+  </div>
+  </div>
+
+</div>

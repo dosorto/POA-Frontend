@@ -1,43 +1,57 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, NgForm} from '@angular/forms'
+import { NgFor } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
+import { MatTableModule } from '@angular/material/table';
+import { RouterModule, Routes } from '@angular/router';
+import { InsertPEIComponent } from './components/new-pei/new-pei.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-
-import { GetUserByIdComponent } from './get-user-by-id/get-user-by-id.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import { FormsModule, NgControl } from '@angular/forms';
-import { objToArrayPipe } from './objToArray.pipe';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ToastrModule } from 'ngx-toastr';
-
+import { LoginComponent } from './modules/login/login.component';
+//import { AlluserComponent } from './alluser/alluser.component';
 import {MatCardModule} from '@angular/material/card';
-import {MatTableModule} from '@angular/material/table';
-import {MatPaginatorModule} from '@angular/material/paginator';
+import { IdUserComponent } from './id-user/id-user.component';
+import { RolComponent } from './rol/rol.component';
+import { GetUserByIdComponent } from './get-user-by-id/get-user-by-id.component';
+import { objToArrayPipe } from './objToArray.pipe';
+import { ToastrModule } from 'ngx-toastr';
+import { TopBarComponent } from './_core/top-bar/top-bar.component';
+import { SidebarComponent } from './_core/sidebar/sidebar.component';
+import { GestionResultadoComponent } from './modules/gestion-resultados/gestion-resultado.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
+    LoginComponent,
+    //AlluserComponent,
+    IdUserComponent,
+    RolComponent,
     GetUserByIdComponent,
     objToArrayPipe,
-
+    TopBarComponent,
+    SidebarComponent,
+    GestionResultadoComponent
+    
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    NoopAnimationsModule,
     HttpClientModule,
-    FormsModule,
-    BrowserAnimationsModule, // required animations module
-    ToastrModule.forRoot(), // ToastrModule added
+    AppRoutingModule,
     NoopAnimationsModule,
     HttpClientModule,
     MatCardModule,
     MatTableModule,
-    MatPaginatorModule
+    ToastrModule.forRoot(),
+    FormsModule,
+    NgFor,
+    ReactiveFormsModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
