@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { NgFor } from '@angular/common';
+import { FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
+
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import {MatPaginatorModule} from '@angular/material/paginator';
@@ -24,6 +24,9 @@ import { objToArrayPipe } from './objToArray.pipe';
 import { ToastrModule } from 'ngx-toastr';
 import { TopBarComponent } from './_core/top-bar/top-bar.component';
 import { SidebarComponent } from './_core/sidebar/sidebar.component';
+import { NgFor } from '@angular/common';
+import { ObjetivosComponent } from './objetivos/objetivos.component';
+
 
 @NgModule({
   declarations: [
@@ -35,7 +38,8 @@ import { SidebarComponent } from './_core/sidebar/sidebar.component';
     GetUserByIdComponent,
     objToArrayPipe,
     TopBarComponent,
-    SidebarComponent
+    SidebarComponent,
+    ObjetivosComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +51,9 @@ import { SidebarComponent } from './_core/sidebar/sidebar.component';
     MatTableModule,
     ToastrModule.forRoot(),
     FormsModule,
-    NgFor
+    NgFor,
+    ReactiveFormsModule 
+
   ],
   providers: [],
   bootstrap: [AppComponent]

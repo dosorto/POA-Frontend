@@ -1,42 +1,164 @@
 
- 
-        <div class="container mt-8">
-            <div class="row">
-                <div class="col-lg-8 offset-lg-2">
-                    <div class="card">
-                        <div class="card-body text-center">
-                            <span class="Titulo">LISTADO DE USUARIOS</span>
-                            <button class="btn btn-success float-end" routerLink="/crear-usuario">Nuevo</button>
-        
-                            <table class="table table-striped mt-3">
-                                <thead>
-                                  <tr>
-                                    <th scope="col">Objetivo</th>
-                                    <th scope="col">Dimension</th>
-                                    <th scope="col">PEI</th>
-                                    <th scope="col">Acciones</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let x of objetivosList">
-                                        <td>{{x.nombre}}</td>
-                                        <td>{{x.dimension.nombre}}</td>
-                                        <td>{{x.pei.nombre}}</td>
-                                    <td>
-                                        <i class="fa-solid fa-pen-to-square"></i>
-                                        <i (click)="eliminarObjetivo(x.id)" class="fa-solid fa-trash"></i>
-                                    </td>
-                                  </tr>
-                                </tbody>
-                              </table>
-        
+             
+<!-- Pantalla principal del modulo -->
+<div class="container d-flex align-items-center justify-content-center ">
+    <!-- columna completa que agrupa todos los row -->
+    <div class="col-12 ">
+        <!-- espacio para el titulo, buscador y boton de agregar uno nuevo -->
+        <div class="w-100 row m-auto">
+            <div class="row text-center">
+                <h2 class="l-4">Gestión de Objetivos</h2>
+            </div>
+            <div class="w-75 row m-auto mb-2">
+                <div class="col-8">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Buscar por nombre" aria-label="Buscar"
+                            aria-describedby="btnGroupAddon">
+                        <div class="input-group-text" id="btnGroupAddon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-search" viewBox="0 0 16 16">
+                                <path
+                                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                            </svg>
                         </div>
                     </div>
                 </div>
+                
+                <div class="col-4">
+                    <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                    data-bs-target="#createInst">
+                        <i class="bi bi-plus-square"></i>
+                        <span>
+                            Crear Objetivo
+                        </span>
+                    </button>
+                </div>
             </div>
-        
         </div>
-        
-    
+        <!-- tabla dinamica que muestra todas las instituciones -->
+        <div class="w-75 m-auto row ">
+            <table class="table table-hover">
+                <thead class="text-center">
+                    <tr>
+                        <th class="table-secondary" scope="col">Objetivo</th>
+                        <th class="table-secondary" scope="col">Dimension</th>
+                        <th class="table-secondary" scope="col">PEI</th>
+                        <th class="table-secondary" scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody class="text-center">
+                    <tr *ngFor="let x of objetivosList">
+                            <td>{{x.nombre}}</td>
+                            <td>{{x.dimension.nombre}}</td>
+                            <td>{{x.PEI.name}}</td>
+                        <td>
+                            <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                <button type="button" class="btn btn-secondary"  data-bs-toggle="modal" data-bs-target="#editInst">Editar</button>
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                data-bs-target="#eliminarInst" >
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                                        <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- Este modal sirve para crear un nuevo objetivo -->
+<div class="modal" id="createInst" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header bg-warning text-black text-center">
+                <h5 class="modal-title fs-5 text-center m-auto" id="exampleModalLabel">Crear una nueva institución</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="objetivo" (ngSubmit)="postObjetivo(objetivo.value)">
+                    <div class="mb-3">
+                      <input type="text" formControlName="nombre" class="form-control form-control-lg" placeholder="Nombre">
+                      
+                    </div>
+                    <div class="mb-3">
+                      <input type="number" formControlName="idDimension" class="form-control form-control-lg" placeholder="idDimension">
+                      
+                    </div>
+                    <div class="mb-3">
+                      <input type="number" formControlName="idPei" class="form-control form-control-lg" placeholder="idPEI">
+                      
+                    </div>
+                    <div class="mb-3">
+                      <button type="submit" routerLink="/objetivos" class="btn btn-success btn-lg float-end" data-bs-dismiss="modal">AGREGAR</button>
+                    </div>
+                  </form>
+        </div>
+    </div>
+    </div>
+</div>
+
+<!-- Este modal sirve para editar una institucion -->
+<!--
+<div class="modal" id="editInst" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header bg-warning text-black text-center">
+                <h5 class="modal-title fs-5 text-center m-auto" id="exampleModalLabel">Actualizar</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form #Insti = 'ngForm' (ngSubmit)="update(Insti.value.nombre,Insti.value.descripcion)">
+                    <div class="col">-->
+                        <!-- Campo para el nombre de institucion -->
+                        <!--
+                        <div class="mb-3 mx-2 px-2 row">
+                            <label for="nombre" class="row col-form-label">Nombre de Institución:</label>
+                            <div class="row">
+                                <input type="text" class="form-control" name="nombre" value="{{data_update[0]}}" ngModel required>
+                            </div>
+                        </div>
+                        -->
+                        <!-- Campo para la descripcion -->
+                        <!--
+                        <div class="mb-3 mx-2 px-2 row">
+                            <label for="username" class="row col-form-label">Descripcion:</label>
+                            <div class="row">
+                                <input type="text" class="form-control" name="descripcion" value="{{data_update[1]}}" ngModel required>
+                            </div>
+                        </div>
+                    </div>
+                
+            
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="submit" class="btn btn-warning">Actualizar</button>
+            </div>
+        </form>
+        </div>
+    </div>
+    </div>
+</div>
+-->
+<!-- Este modal sirve para eliminar una institucion -->
+
+<div class="modal" tabindex="-1" id="eliminarInst">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-danger">
+          <h5 class="modal-title fs-3 m-auto"></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Está seguro de eliminarla? </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-danger" *ngFor="let x of objetivosList" (click)="eliminarObjetivo(x.id)" data-bs-dismiss="modal">Eliminar</button>
+        </div>
+      </div>
+    </div>
+  </div>  
 
  
