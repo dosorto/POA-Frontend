@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AreasPEIComponent } from './areas-pei.component';
+import { CrearAreaComponent } from './crear-area.component';
 
-describe('AreasPEIComponent', () => {
-  let component: AreasPEIComponent;
-  let fixture: ComponentFixture<AreasPEIComponent>;
+describe('CrearAreaComponent', () => {
+  let component: CrearAreaComponent;
+  let fixture: ComponentFixture<CrearAreaComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AreasPEIComponent ]
+      declarations: [ CrearAreaComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(AreasPEIComponent);
+    fixture = TestBed.createComponent(CrearAreaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

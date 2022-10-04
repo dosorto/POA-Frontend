@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ContraseñaService } from 'src/app/Services/contraseña.service';
+import { Contra } from 'src/app/models/Contra';
 
 @Component({
   selector: 'app-guardar-c',
@@ -7,20 +8,20 @@ import { ContraseñaService } from 'src/app/Services/contraseña.service';
   styleUrls: ['./guardar-c.component.css']
 })
 export class GuardarCComponent implements OnInit {
-
-  constructor(private ContraseñaService:ContraseñaService) { }
+  ListarContrasena: Contra[] = [];
+  constructor(private _contraseñaService: ContraseñaService) { }
 
   ngOnInit(): void {
-    this.ListarContrasena();
   }
 
-  ListarContrasena()
-  {
-    this.ContraseñaService.getContrasena().subscribe(
-      res=>{
-        console.log(res)
-      },
-      err => console.log(err)
-    );
+  CambiarContrasena() {
+    this._contraseñaService.getContrasena().subscribe(data => {
+      console.log(data);
+      this.ListarContrasena = data;
+    }, error => {
+      console.log(error)
+    })
   }
+
+
 }

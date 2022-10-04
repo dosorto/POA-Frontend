@@ -1,1 +1,42 @@
-<p>guardar-c works!</p>
+<div class="container login_container bg-light mt-5">
+    <!-- contenedor para dos columnas, el formulario del login y una imagen lateral -->
+    <div class="row row_principal border border-2 border-primary shadow">
+    <!-- formulario de login -->
+    <div class="col text-center">
+      <form>
+        <div class="login-wrap">
+          <!-- row para el titulo -->
+          <div class="row titulo">
+            <p class="fs-2">Cambiar Contraseña </p>
+          </div>  
+          <div class="form">
+            <!-- row para input nombre de usuario -->
+            <link rel="stylesheet" href="guardar-c.component.css">
+
+            <div class="mb-3 mx-2 px-2 row">
+              <label for class="col-sm-2 col-form-label" ></label>
+              <div class="col-sm-8 mx-4">
+                <input type="Password" class="form-control" name="old_password"  placeholder="Contraseña Anterior" ngModel required>
+              </div>
+              <div class="mb-3 mx-2 px-2 row">
+                <input type="Password" class="form-control " name= "new_password"  placeholder="Contraseña Nueva" ngModel required>
+              </div>
+              <div class="mb-3 mx-2 px-2 row">
+                <input type="Password" class="form-control " name= "new_password_again"  placeholder="Confirmar Contraseña" ngModel required>
+              </div>
+            </div>
+            
+            <div class="row justify-content-center mt-2 mb-2">
+              <button type="/guardar-c.component" class="btn btn-warning col-sm-3 center">Guardar</button>
+            </div>
+            <!-- row para enlace de recuperacion de contrase;a -->
+          </div>
+        </div>
+      </form>
+    </div>
+    <!-- espacio para una imagen informativa, puede ser logotipo con fondo -->
+    <div class="col" id="image_login">
+    </div>
+    </div>
+  
+  </div>
