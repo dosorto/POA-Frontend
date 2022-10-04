@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DisablePEIComponent } from './disable-pei.component';
+import { GestionPeiComponent } from './pei.component';
 
-describe('DisablePEIComponent', () => {
-  let component: DisablePEIComponent;
-  let fixture: ComponentFixture<DisablePEIComponent>;
+describe('GestionPeiComponent', () => {
+  let component: GestionPeiComponent;
+  let fixture: ComponentFixture<GestionPeiComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DisablePEIComponent ]
+      declarations: [ GestionPeiComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(DisablePEIComponent);
+    fixture = TestBed.createComponent(GestionPeiComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
