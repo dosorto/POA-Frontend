@@ -1,41 +1,4 @@
 
- <!--   <div class="container mt-8">
-            <div class="row">
-                <div class="col-lg-8 offset-lg-2">
-                    <div class="card">
-                        <div class="card-body text-center">
-                            <span class="Titulo">LISTADO DE USUARIOS</span>
-                            <button class="btn btn-success float-end" routerLink="/crear-usuario">Nuevo</button>
-        
-                            <table class="table table-striped mt-3">
-                                <thead>
-                                  <tr>
-                                    <th scope="col">Objetivo</th>
-                                    <th scope="col">Dimension</th>
-                                    <th scope="col">PEI</th>
-                                    <th scope="col">Acciones</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let x of objetivosList">
-                                        <td>{{x.nombre}}</td>
-                                        <td>{{x.dimension.nombre}}</td>
-                                        <td>{{x.pei.nombre}}</td>
-                                    <td>
-                                        <i class="fa-solid fa-pen-to-square"></i>
-                                        <i (click)="eliminarObjetivo(x.id)" class="fa-solid fa-trash"></i>
-                                    </td>
-                                  </tr>
-                                </tbody>
-                              </table>
-        
-                        </div>
-                    </div>
-                </div>
-            </div>
-        
-        </div>
--->
              
 <!-- Pantalla principal del modulo -->
 <div class="container d-flex align-items-center justify-content-center ">
@@ -60,6 +23,7 @@
                         </div>
                     </div>
                 </div>
+                
                 <div class="col-4">
                     <button type="button" class="btn btn-warning" data-bs-toggle="modal"
                     data-bs-target="#createInst">
@@ -113,7 +77,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form class="mt-3"  (ngSubmit)="agregarObjetivo()">
+                <form [formGroup]="objetivo" (ngSubmit)="postObjetivo(objetivo.value)">
                     <div class="mb-3">
                       <input type="text" formControlName="nombre" class="form-control form-control-lg" placeholder="Nombre">
                       
@@ -123,11 +87,11 @@
                       
                     </div>
                     <div class="mb-3">
-                      <input type="number" formControlName="idPEI" class="form-control form-control-lg" placeholder="idPEI">
+                      <input type="number" formControlName="idPei" class="form-control form-control-lg" placeholder="idPEI">
                       
                     </div>
                     <div class="mb-3">
-                      <button type="submit" routerLink="/insertObjetivo" class="btn btn-success btn-lg float-end">AGREGAR</button>
+                      <button type="submit" routerLink="/objetivos" class="btn btn-success btn-lg float-end" data-bs-dismiss="modal">AGREGAR</button>
                     </div>
                   </form>
         </div>

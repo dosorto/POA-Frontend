@@ -9,7 +9,6 @@ const router = RouterModule.forChild([
 @NgModule({
   declarations: [
     MenuComponent,
-    ObjetivosComponent
   ],
   imports: [
   CommonModule,

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgFor } from '@angular/common';
+import { FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
+
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -20,6 +20,8 @@ import { objToArrayPipe } from './objToArray.pipe';
 import { ToastrModule } from 'ngx-toastr';
 import { TopBarComponent } from './_core/top-bar/top-bar.component';
 import { SidebarComponent } from './_core/sidebar/sidebar.component';
+import { NgFor } from '@angular/common';
+import { ObjetivosComponent } from './objetivos/objetivos.component';
 
 
 @NgModule({
@@ -33,7 +35,8 @@ import { SidebarComponent } from './_core/sidebar/sidebar.component';
     GetUserByIdComponent,
     objToArrayPipe,
     TopBarComponent,
-    SidebarComponent
+    SidebarComponent,
+    ObjetivosComponent
   ],
   imports: [
     BrowserModule,
@@ -43,11 +46,10 @@ import { SidebarComponent } from './_core/sidebar/sidebar.component';
     HttpClientModule,
     MatCardModule,
     MatTableModule,
-    MatPaginatorModule,
     ToastrModule.forRoot(),
     FormsModule,
     NgFor,
-    ReactiveFormsModule
+    ReactiveFormsModule 
 
   ],
   providers: [],
