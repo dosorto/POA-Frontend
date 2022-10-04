@@ -7,7 +7,6 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 
 import { MatTableModule } from '@angular/material/table';
 import { RouterModule, Routes } from '@angular/router';
-import { InsertPEIComponent } from './components/new-pei/new-pei.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
