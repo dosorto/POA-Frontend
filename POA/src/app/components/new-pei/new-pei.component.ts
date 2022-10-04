@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PEI } from 'src/app/models/pei';
-import { PEIService } from 'src/app/services/new-pei.service';
+import { PEIService } from 'src/app/SERVICES/new-pei.service';
 
 import 'sweetalert2/src/sweetalert2.js'
 import Swal from 'sweetalert2';
