@@ -21,6 +21,7 @@ import { objToArrayPipe } from './objToArray.pipe';
 import { ToastrModule } from 'ngx-toastr';
 import { TopBarComponent } from './_core/top-bar/top-bar.component';
 import { SidebarComponent } from './_core/sidebar/sidebar.component';
+import { AreaComponent } from './modules/area/area.component';
 
 
 @NgModule({
@@ -33,7 +34,7 @@ import { SidebarComponent } from './_core/sidebar/sidebar.component';
     GetUserByIdComponent,
     objToArrayPipe,
     TopBarComponent,
-    SidebarComponent
+    SidebarComponent,
   ],
   imports: [
     BrowserModule,
