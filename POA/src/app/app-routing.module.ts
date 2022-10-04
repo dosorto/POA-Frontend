@@ -1,8 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+<<<<<<< HEAD
 import { AlluserComponent } from './modules/alluser/alluser.component';
 import { ObjetivosComponent } from './objetivos/objetivos.component';
 
+=======
+import { CrearAreaComponent } from './crear-area/crear-area.component';
+import { GuardarCComponent } from './componentes/guardar-c/guardar-c.component';
+import { AlluserComponent } from './modules/alluser/alluser.component';
+import { ObjetivosComponent } from './objetivos/objetivos.component';
+
+
+>>>>>>> origin/Alejandraf
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'login'},
   {path: 'login', loadChildren: () => import('./modules/login/login.module').then(t => t.LoginModule)},
@@ -11,7 +20,11 @@ const routes: Routes = [
   {path: 'dimension', loadChildren: () => import('./modules/gestion-dimension/gestion-dimension.module').then(t => t.GestionDimensionModule)},
   {path: 'all_user', loadChildren: () => import('./modules/alluser/alluser.module').then(t => t.UsuarioModule)},
   {path: 'empleados', loadChildren: () => import('./modules/empleado/empleado.module').then(t => t.EmpleadoModule)},
+<<<<<<< HEAD
 
+=======
+  {path: 'area',loadChildren: () => import('./modules/area/area.module').then(t => t.AreaModule)}
+>>>>>>> origin/Alejandraf
 ];
 
 @NgModule({
