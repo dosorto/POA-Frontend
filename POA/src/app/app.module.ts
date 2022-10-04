@@ -9,12 +9,18 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { RouterModule, Routes } from '@angular/router';
 import { InsertPEIComponent } from './components/new-pei/new-pei.component';
+import { NgFor } from '@angular/common';
+
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
+//Modulos
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './modules/login/login.component';
 //import { AlluserComponent } from './alluser/alluser.component';
 import {MatCardModule} from '@angular/material/card';
+
 import { IdUserComponent } from './id-user/id-user.component';
 import { RolComponent } from './rol/rol.component';
 import { GetUserByIdComponent } from './get-user-by-id/get-user-by-id.component';
@@ -23,6 +29,9 @@ import { ToastrModule } from 'ngx-toastr';
 import { TopBarComponent } from './_core/top-bar/top-bar.component';
 import { SidebarComponent } from './_core/sidebar/sidebar.component';
 import { GestionResultadoComponent } from './modules/gestion-resultados/gestion-resultado.component';
+
+import { ObjetivosComponent } from './objetivos/objetivos.component';
+
 
 
 @NgModule({
@@ -36,8 +45,8 @@ import { GestionResultadoComponent } from './modules/gestion-resultados/gestion-
     objToArrayPipe,
     TopBarComponent,
     SidebarComponent,
-    GestionResultadoComponent
-    
+    GestionResultadoComponent,
+    ObjetivosComponent
   ],
   imports: [
     BrowserModule,
@@ -47,11 +56,12 @@ import { GestionResultadoComponent } from './modules/gestion-resultados/gestion-
     HttpClientModule,
     MatCardModule,
     MatTableModule,
+    NgFor,
     ToastrModule.forRoot(),
     FormsModule,
     NgFor,
-    ReactiveFormsModule,
-
+    ReactiveFormsModule 
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

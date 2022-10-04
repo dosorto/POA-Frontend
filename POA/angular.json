@@ -23,7 +23,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/custom-theme.scss",
+              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/styles.css",
               "node_modules/ngx-toastr/toastr.css"
             ],
@@ -103,10 +103,6 @@
     }
   },
   "cli": {
-<<<<<<< HEAD
-    "analytics": "784849f6-9f8f-4a08-a103-9c137d5cf90b"
-=======
     "analytics": "2c18bf4a-b0f1-47fc-a748-681bcffeed39"
->>>>>>> d9a88ee22adecb84f29591f955e9fa1eafe78115
   }
 }
