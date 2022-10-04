@@ -15,7 +15,7 @@ const routes: Routes = [
   {path: 'empleados', loadChildren: () => import('./modules/empleado/empleado.module').then(t => t.EmpleadoModule)},
   {path: 'pei', loadChildren: () => import('./modules/pei/pei.module').then(t => t.peiModule)},
   {path:'objetivos', component: ObjetivosComponent},
-  {path:'alluser', component:AlluserComponent}
+  {path:'alluser', component:AlluserComponent},
   {path: 'resultado', component: GestionResultadoComponent},
 ];
 
