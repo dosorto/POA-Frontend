@@ -28,6 +28,7 @@ export class GestionDimensionComponent implements OnInit {
   async initData(){
     let dimensiones = await firstValueFrom(this.service.getdimensiones())
     this.dimensiones = dimensiones;
+    console.log(dimensiones);
   }
   set_id_delete(nombre:string){
     this._delete = nombre;
