@@ -69,8 +69,8 @@ export class AreaComponent implements OnInit {
     if ((idDimension === '')) { idDimension = this.data_update[2] }
     if ((idPei === '')) { idPei = this.data_update[3] }
     try {
-      this.service.actualizarAREA(parseInt(id),nombre,parseInt(idObjetivo), 
-      parseInt(idDimension), parseInt(idPei)).subscribe((res: any) => {
+      this.service.actualizarAREA(nombre,parseInt(id),parseInt(idObjetivo), 
+      parseInt(idDimension), (idPei)).subscribe((res: any) => {
         console.log(res);
       //  this.router.navigate(['/dimension']);
       }, (error: any) => {
