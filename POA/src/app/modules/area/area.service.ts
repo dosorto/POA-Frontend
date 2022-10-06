@@ -11,11 +11,11 @@ import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 
 export class AreaService {
   constructor(private callHttp: CallHttpService, private directHttp: HttpClient) { }
-  private _peis: Array<AreaModels.Area> = [];
+  private _areas: Array<AreaModels.Area> = [];
   get area() {
-    return this._peis;
+    return this._areas;
   }
-  public crearArea ( nombre: string, idObjetivo: string,idDimension: string, idPEI: string):any{
+  public crearArea ( nombre: string, idObjetivo: number,idDimension: number, idPei: number):any{
       const url = environment.servidor + 'area/crear';
       const params = new HttpParams({
        fromObject: {
@@ -23,7 +23,7 @@ export class AreaService {
          nombre: nombre,
          idObjetivo: idObjetivo,
          idDimension:idDimension,
-         idPEI: idPEI
+         idPei: idPei
        }
        });
  
@@ -37,15 +37,15 @@ export class AreaService {
        
     
   }
-  actualizarAREA(id:number, name: string, idObjetivo: string,idDimension: string, idPEI: string):any {
+  actualizarAREA( nombre: string, idObjetivo: number,idDimension: number, idPei: number,id:string):any {
     const url = environment.servidor + 'area/editar';
     const params = new HttpParams({
       fromObject: {
         grant_type: 'password',
-        name: name,
+        nombre: nombre,
          idObjetivo: idObjetivo,
          idDimension:idDimension,
-         idPEI: idPEI
+         idPei: idPei
       }
     });
 
@@ -55,7 +55,7 @@ export class AreaService {
       })
     };
     //return this.directHttp.put(url, params, httpOptions);
-    this.directHttp.post(url,{    name: name, idObjetivo: idObjetivo, idDimension:idDimension, idPEI: idPEI,id:id}).subscribe((response:any)=>
+    this.directHttp.put(url,{    nombre: nombre, idObjetivo: idObjetivo, idDimension:idDimension, idPei: idPei,id:id}).subscribe((response:any)=>
     {
       console.log(response);
       return response;
@@ -66,7 +66,7 @@ export class AreaService {
   getAREA() {   
     return this.callHttp.httpGet<Array<AreaModels.Area>>(`http://localhost:8080/area/getArea`)
       .pipe(map(response => {
-        this._peis = response;
+        this._areas = response;
         return response;
       }))
   }
@@ -85,7 +85,7 @@ export class AreaService {
       })
     };
     //return this.directHttp.put(url, params, httpOptions);
-    this.directHttp.post(url,{nombre:nombre}).subscribe((response:any)=>
+    this.directHttp.put(url,{nombre:nombre}).subscribe((response:any)=>
     {
       console.log(response);
       return response;
@@ -93,14 +93,16 @@ export class AreaService {
   }
 
   // alternativa a update
-  updatePEI(nombre: string, descripcion:string, id:number):any {
+  updateArea(id:string, nombre: string, idObjetivo: number,idDimension: number, idPei: number):any {
     const url = environment.servidor + 'PEI/updatePEI';
 
     const params = new HttpParams({
       fromObject: {
         grant_type: 'password',
         nombre: nombre,
-        descripcion:descripcion
+        idObjetivo: idObjetivo,
+        idDimension:idDimension,
+        idPei: idPei
       }
     });
 
@@ -110,7 +112,7 @@ export class AreaService {
       })
     };
     //return this.directHttp.put(url, params, httpOptions);
-    this.directHttp.put(url,{name:name,descripcion:descripcion,id:id}).subscribe((response:any)=>
+    this.directHttp.put(url,{  nombre: nombre, idObjetivo: idObjetivo, idDimension:idDimension, idPei: idPei,id:id}).subscribe((response:any)=>
     {
       console.log(response);
       return response;

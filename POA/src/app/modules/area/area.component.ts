@@ -4,6 +4,7 @@ import { AreaService } from './area.service';
 import { AreaModels } from "./area.model";
 import { firstValueFrom } from 'rxjs';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-area',
@@ -22,8 +23,9 @@ export class AreaComponent implements OnInit {
     this.initData();
   }
   async initData() {
-    let peis = await firstValueFrom(this.service.getAREA())
-    this.areas = peis;
+    let areas = await firstValueFrom(this.service.getAREA())
+    this.areas = areas;
+    console.log(areas);
   }
   set_id_delete(nombre: string) {
     this._delete = nombre;
@@ -33,9 +35,10 @@ export class AreaComponent implements OnInit {
     await this.service.eliminarAREA(this._delete);
     window.location.reload();
   }
-  async crear_area( nombre: string, idObjetivo: string,idDimension: string, idPEI: string) {
+  async crear_area( nombre: string, idObjetivo: number,idDimension: number, idPEI: number) {
     await this.service.crearArea(nombre, idObjetivo, idDimension, idPEI).subscribe((res: any) => {
       console.log(res);
+      window.location.reload();
       Swal.fire({
         icon: 'success',
         title: 'AREA  registrado con éxito!',
@@ -52,21 +55,24 @@ export class AreaComponent implements OnInit {
 
   set_update(index: number) {
     const areaToUpdate = this.areas[index]
-    this.data_update = [areaToUpdate.nombre, areaToUpdate.idObjetivo , areaToUpdate.idDimension , areaToUpdate.idPEI, areaToUpdate.id];
+    this.data_update = [areaToUpdate.nombre, areaToUpdate.idObjetivo.toString() , 
+      areaToUpdate.idDimension.toString() , 
+      areaToUpdate.idPei.toString(), areaToUpdate.id.toString()];
   };
 
-  update(nombre: string, idObjetivo: string,idDimension: string, idPEI: string) {
+  update(nombre: string, idObjetivo: string,idDimension: string, idPei: string) {
     console.log("entra a la funcion")
     const id = this.data_update[2]; // ahi se aloja el id
     // validaciones
     if ((nombre === '')) { nombre = this.data_update[0] }
     if ((idObjetivo === '')) { idObjetivo = this.data_update[1] }
     if ((idDimension === '')) { idDimension = this.data_update[2] }
-    if ((idPEI === '')) { idPEI = this.data_update[3] }
+    if ((idPei === '')) { idPei = this.data_update[3] }
     try {
-      this.service.actualizarAREA(parseInt(id),nombre, idObjetivo, idDimension, idPEI).subscribe((res: any) => {
+      this.service.actualizarAREA(parseInt(id),nombre,parseInt(idObjetivo), 
+      parseInt(idDimension), parseInt(idPei)).subscribe((res: any) => {
         console.log(res);
-
+      //  this.router.navigate(['/dimension']);
       }, (error: any) => {
         console.log(error);
       });

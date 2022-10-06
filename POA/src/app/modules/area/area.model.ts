@@ -1,9 +1,12 @@
 export namespace AreaModels {
   export interface Area {
-      id:string;
-      nombre: string;
-      idObjetivo: string;
-      idDimension: string;
-      idPEI: string;
+    id: number;
+    nombre: string;
+    isDelete:    boolean;
+    createdAt:   Date;
+    updatedAt:   Date;
+    idObjetivo: number;
+    idDimension: number;
+    idPei: number;
   }
 }
