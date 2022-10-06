@@ -63,8 +63,8 @@ export class AreaService {
   };
 
 
-  getAREA() {   
-    return this.callHttp.httpGet<Array<AreaModels.Area>>(`http://localhost:8080/area/getArea`)
+  getAREA() {
+    return this.callHttp.httpGet<Array<AreaModels.Area>>(`${environment.servidor}area/get_All`)
       .pipe(map(response => {
         this._areas = response;
         return response;

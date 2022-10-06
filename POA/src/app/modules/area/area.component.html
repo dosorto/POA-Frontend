@@ -22,8 +22,7 @@
                     </div>
                 </div>
                 <div class="col-4">
-                    <button type="button" class="btn btn-warning" 
-                    data-bs-toggle="modal" data-bs-target="#createAREA">
+                    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#createAREA">
                         <i class="bi bi-plus-square"></i>
                         <span>
                             Crear Area
@@ -50,13 +49,13 @@
                         <!-- este contador no es id, solo es para enumerar -->
                         <td>{{i + 1}}</td>
                         <td>{{x.nombre}}</td>
-                        <td>{{x.idObjetivo}}</td>
-                        <td>{{x.idDimension}}</td>
-                        <td>{{x.idPei}}</td>
+                        <td>{{x.idObjetivo.nombre}</td>
+                        <td>{{x.idDimension.nombre}</td>
+                        <td>{{x.idPei.nombre}</td>
                         <td>
                             <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                                 <button type="button" class="btn btn-secondary" (click)="set_update(areas.indexOf(x))"
-                                    data-bs-toggle="modal" data-bs-target="#AreaE">Editar</button>
+                                    data-bs-toggle="modal" data-bs-target="#editAREA">Editar</button>
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                     data-bs-target="#eliminarArea" (click)="set_id_delete(x.nombre)">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -155,28 +154,34 @@
                 <div class="mb-3 mx-2 px-2 row">
                     <label for="nombre" class="row col-form-label">Nombre AREA:</label>
                     <div class="row">
-                        <input type="text" class="form-control" name="name" value="{{data_update[0]}}" ngModel required>
+                        <input type="text" class="form-control" name="nombre" value="{{data_update[0]}}" ngModel required>
                     </div>
-                </div>
-                <!-- Campo para fecha Inicial -->
+                </div>             
+                <!-- Campo para el pei -->
                 <div class="mb-3 mx-2 px-2 row">
-                    <label for="username" class="row col-form-label">Fecha Inicial:</label>
+                    <label for="username" class="row col-form-label">idObjetivo:</label>
                     <div class="row">
-                        <input type="text" class="form-control" name="initialYear" value="{{data_update[1]}}" ngModel
+                        <input type="text" class="form-control" name="idObjetivo" value="{{data_update[1]}}" ngModel
                             required>
                     </div>
                 </div>
-                <!-- Campo para fecha Final -->
-                <div class="mb-3 mx-2 px-2 row">
-                    <label for="username" class="row col-form-label">Fecha Final:</label>
+                 <!-- Campo para el pei -->
+                 <div class="mb-3 mx-2 px-2 row">
+                    <label for="username" class="row col-form-label">idDimension</label>
                     <div class="row">
-                        <input type="text" class="form-control" name="finalYear" value="{{data_update[1]}}" ngModel
+                        <input type="text" class="form-control" name="idDimension" value="{{data_update[2]}}" ngModel
                             required>
+                    </div>
+                </div>
+              
+                  <!-- Campo para el pei -->
+                  <div class="mb-3 mx-2 px-2 row">
+                    <label for="username" class="row col-form-label">IdPei:</label>
+                    <div class="row">
+                        <input type="text" class="form-control" name="idPei" value="{{data_update[4]}}" ngModel required>
                     </div>
                 </div>
             </div>
-
-
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                 <button type="submit" class="btn btn-warning">Actualizar</button>
