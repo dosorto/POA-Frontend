@@ -5,30 +5,36 @@ import { DimensionModels } from './dimension.model';
 import { firstValueFrom } from 'rxjs';
 import { ThisReceiver } from '@angular/compiler';
 import { Router } from '@angular/router';
+import { DimensionPipe } from './dimension.pipe';
 @Component({
   selector: 'app-gestion-Dimension',
   templateUrl: './gestion-dimension.component.html',
   styleUrls: ['./gestion-dimension.component.css']
 })
 export class GestionDimensionComponent implements OnInit {
-  rutaActual = "Dimension";
-
-  dimensiones:Array<DimensionModels.dimension>=[];
-  user = this.Storage.get_storage("user");
-  
-  _delete:string="";
-  data_update:Array<string>=[];
-
+  rutaActual = "Dimension"; //sirve para definir iconos del sidevar
+  dimensiones:Array<DimensionModels.dimension>=[]; // para llenar la tabla
+  lista_pei:Array<DimensionModels.Pei>=[]; // para llenar la tabla
+  user = this.Storage.get_storage("user"); // obtener el usuario logueado
+  filter:string=""; // para filtar la tabla
+  _delete:string=""; // define que elemento sera eliminado
+  data_update:Array<string>=[]; // define datos de un elemento a actualizar
+  pei_seleccionado:string="";
   constructor(private Storage:Storage, 
               private service:DimensionService,
               private router:Router) { }
+
+  
   ngOnInit(): void {
     this.initData();
   }
+
+  // metodos propios
   async initData(){
-    let dimensiones = await firstValueFrom(this.service.getdimensiones())
+    const dimensiones = await firstValueFrom(this.service.getdimensiones())
     this.dimensiones = dimensiones;
-    console.log(dimensiones);
+    const peis = await firstValueFrom(this.service.getPeiList())
+    this.lista_pei = peis;
   }
   set_id_delete(nombre:string){
     this._delete = nombre;
@@ -40,8 +46,8 @@ export class GestionDimensionComponent implements OnInit {
       window.location.reload();
     },100);
   }
-  async crear_Dimension(nombre:string,descripcion:string,idPei:number){
-    await this.service.crearDimension(nombre,descripcion,idPei).subscribe((res:any)=>{
+  async crear_Dimension(nombre:string,descripcion:string,idPei:string){
+    await this.service.crearDimension(nombre,descripcion,parseInt(idPei)).subscribe((res:any)=>{
       console.log(res);
       window.location.reload();
     },(error:any)=>{

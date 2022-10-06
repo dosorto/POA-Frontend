@@ -12,8 +12,13 @@ import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 export class DimensionService {
   constructor(private callHttp: CallHttpService, private directHttp: HttpClient) { }
   private _dimensiones: Array<DimensionModels.dimension> = [];
+  private _peiList: Array<DimensionModels.Pei> = [];
+
   get dimensiones() {
     return this._dimensiones;
+  }
+  get peis() {
+    return this._peiList;
   }
   public crearDimension (nombre:string,descripcion:string,idPei:number):any{
       const url = environment.servidor + 'dimension/create';
@@ -66,6 +71,14 @@ export class DimensionService {
     return this.callHttp.httpGet<Array<DimensionModels.dimension>>(`${environment.servidor}dimension/get_all`)
       .pipe(map(response => {
         this._dimensiones = response;
+        return response;
+      }))
+  }
+
+  getPeiList() {
+    return this.callHttp.httpGet<Array<DimensionModels.Pei>>(`${environment.servidor}PEI/get_PEI`)
+      .pipe(map(response => {
+        this._peiList = response;
         return response;
       }))
   }
