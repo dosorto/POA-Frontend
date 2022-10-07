@@ -66,7 +66,15 @@
                 <span class="sidenav-link-text" *ngIf="collapsed">Gestión Usuarios</span>
             </a>
         </li>
-
+ <!-- Ruta para gestionar area -->
+ <li class="sidenav-nav-item" *ngIf="(rutaActual !== 'area') && (permisos.includes('r_institucion'))">
+    <a href="/area" class="sidenav-nav-link"  title="Gestión Area" (click)="link('area')">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-journal-arrow-up iconLink-poa" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.502.502 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103zM10 1.91l-4-.8v12.98l4 .8V1.91zm1 12.98 4-.8V1.11l-4 .8v12.98zm-6-.8V1.11l-4 .8v12.98l4-.8z"/>
+          </svg>
+        <span class="sidenav-link-text" *ngIf="collapsed">Gestión AREA</span>
+    </a>
+</li>
         <!-- Ruta para gestionar empleados -->
         <li class="sidenav-nav-item" *ngIf="(rutaActual !== 'dimensiones') && (permisos.includes('r_institucion'))">
             <a href="/empleados" class="sidenav-nav-link"  title="Gestión Empleados" (click)="link('empleados')">

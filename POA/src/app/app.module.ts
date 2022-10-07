@@ -42,7 +42,8 @@ import { ObjetivosComponent } from './objetivos/objetivos.component';
     objToArrayPipe,
     TopBarComponent,
     SidebarComponent,
-    ObjetivosComponent
+    ObjetivosComponent,
+    
   ],
   imports: [
     BrowserModule,
