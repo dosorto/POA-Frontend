@@ -16,6 +16,9 @@ export namespace AreaModels {
   export interface Objetivo {
     id:number;
     nombre: string;
+    isDelete: boolean;
+    createdAt: Date;
+    updatedAt: Date;
     idDimension: number;
     idPei: number;
   }

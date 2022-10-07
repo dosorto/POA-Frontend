@@ -12,8 +12,21 @@ import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 export class AreaService {
   constructor(private callHttp: CallHttpService, private directHttp: HttpClient) { }
   private _areas: Array<AreaModels.Area> = [];
+  private _peiList: Array<AreaModels.Pei> = [];
+  private _objetivoList: Array<AreaModels.Objetivo> = [];
+  private _dimensionList: Array<AreaModels.Dimension> = [];
+
   get areas() {
     return this._areas;
+  }
+  get peis() {
+    return this._peiList;
+  }
+  get objetivos() {
+    return this._objetivoList;
+  }
+  get dimensiones() {
+    return this._dimensionList;
   }
   public crearArea (nombre:string,idObjetivo:number,idDimension:number,idPei:number):any{
       const url = environment.servidor + 'area/crear';
@@ -69,6 +82,30 @@ export class AreaService {
         return response;
       }))
   }
+  getPeiList() {
+    return this.callHttp.httpGet<Array<AreaModels.Pei>>(`${environment.servidor}PEI/get_PEI`)
+      .pipe(map(response => {
+        this._peiList = response;
+        return response;
+      }))
+  }
+  getDimensiones() {
+    return this.callHttp.httpGet<Array<AreaModels.Dimension>>(`${environment.servidor}dimension/get_all`)
+      .pipe(map(response => {
+        this._dimensionList = response;
+        return response;
+      }))
+  }
+
+  getObjetivos() {
+    return this.callHttp.httpGet<Array<AreaModels.Objetivo>>(`${environment.servidor}objetivos/get_all`)
+      .pipe(map(response => {
+        this._objetivoList = response;
+        return response;
+      }))
+  }   
+
+
   eliminarArea(nombre: string) {
     const url = environment.servidor + 'area/eliminar';
 

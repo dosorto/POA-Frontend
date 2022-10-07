@@ -11,7 +11,7 @@
                 <div class="col-8">
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Buscar por nombre" aria-label="Buscar"
-                            aria-describedby="btnGroupAddon">
+                            aria-describedby="btnGroupAddon" [(ngModel)]="filter" name="filter">
                         <div class="input-group-text" id="btnGroupAddon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-search" viewBox="0 0 16 16">
@@ -22,11 +22,10 @@
                     </div>
                 </div>
                 <div class="col-4">
-                    <button type="button" class="btn btn-warning" data-bs-toggle="modal"
-                    data-bs-target="#createArea">
+                    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#createArea">
                         <i class="bi bi-plus-square"></i>
                         <span>
-                            Crear Dimensión
+                            Crear Area
                         </span>
                     </button>
                 </div>
@@ -46,7 +45,7 @@
                     </tr>
                 </thead>
                 <tbody class="text-center">
-                    <tr *ngFor="let x of area; index as i">
+                    <tr *ngFor="let x of area | AreaFilter:filter | paginacion:step:page; index as i ">
                         <!-- este contador no es id, solo es para enumerar -->
                         <td>{{i + 1}}</td>
                         <td>{{x.nombre}}</td>
@@ -55,11 +54,14 @@
                         <td>{{x.pei.name}}</td>
                         <td>
                             <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                                <button type="button" class="btn btn-secondary" (click)="set_update(area.indexOf(x))" data-bs-toggle="modal" data-bs-target="#editArea">Editar</button>
+                                <button type="button" class="btn btn-secondary" (click)="set_update(area.indexOf(x))"
+                                    data-bs-toggle="modal" data-bs-target="#editArea">Editar</button>
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                data-bs-target="#eliminarArea" (click)="set_id_delete(x.nombre)">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
-                                        <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
+                                    data-bs-target="#eliminarArea" (click)="set_id_delete(x.nombre)">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
                                     </svg>
                                 </button>
                             </div>
@@ -67,6 +69,21 @@
                     </tr>
                 </tbody>
             </table>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <ng-container *ngIf="!(page===0)">
+                        <li class="page-item"><a class="page-link" (click)="previousPage()">Anterior</a></li>
+                    </ng-container>
+                    <ng-container *ngFor="let x of enumPages">
+                        <li class="page-item"><a class="page-link" (click)="selectPage(x-1)">{{x}}</a></li>
+                    </ng-container>
+                    <ng-container *ngIf="!(page >= maxPages)">
+                        <li class="page-item"><a class="page-link" (click)="nextPage()">Siguiente</a></li>
+                    </ng-container>
+                </ul>
+            </nav>
+
+
         </div>
     </div>
 </div>
@@ -79,7 +96,8 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form #AreaC = 'ngForm' (ngSubmit)="crearArea(AreaC.value.nombre, AreaC.value.idObjetivo,AreaC.value.idDimension,AreaC.value.idPei)">
+                <form #AreaC='ngForm'
+                    (ngSubmit)="crearArea(AreaC.value.nombre, AreaC.value.idObjetivo,AreaC.value.idDimension,AreaC.value.idPei)">
                     <div class="col">
                         <!-- Campo para el nombre de Dimensión -->
                         <div class="mb-3 mx-2 px-2 row">
@@ -87,39 +105,69 @@
                             <div class="row">
                                 <input type="text" class="form-control" name="nombre" ngModel required>
                             </div>
-                        </div>                       
-                        <!-- Campo para la descripcion -->
+                        </div>
                         <div class="mb-3 mx-2 px-2 row">
                             <label for="username" class="row col-form-label">Objetivo:</label>
                             <div class="row">
                                 <input type="text" class="form-control" name="idObjetivo" ngModel required>
                             </div>
                         </div>
-                           <!-- Campo para la descripcion -->
-                           <div class="mb-3 mx-2 px-2 row">
-                            <label for="username" class="row col-form-label">Dimension:</label>
-                            <div class="row">
-                                <input type="text" class="form-control" name="idDimension" ngModel required>
-                            </div>
+
+                        <!-- campo para agragar  un objetivo
+                        <div class="mb-3 mx-2 px-2 row">
+                            <label for="idObjetivo" class="row col-form-label">Objetivo:</label>
+                            <select class="form-select w-75" aria-label="Default select example" name="idObjetivo"
+                                [(ngModel)]="objetivo_seleccionado">
+                                <option selected>Seleccione...</option>
+                                <ng-container *ngFor="let x of listaObjetivos">
+                                    <option value="{{x.id}}">{{x.nombre}}</option>
+                                </ng-container>
+                            </select>
                         </div>
-                           <!-- Campo para la descripcion -->
-                           <div class="mb-3 mx-2 px-2 row">
-                            <label for="username" class="row col-form-label">PEI:</label>
-                            <div class="row">
-                                <input type="text" class="form-control" name="idPei" ngModel required>
-                            </div>
+-->
+
+
+                        <!-- Campo para la dimension -->
+                        <div class="mb-3 mx-2 px-2 row">
+                            <label for="idDimension" class="row col-form-label">Dimension:</label>
+                            <select class="form-select w-75" aria-label="Default select example" name="idDimension"
+                                [(ngModel)]="dimension_seleccionado">
+                                <option selected>Seleccione...</option>
+                                <ng-container *ngFor="let x of listadimension">
+                                    <option value="{{x.id}}">{{x.nombre}}</option>
+                                </ng-container>
+
+                            </select>
+
                         </div>
 
+
+                        <!-- Campo para el pei -->
+                        <div class="mb-3 mx-2 px-2 row">
+                            <label for="idPei" class="row col-form-label">Pei:</label>
+                            <select class="form-select w-75" aria-label="Default select example" name="idPei"
+                                [(ngModel)]="pei_seleccionado">
+                                <option selected>Seleccione...</option>
+                                <ng-container *ngFor="let x of lista_pei">
+                                    <option value="{{x.id}}">{{x.name}}</option>
+                                </ng-container>
+
+                            </select>
+
+                        </div>
+
+
+
                     </div>
-                
-            
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="submit" class="btn btn-warning">Guardar</button>
+
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-warning">Guardar</button>
+                    </div>
+                </form>
             </div>
-        </form>
         </div>
-    </div>
     </div>
 </div>
 
@@ -128,11 +176,12 @@
     <div class="modal-dialog ">
         <div class="modal-content">
             <div class="modal-header bg-warning text-black text-center">
-                <h5 class="modal-title fs-5 text-center m-auto" id="exampleModalLabel">Actualizar</h5>
+                <h5 class="modal-title fs-5 text-center m-auto" id="exampleModalLabel">Actualizar un Area</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form #UpdateArea = 'ngForm' (ngSubmit)="update(UpdateArea.value.nombre,UpdateArea.value.idObjetivo,UpdateArea.value.idDimension,UpdateArea.value.idPei)">
+                <form #UpdateArea='ngForm'
+                    (ngSubmit)="update(UpdateArea.value.nombre,UpdateArea.value.idObjetivo,UpdateArea.value.idDimension,UpdateArea.value.idPei)">
                     <div class="col">
                         <!-- Campo para el nombre de Dimensión -->
                         <div class="mb-3 mx-2 px-2 row">
@@ -140,7 +189,7 @@
                             <div class="row">
                                 <input type="text" class="form-control" name="nombre" ngModel required>
                             </div>
-                        </div>                       
+                        </div>
                         <!-- Campo para la descripcion -->
                         <div class="mb-3 mx-2 px-2 row">
                             <label for="username" class="row col-form-label">Objetivo:</label>
@@ -148,49 +197,50 @@
                                 <input type="text" class="form-control" name="idObjetivo" ngModel required>
                             </div>
                         </div>
-                           <!-- Campo para la descripcion -->
-                           <div class="mb-3 mx-2 px-2 row">
+                        <!-- Campo para la descripcion -->
+                        <div class="mb-3 mx-2 px-2 row">
                             <label for="username" class="row col-form-label">Dimension:</label>
                             <div class="row">
                                 <input type="text" class="form-control" name="idDimension" ngModel required>
                             </div>
                         </div>
-                           <!-- Campo para la descripcion -->
-                           <div class="mb-3 mx-2 px-2 row">
+                        <!-- Campo para la descripcion -->
+                        <div class="mb-3 mx-2 px-2 row">
                             <label for="username" class="row col-form-label">PEI:</label>
                             <div class="row">
                                 <input type="text" class="form-control" name="idPei" ngModel required>
                             </div>
                         </div>
-                        
+
                     </div>
-                
-            
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="submit" class="btn btn-warning" data-bs-dismiss="modal">Actualizar</button>
+
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-warning" data-bs-dismiss="modal">Actualizar</button>
+                    </div>
+                </form>
             </div>
-        </form>
         </div>
-    </div>
     </div>
 </div>
 
 <!-- Este modal sirve para eliminar una Dimensión -->
 <div class="modal" tabindex="-1" id="eliminarArea">
     <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header bg-danger">
-          <h5 class="modal-title fs-3 m-auto"></h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal-content">
+            <div class="modal-header bg-danger">
+                <h5 class="modal-title fs-3 m-auto"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Está seguro de eliminarla? </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-danger" (click)="delete()"
+                    data-bs-dismiss="modal">Eliminar</button>
+            </div>
         </div>
-        <div class="modal-body">
-          <p>Está seguro de eliminarla? </p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-danger" (click)="delete()" data-bs-dismiss="modal">Eliminar</button>
-        </div>
-      </div>
     </div>
-  </div>
+</div>
