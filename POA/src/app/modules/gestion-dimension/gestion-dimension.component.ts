@@ -3,7 +3,6 @@ import { Storage } from 'src/app/_core/global-services/local_storage.service';
 import { DimensionService } from './dimension.service';
 import { DimensionModels } from './dimension.model';
 import { firstValueFrom } from 'rxjs';
-import { ThisReceiver } from '@angular/compiler';
 import { Router } from '@angular/router';
 import { DimensionPipe } from './dimension.pipe';
 @Component({
@@ -20,6 +19,12 @@ export class GestionDimensionComponent implements OnInit {
   _delete:string=""; // define que elemento sera eliminado
   data_update:Array<string>=[]; // define datos de un elemento a actualizar
   pei_seleccionado:string="";
+  
+  public page:number=0;
+  public step:number=3;
+  public maxPages:number=1;
+  public enumPages:number[]=[]
+
   constructor(private Storage:Storage, 
               private service:DimensionService,
               private router:Router) { }
@@ -28,13 +33,28 @@ export class GestionDimensionComponent implements OnInit {
   ngOnInit(): void {
     this.initData();
   }
+ 
 
   // metodos propios
   async initData(){
     const dimensiones = await firstValueFrom(this.service.getdimensiones())
     this.dimensiones = dimensiones;
+    this.maxPages = Math.round(this.dimensiones.length / this.step ) + 1  // cantidad de paginas para los botones
+    if((this.dimensiones.length % this.step ) !== 0 ){this.maxPages++}; // si sobran pocos elementos agrega otra pagina
+    this.enumPages =  Array(this.maxPages).fill(null).map((x,i)=>i).slice(1,this.maxPages);
+    console.log(this.dimensiones.length);
     const peis = await firstValueFrom(this.service.getPeiList())
     this.lista_pei = peis;
+  }
+
+  nextPage(){
+    this.page = this.page + this.step;
+  }
+  previousPage(){
+    this.page = this.page - this.step;
+  }
+  selectPage(numPage:number){
+    this.page = numPage * this.step;
   }
   set_id_delete(nombre:string){
     this._delete = nombre;
@@ -48,8 +68,8 @@ export class GestionDimensionComponent implements OnInit {
   }
   async crear_Dimension(nombre:string,descripcion:string,idPei:string){
     await this.service.crearDimension(nombre,descripcion,parseInt(idPei)).subscribe((res:any)=>{
-      console.log(res);
-      window.location.reload();
+      // console.log(res);
+       window.location.reload();
     },(error:any)=>{
       console.log(error);
     });
@@ -68,7 +88,8 @@ export class GestionDimensionComponent implements OnInit {
      try{
      this.service.updateDimension(nombre,descripcion,parseInt(id),parseInt(idPei)).subscribe((res:any)=>{
        console.log(res);
-       this.router.navigate(['/dimension']);
+       this.initData();
+       //this.router.navigate(['/dimension']);
      },(error:any)=>{
        console.log(error);
        

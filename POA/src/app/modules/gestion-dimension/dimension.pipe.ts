@@ -1,14 +1,14 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { DimensionModels } from './dimension.model';
 @Pipe({
-  name: 'dimension-filter'
+  name: 'dimensionFilter'
 })
 export class DimensionPipe implements PipeTransform {
 
-  transform(value: any, ...args: any[]): any {
+  transform(dimensiones: Array<DimensionModels.dimension>, busqueda:string): Array<DimensionModels.dimension> {
     const result:Array<DimensionModels.dimension> = [];
-    for(const post of value){
-      if(post.titulo.indexOf(args) > -1){
+    for(const post of dimensiones){
+      if((post.nombre.toLocaleLowerCase().includes(busqueda.toLowerCase())) || (post.nombre.toUpperCase().includes(busqueda.toUpperCase()))){
          result.push(post);
       };
     };

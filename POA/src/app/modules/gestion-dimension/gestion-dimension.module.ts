@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { GestionDimensionComponent } from './gestion-dimension.component';
 import { FormsModule } from '@angular/forms';
 import { DimensionPipe } from './dimension.pipe';
+import { PaginacionPipe } from './paginacion.pipe';
 const router = RouterModule.forChild([
   {path: '', component: GestionDimensionComponent}
 ])
@@ -11,7 +12,8 @@ const router = RouterModule.forChild([
 @NgModule({
   declarations: [
     GestionDimensionComponent,
-    DimensionPipe
+    DimensionPipe,
+    PaginacionPipe
   ],
   imports: [
 CommonModule,

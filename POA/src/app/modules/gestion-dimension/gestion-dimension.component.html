@@ -1,5 +1,8 @@
+
+
 <!-- Pantalla principal del modulo -->
 <div class="container d-flex align-items-center justify-content-center ">
+    
     <!-- columna completa que agrupa todos los row -->
     <div class="col-12 ">
         <!-- espacio para el titulo, buscador y boton de agregar uno nuevo -->
@@ -13,11 +16,13 @@
                         <input type="text" class="form-control" placeholder="Buscar por nombre" aria-label="Buscar"
                             aria-describedby="btnGroupAddon" [(ngModel)]="filter" name="filter">
                         <div class="input-group-text" id="btnGroupAddon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                class="bi bi-search" viewBox="0 0 16 16">
-                                <path
-                                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-                            </svg>
+                            <button>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-search" viewBox="0 0 16 16">
+                                    <path
+                                        d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                                </svg>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -45,7 +50,7 @@
                     </tr>
                 </thead>
                 <tbody class="text-center">
-                    <tr *ngFor="let x of dimensiones; index as i ">
+                    <tr *ngFor="let x of dimensiones | dimensionFilter:filter | paginacion:step:page; index as i ">
                         <!-- este contador no es id, solo es para enumerar -->
                         <td>{{i + 1}}</td>
                         <td>{{x.nombre}}</td>
@@ -65,9 +70,26 @@
                     </tr>
                 </tbody>
             </table>
+    
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <ng-container *ngIf="!(page===0)">
+                        <li class="page-item"><a class="page-link" (click)="previousPage()">Anterior</a></li>
+                    </ng-container> 
+                    <ng-container *ngFor="let x of enumPages">
+                        <li class="page-item"><a class="page-link" (click)="selectPage(x-1)">{{x}}</a></li>
+                    </ng-container>
+                    <ng-container *ngIf="!(page >= maxPages)">
+                        <li class="page-item"><a class="page-link" (click)="nextPage()">Siguiente</a></li>
+                    </ng-container>
+                </ul>
+            </nav>
+            
         </div>
     </div>
 </div>
+
+
 <!-- Este modal sirve para crear una nueva Dimensión -->
 <div class="modal" id="createInst" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog ">
@@ -160,7 +182,7 @@
             
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="submit" class="btn btn-warning" >Actualizar</button>
+                <button type="submit" class="btn btn-warning" data-bs-dismiss="modal">Actualizar</button>
             </div>
         </form>
         </div>
