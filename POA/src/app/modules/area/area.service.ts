@@ -118,6 +118,7 @@ export class AreaService {
       console.log(response);
       return response;
     })
+    return this.directHttp.put(url, params, httpOptions);
   }
 
 }

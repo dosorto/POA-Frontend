@@ -5,6 +5,7 @@ import { AreaModels } from './area.model';
 import { firstValueFrom } from 'rxjs';
 import { ThisReceiver } from '@angular/compiler';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-area',
@@ -36,17 +37,52 @@ export class AreaComponent implements OnInit {
   }
   async delete(){
     await this.service.eliminarArea(this._delete);
+    Swal.fire({
+      title: 'Area eliminada con exito',
+      showConfirmButton: false,
+      color:'white',
+      background:'#F5B7B1',
+      showClass: {
+        popup: 'animate__animated animate__fadeInDown'
+      },
+      hideClass: {
+        popup: 'animate__animated animate__fadeOutUp'
+      }
+      
+    })
+    setTimeout(function() {
+      window.location.reload();
+    },3000);
+    
+      
     window.location.reload();
+    
   }
+
+
+
+
+
+
+
+
   async crearArea(nombre:string,idObjetivo:number,idDimension:number,idPei:number){
     await this.service.crearArea(nombre,idObjetivo,idDimension,idPei).subscribe((res:any)=>{
       console.log(res);
-      window.location.reload();
-    },(error:any)=>{
+      Swal.fire({
+        icon: 'success',
+        title: 'Area registrada con éxito!',
+        showConfirmButton: false,
+        timer: 2500
+      })
+      setTimeout(function() {
+        window.location.reload();
+      },2500);
+    }, (error: any) => {
       console.log(error);
     });
   }
-
+  
   set_update(index:number){
     const AreaUpdate = this.area[index]
     this.data_update = [AreaUpdate.nombre, AreaUpdate.idObjetivo.toString(),AreaUpdate.idDimension.toString(), AreaUpdate.idPei.toString(),AreaUpdate.id.toString()];
@@ -61,16 +97,22 @@ export class AreaComponent implements OnInit {
      try{
      this.service.updateArea(nombre,parseInt(id),parseInt(idObjetivo),parseInt(idDimension),parseInt(idPei)).subscribe((res:any)=>{
        console.log(res);
-       window.location.reload();
-       this.router.navigate(['/area']);
-     },(error:any)=>{
-       console.log(error);
-       
-     });
      
-     
-   } catch(error){
-     console.log(error);
-   }
+      }, (error: any) => {
+        console.log(error);
+      });
+      Swal.fire({
+        icon: 'success',
+        title: '!Area actualizado con éxito!',
+        showConfirmButton: false,
+        timer: 2500
+      })
+      setTimeout(function () {
+        window.location.reload();
+      }, 2500);
+    } catch (error) {
+      console.log(error);
+    }
   }
 }
+   
