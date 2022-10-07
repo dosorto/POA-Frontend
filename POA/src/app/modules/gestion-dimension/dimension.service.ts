@@ -82,7 +82,7 @@ export class DimensionService {
         return response;
       }))
   }
-  eliminarDimension(nombre: string) {
+   eliminarDimension(nombre: string):any  {
     const url = environment.servidor + 'dimension/delete';
 
     const params = new HttpParams({
@@ -98,15 +98,11 @@ export class DimensionService {
       })
     };
     //return this.directHttp.put(url, params, httpOptions);
-    this.directHttp.put(url,{nombre:nombre}).subscribe((response:any)=>
-    {
-      console.log(response);
-      return response;
-    })
+    return  this.directHttp.put(url,{nombre:nombre})
   }
 
   // alternativa a update
-  updateDimension(nombre: string, descripcion:string, id:number, idPei:number):any {
+   updateDimension(nombre: string, descripcion:string, id:number, idPei:number):any {
     const url = environment.servidor + 'dimension/update';
 
     const params = new HttpParams({
@@ -123,11 +119,7 @@ export class DimensionService {
       })
     };
     //return this.directHttp.put(url, params, httpOptions);
-    this.directHttp.put(url,{nombre:nombre,descripcion:descripcion,id:id,idPei:idPei}).subscribe((response:any)=>
-    {
-      console.log(response);
-      return response;
-    })
+    return this.directHttp.put(url,{nombre:nombre,descripcion:descripcion,id:id,idPei:idPei})
   }
 
 }
