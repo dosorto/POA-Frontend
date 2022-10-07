@@ -15,6 +15,7 @@ export class GestionPeiComponent implements OnInit {
   rutaActual = "pei";
   peis: Array<peiModel.Pei> = [];
   user = this.Storage.get_storage("user");
+  token = this.user.token;
   _delete: string = "";
   data_update: Array<string> = [];
 
@@ -59,19 +60,27 @@ export class GestionPeiComponent implements OnInit {
 
   update(name: string, initialYear: string, finalYear: string) {
     console.log("entra a la funcion")
-    const id = this.data_update[2]; // ahi se aloja el id
+    const id = this.data_update[3]; // ahi se aloja el id
     // validaciones
     if ((name === '')) { name = this.data_update[0] }
     if ((initialYear === '')) { initialYear = this.data_update[1] }
     if ((finalYear === '')) { finalYear = this.data_update[2] }
     try {
-      this.service.actualizarPEI(name, initialYear, finalYear, parseInt(id)).subscribe((res: any) => {
+      this.service.updatePEI(name, initialYear, finalYear, parseInt(id)).subscribe((res: any) => {
         console.log(res);
-
+        
       }, (error: any) => {
         console.log(error);
       });
-      window.location.reload();
+      Swal.fire({
+        icon: 'success',
+        title: '¡PEI actualizado con éxito!',
+        showConfirmButton: false,
+        timer: 2500
+      })
+      setTimeout(function() {
+        window.location.reload();
+      },2500);
     } catch (error) {
       console.log(error);
     }

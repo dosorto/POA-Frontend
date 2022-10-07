@@ -4,14 +4,17 @@ import { environment } from "src/environments/environment";
 import { peiModel } from "./pei.model";
 import { map, Observable } from "rxjs";
 import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
+import { Storage } from 'src/app/_core/global-services/local_storage.service';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class peiService {
-  constructor(private callHttp: CallHttpService, private directHttp: HttpClient) { }
+  constructor(private callHttp: CallHttpService, private directHttp: HttpClient, private Storage: Storage) {}
   private _peis: Array<peiModel.Pei> = [];
+  private user = this.Storage.get_storage("user");
+  private token = this.user.token;
   get pei() {
     return this._peis;
   }
@@ -20,9 +23,10 @@ export class peiService {
       const params = new HttpParams({
        fromObject: {
          grant_type: 'password',
-         name: name,
-         initialYear: initialYear,
-         finalYear: finalYear
+         name,
+         initialYear,
+         finalYear,
+         token: this.token
        }
        });
  
@@ -33,7 +37,6 @@ export class peiService {
        };
        return this.directHttp.post(url,params, httpOptions);
        //return CallHttpService.httpPost()
-       
     
   }
   actualizarPEI(name:string,initialYear:string,finalYear:string, id:number):any {
@@ -41,9 +44,10 @@ export class peiService {
     const params = new HttpParams({
       fromObject: {
         grant_type: 'password',
-        name: name,
-        initialYear:initialYear,
-        finalYear: finalYear,
+        name,
+        initialYear,
+        finalYear,
+        token: this.token
       }
     });
 
@@ -62,7 +66,7 @@ export class peiService {
 
 
   getPEI() {
-    return this.callHttp.httpGet<Array<peiModel.Pei>>(`http://localhost:8080/PEI/get_PEI`)
+    return this.callHttp.httpGet<Array<peiModel.Pei>>(environment.servidor + 'PEI/get_PEI')
       .pipe(map(response => {
         this._peis = response;
         return response;
@@ -92,14 +96,16 @@ export class peiService {
   }
 
   // alternativa a update
-  updatePEI(nombre: string, descripcion:string, id:number):any {
+  updatePEI(name:string,initialYear:string,finalYear:string, id:number):any {
     const url = environment.servidor + 'PEI/updatePEI';
 
     const params = new HttpParams({
       fromObject: {
         grant_type: 'password',
-        nombre: nombre,
-        descripcion:descripcion
+        name,
+        initialYear,
+        finalYear,
+        token: this.token
       }
     });
 
@@ -108,12 +114,12 @@ export class peiService {
         'Content-Type': 'application/x-www-form-urlencoded'
       })
     };
-    //return this.directHttp.put(url, params, httpOptions);
-    this.directHttp.put(url,{nombre:nombre,descripcion:descripcion,id:id}).subscribe((response:any)=>
+    this.directHttp.put(url,{name:name,initialYear:initialYear,finalYear:finalYear,id:id}).subscribe((response:any)=>
     {
       console.log(response);
       return response;
     })
+    return this.directHttp.put(url, params, httpOptions);
   }
 
 }

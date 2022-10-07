@@ -22,7 +22,6 @@ import { ToastrModule } from 'ngx-toastr';
 import { TopBarComponent } from './_core/top-bar/top-bar.component';
 import { SidebarComponent } from './_core/sidebar/sidebar.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +44,7 @@ import { SidebarComponent } from './_core/sidebar/sidebar.component';
     MatTableModule,
     NgFor,
     ToastrModule.forRoot(),
-    FormsModule
+    FormsModule,
     
   ],
   providers: [],
