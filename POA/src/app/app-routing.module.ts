@@ -14,9 +14,10 @@ const routes: Routes = [
   {path: 'all_user', loadChildren: () => import('./modules/alluser/alluser.module').then(t => t.UsuarioModule)},
   {path: 'empleados', loadChildren: () => import('./modules/empleado/empleado.module').then(t => t.EmpleadoModule)},
   {path: 'pei', loadChildren: () => import('./modules/pei/pei.module').then(t => t.peiModule)},
+  {path: 'resultado', loadChildren: () => import('./modules/gestion-resultados/gestion-resultado.module').then(t => t.GestionResultadoModule)},
   {path:'objetivos', component: ObjetivosComponent},
   {path:'alluser', component:AlluserComponent},
-  {path: 'resultado', component: GestionResultadoComponent},
+  //{path: 'resultado', component: GestionResultadoComponent},
 ];
 
 @NgModule({

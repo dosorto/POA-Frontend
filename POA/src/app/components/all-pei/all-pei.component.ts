@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PEI } from 'src/app/models/pei';
-import { AllPEIService } from 'src/app/services/all-pei.service';
+import { AllPEIService } from 'src/app/SERVICES/all-pei.service';
 
 
 
