@@ -31,7 +31,7 @@ export class ResultadoService {
   }
 
   getArea(){
-    const url = environment.servidor + `area/get-all`;
+    const url = environment.servidor + `area/get_All`;
     return this.http.get(url);
   }
 
@@ -153,7 +153,7 @@ export class ResultadoService {
   }
 
    // alternativa a update
-   updateResultado(nombre: string, id:number, idArea:number, idDimension:number, idObjetivo:number,idPei:number):any {
+   updateResultado(nombre: string, id:number, idArea:number, idDimension:number, idObjetivos:number,idPei:number):any {
     const url = environment.servidor + 'resultados/updateResultado';
 
     const params = new HttpParams({
@@ -169,7 +169,7 @@ export class ResultadoService {
       })
     };
     //return this.directHttp.put(url, params, httpOptions);
-    this.directHttp.put(url,{nombre:nombre, id:id, idArea:idArea, idDimension:idDimension, idObjetivo:idObjetivo, idPei:idPei}).subscribe((response:any)=>
+    this.directHttp.put(url,{nombre:nombre, id:id, idArea:idArea, idDimension:idDimension, idObjetivos:idObjetivos, idPei:idPei}).subscribe((response:any)=>
     {
       console.log(response);
       return response;
