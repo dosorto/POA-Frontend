@@ -6,9 +6,12 @@ import { CommonModule } from '@angular/common';
 import { GestionResultadoComponent } from './modules/gestion-resultados/gestion-resultado.component';
 
 const routes: Routes = [
-  {path: '', pathMatch: 'full', redirectTo: 'login'},
+  {path: '', pathMatch: 'full', redirectTo: 'home'},
   {path: 'login', loadChildren: () => import('./modules/login/login.module').then(t => t.LoginModule)},
-  {path: 'home', loadChildren: () => import('./modules/menu/menu.module').then(t => t.MenuModule)},
+  {path: 'home', children:[
+    {path: '',loadChildren: () => import('./modules/menu/menu.module').then(t => t.MenuModule)}
+  ]
+  },
   {path: 'institucion', loadChildren: () => import('./modules/gestion-institucion/gestion-institucion.module').then(t => t.GestionInstitucionModule)},
   {path: 'dimension', loadChildren: () => import('./modules/gestion-dimension/gestion-dimension.module').then(t => t.GestionDimensionModule)},
   {path: 'all_user', loadChildren: () => import('./modules/alluser/alluser.module').then(t => t.UsuarioModule)},

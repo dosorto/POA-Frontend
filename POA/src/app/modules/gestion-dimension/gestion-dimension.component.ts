@@ -13,33 +13,33 @@ import Swal from 'sweetalert2';
 export class GestionDimensionComponent implements OnInit {
 
   // objeto tipo dimension para usarlo de base
-  private dimension_example :DimensionModels.dimension = {
-    id:          0,
-    nombre:      "",
-    descripcion: "",
-    isDelete:    false,
-    createdAt:   new Date(),
-    updatedAt:   new Date(),
-    idPei:       1,
-    pei:{
-      id:0,
-      name:        '',
-      initialYear: new Date(),
-      finalYear:   new Date(),
-      isActive:    true,
-      isDelete:    false,
-      createdAt:   new Date(),
-      updatedAt:   new Date(),
-    }
-};
-
+//   private dimension_example :DimensionModels.dimension = {
+//     id:          0,
+//     nombre:      "",
+//     descripcion: "",
+//     isDelete:    false,
+//     createdAt:   new Date(),
+//     updatedAt:   new Date(),
+//     idPei:       1,
+//     pei:{
+//       id:0,
+//       name:        '',
+//       initialYear: new Date(),
+//       finalYear:   new Date(),
+//       isActive:    true,
+//       isDelete:    false,
+//       createdAt:   new Date(),
+//       updatedAt:   new Date(),
+//     }
+// };
+  private dimension_example : DimensionModels.dimension | any = {};
   rutaActual = "Dimension"; //sirve para definir iconos del sidevar
   public dimensiones:Array<DimensionModels.dimension>=[]; // para llenar la tabla
   public lista_pei:Array<DimensionModels.Pei>=[]; // para llenar la tabla
   public user = this.Storage.get_storage("user"); // obtener el usuario logueado
   public filter:string=""; // para filtar la tabla
   public _delete:string=""; // define que elemento sera eliminado
-  public data_update :DimensionModels.dimension = this.dimension_example; // define datos de un elemento a actualizar
+  public data_update :DimensionModels.dimension | any = this.dimension_example; // define datos de un elemento a actualizar
   public pei_seleccionado:string="";
   
   public page:number=0;
@@ -59,20 +59,27 @@ export class GestionDimensionComponent implements OnInit {
 
   // metodos propios
   async initData(){
+    // obtiene todas las dimensiones
     const dimensiones = await firstValueFrom(this.service.getdimensiones())
     this.dimensiones = dimensiones;
-    this.maxPages = Math.round(this.dimensiones.length / this.step ) // cantidad de paginas para los botones
-    if((this.dimensiones.length % this.step ) !== 0 ){this.maxPages++}; // si sobran pocos elementos agrega otra pagina
-    this.enumPages =  Array(this.maxPages).fill(null).map((x,i)=>i).slice(1,this.maxPages);
+    // sirve para definir un maximo de paginas en paginacion de tablas
+    this.maxPages = ((this.dimensiones.length % this.step ) === 0 ) ? Math.floor(this.dimensiones.length / this.step) : (Math.floor(this.dimensiones.length / this.step) + 1)// cantidad de paginas para los botones
+    // sirve para generar los botones en paginacion
+    this.enumPages =  Array(this.maxPages).fill(null).map((x,i)=>i).slice(1,this.maxPages + 1) ;
+    //obtiene todos los peis para dejarlos en el select
     const peis = await firstValueFrom(this.service.getPeiList())
     this.lista_pei = peis;
+
+    console.log(this.enumPages)
   }
 
   nextPage(){
     this.page = this.page + this.step;
+    console.log(this.page)
   }
   previousPage(){
     this.page = this.page - this.step;
+    console.log(this.page)
   }
   selectPage(numPage:number){
     this.page = numPage * this.step;
@@ -113,7 +120,7 @@ export class GestionDimensionComponent implements OnInit {
     this.data_update = _dimension
   };
   update(nombre:string,descripcion:string, idPei:string):any{
-     const id = this.data_update.id; // ahi se aloja el id
+     const id = this.data_update.id ; // ahi se aloja el id
      // validaciones
     if((nombre === '')){nombre = this.data_update.nombre}
     if((descripcion === '')){descripcion= this.data_update.descripcion}

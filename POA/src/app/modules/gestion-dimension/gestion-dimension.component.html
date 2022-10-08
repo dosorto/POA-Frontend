@@ -87,14 +87,14 @@
                 </div> -->
                 <ul class="pagination justify-content-end">
                     <ng-container>
-                        <li class="page-item" [ngClass]="page === 1 ? 'disable':''"><a class="page-link "
+                        <li class="page-item" *ngIf="(page > 0)"><a class="page-link "
                                 (click)="previousPage()">Anterior</a></li>
                     </ng-container>
                     <ng-container *ngFor="let x of enumPages">
                         <li class="page-item" [ngClass]="(page/step)+1 === x ? 'active':''"><a class="page-link"
                                 (click)="selectPage(x-1)">{{x}}</a></li>
                     </ng-container>
-                    <ng-container *ngIf="(page <= maxPages + 1)">
+                    <ng-container *ngIf="(page <= maxPages)">
                         <li class="page-item"><a class="page-link " (click)="nextPage()">Siguiente</a></li>
                     </ng-container>
                 </ul>
