@@ -119,13 +119,13 @@
             </div>
             <div class="modal-body">
                 <form #UpdateObjetivo='ngForm' (ngSubmit)="update(UpdateObjetivo.value.nombre,UpdateObjetivo.value.idDimension,UpdateObjetivo.value.idPei)"  id="UpdateObjetivo">
-                    <div class="col">-->
+                    <div class="col">
                         <!-- Campo para el nombre de institucion -->
                        
                         <div class="mb-3 mx-2 px-2 row">
                             <label for="nombre" class="row col-form-label">Nombre de Institución:</label>
                             <div class="row">
-                                <input type="text" class="form-control" name="nombre" value="{{data_update.nombre}}" ngModel required>
+                                <input type="text" class="form-control" name="nombre" value="{{data_update.id}}" ngModel required>
                             </div>
                         </div>
                        

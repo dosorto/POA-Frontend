@@ -168,6 +168,7 @@ export class ObjetivosComponent implements OnInit {
 //   }
 set_update(_objetivos: objetivomodel.objetivo){
   this.data_update = _objetivos
+  console.log(_objetivos)
 };
 
 update(nombre:string,idDimension:string, idPei:string){
@@ -178,14 +179,22 @@ update(nombre:string,idDimension:string, idPei:string){
   if((idPei === '')){idPei= this.data_update.idPei.toString()}
    try{
    this.objetivosService.updateObjetivo(nombre,parseInt(idDimension),id,parseInt(idPei)).subscribe((res:any)=>{
-     console.log(res);
-     this.router.navigate(['/objetivos']);
+      
+    Swal.fire({
+      icon: 'success',
+      title: '¡Actualizado con éxito!',
+      showConfirmButton: false,
+      timer: 2500
+    })
    },(error:any)=>{
-     console.log(error);
-     
+    Swal.fire({
+      icon: 'error',
+      title: 'Ha ocurrido un error',
+      showConfirmButton: false,
+      timer: 2500
+    })
    });
-   
-   
+     
  } catch(error){
    console.log(error);
  }
