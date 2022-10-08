@@ -11,35 +11,35 @@ import { Storage } from 'src/app/_core/global-services/local_storage.service';
 })
 
 export class peiService {
-  constructor(private callHttp: CallHttpService, private directHttp: HttpClient, private Storage: Storage) {}
+  constructor(private callHttp: CallHttpService, private directHttp: HttpClient, private Storage: Storage) { }
   private _peis: Array<peiModel.Pei> = [];
   private user = this.Storage.get_storage("user");
   private token = this.user.token;
   get pei() {
     return this._peis;
   }
-  public crearPEI (name:string,initialYear:string,finalYear:string):any{
-      const url = environment.servidor + 'PEI/new_PEI';
-      const params = new HttpParams({
-       fromObject: {
-         grant_type: 'password',
-         name,
-         initialYear,
-         finalYear,
-         token: this.token
-       }
-       });
- 
-       const httpOptions = {
-         headers: new HttpHeaders({
-           'Content-Type': 'application/x-www-form-urlencoded'
-         })
-       };
-       return this.directHttp.post(url,params, httpOptions);
-       //return CallHttpService.httpPost()
-    
+  public crearPEI(name: string, initialYear: string, finalYear: string): any {
+    const url = environment.servidor + 'PEI/new_PEI';
+    const params = new HttpParams({
+      fromObject: {
+        grant_type: 'password',
+        name,
+        initialYear,
+        finalYear,
+        token: this.token
+      }
+    });
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/x-www-form-urlencoded'
+      })
+    };
+    return this.directHttp.post(url, params, httpOptions);
+    //return CallHttpService.httpPost()
+
   }
-  actualizarPEI(name:string,initialYear:string,finalYear:string, id:number):any {
+  actualizarPEI(name: string, initialYear: string, finalYear: string, id: number): any {
     const url = environment.servidor + 'PEI/updatePEI';
     const params = new HttpParams({
       fromObject: {
@@ -57,8 +57,7 @@ export class peiService {
       })
     };
     //return this.directHttp.put(url, params, httpOptions);
-    this.directHttp.put(url,{name:name,initialYear:initialYear,finalYear:finalYear,id:id}).subscribe((response:any)=>
-    {
+    this.directHttp.put(url, { name: name, initialYear: initialYear, finalYear: finalYear, id: id }).subscribe((response: any) => {
       console.log(response);
       return response;
     })
@@ -72,7 +71,7 @@ export class peiService {
         return response;
       }))
   }
-  eliminarPEI(name: string) {
+  eliminarPEI(name: string): any {
     const url = environment.servidor + 'PEI/disablePEI';
 
     const params = new HttpParams({
@@ -88,15 +87,11 @@ export class peiService {
       })
     };
     //return this.directHttp.put(url, params, httpOptions);
-    this.directHttp.put(url,{name:name}).subscribe((response:any)=>
-    {
-      console.log(response);
-      return response;
-    })
+    return this.directHttp.put(url, { name: name })
   }
 
   // alternativa a update
-  updatePEI(name:string,initialYear:string,finalYear:string, id:number):any {
+  updatePEI(name: string, initialYear: string, finalYear: string, id: number): any {
     const url = environment.servidor + 'PEI/updatePEI';
 
     const params = new HttpParams({
@@ -114,12 +109,7 @@ export class peiService {
         'Content-Type': 'application/x-www-form-urlencoded'
       })
     };
-    this.directHttp.put(url,{name:name,initialYear:initialYear,finalYear:finalYear,id:id}).subscribe((response:any)=>
-    {
-      console.log(response);
-      return response;
-    })
-    return this.directHttp.put(url, params, httpOptions);
-  }
+    return this.directHttp.put(url, { name: name, initialYear: initialYear, finalYear: finalYear, id: id })
 
+  }
 }

@@ -24,8 +24,7 @@
                     </div>
                 </div>
                 <div class="col-4">
-                    <button type="button" class="btn btn-warning" data-bs-toggle="modal"
-                    data-bs-target="#createPEI">
+                    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#createPEI">
                         <i class="bi bi-plus-square"></i>
                         <span>
                             Crear PEI
@@ -35,8 +34,8 @@
             </div>
         </div>
         <!-- tabla dinamica que muestra todos los PEI-->
-        <div class="w-75 m-auto row ">
-            <table class="table table-hover">
+        <div class="w-75 m-auto row shadow alturaTabla">
+            <table class="table table-hover g">
                 <thead class="text-center">
                     <tr>
                         <th class="table-secondary" scope="col">#</th>
@@ -48,17 +47,27 @@
                 <tbody class="text-center">
                     <tr *ngFor="let x of peis | peiFilter:filter | paginacion:step:page; index as i">
                         <!-- este contador no es id, solo es para enumerar -->
-                        <td>{{i + 1}}</td>
+                        <td>
+                            <ng-container *ngIf="page > 0; else elseNumeracion">
+                                {{i + page + 1}}
+                            </ng-container>
+                            <ng-template #elseNumeracion>
+                                {{i + 1}}
+                            </ng-template>
+                        </td>
                         <td>{{x.name}}</td>
                         <td>{{x.initialYear}}</td>
                         <td>{{x.finalYear}}</td>
                         <td>
                             <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                                <button type="button" class="btn btn-secondary" (click)="set_update(peis.indexOf(x))" data-bs-toggle="modal" data-bs-target="#editPEI">Editar</button>
+                                <button type="button" class="btn btn-secondary" (click)="set_update(x)"
+                                    data-bs-toggle="modal" data-bs-target="#editPEI">Editar</button>
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                data-bs-target="#eliminarPEI" (click)="set_id_delete(x.name)">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
-                                        <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
+                                    data-bs-target="#eliminarPEI" (click)="set_id_delete(x.name)">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
                                     </svg>
                                 </button>
                             </div>
@@ -67,18 +76,20 @@
                 </tbody>
             </table>
             <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                    <ng-container *ngIf="!(page===0)">
-                        <li class="page-item"><a class="page-link" (click)="previousPage()">Anterior</a></li>
-                    </ng-container> 
-                    <ng-container *ngFor="let x of enumPages">
-                        <li class="page-item"><a class="page-link" (click)="selectPage(x-1)">{{x}}</a></li>
+                <ul class="pagination justify-content-end">
+                    <ng-container>
+                        <li class="page-item" [ngClass]="page === 1 ? 'disable':''"><a class="page-link "
+                                (click)="previousPage()">Anterior</a></li>
                     </ng-container>
-                    <ng-container *ngIf="!(page >= maxPages)">
-                        <li class="page-item"><a class="page-link" (click)="nextPage()">Siguiente</a></li>
+                    <ng-container *ngFor="let x of enumPages">
+                        <li class="page-item" [ngClass]="(page/step)+1 === x ? 'active':''"><a class="page-link"
+                                (click)="selectPage(x-1)">{{x}}</a></li>
+                    </ng-container>
+                    <ng-container *ngIf="(page <= maxPages + 1)">
+                        <li class="page-item"><a class="page-link " (click)="nextPage()">Siguiente</a></li>
                     </ng-container>
                 </ul>
-            </nav>       
+            </nav>
         </div>
     </div>
 </div>
@@ -91,7 +102,8 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form #PeiC = 'ngForm' (ngSubmit)="crear_pei(PeiC.value.name, PeiC.value.initialYear, PeiC.value.finalYear)">
+                <form #PeiC='ngForm'
+                    (ngSubmit)="crear_pei(PeiC.value.name, PeiC.value.initialYear, PeiC.value.finalYear)">
                     <div class="col">
                         <!-- Campo para el nombre de PEI -->
                         <div class="mb-3 mx-2 px-2 row">
@@ -115,15 +127,15 @@
                             </div>
                         </div>
                     </div>
-                
-            
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="submit" class="btn btn-warning">Guardar</button>
+
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-warning" [disabled]="PeiC.invalid">Guardar</button>
+                    </div>
+                </form>
             </div>
-        </form>
         </div>
-    </div>
     </div>
 </div>
 
@@ -136,57 +148,63 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form #PeiE = 'ngForm' (ngSubmit)="update(PeiE.value.name,PeiE.value.initialYear,PeiE.value.finalYear)">
+                <form #PeiE='ngForm' (ngSubmit)="update(PeiE.value.name,PeiE.value.initialYear,PeiE.value.finalYear)">
                     <div class="col">
                         <!-- Campo para el nombre de PEI -->
                         <div class="mb-3 mx-2 px-2 row">
                             <label for="name" class="row col-form-label">Nombre PEI:</label>
                             <div class="row">
-                                <input type="text" class="form-control" name="name" value="{{data_update[0]}}" ngModel required>
+                                <input type="text" class="form-control" name="name" value="{{data_update.name}}" ngModel
+                                    required>
                             </div>
                         </div>
                         <!-- Campo para fecha Inicial -->
                         <div class="mb-3 mx-2 px-2 row">
                             <label for="username" class="row col-form-label">Fecha Inicial:</label>
                             <div class="row">
-                                <input type="date" class="form-control" name="initialYear" value="{{data_update[1]}}" ngModel required>
+                                <input type="date" class="form-control" name="initialYear"
+                                    value="{{data_update.initialYear}}" ngModel required>
                             </div>
                         </div>
                         <!-- Campo para fecha Final -->
                         <div class="mb-3 mx-2 px-2 row">
                             <label for="username" class="row col-form-label">Fecha Final:</label>
                             <div class="row">
-                                <input type="date" class="form-control" name="finalYear" value="{{data_update[2]}}" ngModel required>
+                                <input type="date" class="form-control" name="finalYear"
+                                    value="{{data_update.finalYear}}" ngModel required>
                             </div>
                         </div>
                     </div>
-                
-            
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="submit" class="btn btn-warning">Actualizar</button>
+
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-warning">Actualizar</button>
+                    </div>
+                </form>
             </div>
-        </form>
         </div>
-    </div>
     </div>
 </div>
 
 <!-- Este modal sirve para eliminar un PEI -->
 <div class="modal" tabindex="-1" id="eliminarPEI">
     <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header bg-danger">
-          <h5 class="modal-title fs-3 m-auto"></h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal-content">
+            <div class="modal-header bg-danger">
+                <h5 class="modal-title fs-3 m-auto"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>¿Está seguro de eliminar el PEI? </p>
+            </div>
+            <form>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-danger" (click)="delete()"
+                        data-bs-dismiss="modal">Eliminar</button>
+                </div>
+            </form>
         </div>
-        <div class="modal-body">
-          <p>¿Está seguro de eliminar el PEI? </p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-danger" (click)="delete()" data-bs-dismiss="modal">Eliminar</button>
-        </div>
-      </div>
     </div>
-  </div>
+</div>
