@@ -13,6 +13,7 @@ const routes: Routes = [
   {path: 'all_user', loadChildren: () => import('./modules/alluser/alluser.module').then(t => t.UsuarioModule)},
   {path: 'empleados', loadChildren: () => import('./modules/empleado/empleado.module').then(t => t.EmpleadoModule)},
   {path: 'pei', loadChildren: () => import('./modules/pei/pei.module').then(t => t.peiModule)},
+  {path: 'forgotPassword', loadChildren: () => import('./modules/forgot-password/forgot-password.module').then(t => t.ForgorPasswordModule)},
   {path:'objetivos', component: ObjetivosComponent},
   {path:'alluser', component:AlluserComponent}
 
