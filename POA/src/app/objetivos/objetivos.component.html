@@ -50,11 +50,11 @@
                     <tr *ngFor="let x of objetivosList">
                             <td>{{x.nombre}}</td>
                             <td>{{x.dimension.nombre}}</td>
-                            <td>{{x.PEI.name}}</td>
+                            <td>{{x.pei.name}}</td>
                         <td>
                             <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                                <button type="button" class="btn btn-secondary"  data-bs-toggle="modal" data-bs-target="#editInst">Editar</button>
-                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarInst" (click)="set_id_delete(x.id)" >
+                              <button type="button" class="btn btn-secondary"  data-bs-toggle="modal" data-bs-target="#editInst" (click)="set_update(x.id)">Editar</button>
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarInst" (click)="set_update(x)">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
                                         <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
                                     </svg>
@@ -62,6 +62,7 @@
                             </div>
                         </td>
                     </tr>
+                   
                 </tbody>
             </table>
         </div>
@@ -82,12 +83,21 @@
                       
                     </div>
                     <div class="mb-3">
-                      <input type="number" formControlName="idDimension" class="form-control form-control-lg" placeholder="idDimension">
-                      
+                      <!-- <input type="number" formControlName="idDimension" class="form-control form-control-lg" placeholder="idDimension"> -->
+                      <select class="form-control" formControlName="idDimension">
+                        <option value="">Selecciona una opción</option>
+                        <option value="{{x.id}}" *ngFor="let x of dimensiones">
+                            {{x.nombre}}
+                        </option>
+                    </select>
                     </div>
                     <div class="mb-3">
-                      <input type="number" formControlName="idPei" class="form-control form-control-lg" placeholder="idPEI">
-                      
+                        <select class="form-control" formControlName="idPei">
+                            <option value="">Selecciona una opción</option>
+                            <option value="{{x.id}}" *ngFor="let x of peis">
+                                {{x.name}}
+                            </option>
+                        </select>
                     </div>
                     <div class="mb-3">
                       <button type="submit" routerLink="/objetivos" class="btn btn-success btn-lg float-end" data-bs-dismiss="modal">AGREGAR</button>
@@ -99,7 +109,7 @@
 </div>
 
 <!-- Este modal sirve para editar una institucion -->
-<!--
+
 <div class="modal" id="editInst" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog ">
         <div class="modal-content">
@@ -108,26 +118,34 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form #Insti = 'ngForm' (ngSubmit)="update(Insti.value.nombre,Insti.value.descripcion)">
+                <form #UpdateObjetivo='ngForm' (ngSubmit)="update(UpdateObjetivo.value.nombre,UpdateObjetivo.value.idDimension,UpdateObjetivo.value.idPei)"  id="UpdateObjetivo">
                     <div class="col">-->
                         <!-- Campo para el nombre de institucion -->
-                        <!--
+                       
                         <div class="mb-3 mx-2 px-2 row">
                             <label for="nombre" class="row col-form-label">Nombre de Institución:</label>
                             <div class="row">
-                                <input type="text" class="form-control" name="nombre" value="{{data_update[0]}}" ngModel required>
+                                <input type="text" class="form-control" name="nombre" value="{{data_update.nombre}}" ngModel required>
                             </div>
                         </div>
-                        -->
+                       
                         <!-- Campo para la descripcion -->
-                        <!--
+                       
                         <div class="mb-3 mx-2 px-2 row">
                             <label for="username" class="row col-form-label">Descripcion:</label>
                             <div class="row">
-                                <input type="text" class="form-control" name="descripcion" value="{{data_update[1]}}" ngModel required>
+                                <input type="text" class="form-control" name="idDimension" value="data_update.idDimension" ngModel required>
                             </div>
                         </div>
+                    
+
+                    <div class="mb-3 mx-2 px-2 row">
+                        <label for="username" class="row col-form-label">Descripcion:</label>
+                        <div class="row">
+                            <input type="text" class="form-control" name="idPei" value="data_update.idPei" ngModel required>
+                        </div>
                     </div>
+                </div>
                 
             
             <div class="modal-footer">
@@ -139,7 +157,7 @@
     </div>
     </div>
 </div>
--->
+
 <!-- Este modal sirve para eliminar una institucion -->
 
 <div class="modal" tabindex="-1" id="eliminarInst">

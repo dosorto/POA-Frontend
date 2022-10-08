@@ -1,27 +1,63 @@
+import { peiModel } from "../modules/pei/pei.model";
 import { Component, OnInit } from '@angular/core';
 import { ObjetivosService } from './objetivos.service';
 import { ToastrService } from 'ngx-toastr';
 import { FormGroup, FormControl, Validators, AbstractControl,ReactiveFormsModule, SelectControlValueAccessor } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { objetivo } from './objetivos.model';
+import { objetivomodel } from './objetivos.model';
 import Swal from 'sweetalert2';
-
+import { firstValueFrom } from 'rxjs';
+import { DimensionModels } from "../modules/gestion-dimension/dimension.model";
 @Component({
   selector: 'app-objetivos',
   templateUrl: './objetivos.component.html',
   styleUrls: ['./objetivos.component.css']
 })
 export class ObjetivosComponent implements OnInit {
+
+   private objetivo_example :objetivomodel.objetivo={
+     id: 0,
+     nombre: "",
+     isDelete: false,
+     createdAt: new Date(),
+     updatedAt: new Date(),
+     idDimension: 1,
+     idPei: 1,
+   }
+   
+  
+
   _delete:any;
+ public data_update: objetivomodel.objetivo=this.objetivo_example;
+  objetivosList: any = [];
+  // dimensionList: any = [];
+  // rutaActual = "pei";
+
+  objetivoss: Array<objetivomodel.objetivo> = [];
+  peis: Array<peiModel.Pei> = [];
+  dimensiones:Array<DimensionModels.dimension>=[];
+  
+
     public objetivo:FormGroup = new FormGroup({
     nombre: new FormControl('',[Validators.required]),
     idDimension: new FormControl('',[Validators.required]),
     idPei: new FormControl('',[Validators.required])
   })
   
+  async initData() {
+    let peis = await firstValueFrom(this.objetivosService.getPEI())
+    this.peis = peis;
+  }
 
+  async initData_Dimension(){
+    let dimensiones = await firstValueFrom(this.objetivosService.getdimensiones())
+    this.dimensiones = dimensiones;
+  }
 
-  objetivosList: any = [];
+  async initData_Objetivo(){
+    let objetivos = await firstValueFrom(this.objetivosService.getObjetivos())
+    this.objetivoss = objetivos;
+  }
     //id=String;
   //dataSource = this.userList;  // MatPaginator Output
     /*@ViewChild(MatPaginator) paginator!: MatPaginator; 
@@ -33,11 +69,16 @@ export class ObjetivosComponent implements OnInit {
   constructor( private objetivosService:ObjetivosService,private router: Router,private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    console.log(this.objetivo);
+    console.log(this.objetivoss);
     console.log('El componente se ha inicializado');
-    //this.objetivosService.getObjetivos().subscribe((response:any) => console.log(response));
+    this.initData();
     //this.objetivosService.getObjetivos().subscribe((response:any) => this.objetivosList = response.allObjetivo);
     this.mostrarObjetivo();
+    //this.mostrarDimension();
+    // this.mostrarPei();
+    this.initData_Dimension();
+    this.initData_Objetivo();
+   
   }
 
   mostrarObjetivo() {
@@ -45,6 +86,18 @@ export class ObjetivosComponent implements OnInit {
     this.objetivosList = response.allObjetivo);
     
     }
+
+    // mostrarPei() {
+    //   this.objetivosService.getPei().subscribe((response:any) => 
+    //   this.peisList = response.pei);
+      
+    //   }
+  // mostrarDimension() {
+  //   this.objetivosService.getdimension().subscribe((response1:any) => 
+  //   this.dimensionList = response1.all_dimension);
+  //   this.objetivosService.getdimension().subscribe((response:any) => console.log(response));    
+  //   console.log(this.dimensionList)  
+  // }
     set_id_delete(id:Number){
       this._delete = id;
       console.log(this._delete)
@@ -82,7 +135,7 @@ export class ObjetivosComponent implements OnInit {
   //   })
   // }
 // Función para obtener los datos del formulario y almacenarlos.
-  postObjetivo(form:objetivo):any {
+  postObjetivo(form:objetivomodel.objetivo):any {
     this.objetivosService.postObjetivo(form).subscribe(data=>{
       console.log(data);
       Swal.fire({
@@ -113,5 +166,29 @@ export class ObjetivosComponent implements OnInit {
 
 
 //   }
+set_update(_objetivos: objetivomodel.objetivo){
+  this.data_update = _objetivos
+};
+
+update(nombre:string,idDimension:string, idPei:string){
+   const id = this.data_update.id; // ahi se aloja el id
+   // validaciones
+  if((nombre === '')){nombre = this.data_update.nombre}
+  if((idDimension === '')){idDimension= this.data_update.idDimension.toString()}
+  if((idPei === '')){idPei= this.data_update.idPei.toString()}
+   try{
+   this.objetivosService.updateObjetivo(nombre,parseInt(idDimension),id,parseInt(idPei)).subscribe((res:any)=>{
+     console.log(res);
+     this.router.navigate(['/objetivos']);
+   },(error:any)=>{
+     console.log(error);
+     
+   });
+   
+   
+ } catch(error){
+   console.log(error);
+ }
+}
 
 }
