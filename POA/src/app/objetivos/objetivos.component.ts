@@ -16,20 +16,64 @@ import { DimensionModels } from "../modules/gestion-dimension/dimension.model";
 export class ObjetivosComponent implements OnInit {
 
    private objetivo_example :objetivomodel.objetivo={
-     id: 0,
-     nombre: "",
-     isDelete: false,
-     createdAt: new Date(),
-     updatedAt: new Date(),
-     idDimension: 1,
-     idPei: 1,
-   }
+    id: 0,
+      nombre: '',
+      isDelete: false,
+      createdAt: new Date(),
+      updatedAt:  new Date(),
+      idDimension: 1,
+      idPei: 1,
+  //   area: {
+  //     id: 1,
+  //     nombre: '',
+  //     isDelete: false,
+  //     createdAt: new Date(),
+  //     updatedAt:  new Date(),
+  //     idObjetivos: 1,
+  //     idDimension: 1,
+  //     idPei: 1
+  // },
+  Dimension: {
+    id: 0,
+    nombre: '',
+    descripcion: '',
+    isDelete: false,
+    createdAt: new Date(),
+    updatedAt:  new Date(),
+    idPei: 1
+  },
+  // objetivo: {
+  //     id: 0,
+  //     nombre: '',
+  //     isDelete: false,
+  //     createdAt: new Date(),
+  //     updatedAt:  new Date(),
+  //     idDimension: 1,
+  //     idPei: 1
+  // },
+  
+  Pei: {
+      id: 0,
+      name: '',
+      initialYear: new Date(),
+        finalYear:   new Date(),
+      isDelete: false,
+      isActive: true,
+      createdAt: new Date(),
+      updatedAt:  new Date(),
+  }
+  
+  }
+   
    
   
-
+  public dimension_seleccionado:string="";
+  public pei_seleccionado:string="";
   _delete:any;
  public data_update: objetivomodel.objetivo=this.objetivo_example;
   objetivosList: any = [];
+  dimensionList: any = [];
+  
   // dimensionList: any = [];
   // rutaActual = "pei";
 
@@ -50,8 +94,9 @@ export class ObjetivosComponent implements OnInit {
   }
 
   async initData_Dimension(){
-    let dimensiones = await firstValueFrom(this.objetivosService.getdimensiones())
-    this.dimensiones = dimensiones;
+
+    this.objetivosService.getdimensiones().subscribe((data:any) =>console.log(data));
+  this.objetivosService.getdimensiones().subscribe((data:any) =>this.dimensionList = data);
   }
 
   async initData_Objetivo(){
@@ -168,36 +213,70 @@ export class ObjetivosComponent implements OnInit {
 //   }
 set_update(_objetivos: objetivomodel.objetivo){
   this.data_update = _objetivos
-  console.log(_objetivos)
+  console.log(this.data_update)
 };
 
-update(nombre:string,idDimension:string, idPei:string){
-   const id = this.data_update.id; // ahi se aloja el id
-   // validaciones
-  if((nombre === '')){nombre = this.data_update.nombre}
-  if((idDimension === '')){idDimension= this.data_update.idDimension.toString()}
-  if((idPei === '')){idPei= this.data_update.idPei.toString()}
-   try{
-   this.objetivosService.updateObjetivo(nombre,parseInt(idDimension),id,parseInt(idPei)).subscribe((res:any)=>{
+// update(nombre:string,idDimension:string, idPei:string){
+//    const id = this.data_update.id; // ahi se aloja el id
+//    // validaciones
+//   if((nombre === '')){nombre = this.data_update.nombre}
+//   if((idDimension === '')){idDimension= this.data_update.idDimension.toString()}
+//   if((idPei === '')){idPei= this.data_update.idPei.toString()}
+//    try{
+//    this.objetivosService.updateObjetivo(nombre,parseInt(idDimension),id,parseInt(idPei)).subscribe((res:any)=>{
       
-    Swal.fire({
-      icon: 'success',
-      title: '¡Actualizado con éxito!',
-      showConfirmButton: false,
-      timer: 2500
-    })
-   },(error:any)=>{
-    Swal.fire({
-      icon: 'error',
-      title: 'Ha ocurrido un error',
-      showConfirmButton: false,
-      timer: 2500
-    })
-   });
+//     Swal.fire({
+//       icon: 'success',
+//       title: '¡Actualizado con éxito!',
+//       showConfirmButton: false,
+//       timer: 2500
+//     })
+//    },(error:any)=>{
+//     Swal.fire({
+//       icon: 'error',
+//       title: 'Ha ocurrido un error',
+//       showConfirmButton: false,
+//       timer: 2500
+//     })
+//    });
      
+//  } catch(error){
+//    console.log(error);
+//  }
+// }
+update(nombre:string, idDimension:string, idPei:string){
+  const id = this.data_update.id; // ahi se aloja el id
+  // validaciones
+ if((nombre === '')){nombre = this.data_update.nombre}
+//  if((idArea === '')){idArea= this.data_update.idArea.toString()}
+ if((idDimension === '')){idDimension = this.data_update.idDimension.toString()}
+//  if((idObjetivos === '')){idObjetivos = this.data_update.idObjetivos.toString()}
+ if((idPei === '')){idPei = this.data_update.idPei.toString()}
+  try{
+  this.objetivosService.updateObjetivo(nombre,id,parseInt(idDimension),parseInt(idPei)).subscribe((res:any)=>{
+    console.log(res);
+    Swal.fire({
+     icon: 'success',
+     title: '¡Actualizado con éxito!',
+     showConfirmButton: false,
+     timer: 2500
+   })
+ 
+  },(error:any)=>{
+    console.log(error);
+    Swal.fire({
+     icon: 'error',
+     title: 'Ha ocurrido un error',
+     showConfirmButton: false,
+     timer: 2500
+    })
+  });
+  
  } catch(error){
    console.log(error);
  }
+ setTimeout(function() {
+  window.location.reload();
+},1500);
 }
-
 }

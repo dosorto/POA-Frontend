@@ -47,11 +47,13 @@ export class ObjetivosService {
       }))
   }
   getdimensiones() {
-    return this.callHttp.httpGet<Array<DimensionModels.dimension>>(`http://localhost:8080/dimension/get_all`)
-      .pipe(map(response => {
-        this._dimensiones = response;
-        return response;
-      }))
+    // return this.callHttp.httpGet<Array<DimensionModels.dimension>>(``)
+    //   .pipe(map(response => {
+    //     this._dimensiones = response;
+    //     return response;
+    //   }))
+      const url = `http://localhost:8080/dimension/get_all`;
+    return this.http.get(url);
   }
  
 

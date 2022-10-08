@@ -86,7 +86,7 @@
                       <!-- <input type="number" formControlName="idDimension" class="form-control form-control-lg" placeholder="idDimension"> -->
                       <select class="form-control" formControlName="idDimension">
                         <option value="">Selecciona una opción</option>
-                        <option value="{{x.id}}" *ngFor="let x of dimensiones">
+                        <option value="{{x.id}}" *ngFor="let x of dimensionList">
                             {{x.nombre}}
                         </option>
                     </select>
@@ -123,28 +123,45 @@
                         <!-- Campo para el nombre de institucion -->
                        
                         <div class="mb-3 mx-2 px-2 row">
-                            <label for="nombre" class="row col-form-label">Nombre de Institución:</label>
+                            <label for="nombre" class="row col-form-label">Nombre de Objetivo:</label>
                             <div class="row">
-                                <input type="text" class="form-control" name="nombre" value="{{data_update.id}}" ngModel required>
+                                <input type="text" class="form-control" name="nombre" value="{{data_update.nombre}}" ngModel required>
                             </div>
                         </div>
                        
                         <!-- Campo para la descripcion -->
                        
+                        <!-- <div class="mb-3 mx-2 px-2 row">
+                            <select class="form-control" formControlName="idDimension">
+                                <option value="">Selecciona una opción</option>
+                                <option value="{{x.id}}" *ngFor="let x of ">
+                                    {{x.nombre}}
+                                </option>
+                            </select>
+                        </div>
+                     -->
                         <div class="mb-3 mx-2 px-2 row">
-                            <label for="username" class="row col-form-label">Descripcion:</label>
-                            <div class="row">
-                                <input type="text" class="form-control" name="idDimension" value="data_update.idDimension" ngModel required>
-                            </div>
+                            <label for="idDimension" class="row col-form-label">Dimensión:</label>
+                            <select class="form-select w-75" aria-label="Default select example" name="idDimension" 
+                            [(ngModel)]="dimension_seleccionado">
+                                <option selected>Seleccione...</option>
+                                <ng-container *ngFor="let p of dimensionList">
+                                    <option value="{{ p.id === data_update.Dimension.id }}" [selected]="p.id === data_update.Dimension.id" >{{p.nombre}}</option>
+                                </ng-container>
+                            </select>
                         </div>
-                    
 
-                    <div class="mb-3 mx-2 px-2 row">
-                        <label for="username" class="row col-form-label">Descripcion:</label>
-                        <div class="row">
-                            <input type="text" class="form-control" name="idPei" value="data_update.idPei" ngModel required>
-                        </div>
-                    </div>
+                    <!-- Campo para actualizar pei -->
+            <div class="mb-3 mx-2 px-2 row">
+                <label for="idPei" class="row col-form-label">Pei:</label>
+                <select class="form-select w-75" aria-label="Default select example" name="idPei" 
+                [(ngModel)]="pei_seleccionado">
+                    <option selected>Seleccione...</option>
+                    <ng-container *ngFor="let p of peis">
+                        <option value="{{p.id}}"  >{{p.name}}</option>
+                    </ng-container>   
+                </select>
+            </div>
                 </div>
                 
             

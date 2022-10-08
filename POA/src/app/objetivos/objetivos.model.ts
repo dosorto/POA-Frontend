@@ -1,15 +1,15 @@
 export namespace objetivomodel {
-export interface objetivo{
-    id:Number,
-    nombre: string;
-    idDimension: number;
-    idPei: number;
-    isDelete:    boolean;
-    createdAt:   Date;
-    updatedAt:   Date;
-   
-}
-    export interface Pei {
+    export interface dimension {
+        id:          number;
+        nombre:      string;
+        descripcion: string;
+        isDelete:    boolean;
+        createdAt:   Date;
+        updatedAt:   Date;
+        idPei:       number;
+    }
+    
+    export interface pei {
         id:          number;
         name:        string;
         initialYear: Date;
@@ -19,14 +19,16 @@ export interface objetivo{
         createdAt:   Date;
         updatedAt:   Date;
     }
-    export interface dimension {
-        id:          number;
+
+    export interface objetivo {
+        id:          number,
         nombre:      string;
-        descripcion: string;
         isDelete:    boolean;
         createdAt:   Date;
         updatedAt:   Date;
+        idDimension: number;
         idPei:       number;
-        PEI:         Pei;
+        Dimension:   dimension;
+        Pei:         pei;
     }
 }
