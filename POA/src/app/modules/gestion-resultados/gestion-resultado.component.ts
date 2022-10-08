@@ -144,9 +144,15 @@ async getPei(){
 //Método para eliminar un resultado
   async delete() {
     await this.ResultadoService.eliminarObjetivo(this._delete);
+    Swal.fire({
+      icon: 'success',
+      title: '¡Eliminado con éxito!',
+      showConfirmButton: false,
+      timer: 2500
+    })
     setTimeout(function() {
       window.location.reload();
-    },100);
+    },1500);
   }
   
 //Método para crear un nuevo resultado
