@@ -4,8 +4,7 @@
 
 export const environment = {
   production: false,
-  servidor: "http://localhost:8080/empleado/allEmpleados",
-  servidor2: "http://localhost:8080/auth/create-user"
+  servidor: "http://localhost:8080/"
 };
 
 /*
