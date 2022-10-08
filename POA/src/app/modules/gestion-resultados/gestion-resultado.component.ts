@@ -14,6 +14,7 @@ import { DimensionModels } from '../gestion-dimension/dimension.model';
 })
 export class GestionResultadoComponent implements OnInit {
 
+// Objeto tipo resultado para usarlo de base
 private resultado_example:ResultadoModels.Resultado = {
   id:      0,
   nombre:   "",
@@ -66,26 +67,21 @@ pei: {
 
 }
 
-rutaActual = "Resultado";
-public resultados:Array<ResultadoModels.Resultado>=[];
-public lista_area:Array<ResultadoModels.area>=[];
-public lista_dimension:Array<ResultadoModels.Dimension>=[];
-public lista_objetivo:Array<ResultadoModels.objetivos>=[];
-public lista_pei:Array<ResultadoModels.Pei>=[];
-public user = this.Storage.get_storage("user");
-public filter:string=""; // para filtar la tabla
-public _delete: any;
-public data_update :ResultadoModels.Resultado = this.resultado_example;
+rutaActual = "Resultado"; //Sirve para definir los iconos en el sidevar
+public user = this.Storage.get_storage("user"); //Obtener el usuario logueado
+public filter:string=""; //Para filtar la tabla
+public _delete: any; // Define que elemento se eliminara
+public data_update :ResultadoModels.Resultado = this.resultado_example; //Define los datos de un elemento a actualizar
 public area_seleccionado:string="";
 public dimension_seleccionado:string="";
 public objetivo_seleccionado:string="";
 public pei_seleccionado:string="";
-//public data_update:Array<string>=[]; 
-resultadoList: any = [];
-dimensionList: any = [];
-areaList: any = [];
-peiList: any = [];
-objetivoList: any = [];
+
+resultadoList: any = []; //Almacena los resultado y llena la tabla resultado
+dimensionList: any = []; //Almacena las dimesiones para mostrarlas en los select
+areaList: any = []; //Almacena las áreas para mostrarlas en los select
+peiList: any = []; //Almacena los pei para mostrarlos en los select
+objetivoList: any = []; //Almacena los objetivos para mostrarlos en los select
 
 public page:number=0;
 public step:number=5;
@@ -97,51 +93,34 @@ constructor(private Storage:Storage, private ResultadoService:ResultadoService, 
 
 
   ngOnInit(): void {
-    //this.initData();
     this.getResultado();
     this.getDimension();
     this.getArea();
     this.getObjetivo();
     this.getPei();
   }
- 
-  async initData(){
-    /*const resultados = await firstValueFrom(this.ResultadoService.getResultado());
-    this.resultados = resultados;
-    this.maxPages = Math.round(this.resultados.length / this.step ) // cantidad de paginas para los botones
-    if((this.resultados.length % this.step ) !== 0 ){this.maxPages++}; // si sobran pocos elementos agrega otra pagina
-    this.enumPages =  Array(this.maxPages).fill(null).map((x,i)=>i).slice(1,this.maxPages);
-    const area = await firstValueFrom(this.ResultadoService.getAreaList())
-    this.lista_area = area;
-    const dimensiones = await firstValueFrom(this.ResultadoService.getDimensionList())
-    this.lista_dimension = dimensiones;
-    const objetivos = await firstValueFrom(this.ResultadoService.getObjetivoList())
-    this.lista_objetivo = objetivos;
-    const peis = await firstValueFrom(this.ResultadoService.getPeiList())
-    this.lista_pei = peis;
-  */
-}
 
+//Método que obtiene los resultados mediante el servico creado
 async getResultado(){
   this.ResultadoService.getResultado().subscribe((data:any) =>console.log(data));
   this.ResultadoService.getResultado().subscribe((data:any) =>this.resultadoList = data.allResultado);
 }
-
+//Método que obtiene las dimensiones mediante el servico creado
 async getDimension(){
   this.ResultadoService.getDimension().subscribe((data:any) =>console.log(data));
   this.ResultadoService.getDimension().subscribe((data:any) =>this.dimensionList = data);
 }
-
+//Método que obtiene las áreas mediante el servico creado
 async getArea(){
   this.ResultadoService.getArea().subscribe((data:any) =>console.log(data));
   this.ResultadoService.getArea().subscribe((data:any) =>this.areaList = data);
 }
-
+//Método que obtiene los objetivos mediante el servico creado
 async getObjetivo(){
   this.ResultadoService.getObjetivo().subscribe((data:any) =>console.log(data));
   this.ResultadoService.getObjetivo().subscribe((data:any) =>this.objetivoList = data.allObjetivo);
 }
-
+//Método que obtiene los pei mediante el servico creado
 async getPei(){
   this.ResultadoService.getPei().subscribe((data:any) =>console.log(data));
   this.ResultadoService.getPei().subscribe((data:any) =>this.peiList = data);
@@ -156,11 +135,13 @@ async getPei(){
   selectPage(numPage:number){
     this.page = numPage * this.step;
   }
-
+//Establece el id del registro a eliminar
   set_id_delete(id:Number){
     this._delete = id;
     console.log(this._delete)
   }
+
+//Método para eliminar un resultado
   async delete() {
     await this.ResultadoService.eliminarObjetivo(this._delete);
     setTimeout(function() {
@@ -168,7 +149,7 @@ async getPei(){
     },100);
   }
   
-
+//Método para crear un nuevo resultado
 async crear_Resultado(nombre:string,idArea:string, idDimension:string, idObjetivos:string, idPei:string){
   await this.ResultadoService.crearResultado(nombre,parseInt(idArea),parseInt(idDimension),parseInt(idObjetivos),parseInt(idPei)).subscribe((res:any)=>{
     Swal.fire({
@@ -190,13 +171,15 @@ async crear_Resultado(nombre:string,idArea:string, idDimension:string, idObjetiv
   },1500);
 }
 
-
+//Establece el resultado a editar
 set_update(_resultado:ResultadoModels.Resultado){
   this.data_update = _resultado
 };
+
+//Método para actualizar un resultado
 update(nombre:string, idArea:string, idDimension:string, idObjetivos:string, idPei:string){
    const id = this.data_update.id; // ahi se aloja el id
-   // validaciones
+// validaciones
   if((nombre === '')){nombre = this.data_update.nombre}
   if((idArea === '')){idArea= this.data_update.idArea.toString()}
   if((idDimension === '')){idDimension = this.data_update.idDimension.toString()}
@@ -205,12 +188,6 @@ update(nombre:string, idArea:string, idDimension:string, idObjetivos:string, idP
    try{
    this.ResultadoService.updateResultado(nombre,id,parseInt(idArea),parseInt(idDimension),parseInt(idObjetivos),parseInt(idPei)).subscribe((res:any)=>{
      console.log(res);
-     Swal.fire({
-      icon: 'success',
-      title: '¡Actualizado con éxito!',
-      showConfirmButton: false,
-      timer: 2500
-    })
   
    },(error:any)=>{
      console.log(error);
@@ -225,6 +202,12 @@ update(nombre:string, idArea:string, idDimension:string, idObjetivos:string, idP
   } catch(error){
     console.log(error);
   }
+  Swal.fire({
+    icon: 'success',
+    title: '¡Actualizado con éxito!',
+    showConfirmButton: false,
+    timer: 2500
+  })
   setTimeout(function() {
    window.location.reload();
  },1500);
