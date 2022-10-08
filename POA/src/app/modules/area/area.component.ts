@@ -27,7 +27,7 @@ export class AreaComponent implements OnInit {
   dimension_seleccionado:string="";
 
   public page:number=0;
-  public step:number=11;
+  public step:number=10;
   public maxPages:number=1;
   public enumPages:number[]=[]
 
@@ -44,12 +44,13 @@ export class AreaComponent implements OnInit {
     if((this.area.length % this.step ) !== 0 ){this.maxPages++}; // si sobran pocos elementos agrega otra pagina
     this.enumPages =  Array(this.maxPages).fill(null).map((x,i)=>i).slice(1,this.maxPages);
     console.log(this.area.length);
-    const peis = await firstValueFrom(this.service.getPeiList())
-    this.lista_pei = peis;
-    const Objetivos = await firstValueFrom(this.service.getObjetivos())
+   // const peis = await firstValueFrom(this.service.getPeiList());
+    //this.lista_pei = peis;
+    const Objetivos = await firstValueFrom(this.service.getObjetivos());
     this.listaObjetivos = Objetivos;
-    const Dimension = await firstValueFrom(this.service.getDimensiones())
-    this.listadimension = Dimension;
+    console.log(this.listaObjetivos)
+    //const Dimension = await firstValueFrom(this.service.getDimensiones());
+    //this.listadimension = Dimension;
   }
 
 
@@ -92,14 +93,8 @@ export class AreaComponent implements OnInit {
   }
 
 
-
-
-
-
-
-
-  async crearArea(nombre:string,idObjetivo:number,idDimension:number,idPei:number){
-    await this.service.crearArea(nombre,idObjetivo,idDimension,idPei).subscribe((res:any)=>{
+  async crearArea(nombre:string,idObjetivo:number){
+    await this.service.crearArea(nombre,idObjetivo).subscribe((res:any)=>{
       console.log(res);
       Swal.fire({
         icon: 'success',
@@ -117,17 +112,16 @@ export class AreaComponent implements OnInit {
   
   set_update(index:number){
     const AreaUpdate = this.area[index]
-    this.data_update = [AreaUpdate.nombre, AreaUpdate.idObjetivo.toString(),AreaUpdate.idDimension.toString(), AreaUpdate.idPei.toString(),AreaUpdate.id.toString()];
+    this.data_update = [AreaUpdate.nombre, AreaUpdate.idObjetivo.toString(),AreaUpdate.id.toString()];
   };
-  update(nombre:string,idObjetivo:string,idDimension:string, idPei:string){
-     const id = this.data_update[4]; // ahi se aloja el id
+  update(nombre:string,idObjetivo:string){
+     const id = this.data_update[2]; // ahi se aloja el id
      // validaciones
     if((nombre === '')){nombre = this.data_update[0]}
     if((idObjetivo === '')){idObjetivo= this.data_update[1]}
-    if((idDimension === '')){idDimension= this.data_update[2]}
-    if((idPei === '')){idPei= this.data_update[3]}
+
      try{
-     this.service.updateArea(nombre,parseInt(id),parseInt(idObjetivo),parseInt(idDimension),parseInt(idPei)).subscribe((res:any)=>{
+     this.service.updateArea(nombre,parseInt(id),parseInt(idObjetivo)).subscribe((res:any)=>{
        console.log(res);
      
       }, (error: any) => {

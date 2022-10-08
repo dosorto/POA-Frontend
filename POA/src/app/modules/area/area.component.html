@@ -47,7 +47,14 @@
                 <tbody class="text-center">
                     <tr *ngFor="let x of area | AreaFilter:filter | paginacion:step:page; index as i ">
                         <!-- este contador no es id, solo es para enumerar -->
-                        <td>{{i + 1}}</td>
+                        <td>
+                            <ng-container *ngIf="page > 0; else elseNumeracion">
+                                {{i + page + 1}}
+                            </ng-container>
+                            <ng-template #elseNumeracion>
+                                {{i + 1}}
+                            </ng-template>
+                        </td>
                         <td>{{x.nombre}}</td>
                         <td>{{x.objetivo.nombre}}</td>
                         <td>{{x.dimension.nombre}}</td>
@@ -69,16 +76,24 @@
                     </tr>
                 </tbody>
             </table>
+           
             <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                    <ng-container *ngIf="!(page===0)">
-                        <li class="page-item"><a class="page-link" (click)="previousPage()">Anterior</a></li>
+                <!-- <div class="justify-content-start">
+                    <p>
+                        <input type="text" value="{{step}}" style="width:20px" [(ngModel)]="step" class="border rounded text-center"> registros por página.
+                    </p>
+                </div> -->
+                <ul class="pagination justify-content-end">
+                    <ng-container>
+                        <li class="page-item" [ngClass]="page === 1 ? 'disable':''"><a class="page-link "
+                                (click)="previousPage()">Anterior</a></li>
                     </ng-container>
                     <ng-container *ngFor="let x of enumPages">
-                        <li class="page-item"><a class="page-link" (click)="selectPage(x-1)">{{x}}</a></li>
+                        <li class="page-item" [ngClass]="(page/step)+1 === x ? 'active':''"><a class="page-link"
+                                (click)="selectPage(x-1)">{{x}}</a></li>
                     </ng-container>
-                    <ng-container *ngIf="!(page >= maxPages)">
-                        <li class="page-item"><a class="page-link" (click)="nextPage()">Siguiente</a></li>
+                    <ng-container *ngIf="(page <= maxPages + 1)">
+                        <li class="page-item"><a class="page-link " (click)="nextPage()">Siguiente</a></li>
                     </ng-container>
                 </ul>
             </nav>
@@ -87,7 +102,7 @@
         </div>
     </div>
 </div>
-<!-- Este modal sirve para crear una nueva Dimensión -->
+<!-- Este modal sirve para crear una nueva Area -->
 <div class="modal" id="createArea" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog ">
         <div class="modal-content">
@@ -97,7 +112,7 @@
             </div>
             <div class="modal-body">
                 <form #AreaC='ngForm'
-                    (ngSubmit)="crearArea(AreaC.value.nombre, AreaC.value.idObjetivo,AreaC.value.idDimension,AreaC.value.idPei)">
+                    (ngSubmit)="crearArea(AreaC.value.nombre, AreaC.value.idObjetivo)">
                     <div class="col">
                         <!-- Campo para el nombre de Dimensión -->
                         <div class="mb-3 mx-2 px-2 row">
@@ -106,32 +121,24 @@
                                 <input type="text" class="form-control" name="nombre" ngModel required>
                             </div>
                         </div>
-                        <div class="mb-3 mx-2 px-2 row">
-                            <label for="username" class="row col-form-label">Objetivo:</label>
-                            <div class="row">
-                                <input type="text" class="form-control" name="idObjetivo" ngModel required>
-                            </div>
-                        </div>
-
-                        <!-- campo para agragar  un objetivo
-                        <div class="mb-3 mx-2 px-2 row">
+                              <div class="mb-3 mx-2 px-2 row">
                             <label for="idObjetivo" class="row col-form-label">Objetivo:</label>
-                            <select class="form-select w-75" aria-label="Default select example" name="idObjetivo"
+                        <select class="form-select w-75" aria-label="Default select example" name="idObjetivo"
                                 [(ngModel)]="objetivo_seleccionado">
                                 <option selected>Seleccione...</option>
                                 <ng-container *ngFor="let x of listaObjetivos">
-                                    <option value="{{x.id}}">{{x.nombre}}</option>
+                                    <option value="{{x.id}}">{{x.nombre }}</option>
                                 </ng-container>
-                            </select>
-                        </div>
--->
 
+                            </select>
+
+                        </div>
 
                         <!-- Campo para la dimension -->
-                        <div class="mb-3 mx-2 px-2 row">
-                            <label for="idDimension" class="row col-form-label">Dimension:</label>
-                            <select class="form-select w-75" aria-label="Default select example" name="idDimension"
-                                [(ngModel)]="dimension_seleccionado">
+                        <!-- <div class="mb-3 mx-2 px-2 row">
+                            <label for="idPei" class="row col-form-label">Dimension:</label>
+                            <select class="form-select w-75" aria-label="Default select example" name="idPei"
+                                [(ngModel)]="pei_seleccionado">
                                 <option selected>Seleccione...</option>
                                 <ng-container *ngFor="let x of listadimension">
                                     <option value="{{x.id}}">{{x.nombre}}</option>
@@ -139,12 +146,12 @@
 
                             </select>
 
-                        </div>
+                        </div> -->
 
 
                         <!-- Campo para el pei -->
-                        <div class="mb-3 mx-2 px-2 row">
-                            <label for="idPei" class="row col-form-label">Pei:</label>
+                        <!-- <div class="mb-3 mx-2 px-2 row">
+                            <label for="idPei" class="row col-form-label">PEI:</label>
                             <select class="form-select w-75" aria-label="Default select example" name="idPei"
                                 [(ngModel)]="pei_seleccionado">
                                 <option selected>Seleccione...</option>
@@ -154,7 +161,7 @@
 
                             </select>
 
-                        </div>
+                        </div> -->
 
 
 
@@ -181,7 +188,7 @@
             </div>
             <div class="modal-body">
                 <form #UpdateArea='ngForm'
-                    (ngSubmit)="update(UpdateArea.value.nombre,UpdateArea.value.idObjetivo,UpdateArea.value.idDimension,UpdateArea.value.idPei)">
+                    (ngSubmit)="update(UpdateArea.value.nombre,UpdateArea.value.idObjetivo)">
                     <div class="col">
                         <!-- Campo para el nombre de Dimensión -->
                         <div class="mb-3 mx-2 px-2 row">
@@ -190,27 +197,21 @@
                                 <input type="text" class="form-control" name="nombre" ngModel required>
                             </div>
                         </div>
-                        <!-- Campo para la descripcion -->
-                        <div class="mb-3 mx-2 px-2 row">
-                            <label for="username" class="row col-form-label">Objetivo:</label>
-                            <div class="row">
-                                <input type="text" class="form-control" name="idObjetivo" ngModel required>
-                            </div>
-                        </div>
-                        <!-- Campo para la descripcion -->
-                        <div class="mb-3 mx-2 px-2 row">
-                            <label for="username" class="row col-form-label">Dimension:</label>
-                            <div class="row">
-                                <input type="text" class="form-control" name="idDimension" ngModel required>
-                            </div>
-                        </div>
-                        <!-- Campo para la descripcion -->
-                        <div class="mb-3 mx-2 px-2 row">
-                            <label for="username" class="row col-form-label">PEI:</label>
-                            <div class="row">
-                                <input type="text" class="form-control" name="idPei" ngModel required>
-                            </div>
-                        </div>
+                     <!-- Campo para la descripcion -->
+                     <div class="mb-3 mx-2 px-2 row">
+                        <label for="idObjetivo" class="row col-form-label">Objetivo:</label>
+                        <select class="form-select w-75" aria-label="Default select example" name="idObjetivo"
+                            [(ngModel)]="objetivo_seleccionado" required>
+                            <option selected>Seleccione...</option>
+                            <ng-container *ngFor="let x of listaObjetivos">
+                                <option value="{{x.id}}">{{x.nombre}}</option>
+                            </ng-container>
+
+                        </select>
+
+                    </div>
+               
+                
 
                     </div>
 

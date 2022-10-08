@@ -19,8 +19,8 @@ export namespace AreaModels {
     isDelete: boolean;
     createdAt: Date;
     updatedAt: Date;
-    idDimension: number;
-    idPei: number;
+    idDimension: Dimension;
+    idPei: Pei;
   }
   export interface Dimension {
     id: number;

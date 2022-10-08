@@ -28,6 +28,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { TopBarComponent } from './_core/top-bar/top-bar.component';
 import { SidebarComponent } from './_core/sidebar/sidebar.component';
 import { ObjetivosComponent } from './objetivos/objetivos.component';
+import { ForgotPasswordComponent } from './modules/forgot-password/forgot-password.component';
 
 
 
@@ -43,6 +44,7 @@ import { ObjetivosComponent } from './objetivos/objetivos.component';
     TopBarComponent,
     SidebarComponent,
     ObjetivosComponent,
+    ForgotPasswordComponent,
     
   ],
   imports: [

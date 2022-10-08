@@ -28,16 +28,14 @@ export class AreaService {
   get dimensiones() {
     return this._dimensionList;
   }
-  public crearArea (nombre:string,idObjetivo:number,idDimension:number,idPei:number):any{
+  public crearArea (nombre:string,idObjetivo:number):any{
       const url = environment.servidor + 'area/crear';
  
       const params = new HttpParams({
        fromObject: {
          grant_type: 'password',
          nombre: nombre,
-         idObjetivo:idObjetivo,
-         idDimension:idDimension,
-         idPei:idPei
+         idObjetivo:idObjetivo
        }
        });
  
@@ -82,6 +80,13 @@ export class AreaService {
         return response;
       }))
   }
+  getObjetivos() {
+    return this.callHttp.httpGet<Array<AreaModels.Objetivo>>(`${environment.servidor}objetivos/get_all`)
+      .pipe(map(response => {
+        this._objetivoList = response;
+        return response;
+      }))
+  } 
   getPeiList() {
     return this.callHttp.httpGet<Array<AreaModels.Pei>>(`${environment.servidor}PEI/get_PEI`)
       .pipe(map(response => {
@@ -97,13 +102,7 @@ export class AreaService {
       }))
   }
 
-  getObjetivos() {
-    return this.callHttp.httpGet<Array<AreaModels.Objetivo>>(`${environment.servidor}objetivos/get_all`)
-      .pipe(map(response => {
-        this._objetivoList = response;
-        return response;
-      }))
-  }   
+  
 
 
   eliminarArea(nombre: string) {
@@ -130,16 +129,14 @@ export class AreaService {
   }
 
   // alternativa a update
-  updateArea(nombre:string, id:number,idObjetivo:number,idDimension:number, idPei:number):any {
+  updateArea(nombre:string, id:number,idObjetivo:number):any {
     const url = environment.servidor + 'area/editar';
 
     const params = new HttpParams({
       fromObject: {
         grant_type: 'password',
         nombre: nombre,  
-         idObjetivo:idObjetivo,
-        idDimension:idDimension,
-        idPei:idPei
+         idObjetivo:idObjetivo
         
       }
     });
@@ -150,7 +147,7 @@ export class AreaService {
       })
     };
     //return this.directHttp.put(url, params, httpOptions);
-    this.directHttp.put(url,{nombre:nombre,id:id,idObjetivo:idObjetivo,idDimension:idDimension,idPei:idPei}).subscribe((response:any)=>
+    this.directHttp.put(url,{nombre:nombre,id:id,idObjetivo:idObjetivo}).subscribe((response:any)=>
     {
       console.log(response);
       return response;
