@@ -10,7 +10,7 @@ export class AppComponent {
   title = 'POA';
   thisRoute: string;
   TopBar_sideBar = true;
-  rutasExcentasTopBar = ['/', '/login']
+  rutasExcentasTopBar = ['/', '/login','/forgotPassword','/newPassword']
   constructor(private router: Router) {
     this.thisRoute = "Demo";
     this.router.events.subscribe((event: any) => {

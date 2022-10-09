@@ -14,6 +14,7 @@ const routes: Routes = [
   {path: 'empleados', loadChildren: () => import('./modules/empleado/empleado.module').then(t => t.EmpleadoModule)},
   {path: 'pei', loadChildren: () => import('./modules/pei/pei.module').then(t => t.peiModule)},
   {path: 'forgotPassword', loadChildren: () => import('./modules/forgot-password/forgot-password.module').then(t => t.ForgorPasswordModule)},
+  {path: 'newPassword', loadChildren: () => import('./modules/new-password/new-password.module').then(t => t.newPasswordModule)},
   {path:'objetivos', component: ObjetivosComponent},
   {path:'alluser', component:AlluserComponent}
 

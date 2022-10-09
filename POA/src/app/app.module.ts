@@ -29,7 +29,7 @@ import { TopBarComponent } from './_core/top-bar/top-bar.component';
 import { SidebarComponent } from './_core/sidebar/sidebar.component';
 import { ObjetivosComponent } from './objetivos/objetivos.component';
 import { ForgotPasswordComponent } from './modules/forgot-password/forgot-password.component';
-import { ChangePasswordComponent } from './modules/change-password/change-password.component';
+import { NewPasswordComponent } from './modules/new-password/new-password.component';
 
 
 
@@ -46,8 +46,7 @@ import { ChangePasswordComponent } from './modules/change-password/change-passwo
     SidebarComponent,
     ObjetivosComponent,
     ForgotPasswordComponent,
-    ChangePasswordComponent,
-    
+    NewPasswordComponent
   ],
   imports: [
     BrowserModule,
