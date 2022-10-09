@@ -28,7 +28,7 @@ export class ForgotPasswordComponent implements OnInit {
         icon: 'success',
         title: 'revisa tu tu correo electronico',
         showConfirmButton: false,
-        timer: 2500
+        timer: 1000
       })
       setTimeout(function() {
         window.location.reload();
