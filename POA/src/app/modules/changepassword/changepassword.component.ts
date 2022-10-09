@@ -12,6 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ChangepasswordComponent implements OnInit {
 
+  
 
     constructor(private route: ActivatedRoute,
       private router: Router,
