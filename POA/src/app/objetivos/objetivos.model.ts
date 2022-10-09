@@ -1,5 +1,5 @@
 export namespace objetivomodel {
-    export interface dimension {
+    export interface Dimension {
         id:          number;
         nombre:      string;
         descripcion: string;
@@ -9,7 +9,7 @@ export namespace objetivomodel {
         idPei:       number;
     }
     
-    export interface pei {
+    export interface Pei {
         id:          number;
         name:        string;
         initialYear: Date;
@@ -28,7 +28,7 @@ export namespace objetivomodel {
         updatedAt:   Date;
         idDimension: number;
         idPei:       number;
-        Dimension:   dimension;
-        Pei:         pei;
+        dimension:   Dimension;
+        pei:         Pei;
     }
 }

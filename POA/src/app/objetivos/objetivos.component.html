@@ -53,8 +53,8 @@
                             <td>{{x.pei.name}}</td>
                         <td>
                             <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                              <button type="button" class="btn btn-secondary"  data-bs-toggle="modal" data-bs-target="#editInst" (click)="set_update(x.id)">Editar</button>
-                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarInst" (click)="set_update(x)">
+                              <button type="button" class="btn btn-secondary"  data-bs-toggle="modal" data-bs-target="#editInst" (click)="set_update(x)">Editar</button>
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarInst" (click)="set_id_delete(x.id)">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
                                         <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
                                     </svg>
@@ -73,7 +73,7 @@
     <div class="modal-dialog ">
         <div class="modal-content">
             <div class="modal-header bg-warning text-black text-center">
-                <h5 class="modal-title fs-5 text-center m-auto" id="exampleModalLabel">Crear una nueva institución</h5>
+                <h5 class="modal-title fs-5 text-center m-auto" id="exampleModalLabel">Crear un nuevo objetivo</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -94,7 +94,7 @@
                     <div class="mb-3">
                         <select class="form-control" formControlName="idPei">
                             <option value="">Selecciona una opción</option>
-                            <option value="{{x.id}}" *ngFor="let x of peis">
+                            <option value="{{x.id}}" *ngFor="let x of peisList">
                                 {{x.name}}
                             </option>
                         </select>
@@ -114,7 +114,7 @@
     <div class="modal-dialog ">
         <div class="modal-content">
             <div class="modal-header bg-warning text-black text-center">
-                <h5 class="modal-title fs-5 text-center m-auto" id="exampleModalLabel">Actualizar</h5>
+                <h5 class="modal-title fs-5 text-center m-auto" id="exampleModalLabel">Actualizar Objetivos</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -129,24 +129,13 @@
                             </div>
                         </div>
                        
-                        <!-- Campo para la descripcion -->
-                       
-                        <!-- <div class="mb-3 mx-2 px-2 row">
-                            <select class="form-control" formControlName="idDimension">
-                                <option value="">Selecciona una opción</option>
-                                <option value="{{x.id}}" *ngFor="let x of ">
-                                    {{x.nombre}}
-                                </option>
-                            </select>
-                        </div>
-                     -->
                         <div class="mb-3 mx-2 px-2 row">
                             <label for="idDimension" class="row col-form-label">Dimensión:</label>
                             <select class="form-select w-75" aria-label="Default select example" name="idDimension" 
                             [(ngModel)]="dimension_seleccionado">
                                 <option selected>Seleccione...</option>
-                                <ng-container *ngFor="let p of dimensionList">
-                                    <option value="{{ p.id === data_update.Dimension.id }}" [selected]="p.id === data_update.Dimension.id" >{{p.nombre}}</option>
+                                <ng-container *ngFor="let x of dimensionList">
+                                    <option value="{{ x.id }}" [selected]="x.id === data_update.dimension.id" >{{x.nombre}}</option>
                                 </ng-container>
                             </select>
                         </div>
@@ -157,8 +146,8 @@
                 <select class="form-select w-75" aria-label="Default select example" name="idPei" 
                 [(ngModel)]="pei_seleccionado">
                     <option selected>Seleccione...</option>
-                    <ng-container *ngFor="let p of peis">
-                        <option value="{{p.id}}"  >{{p.name}}</option>
+                    <ng-container *ngFor="let p of peisList">
+                        <option value="{{p.id}}" [selected]="p.id === data_update.pei.id" >{{p.name}}</option>
                     </ng-container>   
                 </select>
             </div>
@@ -185,7 +174,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <p>Está seguro de eliminarla? </p>
+          <p>Está seguro de eliminar el objetivo? </p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>

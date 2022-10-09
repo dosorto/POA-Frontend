@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AlluserComponent } from './modules/alluser/alluser.component';
-import { ObjetivosComponent } from './objetivos/objetivos.component';
+
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'login'},
@@ -12,7 +12,7 @@ const routes: Routes = [
   {path: 'all_user', loadChildren: () => import('./modules/alluser/alluser.module').then(t => t.UsuarioModule)},
   {path: 'empleados', loadChildren: () => import('./modules/empleado/empleado.module').then(t => t.EmpleadoModule)},
   {path: 'pei', loadChildren: () => import('./modules/pei/pei.module').then(t => t.peiModule)},
-  {path:'objetivos', component: ObjetivosComponent},
+  {path:'objetivos', loadChildren: () => import('./objetivos/objetivos.modules').then(t => t.objetivosModules)},
   {path:'alluser', component:AlluserComponent}
 
 ];

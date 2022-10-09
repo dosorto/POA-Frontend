@@ -6,7 +6,7 @@ import { CallHttpService } from "src/app/_core/global-services/call-http.service
 import { peiModel } from '../modules/pei/pei.model';
 import { map, Observable } from "rxjs";
 import { DimensionModels } from '../modules/gestion-dimension/dimension.model';
-
+import { environment } from "src/environments/environment";
 @Injectable({
   providedIn: 'root'
 })
@@ -40,26 +40,14 @@ export class ObjetivosService {
       }))
   }
   getPEI() {
-    return this.callHttp.httpGet<Array<peiModel.Pei>>(`http://localhost:8080/PEI/get_PEI`)
-      .pipe(map(response => {
-        this._peis = response;
-        return response;
-      }))
+    const url = `http://localhost:8080/PEI/get_PEI`;
+    return this.http.get(url);
   }
   getdimensiones() {
-    // return this.callHttp.httpGet<Array<DimensionModels.dimension>>(``)
-    //   .pipe(map(response => {
-    //     this._dimensiones = response;
-    //     return response;
-    //   }))
       const url = `http://localhost:8080/dimension/get_all`;
     return this.http.get(url);
   }
  
-
-  // eliminarObjetivo(id: string): Observable<any> {
-  //   return this.http.get("http://localhost:8080/objetivos/eliminar/"+id);
-  // }
   eliminarObjetivo(id: any) {
     const url = "http://localhost:8080/objetivos/eliminar/";
 
@@ -85,17 +73,15 @@ export class ObjetivosService {
 
   
 
-  // insertarObjetivo(objetivos: Objetivo): Observable<any>{
-  //   return this.http.post("http://localhost:8080/objetivos/crear",objetivos);
-  // }
+
 
   postObjetivo(form:objetivomodel.objetivo){
     return this.http.post("http://localhost:8080/objetivos/crear", form);
 
   }
 
-  updateObjetivo(nombre: string, idDimension:Number,id:Number,idPei:Number):any {
-    const url = "http://localhost:8080/objetivos/actualizar";
+  updateObjetivo(nombre: string,id:Number,idDimension:Number,idPei:Number):any {
+    const url = environment.servidor + 'objetivos/actualizar';
 
     const params = new HttpParams({
       fromObject: {
@@ -110,7 +96,7 @@ export class ObjetivosService {
       })
     };
     //return this.directHttp.put(url, params, httpOptions);
-    this.directHttp.put(url,{nombre:nombre,idDimension:idDimension,id:id,idPei:idPei}).subscribe((response:any)=>
+    this.directHttp.put(url,{nombre:nombre,id:id,idDimension:idDimension,idPei:idPei}).subscribe((response:any)=>
     {
       console.log(response);
       return response;
