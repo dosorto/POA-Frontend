@@ -15,7 +15,7 @@ import { DimensionModels } from '../gestion-dimension/dimension.model';
 export class GestionResultadoComponent implements OnInit {
 
 // Objeto tipo resultado para usarlo de base
-private resultado_example:ResultadoModels.Resultado = {
+/*private resultado_example:ResultadoModels.Resultado = {
   id:      0,
   nombre:   "",
   isDelete:  false,
@@ -26,7 +26,7 @@ private resultado_example:ResultadoModels.Resultado = {
   idObjetivos:1,
   idPei:1,
   area: {
-    id: 1,
+    id: 0,
     nombre: '',
     isDelete: false,
     createdAt: new Date(),
@@ -66,12 +66,14 @@ pei: {
 }
 
 }
+*/
 
+private resultado_example : ResultadoModels.Resultado | any = {};
 rutaActual = "Resultado"; //Sirve para definir los iconos en el sidevar
 public user = this.Storage.get_storage("user"); //Obtener el usuario logueado
 public filter:string=""; //Para filtar la tabla
 public _delete: any; // Define que elemento se eliminara
-public data_update :ResultadoModels.Resultado = this.resultado_example; //Define los datos de un elemento a actualizar
+public data_update :ResultadoModels.Resultado | any = this.resultado_example; //Define los datos de un elemento a actualizar
 public area_seleccionado:string="";
 public dimension_seleccionado:string="";
 public objetivo_seleccionado:string="";
@@ -89,8 +91,6 @@ public maxPages:number=1;
 public enumPages:number[]=[]
   
 constructor(private Storage:Storage, private ResultadoService:ResultadoService, private router: Router) { }
- 
-
 
   ngOnInit(): void {
     this.getResultado();
