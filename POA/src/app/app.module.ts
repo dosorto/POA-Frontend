@@ -28,6 +28,8 @@ import { SidebarComponent } from './_core/sidebar/sidebar.component';
 import { GestionResultadoComponent } from './modules/gestion-resultados/gestion-resultado.component';
 
 import { ObjetivosComponent } from './objetivos/objetivos.component';
+import { ForgotPasswordComponent } from './modules/forgot-password/forgot-password.component';
+import { NewPasswordComponent } from './modules/new-password/new-password.component';
 
 
 
@@ -41,6 +43,8 @@ import { ObjetivosComponent } from './objetivos/objetivos.component';
     GetUserByIdComponent,
     objToArrayPipe,
     SidebarComponent,
+    ForgotPasswordComponent,
+    NewPasswordComponent
   ],
   imports: [
     BrowserModule,

@@ -14,13 +14,16 @@ const routes: Routes = [
   },
   {path: 'institucion', loadChildren: () => import('./modules/gestion-institucion/gestion-institucion.module').then(t => t.GestionInstitucionModule)},
   {path: 'dimension', loadChildren: () => import('./modules/gestion-dimension/gestion-dimension.module').then(t => t.GestionDimensionModule)},
+  {path: 'area', loadChildren: () => import('./modules/area/area.module').then(t => t.AreaModule)},
   {path: 'all_user', loadChildren: () => import('./modules/alluser/alluser.module').then(t => t.UsuarioModule)},
   {path: 'empleados', loadChildren: () => import('./modules/empleado/empleado.module').then(t => t.EmpleadoModule)},
   {path: 'pei', loadChildren: () => import('./modules/pei/pei.module').then(t => t.peiModule)},
   {path: 'resultado', loadChildren: () => import('./modules/gestion-resultados/gestion-resultado.module').then(t => t.GestionResultadoModule)},
   {path:'objetivos', loadChildren: () => import('./objetivos/objetivos.modules').then(t => t.objetivosModules)},
   {path:'alluser', component:AlluserComponent},
-  //{path: 'resultado', component: GestionResultadoComponent},
+  {path: 'forgotPassword', loadChildren: () => import('./modules/forgot-password/forgot-password.module').then(t => t.ForgorPasswordModule)},
+  {path: 'newPassword', loadChildren: () => import('./modules/new-password/new-password.module').then(t => t.newPasswordModule)}
+
 ];
 
 @NgModule({
