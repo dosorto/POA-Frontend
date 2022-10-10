@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Storage } from 'src/app/_core/global-services/local_storage.service';
 
 @Component({
+  standalone:true,
   selector: 'app-account-detail',
   templateUrl: './account-detail.component.html',
   styleUrls: ['./account-detail.component.css']

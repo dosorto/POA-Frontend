@@ -42,7 +42,6 @@ import { ObjetivosComponent } from './objetivos/objetivos.component';
     RolComponent,
     GetUserByIdComponent,
     objToArrayPipe,
-    TopBarComponent,
     SidebarComponent,
     GestionResultadoComponent,
     ObjetivosComponent
@@ -59,7 +58,8 @@ import { ObjetivosComponent } from './objetivos/objetivos.component';
     ToastrModule.forRoot(),
     FormsModule,
     NgFor,
-    ReactiveFormsModule 
+    ReactiveFormsModule ,
+    TopBarComponent
     
   ],
   providers: [],

@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
 import { GestionResultadoComponent } from './modules/gestion-resultados/gestion-resultado.component';
 
 const routes: Routes = [
-  {path: '', pathMatch: 'full', redirectTo: 'home'},
+  {path: '', pathMatch: 'full', redirectTo: 'login'},
   {path: 'login', loadChildren: () => import('./modules/login/login.module').then(t => t.LoginModule)},
   {path: 'home', children:[
     {path: '',loadChildren: () => import('./modules/menu/menu.module').then(t => t.MenuModule)}

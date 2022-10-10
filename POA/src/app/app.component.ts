@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router'
+import { TopBarComponent } from './_core/top-bar/top-bar.component';
 
 @Component({
   selector: 'app-root',

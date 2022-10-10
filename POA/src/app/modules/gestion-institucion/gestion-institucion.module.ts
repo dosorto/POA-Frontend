@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { GestionInstitucionComponent } from './gestion-institucion.component';
 import { FormsModule } from '@angular/forms';
+import { AccountDetailComponent } from '../menu/menu.module';
 const router = RouterModule.forChild([
   {path: '', component: GestionInstitucionComponent}
 ])
@@ -12,9 +13,10 @@ const router = RouterModule.forChild([
     GestionInstitucionComponent
   ],
   imports: [
-CommonModule,
+  CommonModule,
     router,
-    FormsModule 
+    FormsModule,
+    AccountDetailComponent
   ]
 })
 export class GestionInstitucionModule { }
