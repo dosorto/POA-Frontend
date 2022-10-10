@@ -132,6 +132,36 @@ selectPage(numPage:number){
   this.page = numPage * this.step;
 }
 
+set_user_to_update(user:UsuarioModels.usuario){
+  this.data_update = user;
+}
+
+async actualizar_usuario(email:string, username:string, idEmpleado:string, idRol:string){
+
+  if(email === ''){email = this.data_update.email};
+  if(username === ''){username = this.data_update.username};
+  if(idEmpleado === ''){idEmpleado = this.data_update.idEmpleado.toString()};
+  if(idRol === ''){idRol = this.data_update.idRol.toString()};
+  await this.usuarioService.actualizarUsuario(this.data_update.id,email,username,parseInt(idEmpleado),parseInt(idRol)).subscribe((res:any)=>{
+    Swal.fire({
+      icon: 'success',
+      title: '¡Creado con éxito!',
+      showConfirmButton: false,
+      timer: 2500
+    })
+  },(error:any)=>{
+    Swal.fire({
+      icon: 'error',
+      title: 'Ha ocurrido un error',
+      showConfirmButton: false,
+      timer: 2500
+    })
+  });
+  setTimeout(function() {
+    window.location.reload();
+  },1500);
+
+}
 //Método para crear un nuevo resultado
 async crear_Usuario(email:string, username:string, password:string, password2:string, idEmpleado:string, idRol:string){
   await this.usuarioService.crearUsuario(email,username,password, password2,parseInt(idEmpleado),parseInt(idRol)).subscribe((res:any)=>{

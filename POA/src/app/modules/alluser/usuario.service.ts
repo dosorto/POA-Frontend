@@ -56,5 +56,26 @@ public crearUsuario (email:string, username:string, password:string, password2:s
   //return CallHttpService.httpPost()
   }
 
+  public actualizarUsuario (id:number,email:string, username:string, idEmpleado:number, idRol:number):any{
+    const url = environment.servidor + 'auth/update-user';
+  
+    const params = new HttpParams({
+     fromObject: {
+       grant_type: 'password',
+       id: id,
+       email:email,
+       username:username,
+       idEmpleado:idEmpleado,
+       idRol:idRol
+     }
+     });
+     const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/x-www-form-urlencoded'
+      })
+    };
+    return this.directHttp.post(url,params, httpOptions);
+    //return CallHttpService.httpPost()
+    }
 
 }

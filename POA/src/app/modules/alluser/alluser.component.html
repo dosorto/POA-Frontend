@@ -125,7 +125,7 @@
                         <td>
                             <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                                 <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
-                                    data-bs-target="#editInst">Editar</button>
+                                    data-bs-target="#editInst" (click)="set_user_to_update(x)">Editar</button>
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                     data-bs-target="#eliminarInst">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -249,7 +249,52 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-
+                <form #UpdateUser="ngForm"
+                    (ngSubmit)="actualizar_usuario(UpdateUser.value.email,UpdateUser.value.username,UpdateUser.value.idEmpleado,UpdateUser.value.idRol)"
+                    id="CreateUsuario">
+                    <div class="col">
+                        <!-- Campo para el E-Mail -->
+                        <div class="mb-3 mx-2 px-2 row">
+                            <label for="email" class="row col-form-label">E-Mail:</label>
+                            <div class="row">
+                                <input type="text" class="form-control" name="email" value="{{data_update.email}}" ngModel required>
+                            </div>
+                        </div>
+                        <!-- Campo para el nombre de Usuario -->
+                        <div class="mb-3 mx-2 px-2 row">
+                            <label for="username" class="row col-form-label">Nombre de Usuario</label>
+                            <div class="row">
+                                <input type="text" class="form-control" name="username" value="{{data_update.username}}" ngModel required>
+                            </div>
+                        </div>
+                        <!-- Campo para el empleado -->
+                        <div class="mb-3 mx-2 px-2 row">
+                            <label for="idEmpleado" class="row col-form-label">Empleado:</label>
+                            <select class="form-select w-75" aria-label="Default select example" name="idEmpleado"
+                                [(ngModel)]="empleado_seleccionado" required>
+                                <option selected>Seleccione...</option>
+                                <ng-container *ngFor="let x of empleadoList">
+                                    <option value="{{x.id}}" [selected]="x.id === data_update.empleado.id">{{x.nombre}}</option>
+                                </ng-container>
+                            </select>
+                        </div>
+                        <!-- Campo para el rol -->
+                        <div class="mb-3 mx-2 px-2 row">
+                            <label for="idRol" class="row col-form-label">Rol:</label>
+                            <select class="form-select w-75" aria-label="Default select example" name="idRol"
+                                [(ngModel)]="rol_seleccionado" required>
+                                <option selected>Seleccione...</option>
+                                <ng-container *ngFor="let x of rolList">
+                                    <option value="{{x.id}}"[selected]="x.id === data_update.role.id" >{{x.rol}}</option>
+                                </ng-container>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-warning">Guardar</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
