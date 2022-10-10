@@ -92,10 +92,30 @@ export class GestionDimensionComponent implements OnInit {
     console.log(this._delete)
   }
   async delete(){
-    await this.service.eliminarDimension(this._delete);
+    try{
+    await this.service.eliminarDimension(this._delete).subscribe((res:any)=>{
+      Swal.fire({
+        icon: 'success',
+        title: '¡Eliminado con éxito!',
+        showConfirmButton: false,
+        timer: 1000
+      })
+    });
     setTimeout(function() {
       window.location.reload();
-    },100);
+    },1000);
+  }catch(error){
+    Swal.fire({
+      icon: 'error',
+      title: '¡Ha ocurrido un error!',
+      showConfirmButton: false,
+      timer: 1000
+    })
+    setTimeout(function() {
+      window.location.reload();
+    },1000);
+  
+  }
   }
   async crear_Dimension(nombre:string,descripcion:string,idPei:string){
     await this.service.crearDimension(nombre,descripcion,parseInt(idPei)).subscribe((res:any)=>{

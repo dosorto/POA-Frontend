@@ -67,8 +67,34 @@ export class GestionPeiComponent implements OnInit {
     console.log(this._delete)
   }
   async delete() {
-    await this.service.eliminarPEI(this._delete);
+    try{
+    await this.service.eliminarPEI(this._delete).subscribe((res:any)=>{
+      Swal.fire({
+        icon: 'success',
+        title: '¡Eliminado con éxito!',
+        showConfirmButton: false,
+        timer: 1000
+      })
+    },(error:any)=>{
+      Swal.fire({
+        icon: 'success',
+        title: 'Ha ocurrido un error: ' + error,
+        showConfirmButton: false,
+        timer: 1000
+      })
+    });
+    
+   } catch(error){
+    Swal.fire({
+      icon: 'error',
+      title: '¡Ha ocurrido un error!',
+      showConfirmButton: false,
+      timer: 1000
+    })
+   } 
+   setTimeout(function () {
     window.location.reload();
+  }, 1000); 
   }
   async crear_pei(name: string, initialYear: string, finalYear: string) {
     await this.service.crearPEI(name, initialYear, finalYear).subscribe((res: any) => {

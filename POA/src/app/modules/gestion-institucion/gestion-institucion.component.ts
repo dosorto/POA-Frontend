@@ -52,17 +52,37 @@ export class GestionInstitucionComponent implements OnInit {
     console.log(this._delete)
   }
   async delete(){
-    await this.service.eliminarInstitucion(this._delete);
+    try{
+    await this.service.eliminarInstitucion(this._delete).subscribe((res:any)=>{
+      Swal.fire({
+        icon: 'success',
+        title: '¡Eliminado con éxito!',
+        showConfirmButton: false,
+        timer: 2500
+      })
+    },(error:any)=>{
+      Swal.fire({
+        icon: 'error',
+        title: '¡Ha ocurrido un error!',
+        showConfirmButton: false,
+        timer: 2500
+      })
+    });
     
+    setTimeout(function() {
+      window.location.reload();
+    },2500);
+  }catch(error){
     Swal.fire({
-      icon: 'success',
-      title: '¡Eliminado con éxito!',
+      icon: 'error',
+      title: '¡Ha ocurrido un error! '+error,
       showConfirmButton: false,
       timer: 2500
     })
     setTimeout(function() {
       window.location.reload();
     },2500);
+  }
   }
   async crear_institucion(nombre:string,descripcion:string){
     await this.service.crearInstitucion(nombre,descripcion).subscribe((res:any)=>{

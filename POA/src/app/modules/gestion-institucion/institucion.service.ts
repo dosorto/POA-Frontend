@@ -80,11 +80,7 @@ export class InstitucionService {
       })
     };
     //return this.directHttp.put(url, params, httpOptions);
-    this.directHttp.put(url,{nombre:nombre}).subscribe((response:any)=>
-    {
-      console.log(response);
-      return response;
-    })
+    return this.directHttp.put(url,{nombre:nombre})
   }
 
   // alternativa a update
