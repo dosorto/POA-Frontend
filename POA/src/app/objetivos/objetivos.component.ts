@@ -78,6 +78,17 @@ export class ObjetivosComponent implements OnInit {
     idPei: new FormControl('',[Validators.required])
   })
   
+  
+  constructor( private objetivosService:ObjetivosService,private router: Router,private toastr: ToastrService) { }
+
+  ngOnInit(): void {
+    console.log(this.objetivoss);
+    console.log('El componente se ha inicializado');
+    this.initData();
+    this.mostrarObjetivo();
+    this.initData_Dimension();
+  }
+
   async initData() {
     this.objetivosService.getPEI().subscribe((data:any) =>console.log(data));
     this.objetivosService.getPEI().subscribe((data:any) =>this.peisList = data);
@@ -88,29 +99,6 @@ export class ObjetivosComponent implements OnInit {
     this.objetivosService.getdimensiones().subscribe((data:any) =>console.log(data));
   this.objetivosService.getdimensiones().subscribe((data:any) =>this.dimensionList = data);
   }
-
-  async initData_Objetivo(){
-    let objetivos = await firstValueFrom(this.objetivosService.getObjetivos())
-    this.objetivoss = objetivos;
-  }
-  
-
-
-  constructor( private objetivosService:ObjetivosService,private router: Router,private toastr: ToastrService) { }
-
-  ngOnInit(): void {
-    console.log(this.objetivoss);
-    console.log('El componente se ha inicializado');
-    this.initData();
-    //this.objetivosService.getObjetivos().subscribe((response:any) => this.objetivosList = response.allObjetivo);
-    this.mostrarObjetivo();
-    //this.mostrarDimension();
-    // this.mostrarPei();
-    this.initData_Dimension();
-    this.initData_Objetivo();
-   
-  }
-
   mostrarObjetivo() {
     this.objetivosService.getObjetivos().subscribe((response:any) => 
     this.objetivosList = response.allObjetivo);
@@ -130,7 +118,7 @@ export class ObjetivosComponent implements OnInit {
       this._delete = id;
       console.log(this._delete)
     }
-    
+
     async delete() {
       
       await this.objetivosService.eliminarObjetivo(this._delete)
@@ -156,22 +144,7 @@ export class ObjetivosComponent implements OnInit {
       
     }
   
-// Función para obtener los datos del formulario y almacenarlos.
-  postObjetivo(form:objetivomodel.objetivo):any {
-    this.objetivosService.postObjetivo(form).subscribe(data=>{
-      console.log(data);
-      Swal.fire({
-        icon: 'success',
-        title: '¡Objetivo Registrado!',
-        showConfirmButton: false,
-        timer: 2500
-      })
-      setTimeout(function() {
-        window.location.reload();
-      },2500);
-    }, (error:any)=>{
-      })
-  }
+
 
   async crear_Objetivo(nombre:string,idDimension:string, idPei:string){
     await this.objetivosService.crearObjetivo(nombre,parseInt(idDimension),parseInt(idPei)).subscribe((res:any)=>{

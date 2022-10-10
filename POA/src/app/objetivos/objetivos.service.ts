@@ -97,10 +97,6 @@ public crearObjetivo (nombre:string,idDimension:number,idPei:number):any{
 //
 
 
-  postObjetivo(form:objetivomodel.objetivo){
-    return this.http.post("http://localhost:8080/objetivos/crear", form);
-
-  }
 
   updateObjetivo(nombre: string,id:Number,idDimension:Number,idPei:Number):any {
     const url = environment.servidor + 'objetivos/actualizar';
