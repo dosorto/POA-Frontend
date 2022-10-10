@@ -26,13 +26,14 @@ export class ForgotPasswordComponent implements OnInit {
       console.log(res);
       Swal.fire({
         icon: 'success',
-        title: 'revisa tu tu correo electronico',
+        title: 'Hemos enviado un codigo de verificacion a tu correo a tu correo electronico',
         showConfirmButton: false,
-        timer: 1000
+        timer: 5000
       })
       setTimeout(function() {
         window.location.reload();
-      },2500);
+      },5000);
+      this.router.navigate(['/newPassword']);
     }, (error: any) => {
       console.log(error);
     });

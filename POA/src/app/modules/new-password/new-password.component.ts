@@ -19,18 +19,19 @@ export class NewPasswordComponent implements OnInit {
     ngOnInit(): void {
     }
 
-    async newP(newPassword: string,newPasswordAgain:string){
-    await this.NewPasswordService.newP(newPassword,newPasswordAgain).subscribe((res:any)=>{
+    async newP(newPassword: string,newPasswordAgain:string,resetToken:string){
+    await this.NewPasswordService.newP(newPassword,newPasswordAgain,resetToken).subscribe((res:any)=>{
       console.log(res);
       Swal.fire({
         icon: 'success',
         title: 'Contraseña restablecida con exito',
         showConfirmButton: false,
-        timer: 2500
+        timer: 5000
       })
       setTimeout(function() {
         window.location.reload();
-      },2500);
+      },5000);
+      this.router.navigate(['/login']);
     }, (error: any) => {
       console.log(error);
     });

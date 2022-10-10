@@ -9,14 +9,15 @@ export class NewPasswordService {
   constructor(private http:HttpClient) { 
   }
 
-  public newP(newPassword: string,newPasswordAgain:string):any {
+  public newP(newPassword: string,newPasswordAgain:string,resetToken:string):any {
     const url = 'http://localhost:8080/auth/newPassword';
 
     const params = new HttpParams({
      fromObject: {
        grant_type: 'password',
        newPassword: newPassword,
-       newPasswordAgain:newPasswordAgain
+       newPasswordAgain:newPasswordAgain,
+       resetToken: resetToken
 
      }
      });
