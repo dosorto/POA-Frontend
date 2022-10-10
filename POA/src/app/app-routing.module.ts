@@ -22,8 +22,8 @@ const routes: Routes = [
   {path:'objetivos', loadChildren: () => import('./objetivos/objetivos.modules').then(t => t.objetivosModules)},
   {path:'alluser', component:AlluserComponent},
   {path: 'forgotPassword', loadChildren: () => import('./modules/forgot-password/forgot-password.module').then(t => t.ForgorPasswordModule)},
-  {path: 'newPassword', loadChildren: () => import('./modules/new-password/new-password.module').then(t => t.newPasswordModule)}
-
+  {path: 'newPassword', loadChildren: () => import('./modules/new-password/new-password.module').then(t => t.newPasswordModule)},
+  {path: 'changePassword', loadChildren: () => import('./modules/changepassword/changepassword.module').then(t => t.changePasswordModule)}
 ];
 
 @NgModule({

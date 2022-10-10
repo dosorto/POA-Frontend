@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Storage } from 'src/app/_core/global-services/local_storage.service';
 
 @Component({
@@ -10,11 +10,13 @@ import { Storage } from 'src/app/_core/global-services/local_storage.service';
 })
 export class AccountDetailComponent implements OnInit {
   public user = this.storage.get_storage('user');
-  constructor(private route: ActivatedRoute, private storage:Storage) { }
+  constructor(private route: ActivatedRoute, private storage:Storage, private router:Router) { }
 
   ngOnInit(): void {
     let routeParams = this.route.snapshot.paramMap;
     console.log(this.user)
   }
-
+  public changePassword(){
+    this.router.navigate(['/changePassword']);
+  }
 }

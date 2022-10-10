@@ -10,7 +10,6 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./new-password.component.css']
 })
 export class NewPasswordComponent implements OnInit {
-
   constructor(private route: ActivatedRoute,
     private router: Router,
     private NewPasswordService:NewPasswordService,

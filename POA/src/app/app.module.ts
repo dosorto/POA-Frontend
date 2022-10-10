@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {MatPaginatorModule} from '@angular/material/paginator';
 
 import { MatTableModule } from '@angular/material/table';
+import { RouterModule, Routes } from '@angular/router';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -33,6 +34,8 @@ import { NewPasswordComponent } from './modules/new-password/new-password.compon
 
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,7 +47,10 @@ import { NewPasswordComponent } from './modules/new-password/new-password.compon
     objToArrayPipe,
     SidebarComponent,
     ForgotPasswordComponent,
-    NewPasswordComponent
+    
+ 
+
+    
   ],
   imports: [
     BrowserModule,
