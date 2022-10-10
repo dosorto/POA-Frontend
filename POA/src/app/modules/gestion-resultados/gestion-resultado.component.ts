@@ -15,7 +15,7 @@ import { DimensionModels } from '../gestion-dimension/dimension.model';
 export class GestionResultadoComponent implements OnInit {
 
 // Objeto tipo resultado para usarlo de base
-/*private resultado_example:ResultadoModels.Resultado = {
+private resultado_example:ResultadoModels.Resultado = {
   id:      0,
   nombre:   "",
   isDelete:  false,
@@ -66,9 +66,9 @@ pei: {
 }
 
 }
-*/
 
-private resultado_example : ResultadoModels.Resultado | any = {};
+
+//private resultado_example : ResultadoModels.Resultado | any = {};
 rutaActual = "Resultado"; //Sirve para definir los iconos en el sidevar
 public user = this.Storage.get_storage("user"); //Obtener el usuario logueado
 public filter:string=""; //Para filtar la tabla
@@ -78,6 +78,7 @@ public area_seleccionado:string="";
 public dimension_seleccionado:string="";
 public objetivo_seleccionado:string="";
 public pei_seleccionado:string="";
+
 
 resultadoList: any = []; //Almacena los resultado y llena la tabla resultado
 dimensionList: any = []; //Almacena las dimesiones para mostrarlas en los select
@@ -98,7 +99,7 @@ constructor(private Storage:Storage, private ResultadoService:ResultadoService, 
     this.getArea();
     this.getObjetivo();
     this.getPei();
-  }
+  } 
 
 //Método que obtiene los resultados mediante el servico creado
 async getResultado(){
