@@ -26,13 +26,14 @@ export class ChangepasswordComponent implements OnInit {
       console.log(res);
       Swal.fire({
         icon: 'success',
-        title: 'Se  cambio su contraseña',
+        title: 'Se cambio su contraseña correctamente',
         showConfirmButton: false,
-        timer: 2500
+        timer: 5000
       })
       setTimeout(function() {
         window.location.reload();
-      },2500);
+      },5000);
+      this.router.navigate(['/changepassword']);
     }, (error: any) => {
       console.log(error);
     });
