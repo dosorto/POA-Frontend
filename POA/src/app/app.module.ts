@@ -41,7 +41,7 @@ import { ObjetivosComponent } from './objetivos/objetivos.component';
     GetUserByIdComponent,
     //objToArrayPipe,
     SidebarComponent,
-    ObjetivosComponent,
+   // ObjetivosComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,7 +54,6 @@ import { ObjetivosComponent } from './objetivos/objetivos.component';
     NgFor,
     ToastrModule.forRoot(),
     FormsModule,
-    NgFor,
     ReactiveFormsModule ,
     TopBarComponent
     
