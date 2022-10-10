@@ -18,7 +18,7 @@ const routes: Routes = [
   {path: 'empleados', loadChildren: () => import('./modules/empleado/empleado.module').then(t => t.EmpleadoModule)},
   {path: 'pei', loadChildren: () => import('./modules/pei/pei.module').then(t => t.peiModule)},
   {path: 'resultado', loadChildren: () => import('./modules/gestion-resultados/gestion-resultado.module').then(t => t.GestionResultadoModule)},
-  {path:'objetivos', component: ObjetivosComponent},
+  {path:'objetivos', loadChildren: () => import('./objetivos/objetivos.modules').then(t => t.objetivosModules)},
   {path:'alluser', component:AlluserComponent},
   //{path: 'resultado', component: GestionResultadoComponent},
 ];
