@@ -45,7 +45,7 @@
             <tbody>
               <!--Obtenemos los resultados desde la lista en la cual almacenamos el usuario,
               Utilizamos el componente objToArray para convertir el objeto en un array-->
-              <tr *ngFor="let users of userList | objToArray">
+              <tr *ngFor="let users of userList">
                 <th>{{ users.id }}</th>
                 <td>{{ users.username }}</td>
                 <td>{{ users.empleado.nombre }} {{users.empleado.apellido}}</td>

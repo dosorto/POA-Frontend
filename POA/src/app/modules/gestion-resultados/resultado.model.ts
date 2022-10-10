@@ -1,18 +1,32 @@
 export namespace ResultadoModels {
-    export interface resultado {
+    export interface Resultado {
         id:          number;
         nombre:      string;
         isDelete:    boolean;
         createdAt:   Date;
         updatedAt:   Date;
         idArea:      number;
-        idObjetivo:  number;
         idDimension: number;
+        idObjetivos:  number;
         idPei:       number;
-        PEI:         Pei;
+        area:        area;
+        dimension:   Dimension;
+        objetivo:    objetivos;
+        pei:         Pei;
     }
 
-    export interface dimension {
+    export interface area {
+        id:          number,
+        nombre:      string;
+        isDelete:    boolean;
+        createdAt:   Date;
+        updatedAt:   Date;
+        idDimension: number;
+        idObjetivos: number;
+        idPei:       number;
+    }
+
+    export interface Dimension {
         id:          number;
         nombre:      string;
         descripcion: string;
@@ -20,12 +34,11 @@ export namespace ResultadoModels {
         createdAt:   Date;
         updatedAt:   Date;
         idPei:       number;
-        PEI:         Pei;
     }
     
     export interface Pei {
         id:          number;
-        nombre:       string;
+        name:        string;
         initialYear: Date;
         finalYear:   Date;
         isActive:    boolean;
@@ -33,4 +46,17 @@ export namespace ResultadoModels {
         createdAt:   Date;
         updatedAt:   Date;
     }
+
+    export interface objetivos {
+        id:          number,
+        nombre:      string;
+        isDelete:    boolean;
+        createdAt:   Date;
+        updatedAt:   Date;
+        idDimension: number;
+        idPei:       number;
+
+    }
+
+    
 }

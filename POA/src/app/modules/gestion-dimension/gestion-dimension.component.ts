@@ -62,6 +62,8 @@ export class GestionDimensionComponent implements OnInit {
     // obtiene todas las dimensiones
     const dimensiones = await firstValueFrom(this.service.getdimensiones())
     this.dimensiones = dimensiones;
+    console.log(this.dimensiones)
+    console.log('entra');
     // sirve para definir un maximo de paginas en paginacion de tablas
     this.maxPages = ((this.dimensiones.length % this.step ) === 0 ) ? Math.floor(this.dimensiones.length / this.step) : (Math.floor(this.dimensiones.length / this.step) + 1)// cantidad de paginas para los botones
     // sirve para generar los botones en paginacion
