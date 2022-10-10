@@ -7,40 +7,14 @@
     <title>Document</title>
 </head>
 <body>
-   
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
-        <!-- Navbar content -->
-        <a class="navbar-brand" href="#">POA</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Features</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Pricing</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#">Disabled</a>
-            </li>
-          </ul>
-        </div>
-      
-      </nav>
-      <br>
-      <div class="container"> 
+  <br>
+      <div class="container GetUser"> 
       <h2 >Buscar Usuario</h2>
-    
 
     <div class="input-group">
         <label class="sr-only" for="inlineFormInputName2">Name</label>
       <!--Input donde obtenemos el id del usuario a obtener -->
-        <input type="text"  class="form-control mr-sm-2" id="inlineFormInputName2" placeholder="Ingrese el ID del usuario">
+        <input type="text" [(ngModel)]="id" class="form-control mr-sm-2" id="inlineFormInputName2" placeholder="Ingrese el ID del usuario">
        <!-- Boton mediante el cual al hacer click invocamos la funcion para obetener el usuario -->
         <button type="submit" (click)="getUser()" class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal">Obtener Usuario</button>
       
@@ -51,11 +25,14 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title"> Usuario </h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" (click)="cleanData()" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+
+
       <div class="modal-body">
+        
         <table class="table">
             <thead class="thead-light">
               <tr>
@@ -68,25 +45,29 @@
             <tbody>
               <!--Obtenemos los resultados desde la lista en la cual almacenamos el usuario,
               Utilizamos el componente objToArray para convertir el objeto en un array-->
-              <tr *ngFor="let x of userList | objToArray">
-                <td>{{x.username}}</td>
-                <td>{{x.role.rol}}</td>
-                <td>{{x.empleado.dni}}</td>
-                <td>{{x.empleado.nombre}}</td>
-                <td>{{x.empleado.apellido}}</td>
-                <td>{{x.empleado.telefono}}</td>
+              <tr *ngFor="let users of userList | objToArray">
+                <th>{{ users.id }}</th>
+                <td>{{ users.username }}</td>
+                <td>{{ users.empleado.nombre }} {{users.empleado.apellido}}</td>
+                <td>{{ users.role.rol }}</td>
               </tr>
             </tbody>
           </table>
+          
+          <div *ngIf="user.check == '404'">
+            <p align="center"> User not found </p>
+          </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" (click)="cleanData()" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
+      
     </div>
   </div>
 </div>
     </div>
     
     </div>
+    
 </body>
 </html>

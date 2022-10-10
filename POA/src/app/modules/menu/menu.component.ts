@@ -9,11 +9,13 @@ import { Storage } from 'src/app/_core/global-services/local_storage.service';
 export class MenuComponent implements OnInit {
   rutaActual = "home";
   user = this.Storage.get_storage("user");
+  token = this.user.token;
   constructor(private Storage:Storage) { 
     
   }
   
   ngOnInit(): void {
+    
   }
 
 }

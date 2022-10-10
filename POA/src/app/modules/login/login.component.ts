@@ -16,6 +16,9 @@ export class LoginComponent implements OnInit {
          this.auth = response;
          this.local.create_storage("user", JSON.stringify(response));
          this.router.navigate(['/home']);
+         setTimeout(function() {
+          window.location.reload();
+        },500);
       }, (error:any) => {
         this.auth.check = error.status
       })

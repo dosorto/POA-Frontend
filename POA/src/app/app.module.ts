@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
-import { FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
-
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, NgForm} from '@angular/forms'
+import { NgFor } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import {MatPaginatorModule} from '@angular/material/paginator';
@@ -8,7 +9,6 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { RouterModule, Routes } from '@angular/router';
 import { InsertPEIComponent } from './components/new-pei/new-pei.component';
-import { NgFor } from '@angular/common';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -30,6 +30,7 @@ import { SidebarComponent } from './_core/sidebar/sidebar.component';
 import { ObjetivosComponent } from './objetivos/objetivos.component';
 import { ForgotPasswordComponent } from './modules/forgot-password/forgot-password.component';
 import { ChangepasswordComponent } from './modules/changepassword/changepassword.component';
+import { GestionResultadoComponent } from './modules/gestion-resultados/gestion-resultado.component';
 
 
 
@@ -49,10 +50,8 @@ import { ChangepasswordComponent } from './modules/changepassword/changepassword
     ObjetivosComponent,
     ForgotPasswordComponent,
     ChangepasswordComponent,
-    
- 
-
-    
+    GestionResultadoComponent,
+   
   ],
   imports: [
     BrowserModule,

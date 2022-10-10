@@ -8,10 +8,9 @@ import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-objetivos',
-  templateUrl:'./objetivos.component.html',
+  templateUrl: './objetivos.component.html',
   styleUrls: ['./objetivos.component.css']
 })
-
 export class ObjetivosComponent implements OnInit {
   _delete:any;
     public objetivo:FormGroup = new FormGroup({
@@ -114,6 +113,5 @@ export class ObjetivosComponent implements OnInit {
 
 
 //   }
-
 
 }

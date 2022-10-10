@@ -1,5 +1,5 @@
-<!-- Pantalla principal del modulo -->
 <div class="container d-flex align-items-center justify-content-center ">
+
     <!-- columna completa que agrupa todos los row -->
     <div class="col-12 ">
         <!-- espacio para el titulo, buscador y boton de agregar uno nuevo -->
@@ -11,19 +11,20 @@
                 <div class="col-8">
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Buscar por nombre" aria-label="Buscar"
-                            aria-describedby="btnGroupAddon">
+                            aria-describedby="btnGroupAddon" [(ngModel)]="filter" name="filter">
                         <div class="input-group-text" id="btnGroupAddon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                class="bi bi-search" viewBox="0 0 16 16">
-                                <path
-                                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-                            </svg>
+                            <button>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-search" viewBox="0 0 16 16">
+                                    <path
+                                        d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                                </svg>
+                            </button>
                         </div>
                     </div>
                 </div>
                 <div class="col-4">
-                    <button type="button" class="btn btn-warning" data-bs-toggle="modal"
-                    data-bs-target="#createInst">
+                    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#createInst">
                         <i class="bi bi-plus-square"></i>
                         <span>
                             Crear Dimensión
@@ -33,8 +34,8 @@
             </div>
         </div>
         <!-- tabla dinamica que muestra todas las Dimensión -->
-        <div class="w-75 m-auto row ">
-            <table class="table table-hover">
+        <div class="w-75 m-auto row shadow alturaTabla">
+            <table class="table table-hover g">
                 <thead class="text-center">
                     <tr>
                         <th class="table-secondary" scope="col">#</th>
@@ -45,19 +46,30 @@
                     </tr>
                 </thead>
                 <tbody class="text-center">
-                    <tr *ngFor="let x of dimensiones; index as i">
+
+                    <tr *ngFor="let x of dimensiones | dimensionFilter:filter | paginacion:step:page; index as i ">
                         <!-- este contador no es id, solo es para enumerar -->
-                        <td>{{i + 1}}</td>
+                        <td>
+                            <ng-container *ngIf="page > 0; else elseNumeracion">
+                                {{i + page + 1}}
+                            </ng-container>
+                            <ng-template #elseNumeracion>
+                                {{i + 1}}
+                            </ng-template>
+                        </td>
                         <td>{{x.nombre}}</td>
                         <td>{{x.descripcion}}</td>
                         <td>{{x.pei.name}}</td>
                         <td>
                             <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                                <button type="button" class="btn btn-secondary" (click)="set_update(dimensiones.indexOf(x))" data-bs-toggle="modal" data-bs-target="#editInst">Editar</button>
+                                <button type="button" class="btn btn-secondary" (click)="set_update(x)"
+                                    data-bs-toggle="modal" data-bs-target="#editInst">Editar</button>
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                data-bs-target="#eliminarInst" (click)="set_id_delete(x.nombre)">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
-                                        <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
+                                    data-bs-target="#eliminarInst" (click)="set_id_delete(x.nombre)">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
                                     </svg>
                                 </button>
                             </div>
@@ -65,51 +77,83 @@
                     </tr>
                 </tbody>
             </table>
+
+            <nav aria-label="Page navigation example">
+                <!-- <div class="justify-content-start">
+                    <p>
+                        <input type="text" value="{{step}}" style="width:20px" [(ngModel)]="step" class="border rounded text-center"> registros por página.
+                    </p>
+                </div> -->
+                <ul class="pagination justify-content-end">
+                    <ng-container>
+                        <li class="page-item" *ngIf="(page > 0)"><a class="page-link "
+                                (click)="previousPage()">Anterior</a></li>
+                    </ng-container>
+                    <ng-container *ngFor="let x of enumPages">
+                        <li class="page-item" [ngClass]="(page/step)+1 === x ? 'active':''"><a class="page-link"
+                                (click)="selectPage(x-1)">{{x}}</a></li>
+                    </ng-container>
+                    <ng-container *ngIf="(page <= maxPages)">
+                        <li class="page-item"><a class="page-link " (click)="nextPage()">Siguiente</a></li>
+                    </ng-container>
+                </ul>
+            </nav>
+
         </div>
     </div>
 </div>
+
+
 <!-- Este modal sirve para crear una nueva Dimensión -->
 <div class="modal" id="createInst" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog ">
         <div class="modal-content">
             <div class="modal-header bg-warning text-black text-center">
-                <h5 class="modal-title fs-5 text-center m-auto" id="exampleModalLabel">Crear una nueva Dimención</h5>
+                <h5 class="modal-title fs-5 text-center m-auto" id="exampleModalLabel">Crear una nueva Dimensión</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form #Insti = 'ngForm' (ngSubmit)="crear_Dimension(Insti.value.nombre,Insti.value.descripcion,Insti.value.idPei)">
+                <form #Insti='ngForm'
+                    (ngSubmit)="crear_Dimension(Insti.value.nombre,Insti.value.descripcion,pei_seleccionado)"
+                    id="createDimension">
                     <div class="col">
                         <!-- Campo para el nombre de Dimensión -->
                         <div class="mb-3 mx-2 px-2 row">
-                            <label for="nombre" class="row col-form-label">Nombre de Dimención:</label>
+                            <label for="nombre" class="row col-form-label">Nombre de Dimensión:</label>
                             <div class="row">
                                 <input type="text" class="form-control" name="nombre" ngModel required>
                             </div>
                         </div>
                         <!-- Campo para la descripcion -->
                         <div class="mb-3 mx-2 px-2 row">
-                            <label for="username" class="row col-form-label">Descripcion:</label>
+                            <label for="descripcion" class="row col-form-label">Descripcion:</label>
                             <div class="row">
                                 <input type="text" class="form-control" name="descripcion" ngModel required>
                             </div>
                         </div>
                         <!-- Campo para la descripcion -->
                         <div class="mb-3 mx-2 px-2 row">
-                            <label for="username" class="row col-form-label">IdPei:</label>
-                            <div class="row">
-                                <input type="text" class="form-control" name="idPei" ngModel required>
-                            </div>
+                            <label for="idPei" class="row col-form-label">Pei:</label>
+                            <select class="form-select w-75" aria-label="Default select example" name="idPei"
+                                [(ngModel)]="pei_seleccionado" required>
+                                <option selected>Seleccione...</option>
+                                <ng-container *ngFor="let x of lista_pei">
+                                    <option value="{{x.id}}">{{x.name}}</option>
+                                </ng-container>
+
+                            </select>
+
                         </div>
                     </div>
-                
-            
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="submit" class="btn btn-warning">Guardar</button>
+
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-warning" [disabled]="Insti.invalid">Guardar</button>
+                    </div>
+                </form>
             </div>
-        </form>
         </div>
-    </div>
     </div>
 </div>
 
@@ -122,58 +166,70 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form #UpdateDimension = 'ngForm' (ngSubmit)="update(UpdateDimension.value.nombre,UpdateDimension.value.descripcion,UpdateDimension.value.idPei)">
+                <form #UpdateDimension='ngForm'
+                    (ngSubmit)="update(UpdateDimension.value.nombre,UpdateDimension.value.descripcion,UpdateDimension.value.idPei)"
+                    id="UpdateDimension">
                     <div class="col">
                         <!-- Campo para el nombre de Dimensión -->
                         <div class="mb-3 mx-2 px-2 row">
                             <label for="nombre" class="row col-form-label">Nombre de Institución:</label>
                             <div class="row">
-                                <input type="text" class="form-control" name="nombre" value="{{data_update[0]}}" ngModel required>
+                                <input type="text" class="form-control" name="nombre" value="{{data_update.nombre}}"
+                                    ngModel required>
                             </div>
                         </div>
                         <!-- Campo para la descripcion -->
                         <div class="mb-3 mx-2 px-2 row">
                             <label for="username" class="row col-form-label">Descripcion:</label>
                             <div class="row">
-                                <input type="text" class="form-control" name="descripcion" value="{{data_update[1]}}" ngModel required>
+                                <input type="text" class="form-control" name="descripcion"
+                                    value="{{data_update.descripcion}}" ngModel required>
                             </div>
                         </div>
 
                         <!-- Campo para el pei -->
                         <div class="mb-3 mx-2 px-2 row">
-                            <label for="username" class="row col-form-label">IdPei:</label>
-                            <div class="row">
-                                <input type="text" class="form-control" name="idPei" value="{{data_update[2]}}" ngModel required>
-                            </div>
+                            <label for="username" class="row col-form-label">Pei:</label>
+                            <select class="form-select w-75" aria-label="Default select example" name="idPei"
+                                [(ngModel)]="pei_seleccionado">
+                                <option selected>Seleccione...</option>
+                                <ng-container *ngFor="let x of lista_pei">
+                                    <option value="{{x.id}}" [selected]="x.id === data_update.pei.id">{{x.name}}
+                                    </option>
+                                </ng-container>
+
+                            </select>
                         </div>
                     </div>
-                
-            
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="submit" class="btn btn-warning" data-bs-dismiss="modal">Actualizar</button>
+
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-warning">Actualizar</button>
+                    </div>
+                </form>
             </div>
-        </form>
         </div>
-    </div>
     </div>
 </div>
 
 <!-- Este modal sirve para eliminar una Dimensión -->
 <div class="modal" tabindex="-1" id="eliminarInst">
     <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header bg-danger">
-          <h5 class="modal-title fs-3 m-auto"></h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal-content">
+            <div class="modal-header bg-danger">
+                <h5 class="modal-title fs-3 m-auto"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Está seguro de eliminarla? </p>
+            </div>
+            <form id="eliminarDimension">
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-danger" (click)="delete()">Eliminar</button>
+                </div>
+            </form>
         </div>
-        <div class="modal-body">
-          <p>Está seguro de eliminarla? </p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-danger" (click)="delete()" data-bs-dismiss="modal">Eliminar</button>
-        </div>
-      </div>
     </div>
-  </div>
+</div>
