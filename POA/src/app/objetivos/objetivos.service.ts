@@ -72,7 +72,29 @@ export class ObjetivosService {
   }
 
   
+// crear objetivos
+ 
+public crearObjetivo (nombre:string,idDimension:number,idPei:number):any{
+  const url = environment.servidor + 'objetivos/crear';
 
+  const params = new HttpParams({
+   fromObject: {
+     grant_type: 'password',
+     nombre: nombre,
+     idDimension:idDimension,
+     idPei:idPei
+   }
+   });
+   const httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/x-www-form-urlencoded'
+    })
+  };
+  return this.directHttp.post(url,params, httpOptions);
+  //return CallHttpService.httpPost()
+  }
+
+//
 
 
   postObjetivo(form:objetivomodel.objetivo){

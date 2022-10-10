@@ -59,7 +59,13 @@ export class ObjetivosComponent implements OnInit {
   objetivosList: any = [];
   dimensionList: any = [];
   peisList:any=[];
-  
+
+  //paginacion
+  public page:number=0;
+  public step:number=5;
+  public maxPages:number=1;
+  public enumPages:number[]=[]
+    
 
   objetivoss: Array<objetivomodel.objetivo> = [];
   peis: Array<peiModel.Pei> = [];
@@ -111,11 +117,20 @@ export class ObjetivosComponent implements OnInit {
     
     }
 
-
+    nextPage(){
+      this.page = this.page + this.step;
+    }
+    previousPage(){
+      this.page = this.page - this.step;
+    }
+    selectPage(numPage:number){
+      this.page = numPage * this.step;
+    }
     set_id_delete(id:Number){
       this._delete = id;
       console.log(this._delete)
     }
+    
     async delete() {
       
       await this.objetivosService.eliminarObjetivo(this._delete)
@@ -158,7 +173,26 @@ export class ObjetivosComponent implements OnInit {
       })
   }
 
-
+  async crear_Objetivo(nombre:string,idDimension:string, idPei:string){
+    await this.objetivosService.crearObjetivo(nombre,parseInt(idDimension),parseInt(idPei)).subscribe((res:any)=>{
+      Swal.fire({
+        icon: 'success',
+        title: '¡Creado con éxito!',
+        showConfirmButton: false,
+        timer: 2500
+      })
+    },(error:any)=>{
+      Swal.fire({
+        icon: 'error',
+        title: 'Ha ocurrido un error',
+        showConfirmButton: false,
+        timer: 2500
+      })
+    });
+    setTimeout(function() {
+      window.location.reload();
+    },1500);
+  }
 
 
 set_update(_objetivos: objetivomodel.objetivo){
@@ -180,7 +214,13 @@ update(nombre:string, idDimension:string, idPei:string){
     console.log(res);
      
   },(error:any)=>{
-    
+    console.log(error);
+    Swal.fire({
+     icon: 'error',
+     title: 'Ha ocurrido un error',
+     showConfirmButton: false,
+     timer: 2500
+    }) 
   });
   
  } catch(error){

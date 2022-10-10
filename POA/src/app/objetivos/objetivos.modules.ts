@@ -6,6 +6,7 @@ import { ObjetivosComponent } from './objetivos.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 //import { objToArrayPipe } from './objToArray.pipe'
 import { FilterPipePipe } from './filter-pipe.pipe';
+import { PaginacionPipe } from './paginacion.pipe';
 //import { PaginacionPipe } from './paginacion.pipe';
 
 const router = RouterModule.forChild([
@@ -18,7 +19,7 @@ const router = RouterModule.forChild([
 ObjetivosComponent,
 //objToArrayPipe,
 FilterPipePipe,
-//PaginacionPipe
+PaginacionPipe
 
   ],
   imports: [
