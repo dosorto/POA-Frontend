@@ -12,6 +12,12 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./changepassword.component.css']
 })
 export class ChangepasswordComponent implements OnInit {
+<<<<<<< HEAD
+=======
+
+  
+
+>>>>>>> 14817cf9fce9d0fcb59f4e66b474862f550ce534
     constructor(private route: ActivatedRoute,
       private router: Router,
       private ChangePasswordService:ChangePasswordService,
