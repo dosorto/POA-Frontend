@@ -176,7 +176,7 @@ async actualizar_usuario(email:string, username:string, idEmpleado:string, idRol
   await this.usuarioService.actualizarUsuario(this.data_update.id,email,username,parseInt(idEmpleado),parseInt(idRol)).subscribe((res:any)=>{
     Swal.fire({
       icon: 'success',
-      title: '¡Creado con éxito!',
+      title: '¡Actualizado con éxito!',
       showConfirmButton: false,
       timer: 2500
     })
