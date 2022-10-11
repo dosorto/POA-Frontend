@@ -1,0 +1,17 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">PEI</th>
+      <th scope="col">initialYear</th>
+      <th scope="col">finalYear</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let x of allpei">
+      <th scope="row"> {{x.name}} </th>
+      <td> {{x.initialYear}} </td>
+      <td> {{x.finalYear}} </td>
+
+    </tr>
+  </tbody>
+</table>

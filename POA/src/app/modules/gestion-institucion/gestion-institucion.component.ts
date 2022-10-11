@@ -44,18 +44,22 @@ export class GestionInstitucionComponent implements OnInit {
     const instToUpdate = this.instituciones[index]
     this.data_update = [instToUpdate.nombre, instToUpdate.descripcion,instToUpdate.id];
   };
-  async update(nombre:string,descripcion:string){
-  //   const id = this.data_update[2]; // ahi se aloja el id
-  //   console.log(nombre);
-  //   try{
-  //   await this.service.updateInstitucion(nombre,descripcion,parseInt(id)).subscribe((res:any)=>{
-  //     console.log(res);
-  //     window.location.reload();
-  //   },(error:any)=>{
-  //     console.log(error);
-  //   });
-  // } catch(error){
-  //   console.log(error);
-  // }
+  update(nombre:string,descripcion:string){
+    console.log("entra a la funcion")
+    const id = this.data_update[2]; // ahi se aloja el id
+    // validaciones
+    if((nombre === '')){nombre = this.data_update[0]}
+    if((descripcion === '')){descripcion= this.data_update[1]}
+    try{
+    this.service.updateInstitucion(nombre,descripcion,parseInt(id)).subscribe((res:any)=>{
+      console.log(res);
+      
+    },(error:any)=>{
+      console.log(error);
+    });
+    window.location.reload();
+  } catch(error){
+    console.log(error);
+  }
   }
 }

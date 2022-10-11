@@ -66,6 +66,43 @@
         </div>
     </div>
 </div>
+<!-- Este modal sirve para editar una institucion -->
+<div class="modal" id="editInst" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header bg-warning text-black text-center">
+                <h5 class="modal-title fs-5 text-center m-auto" id="exampleModalLabel">Actualizar</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form #updateIns = 'ngForm' (ngSubmit)="update(updateIns.value.nombre,updateIns.value.descripcion)">
+                    <div class="col">
+                        <!-- Campo para el nombre de institucion -->
+                        <div class="mb-3 mx-2 px-2 row">
+                            <label for="nombre" class="row col-form-label">Nombre de Institución:</label>
+                            <div class="row">
+                                <input type="text" class="form-control" name="nombre" value="{{data_update[0]}}" ngModel required>
+                            </div>
+                        </div>
+                        <!-- Campo para la descripcion -->
+                        <div class="mb-3 mx-2 px-2 row">
+                            <label for="username" class="row col-form-label">Descripcion:</label>
+                            <div class="row">
+                                <input type="text" class="form-control" name="descripcion" value="{{data_update[1]}}" ngModel required>
+                            </div>
+                        </div>
+                    </div>
+                
+            
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="submit" class="btn btn-warning" data-bs-dismiss="modal">Actualizar</button>
+            </div>
+        </form>
+        </div>
+    </div>
+    </div>
+</div>
 <!-- Este modal sirve para crear una nueva institucion -->
 <div class="modal" id="createInst" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog ">
@@ -104,43 +141,7 @@
     </div>
 </div>
 
-<!-- Este modal sirve para editar una institucion -->
-<div class="modal" id="editInst" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog ">
-        <div class="modal-content">
-            <div class="modal-header bg-warning text-black text-center">
-                <h5 class="modal-title fs-5 text-center m-auto" id="exampleModalLabel">Actualizar</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form #Insti = 'ngForm' (ngSubmit)="update(Insti.value.nombre,Insti.value.descripcion)">
-                    <div class="col">
-                        <!-- Campo para el nombre de institucion -->
-                        <div class="mb-3 mx-2 px-2 row">
-                            <label for="nombre" class="row col-form-label">Nombre de Institución:</label>
-                            <div class="row">
-                                <input type="text" class="form-control" name="nombre" value="{{data_update[0]}}" ngModel required>
-                            </div>
-                        </div>
-                        <!-- Campo para la descripcion -->
-                        <div class="mb-3 mx-2 px-2 row">
-                            <label for="username" class="row col-form-label">Descripcion:</label>
-                            <div class="row">
-                                <input type="text" class="form-control" name="descripcion" value="{{data_update[1]}}" ngModel required>
-                            </div>
-                        </div>
-                    </div>
-                
-            
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="submit" class="btn btn-warning">Actualizar</button>
-            </div>
-        </form>
-        </div>
-    </div>
-    </div>
-</div>
+
 
 <!-- Este modal sirve para eliminar una institucion -->
 <div class="modal" tabindex="-1" id="eliminarInst">
