@@ -11,7 +11,7 @@
                 <div class="col-8">
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Buscar por nombre" aria-label="Buscar"
-                            aria-describedby="btnGroupAddon">
+                            aria-describedby="btnGroupAddon" [(ngModel)]="busqueda">
                         <div class="input-group-text" id="btnGroupAddon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-search" viewBox="0 0 16 16">
@@ -44,9 +44,14 @@
                     </tr>
                 </thead>
                 <tbody class="text-center">
-                    <tr *ngFor="let x of instituciones; index as i">
+                    <tr *ngFor="let x of instituciones|institucionSearch:busqueda|paginacion:step:page ; index as i ">
                         <!-- este contador no es id, solo es para enumerar -->
-                        <td>{{i + 1}}</td>
+                        <ng-container *ngIf="page > 0; else elseNumeracion">
+                            {{i + page + 1}}
+                        </ng-container>
+                        <ng-template #elseNumeracion>
+                            {{i + 1}}
+                        </ng-template>
                         <td>{{x.nombre}}</td>
                         <td>{{x.descripcion}}</td>
                         <td>
@@ -63,6 +68,26 @@
                     </tr>
                 </tbody>
             </table>
+            <nav aria-label="Page navigation example">
+                <!-- <div class="justify-content-start">
+                    <p>
+                        <input type="text" value="{{step}}" style="width:20px" [(ngModel)]="step" class="border rounded text-center"> registros por página.
+                    </p>
+                </div> -->
+                <ul class="pagination justify-content-end">
+                    <ng-container>
+                        <li class="page-item" *ngIf="(page > 0)"><a class="page-link "
+                                (click)="previousPage()">Anterior</a></li>
+                    </ng-container>
+                    <ng-container *ngFor="let x of enumPages">
+                        <li class="page-item" [ngClass]="(page/step)+1 === x ? 'active':''"><a class="page-link"
+                                (click)="selectPage(x-1)">{{x}}</a></li>
+                    </ng-container>
+                    <ng-container *ngIf="(page <= maxPages)">
+                        <li class="page-item"><a class="page-link " (click)="nextPage()">Siguiente</a></li>
+                    </ng-container>
+                </ul>
+            </nav>
         </div>
     </div>
 </div>

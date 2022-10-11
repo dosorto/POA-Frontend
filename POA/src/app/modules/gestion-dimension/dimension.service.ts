@@ -12,8 +12,13 @@ import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 export class DimensionService {
   constructor(private callHttp: CallHttpService, private directHttp: HttpClient) { }
   private _dimensiones: Array<DimensionModels.dimension> = [];
+  private _peiList: Array<DimensionModels.Pei> = [];
+
   get dimensiones() {
     return this._dimensiones;
+  }
+  get peis() {
+    return this._peiList;
   }
   public crearDimension (nombre:string,descripcion:string,idPei:number):any{
       const url = environment.servidor + 'dimension/create';
@@ -69,7 +74,15 @@ export class DimensionService {
         return response;
       }))
   }
-  eliminarDimension(nombre: string) {
+
+  getPeiList() {
+    return this.callHttp.httpGet<Array<DimensionModels.Pei>>(`${environment.servidor}PEI/get_PEI`)
+      .pipe(map(response => {
+        this._peiList = response;
+        return response;
+      }))
+  }
+   eliminarDimension(nombre: string):any  {
     const url = environment.servidor + 'dimension/delete';
 
     const params = new HttpParams({
@@ -85,15 +98,11 @@ export class DimensionService {
       })
     };
     //return this.directHttp.put(url, params, httpOptions);
-    this.directHttp.put(url,{nombre:nombre}).subscribe((response:any)=>
-    {
-      console.log(response);
-      return response;
-    })
+    return  this.directHttp.put(url,{nombre:nombre})
   }
 
   // alternativa a update
-  updateDimension(nombre: string, descripcion:string, id:number, idPei:number):any {
+   updateDimension(nombre: string, descripcion:string, id:number, idPei:number):any {
     const url = environment.servidor + 'dimension/update';
 
     const params = new HttpParams({
@@ -110,11 +119,7 @@ export class DimensionService {
       })
     };
     //return this.directHttp.put(url, params, httpOptions);
-    this.directHttp.put(url,{nombre:nombre,descripcion:descripcion,id:id,idPei:idPei}).subscribe((response:any)=>
-    {
-      console.log(response);
-      return response;
-    })
+    return this.directHttp.put(url,{nombre:nombre,descripcion:descripcion,id:id,idPei:idPei})
   }
 
 }

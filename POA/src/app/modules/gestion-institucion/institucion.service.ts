@@ -36,7 +36,7 @@ export class InstitucionService {
        
     
   }
-  actualizarInstitucion(nombre: string, descripcion:string, id:string):any {
+  actualizarInstitucion(nombre: string, descripcion:string, id:string) {
     const url = environment.servidor + 'institucion/update';
 
     const params = new HttpParams({
@@ -53,11 +53,7 @@ export class InstitucionService {
       })
     };
     //return this.directHttp.put(url, params, httpOptions);
-    this.directHttp.put(url,{nombre:nombre,descripcion:descripcion,id:id}).subscribe((response:any)=>
-    {
-      console.log(response);
-      return response;
-    })
+   return this.directHttp.put(url,{nombre:nombre,descripcion:descripcion,id:id});
   };
 
 
@@ -84,11 +80,7 @@ export class InstitucionService {
       })
     };
     //return this.directHttp.put(url, params, httpOptions);
-    this.directHttp.put(url,{nombre:nombre}).subscribe((response:any)=>
-    {
-      console.log(response);
-      return response;
-    })
+    return this.directHttp.put(url,{nombre:nombre})
   }
 
   // alternativa a update
@@ -109,11 +101,7 @@ export class InstitucionService {
       })
     };
     //return this.directHttp.put(url, params, httpOptions);
-    this.directHttp.put(url,{nombre:nombre,descripcion:descripcion,id:id}).subscribe((response:any)=>
-    {
-      console.log(response);
-      return response;
-    })
+    return this.directHttp.put(url,{nombre:nombre,descripcion:descripcion,id:id})
   }
 
 }
