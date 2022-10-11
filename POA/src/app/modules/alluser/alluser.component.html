@@ -95,8 +95,8 @@
             </div>
         </div>
         <!-- tabla dinamica que muestra todas los Resultados -->
-        <div class="w-75 m-auto row ">
-            <table class="table table-hover">
+        <div class="w-75 m-auto row shadow alturaTabla">
+            <table class="table table-hover g">
                 <thead class="text-center">
                     <tr>
                         <th class="table-secondary" scope="col">#</th>
@@ -141,12 +141,12 @@
             </table>
 
             <nav aria-label="Page navigation example">
-                <div class="justify-content-start">
+                <!--<div class="justify-content-start">
                     <p>
                         <input type="text" value="{{step}}" style="width:20px" [(ngModel)]="step"
                             class="border rounded text-center"> registros por página.
                     </p>
-                </div>
+                </div> -->
                 <ul class="pagination justify-content-end">
                     <ng-container>
                         <li class="page-item" [ngClass]="page === 1 ? 'disable':''"><a class="page-link "

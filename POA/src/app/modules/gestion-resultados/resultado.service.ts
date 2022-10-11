@@ -4,6 +4,7 @@ import { environment } from "src/environments/environment";
 import { ResultadoModels } from "./resultado.model";
 import { map, Observable } from "rxjs";
 import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
+import { AreaService } from "../area/area.service";
 
 @Injectable({
   providedIn: 'root'
@@ -17,39 +18,23 @@ export class ResultadoService {
     const url = environment.servidor + `resultados/get-all`;
     return this.http.get(url);
   }
-//Función para obtener las dimensiones
-  getDimension(){
-    const url = environment.servidor + `dimension/get_all`;
-    return this.http.get(url);
-  }
 //Funcion para obtener las areas
   getArea(){
     const url = environment.servidor + `area/get_All`;
     return this.http.get(url);
   }
-//Función para obtener los objetivos
-  getObjetivo(){
-    const url = environment.servidor + `objetivos/get_all`;
-    return this.http.get(url);
-  }
-//Función para obtener los pei
-  getPei(){
-    const url = environment.servidor + `PEI/get_PEI`;
-    return this.http.get(url);
-  }
+
   
 //Función para crear un resultado
-  public crearResultado (nombre:string,idArea:number, idDimension:number,idObjetivos:number,idPei:number):any{
+  public crearResultado (nombre:string, idArea:number):any{
     const url = environment.servidor + 'resultados/newResultado';
 
     const params = new HttpParams({
      fromObject: {
        grant_type: 'password',
        nombre: nombre,
-       idArea:idArea,
-       idDimension:idDimension,
-       idObjetivos:idObjetivos,
-       idPei:idPei
+       idArea: idArea,
+
      }
      });
      const httpOptions = {
@@ -85,7 +70,7 @@ export class ResultadoService {
   }
 
 //Función para actualizar un resultado
-   updateResultado(nombre: string, id:number, idArea:number, idDimension:number, idObjetivos:number,idPei:number):any {
+   updateResultado(nombre: string, id:number, idArea:number):any {
     const url = environment.servidor + 'resultados/updateResultado';
 
     const params = new HttpParams({
@@ -100,7 +85,7 @@ export class ResultadoService {
         'Content-Type': 'application/x-www-form-urlencoded'
       })
     };
-    this.directHttp.put(url,{nombre:nombre, id:id, idArea:idArea, idDimension:idDimension, idObjetivos:idObjetivos, idPei:idPei}).subscribe((response:any)=>
+    this.directHttp.put(url,{nombre:nombre, id:id, idArea:idArea}).subscribe((response:any)=>
     {
       console.log(response);
       return response;

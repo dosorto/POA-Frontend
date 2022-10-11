@@ -27,44 +27,42 @@ private resultado_example:ResultadoModels.Resultado = {
   idPei:1,
   area: {
     id: 0,
-    nombre: '',
+    nombre: "",
     isDelete: false,
     createdAt: new Date(),
     updatedAt:  new Date(),
     idObjetivos: 1,
     idDimension: 1,
-    idPei: 1
-},
-dimension: {
-  id: 0,
-  nombre: '',
-  descripcion: '',
-  isDelete: false,
-  createdAt: new Date(),
-  updatedAt:  new Date(),
-  idPei: 1
-},
-objetivo: {
-    id: 0,
-    nombre: '',
-    isDelete: false,
-    createdAt: new Date(),
-    updatedAt:  new Date(),
-    idDimension: 1,
-    idPei: 1
-},
-
-pei: {
-    id: 0,
-    name: '',
-    initialYear: new Date(),
-      finalYear:   new Date(),
-    isDelete: false,
-    isActive: true,
-    createdAt: new Date(),
-    updatedAt:  new Date(),
+    idPei: 1,
+    objetivo: {
+        id: 0,
+        nombre: "",
+        isDelete: false,
+        createdAt: new Date(),
+        updatedAt:  new Date(),
+        idDimension: 1,
+        idPei: 1,
+        dimension: {
+            id: 0,
+            nombre: "",
+            descripcion: "",
+            isDelete: false,
+            createdAt: new Date(),
+            updatedAt:  new Date(),
+            idPei: 1,
+            pei: {
+                id: 0,
+                name: "",
+                initialYear: new Date(),
+                finalYear: new Date(),
+                isDelete: false,
+                isActive: false,
+                createdAt: new Date(),
+                updatedAt:  new Date(),
+            }
+        }
+    }
 }
-
 }
 
 
@@ -74,17 +72,16 @@ public user = this.Storage.get_storage("user"); //Obtener el usuario logueado
 public filter:string=""; //Para filtar la tabla
 public _delete: any; // Define que elemento se eliminara
 public data_update :ResultadoModels.Resultado | any = this.resultado_example; //Define los datos de un elemento a actualizar
+data_create : ResultadoModels.Resultado | any = this.resultado_example;
 public area_seleccionado:string="";
 public dimension_seleccionado:string="";
 public objetivo_seleccionado:string="";
 public pei_seleccionado:string="";
 
-
+resultadoList1: any = [];
 resultadoList: any = []; //Almacena los resultado y llena la tabla resultado
-dimensionList: any = []; //Almacena las dimesiones para mostrarlas en los select
 areaList: any = []; //Almacena las áreas para mostrarlas en los select
-peiList: any = []; //Almacena los pei para mostrarlos en los select
-objetivoList: any = []; //Almacena los objetivos para mostrarlos en los select
+
 
 public page:number=0;
 public step:number=5;
@@ -95,37 +92,36 @@ constructor(private Storage:Storage, private ResultadoService:ResultadoService, 
 
   ngOnInit(): void {
     this.getResultado();
-    this.getDimension();
     this.getArea();
-    this.getObjetivo();
-    this.getPei();
+    this.initData();
   } 
+
+  async initData(){
+    // obtiene todas las dimensiones
+    const resultados = await firstValueFrom(this.ResultadoService.getResultado())
+    this.resultadoList1 = resultados;
+    console.log(this.resultadoList1);
+    console.log('entra');
+    // sirve para definir un maximo de paginas en paginacion de tablas
+    this.maxPages = ((this.resultadoList.length / this.step ) === 0 ) ? Math.floor(this.resultadoList.length / this.step) : (Math.floor(this.resultadoList.length / this.step) + 2)// cantidad de paginas para los botones
+    // sirve para generar los botones en paginacion
+    this.enumPages =  Array(this.maxPages).fill(null).map((x,i)=>i).slice(1,this.maxPages + 1) ;
+
+    console.log(this.enumPages)
+  }
 
 //Método que obtiene los resultados mediante el servico creado
 async getResultado(){
   this.ResultadoService.getResultado().subscribe((data:any) =>console.log(data));
   this.ResultadoService.getResultado().subscribe((data:any) =>this.resultadoList = data.allResultado);
 }
-//Método que obtiene las dimensiones mediante el servico creado
-async getDimension(){
-  this.ResultadoService.getDimension().subscribe((data:any) =>console.log(data));
-  this.ResultadoService.getDimension().subscribe((data:any) =>this.dimensionList = data);
-}
+
 //Método que obtiene las áreas mediante el servico creado
 async getArea(){
   this.ResultadoService.getArea().subscribe((data:any) =>console.log(data));
   this.ResultadoService.getArea().subscribe((data:any) =>this.areaList = data);
 }
-//Método que obtiene los objetivos mediante el servico creado
-async getObjetivo(){
-  this.ResultadoService.getObjetivo().subscribe((data:any) =>console.log(data));
-  this.ResultadoService.getObjetivo().subscribe((data:any) =>this.objetivoList = data.allObjetivo);
-}
-//Método que obtiene los pei mediante el servico creado
-async getPei(){
-  this.ResultadoService.getPei().subscribe((data:any) =>console.log(data));
-  this.ResultadoService.getPei().subscribe((data:any) =>this.peiList = data);
-}
+
 
   nextPage(){
     this.page = this.page + this.step;
@@ -155,10 +151,10 @@ async getPei(){
       window.location.reload();
     },1500);
   }
-  
+
 //Método para crear un nuevo resultado
-async crear_Resultado(nombre:string,idArea:string, idDimension:string, idObjetivos:string, idPei:string){
-  await this.ResultadoService.crearResultado(nombre,parseInt(idArea),parseInt(idDimension),parseInt(idObjetivos),parseInt(idPei)).subscribe((res:any)=>{
+async crear_Resultado(nombre:string,idArea:string){
+  await this.ResultadoService.crearResultado(nombre,parseInt(idArea)).subscribe((res:any)=>{
     Swal.fire({
       icon: 'success',
       title: '¡Creado con éxito!',
@@ -189,11 +185,8 @@ update(nombre:string, idArea:string, idDimension:string, idObjetivos:string, idP
 // validaciones
   if((nombre === '')){nombre = this.data_update.nombre}
   if((idArea === '')){idArea= this.data_update.idArea.toString()}
-  if((idDimension === '')){idDimension = this.data_update.idDimension.toString()}
-  if((idObjetivos === '')){idObjetivos = this.data_update.idObjetivos.toString()}
-  if((idPei === '')){idPei = this.data_update.idPei.toString()}
    try{
-   this.ResultadoService.updateResultado(nombre,id,parseInt(idArea),parseInt(idDimension),parseInt(idObjetivos),parseInt(idPei)).subscribe((res:any)=>{
+   this.ResultadoService.updateResultado(nombre,id,parseInt(idArea)).subscribe((res:any)=>{
      console.log(res);
   
    },(error:any)=>{

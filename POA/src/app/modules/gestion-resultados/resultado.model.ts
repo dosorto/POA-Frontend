@@ -10,9 +10,6 @@ export namespace ResultadoModels {
         idObjetivos:  number;
         idPei:       number;
         area:        area;
-        dimension:   Dimension;
-        objetivo:    objetivos;
-        pei:         Pei;
     }
 
     export interface area {
@@ -24,6 +21,7 @@ export namespace ResultadoModels {
         idDimension: number;
         idObjetivos: number;
         idPei:       number;
+        objetivo:    objetivos;
     }
 
     export interface Dimension {
@@ -34,6 +32,7 @@ export namespace ResultadoModels {
         createdAt:   Date;
         updatedAt:   Date;
         idPei:       number;
+        pei:         Pei;
     }
     
     export interface Pei {
@@ -55,6 +54,7 @@ export namespace ResultadoModels {
         updatedAt:   Date;
         idDimension: number;
         idPei:       number;
+        dimension:   Dimension;
 
     }
 
