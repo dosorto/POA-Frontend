@@ -55,13 +55,13 @@ public crearUsuario (email:string, username:string, password:string, password2:s
   return this.directHttp.post(url,params, httpOptions);
   //return CallHttpService.httpPost()
   }
-  eliminarUsuario(nombre: string):any  {
+  eliminarUsuario(username: string):any  {
     const url = environment.servidor + 'auth/delete';
 
     const params = new HttpParams({
       fromObject: {
         grant_type: 'password',
-        nombre: nombre
+        username: username
       }
     });
 
@@ -71,7 +71,7 @@ public crearUsuario (email:string, username:string, password:string, password2:s
       })
     };
     //return this.directHttp.put(url, params, httpOptions);
-    return  this.directHttp.put(url,{nombre:nombre})
+    return  this.directHttp.put(url,{username:username})
   }
 
   public actualizarUsuario (id:number,email:string, username:string, idEmpleado:number, idRol:number):any{

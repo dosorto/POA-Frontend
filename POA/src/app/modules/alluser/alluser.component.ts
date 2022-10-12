@@ -135,8 +135,8 @@ selectPage(numPage:number){
 set_user_to_update(user:UsuarioModels.usuario){
   this.data_update = user;
 }
-set_id_delete(nombre:string){
-  this._delete = nombre;
+set_id_delete(username:string){
+  this._delete = username;
   console.log(this._delete)
 }
 async delete(){
