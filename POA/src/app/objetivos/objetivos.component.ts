@@ -101,7 +101,7 @@ export class ObjetivosComponent implements OnInit {
   }
   mostrarObjetivo() {
     this.objetivosService.getObjetivos().subscribe((response:any) => 
-    this.objetivosList = response.allObjetivo);
+    this.objetivosList = response);
     
     }
 
