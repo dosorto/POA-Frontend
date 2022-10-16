@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
       this.UserService.signIn(param.username,param.password)
       .subscribe((response:any) =>{
          this.auth = response;
+         console.log(response);
          this.local.create_storage("user", JSON.stringify(response));
          this.router.navigate(['/home']);
          setTimeout(function() {
