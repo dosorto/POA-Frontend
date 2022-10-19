@@ -8,6 +8,7 @@ import { InstitucionPipe } from './institucion.pipe';
 import { PaginacionPipe } from './paginacion.pipe';
 import {MatSelectModule} from '@angular/material/select';
 import { TopBarComponent } from 'src/app/_core/top-bar/top-bar.component';
+import {gestionInstitucionPipe} from './gestion-institucion.pipe';
 const router = RouterModule.forChild([
   {path: '', component: GestionInstitucionComponent}
 ])
@@ -16,7 +17,8 @@ const router = RouterModule.forChild([
   declarations: [
     GestionInstitucionComponent,
     InstitucionPipe,
-    PaginacionPipe
+    PaginacionPipe,
+    gestionInstitucionPipe
   ],
   imports: [
   CommonModule,

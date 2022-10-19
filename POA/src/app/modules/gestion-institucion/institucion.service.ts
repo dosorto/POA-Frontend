@@ -161,11 +161,12 @@ export class InstitucionService {
 
   getPEI() {
     return this.callHttp.httpGet<Array<InstitucionModels.Pei>>(environment.servidor + 'PEI/get_PEI')
-      .pipe(map(response => {
-        this._peis = response;
-        return response;
-      }))
+      // .pipe(map(response => {
+      //   this._peis = response;
+      //   return response;
+      // }))
   }
+
   eliminarPEI(name: string): any {
     const url = environment.servidor + 'PEI/disablePEI';
 
