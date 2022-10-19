@@ -65,14 +65,14 @@ export class GestionDimensionComponent implements OnInit {
     console.log(this.dimensiones)
     console.log('entra');
     // sirve para definir un maximo de paginas en paginacion de tablas
-    this.maxPages = ((this.dimensiones.length % this.step ) === 0 ) ? Math.floor(this.dimensiones.length / this.step) : (Math.floor(this.dimensiones.length / this.step) + 1)// cantidad de paginas para los botones
+    this.maxPages = ((this.dimensiones.length  % this.step ) === 0 ) ? Math.floor(this.dimensiones.length / this.step) : (Math.floor(this.dimensiones.length / this.step) + 1)// cantidad de paginas para los botones
     // sirve para generar los botones en paginacion
     this.enumPages =  Array(this.maxPages).fill(null).map((x,i)=>i).slice(1,this.maxPages + 1) ;
     //obtiene todos los peis para dejarlos en el select
     const peis = await firstValueFrom(this.service.getPeiList())
     this.lista_pei = peis;
 
-    console.log(this.enumPages)
+    console.log(this.lista_pei)
   }
 
   nextPage(){

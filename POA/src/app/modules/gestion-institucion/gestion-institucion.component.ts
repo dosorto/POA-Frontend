@@ -11,16 +11,16 @@ import { Router } from '@angular/router';
   styleUrls: ['./gestion-institucion.component.css']
 })
 export class GestionInstitucionComponent implements OnInit {
-  private pei_example: InstitucionModels.Pei = {
-    id: 0,
-    name: '',
-    initialYear: '',
-    finalYear:'',
-    isDelete: false,
-    isActive: true,
-    createdAt: new Date(),
-    updatedAt: new Date(),
-  };
+  // private pei_example: InstitucionModels.Pei = {
+  //   id: 0,
+  //   name: '',
+  //   initialYear: '',
+  //   finalYear:'',
+  //   isDelete: false,
+  //   isActive: true,
+  //   createdAt: new Date(),
+  //   updatedAt: new Date(),
+  // };
 
   public peis: Array<InstitucionModels.Pei> = [];
   rutaActual = "institucion";
@@ -29,7 +29,7 @@ export class GestionInstitucionComponent implements OnInit {
   _delete:string="";
   data_update:Array<string>=[];
   busqueda :string = '';
-  public selected:number=0;
+  public selected:number=1;
 
   public page:number=0;
   public step:number=5;
@@ -44,6 +44,7 @@ export class GestionInstitucionComponent implements OnInit {
     let instituciones = await firstValueFrom(this.service.getInstituciones())
     this.instituciones = instituciones;
     this.peis = await firstValueFrom(this.service.getPEI());
+    console.log(this.peis);
 
     this.maxPages = ((this.instituciones.length % this.step ) === 0 ) ? Math.floor(this.instituciones.length / this.step) : (Math.floor(this.instituciones.length / this.step) + 1)// cantidad de paginas para los botones
     // sirve para generar los botones en paginacion

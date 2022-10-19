@@ -13,5 +13,6 @@ export namespace InstitucionModels {
         isActive: boolean;
         createdAt: Date;
         updatedAt: Date;
+        idInstitucion: number;
       }
 }
