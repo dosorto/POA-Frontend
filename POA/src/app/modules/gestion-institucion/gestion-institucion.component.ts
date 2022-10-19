@@ -4,31 +4,46 @@ import { InstitucionService } from './institucion.service';
 import { InstitucionModels } from './institucion.model';
 import { firstValueFrom } from 'rxjs';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-gestion-institucion',
   templateUrl: './gestion-institucion.component.html',
   styleUrls: ['./gestion-institucion.component.css']
 })
 export class GestionInstitucionComponent implements OnInit {
+  private pei_example: InstitucionModels.Pei = {
+    id: 0,
+    name: '',
+    initialYear: '',
+    finalYear:'',
+    isDelete: false,
+    isActive: true,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  };
+
+  public peis: Array<InstitucionModels.Pei> = [];
   rutaActual = "institucion";
   instituciones:Array<InstitucionModels.Institucion>=[];
   user = this.Storage.get_storage("user");
   _delete:string="";
   data_update:Array<string>=[];
   busqueda :string = '';
+  public selected:number=0;
 
   public page:number=0;
   public step:number=5;
   public maxPages:number=1;
   public enumPages:number[]=[]
 
-  constructor(private Storage:Storage, private service:InstitucionService) { }
+  constructor(private Storage:Storage, private service:InstitucionService, public router:Router) { }
   ngOnInit(): void {
     this.initData();
   }
   async initData(){
     let instituciones = await firstValueFrom(this.service.getInstituciones())
     this.instituciones = instituciones;
+    this.peis = await firstValueFrom(this.service.getPEI());
 
     this.maxPages = ((this.instituciones.length % this.step ) === 0 ) ? Math.floor(this.instituciones.length / this.step) : (Math.floor(this.instituciones.length / this.step) + 1)// cantidad de paginas para los botones
     // sirve para generar los botones en paginacion

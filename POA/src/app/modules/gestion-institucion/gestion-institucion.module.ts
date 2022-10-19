@@ -6,6 +6,8 @@ import { FormsModule } from '@angular/forms';
 import { AccountDetailComponent } from '../menu/menu.module';
 import { InstitucionPipe } from './institucion.pipe';
 import { PaginacionPipe } from './paginacion.pipe';
+import {MatSelectModule} from '@angular/material/select';
+import { TopBarComponent } from 'src/app/_core/top-bar/top-bar.component';
 const router = RouterModule.forChild([
   {path: '', component: GestionInstitucionComponent}
 ])
@@ -20,7 +22,9 @@ const router = RouterModule.forChild([
   CommonModule,
     router,
     FormsModule,
-    AccountDetailComponent
+    AccountDetailComponent,
+    TopBarComponent,
+    MatSelectModule
   ]
 })
 export class GestionInstitucionModule { }

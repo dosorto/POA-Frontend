@@ -26,11 +26,8 @@ import { objToArrayPipe } from './objetivos/objToArray.pipe';
 import { ToastrModule } from 'ngx-toastr';
 import { TopBarComponent } from './_core/top-bar/top-bar.component';
 import { SidebarComponent } from './_core/sidebar/sidebar.component';
-import { GestionResultadoComponent } from './modules/gestion-resultados/gestion-resultado.component';
 
-import { ObjetivosComponent } from './objetivos/objetivos.component';
 import { ForgotPasswordComponent } from './modules/forgot-password/forgot-password.component';
-import { NewPasswordComponent } from './modules/new-password/new-password.component';
 
 
 

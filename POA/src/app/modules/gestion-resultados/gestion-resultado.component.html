@@ -39,8 +39,8 @@
             </div>
         </div>
         <!-- tabla dinamica que muestra todas los Resultados -->
-        <div class="w-75 m-auto row ">
-            <table class="table table-hover">
+        <div class="w-75 m-auto row shadow alturaTabla">
+            <table class="table table-hover g">
                 <thead class="text-center">
                     <tr>
                         <th class="table-secondary" scope="col">#</th>
@@ -65,9 +65,9 @@
                         </td>
                         <td>{{x.nombre}}</td>
                         <td>{{x.area.nombre}}</td>
-                        <td>{{x.dimension.nombre}}</td>
-                        <td>{{x.objetivo.nombre}}</td>
-                        <td>{{x.pei.name}}</td>
+                        <td>{{x.area.objetivo.dimension.nombre}}</td>
+                        <td>{{x.area.objetivo.nombre}}</td>
+                        <td>{{x.area.objetivo.dimension.pei.name}}</td>
                         <td>
                             <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                                 <button type="button" class="btn btn-secondary" (click)="set_update(x)"
@@ -86,11 +86,11 @@
             </table>
 
             <nav aria-label="Page navigation example">
-                <div class="justify-content-start">
+              <!--  <div class="justify-content-start">
                     <p>
                         <input type="text" value="{{step}}" style="width:20px" [(ngModel)]="step" class="border rounded text-center"> registros por página.
                     </p>
-                </div>
+                </div>-->
                 <ul class="pagination justify-content-end">
                     <ng-container>
                         <li class="page-item" [ngClass]="page === 1 ? 'disable':''"><a class="page-link "
@@ -121,7 +121,7 @@
             </div>
             <div class="modal-body">
                 <form #Result="ngForm" 
-                (ngSubmit)="crear_Resultado(Result.value.nombre,Result.value.idArea,Result.value.idDimension,Result.value.idObjetivos,Result.value.idPei)" 
+                (ngSubmit)="crear_Resultado(Result.value.nombre,Result.value.idArea)" 
                 id="CreateResultado">
                 <div class="col">
                     <!-- Campo para el nombre del resultado -->
@@ -142,40 +142,8 @@
                             </ng-container>
                         </select>
                     </div>
-                    <!-- Campo para la dimensión -->
-                    <div class="mb-3 mx-2 px-2 row">
-                        <label for="idDimension" class="row col-form-label">Dimensión:</label>
-                        <select class="form-select w-75" aria-label="Default select example" name="idDimension"
-                            [(ngModel)]="dimension_seleccionado" required>
-                            <option selected>Seleccione...</option>
-                            <ng-container *ngFor="let x of dimensionList">
-                                <option value="{{x.id}}">{{x.nombre}}</option>
-                            </ng-container>
-                        </select>
                     </div>
-                    <!-- Campo para el objetivo -->
-                    <div class="mb-3 mx-2 px-2 row">
-                        <label for="idObjetivos" class="row col-form-label">Objetivo:</label>
-                        <select class="form-select w-75" aria-label="Default select example" name="idObjetivos"
-                            [(ngModel)]="objetivo_seleccionado" required>
-                            <option selected>Seleccione...</option>
-                            <ng-container *ngFor="let x of objetivoList">
-                                <option value="{{x.id}}">{{x.nombre}}</option>
-                            </ng-container>
-                        </select>
-                    </div>
-                    <!-- Campo para el Pei -->
-                    <div class="mb-3 mx-2 px-2 row">
-                        <label for="idPei" class="row col-form-label">Pei:</label>
-                        <select class="form-select w-75" aria-label="Default select example" name="idPei"
-                            [(ngModel)]="pei_seleccionado" required>
-                            <option selected>Seleccione...</option>
-                            <ng-container *ngFor="let x of peiList">
-                                <option value="{{x.id}}">{{x.name}}</option>
-                            </ng-container>
-                        </select>
-                    </div>
-                    </div>
+                    
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                         <button type="submit" class="btn btn-warning" [disabled]="Result.invalid">Guardar</button>
@@ -218,39 +186,7 @@
                             </select>
                         </div>
                     </div>
-                    <!-- Campo para actualizar dimensión -->
-                    <div class="mb-3 mx-2 px-2 row">
-                        <label for="idDimension" class="row col-form-label">Dimensión:</label>
-                        <select class="form-select w-75" aria-label="Default select example" name="idDimension" 
-                        [(ngModel)]="dimension_seleccionado">
-                            <option selected>Seleccione...</option>
-                            <ng-container *ngFor="let x of dimensionList">
-                                <option value="{{x.id}}" [selected]="x.id === data_update.dimension.id" >{{x.nombre}}</option>
-                            </ng-container>
-                        </select>
-                    </div>
-                <!-- Campo para actualizar objetivo -->
-                <div class="mb-3 mx-2 px-2 row">
-                    <label for="idObjetivos" class="row col-form-label">Objetivo:</label>
-                    <select class="form-select w-75" aria-label="Default select example" name="idObjetivos"
-                     [(ngModel)]="objetivo_seleccionado">
-                        <option selected>Seleccione...</option>
-                        <ng-container *ngFor="let x of objetivoList">
-                            <option value="{{x.id}}" [selected]="x.id === data_update.objetivo.id" >{{x.nombre}}</option>
-                        </ng-container>
-                    </select>
-                </div>
-            <!-- Campo para actualizar pei -->
-            <div class="mb-3 mx-2 px-2 row">
-                <label for="idPei" class="row col-form-label">Pei:</label>
-                <select class="form-select w-75" aria-label="Default select example" name="idPei" 
-                [(ngModel)]="pei_seleccionado">
-                    <option selected>Seleccione...</option>
-                    <ng-container *ngFor="let x of peiList">
-                        <option value="{{x.id}}" [selected]="x.id === data_update.pei.id" >{{x.name}}</option>
-                    </ng-container>   
-                </select>
-            </div>
+                    
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                 <button type="submit" class="btn btn-warning">Actualizar</button>

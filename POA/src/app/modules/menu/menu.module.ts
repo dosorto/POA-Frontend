@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { ObjetivosComponent } from 'src/app/objetivos/objetivos.component';
 import { AccountDetailComponent } from './account-detail/account-detail.component';
 export { AccountDetailComponent } from './account-detail/account-detail.component';
+import { TopBarComponent } from '../../_core/top-bar/top-bar.component';
 const router = RouterModule.forChild([
   {path: '', component: MenuComponent},
   {path: 'account', component:AccountDetailComponent}
@@ -18,7 +19,8 @@ const router = RouterModule.forChild([
   imports: [
   CommonModule,
     router,
-    AccountDetailComponent
+    AccountDetailComponent,
+    TopBarComponent
   ],
   exports : [
     CommonModule,

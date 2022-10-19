@@ -95,8 +95,8 @@
             </div>
         </div>
         <!-- tabla dinamica que muestra todas los Resultados -->
-        <div class="w-75 m-auto row ">
-            <table class="table table-hover">
+        <div class="w-75 m-auto row shadow alturaTabla">
+            <table class="table table-hover g">
                 <thead class="text-center">
                     <tr>
                         <th class="table-secondary" scope="col">#</th>
@@ -127,7 +127,7 @@
                                 <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
                                     data-bs-target="#editInst" (click)="set_user_to_update(x)">Editar</button>
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                    data-bs-target="#eliminarInst">
+                                    data-bs-target="#eliminarUsuario"(click)="set_id_delete(x.username)">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                         class="bi bi-trash3-fill" viewBox="0 0 16 16">
                                         <path
@@ -141,12 +141,12 @@
             </table>
 
             <nav aria-label="Page navigation example">
-                <div class="justify-content-start">
+                <!--<div class="justify-content-start">
                     <p>
                         <input type="text" value="{{step}}" style="width:20px" [(ngModel)]="step"
                             class="border rounded text-center"> registros por página.
                     </p>
-                </div>
+                </div> -->
                 <ul class="pagination justify-content-end">
                     <ng-container>
                         <li class="page-item" [ngClass]="page === 1 ? 'disable':''"><a class="page-link "
@@ -301,7 +301,7 @@
 </div>
 
 <!-- Este modal sirve para eliminar un usuario -->
-<div class="modal" tabindex="-1" id="eliminarInst">
+<div class="modal" tabindex="-1" id="eliminarUsuario">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header bg-danger">
@@ -311,10 +311,12 @@
             <div class="modal-body">
                 <p>¿Está seguro de eliminarla? </p>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Eliminar</button>
-            </div>
+            <form id="eliminarUsuario">
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-danger" (click)="delete()">Eliminar</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

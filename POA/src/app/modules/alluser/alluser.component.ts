@@ -135,6 +135,37 @@ selectPage(numPage:number){
 set_user_to_update(user:UsuarioModels.usuario){
   this.data_update = user;
 }
+set_id_delete(username:string){
+  this._delete = username;
+  console.log(this._delete)
+}
+async delete(){
+  try{
+  await this.usuarioService.eliminarUsuario(this._delete).subscribe((res:any)=>{
+    Swal.fire({
+      icon: 'success',
+      title: '¡Eliminado con éxito!',
+      showConfirmButton: false,
+      timer: 1000
+    })
+  });
+  setTimeout(function() {
+    window.location.reload();
+  },1000);
+}catch(error){
+  Swal.fire({
+    icon: 'error',
+    title: '¡Ha ocurrido un error!',
+    showConfirmButton: false,
+    timer: 1000
+  })
+  setTimeout(function() {
+    window.location.reload();
+  },1000);
+
+}
+}
+
 
 async actualizar_usuario(email:string, username:string, idEmpleado:string, idRol:string){
 
@@ -145,7 +176,7 @@ async actualizar_usuario(email:string, username:string, idEmpleado:string, idRol
   await this.usuarioService.actualizarUsuario(this.data_update.id,email,username,parseInt(idEmpleado),parseInt(idRol)).subscribe((res:any)=>{
     Swal.fire({
       icon: 'success',
-      title: '¡Creado con éxito!',
+      title: '¡Actualizado con éxito!',
       showConfirmButton: false,
       timer: 2500
     })
