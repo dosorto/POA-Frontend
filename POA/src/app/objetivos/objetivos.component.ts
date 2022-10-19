@@ -8,7 +8,7 @@ import { objetivomodel } from './objetivos.model';
 import Swal from 'sweetalert2';
 import { firstValueFrom } from 'rxjs';
 import { DimensionModels } from "../modules/gestion-dimension/dimension.model";
-//import { FilterPipePipe } from './filter-pipe.pipe';
+import { FilterPipePipe } from './filter-pipe.pipe';
 @Component({
   selector: 'app-objetivos',
   templateUrl: './objetivos.component.html',
@@ -101,7 +101,7 @@ export class ObjetivosComponent implements OnInit {
   }
   mostrarObjetivo() {
     this.objetivosService.getObjetivos().subscribe((response:any) => 
-    this.objetivosList = response);
+    this.objetivosList = response.allObjetivo);
     
     }
 

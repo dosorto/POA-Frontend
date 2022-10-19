@@ -23,7 +23,8 @@ const routes: Routes = [
   {path:'alluser', component:AlluserComponent},
   {path: 'forgotPassword', loadChildren: () => import('./modules/forgot-password/forgot-password.module').then(t => t.ForgorPasswordModule)},
   {path: 'newPassword', loadChildren: () => import('./modules/new-password/new-password.module').then(t => t.newPasswordModule)},
-  {path: 'changePassword', loadChildren: () => import('./modules/changepassword/changepassword.module').then(t => t.changePasswordModule)}
+  {path: 'changePassword', loadChildren: () => import('./modules/changepassword/changepassword.module').then(t => t.changePasswordModule)},
+  {path: 'gestion_pei', loadChildren: () => import('./modules/gestion-pei/gestion-pei.module').then(t=>t.GestionPeiModule)}
 ];
 
 @NgModule({
