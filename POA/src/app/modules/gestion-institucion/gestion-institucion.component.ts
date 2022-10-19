@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Storage } from 'src/app/_core/global-services/local_storage.service';
+import { Storage } from '../../_core/global-services/local_storage.service';
 import { InstitucionService } from './institucion.service';
 import { InstitucionModels } from './institucion.model';
 import { firstValueFrom } from 'rxjs';
@@ -26,10 +26,10 @@ export class GestionInstitucionComponent implements OnInit {
   rutaActual = "institucion";
   instituciones:Array<InstitucionModels.Institucion>=[];
   user = this.Storage.get_storage("user");
-  _delete:string="";
+  _delete:number=0;
   data_update:Array<string>=[];
   busqueda :string = '';
-  public selected:number=1;
+  public selected:number=0;
 
   public page:number=0;
   public step:number=5;
@@ -63,8 +63,8 @@ export class GestionInstitucionComponent implements OnInit {
   selectPage(numPage:number){
     this.page = numPage * this.step;
   }
-  set_id_delete(nombre:string){
-    this._delete = nombre;
+  set_id_delete(id:number){
+    this._delete = id;
     console.log(this._delete)
   }
   async delete(){
@@ -124,7 +124,7 @@ export class GestionInstitucionComponent implements OnInit {
   }
 
   set_update(index:number){
-    const instToUpdate = this.instituciones[index]
+    const instToUpdate = this.instituciones[index-1]
     this.data_update = [instToUpdate.nombre, instToUpdate.descripcion,instToUpdate.id];
   };
  async update(nombre:string,descripcion:string){

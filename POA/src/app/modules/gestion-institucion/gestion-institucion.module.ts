@@ -6,11 +6,11 @@ import { FormsModule } from '@angular/forms';
 import { AccountDetailComponent } from '../menu/menu.module';
 import { InstitucionPipe } from './institucion.pipe';
 import { PaginacionPipe } from './paginacion.pipe';
-import {MatSelectModule} from '@angular/material/select';
-import { TopBarComponent } from 'src/app/_core/top-bar/top-bar.component';
-import {gestionInstitucionPipe} from './gestion-institucion.pipe';
+import { MatSelectModule } from '@angular/material/select';
+import { TopBarComponent } from '../../_core/top-bar/top-bar.component';
+import { gestionInstitucionPipe } from './gestion-institucion.pipe';
 const router = RouterModule.forChild([
-  {path: '', component: GestionInstitucionComponent}
+  { path: '', component: GestionInstitucionComponent }
 ])
 
 @NgModule({
@@ -21,7 +21,7 @@ const router = RouterModule.forChild([
     gestionInstitucionPipe
   ],
   imports: [
-  CommonModule,
+    CommonModule,
     router,
     FormsModule,
     AccountDetailComponent,
