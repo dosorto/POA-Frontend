@@ -1,8 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { Area }from "../interfaces-pei/area.model";
-import { Pei } from "../interfaces-pei/pei.model";
-import { Objetivo } from "../interfaces-pei/objetivo.model";
-import { Dimension } from "../interfaces-pei/dimension.model";
 
 @Pipe({
   name: 'areasFiltro'
