@@ -2,7 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { Area }from "../interfaces-pei/area.model";
 
 @Pipe({
-  name: 'areasFiltro'
+  name: 'AreaFilter'
 })
 export class AreasFiltroPipe implements PipeTransform {
 
