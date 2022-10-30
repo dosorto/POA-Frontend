@@ -1,1 +1,55 @@
-<p>pei-create works!</p>
+<body style="background-color: #c5cae9;">
+    <div class="col-12 ">
+        <br>
+        <!-- espacio para el titulo, buscador y boton de agregar uno nuevo -->
+        <div class="container" style="background-color: white;">
+            <div class="w-100 row m-auto">
+                <br>
+                <!-- espacio para el titulo, buscador y boton de agregar uno nuevo -->
+                <div class="w-100 row m-auto">
+
+                    <div class="row text-center">
+                        <h2 class="l-4">
+                            <font color='black'>Agregar PEI</font>
+                        </h2>
+                    </div>
+                    <div class="d-grid gap-2 d-md-flex justify-content-end">
+
+                    </div>
+                </div>
+
+                <form #Pei="ngForm"
+                    (ngSubmit)="crear_pei(pei.value.name,pei.value.initialYear,pei.value.finalYear,pei.value.idInstitucion)"
+                    id="CreateObjetivo">
+                    <!-- <div class="col-10">
+                <label for="inputNombre" class="form-label">Nombre:</label>
+                <textarea type="text" class="form-control" id="exampleFormControlTextarea1" rows="2" value="{{objetivo?.nombre}}" disabled>
+                </textarea>
+                </div>
+                 <!-- campo para nombre -->
+                    <div class="col-10">
+                        <label for="name" class="row col-form-label">Nombre de Pei:</label>
+                        <div class="row">
+                            <input type="text" class="form-control" name="name" ngModel required>
+                        </div>
+                    </div>
+                    <div class="col-10 mb-3">
+                        <label for="inputinitialYear" class="form-label">Año Inicial:</label>
+                        <input type="Date" class="form-control" name="initialYear" ngModel required>
+                    </div>
+                    <div class="col-10 mb-3">
+                        <label for="inputfinalYear" class="form-label">Año Final:</label>
+                        <input type="date" class="form-control" name="finalYear" ngModel required>
+                    </div>
+                    <!-- <div class="d-grid gap-2 d-md-flex justify-content-end">
+                    <button type="button" class="btn btn-secondary" (click)='onBack()'>Cerrar</button> -->
+                    <!-- [disabled]="Result.invalid" -->
+                    <!-- <button type="submit" class="btn btn-warning" >Editar</button>
+                </div> -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" (click)='onBack()'>Cerrar</button>
+                        <button type="submit" class="btn btn-warning" [disabled]="pei.invalid">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>

@@ -7,7 +7,7 @@
                 <h2 class="l-4">Listar</h2>
             </div>
             <div class="border rounded shadow-sm">
-                <button type="button"  class="btn btn-warning btn-circle btn-xl" data-bs-toggle="modal" data-bs-target="#createPEI">
+                <button type="button"  class="btn btn-warning btn-circle btn-xl" data-bs-toggle="modal" [routerLink]="['/gestion_pei/pei/create']">
                     <i class="bi bi-plus"></i>
                 </button>
                 <div class="row text-center  p-2">
@@ -35,7 +35,6 @@
                     <th class="table-secondary" scope="col">PEI</th>
                     <th class="table-secondary" scope="col">Fecha Inicial</th>
                     <th class="table-secondary" scope="col">Fecha Final</th>
-                    <th class="table-secondary" scope="col">institución</th>
                 </tr>
             </thead>
                 <tbody class="text-center">
@@ -52,7 +51,6 @@
                         <td>{{x.name}}</td>
                         <td>{{x.initialYear}}</td>
                         <td>{{x.finalYear}}</td>
-                        <td>{{x.idInstitucion}}</td>
                     </tr>
                 </tbody>
             </table>

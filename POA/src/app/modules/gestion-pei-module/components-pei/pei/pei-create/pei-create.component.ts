@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Storage } from 'src/app/_core/global-services/local_storage.service';
 import { PeiService } from '../../../services-pei/pei.service';
-import { Pei } from '../../../interfaces-pei/pei.model';
-import { firstValueFrom } from 'rxjs';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
@@ -12,13 +11,25 @@ import Swal from 'sweetalert2';
   styleUrls: ['./pei-create.component.css']
 })
 export class PeiCreateComponent implements OnInit {
-  
-  constructor(private Storage: Storage, private service: PeiService, private router:Router) { }
+
+  constructor(private PeiService: PeiService, private _router: Router, private toastr: ToastrService) { }
 
   ngOnInit(): void {
+    //this.initData()
+    //this.initData_Institucion()
   }
+  public institucion_seleccionado: string = "";
+  institucionList: any = [];
+
+  public pei: FormGroup = new FormGroup({
+    name: new FormControl('', [Validators.required]),
+    initialYear: new FormControl('', [Validators.required]),
+    finalYear: new FormControl('', [Validators.required]),
+    idInstitucion: new FormControl('', [Validators.required])
+  })
+
   async crear_pei(name: string, initialYear: string, finalYear: string, idInstitucion: number) {
-    await this.service.crearPEI(name, initialYear, finalYear, idInstitucion ).subscribe((res: any) => {
+    await this.PeiService.crearPEI(name, initialYear, finalYear, idInstitucion).subscribe((res: any) => {
       console.log(res);
       Swal.fire({
         icon: 'success',
@@ -34,10 +45,10 @@ export class PeiCreateComponent implements OnInit {
         timer: 2500
       })
     });
-    setTimeout(function () {
-      window.location.reload();
-    }, 1500);
+    this.onBack()
   }
-
+  onBack(): void {
+    this._router.navigate(['/gestion_pei/pei/list/idInsti']);
+  }
 
 }
