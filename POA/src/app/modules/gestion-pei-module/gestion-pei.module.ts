@@ -21,6 +21,11 @@ import { PaginacionPipe } from './pipes-pei/dimension-paginacion.pipe';
 // componente padre:
 import { GestionPeisComponent } from './gestion-peis.component';
 // componentes hijos:
+import { PeiCreateComponent } from './components-pei/pei/pei-create/pei-create.component';
+import { UpdatePeiComponent } from './components-pei/pei/update-pei/update-pei.component';
+import { DeletePeiComponent } from './components-pei/pei/delete-pei/delete-pei.component';
+import { AllPeiComponent } from './components-pei/pei/all-pei/all-pei.component';
+import { DetailPeiComponent } from './components-pei/pei/detail-pei/detail-pei.component';
 import { CreateDimensionComponent } from './components-pei/dimension/create-dimension-component/create-dimension.component';
 import { UpdateDimensionComponent } from './components-pei/dimension/update-dimension-component/update-dimension.component';
 import { DeleteDimensionComponent } from './components-pei/dimension/delete-dimension-component/delete-dimension.component';
@@ -58,22 +63,18 @@ import { ResultadosPaginacionPipe } from './pipes-pei/resultados-paginacion.pipe
 import { ResultadosFiltroPipe } from './pipes-pei/resultados-filtro.pipe';
 import { IndicadoresFiltroPipe } from './pipes-pei/indicadores-filtro.pipe';
 import { IndicadoresPaginacionPipe } from './pipes-pei/indicadores-paginacion.pipe';
-import { PeiCreateComponent } from './components-pei/pei/pei-create/pei-create.component';
-import { UpdatePeiComponent } from './components-pei/pei/update-pei/update-pei.component';
-import { DeletePeiComponent } from './components-pei/pei/delete-pei/delete-pei.component';
-import { AllPeiComponent } from './components-pei/pei/all-pei/all-pei.component';
-import { DetailPeiComponent } from './components-pei/pei/detail-pei/detail-pei.component';
+
 
 // enrutamiento
 const router = RouterModule.forChild([
   // rutas principal
   {path: '', component: GestionPeisComponent},
   // rutas de pei
-  {path: 'create', component: PeiCreateComponent},
-  {path: 'update/:id', component: UpdatePeiComponent},
-  {path: 'delete/:id', component: DeletePeiComponent},
-  {path: 'detail/:id', component: DetailPeiComponent},
-  {path: 'list/:idInsti', component: AllPeiComponent},
+  {path: 'pei/create', component: PeiCreateComponent},
+  {path: 'pei/update/:id', component: UpdatePeiComponent},
+  {path: 'pei/delete/:id', component: DeletePeiComponent},
+  {path: 'pei/detail/:id', component: DetailPeiComponent},
+  {path: 'pei/list/:idInsti', component: AllPeiComponent},
   // rutas de dimension
   {path: 'dimension/create', component: CreateDimensionComponent},
   {path: 'dimension/update/:id', component: UpdateDimensionComponent},

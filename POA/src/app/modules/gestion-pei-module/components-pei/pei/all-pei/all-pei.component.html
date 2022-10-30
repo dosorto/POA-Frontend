@@ -1,1 +1,72 @@
-<p>all-pei works!</p>
+<div class="container d-flex align-items-center justify-content-center ">
+    <!-- columna completa que agrupa todos los row -->
+    <div class="col-12 ">
+        <!-- espacio para el titulo, buscador y boton de agregar uno nuevo -->
+        <div class="w-100 row m-auto">
+            <div class="row text-center">
+                <h2 class="l-4">Listar</h2>
+            </div>
+            <div class="border rounded shadow-sm">
+                <button type="button"  class="btn btn-warning btn-circle btn-xl" data-bs-toggle="modal" data-bs-target="#createPEI">
+                    <i class="bi bi-plus"></i>
+                </button>
+                <div class="row text-center  p-2">
+                    <mat-form-field>
+                        <mat-label>Seleccione una institución</mat-label>
+                        <mat-select>
+                            <mat-option></mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="w-75 row m-auto mb-2">
+                <div class="col-8">
+                </div>
+                <div class="col-4">
+                </div>
+            </div>
+        </div>
+        <!-- tabla dinamica que muestra todos los PEI-->
+        <div class="w-75 m-auto row shadow alturaTabla">
+            <table class="table table-hover g">
+                <thead class="text-center">
+                    <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action">Cras justo odio</a>
+                        <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
+                    </div>
+                </thead>
+                <tbody class="text-center">
+                    <tr *ngFor="let x of peis | peiFiltro:filter | peiPaginacion:step:page; index as i">
+                        <!-- este contador no es id, solo es para enumerar -->
+                        <td>
+                            <ng-container *ngIf="page > 0; else elseNumeracion">
+                                {{i + page + 1}}
+                            </ng-container>
+                            <ng-template #elseNumeracion>
+                                {{i + 1}}
+                            </ng-template>
+                        </td>
+                        <td>{{x.name}}</td>
+                        <td>{{x.initialYear}}</td>
+                        <td>{{x.finalYear}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-end">
+                    <ng-container>
+                        <li class="page-item" [ngClass]="page === 1 ? 'disable':''"><a class="page-link "
+                                (click)="previousPage()">Anterior</a></li>
+                    </ng-container>
+                    <ng-container *ngFor="let x of enumPages">
+                        <li class="page-item" [ngClass]="(page/step)+1 === x ? 'active':''"><a class="page-link"
+                                (click)="selectPage(x-1)">{{x}}</a></li>
+                    </ng-container>
+                    <ng-container *ngIf="(page <= maxPages + 1)">
+                        <li class="page-item"><a class="page-link " (click)="nextPage()">Siguiente</a></li>
+                    </ng-container>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
