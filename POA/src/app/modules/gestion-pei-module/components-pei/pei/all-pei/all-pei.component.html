@@ -29,12 +29,15 @@
         <!-- tabla dinamica que muestra todos los PEI-->
         <div class="w-75 m-auto row shadow alturaTabla">
             <table class="table table-hover g">
-                <thead class="text-center">
-                    <div class="list-group">
-                        <a href="#" class="list-group-item list-group-item-action">Cras justo odio</a>
-                        <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
-                    </div>
-                </thead>
+              <thead class="text-center">
+                <tr>
+                    <th class="table-secondary" scope="col">#</th>
+                    <th class="table-secondary" scope="col">PEI</th>
+                    <th class="table-secondary" scope="col">Fecha Inicial</th>
+                    <th class="table-secondary" scope="col">Fecha Final</th>
+                    <th class="table-secondary" scope="col">institución</th>
+                </tr>
+            </thead>
                 <tbody class="text-center">
                     <tr *ngFor="let x of peis | peiFiltro:filter | peiPaginacion:step:page; index as i">
                         <!-- este contador no es id, solo es para enumerar -->
@@ -49,6 +52,7 @@
                         <td>{{x.name}}</td>
                         <td>{{x.initialYear}}</td>
                         <td>{{x.finalYear}}</td>
+                        <td>{{x.idInstitucion}}</td>
                     </tr>
                 </tbody>
             </table>
