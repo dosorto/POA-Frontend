@@ -67,7 +67,7 @@
                     </tr>
                 </thead>
                 <tbody class="text-center">
-                    <tr *ngFor="let x of objetivosList | objetivosFiltro:filter; index as i">
+                    <tr *ngFor="let x of objetivosList | objetivosFiltro:filter| objetivosPaginacion:step:page ; index as i">
                        <td>
                             <ng-container *ngIf="page > 0; else elseNumeracion">
                                 {{i + page + 1}}
@@ -80,7 +80,7 @@
                             <td align="left" >{{x.nombre}}</td>
                             <!-- <td align="left">{{x.descripcion}}</td>
                             <td>{{x.dimension.nombre}}</td>
-                            <td align="left">{{x.pei.name}}</td> -->
+                            <td align="left">{{x.pei.name}}</td>  -->
                         <td>
                             <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                               <button type="button" class="btn btn-secondary" [routerLink]="['/gestion_pei/objetivos/detail/',x.id]">Gestionar</button>
