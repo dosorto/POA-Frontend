@@ -66,9 +66,17 @@
                 <span class="sidenav-link-text" *ngIf="collapsed">Gestión Usuarios</span>
             </a>
         </li>
-
+ <!-- Ruta para gestionar area -->
+ <li class="sidenav-nav-item" *ngIf="(rutaActual !== 'area') && (permisos.includes('r_institucion'))">
+    <a href="/area" class="sidenav-nav-link"  title="Gestión Area" (click)="link('area')">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-journal-arrow-up iconLink-poa" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.502.502 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103zM10 1.91l-4-.8v12.98l4 .8V1.91zm1 12.98 4-.8V1.11l-4 .8v12.98zm-6-.8V1.11l-4 .8v12.98l4-.8z"/>
+          </svg>
+        <span class="sidenav-link-text" *ngIf="collapsed">Gestión AREA</span>
+    </a>
+</li>
         <!-- Ruta para gestionar empleados -->
-        <li class="sidenav-nav-item" *ngIf="(rutaActual !== 'dimensiones') && (permisos.includes('r_institucion'))">
+        <!-- <li class="sidenav-nav-item" *ngIf="(rutaActual !== 'dimensiones') && (permisos.includes('r_institucion'))">
             <a href="/empleados" class="sidenav-nav-link"  title="Gestión Empleados" (click)="link('empleados')">
                 <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-person-workspace iconLink-poa" viewBox="0 0 16 16">
                     <path d="M4 16s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H4Zm4-5.95a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
@@ -76,14 +84,25 @@
                   </svg>
                 <span class="sidenav-link-text" *ngIf="collapsed">Gestión Empleados</span>
             </a>
-        </li>
+        </li> -->
         <!-- Siguientes rutas -->
         <li class="sidenav-nav-item" *ngIf="(rutaActual !== 'dimensiones') && (permisos.includes('r_institucion'))">
             <a href="/objetivos" class="sidenav-nav-link"  title="Gestión Dimensión" (click)="link('institucion')">
-                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-bar-chart-steps" viewBox="0 0 16 16">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-bar-chart-steps iconLink-poa" viewBox="0 0 16 16">
                     <path d="M.5 0a.5.5 0 0 1 .5.5v15a.5.5 0 0 1-1 0V.5A.5.5 0 0 1 .5 0zM2 1.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-4a.5.5 0 0 1-.5-.5v-1zm2 4a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-1zm2 4a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-6a.5.5 0 0 1-.5-.5v-1zm2 4a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-1z"/>
                   </svg>
                 <span class="sidenav-link-text" *ngIf="collapsed">Gestion Objetivos</span>
+            </a>
+        </li>
+        
+        <!-- Ruta para gestionar resultados -->
+        <li class="sidenav-nav-item" *ngIf="(rutaActual !== 'resultado') && (permisos.includes('r_resultado'))">
+            <a href="/resultado" class="sidenav-nav-link"  title="Gestión de resultados" (click)="link('resultado')">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-clipboard2-data-fill iconLink-poa" viewBox="0 0 16 16">
+                    <path d="M10 .5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5.5.5 0 0 1-.5.5.5.5 0 0 0-.5.5V2a.5.5 0 0 0 .5.5h5A.5.5 0 0 0 11 2v-.5a.5.5 0 0 0-.5-.5.5.5 0 0 1-.5-.5Z"/>
+                    <path d="M4.085 1H3.5A1.5 1.5 0 0 0 2 2.5v12A1.5 1.5 0 0 0 3.5 16h9a1.5 1.5 0 0 0 1.5-1.5v-12A1.5 1.5 0 0 0 12.5 1h-.585c.055.156.085.325.085.5V2a1.5 1.5 0 0 1-1.5 1.5h-5A1.5 1.5 0 0 1 4 2v-.5c0-.175.03-.344.085-.5ZM10 7a1 1 0 1 1 2 0v5a1 1 0 1 1-2 0V7Zm-6 4a1 1 0 1 1 2 0v1a1 1 0 1 1-2 0v-1Zm4-3a1 1 0 0 1 1 1v3a1 1 0 1 1-2 0V9a1 1 0 0 1 1-1Z"/>
+                  </svg>
+                <span class="sidenav-link-text" *ngIf="collapsed">Gestión de Resultados</span>
             </a>
         </li>
 

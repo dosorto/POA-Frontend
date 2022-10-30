@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 export class SidebarComponent implements OnInit {
   collapsed = false;
   navData = navbarData;
-  @Input() permisos = ['r_home','r_institucion'];
+  @Input() permisos = ['r_home','r_institucion','r_resultado'];
   @Input() rutaActual:string =""; 
   constructor(private router: Router) { }
 
