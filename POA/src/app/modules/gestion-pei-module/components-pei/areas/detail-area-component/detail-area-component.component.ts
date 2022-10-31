@@ -20,10 +20,6 @@ export class DetailAreaComponentComponent implements OnInit {
   objetivo_seleccionado:string="";
   dimension_seleccionado:string="";
   
-  public page:number=0;
-  public step:number=10;
-  public maxPages:number=1;
-  public enumPages:number[]=[]
 
   constructor(private Storage:Storage, 
               private service:AreasService,
@@ -34,10 +30,7 @@ export class DetailAreaComponentComponent implements OnInit {
   }async initData(){
     let area = await firstValueFrom(this.service.getArea())
     this.area = area;
-    this.maxPages = Math.round(this.area.length / this.step ) + 1  // cantidad de paginas para los botones
-    if((this.area.length % this.step ) !== 0 ){this.maxPages++}; // si sobran pocos elementos agrega otra pagina
-    this.enumPages =  Array(this.maxPages).fill(null).map((x,i)=>i).slice(1,this.maxPages);
-    console.log(this.area.length);
+   console.log(this.area.length);
     const Objetivos = await firstValueFrom(this.service.getObjetivos());
     this.listaObjetivos = Objetivos;
     console.log(this.listaObjetivos)
