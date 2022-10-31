@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-<<<<<<< HEAD
-
-=======
 import { Storage } from 'src/app/_core/global-services/local_storage.service';
 import { AreasService } from '../../../services-pei/areas.service';
 import { Area } from '../../../interfaces-pei/area.model';
@@ -9,22 +6,13 @@ import { Objetivo } from "../../../interfaces-pei/objetivo.model";
 import { firstValueFrom } from 'rxjs';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
->>>>>>> origin/branchCristhian
+
 @Component({
   selector: 'app-detail-area-component',
   templateUrl: './detail-area-component.component.html',
   styleUrls: ['./detail-area-component.component.css']
 })
 export class DetailAreaComponentComponent implements OnInit {
-<<<<<<< HEAD
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-}
-=======
   area:Array<Area>=[];
   listaObjetivos: Array<Objetivo >=[];
   user = this.Storage.get_storage("user");
@@ -87,4 +75,3 @@ export class DetailAreaComponentComponent implements OnInit {
 
 }
    
->>>>>>> origin/branchCristhian

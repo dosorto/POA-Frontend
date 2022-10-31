@@ -2,20 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { Storage } from 'src/app/_core/global-services/local_storage.service';
 import { AreasService } from '../../../services-pei/areas.service';
 import { Area } from '../../../interfaces-pei/area.model';
-<<<<<<< HEAD
 import { Pei } from "../../../interfaces-pei/pei.model";
 import { Objetivo } from "../../../interfaces-pei/objetivo.model";
 import { Dimension } from "../../../interfaces-pei/dimension.model";
-
 import { firstValueFrom } from 'rxjs';
 import { ThisReceiver } from '@angular/compiler';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-=======
-import { Objetivo } from "../../../interfaces-pei/objetivo.model";
-import { firstValueFrom } from 'rxjs';
-import { Router } from '@angular/router';
->>>>>>> origin/branchCristhian
+
 
 @Component({
   selector: 'app-all-area-component',
@@ -31,10 +25,7 @@ export class AllAreaComponentComponent implements OnInit {
   objetivo_seleccionado:string="";
   dimension_seleccionado:string="";
 
-<<<<<<< HEAD
   
-=======
->>>>>>> origin/branchCristhian
   public page:number=0;
   public step:number=10;
   public maxPages:number=1;
