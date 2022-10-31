@@ -68,8 +68,8 @@ export class DimensionService {
   };
 
 
-  getdimensiones() {
-    return this.callHttp.httpGet<Array<Dimension>>(`${environment.servidor}dimension/get_all`)
+  getdimensiones(idPei:number) {
+    return this.callHttp.httpGet<Array<Dimension>>(`${environment.servidor}dimension/get_all_by_id_pei/` + idPei.toString())
       .pipe(map(response => {
         this._dimensiones = response;
         return response;
@@ -80,6 +80,12 @@ export class DimensionService {
     return this.callHttp.httpGet<Array<Pei>>(`${environment.servidor}PEI/get_PEI`)
       .pipe(map(response => {
         this._peiList = response;
+        return response;
+      }))
+  }
+  getPei(idPei:number) {
+    return this.callHttp.httpGet<Pei>(`${environment.servidor}PEI/get_PEI`+idPei.toString())
+      .pipe(map(response => {
         return response;
       }))
   }
