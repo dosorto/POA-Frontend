@@ -16,8 +16,8 @@ export class DeletePeiComponent implements OnInit {
   private pei_example: Pei = {
     id: 0,
     name: '',
-    initialYear: new Date(),
-    finalYear: new Date(),
+    initialYear: '',
+    finalYear: '',
     idInstitucion: 0,
     isDelete: false,
     isActive: true,
@@ -85,7 +85,7 @@ export class DeletePeiComponent implements OnInit {
         timer: 1000
       })
     });
-    
+
    } catch(error){
     Swal.fire({
       icon: 'error',
@@ -93,10 +93,10 @@ export class DeletePeiComponent implements OnInit {
       showConfirmButton: false,
       timer: 1000
     })
-   } 
+   }
    setTimeout(function () {
     window.location.reload();
-  }, 1000); 
+  }, 1000);
   }
 
 

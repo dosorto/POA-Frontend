@@ -91,8 +91,8 @@ export class PeiService {
     return this.directHttp.put(url, { name: name })
   }
 
-  /* alternativa a update
-  updatePEI(name: string, initialYear: Date, finalYear: Date, id: number, idInstitucion: number): any {
+  //alternativa a update
+  updatePEI(name: string, initialYear: string, finalYear: string, id: number): any {
     const url = environment.servidor + 'PEI/updatePEI';
 
     const params = new HttpParams({
@@ -100,8 +100,7 @@ export class PeiService {
         grant_type: 'password',
         name: name,
         initialYear: initialYear,
-        finalYear: finalYear,
-        idInstitucion: idInstitucion
+        finalYear: finalYear
       }
     });
 
@@ -110,7 +109,7 @@ export class PeiService {
         'Content-Type': 'application/x-www-form-urlencoded'
       })
     };
-    return this.directHttp.put(url, { name: name, initialYear: initialYear, finalYear: finalYear, id: id, idInstitucion: idInstitucion })
+    return this.directHttp.put(url, { name: name, initialYear: initialYear, finalYear: finalYear, id: id})
 
-  }*/
+  }
 }
