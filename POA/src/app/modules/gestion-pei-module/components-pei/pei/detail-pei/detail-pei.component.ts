@@ -13,11 +13,23 @@ import Swal from 'sweetalert2';
 })
 export class DetailPeiComponent implements OnInit {
 
+  private pei_example: Pei = {
+    id: 0,
+    name: '',
+    initialYear: '',
+    finalYear: '',
+    isDelete: false,
+    isActive: true,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+    idInstitucion: 1
+  };
 
   rutaActual = "pei";
   public peis: Array<Pei> = [];
 
   public _delete: string = "";
+  public data_update: Pei = this.pei_example;
 
   public page:number=0;
   public step:number=10;
@@ -85,5 +97,40 @@ export class DetailPeiComponent implements OnInit {
    setTimeout(function () {
     window.location.reload();
   }, 1000);
+  }
+
+  set_update(_peis: Pei) {
+    this.data_update = _peis
+  };
+
+  update(name: string, initialYear: string, finalYear: string): any {
+    console.log("entra a la funcion")
+    const id = this.data_update.id; // ahi se aloja el id
+    // validaciones
+    if ((name === '')) { name = this.data_update.name }
+    if ((initialYear  === '')) { initialYear = this.data_update.initialYear }
+    if ((finalYear === '')) { finalYear = this.data_update.finalYear }
+    try {
+      this.service.updatePEI(name, initialYear, finalYear, id).subscribe((res: any) => {
+        console.log(res);
+
+      }, (error: any) => {
+        console.log(error);
+      });
+      Swal.fire({
+        icon: 'success',
+        title: '¡Actualizado con éxito!',
+        showConfirmButton: false,
+        timer: 2500
+      })
+      setTimeout(function () {
+        window.location.reload();
+      }, 2500);
+    } catch (error) {
+      console.log(error);
+    }
+    setTimeout(function () {
+      window.location.reload();
+    }, 1500);
   }
 }

@@ -38,15 +38,14 @@ export class PeiService {
   }
 
 
-  actualizarPEI(name: string, initialYear: string, finalYear: string, id: number, idInstitucion: number): any {
+  actualizarPEI(name: string, initialYear: string, finalYear: string, id: number): any {
     const url = environment.servidor + 'PEI/updatePEI';
     const params = new HttpParams({
       fromObject: {
         grant_type: 'password',
         name: name,
         initialYear: initialYear,
-        finalYear: finalYear,
-        idInstitucion: idInstitucion
+        finalYear: finalYear
       }
     });
 
@@ -97,9 +96,9 @@ export class PeiService {
     const params = new HttpParams({
       fromObject: {
         grant_type: 'password',
-        name: name,
-        initialYear: initialYear,
-        finalYear: finalYear
+        name,
+        initialYear,
+        finalYear
       }
     });
 

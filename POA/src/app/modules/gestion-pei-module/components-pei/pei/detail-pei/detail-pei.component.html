@@ -46,7 +46,8 @@
             <button type="button" class="btn btn-secondary" [routerLink]="['/gestion_pei/pei/list/idInsti']">Regresar</button>
 
             <!-- [disabled]="Result.invalid" -->
-            <button type="submit" class="btn btn-warning" >Editar</button>
+            <button type="button" class="btn btn-secondary" (click)="set_update(x)"
+             data-bs-toggle="modal" data-bs-target="#editPEI">Editar</button>
         </div>
         </tr>
       </div>
@@ -87,6 +88,55 @@
 
         </form>
       </tr>
+      </div>
+    </div>
+
+
+    <!-- Este modal sirve para editar un PEI -->
+    <div class="modal" id="editPEI" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog ">
+          <div class="modal-content">
+              <div class="modal-header bg-warning text-black text-center">
+                  <h5 class="modal-title fs-5 text-center m-auto" id="exampleModalLabel">Actualizar</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                  <form #PeiE='ngForm' (ngSubmit)="update(PeiE.value.name,PeiE.value.initialYear,PeiE.value.finalYear)">
+                      <div class="col">
+                          <!-- Campo para el nombre de PEI -->
+                          <div class="mb-3 mx-2 px-2 row">
+                              <label for="name" class="row col-form-label">Nombre PEI:</label>
+                              <div class="row">
+                                  <input type="text" class="form-control" name="name" value="{{data_update.name}}" ngModel
+                                      required>
+                              </div>
+                          </div>
+                          <!-- Campo para fecha Inicial -->
+                          <div class="mb-3 mx-2 px-2 row">
+                              <label for="initialYear" class="row col-form-label">Fecha Inicial:</label>
+                              <div class="row">
+                                  <input type="date" class="form-control" name="initialYear"
+                                      value="{{data_update.initialYear}}" ngModel required>
+                              </div>
+                          </div>
+                          <!-- Campo para fecha Final -->
+                          <div class="mb-3 mx-2 px-2 row">
+                              <label for="finalYear" class="row col-form-label">Fecha Final:</label>
+                              <div class="row">
+                                  <input type="date" class="form-control" name="finalYear"
+                                      value="{{data_update.finalYear}}" ngModel required>
+                              </div>
+                          </div>
+                      </div>
+
+
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                          <button type="submit" class="btn btn-warning">Actualizar</button>
+                      </div>
+                  </form>
+              </div>
+          </div>
       </div>
     </div>
 
