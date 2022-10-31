@@ -43,11 +43,11 @@
                     </div>
                 </div>
                 
-                <div class="col-4">
-                    <button type="button" class="btn btn-warning" [routerLink]="['/gestion_pei/objetivos/create']">
+                <div class="col-4"  >
+                    <button type="button" class="btn btn-warning" [routerLink]="['/gestion_pei/objetivos/create/',id]">
                         <i class="bi bi-plus-square"></i>
                         <span>
-                            Crear Objetivo
+                            <p>{{objetivos?.idDimension}}</p>
                         </span>
                     </button>
                 </div>

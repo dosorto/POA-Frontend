@@ -83,11 +83,11 @@ const router = RouterModule.forChild([
   {path: 'dimension/list/:idPei', component: AllDimensionComponent},
 
   // rutas de objetivos
-  {path: 'objetivos/create', component: CreateObjetivoComponentComponent},
+  {path: 'objetivos/create/:id', component: CreateObjetivoComponentComponent},
   {path: 'objetivos/update/:id', component: UpdateObjetivoComponentComponent},
   {path: 'objetivos/delete/:id', component: DeleteObjetivoComponentComponent},
   {path: 'objetivos/detail/:id', component: DetailObjetivoComponentComponent},
-  {path: 'objetivos/list', component: AllObjetivoComponentComponent},
+  {path: 'objetivos/list/:id', component: AllObjetivoComponentComponent},
 
   // rutas de areas
   {path: 'areas/create', component: CreateAreaComponent},

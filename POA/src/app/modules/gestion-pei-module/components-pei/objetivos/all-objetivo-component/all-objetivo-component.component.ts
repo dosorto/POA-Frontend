@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Objetivo } from '../../../interfaces-pei/objetivo.model';
 import { ObjetivosService } from '../../../services-pei/objetivos.service';
 
 
@@ -10,14 +11,35 @@ import { ObjetivosService } from '../../../services-pei/objetivos.service';
   styleUrls: ['./all-objetivo-component.component.css']
 })
 export class AllObjetivoComponentComponent implements OnInit {
+  errorMessage = '';
+  objetivos: Objetivo | undefined;
 
-  constructor( private objetivosService:ObjetivosService,private router: Router,private toastr: ToastrService) { }
-
+  constructor( private _route: ActivatedRoute,private objetivosService:ObjetivosService,private router: Router,private toastr: ToastrService) { }
+  idfun(){
+    return this.id
+  }
+  id = Number(this._route.snapshot.paramMap.get('id'));
   ngOnInit(): void {
-    this.mostrarObjetivo(),
+    const id = Number(this._route.snapshot.paramMap.get('id'));
+    // console.log("aqui ")
+    // console.log(id)
+    // if (id) {
+      // this.getObjetivoss(id);  
+    // }
+    console.log(this.objetivos?.id)
+    this.mostrarObjetivo(id),
     this.initData_Dimension();
     console.log(this.mostrarObjetivo);
     this.objetivosService.getObjetivos().subscribe((response:any) =>console.log(response))
+
+    
+    console.log("aqui ")
+    console.log(id)
+    if (id) {
+      this.getObjetivoss(id);  
+    }
+    console.log("que onda",this.objetivos?.idDimension)
+    console.log(this.objetivos?.nombre)
   }
 
   //filtro
@@ -48,8 +70,8 @@ export class AllObjetivoComponentComponent implements OnInit {
   /*
   metodos para mostrar
   */
-  mostrarObjetivo() {
-    this.objetivosService.getObjetivos().subscribe((response:any) => 
+  mostrarObjetivo(id:number) {
+    this.objetivosService.mostrar_objetivo_id(id).subscribe((response:any) => 
     this.objetivosList = response);
     }
     async initData_Dimension(){
@@ -64,6 +86,16 @@ export class AllObjetivoComponentComponent implements OnInit {
       this.objetivosList = response);
         
     }
+
+    getObjetivoss(id: number): void {
+      this.objetivosService.getObjetivo(id).subscribe({
+        next: objetivo => {this.objetivos = objetivo},
+        error: err => this.errorMessage = err
+      });
+    }
+    // onBack(): void {
+    //   this._router.navigate(['/gestion_pei/objetivos/list']);
+    // }
 
     
   

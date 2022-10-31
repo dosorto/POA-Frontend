@@ -42,7 +42,7 @@
             </div>
         
               <div class="d-grid gap-2 d-md-flex justify-content-end">
-                  <button type="button" class="btn btn-secondary" (click)='onBack()'>Cerrar</button>
+                  <button type="button" class="btn btn-secondary" [routerLink]="['/gestion_pei/objetivos/list/',objetivo.idDimension]">Cerrar</button>
                   <!-- [disabled]="Result.invalid" -->
                   <button type="button" class="btn btn-warning" [routerLink]="['/gestion_pei/objetivos/update/',objetivo.id]">Editar</button>
                   

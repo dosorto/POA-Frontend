@@ -16,7 +16,7 @@
                 </div>
             </div>
         
-            <form #Objetivo="ngForm" (ngSubmit)="crear_Objetivo(Objetivo.value.nombre,Objetivo.value.descripcion,Objetivo.value.idDimension)" 
+            <form #Objetivo="ngForm" (ngSubmit)="crear_Objetivo(Objetivo.value.nombre,Objetivo.value.descripcion)" 
         id="CreateObjetivo">
                 <!-- <div class="col-10">
                     <label for="inputNombre" class="form-label">Nombre:</label>
@@ -38,7 +38,7 @@
                   </div>
                  
                 
-                <div class="col-md-5">
+                <!-- <div class="col-md-5">
                     <label for="idDimension" class="row col-form-label">Dimensión:</label>
             <select class="form-select w-75" aria-label="Default select example" name="idDimension"
                 [(ngModel)]="dimension_seleccionado" required>
@@ -47,7 +47,7 @@
                     <option value="{{x.id}}">{{x.nombre}}</option>
                 </ng-container>
             </select>
-                  </div>
+                  </div> -->
                   <!-- <div class="col-md-5">
                     <label for="inputPEI" class="form-label">PEI:</label>
                     <select class="form-select w-75" aria-label="Default select example" name="idPei"

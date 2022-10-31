@@ -50,6 +50,14 @@ export class ObjetivosService {
             map((objetivo: Objetivo[]) => objetivo.find(p => p.id === id))
           );
       }
+      // getOBjetivo(id: number): Observable<Objetivo | undefined> {
+      //   return this.getObjetivos()
+      //     .pipe(
+      //       map((map(response => {
+      //         this._objetivos = response;
+      //         return response;)
+      //     )));
+      // }
   
 
   getPEI() {
@@ -61,7 +69,7 @@ export class ObjetivosService {
     return this.http.get(url);
   }
  
-  mostrar_objetivos_id(id: string): Observable<any> {
+  mostrar_objetivos_id(id: number): Observable<any> {
     const url = `http://localhost:8080/objetivos/objetivos/get_all_by_id/`;
     return this.http.get(url + id);
   }
@@ -69,7 +77,7 @@ export class ObjetivosService {
     const url = `http://localhost:8080/objetivos/get_all_by_id/`;
     return this.http.get(url + id);
   }
-  mostrar_objetivo_id(id: string): Observable<any> {
+  mostrar_objetivo_id(id: number): Observable<any> {
     const url = `http://localhost:8080/objetivos/get_all_by_Dimension/`;
     return this.http.get(url + id);
   }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
-
+import {AllObjetivoComponentComponent} from '../all-objetivo-component/all-objetivo-component.component';
 import { Objetivo } from '../../../interfaces-pei/objetivo.model';
 import { ObjetivosService } from '../../../services-pei/objetivos.service';
 @Component({
@@ -15,7 +15,7 @@ export class DetailObjetivoComponentComponent implements OnInit {
   objetivo: Objetivo | undefined;
   _delete:any;
    constructor(private _route: ActivatedRoute, private _router: Router, private ObjetivoService:ObjetivosService) { }
-
+    ide = Number(this._route.snapshot.paramMap.get('id'));
   ngOnInit(){
     const id = Number(this._route.snapshot.paramMap.get('id'));
     console.log("aqui ")
@@ -24,7 +24,7 @@ export class DetailObjetivoComponentComponent implements OnInit {
       this.getObjetivoss(id);  
     }
     console.log(this.objetivo?.id)
-  
+   
    
     }
     getObjetivoss(id: number): void {
@@ -33,8 +33,9 @@ export class DetailObjetivoComponentComponent implements OnInit {
         error: err => this.errorMessage = err
       });
     }
-    onBack(): void {
-      this._router.navigate(['/gestion_pei/objetivos/list']);
+
+    onBackGestion(): void {
+      this._router.navigate(['/gestion_pei/objetivos/list/',this.objetivo?.idDimension]);
     }
 
 
@@ -61,7 +62,7 @@ export class DetailObjetivoComponentComponent implements OnInit {
         }
         
       })
-      this.onBack();
+      this.onBackGestion();
       // setTimeout(function() {
       //   window.location.reload();
       // },3000);

@@ -27,7 +27,7 @@
                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"  name="descripcion" value="{{objetivo?.descripcion}}" ngModel required></textarea>
               </div>
                 <div class="d-grid gap-2 d-md-flex justify-content-end">
-                    <button type="button" class="btn btn-secondary" (click)='onBack()'>Cerrar</button>
+                    <button type="button" class="btn btn-secondary"  [routerLink]="['/gestion_pei/objetivos/list',objetivo?.idDimension]">Cerrar</button>
                     <button type="submit" class="btn btn-warning" >Actualizar</button>
                  
                 </div>
