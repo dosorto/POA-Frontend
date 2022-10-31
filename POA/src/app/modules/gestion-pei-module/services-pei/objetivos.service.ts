@@ -38,10 +38,17 @@ export class ObjetivosService {
         return response;
       }))
   }
-  getObjetivo(id: number)  {
-    console.log("este es el id de servicio",id)
-    return this.callHttp.httpGet<Array<Objetivo>>(`http://localhost:8080/objetivos/get_all_by_id/`+id)
-      .pipe(map(response => this.objetivos.find(p => p.id === id)))
+  // getObjetivo(id: number)  {
+  //   console.log("este es el id de servicio",id)
+  //   return this.callHttp.httpGet<Array<Objetivo>>(`http://localhost:8080/objetivos/get_all_by_id/`+id)
+  //     .pipe(map(response => this.objetivos.find(p => p.id === id)))
+  //     }
+
+      getObjetivo(id: number): Observable<Objetivo | undefined> {
+        return this.getObjetivos()
+          .pipe(
+            map((objetivo: Objetivo[]) => objetivo.find(p => p.id === id))
+          );
       }
   
 
@@ -50,7 +57,7 @@ export class ObjetivosService {
     return this.http.get(url);
   }
   getdimensiones() {
-      const url = `http://localhost:8080/dimension/get_all`;
+    const url = `http://localhost:8080/dimension/get_all`;
     return this.http.get(url);
   }
  
@@ -91,7 +98,6 @@ export class ObjetivosService {
 
   
 // crear objetivos
- 
 public crearObjetivo (nombre:string,descripcion:string,idDimension:number,idPei:number):any{
   const url = environment.servidor + 'objetivos/crear';
 
@@ -117,7 +123,7 @@ public crearObjetivo (nombre:string,descripcion:string,idDimension:number,idPei:
 
 
 
-  updateObjetivo(nombre: string,id:Number,idDimension:Number,idPei:Number):any {
+  updateObjetivo(nombre: string,id:Number,descripcion:string):any {
     const url = environment.servidor + 'objetivos/actualizar';
 
     const params = new HttpParams({
@@ -133,7 +139,7 @@ public crearObjetivo (nombre:string,descripcion:string,idDimension:number,idPei:
       })
     };
     //return this.directHttp.put(url, params, httpOptions);
-    this.directHttp.put(url,{nombre:nombre,id:id,idDimension:idDimension,idPei:idPei}).subscribe((response:any)=>
+    this.directHttp.put(url,{nombre:nombre,id:id,descripcion:descripcion}).subscribe((response:any)=>
     {
       console.log(response);
       return response;

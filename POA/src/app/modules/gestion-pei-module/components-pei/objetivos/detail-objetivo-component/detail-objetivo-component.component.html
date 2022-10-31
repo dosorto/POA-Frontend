@@ -20,31 +20,32 @@
           </div>
       </div>
   
-      <form class="row g-3 justify-content-center">
+      <form class="row g-3 justify-content-center" *ngIf='objetivo'>
           <div class="col-10">
               <label for="inputNombre" class="form-label">Nombre:</label>
-              <textarea type="text" class="form-control" id="exampleFormControlTextarea1" rows="2" value="{{objetivo?.nombre}}" disabled>
+              <textarea type="text" class="form-control" id="exampleFormControlTextarea1" rows="2" value="{{objetivo.nombre}}" disabled>
               </textarea>
               </div>
             <div class="col-10 mb-3">
               <label for="inputDescripcion" class="form-label">Descripción:</label>
-              <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" value="{{objetivo?.descripcion}}" disabled></textarea>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" value="{{objetivo.descripcion}}" disabled></textarea>
             </div>
            
           
           <div class="col-md-5">
               <label for="inputDimension" class="form-label">Dimensión:</label>
-              <input type="text" class="form-control" id="inputDimension" value="{{objetivo?.dimension?.nombre}}"disabled>
+              <input type="text" class="form-control" id="inputDimension" value="{{objetivo.dimension.nombre}}"disabled>
             </div>
             <div class="col-md-5">
               <label for="inputPEI" class="form-label">PEI:</label>
-              <input type="text" class="form-control" id="inputPEI" value="{{objetivo?.pei?.name}}"disabled>
+              <input type="text" class="form-control" id="inputPEI" value="{{objetivo.pei.name}}"disabled>
             </div>
         
               <div class="d-grid gap-2 d-md-flex justify-content-end">
                   <button type="button" class="btn btn-secondary" (click)='onBack()'>Cerrar</button>
                   <!-- [disabled]="Result.invalid" -->
-                  <button type="submit" class="btn btn-warning" >Editar</button>
+                  <button type="button" class="btn btn-warning" [routerLink]="['/gestion_pei/objetivos/update/',objetivo.id]">Editar</button>
+                  
               </div>
       
           

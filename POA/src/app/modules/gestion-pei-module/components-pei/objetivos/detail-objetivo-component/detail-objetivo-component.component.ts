@@ -12,7 +12,7 @@ import { ObjetivosService } from '../../../services-pei/objetivos.service';
 export class DetailObjetivoComponentComponent implements OnInit {
   pageTitle:string= 'Objetivo Detail';
   errorMessage = '';
-  objetivo: Objetivo | undefined
+  objetivo: Objetivo | undefined;
   _delete:any;
    constructor(private _route: ActivatedRoute, private _router: Router, private ObjetivoService:ObjetivosService) { }
 
