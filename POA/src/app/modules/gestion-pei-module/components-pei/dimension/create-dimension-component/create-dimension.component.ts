@@ -13,6 +13,13 @@ import { Pei } from '../../../interfaces-pei/pei.model';
 })
 export class CreateDimensionComponent implements OnInit {
 
+  constructor(private Storage:Storage, 
+              private service:DimensionService,
+              private router:Router,
+              private _route: ActivatedRoute) { }
+
+  ngOnInit(): void {
+  }
   public idPei:number = Number(this._route.snapshot.paramMap.get('idPei'));
   toList(){
     this.router.navigate(['/gestion_pei/dimension/list/',this.idPei]);
