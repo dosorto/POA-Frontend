@@ -13,50 +13,60 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class AllAreaComponentComponent implements OnInit {
   constructor(
-private Storage:Storage, 
-              private service:AreasService,
-              private router:Router
+    private Storage: Storage,
+    private service: AreasService,
+    private router: Router,
+    private _route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
     this.initData();
   }
- public area:Array<Area>=[];
-  listaObjetivos: Array<Objetivo >=[];
-  user = this.Storage.get_storage("user");
-        filter:string=""; // para filtar la tabla
-  pei_seleccionado:string="";
-  objetivo_seleccionado:string="";
-  dimension_seleccionado:string="";
 
-  
-  public page:number=0;
-  public step:number=10;
-  public maxPages:number=1;
-  public enumPages:number[]=[]
+  public idObjetivo:number = Number(this._route.snapshot.paramMap.get('idObjetivo'));
+  private dimension_example : Area | any = {};
+  public area: Array<Area> = [];
+  public listaObjetivos: Array<Objetivo> = [];
+  public user = this.Storage.get_storage("user");
+  public filter: string = ""; // para filtar la tabla
+  public pei_seleccionado: string = "";
+  public objetivo_seleccionado: string = "";
+  public dimension_seleccionado: string = "";
 
-  async initData(){
+
+
+  public page: number = 0;
+  public step: number = 10;
+  public maxPages: number = 1;
+  public enumPages: number[] = []
+
+  async initData() {
     let area = await firstValueFrom(this.service.getArea())
     this.area = area;
-    this.maxPages = Math.round(this.area.length / this.step ) + 1  // cantidad de paginas para los botones
-    if((this.area.length % this.step ) !== 0 ){this.maxPages++}; // si sobran pocos elementos agrega otra pagina
-    this.enumPages =  Array(this.maxPages).fill(null).map((x,i)=>i).slice(1,this.maxPages);
+    this.maxPages = Math.round(this.area.length / this.step) + 1  // cantidad de paginas para los botones
+    if ((this.area.length % this.step) !== 0) { this.maxPages++ }; // si sobran pocos elementos agrega otra pagina
+    this.enumPages = Array(this.maxPages).fill(null).map((x, i) => i).slice(1, this.maxPages);
     console.log(this.area.length);
     const Objetivos = await firstValueFrom(this.service.getObjetivos());
     this.listaObjetivos = Objetivos;
     console.log(this.listaObjetivos)
   }
+  toDetail(idArea:number){
+    this.router.navigate(['/gestion_pei/areas/detail/',idArea.toString(),this.idObjetivo]);
+  }
+  toCreate(){
+    this.router.navigate(['/gestion_pei/areas/create/',this.idObjetivo.toString()]);
+  }
 
-
-  nextPage(){
+  nextPage() {
     this.page = this.page + this.step;
   }
-  previousPage(){
+  previousPage() {
     this.page = this.page - this.step;
   }
-  selectPage(numPage:number){
+  selectPage(numPage: number) {
     this.page = numPage * this.step;
   }
 
 }
-   
+
