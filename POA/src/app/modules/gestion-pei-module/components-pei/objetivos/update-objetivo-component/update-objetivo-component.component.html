@@ -16,15 +16,15 @@
             </div>
         </div>
     
-        <form #UpdateObjetivo='ngForm' (ngSubmit)="update(UpdateObjetivo.value.nombre,UpdateObjetivo.value.descripcion)" (ngSubmit)="set_update(UpdateObjetivo.value)"  id="UpdateObjetivo">>
+        <form #UpdateObjetivo='ngForm' (ngSubmit)="update(UpdateObjetivo.value.nombre,UpdateObjetivo.value.descripcion)"  id="UpdateObjetivo">>
             <div class="col-10">
                 <label for="inputNombre" class="form-label">Nombre:</label>
-                <textarea type="text" class="form-control" name="nombre" value="{{data_update.id}}" ngModel required >
+                <textarea type="text" class="form-control" name="nombre" value="{{objetivo?.nombre}}" ngModel required >
                 </textarea>
                 </div>
               <div class="col-10 mb-3">
                 <label for="inputDescripcion" class="form-label">Descripción:</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"  name="descripcion" value="{{data_update.descripcion}}" ngModel required></textarea>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"  name="descripcion" value="{{objetivo?.descripcion}}" ngModel required></textarea>
               </div>
                 <div class="d-grid gap-2 d-md-flex justify-content-end">
                     <button type="button" class="btn btn-secondary" (click)='onBack()'>Cerrar</button>

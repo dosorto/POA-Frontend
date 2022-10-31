@@ -27,7 +27,7 @@ export class ObjetivosService {
   
 
   constructor(private http: HttpClient, private callHttp: CallHttpService, private directHttp: HttpClient) { 
-    console.log('Servicio HTTP:')
+    // console.log('Servicio HTTP:')
   }
 
   
@@ -43,7 +43,7 @@ export class ObjetivosService {
   //   return this.callHttp.httpGet<Array<Objetivo>>(`http://localhost:8080/objetivos/get_all_by_id/`+id)
   //     .pipe(map(response => this.objetivos.find(p => p.id === id)))
   //     }
-
+////aqui llamas la variable de la url
       getObjetivo(id: number): Observable<Objetivo | undefined> {
         return this.getObjetivos()
           .pipe(
@@ -98,7 +98,7 @@ export class ObjetivosService {
 
   
 // crear objetivos
-public crearObjetivo (nombre:string,descripcion:string,idDimension:number,idPei:number):any{
+public crearObjetivo (nombre:string,descripcion:string,idDimension:number):any{
   const url = environment.servidor + 'objetivos/crear';
 
   const params = new HttpParams({
@@ -106,8 +106,7 @@ public crearObjetivo (nombre:string,descripcion:string,idDimension:number,idPei:
      grant_type: 'password',
      nombre: nombre,
      descripcion:descripcion,
-     idDimension:idDimension,
-     idPei:idPei
+     idDimension:idDimension
    }
    });
    const httpOptions = {

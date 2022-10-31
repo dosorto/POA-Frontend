@@ -38,11 +38,11 @@ export class CreateObjetivoComponentComponent implements OnInit {
     nombre: new FormControl('',[Validators.required]),
     descripcion: new FormControl('',[Validators.required]),
     idDimension: new FormControl('',[Validators.required]),
-    idPei: new FormControl('',[Validators.required])
+   
   })
   
-  async crear_Objetivo(nombre:string,descripcion:string,idDimension:string, idPei:string){
-    await this.objetivosService.crearObjetivo(nombre,descripcion,parseInt(idDimension),parseInt(idPei)).subscribe((res:any)=>{
+  async crear_Objetivo(nombre:string,descripcion:string,idDimension:string){
+    await this.objetivosService.crearObjetivo(nombre,descripcion,parseInt(idDimension)).subscribe((res:any)=>{
       Swal.fire({
         icon: 'success',
         title: '¡Creado con éxito!',
