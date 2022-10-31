@@ -15,8 +15,8 @@ export class AllPeiComponent implements OnInit {
   private pei_example: Pei = {
     id: 0,
     name: '',
-    initialYear: new Date(),
-    finalYear: new Date(),
+    initialYear: '',
+    finalYear: '',
     idInstitucion: 0,
     isDelete: false,
     isActive: true,

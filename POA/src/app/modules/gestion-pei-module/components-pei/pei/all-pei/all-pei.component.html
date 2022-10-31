@@ -35,6 +35,7 @@
                     <th class="table-secondary" scope="col">PEI</th>
                     <th class="table-secondary" scope="col">Fecha Inicial</th>
                     <th class="table-secondary" scope="col">Fecha Final</th>
+                    <th class="table-secondary" scope="col"></th>
                 </tr>
             </thead>
                 <tbody class="text-center">
@@ -51,7 +52,13 @@
                         <td>{{x.name}}</td>
                         <td>{{x.initialYear}}</td>
                         <td>{{x.finalYear}}</td>
+                        <td>
+                          <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                            <button type="button" class="btn btn-secondary" [routerLink]="['/gestion_pei/pei/detail/id']">Gestionar</button>
+                            </div>
+                        </td>
                     </tr>
+
                 </tbody>
             </table>
             <nav aria-label="Page navigation example">
