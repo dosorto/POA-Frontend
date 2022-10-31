@@ -19,10 +19,6 @@ export class DetailDimensionComponent implements OnInit {
               private service:DimensionService,
               private router:Router,
               private _route: ActivatedRoute) { }
-  
-  
-  
-
   ngOnInit(): void {
     this.initData();
   }

@@ -64,12 +64,17 @@ export class PeiService {
 
 
   getPEI() {
-    return this.callHttp.httpGet<Array<Pei>>(environment.servidor + 'PEI/get_PEI')
+    return this.callHttp.httpGet<Array<Pei>>(`${environment.servidor}PEI/get_PEI`)
       .pipe(map(response => {
         this._peis = response;
         return response;
       }))
   }
+
+  getPEI_Id(idPei:number) {
+    return this.callHttp.httpGet<Pei>(`${environment.servidor}PEI/get/`+idPei.toString());
+  }
+
 
   MostrarPei(idInsti:number){
     return this.callHttp.httpGet<Array<Pei>>(`${environment.servidor}/PEI/peiById/` + idInsti.toString())
@@ -80,13 +85,13 @@ export class PeiService {
   }
 
 
-  eliminarPEI(name: string): any {
+  eliminarPEI(id: number): any {
     const url = environment.servidor + 'PEI/disablePEI';
 
     const params = new HttpParams({
       fromObject: {
         grant_type: 'password',
-        name: name
+        id: id
       }
     });
 
@@ -96,11 +101,11 @@ export class PeiService {
       })
     };
     //return this.directHttp.put(url, params, httpOptions);
-    return this.directHttp.put(url, { name: name })
+    return this.directHttp.put(url, { id: id})
   }
 
   //alternativa a update
-  updatePEI(name: string, initialYear: string, finalYear: string, id: number): any {
+  updatePEI(name: string, initialYear: string, finalYear: string, id: number,idInstitucion:number): any {
     const url = environment.servidor + 'PEI/updatePEI';
 
     const params = new HttpParams({
@@ -117,7 +122,7 @@ export class PeiService {
         'Content-Type': 'application/x-www-form-urlencoded'
       })
     };
-    return this.directHttp.put(url, { name: name, initialYear: initialYear, finalYear: finalYear, id: id})
+    return this.directHttp.put(url, { name: name, initialYear: initialYear, finalYear: finalYear, id: id,idInstitucion: idInstitucion})
 
   }
 }

@@ -12,11 +12,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class AllPeiComponent implements OnInit {
 
-  public page: number = 0;
-  public step: number = 5;
-  public maxPages: number = 1;
-  public enumPages: number[] = []
-
   constructor(private Storage:Storage, 
     private service:PeiService,
     private router:Router,
@@ -24,8 +19,8 @@ export class AllPeiComponent implements OnInit {
 
   ngOnInit(): void {
     this.initData();
-    console.log(this.initData)
   }
+
   public idInstitucion:number = Number(this._route.snapshot.paramMap.get('idInsti'));
   private pei_example : Pei | any = {};
   rutaActual = "pei";
@@ -36,6 +31,12 @@ export class AllPeiComponent implements OnInit {
   public data_update :Pei | any = this.pei_example; // define datos de un elemento a actualizar
   public pei_seleccionado:string="";
 
+  public page: number = 0;
+  public step: number = 5;
+  public maxPages: number = 1;
+  public enumPages: number[] = []
+
+
   async initData() {
     const peis = await firstValueFrom(this.service.MostrarPei(this.idInstitucion))
     this.pei = peis;
@@ -43,7 +44,9 @@ export class AllPeiComponent implements OnInit {
     // sirve para generar los botones en paginacion
     this.enumPages =  Array(this.maxPages).fill(null).map((x,i)=>i).slice(1,this.maxPages + 1) ;
   }
-
+  toDetail(idPei:number){
+    this.router.navigate(['/gestion_pei/pei/detail/',idPei.toString(),this.idInstitucion]);
+  }
   toCreate(){
     this.router.navigate(['/gestion_pei/pei/create/',this.idInstitucion.toString()]);
   }

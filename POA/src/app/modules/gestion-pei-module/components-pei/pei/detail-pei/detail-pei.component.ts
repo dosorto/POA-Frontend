@@ -3,7 +3,7 @@ import { Storage } from 'src/app/_core/global-services/local_storage.service';
 import { PeiService } from '../../../services-pei/pei.service';
 import { Pei } from '../../../interfaces-pei/pei.model';
 import { firstValueFrom } from 'rxjs';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -13,124 +13,61 @@ import Swal from 'sweetalert2';
 })
 export class DetailPeiComponent implements OnInit {
 
-  private pei_example: Pei = {
-    id: 0,
-    name: '',
-    initialYear: '',
-    finalYear: '',
-    isDelete: false,
-    isActive: true,
-    createdAt: new Date(),
-    updatedAt: new Date(),
-    idInstitucion: 1
-  };
-
-  rutaActual = "pei";
-  public peis: Array<Pei> = [];
-
-  public _delete: string = "";
-  public data_update: Pei = this.pei_example;
-
-  public page:number=0;
-  public step:number=10;
-  public maxPages:number=1;
-  public enumPages:number[]=[]
+  public idInstitucion:number = Number(this._route.snapshot.paramMap.get('idInsti'));
+  public id:number = Number(this._route.snapshot.paramMap.get('id'));
+  public pei:Pei | any = {};
 
   constructor(private service:PeiService,
-              private router:Router) { }
+              private router:Router,private _route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.initData();
   }
 
   async initData() {
-    let peis = await firstValueFrom(this.service.getPEI())
-    this.peis = peis;
-    this.maxPages = Math.round(this.peis.length / this.step)  // cantidad de paginas para los botones
-    if ((this.peis.length % this.step) !== 0) { this.maxPages++ }; // si sobran pocos elementos agrega otra pagina
-    this.enumPages = Array(this.maxPages).fill(null).map((x, i) => i).slice(1, this.maxPages);
-    console.log(this.peis.length);
+    this.pei = this.service.getPEI_Id(this.id).subscribe((response:any)=>{
+      this.pei = response.pei;
+      console.log(response);
+    }
+    );
+    console.log(this.pei);
   }
 
-  nextPage() {
-    this.page = this.page + this.step;
+  toList(){
+    this.router.navigate(['/gestion_pei/pei/list/',this.idInstitucion]); //revisar
   }
-  previousPage() {
-    this.page = this.page - this.step;
+  toObjetivos(){
+    this.router.navigate(['/gestion_pei/objetivos/list/',this.id]); // revisar
   }
-  selectPage(numPage: number) {
-    this.page = numPage * this.step;
-  }
-
-  set_id_delete(id: string) {
-    this._delete = id;
-    console.log(this._delete)
+  toUpdate(){
+    this.router.navigate(['/gestion_pei/dimension/update/',this.id,this.idInstitucion]); //revisar
   }
 
-
-  async delete() {
+  async Delete(){
     try{
-    await this.service.eliminarPEI(this._delete).subscribe((res:any)=>{
+    await this.service.eliminarPEI(this.id).subscribe((res:any)=>{
       Swal.fire({
         icon: 'success',
         title: '¡Eliminado con éxito!',
         showConfirmButton: false,
         timer: 1000
       })
-    },(error:any)=>{
-      Swal.fire({
-        icon: 'error',
-        title: 'Ha ocurrido un error: ' + error,
-        showConfirmButton: false,
-        timer: 1000
-      })
     });
-
-   } catch(error){
+    setTimeout(function() {
+      window.location.reload();
+    },1000);
+    this.toList();
+  }catch(error){
     Swal.fire({
       icon: 'error',
       title: '¡Ha ocurrido un error!',
       showConfirmButton: false,
       timer: 1000
     })
-   }
-   setTimeout(function () {
-    window.location.reload();
-  }, 1000);
-  }
-
-  set_update(_peis: Pei) {
-    this.data_update = _peis
-  };
-
-  update(name: string, initialYear: string, finalYear: string): any {
-    console.log("entra a la funcion")
-    const id = this.data_update.id; // ahi se aloja el id
-    // validaciones
-    if ((name === '')) { name = this.data_update.name }
-    if ((initialYear  === '')) { initialYear = this.data_update.initialYear }
-    if ((finalYear === '')) { finalYear = this.data_update.finalYear }
-    try {
-      this.service.updatePEI(name, initialYear, finalYear, id).subscribe((res: any) => {
-        console.log(res);
-
-      }, (error: any) => {
-        console.log(error);
-      });
-      Swal.fire({
-        icon: 'success',
-        title: '¡Actualizado con éxito!',
-        showConfirmButton: false,
-        timer: 2500
-      })
-      setTimeout(function () {
-        window.location.reload();
-      }, 2500);
-    } catch (error) {
-      console.log(error);
-    }
-    setTimeout(function () {
+    setTimeout(function() {
       window.location.reload();
-    }, 1500);
+    },1000);
+  
+  }
   }
 }
