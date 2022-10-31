@@ -23,7 +23,7 @@
                 </div>
             </div>
 
-            <form #Resultado="ngForm" (ngSubmit)="crear_Resultado(Resultado.value.nombre,Resultado.value.descripcion,Resultado.value.idArea)" 
+            <form #Resultado="ngForm" (ngSubmit)="crear_Resultado(Resultado.value.nombre,Resultado.value.descripcion)" 
             id="Create_Resultado">
                 <div class="container">
                     <!-- Campo para el nombre del resultado -->
@@ -43,17 +43,16 @@
                     </div>
                       </div>
                     <!-- Campo para el área -->
-                    <div class="col-md-6 mb-3 mx-2 px-2 row">
+                    <!-- <div class="col-md-6 mb-3 mx-2 px-2 row">
                         <label for="idArea" class="row col-form-label">Área:</label>
                         <select class="form-select w-75" aria-label="Default select example" name="idArea"
-                        [(ngModel)]="area_seleccionada"required>
-                             <!-- [(ngModel)]="area_seleccionado" -->
+                        [(ngModel)]="area_seleccionada" required>
                             <option selected>Seleccione...</option>
                             <ng-container *ngFor="let x of areaList">
                                 <option value="{{x.id}}">{{x.nombre}}</option>
                             </ng-container>
                         </select>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="container">
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">

@@ -96,14 +96,14 @@ const router = RouterModule.forChild([
   {path: 'areas/list/:idObje', component: AllAreaComponentComponent},
 
   // rutas de resultados
-  {path: 'resultados/create', component: CreateResultadoComponentComponent},
+  {path: 'resultados/create/:id', component: CreateResultadoComponentComponent},
   {path: 'resultados/update/:id', component: UpdateResultadoComponentComponent},
   {path: 'resultados/delete/:id', component: DeleteResultadoComponentComponent},
   {path: 'resultados/detail/:id', component: DetailResultadoComponentComponent},
-  {path: 'resultados/list/:idArea', component: AllResultadoComponentComponent},
+  {path: 'resultados/list/:id', component: AllResultadoComponentComponent},
   
   // rutas de indicadores
-  {path: 'indicadores/create', component: CreateIndicadorComponentComponent},
+  {path: 'indicadores/create/:id', component: CreateIndicadorComponentComponent},
   {path: 'indicadores/update/:id', component: UpdateIndicadorComponentComponent},
   {path: 'indicadores/delete/:id', component: DeleteIndicadorComponentComponent},
   {path: 'indicadores/detail/:id', component: DetailIndicadorComponentComponent},

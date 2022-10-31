@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import Swal from 'sweetalert2';
+import { Resultado } from '../../../interfaces-pei/resultado.model';
 import { ResultadosService } from '../../../services-pei/resultados.service'; 
 
 @Component({
@@ -12,12 +13,15 @@ import { ResultadosService } from '../../../services-pei/resultados.service';
 })
 export class CreateResultadoComponentComponent implements OnInit {
 
-  constructor(private resultadosService:ResultadosService, private router: Router) { }
+  errorMessage = '';
+  resultados: Resultado | undefined;
+  
+  constructor(private resultadosService:ResultadosService, private router: Router, private route: ActivatedRoute,) { }
 
   public area_seleccionada:string="";
   areaList: any = []; //Almacena las áreas para mostrarlas en los select
 
-
+  id = Number(this.route.snapshot.paramMap.get('id'));
   ngOnInit(): void {
     this.getArea();
   }
@@ -28,6 +32,12 @@ async getArea(){
   this.resultadosService.getArea().subscribe((data:any) =>this.areaList = data);
 }
 
+getResultado(id: number): void {
+  this.resultadosService.getResultado(id).subscribe({
+    next: resultado => {this.resultados = resultado},
+    error: err => this.errorMessage = err
+  });
+}
 
 public resultado:FormGroup = new FormGroup({
   nombre: new FormControl('',[Validators.required]),
@@ -36,12 +46,12 @@ public resultado:FormGroup = new FormGroup({
 })
 
 onBack(): void {
-  this.router.navigate(['/gestion_pei/resultados/list/:idArea']);
+  this.router.navigate(['/gestion_pei/resultados/list/',this.id]);
 }
   //Método para crear un nuevo resultado
 
-  async crear_Resultado(nombre:string, descripcion:string, idArea:string){
-    await this.resultadosService.crearResultado(nombre,descripcion,parseInt(idArea)).subscribe((res:any)=>{
+  async crear_Resultado(nombre:string, descripcion:string){
+    await this.resultadosService.crearResultado(nombre,descripcion,this.id).subscribe((res:any)=>{
       Swal.fire({
         icon: 'success',
         title: '¡Creado con éxito!',

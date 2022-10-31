@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ResultadosService } from '../../../services-pei/resultados.service';
 @Component({
@@ -9,9 +9,11 @@ import { ResultadosService } from '../../../services-pei/resultados.service';
 })
 export class AllResultadoComponentComponent implements OnInit {
 
-  constructor( private resultadoService:ResultadosService, private router: Router, private toastr: ToastrService) { }
-
+  constructor( private resultadoService:ResultadosService, private router: Router, private toastr: ToastrService,private route: ActivatedRoute) { }
+  id = Number(this.route.snapshot.paramMap.get('id'));
   ngOnInit(): void {
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.mostrar_resultados_idArea(id)
     this.mostrarResultado(),
     this.initData_Area();
     console.log(this.mostrarResultado);
@@ -47,9 +49,11 @@ area_seleccionado:string="";
 /*
 metodos para mostrar
 */
+
+
 async mostrarResultado(){
-  this.resultadoService.getResultados().subscribe((data:any) =>console.log(data));
-  this.resultadoService.getResultados().subscribe((data:any) =>this.resultadoList = data.allResultado);
+  this.resultadoService.getResultado2().subscribe((data:any) =>console.log(data));
+  this.resultadoService.getResultado2().subscribe((data:any) =>this.resultadoList = data);
 }
   
   async initData_Area(){
@@ -60,7 +64,7 @@ async mostrarResultado(){
 
   //por id
   mostrar_resultados_idArea(id: any) {
-    this.resultadoService.mostrar_resultados_id(id).subscribe((response:any) => 
+    this.resultadoService.mostrar_Allresultado_idArea(id).subscribe((response:any) => 
     this.resultadoList = response);
       
   }

@@ -31,7 +31,7 @@
                 </div>
                 
                 <div class="col-4">
-                    <button type="button" class="btn btn-warning" [routerLink]="['/gestion_pei/resultados/create']">
+                    <button type="button" class="btn btn-warning" [routerLink]="['/gestion_pei/resultados/create/',id]">
                         <i class="bi bi-plus-square"></i>
                         <span>
                             Crear Resultado
@@ -65,12 +65,12 @@
                         <td align="right">
                             <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                               <div>
-                                <button text="center" type="button" class="btn btn-secondary col-11 " [routerLink]="['/gestion_pei/resultados/detail/', x.id]">Gestionar</button>
+                                <button text="center" type="button" class="btn btn-secondary col-11 " [routerLink]="['/gestion_pei/resultados/detail/'+x.id]">Gestionar</button>
                             </div>
-                            <div></div>
+                            <!-- <div></div>
                                 <div>
                               <button type="button" class="btn btn-warning col-11" [routerLink]="['/gestion_pei/indicadores/list/'+ x.id]">Indicadores</button> 
-                            </div>
+                            </div> -->
                             </div>
                         </td>
                     </tr>
