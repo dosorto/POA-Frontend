@@ -18,15 +18,14 @@ export class PeiService {
     return this._peis;
   }
 
-  public crearPEI(name: string, initialYear: string, finalYear: string, idInstitucion: number): any {
+  public crearPEI(name: string, initialYear: string, finalYear: string): any {
     const url = environment.servidor + 'PEI/new_PEI';
     const params = new HttpParams({
       fromObject: {
         grant_type: 'password',
         name: name,
         initialYear: initialYear,
-        finalYear: finalYear,
-        idInstitucion: idInstitucion
+        finalYear: finalYear
       }
     });
 

@@ -30,7 +30,6 @@ export class AllPeiComponent implements OnInit {
   token = this.user.token;
   public filter: string = "";
   public _delete: string = "";
-  public data_update: Pei = this.pei_example;
 
   public page: number = 0;
   public step: number = 5;
