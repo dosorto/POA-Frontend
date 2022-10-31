@@ -5,6 +5,7 @@ import { Dimension } from "../interfaces-pei/dimension.model";
 import { Pei } from "../interfaces-pei/pei.model";
 import { map, Observable } from "rxjs";
 import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
+import { response } from "express";
 
 @Injectable({
   providedIn: 'root'
@@ -75,6 +76,9 @@ export class DimensionService {
         return response;
       }))
   }
+  getDimension(idDimension:number) {
+    return this.callHttp.httpGet<Dimension>(`${environment.servidor}dimension/get/`+idDimension.toString());
+  }
 
   getPeiList() {
     return this.callHttp.httpGet<Array<Pei>>(`${environment.servidor}PEI/get_PEI`)
@@ -89,6 +93,7 @@ export class DimensionService {
         return response;
       }))
   }
+
    eliminarDimension(nombre: string):any  {
     const url = environment.servidor + 'dimension/delete';
 
