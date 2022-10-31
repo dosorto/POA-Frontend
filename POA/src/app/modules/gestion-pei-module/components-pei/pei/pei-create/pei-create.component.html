@@ -19,14 +19,14 @@
                 </div>
 
                 <form #Pei="ngForm"
-                    (ngSubmit)="crear_pei(pei.value.name,pei.value.initialYear,pei.value.finalYear,pei.value.idInstitucion)"
-                    id="CreateObjetivo">
+                    (ngSubmit)="crear_pei(pei.value.name,pei.value.initialYear,pei.value.finalYear)"
+                    id="CreatePei">
                     <!-- <div class="col-10">
                 <label for="inputNombre" class="form-label">Nombre:</label>
                 <textarea type="text" class="form-control" id="exampleFormControlTextarea1" rows="2" value="{{objetivo?.nombre}}" disabled>
                 </textarea>
                 </div>
-                 <!-- campo para nombre -->
+                 <-- campo para nombre -->
                     <div class="col-10">
                         <label for="name" class="row col-form-label">Nombre de Pei:</label>
                         <div class="row">
@@ -48,7 +48,7 @@
                 </div> -->
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" (click)='onBack()'>Cerrar</button>
-                        <button type="submit" class="btn btn-warning" [disabled]="pei.invalid">Guardar</button>
+                        <button type="submit" class="btn btn-warning">Guardar</button>
                     </div>
                 </form>
             </div>

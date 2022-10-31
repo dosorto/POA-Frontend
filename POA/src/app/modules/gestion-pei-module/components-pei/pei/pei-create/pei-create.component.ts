@@ -18,8 +18,6 @@ export class PeiCreateComponent implements OnInit {
     //this.initData()
     //this.initData_Institucion()
   }
-  public institucion_seleccionado: string = "";
-  institucionList: any = [];
 
   public pei: FormGroup = new FormGroup({
     name: new FormControl('', [Validators.required]),
@@ -28,8 +26,8 @@ export class PeiCreateComponent implements OnInit {
     idInstitucion: new FormControl('', [Validators.required])
   })
 
-  async crear_pei(name: string, initialYear: string, finalYear: string, idInstitucion: number) {
-    await this.PeiService.crearPEI(name, initialYear, finalYear, idInstitucion).subscribe((res: any) => {
+  async crear_pei(name: string, initialYear: string, finalYear: string) {
+    await this.PeiService.crearPEI(name, initialYear, finalYear).subscribe((res: any) => {
       console.log(res);
       Swal.fire({
         icon: 'success',

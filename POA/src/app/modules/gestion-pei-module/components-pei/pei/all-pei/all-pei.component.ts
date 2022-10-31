@@ -12,25 +12,12 @@ import { Router } from '@angular/router';
 })
 export class AllPeiComponent implements OnInit {
 
-  private pei_example: Pei = {
-    id: 0,
-    name: '',
-    initialYear: new Date(),
-    finalYear: new Date(),
-    idInstitucion: 0,
-    isDelete: false,
-    isActive: true,
-    createdAt: new Date(),
-    updatedAt: new Date(),
-  };
-
   rutaActual = "pei";
   public peis: Array<Pei> = [];
   public user = this.Storage.get_storage("user");
   token = this.user.token;
   public filter: string = "";
   public _delete: string = "";
-  public data_update: Pei = this.pei_example;
 
   public page: number = 0;
   public step: number = 5;
