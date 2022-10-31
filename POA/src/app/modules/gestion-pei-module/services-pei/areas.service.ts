@@ -11,6 +11,7 @@ import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 @Injectable({
   providedIn: 'root'
 })
+
 export class AreasService {
   constructor(private callHttp: CallHttpService, private directHttp: HttpClient) { }
   private _areas: Array<Area> = [];

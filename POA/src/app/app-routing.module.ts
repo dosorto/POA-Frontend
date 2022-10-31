@@ -5,8 +5,7 @@ const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'login'},
   {path: 'login', loadChildren: () => import('./modules/login-module/login.module').then(t => t.LoginModule)},
   {path: 'home', children:[
-  {path: '',loadChildren: () => import('./modules/menu-module/menu.module').then(t => t.MenuModule)}
- 
+    {path: '',loadChildren: () => import('./modules/menu-module/menu.module').then(t => t.MenuModule)}
   ]
   },
   {path: 'gestion_pei', children:[
