@@ -76,7 +76,7 @@ const router = RouterModule.forChild([
   {path: 'pei/detail/:id', component: DetailPeiComponent},
   {path: 'pei/list/:idInsti', component: AllPeiComponent},
   // rutas de dimension
-  {path: 'dimension/create', component: CreateDimensionComponent},
+  {path: 'dimension/create/:idPei', component: CreateDimensionComponent},
   {path: 'dimension/update/:id', component: UpdateDimensionComponent},
   {path: 'dimension/delete/:id', component: DeleteDimensionComponent},
   {path: 'dimension/detail/:id', component: DetailDimensionComponent},
@@ -90,11 +90,11 @@ const router = RouterModule.forChild([
   {path: 'objetivos/list/:idDimen', component: AllObjetivoComponentComponent},
 
   // rutas de areas
-  {path: 'areas/create', component: CreateAreaComponent},
+  {path: 'areas/create/:idObjetivo', component: CreateAreaComponent},
   {path: 'areas/update/:id', component: UpdateAreaComponent},
   {path: 'areas/delete/:id', component: DeleteAreaComponentComponent},
   {path: 'areas/detail/:id', component: DetailAreaComponentComponent},
-  {path: 'areas/list/:idObje', component: AllAreaComponentComponent},
+  {path: 'areas/list/:idObjetivo', component: AllAreaComponentComponent},
 
   // rutas de resultados
   {path: 'resultados/create', component: CreateResultadoComponentComponent},
@@ -161,7 +161,8 @@ const router = RouterModule.forChild([
 CommonModule,
   router,
   MatSelectModule,
-  FormsModule
+  FormsModule,
+  TopBarComponent
   ]
 })
 export class GestionPeiModule { }
