@@ -22,12 +22,11 @@ export class PeiCreateComponent implements OnInit {
   public pei: FormGroup = new FormGroup({
     name: new FormControl('', [Validators.required]),
     initialYear: new FormControl('', [Validators.required]),
-    finalYear: new FormControl('', [Validators.required]),
-    idInstitucion: new FormControl('', [Validators.required])
+    finalYear: new FormControl('', [Validators.required])
   })
 
-  async crear_pei(name: string, initialYear: string, finalYear: string) {
-    await this.PeiService.crearPEI(name, initialYear, finalYear).subscribe((res: any) => {
+  crear_pei(name: string, initialYear: string, finalYear: string) {
+    this.PeiService.crearPEI(name, initialYear, finalYear).subscribe((res: any) => {
       console.log(res);
       Swal.fire({
         icon: 'success',

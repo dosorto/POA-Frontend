@@ -23,9 +23,9 @@ export class PeiService {
     const params = new HttpParams({
       fromObject: {
         grant_type: 'password',
-        name: name,
-        initialYear: initialYear,
-        finalYear: finalYear
+        name,
+        initialYear,
+        finalYear
       }
     });
 

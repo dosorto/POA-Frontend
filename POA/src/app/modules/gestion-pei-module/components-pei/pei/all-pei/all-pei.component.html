@@ -84,56 +84,5 @@
                 </nav>
             </div>
         </div>
-        <!-- tabla dinamica que muestra todos los PEI-->
-        <div class="w-75 m-auto row shadow alturaTabla">
-            <table class="table table-hover g">
-              <thead class="text-center">
-                <tr>
-                    <th class="table-secondary" scope="col">#</th>
-                    <th class="table-secondary" scope="col">PEI</th>
-                    <th class="table-secondary" scope="col">Fecha Inicial</th>
-                    <th class="table-secondary" scope="col">Fecha Final</th>
-                    <th class="table-secondary" scope="col"></th>
-                </tr>
-            </thead>
-                <tbody class="text-center">
-                    <tr *ngFor="let x of peis | peiFiltro:filter | peiPaginacion:step:page; index as i">
-                        <!-- este contador no es id, solo es para enumerar -->
-                        <td>
-                            <ng-container *ngIf="page > 0; else elseNumeracion">
-                                {{i + page + 1}}
-                            </ng-container>
-                            <ng-template #elseNumeracion>
-                                {{i + 1}}
-                            </ng-template>
-                        </td>
-                        <td>{{x.name}}</td>
-                        <td>{{x.initialYear}}</td>
-                        <td>{{x.finalYear}}</td>
-                        <td>
-                          <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                            <button type="button" class="btn btn-secondary" [routerLink]="['/gestion_pei/pei/detail/id']">Gestionar</button>
-                            </div>
-                        </td>
-                    </tr>
-
-                </tbody>
-            </table>
-            <nav aria-label="Page navigation example">
-                <ul class="pagination justify-content-end">
-                    <ng-container>
-                        <li class="page-item" [ngClass]="page === 1 ? 'disable':''"><a class="page-link "
-                                (click)="previousPage()">Anterior</a></li>
-                    </ng-container>
-                    <ng-container *ngFor="let x of enumPages">
-                        <li class="page-item" [ngClass]="(page/step)+1 === x ? 'active':''"><a class="page-link"
-                                (click)="selectPage(x-1)">{{x}}</a></li>
-                    </ng-container>
-                    <ng-container *ngIf="(page <= maxPages + 1)">
-                        <li class="page-item"><a class="page-link " (click)="nextPage()">Siguiente</a></li>
-                    </ng-container>
-                </ul>
-            </nav>
-        </div>
     </div>
 </div>

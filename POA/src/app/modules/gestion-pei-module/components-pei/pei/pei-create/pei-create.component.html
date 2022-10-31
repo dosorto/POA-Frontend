@@ -15,12 +15,12 @@
                     </div>
                     <div class="d-grid gap-2 d-md-flex justify-content-end">
 
+
                     </div>
                 </div>
 
-                <form #Pei="ngForm"
-                    (ngSubmit)="crear_pei(pei.value.name,pei.value.initialYear,pei.value.finalYear)"
-                    id="CreatePei">
+                <form #PeiC="ngForm"
+                    (ngSubmit)="crear_pei(PeiC.value.name,PeiC.value.initialYear,PeiC.value.finalYear)">
                     <!-- <div class="col-10">
                 <label for="inputNombre" class="form-label">Nombre:</label>
                 <textarea type="text" class="form-control" id="exampleFormControlTextarea1" rows="2" value="{{objetivo?.nombre}}" disabled>
@@ -39,7 +39,7 @@
                     </div>
                     <div class="col-10 mb-3">
                         <label for="inputfinalYear" class="form-label">Año Final:</label>
-                        <input type="date" class="form-control" name="finalYear" ngModel required>
+                        <input type="Date" class="form-control" name="finalYear" ngModel required>
                     </div>
                     <!-- <div class="d-grid gap-2 d-md-flex justify-content-end">
                     <button type="button" class="btn btn-secondary" (click)='onBack()'>Cerrar</button> -->
