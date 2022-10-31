@@ -4,7 +4,7 @@ import { AreasService } from '../../../services-pei/areas.service';
 import { Area } from '../../../interfaces-pei/area.model';
 import { Objetivo } from "../../../interfaces-pei/objetivo.model";
 import { firstValueFrom } from 'rxjs';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-all-area-component',
@@ -12,28 +12,30 @@ import { Router } from '@angular/router';
   styleUrls: ['./all-area-component.component.css']
 })
 export class AllAreaComponentComponent implements OnInit {
-  area:Array<Area>=[];
-  listaObjetivos: Array<Objetivo >=[];
-  user = this.Storage.get_storage("user");
-  filter:string=""; // para filtar la tabla
-  pei_seleccionado:string="";
-  objetivo_seleccionado:string="";
-  dimension_seleccionado:string="";
-
-  public page:number=0;
-  public step:number=10;
-  public maxPages:number=1;
-  public enumPages:number[]=[]
-
   constructor(
-    private Storage:Storage, 
+private Storage:Storage, 
               private service:AreasService,
               private router:Router
   ) { }
 
   ngOnInit(): void {
     this.initData();
-  }async initData(){
+  }
+ public area:Array<Area>=[];
+  listaObjetivos: Array<Objetivo >=[];
+  user = this.Storage.get_storage("user");
+        filter:string=""; // para filtar la tabla
+  pei_seleccionado:string="";
+  objetivo_seleccionado:string="";
+  dimension_seleccionado:string="";
+
+  
+  public page:number=0;
+  public step:number=10;
+  public maxPages:number=1;
+  public enumPages:number[]=[]
+
+  async initData(){
     let area = await firstValueFrom(this.service.getArea())
     this.area = area;
     this.maxPages = Math.round(this.area.length / this.step ) + 1  // cantidad de paginas para los botones
