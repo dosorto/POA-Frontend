@@ -21,8 +21,7 @@
                                         d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
                                 </svg>
                             </div>
-                            <button type="button" class="btn btn-warning btn-circle btn-xl" data-bs-toggle="modal"
-                                [routerLink]="['/gestion_pei/pei/create']">
+                            <button type="button" class="btn btn-warning btn-circle btn-xl" (click)="toCreate()" >
                                 <i class="bi bi-plus"></i>
                                 Nuevo PEI
                             </button>
@@ -45,7 +44,7 @@
                         </tr>
                     </thead>
                     <tbody class="text-center">
-                        <tr *ngFor="let x of peis | peiFiltro:filter | peiPaginacion:step:page; index as i">
+                        <tr *ngFor="let x of pei | peiFiltro:filter | peiPaginacion:step:page; index as i">
                             <!-- este contador no es id, solo es para enumerar -->
                             <td>
                                 <ng-container *ngIf="page > 0; else elseNumeracion">
