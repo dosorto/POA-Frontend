@@ -14,7 +14,9 @@ export class CreateObjetivoComponentComponent implements OnInit {
   errorMessage = '';
   objetivos: Objetivo | undefined;
   constructor(private _route: ActivatedRoute,private objetivosService:ObjetivosService,private _router: Router,private toastr: ToastrService) { }
-   id = Number(this._route.snapshot.paramMap.get('id'));
+   
+  id = Number(this._route.snapshot.paramMap.get('id'));
+  
   ngOnInit(): void {
     const id = Number(this._route.snapshot.paramMap.get('id'));
     this.initData()

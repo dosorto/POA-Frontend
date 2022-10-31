@@ -1,9 +1,10 @@
-
+<body style="background-color: #EFF0FD;">
 <!-- Pantalla principal del modulo -->
 <div class="container d-flex align-items-center justify-content-center ">
     <!-- columna completa que agrupa todos los row -->
     <div class="col-12 ">
         <!-- espacio para el titulo, buscador y boton de agregar uno nuevo -->
+        <div class="container shadow rounded border border-dark" style="background-color: white;">
         <div class="w-100 row m-auto">
             <div class="row text-center">
                 <h2 class="l-4">Gestión de Objetivos</h2>
@@ -47,7 +48,7 @@
                     <button type="button" class="btn btn-warning" [routerLink]="['/gestion_pei/objetivos/create/',id]">
                         <i class="bi bi-plus-square"></i>
                         <span>
-                            <p>{{objetivos?.idDimension}}</p>
+                            Crear Objetivos
                         </span>
                     </button>
                 </div>
@@ -59,7 +60,7 @@
                 <thead class="text-center">
                     <tr>
                         <th class="table-secondary" scope="col">#</th>
-                        <th class="table-secondary" scope="col">Nombre</th>
+                        <th align="left" class="table-secondary" scope="col" >Nombre</th>
                         <!-- <th class="table-secondary" scope="col">Descripcion</th>
                         <th class="table-secondary" scope="col">Dimension</th>
                         <th class="table-secondary" scope="col">PEI</th> -->
@@ -85,7 +86,7 @@
                             <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                               <button type="button" class="btn btn-secondary" [routerLink]="['/gestion_pei/objetivos/detail/',x.id]">Gestionar</button>
                                 
-                            </div> -->
+                            </div>
                         </td>
                     </tr>
                    
@@ -111,4 +112,8 @@
                     </ng-container>
                 </ul>
             </nav>
-                
+               </div>
+               </div>
+    </div> 
+</div>
+        </body>
