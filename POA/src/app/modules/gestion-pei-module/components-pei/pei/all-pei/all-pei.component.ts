@@ -47,11 +47,9 @@ export class AllPeiComponent implements OnInit {
   toDetail(idPei:number){
     this.router.navigate(['/gestion_pei/pei/detail/',idPei.toString(),this.idInstitucion]);
   }
-
   toCreate(){
-    this.router.navigate(['/gestion_pei/pei/create/',this.idInstitucion]);
+    this.router.navigate(['/gestion_pei/pei/create/',this.idInstitucion.toString()]);
   }
-
   nextPage() {
     this.page = this.page + this.step;
   }

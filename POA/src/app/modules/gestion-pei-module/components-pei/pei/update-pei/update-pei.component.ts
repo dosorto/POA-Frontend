@@ -58,7 +58,6 @@ export class UpdatePeiComponent implements OnInit {
     console.log(":"+name+":" + ":"+initialYear+":"+finalYear);
      try{
       this.service.updatePEI(name,initialYear,finalYear,this.id,this.idInsti).subscribe((res:any)=>{
-      
       Swal.fire({
         icon: 'success',
         title: '¡Actualizado con éxito!',
