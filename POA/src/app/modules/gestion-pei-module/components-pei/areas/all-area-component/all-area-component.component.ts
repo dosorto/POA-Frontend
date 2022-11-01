@@ -41,7 +41,7 @@ export class AllAreaComponentComponent implements OnInit {
   public enumPages: number[] = []
 
   async initData() {
-    let area = await firstValueFrom(this.service.getArea())
+    let area = await firstValueFrom(this.service.getAreas())
     this.area = area;
     this.maxPages = Math.round(this.area.length / this.step) + 1  // cantidad de paginas para los botones
     if ((this.area.length % this.step) !== 0) { this.maxPages++ }; // si sobran pocos elementos agrega otra pagina
