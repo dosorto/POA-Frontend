@@ -51,7 +51,7 @@ export class AllDimensionComponent implements OnInit {
     //obtiene todos los peis para dejarlos en el select
   }
   toDetail(idDimension:number){
-    this.router.navigate(['/gestion_pei/dimension/detail/',idDimension.toString(),this.idPei]);
+    this.router.navigate(['/gestion_pei/dimension/detail/',idDimension.toString()]);
   }
   toCreate(){
     this.router.navigate(['/gestion_pei/dimension/create/',this.idPei.toString()]);
