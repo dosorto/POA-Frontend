@@ -20,7 +20,7 @@ import { DetailRolComponent } from './components/roles/detail-rol/detail-rol.com
 import { CreateRolComponent } from './components/roles/create-rol/create-rol.component';
 import { UpdateRolComponent } from './components/roles/update-rol/update-rol.component';
 import { AllRolComponent } from './components/roles/all-rol/all-rol.component';
-import { AdministracionComponent } from './administracion/administracion.component';
+import { AdministracionComponent } from './administracion.component';
 
 
 
