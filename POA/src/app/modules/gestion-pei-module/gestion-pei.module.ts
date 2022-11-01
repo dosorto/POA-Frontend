@@ -71,7 +71,7 @@ const router = RouterModule.forChild([
   {path: '', component: GestionPeisComponent},
   // rutas de pei
   {path: 'pei/create/:idInsti', component: PeiCreateComponent},
-  {path: 'pei/update/:id/:ïdInsti', component: UpdatePeiComponent},
+  {path: 'pei/update/:id/:idInsti', component: UpdatePeiComponent},
   {path: 'pei/delete/:id', component: DeletePeiComponent},
   {path: 'pei/detail/:id/:idInsti', component: DetailPeiComponent},
   {path: 'pei/list/:idInsti', component: AllPeiComponent},
@@ -91,9 +91,9 @@ const router = RouterModule.forChild([
 
   // rutas de areas
   {path: 'areas/create/:idObjetivo', component: CreateAreaComponent},
-  {path: 'areas/update/:id', component: UpdateAreaComponent},
+  {path: 'areas/update/:id/:idObjetivo', component: UpdateAreaComponent},
   {path: 'areas/delete/:id', component: DeleteAreaComponentComponent},
-  {path: 'areas/detail/:id', component: DetailAreaComponentComponent},
+  {path: 'areas/detail/:id/:idObjetivo', component: DetailAreaComponentComponent},
   {path: 'areas/list/:idObjetivo', component: AllAreaComponentComponent},
 
   // rutas de resultados
