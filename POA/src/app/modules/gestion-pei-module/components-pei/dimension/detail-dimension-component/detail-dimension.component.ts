@@ -46,9 +46,10 @@ export class DetailDimensionComponent implements OnInit {
   toUpdate(){
     this.router.navigate(['/gestion_pei/dimension/update/',this.id,this.idPei]);
   }
-  async Delete(){
+
+async Delete(){
     try{
-    await this.service.eliminarDimension(this.id.toString()).subscribe((res:any)=>{
+    await this.service.eliminarDimension(this.id).subscribe((res:any)=>{
       Swal.fire({
         icon: 'success',
         title: '¡Eliminado con éxito!',

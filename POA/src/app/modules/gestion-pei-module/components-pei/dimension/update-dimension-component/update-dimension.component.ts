@@ -43,9 +43,12 @@ export class UpdateDimensionComponent implements OnInit {
   Update():any{
    let nombre = this.nombre;
    let descripcion = this.descripcion
+   console.log(":"+nombre+":" + ":"+descripcion);
     // validaciones
    if((nombre === '')){nombre = this.dimension.nombre}
    if((descripcion === '')){descripcion = this.dimension.descripcion}
+
+   console.log(":"+nombre+":" + ":"+descripcion);
     try{
      this.service.updateDimension(nombre,descripcion,this.id,this.idPei).subscribe((res:any)=>{
      

@@ -92,7 +92,7 @@ const router = RouterModule.forChild([
   {path: 'areas/create/:idObjetivo', component: CreateAreaComponent},
   {path: 'areas/update/:id', component: UpdateAreaComponent},
   {path: 'areas/delete/:id', component: DeleteAreaComponentComponent},
-  {path: 'areas/detail/:id/:idObjetivo', component: DetailAreaComponentComponent},
+  {path: 'areas/detail/:id', component: DetailAreaComponentComponent},
   {path: 'areas/list/:idObjetivo', component: AllAreaComponentComponent},
 
   // rutas de resultados
