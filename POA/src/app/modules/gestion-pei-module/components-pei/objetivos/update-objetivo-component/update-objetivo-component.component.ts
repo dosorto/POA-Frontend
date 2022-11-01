@@ -14,7 +14,17 @@ import { ObjetivosService } from '../../../services-pei/objetivos.service';
 })
 export class UpdateObjetivoComponentComponent implements OnInit {
   errorMessage = '';
-  objetivo: Objetivo | undefined;
+  // public objetivo: Objetivo | any = {}
+
+  public idDimension = Number(this._route.snapshot.paramMap.get('idDimension'));
+  
+  //id:Number = Number(this._route.snapshot.paramMap.get('id'));
+   id=Number(this._route.snapshot.paramMap.get('id'));
+   public objetivoss:Objetivo | any = {};
+  public nombre:string='';
+  public descripcion:string='';
+  //public id:number = Number(this._route.snapshot.paramMap.get('id'));
+  
 
   private objetivo_example :Objetivo={
     id: 0,
@@ -53,21 +63,23 @@ public data_update: Objetivo=this.objetivo_example;
 
 constructor( private _route: ActivatedRoute, private _router: Router, private ObjetivoService:ObjetivosService) { }
 
-
+  
   ngOnInit(): void {
+    
     console.log(this.data_update.dimension)
     const id = Number(this._route.snapshot.paramMap.get('id'));
     console.log("aqui ")
+    console.log("aqui esta el id de dimension",this.idDimension)
     console.log(id)
     if (id) {
       this.getObjetivoss(id);  
     }
-    console.log(this.objetivo?.id)
+    console.log(this.objetivoss?.id)
   }
 
   getObjetivoss(id: number): void {
     this.ObjetivoService.getObjetivo(id).subscribe({
-      next: objetivo => {this.objetivo = objetivo},
+      next: objetivo => {this.objetivoss = objetivo},
       error: err => this.errorMessage = err
     });
   }
@@ -102,44 +114,41 @@ constructor( private _route: ActivatedRoute, private _router: Router, private Ob
   
 
 
-  set_update(_objetivos: Objetivo){
-    this.data_update = _objetivos
-    console.log(this.data_update)
-  };
+  toDetail(){
+    this._router.navigate(['/gestion_pei/objetivos/detail/',this.id,this.idDimension]);
+  }
   
-  
-  update(nombre:string,descripcion:string){
-    const id = this.data_update.id; // ahi se aloja el id
-    // validaciones
-   if((nombre === '')){nombre = this.data_update.nombre}
-   if((descripcion === '')){descripcion = this.data_update.descripcion}
-   //  if((idArea === '')){idArea= this.data_update.idArea.toString()}
-  //  if((idDimension === '')){idDimension = this.data_update.idDimension.toString()}
-  //  if((idObjetivos === '')){idObjetivos = this.data_update.idObjetivos.toString()}
-  //  if((idPei === '')){idPei = this.data_update.idPei.toString()}
-    try{
-    this.ObjetivoService.updateObjetivo(nombre,id,descripcion).subscribe((res:any)=>{
-      console.log(res);
+  Update():any{
+    let nombre = this.nombre;
+    let descripcion = this.descripcion;
+    console.log(":"+nombre+":" + ":"+descripcion);
+     // validaciones
+    if((nombre === '')){nombre = this.objetivoss.nombre}
+    if((descripcion === '')){descripcion = this.objetivoss.descripcion}
+ 
+    console.log(":"+nombre+":" + ":"+descripcion);
+     try{
+      this.ObjetivoService.updateResultado(nombre,descripcion,this.id,this.idDimension).subscribe((res:any)=>{
+      
       Swal.fire({
         icon: 'success',
         title: '¡Actualizado con éxito!',
         showConfirmButton: false,
         timer: 2500
       })
+     },(error:any)=>{
       
-    },(error:any)=>{
-      
-    });
-    
+     });
+    this.toDetail();
+     
    } catch(error){
      console.log(error);
-     console.log(error);
-      Swal.fire({
-       icon: 'error',
-       title: 'Ha ocurrido un error',
-       showConfirmButton: false,
-       timer: 2500
-      }) 
+     Swal.fire({
+      icon: 'error',
+      title: 'Ha ocurrido un error',
+      showConfirmButton: false,
+      timer: 2500
+    })
    }
    
   //  setTimeout(function() {

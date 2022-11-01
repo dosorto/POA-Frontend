@@ -84,7 +84,7 @@
                             <td align="left">{{x.pei.name}}</td>  -->
                         <td>
                             <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                              <button type="button" class="btn btn-secondary" [routerLink]="['/gestion_pei/objetivos/detail/',x.id]">Gestionar</button>
+                              <button type="button" class="btn btn-secondary" (click)="toDetail(x.id)">Gestionar</button>
                                 
                             </div>
                         </td>

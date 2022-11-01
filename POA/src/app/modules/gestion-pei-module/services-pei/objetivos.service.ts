@@ -106,7 +106,7 @@ export class ObjetivosService {
 
   
 // crear objetivos
-public crearObjetivo (nombre:string,descripcion:string,idDimension:number):any{
+    public crearObjetivo (nombre:string,descripcion:string,idDimension:number):any{
   const url = environment.servidor + 'objetivos/crear';
 
   const params = new HttpParams({
@@ -127,31 +127,75 @@ public crearObjetivo (nombre:string,descripcion:string,idDimension:number):any{
   }
 
 //
+updateResultado(nombre: string, descripcion:string, id:number, idDimension:number):any {
+  const url = environment.servidor + 'objetivos/actualizar';
 
-
-
-  updateObjetivo(nombre: string,id:Number,descripcion:string):any {
-    const url = environment.servidor + 'objetivos/actualizar';
-
-    const params = new HttpParams({
-      fromObject: {
-        grant_type: 'password',
-        nombre: nombre
-      }
-    });
-
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/x-www-form-urlencoded'
-      })
-    };
-    //return this.directHttp.put(url, params, httpOptions);
-    this.directHttp.put(url,{nombre:nombre,id:id,descripcion:descripcion}).subscribe((response:any)=>
-    {
-      console.log(response);
-      return response;
+  const params = new HttpParams({
+    fromObject: {
+      grant_type: 'password',
+      nombre: nombre,
+      descripcion:descripcion
+    }
+  });
+  const httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/x-www-form-urlencoded'
     })
-  }
+  };
+  //return this.directHttp.put(url, params, httpOptions);
+  return this.directHttp.put(url,{nombre:nombre,descripcion:descripcion,id:id,idDimension:idDimension})
+}
 
+// actualizarDimension(nombre: string, descripcion:string, id:string):any {
+//   const url = environment.servidor + 'objetivos/actualizar';
+
+//   const params = new HttpParams({
+//     fromObject: {
+//       grant_type: 'password',
+//       nombre: nombre,
+//       descripcion:descripcion
+//     }
+//   });
+
+//   const httpOptions = {
+//     headers: new HttpHeaders({
+//       'Content-Type': 'application/x-www-form-urlencoded'
+//     })
+//   };
+//   //return this.directHttp.put(url, params, httpOptions);
+//   this.directHttp.put(url,{nombre:nombre,descripcion:descripcion,id:id}).subscribe((response:any)=>
+//   {
+//     console.log(response);
+//     return response;
+//   })
+// };
+
+  // updateObjetivo(nombre: string,id:Number,descripcion:string):any {
+  //   const url = environment.servidor + 'objetivos/actualizar';
+
+  //   const params = new HttpParams({
+  //     fromObject: {
+  //       grant_type: 'password',
+  //       nombre: nombre
+  //     }
+  //   });
+
+  //   const httpOptions = {
+  //     headers: new HttpHeaders({
+  //       'Content-Type': 'application/x-www-form-urlencoded'
+  //     })
+  //   };
+  //   //return this.directHttp.put(url, params, httpOptions);
+  //   this.directHttp.put(url,{nombre:nombre,id:id,descripcion:descripcion}).subscribe((response:any)=>
+  //   {
+  //     console.log(response);
+  //     return response;
+  //   })
+  // }
+
+  getObjetivo3(idDimension:number) {
+    return this.callHttp.httpGet<Dimension>(`${environment.servidor}objetivos/get-all/`+idDimension.toString());
+  }
   
 }
+

@@ -18,25 +18,26 @@ export class AllObjetivoComponentComponent implements OnInit {
   idfun(){
     return this.id
   }
+  public idDimension = Number(this._route.snapshot.paramMap.get('idDimension'));
   id = Number(this._route.snapshot.paramMap.get('id'));
   ngOnInit(): void {
-    const id = Number(this._route.snapshot.paramMap.get('id'));
+    const idDimension = Number(this._route.snapshot.paramMap.get('idDimension'));
     // console.log("aqui ")
     // console.log(id)
     // if (id) {
       // this.getObjetivoss(id);  
     // }
     console.log(this.objetivos?.id)
-    this.mostrarObjetivo(id),
+    this.mostrarObjetivo(idDimension),
     this.initData_Dimension();
     console.log(this.mostrarObjetivo);
     this.objetivosService.getObjetivos().subscribe((response:any) =>console.log(response))
 
     
     console.log("aqui ")
-    console.log(id)
-    if (id) {
-      this.getObjetivoss(id);  
+    console.log(idDimension)
+    if (idDimension) {
+      this.getObjetivoss(idDimension);  
     }
     console.log("que onda",this.objetivos?.idDimension)
     console.log(this.objetivos?.nombre)
@@ -96,6 +97,10 @@ export class AllObjetivoComponentComponent implements OnInit {
     // onBack(): void {
     //   this._router.navigate(['/gestion_pei/objetivos/list']);
     // }
+
+    toDetail(id:number){
+      this.router.navigate(['/gestion_pei/objetivos/detail/',id.toString(),this.idDimension]);
+    }
 
     
   

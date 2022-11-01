@@ -15,7 +15,8 @@ export class DetailObjetivoComponentComponent implements OnInit {
   objetivo: Objetivo | undefined;
   _delete:any;
    constructor(private _route: ActivatedRoute, private _router: Router, private ObjetivoService:ObjetivosService) { }
-    ide = Number(this._route.snapshot.paramMap.get('id'));
+    id = Number(this._route.snapshot.paramMap.get('id'));
+    public idDimension = Number(this._route.snapshot.paramMap.get('idDimension'));
   ngOnInit(){
     const id = Number(this._route.snapshot.paramMap.get('id'));
     console.log("aqui ")
@@ -70,6 +71,9 @@ export class DetailObjetivoComponentComponent implements OnInit {
         
       // window.location.reload();
       
+    }
+    toUpdate(){
+      this._router.navigate(['/gestion_pei/objetivos/update/',this.id,this.idDimension]);
     }
     
   }

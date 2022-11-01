@@ -15,7 +15,7 @@ export class CreateObjetivoComponentComponent implements OnInit {
   objetivos: Objetivo | undefined;
   constructor(private _route: ActivatedRoute,private objetivosService:ObjetivosService,private _router: Router,private toastr: ToastrService) { }
    
-  id = Number(this._route.snapshot.paramMap.get('id'));
+  idDimension = Number(this._route.snapshot.paramMap.get('idDimension'));
   
   ngOnInit(): void {
     const id = Number(this._route.snapshot.paramMap.get('id'));
@@ -60,7 +60,7 @@ export class CreateObjetivoComponentComponent implements OnInit {
   }
   
   async crear_Objetivo(nombre:string,descripcion:string){
-    await this.objetivosService.crearObjetivo(nombre,descripcion,this.id).subscribe((res:any)=>{
+    await this.objetivosService.crearObjetivo(nombre,descripcion,this.idDimension).subscribe((res:any)=>{
       Swal.fire({
         icon: 'success',
         title: '¡Creado con éxito!',
@@ -79,6 +79,6 @@ export class CreateObjetivoComponentComponent implements OnInit {
     // this.onBack()
   }
   onBack(): void {
-    this._router.navigate(['/gestion_pei/objetivos/list/',this.id]);
+    this._router.navigate(['/gestion_pei/objetivos/list/',this.idDimension]);
   }
 }
