@@ -18,6 +18,7 @@ export class PeiCreateComponent implements OnInit {
   }
 
   public idInstitucion: number = Number(this._route.snapshot.paramMap.get('idInstitucion'));
+
   toList() {
     this.router.navigate(['/gestion_pei/pei/list/', this.idInstitucion]);
   }
@@ -43,7 +44,7 @@ export class PeiCreateComponent implements OnInit {
     //this.onBack()
   }
   //onBack(): void {
-    //this._route.navigate(['/gestion_pei/pei/list/idInsti']);
+  //this._route.navigate(['/gestion_pei/pei/list/idInsti']);
   //}
 
 }

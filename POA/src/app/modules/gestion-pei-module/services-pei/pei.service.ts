@@ -77,13 +77,12 @@ export class PeiService {
 
 
   MostrarPei(idInsti:number){
-    return this.callHttp.httpGet<Array<Pei>>(`${environment.servidor}/PEI/peiById/` + idInsti.toString())
+    return this.callHttp.httpGet<Array<Pei>>(`${environment.servidor}PEI/peiById/` + idInsti.toString())
       .pipe(map(response => {
         this._peis = response;
         return response;
       }))
   }
-
 
   eliminarPEI(id: number): any {
     const url = environment.servidor + 'PEI/disablePEI';

@@ -70,10 +70,10 @@ const router = RouterModule.forChild([
   // rutas principal
   {path: '', component: GestionPeisComponent},
   // rutas de pei
-  {path: 'pei/create/idInsti', component: PeiCreateComponent},
-  {path: 'pei/update/:id', component: UpdatePeiComponent},
+  {path: 'pei/create/:idInsti', component: PeiCreateComponent},
+  {path: 'pei/update/:id/:ïdInsti', component: UpdatePeiComponent},
   {path: 'pei/delete/:id', component: DeletePeiComponent},
-  {path: 'pei/detail/:id', component: DetailPeiComponent},
+  {path: 'pei/detail/:id/:idInsti', component: DetailPeiComponent},
   {path: 'pei/list/:idInsti', component: AllPeiComponent},
   // rutas de dimension
   {path: 'dimension/create/:idPei', component: CreateDimensionComponent},

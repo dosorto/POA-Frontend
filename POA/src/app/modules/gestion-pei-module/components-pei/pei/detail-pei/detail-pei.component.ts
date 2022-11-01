@@ -13,7 +13,7 @@ import Swal from 'sweetalert2';
 })
 export class DetailPeiComponent implements OnInit {
 
-  public idInstitucion:number = Number(this._route.snapshot.paramMap.get('idInsti'));
+  public idInsti:number = Number(this._route.snapshot.paramMap.get('idInsti'));
   public id:number = Number(this._route.snapshot.paramMap.get('id'));
   public pei:Pei | any = {};
 
@@ -34,13 +34,11 @@ export class DetailPeiComponent implements OnInit {
   }
 
   toList(){
-    this.router.navigate(['/gestion_pei/pei/list/',this.idInstitucion]); //revisar
-  }
-  toObjetivos(){
-    this.router.navigate(['/gestion_pei/objetivos/list/',this.id]); // revisar
+   
+    this.router.navigate(['/gestion_pei/pei/list/',this.pei?.idInstitucion]); //revisar
   }
   toUpdate(){
-    this.router.navigate(['/gestion_pei/dimension/update/',this.id,this.idInstitucion]); //revisar
+    this.router.navigate(['/gestion_pei/pei/update/',this.id,this.idInsti]); //revisar
   }
 
   async Delete(){
