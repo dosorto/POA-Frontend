@@ -45,7 +45,7 @@
                 </div>
                 
                 <div class="col-4"  >
-                    <button type="button" class="btn btn-warning" [routerLink]="['/gestion_pei/objetivos/create/',id]">
+                    <button type="button" class="btn btn-warning" (click)="toCreate()">
                         <i class="bi bi-plus-square"></i>
                         <span>
                             Crear Objetivos

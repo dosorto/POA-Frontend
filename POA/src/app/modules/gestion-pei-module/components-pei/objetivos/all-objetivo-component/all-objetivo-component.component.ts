@@ -102,6 +102,9 @@ export class AllObjetivoComponentComponent implements OnInit {
       this.router.navigate(['/gestion_pei/objetivos/detail/',id.toString(),this.idDimension]);
     }
 
+    toCreate(){
+      this.router.navigate(['/gestion_pei/objetivos/create/',this.idDimension.toString()]);
+    }
     
   
 }

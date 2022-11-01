@@ -67,7 +67,9 @@ export class DetailObjetivoComponentComponent implements OnInit {
       // setTimeout(function() {
       //   window.location.reload();
       // },3000);
-      
+      setTimeout(function() {
+        window.location.reload();
+      },100);
         
       // window.location.reload();
       
