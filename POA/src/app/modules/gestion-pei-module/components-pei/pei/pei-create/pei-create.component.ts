@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PeiService } from '../../../services-pei/pei.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -12,21 +12,20 @@ import Swal from 'sweetalert2';
 })
 export class PeiCreateComponent implements OnInit {
 
-  constructor(private PeiService: PeiService, private _router: Router, private toastr: ToastrService) { }
+  constructor(private Storage: Storage, private PeiService: PeiService, private _route: ActivatedRoute, private router: Router,) { }
 
   ngOnInit(): void {
-    //this.initData()
-    //this.initData_Institucion()
   }
 
-  public pei: FormGroup = new FormGroup({
-    name: new FormControl('', [Validators.required]),
-    initialYear: new FormControl('', [Validators.required]),
-    finalYear: new FormControl('', [Validators.required])
-  })
+  public idInstitucion: number = Number(this._route.snapshot.paramMap.get('idInstitucion'));
 
-  crear_pei(name: string, initialYear: string, finalYear: string) {
-    this.PeiService.crearPEI(name, initialYear, finalYear).subscribe((res: any) => {
+  toList() {
+    this.router.navigate(['/gestion_pei/pei/list/', this.idInstitucion]);
+  }
+
+  async crear_pei(name: string, initialYear: string, finalYear: string) {
+    console.log(name.toString(), initialYear, finalYear, this.idInstitucion);
+    await this.PeiService.crearPEI(name, initialYear, finalYear, this.idInstitucion).subscribe((res: any) => {
       console.log(res);
       Swal.fire({
         icon: 'success',
@@ -42,10 +41,10 @@ export class PeiCreateComponent implements OnInit {
         timer: 2500
       })
     });
-    this.onBack()
+    //this.onBack()
   }
-  onBack(): void {
-    this._router.navigate(['/gestion_pei/pei/list/idInsti']);
-  }
+  //onBack(): void {
+  //this._route.navigate(['/gestion_pei/pei/list/idInsti']);
+  //}
 
 }
