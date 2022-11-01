@@ -82,24 +82,24 @@ const router = RouterModule.forChild([
   {path: 'dimension/list/:idPei', component: AllDimensionComponent},
 
   // rutas de objetivos
-  {path: 'objetivos/create', component: CreateObjetivoComponentComponent},
-  {path: 'objetivos/update/:id', component: UpdateObjetivoComponentComponent},
+  {path: 'objetivos/create/:idDimension', component: CreateObjetivoComponentComponent},
+  {path: 'objetivos/update/:id/:idDimension', component: UpdateObjetivoComponentComponent},
   {path: 'objetivos/delete/:id', component: DeleteObjetivoComponentComponent},
-  {path: 'objetivos/detail/:id', component: DetailObjetivoComponentComponent},
-  {path: 'objetivos/list/:idDimen', component: AllObjetivoComponentComponent},
+  {path: 'objetivos/detail/:id/:idDimension', component: DetailObjetivoComponentComponent},
+  {path: 'objetivos/list/:idDimension', component: AllObjetivoComponentComponent},
 
   // rutas de areas
-  {path: 'areas/create/:idObjetivo', component: CreateAreaComponent},
-  {path: 'areas/update/:id/:idObjetivo', component: UpdateAreaComponent},
+  {path: 'areas/create', component: CreateAreaComponent},
+  {path: 'areas/update/:id', component: UpdateAreaComponent},
   {path: 'areas/delete/:id', component: DeleteAreaComponentComponent},
-  {path: 'areas/detail/:id/:idObjetivo', component: DetailAreaComponentComponent},
-  {path: 'areas/list/:idObjetivo', component: AllAreaComponentComponent},
+  {path: 'areas/detail/:id', component: DetailAreaComponentComponent},
+  {path: 'areas/list/:idObje', component: AllAreaComponentComponent},
 
   // rutas de resultados
-  {path: 'resultados/create', component: CreateResultadoComponentComponent},
-  {path: 'resultados/update/:id', component: UpdateResultadoComponentComponent},
+  {path: 'resultados/create/:idArea', component: CreateResultadoComponentComponent},
+  {path: 'resultados/update/:id/:idArea', component: UpdateResultadoComponentComponent},
   {path: 'resultados/delete/:id', component: DeleteResultadoComponentComponent},
-  {path: 'resultados/detail/:id', component: DetailResultadoComponentComponent},
+  {path: 'resultados/detail/:id/:idArea', component: DetailResultadoComponentComponent},
   {path: 'resultados/list/:idArea', component: AllResultadoComponentComponent},
   
   // rutas de indicadores

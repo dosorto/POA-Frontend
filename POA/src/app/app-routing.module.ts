@@ -11,6 +11,7 @@ const routes: Routes = [
   {path: 'gestion_pei', children:[
     {path: '', loadChildren: () => import('./modules/gestion-pei-module/gestion-pei.module').then(t=>t.GestionPeiModule)}
   ]}
+  
 ];
 
 @NgModule({
