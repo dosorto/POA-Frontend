@@ -22,6 +22,8 @@ export class DetailResultadoComponentComponent implements OnInit {
                 private router: Router, 
                 private resultadosService:ResultadosService) { }
                 ide = Number(this.route.snapshot.paramMap.get('id'));
+                id = Number(this.route.snapshot.paramMap.get('id'));
+    public idArea = Number(this.route.snapshot.paramMap.get('idArea'));
                 ngOnInit(){
                   const id = Number(this.route.snapshot.paramMap.get('id'));
                   console.log("aqui ")
@@ -53,6 +55,7 @@ export class DetailResultadoComponentComponent implements OnInit {
                     console.log(this._delete)
                   }
               
+              
                   // metodos para eliminar
                   async delete() {
                     
@@ -72,13 +75,16 @@ export class DetailResultadoComponentComponent implements OnInit {
                       
                     })
                     this.onBackGestion();
-                    // setTimeout(function() {
-                    //   window.location.reload();
-                    // },3000);
+                    setTimeout(function() {
+                      window.location.reload();
+                    },100);
                     
                       
                     // window.location.reload();
                     
+                  }
+                  toUpdate(){
+                    this.router.navigate(['/gestion_pei/resultados/update/',this.id,this.idArea]);
                   }
 
                 }

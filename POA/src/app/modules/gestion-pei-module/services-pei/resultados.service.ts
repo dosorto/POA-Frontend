@@ -50,7 +50,9 @@ export class ResultadosService {
       }))
   }
   
- 
+  getResultadoss(id :number) {
+    return this.callHttp.httpGet<Resultado>(`${environment.servidor}resultados/getResultado/`+id.toString());
+  } 
 
   getResultado(id: number): Observable<Resultado | undefined> {
     return this.getResultado2()
@@ -63,12 +65,8 @@ export class ResultadosService {
 
     return this.http.get<Resultado[]>(environment.servidor + `resultados/get-all`)
   }
-  // getResultadoId(id: number): Observable<Resultado | undefined> {
-  //   return this.getResultados()
-  //     .pipe(
-  //       map((resultado: Resultado[]) => resultado.find(p => p.id === id))
-  //     );
-  // }
+  
+  
 
   getAreas()  {
     return this.callHttp.httpGet<Array<Area>>(environment.servidor + `area/get_All`)
@@ -124,8 +122,6 @@ export class ResultadosService {
     })
   }
 
-  
-
   //Función para crear un resultado
   public crearResultado (nombre:string, descripcion:string, idArea:number):any{
     const url = environment.servidor + 'resultados/crear';
@@ -149,5 +145,48 @@ export class ResultadosService {
     }
   
 
+    actualizarResultado(nombre: string, descripcion:string, id:string):any {
+      const url = environment.servidor + 'resultados/updateResultado';
+  
+      const params = new HttpParams({
+        fromObject: {
+          grant_type: 'password',
+          nombre: nombre,
+          descripcion:descripcion
+        }
+      });
+  
+      const httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/x-www-form-urlencoded'
+        })
+      };
+      //return this.directHttp.put(url, params, httpOptions);
+      this.directHttp.put(url,{nombre:nombre,descripcion:descripcion,id:id}).subscribe((response:any)=>
+      {
+        console.log(response);
+        return response;
+      })
+    };
+    // alternativa a update
+   updateResultado(nombre: string, descripcion:string, id:number, idArea:number):any {
+    const url = environment.servidor + 'resultados/updateResultado/';
+
+    const params = new HttpParams({
+      fromObject: {
+        grant_type: 'password',
+        nombre: nombre,
+        descripcion:descripcion
+      }
+    });
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/x-www-form-urlencoded'
+      })
+    };
+    //return this.directHttp.put(url, params, httpOptions);
+    return this.directHttp.put(url,{nombre:nombre,descripcion:descripcion,id:id,idArea:idArea})
+  }
 
 }

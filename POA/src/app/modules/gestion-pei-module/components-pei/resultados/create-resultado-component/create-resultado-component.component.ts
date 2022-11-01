@@ -22,6 +22,7 @@ export class CreateResultadoComponentComponent implements OnInit {
   areaList: any = []; //Almacena las áreas para mostrarlas en los select
 
   id = Number(this.route.snapshot.paramMap.get('id'));
+  idArea = Number(this.route.snapshot.paramMap.get('idArea'));
   ngOnInit(): void {
     this.getArea();
   }
@@ -46,12 +47,12 @@ public resultado:FormGroup = new FormGroup({
 })
 
 onBack(): void {
-  this.router.navigate(['/gestion_pei/resultados/list/',this.id]);
+  this.router.navigate(['/gestion_pei/resultados/list/',this.idArea]);
 }
   //Método para crear un nuevo resultado
 
   async crear_Resultado(nombre:string, descripcion:string){
-    await this.resultadosService.crearResultado(nombre,descripcion,this.id).subscribe((res:any)=>{
+    await this.resultadosService.crearResultado(nombre,descripcion,this.idArea).subscribe((res:any)=>{
       Swal.fire({
         icon: 'success',
         title: '¡Creado con éxito!',
@@ -72,4 +73,5 @@ onBack(): void {
     });
     
   }
+  
 }

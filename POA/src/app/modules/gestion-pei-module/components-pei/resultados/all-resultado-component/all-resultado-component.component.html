@@ -1,4 +1,5 @@
-<body style="background-color: #EFF0FD;">
+<top-bar></top-bar>
+<body class="justify-content-center abs-center mt-5 pt-5" style="background-color: #EFF0FD;">
 
 <!-- Pantalla principal del modulo -->
 <div class="container d-flex align-items-center justify-content-center ">
@@ -31,7 +32,7 @@
                 </div>
                 
                 <div class="col-4">
-                    <button type="button" class="btn btn-warning" [routerLink]="['/gestion_pei/resultados/create/',id]">
+                    <button type="button" class="btn btn-warning" (click)="toCreate()">
                         <i class="bi bi-plus-square"></i>
                         <span>
                             Crear Resultado
@@ -62,10 +63,10 @@
                         </td>
                         
                             <td align="left">{{x.nombre}}</td>
-                        <td align="right">
+                        <td align="center">
                             <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                               <div>
-                                <button text="center" type="button" class="btn btn-secondary col-11 " [routerLink]="['/gestion_pei/resultados/detail/'+x.id]">Gestionar</button>
+                                <button text="center" type="button" class="btn btn-secondary col-11 " (click)="toDetail(x.id)">Gestionar</button>
                             </div>
                             <!-- <div></div>
                                 <div>

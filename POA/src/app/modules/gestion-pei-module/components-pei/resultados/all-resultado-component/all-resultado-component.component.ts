@@ -11,9 +11,10 @@ export class AllResultadoComponentComponent implements OnInit {
 
   constructor( private resultadoService:ResultadosService, private router: Router, private toastr: ToastrService,private route: ActivatedRoute) { }
   id = Number(this.route.snapshot.paramMap.get('id'));
+  idArea = Number(this.route.snapshot.paramMap.get('idArea'));
   ngOnInit(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.mostrar_resultados_idArea(id)
+    const idArea = Number(this.route.snapshot.paramMap.get('idArea'));
+    this.mostrar_resultados_idArea(idArea)
     this.mostrarResultado(),
     this.initData_Area();
     console.log(this.mostrarResultado);
@@ -67,6 +68,14 @@ async mostrarResultado(){
     this.resultadoService.mostrar_Allresultado_idArea(id).subscribe((response:any) => 
     this.resultadoList = response);
       
+  }
+
+  toDetail(id:number){
+    this.router.navigate(['/gestion_pei/resultados/detail/',id.toString(),this.idArea]);
+  }
+
+  toCreate(){
+    this.router.navigate(['/gestion_pei/resultados/create/',this.idArea.toString()]);
   }
 
 }

@@ -96,11 +96,11 @@ const router = RouterModule.forChild([
   {path: 'areas/list/:idObje', component: AllAreaComponentComponent},
 
   // rutas de resultados
-  {path: 'resultados/create/:id', component: CreateResultadoComponentComponent},
-  {path: 'resultados/update/:id', component: UpdateResultadoComponentComponent},
+  {path: 'resultados/create/:idArea', component: CreateResultadoComponentComponent},
+  {path: 'resultados/update/:id/:idArea', component: UpdateResultadoComponentComponent},
   {path: 'resultados/delete/:id', component: DeleteResultadoComponentComponent},
-  {path: 'resultados/detail/:id', component: DetailResultadoComponentComponent},
-  {path: 'resultados/list/:id', component: AllResultadoComponentComponent},
+  {path: 'resultados/detail/:id/:idArea', component: DetailResultadoComponentComponent},
+  {path: 'resultados/list/:idArea', component: AllResultadoComponentComponent},
   
   // rutas de indicadores
   {path: 'indicadores/create/:id', component: CreateIndicadorComponentComponent},
@@ -153,14 +153,15 @@ const router = RouterModule.forChild([
     UpdatePeiComponent,
     DeletePeiComponent,
     AllPeiComponent,
-    DetailPeiComponent
+    DetailPeiComponent,
   ],
   imports: [
   
 CommonModule,
   router,
   MatSelectModule,
-  FormsModule
+  FormsModule,
+  TopBarComponent
   ]
 })
 export class GestionPeiModule { }
