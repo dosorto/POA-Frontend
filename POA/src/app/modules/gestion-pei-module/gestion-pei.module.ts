@@ -76,9 +76,9 @@ const router = RouterModule.forChild([
   {path: 'list/:idInsti', component: AllPeiComponent},
   // rutas de dimension
   {path: 'dimension/create/:idPei', component: CreateDimensionComponent},
-  {path: 'dimension/update/:id', component: UpdateDimensionComponent},
+  {path: 'dimension/update/:id/:idPei', component: UpdateDimensionComponent},
   {path: 'dimension/delete/:id', component: DeleteDimensionComponent},
-  {path: 'dimension/detail/:id', component: DetailDimensionComponent},
+  {path: 'dimension/detail/:id/:idPei', component: DetailDimensionComponent},
   {path: 'dimension/list/:idPei', component: AllDimensionComponent},
 
   // rutas de objetivos
