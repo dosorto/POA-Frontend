@@ -151,9 +151,9 @@ constructor( private _route: ActivatedRoute, private _router: Router, private Ob
     })
    }
    
-  //  setTimeout(function() {
-  //    window.location.reload();
-  //     },1500);
+  setTimeout(function() {
+      window.location.reload();
+       },100);
   }
   }
   

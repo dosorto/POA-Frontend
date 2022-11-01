@@ -161,7 +161,8 @@ const router = RouterModule.forChild([
 CommonModule,
   router,
   MatSelectModule,
-  FormsModule
+  FormsModule,
+  TopBarComponent
   ]
 })
 export class GestionPeiModule { }
