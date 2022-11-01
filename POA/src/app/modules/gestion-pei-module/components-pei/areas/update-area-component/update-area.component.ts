@@ -28,14 +28,7 @@ export class UpdateAreaComponent implements OnInit {
               private router:Router) { }
 
   ngOnInit(): void {
-    this.initData();
-  }async initData(){
-    let area = await firstValueFrom(this.service.getAreas())
-    this.area = area;
-   console.log(this.area.length);
-    const Objetivos = await firstValueFrom(this.service.getObjetivos());
-    this.listaObjetivos = Objetivos;
-    console.log(this.listaObjetivos)
+
   }
 
  

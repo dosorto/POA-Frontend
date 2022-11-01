@@ -37,7 +37,7 @@ export class AreasService {
        fromObject: {
          grant_type: 'password',
          nombre: nombre,
-         idObjetivo:idObjetivo
+         idObjetivos:idObjetivo
        }
        });
  
@@ -75,14 +75,25 @@ export class AreasService {
   };
 
 
-  getAreas() {
+  /*getAreas() {
     return this.callHttp.httpGet<Array<Area>>(`${environment.servidor}area/get_All`)
       .pipe(map(response => {
         this._areas = response;
         return response;
       }))
+  }*/
+  getAreas(idObjetivo:number) {
+    return this.callHttp.httpGet<Array<Area>>(`${environment.servidor}area/get_all_by_idObjetivo/` + idObjetivo.toString())
+      .pipe(map(response => {
+        this._areas = response;               
+        return response;
+      }))
   }
 
+  getDimension(idDimension:number) {
+    return this.callHttp.httpGet<Dimension>(`${environment.servidor}dimension/get/`+idDimension.toString());
+  }
+  
   getArea(idArea:number) {
     return this.callHttp.httpGet<Area>(`${environment.servidor}area/get/`+idArea.toString());
   }

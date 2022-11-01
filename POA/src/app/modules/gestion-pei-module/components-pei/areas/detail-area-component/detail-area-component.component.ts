@@ -3,6 +3,8 @@ import { Storage } from 'src/app/_core/global-services/local_storage.service';
 import { AreasService } from '../../../services-pei/areas.service';
 import { Area } from '../../../interfaces-pei/area.model';
 import { Objetivo } from "../../../interfaces-pei/objetivo.model";
+import { Dimension } from '../../../interfaces-pei/dimension.model';
+
 import { firstValueFrom } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
@@ -15,15 +17,12 @@ export class DetailAreaComponentComponent implements OnInit {
   public idObjetivo:number = Number(this._route.snapshot.paramMap.get('idObjetivo'));
   public id:number = Number(this._route.snapshot.paramMap.get('id'));
   public area:Area | any = {};
+  public dimension:Dimension | any = {};
 
 
-  listaObjetivos: Array<Objetivo >=[];
-  user = this.Storage.get_storage("user");
+
   _delete:string="";
-  pei_seleccionado:string="";
-  objetivo_seleccionado:string="";
-  dimension_seleccionado:string="";
-  
+
 
   constructor(private Storage:Storage, 
               private service:AreasService,
@@ -41,8 +40,15 @@ export class DetailAreaComponentComponent implements OnInit {
     }
     );
     console.log(this.area);
-    
+  
+
+  this.dimension = await this.service.getDimension(this.id).subscribe((response:any)=>{
+    this.dimension = response.dimension;
+    console.log(response);
   }
+  );
+  console.log(this.dimension);
+}
 
   toList(){
     this.router.navigate(['/gestion_pei/areas/list/',this.idObjetivo]);
