@@ -12,9 +12,9 @@
                     <div class="col">
                         <!-- Campo para el nombre de PEI -->
                         <div class="mb-3 mx-2 px-2 row">
-                            <label for="nombre" class="row col-form-label">Nombre de PEI:</label>
+                            <label for="name" class="row col-form-label">Nombre de PEI:</label>
                             <div class="row">
-                                <input type="text" class="form-control" name="nombre" ngModel required>
+                                <input type="text" class="form-control" name="name" ngModel required>
                             </div>
                         </div>
                         <!-- Campo para la Año Inicial -->
@@ -37,7 +37,7 @@
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" (click)="toList()">Regresar</button>
-                        <button type="submit" class="btn btn-warning" [disabled]="Pei.invalid">Guardar</button>
+                        <button type="submit" class="btn btn-warning m-2" [disabled]="Pei.invalid">Guardar</button>
                     </div>
                 </form>
             </div>

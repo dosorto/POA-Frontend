@@ -12,24 +12,24 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class AllPeiComponent implements OnInit {
 
-  constructor(private Storage:Storage, 
-    private service:PeiService,
-    private router:Router,
+  constructor(private Storage: Storage,
+    private service: PeiService,
+    private router: Router,
     private _route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.initData();
   }
 
-  public idInstitucion:number = Number(this._route.snapshot.paramMap.get('idInsti'));
-  private pei_example : Pei | any = {};
+  public idInsti: number = Number(this._route.snapshot.paramMap.get('idInsti'));
+  private pei_example: Pei | any = {};
   rutaActual = "pei";
-  public pei:Array<Pei>=[];
+  public pei: Array<Pei> = [];
   public user = this.Storage.get_storage("user"); // obtener el usuario logueado
-  public filter:string=""; // para filtar la tabla
-  public _delete:string=""; // define que elemento sera eliminado
-  public data_update :Pei | any = this.pei_example; // define datos de un elemento a actualizar
-  public pei_seleccionado:string="";
+  public filter: string = ""; // para filtar la tabla
+  public _delete: string = ""; // define que elemento sera eliminado
+  public data_update: Pei | any = this.pei_example; // define datos de un elemento a actualizar
+  public pei_seleccionado: string = "";
 
   public page: number = 0;
   public step: number = 5;
@@ -38,17 +38,17 @@ export class AllPeiComponent implements OnInit {
 
 
   async initData() {
-    const peis = await firstValueFrom(this.service.MostrarPei(this.idInstitucion))
+    const peis = await firstValueFrom(this.service.MostrarPei(this.idInsti))
     this.pei = peis;
-    this.maxPages = ((this.pei.length  % this.step ) === 0 ) ? Math.floor(this.pei.length / this.step) : (Math.floor(this.pei.length / this.step) + 1)// cantidad de paginas para los botones
+    this.maxPages = ((this.pei.length % this.step) === 0) ? Math.floor(this.pei.length / this.step) : (Math.floor(this.pei.length / this.step) + 1)// cantidad de paginas para los botones
     // sirve para generar los botones en paginacion
-    this.enumPages =  Array(this.maxPages).fill(null).map((x,i)=>i).slice(1,this.maxPages + 1) ;
+    this.enumPages = Array(this.maxPages).fill(null).map((x, i) => i).slice(1, this.maxPages + 1);
   }
-  toDetail(idPei:number){
-    this.router.navigate(['/gestion_pei/pei/detail/',idPei.toString(),this.idInstitucion]);
+  toDetail(idPei: number) {
+    this.router.navigate(['/gestion_pei/pei/detail/', idPei.toString(), this.idInsti]);
   }
-  toCreate(){
-    this.router.navigate(['/gestion_pei/pei/create/',this.idInstitucion.toString()]);
+  toCreate() {
+    this.router.navigate(['/gestion_pei/pei/create/', this.idInsti.toString()]);
   }
   nextPage() {
     this.page = this.page + this.step;
