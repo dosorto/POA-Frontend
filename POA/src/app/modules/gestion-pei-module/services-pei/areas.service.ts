@@ -93,11 +93,13 @@ export class AreasService {
   getDimension(idDimension:number) {
     return this.callHttp.httpGet<Dimension>(`${environment.servidor}dimension/get/`+idDimension.toString());
   }
-  
+
   getArea(idArea:number) {
     return this.callHttp.httpGet<Area>(`${environment.servidor}area/get/`+idArea.toString());
   }
-  
+    getPEI_Id(idPei:number) {
+    return this.callHttp.httpGet<Pei>(`${environment.servidor}PEI/get/`+idPei.toString());
+  }
 
   getObjetivos() {
     return this.callHttp.httpGet<Array<Objetivo>>(`${environment.servidor}objetivos/get_all`)
@@ -124,13 +126,13 @@ export class AreasService {
   
 
 
-  eliminarArea(nombre: string) {
+  eliminarArea(id: number):any {
     const url = environment.servidor + 'area/eliminar';
 
     const params = new HttpParams({
       fromObject: {
         grant_type: 'password',
-        nombre: nombre
+        id: id
       }
     });
 
@@ -140,11 +142,8 @@ export class AreasService {
       })
     };
     //return this.directHttp.put(url, params, httpOptions);
-    this.directHttp.put(url,{nombre:nombre}).subscribe((response:any)=>
-    {
-      console.log(response);
-      return response;
-    })
+    return  this.directHttp.put(url,{id:id})
+ 
   }
 
   // alternativa a update
@@ -155,7 +154,6 @@ export class AreasService {
       fromObject: {
         grant_type: 'password',
         nombre: nombre,  
-         idObjetivo:idObjetivo
         
       }
     });
