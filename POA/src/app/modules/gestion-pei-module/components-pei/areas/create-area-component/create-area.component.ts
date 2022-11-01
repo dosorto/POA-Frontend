@@ -19,22 +19,28 @@ export class CreateAreaComponent implements OnInit {
    
   }
   public idObjetivo:number = Number(this._route.snapshot.paramMap.get('idObjetivo'));
-  
+  toList(){
+    this.router.navigate(['/gestion_pei/areas/list/',this.idObjetivo]);
+  }
   async crearArea(nombre:string){
+    console.log(nombre.toString(),this.idObjetivo);
     await this.service.crearArea(nombre,this.idObjetivo).subscribe((res:any)=>{
-      console.log(res);
-      Swal.fire({
+        Swal.fire({
         icon: 'success',
-        title: 'Area registrada con éxito!',
+        title: '¡Creado con éxito!',
         showConfirmButton: false,
         timer: 2500
       })
-      setTimeout(function() {
-        window.location.reload();
-      },2500);
-    }, (error: any) => {
-      console.log(error);
+    },(error:any)=>{
+      Swal.fire({
+        icon: 'error',
+        title: 'Ha ocurrido un error',
+        showConfirmButton: false,
+        timer: 2500
+      })
     });
+    setTimeout(function() {
+      window.location.reload();
+    },1500);
   }
-
 }

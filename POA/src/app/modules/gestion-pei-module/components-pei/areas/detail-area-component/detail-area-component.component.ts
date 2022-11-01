@@ -4,7 +4,7 @@ import { AreasService } from '../../../services-pei/areas.service';
 import { Area } from '../../../interfaces-pei/area.model';
 import { Objetivo } from "../../../interfaces-pei/objetivo.model";
 import { firstValueFrom } from 'rxjs';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
 @Component({
   selector: 'app-detail-area-component',
@@ -12,7 +12,11 @@ import Swal from 'sweetalert2';
   styleUrls: ['./detail-area-component.component.css']
 })
 export class DetailAreaComponentComponent implements OnInit {
-  area:Array<Area>=[];
+  public idObjetivo:number = Number(this._route.snapshot.paramMap.get('idObjetivo'));
+  public id:number = Number(this._route.snapshot.paramMap.get('id'));
+  public area:Area | any = {};
+
+
   listaObjetivos: Array<Objetivo >=[];
   user = this.Storage.get_storage("user");
   _delete:string="";
@@ -23,17 +27,31 @@ export class DetailAreaComponentComponent implements OnInit {
 
   constructor(private Storage:Storage, 
               private service:AreasService,
-              private router:Router) { }
+              private router:Router,
+              private _route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.initData();
-  }async initData(){
-    let area = await firstValueFrom(this.service.getArea())
-    this.area = area;
-   console.log(this.area.length);
-    const Objetivos = await firstValueFrom(this.service.getObjetivos());
-    this.listaObjetivos = Objetivos;
-    console.log(this.listaObjetivos)
+  }
+  
+  async initData(){
+    this.area = await this.service.getArea(this.id).subscribe((response:any)=>{
+      this.area = response.area;
+      console.log(response);
+    }
+    );
+    console.log(this.area);
+    
+  }
+
+  toList(){
+    this.router.navigate(['/gestion_pei/areas/list/',this.idObjetivo]);
+  }
+  toResultados(){
+    this.router.navigate(['/gestion_pei/resultados/list/',this.id]);
+  }
+  toUpdate(){
+    this.router.navigate(['/gestion_pei/areas/update/',this.id,this.idObjetivo]);
   }
 
   set_id_delete(nombre:string){

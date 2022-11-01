@@ -75,13 +75,19 @@ export class AreasService {
   };
 
 
-  getArea() {
+  getAreas() {
     return this.callHttp.httpGet<Array<Area>>(`${environment.servidor}area/get_All`)
       .pipe(map(response => {
         this._areas = response;
         return response;
       }))
   }
+
+  getArea(idArea:number) {
+    return this.callHttp.httpGet<Area>(`${environment.servidor}area/get/`+idArea.toString());
+  }
+  
+
   getObjetivos() {
     return this.callHttp.httpGet<Array<Objetivo>>(`${environment.servidor}objetivos/get_all`)
       .pipe(map(response => {

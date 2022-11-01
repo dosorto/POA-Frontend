@@ -1,8 +1,9 @@
+<top-bar></top-bar>
 <div class="container  justify-content-center pt-5 mt-5">
     <div>
         <div class="col-9">
             <div class="text-black text-center">
-                <h5 class=" fs-5 text-center m-auto" id="exampleModalLabel">Crear una nueva Dimensión</h5>
+                <h5 class=" fs-5 text-center m-auto" id="exampleModalLabel">Crear una nueva Area</h5>
             </div>
             <div>
                 <form #AreaC="ngForm" (ngSubmit)="crearArea(AreaC.value.nombre)" id="createArea">
@@ -18,7 +19,7 @@
           
                    
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" [routerLink]="['/gestion_pei/areas/list']">Regresar</button>
+                      <button type="button" class="btn btn-secondary"(click)="toList()">Regresar</button>
                       <button type="submit" class="btn btn-warning" [disabled]="AreaC.invalid">Guardar</button>          
                     </div>
                   
