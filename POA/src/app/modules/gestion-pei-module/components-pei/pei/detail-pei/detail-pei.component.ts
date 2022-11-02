@@ -41,10 +41,6 @@ export class DetailPeiComponent implements OnInit {
     this.router.navigate(['/gestion_pei/pei/update/',this.id,this.idInsti]); //revisar
   }
 
-  toDimensiones(){
-    this.router.navigate(["/gestion_pei/dimension/list/",this.id])
-  }
-
   async Delete(){
     try{
     await this.service.eliminarPEI(this.id).subscribe((res:any)=>{

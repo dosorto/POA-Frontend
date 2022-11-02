@@ -12,19 +12,19 @@ import Swal from 'sweetalert2';
 })
 export class PeiCreateComponent implements OnInit {
 
-  constructor(private PeiService: PeiService, private _route: ActivatedRoute, private router: Router) { }
+  constructor(private Storage: Storage, private PeiService: PeiService, private _route: ActivatedRoute, private router: Router,) { }
 
   ngOnInit(): void {
   }
 
-  public idInstitucion: number = Number(this._route.snapshot.paramMap.get('idInsti'));
+  public idInstitucion: number = Number(this._route.snapshot.paramMap.get('idInstitucion'));
 
   toList() {
-    this.router.navigate(['gestion_pei/pei/list/', this.idInstitucion]);
+    this.router.navigate(['/gestion_pei/pei/list/', this.idInstitucion]);
   }
 
   async crear_pei(name: string, initialYear: string, finalYear: string) {
-    console.log(name, initialYear, finalYear, this.idInstitucion);
+    console.log(name.toString(), initialYear, finalYear, this.idInstitucion);
     await this.PeiService.crearPEI(name, initialYear, finalYear, this.idInstitucion).subscribe((res: any) => {
       console.log(res);
       Swal.fire({

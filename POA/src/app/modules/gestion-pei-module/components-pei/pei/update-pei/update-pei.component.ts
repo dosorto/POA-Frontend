@@ -39,9 +39,7 @@ export class UpdatePeiComponent implements OnInit {
   }
 
   toDetail(idPei:number){
-    console.log(this.idInsti)
-    this.router.navigate(['gestion_pei/pei/detail/',idPei.toString(),this.idInsti]);
-
+    this.router.navigate(['/gestion_pei/pei/detail/',idPei.toString(),this.idInsti]);
   }
   // toDetail(){
   //   this.router.navigate(['/gestion_pei/pei/detail/',this.id,this.idInsti]);

@@ -39,15 +39,14 @@ export class PeiService {
   }
 
 
-  actualizarPEI(name: string, initialYear: string, finalYear: string, id: number, idInstitucion: number): any {
+  actualizarPEI(name: string, initialYear: string, finalYear: string, id: number): any {
     const url = environment.servidor + 'PEI/updatePEI';
     const params = new HttpParams({
       fromObject: {
         grant_type: 'password',
         name: name,
         initialYear: initialYear,
-        finalYear: finalYear,
-        idInstitucion: idInstitucion
+        finalYear: finalYear
       }
     });
 
@@ -57,7 +56,7 @@ export class PeiService {
       })
     };
     //return this.directHttp.put(url, params, httpOptions);
-    this.directHttp.put(url, { name: name, initialYear: initialYear, finalYear: finalYear, id: id, idInstitucion: idInstitucion }).subscribe((response: any) => {
+    this.directHttp.put(url, { name: name, initialYear: initialYear, finalYear: finalYear, id: id }).subscribe((response: any) => {
       console.log(response);
       return response;
     })
