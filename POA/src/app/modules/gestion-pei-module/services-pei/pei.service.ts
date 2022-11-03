@@ -76,6 +76,13 @@ export class PeiService {
     return this.callHttp.httpGet<Pei>(`${environment.servidor}PEI/get/`+idPei.toString());
   }
 
+  mostrar_insti_id(idInsti: number){
+    return this.callHttp.httpGet<Pei>(`${environment.servidor}/PEI/peiById/`+idInsti.toString());
+  }
+
+  getInstituciones(){
+    return this.callHttp.httpGet(`${environment.servidor}/institucion/get_all`)
+  }
 
   MostrarPei(idInsti:number){
     return this.callHttp.httpGet<Array<Pei>>(`${environment.servidor}PEI/peiById/` + idInsti.toString())

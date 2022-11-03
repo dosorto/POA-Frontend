@@ -19,6 +19,7 @@ export class AllPeiComponent implements OnInit {
 
   ngOnInit(): void {
     this.initData();
+    this.initData_Institucion();
   }
 
   public idInsti: number = Number(this._route.snapshot.paramMap.get('idInsti'));
@@ -30,6 +31,8 @@ export class AllPeiComponent implements OnInit {
   public _delete: string = ""; // define que elemento sera eliminado
   public data_update: Pei | any = this.pei_example; // define datos de un elemento a actualizar
   public pei_seleccionado: string = "";
+  public insti_seleccionado: string = "";
+  instiList: any = [];
 
   public page: number = 0;
   public step: number = 5;
@@ -44,6 +47,18 @@ export class AllPeiComponent implements OnInit {
     // sirve para generar los botones en paginacion
     this.enumPages = Array(this.maxPages).fill(null).map((x, i) => i).slice(1, this.maxPages + 1);
   }
+
+  async initData_Institucion() {
+    this.service.getInstituciones().subscribe((data:any) =>console.log(data));
+    this.service.getInstituciones().subscribe((data: any) => this.instiList = data);
+  }
+
+  mostrar_pei_idInsti(id: any) {
+    this.service.mostrar_insti_id(id).subscribe((response:any) => 
+    this.pei = response);
+      
+  }
+
   toDetail(idPei: number) {
     this.router.navigate(['/gestion_pei/pei/detail/', idPei.toString(), this.idInsti]);
   }

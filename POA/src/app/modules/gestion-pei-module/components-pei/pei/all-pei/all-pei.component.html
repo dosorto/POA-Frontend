@@ -8,7 +8,20 @@
         <div class="w-100 row m-auto">
 
             <div class="w-75 row m-auto mb-2">
-
+                <div class="col-10  m-auto mb-2">
+                    <label class="col-10  m-auto mb-2">
+                        <h3 class="l-9">
+                            <font color='black'>Institución:</font>
+                        </h3>
+                    </label>
+                    <select class="form-control" aria-label="Default select example" name="id"
+                        [(ngModel)]="insti_seleccionado" (click)="mostrar_pei_idInsti(insti_seleccionado)" required>
+                        <option value="" disabled selected hidden>Seleccione una institución</option>
+                        <ng-container *ngFor="let x of instiList">
+                            <option value="{{x.id}}">{{x.nombre}}</option>
+                        </ng-container>
+                    </select>
+                </div>
                 <div class="col-8">
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Buscar por nombre" aria-label="Buscar"
@@ -63,7 +76,8 @@
                         <td>{{x.finalYear}}</td>
                         <td>
                             <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                                <button type="button" class="btn btn-secondary" (click)="toDetail(x.id)">Gestionar</button>
+                                <button type="button" class="btn btn-secondary"
+                                    (click)="toDetail(x.id)">Gestionar</button>
                             </div>
                         </td>
                     </tr>
