@@ -77,9 +77,9 @@ const router = RouterModule.forChild([
   {path: 'pei/list/:idInsti', component: AllPeiComponent},
   // rutas de dimension
   {path: 'dimension/create/:idPei', component: CreateDimensionComponent},
-  {path: 'dimension/update/:id/:idPei', component: UpdateDimensionComponent},
+  {path: 'dimension/update/:id', component: UpdateDimensionComponent},
   {path: 'dimension/delete/:id', component: DeleteDimensionComponent},
-  {path: 'dimension/detail/:id/:idPei', component: DetailDimensionComponent},
+  {path: 'dimension/detail/:id', component: DetailDimensionComponent},
   {path: 'dimension/list/:idPei', component: AllDimensionComponent},
 
   // rutas de objetivos
@@ -90,11 +90,11 @@ const router = RouterModule.forChild([
   {path: 'objetivos/list/:idDimension', component: AllObjetivoComponentComponent},
 
   // rutas de areas
-  {path: 'areas/create/:idObjetivo', component: CreateAreaComponent},
-  {path: 'areas/update/:id/:idObjetivo', component: UpdateAreaComponent},
+  {path: 'areas/create', component: CreateAreaComponent},
+  {path: 'areas/update/:id', component: UpdateAreaComponent},
   {path: 'areas/delete/:id', component: DeleteAreaComponentComponent},
-  {path: 'areas/detail/:id/:idObjetivo', component: DetailAreaComponentComponent},
-  {path: 'areas/list/:idObjetivo', component: AllAreaComponentComponent},
+  {path: 'areas/detail/:id', component: DetailAreaComponentComponent},
+  {path: 'areas/list/:idObje', component: AllAreaComponentComponent},
 
   // rutas de resultados
   {path: 'resultados/create/:idArea', component: CreateResultadoComponentComponent},
