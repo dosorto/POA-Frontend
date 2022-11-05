@@ -93,11 +93,21 @@ export class AreasService {
   getDimension(idDimension:number) {
     return this.callHttp.httpGet<Dimension>(`${environment.servidor}dimension/get/`+idDimension.toString());
   }
+<<<<<<< HEAD
   
   getArea(idArea:number) {
     return this.callHttp.httpGet<Area>(`${environment.servidor}area/get/`+idArea.toString());
   }
   
+=======
+
+  getArea(idArea:number) {
+    return this.callHttp.httpGet<Area>(`${environment.servidor}area/get/`+idArea.toString());
+  }
+    getPEI_Id(idPei:number) {
+    return this.callHttp.httpGet<Pei>(`${environment.servidor}PEI/get/`+idPei.toString());
+  }
+>>>>>>> parent of c52b87fd (Revert "Merge branch 'branchCristhian'")
 
   getObjetivos() {
     return this.callHttp.httpGet<Array<Objetivo>>(`${environment.servidor}objetivos/get_all`)
@@ -124,13 +134,21 @@ export class AreasService {
   
 
 
+<<<<<<< HEAD
   eliminarArea(nombre: string) {
+=======
+  eliminarArea(id: number):any {
+>>>>>>> parent of c52b87fd (Revert "Merge branch 'branchCristhian'")
     const url = environment.servidor + 'area/eliminar';
 
     const params = new HttpParams({
       fromObject: {
         grant_type: 'password',
+<<<<<<< HEAD
         nombre: nombre
+=======
+        id: id
+>>>>>>> parent of c52b87fd (Revert "Merge branch 'branchCristhian'")
       }
     });
 
@@ -140,11 +158,16 @@ export class AreasService {
       })
     };
     //return this.directHttp.put(url, params, httpOptions);
+<<<<<<< HEAD
     this.directHttp.put(url,{nombre:nombre}).subscribe((response:any)=>
     {
       console.log(response);
       return response;
     })
+=======
+    return  this.directHttp.put(url,{id:id})
+ 
+>>>>>>> parent of c52b87fd (Revert "Merge branch 'branchCristhian'")
   }
 
   // alternativa a update
@@ -155,7 +178,10 @@ export class AreasService {
       fromObject: {
         grant_type: 'password',
         nombre: nombre,  
+<<<<<<< HEAD
          idObjetivo:idObjetivo
+=======
+>>>>>>> parent of c52b87fd (Revert "Merge branch 'branchCristhian'")
         
       }
     });
