@@ -11,12 +11,13 @@
                     <mat-form-field>
                         <mat-label>Seleccione una institución </mat-label>
                         <mat-select [(value)]="selected">
-                            <mat-option value="{{x.id}}" *ngFor="let x of instituciones"
-                                (click)="set_update(instituciones.indexOf(x))">{{x.nombre}}</mat-option>
+                            <mat-option value="{{x.id}}" *ngFor="let x of instituciones" (click)="set_update(instituciones.indexOf(x))">{{x.nombre}}</mat-option>
                         </mat-select>
+                        
                     </mat-form-field>
                 </div>
                 <div class="row justify-content-end p-2">
+                    {{selected}}
                     <div class="col-3">
                         <button type="button" class="btn btn-warning" data-bs-toggle="modal"
                             data-bs-target="#createInst">
@@ -27,10 +28,10 @@
                         </button>
                     </div>
                     <div class="col-2">
-                        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editInst"
-                            (click)="set_update(selected)">
+                        <button type="button" class="btn btn-warning" data-bs-toggle="modal" 
+                        data-bs-target="#editInst" (click)="set_update(selected)">
                             <i class="bi bi-pencil-square"></i>
-                            <span> Gestionar</span>
+                            <span> Actualizar</span>
                         </button>
                     </div>
                 </div>
@@ -50,26 +51,43 @@
                         </div>
                     </div>
                     <!-- tabla -->
-                    <div class="d-flex align-items-stretch"> 
-                        <ng-container *ngFor="let x of peis; index as i"> 
-                            <div class="card  mt-3" style="width: 20rem;"> 
-                                <!-- este contador no es id, solo es para enumerar --> 
-                                <ng-container *ngIf="page > 0; else elseNumeracion"> 
-                                    {{i + page + 1}} 
-                                </ng-container> 
-                                <ng-template #elseNumeracion> 
-                                    {{i + 1}} 
-                                </ng-template> 
-                                <div class="card-body"> 
-                                    <h1 class="card-title">{{x.name}}</h1> 
-                                    <h3 class="card-subtitle mb-2 text-muted"> de {{x.initialYear}} a {{x.finalYear}} 
-                                    </h3> 
-                                    <button type="submit" routerLink="/objetivos" class="btn btn-warning float-center">ADMINISTRAR</button> 
-                                </div> 
-                            </div> 
-                        </ng-container> 
-                    </div>
+                    <table class="table table-hover ">
+                        <thead class="text-center">
+                            <tr>
+                                <th class="table-secondary" scope="col">#</th>
+                                <th class="table-secondary" scope="col">PEI</th>
+                                <th class="table-secondary" scope="col">Fecha Inicial</th>
+                                <th class="table-secondary" scope="col">Fecha Final</th>
+                                <th class="table-secondary" scope="col">Accion</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-center">
+                            <tr *ngFor="let x of peis|instFilter:selected; index as i">
+                                <!-- este contador no es id, solo es para enumerar -->
+                                <td>
+                                    <ng-container *ngIf="page > 0; else elseNumeracion">
+                                        {{i + page + 1}}
+                                    </ng-container>
+                                    <ng-template #elseNumeracion>
+                                        {{i + 1}}
+                                    </ng-template>
+                                </td>
+                                <td>{{x.name}}</td>
+                                <td>{{x.initialYear}}</td>
+                                <td>{{x.finalYear}}</td>
+                                <td>
+                                    <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                        <button type="button" class="btn btn-secondary"
+                                            (click)="this.router.navigate(['/gestion_pei'])" data-bs-toggle="modal"
+                                            data-bs-target="#editPEI">Ver</button>
+
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
+
             </div>
         </div>
 
@@ -118,14 +136,6 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                         <button type="submit" class="btn btn-warning" data-bs-dismiss="modal">Actualizar</button>
-                        <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                            data-bs-target="#eliminarInst" (click)="set_id_delete(selected)">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                class="bi bi-trash3-fill" viewBox="0 0 16 16">
-                                <path
-                                    d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
-                            </svg>
-                        </button>
                     </div>
                 </form>
             </div>

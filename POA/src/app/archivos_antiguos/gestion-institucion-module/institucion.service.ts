@@ -68,13 +68,13 @@ export class InstitucionService {
         return response;
       }))
   }
-  eliminarInstitucion(id: number) {
+  eliminarInstitucion(nombre: string) {
     const url = environment.servidor + 'institucion/delete';
 
     const params = new HttpParams({
       fromObject: {
         grant_type: 'password',
-        id: id
+        nombre: nombre
       }
     });
 
@@ -84,7 +84,7 @@ export class InstitucionService {
       })
     };
     //return this.directHttp.put(url, params, httpOptions);
-    return this.directHttp.put(url,{id:id})
+    return this.directHttp.put(url,{nombre:nombre})
   }
 
   // alternativa a update

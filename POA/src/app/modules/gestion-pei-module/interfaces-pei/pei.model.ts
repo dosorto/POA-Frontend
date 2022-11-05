@@ -1,8 +1,8 @@
 export interface Pei {
         id:          number;
         name:        string;
-        initialYear: string;
-        finalYear:   string;
+        initialYear: Date;
+        finalYear:   Date;
         isActive:    boolean;
         isDelete:    boolean;
         createdAt:   Date;
