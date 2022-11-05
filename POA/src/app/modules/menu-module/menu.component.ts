@@ -19,7 +19,7 @@ export class MenuComponent implements OnInit {
     
   }
   toPei(){
-    this.router.navigate(['/gestion_pei/list/1'])
+    this.router.navigate(['/gestion_pei/pei/list/1'])
   }
 
 }
