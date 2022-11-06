@@ -104,11 +104,11 @@ const router = RouterModule.forChild([
   {path: 'resultados/list/:idArea', component: AllResultadoComponentComponent},
 
   // rutas de indicadores
-  {path: 'indicadores/create', component: CreateIndicadorComponentComponent},
-  {path: 'indicadores/update/:id', component: UpdateIndicadorComponentComponent},
+  {path: 'indicadores/create/:idResultado', component: CreateIndicadorComponentComponent},
+  {path: 'indicadores/update/:id/:idResultado', component: UpdateIndicadorComponentComponent},
   {path: 'indicadores/delete/:id', component: DeleteIndicadorComponentComponent},
-  {path: 'indicadores/detail/:id', component: DetailIndicadorComponentComponent},
-  {path: 'indicadores/list/:idResult', component: AllIndicadorComponentComponent},
+  {path: 'indicadores/detail/:id/:idResultado', component: DetailIndicadorComponentComponent},
+  {path: 'indicadores/list/:idResultado', component: AllIndicadorComponentComponent},
 ])
 
 @NgModule({

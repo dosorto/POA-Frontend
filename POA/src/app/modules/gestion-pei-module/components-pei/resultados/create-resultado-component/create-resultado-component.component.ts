@@ -16,7 +16,9 @@ export class CreateResultadoComponentComponent implements OnInit {
   errorMessage = '';
   resultados: Resultado | undefined;
   
-  constructor(private resultadosService:ResultadosService, private router: Router, private route: ActivatedRoute,) { }
+  constructor(private resultadosService:ResultadosService,
+              private router: Router,  
+              private route: ActivatedRoute) { }
 
   public area_seleccionada:string="";
   areaList: any = []; //Almacena las áreas para mostrarlas en los select
