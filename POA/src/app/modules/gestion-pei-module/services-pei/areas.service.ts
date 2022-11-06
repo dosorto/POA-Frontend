@@ -89,6 +89,13 @@ export class AreasService {
         return response;
       }))
   }
+  getAreasss() {
+    return this.callHttp.httpGet<Array<Area>>(`${environment.servidor}area/get_All` )
+      .pipe(map(response => {
+        this._areas = response;               
+        return response;
+      }))
+  }
 
   getDimension(idDimension:number) {
     return this.callHttp.httpGet<Dimension>(`${environment.servidor}dimension/get/`+idDimension.toString());
@@ -170,6 +177,13 @@ export class AreasService {
       return response;
     })
     return this.directHttp.put(url, params, httpOptions);
+  }
+
+  getAreass(id: number): Observable<Area | undefined> {
+    return this.getAreasss()
+      .pipe(
+        map((area: Area[]) => area.find(p => p.id === id))
+      );
   }
 
 }

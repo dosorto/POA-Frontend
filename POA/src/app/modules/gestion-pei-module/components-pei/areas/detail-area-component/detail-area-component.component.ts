@@ -16,9 +16,11 @@ import Swal from 'sweetalert2';
 export class DetailAreaComponentComponent implements OnInit {
   public idObjetivo:number = Number(this._route.snapshot.paramMap.get('idObjetivo'));
   public id:number = Number(this._route.snapshot.paramMap.get('id'));
-  public area:Area | any = {};
+  //public area:Area | any = {};
   public dimension:Dimension | any = {};
   public pei:Pei | any = {};
+  area: Area | any = {};
+  errorMessage = '';
 
 
 
@@ -31,17 +33,28 @@ export class DetailAreaComponentComponent implements OnInit {
               private _route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.initData();
+    const id = Number(this._route.snapshot.paramMap.get('id'));
+    if (id) {
+      this.getAreas(id);  
+    }
+    console.log(this.area?.id)
+   
+  }
+  getAreas(id: number): void {
+    this.service.getAreass(id).subscribe({
+      next: area => {this.area = area},
+      error: err => this.errorMessage = err
+    });
   }
   
-  async initData(){
-    this.area = await this.service.getArea(this.id).subscribe((response:any)=>{
+   /*async initData(){
+    this.area = await this.service.getAreass(this.id).subscribe((response:any)=>{
       this.area = response.area;
       console.log(response);
     }
     );
     console.log(this.area);
-  }
+  } */
 
   /*this.dimension = await this.service.getDimension(this.id).subscribe((response:any)=>{
     this.dimension = response.dimension;
