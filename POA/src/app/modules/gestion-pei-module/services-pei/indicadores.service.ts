@@ -134,7 +134,7 @@ export class IndicadoresService {
 
   //Función para crear un resultado
   public crearIndicador (nombre:string, descripcion:string, idResultado:number):any{
-    const url = environment.servidor + 'indicadores/crear';
+    const url = environment.servidor + 'indicadores/crear/';
   
     const params = new HttpParams({
      fromObject: {
