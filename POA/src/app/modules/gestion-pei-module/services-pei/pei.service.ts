@@ -5,6 +5,7 @@ import { Pei } from "../interfaces-pei/pei.model";
 import { map, Observable } from "rxjs";
 import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 //import { Storage } from 'src/app/_core/global-services/local_storage.service';
+import { Institucion } from '../../administracion-module/interfaces/institucion.model';
 
 @Injectable({
   providedIn: 'root'
@@ -81,6 +82,12 @@ export class PeiService {
     return this.callHttp.httpGet<Array<Pei>>(`${environment.servidor}PEI/peiById/` + idInsti.toString())
       .pipe(map(response => {
         this._peis = response;
+        return response;
+      }))
+  }
+  getInstituciones(){
+    return this.callHttp.httpGet<Array<Institucion>>(`${environment.servidor}institucion/get_all`)
+      .pipe(map(response => {
         return response;
       }))
   }

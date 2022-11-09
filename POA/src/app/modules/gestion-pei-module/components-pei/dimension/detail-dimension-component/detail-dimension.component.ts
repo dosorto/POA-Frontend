@@ -13,6 +13,7 @@ import { Pei } from '../../../interfaces-pei/pei.model';
 })
 export class DetailDimensionComponent implements OnInit {
   public idPei:number = Number(this._route.snapshot.paramMap.get('idPei'));
+  public idInsti:number = Number(this._route.snapshot.paramMap.get('idInsti'));
   public id:number = Number(this._route.snapshot.paramMap.get('id'));
   public dimension:Dimension | any = {};
   constructor(private Storage:Storage, 
@@ -38,7 +39,7 @@ export class DetailDimensionComponent implements OnInit {
   }
 
   toList(){
-    this.router.navigate(['/gestion_pei/dimension/list/',this.idPei]);
+    this.router.navigate(['/gestion_pei/dimension/list/',this.idPei,this.idInsti]); //revisar
   }
   toObjetivos(){
     this.router.navigate(['/gestion_pei/objetivos/list/',this.id]);

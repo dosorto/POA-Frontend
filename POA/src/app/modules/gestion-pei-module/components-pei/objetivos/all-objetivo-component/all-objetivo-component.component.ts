@@ -53,8 +53,7 @@ export class AllObjetivoComponentComponent implements OnInit {
     // if (idDimension) {
     //   this.getObjetivoss(idDimension);  
     // }
-    console.log("que onda",this.objetivos?.idDimension)
-    console.log("revisa aqui",this.objetivos?.idDimension)
+    
   }
 
   //filtro
@@ -122,6 +121,9 @@ export class AllObjetivoComponentComponent implements OnInit {
     toDetail(id:number){
       
       this.router.navigate(['/gestion_pei/objetivos/detail/',id.toString(),this.idDimension]);
+    }
+    toDimensionList(){
+      this.router.navigate(['/gestion_pei/dimension/detail/1/1']);
     }
 
     toCreate(){

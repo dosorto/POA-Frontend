@@ -29,7 +29,7 @@
             </div>
             <div class="col-10 mb-3">
               <label for="inputDescripcion" class="form-label">Objetivo:</label>
-              <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" value="{{area.idObjetivos}}" disabled></textarea>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" value="{{objetivo.nombre}}" disabled></textarea>
             </div>
           <div class="col-md-5">
               <label for="inputDimension" class="form-label">Dimensión:</label>
@@ -37,7 +37,7 @@
             </div>
             <div class="col-md-5">
               <label for="inputPEI" class="form-label">PEI:</label>
-              <input type="text" class="form-control" id="inputPEI" value="{{area.nombre}}"disabled>
+              <input type="text" class="form-control" id="inputPEI" value="{{pei.name}}"disabled>
             </div>
             <div class="d-grid gap-2 d-md-flex justify-content-between">
               <button type="button" class="btn btn-secondary" (click)="toList()" >Regresar</button>

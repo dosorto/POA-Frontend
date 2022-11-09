@@ -24,6 +24,7 @@ export class AllDimensionComponent implements OnInit {
     
   }
   public idPei:number = Number(this._route.snapshot.paramMap.get('idPei'));
+  public idInsti:number = Number(this._route.snapshot.paramMap.get('idInsti'));
   private dimension_example : Dimension | any = {};
   rutaActual = "Dimension"; //sirve para definir iconos del sidevar
   public dimensiones:Array<Dimension>=[]; // para llenar la tabla
@@ -54,7 +55,10 @@ export class AllDimensionComponent implements OnInit {
     this.router.navigate(['/gestion_pei/dimension/detail/',idDimension.toString(),this.idPei]);
   }
   toCreate(){
-    this.router.navigate(['/gestion_pei/dimension/create/',this.idPei.toString()]);
+    this.router.navigate(['/gestion_pei/dimension/create/',this.idPei.toString(), this.idInsti]);
+  }
+  toPeiList(){
+    this.router.navigate(['/gestion_pei/pei/detail/',this.idPei,this.idInsti.toString()]);
   }
 
   nextPage(){

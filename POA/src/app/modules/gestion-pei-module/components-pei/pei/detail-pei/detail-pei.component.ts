@@ -42,7 +42,7 @@ export class DetailPeiComponent implements OnInit {
   }
 
   toDimensiones(){
-    this.router.navigate(["/gestion_pei/dimension/list/",this.id])
+    this.router.navigate(["/gestion_pei/dimension/list/",this.id,this.idInsti])
   }
 
   async Delete(){
