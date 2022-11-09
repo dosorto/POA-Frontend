@@ -25,9 +25,22 @@ export class UpdateAreaComponent implements OnInit {
   public id: number = Number(this._route.snapshot.paramMap.get('id'));
   public area: Area | any = {};
   public nombre: string = '';
+  errorMessage = '';
 
   ngOnInit(): void {
     this.initData();
+
+    const id = Number(this._route.snapshot.paramMap.get('id'));
+    if (id) {
+      this.getAreas(id);  
+    }
+    console.log(this.area?.id)
+  }
+  getAreas(id: number): void {
+    this.service.getAreass(id).subscribe({
+      next: area => {this.area = area},
+      error: err => this.errorMessage = err
+    });
   }
 
   async initData(){

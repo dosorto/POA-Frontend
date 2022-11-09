@@ -38,12 +38,14 @@
             <div class="col-md-5">
               <label for="inputPEI" class="form-label">PEI:</label>
               <input type="text" class="form-control" id="inputPEI" value="{{area.pei.name}}"disabled>
-            </div> 
-            <div class="d-grid gap-2 d-md-flex justify-content-between">
+            </div>
+              <div class="container">
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
               <button type="button" class="btn btn-secondary" (click)="toList()" >Regresar</button>
               <button type="button" class="btn btn-success ampliar-button" (click)="toResultados()" >Mostrar Resultados</button>
           </div>
-        
+        </div>
+
         </div>
          
         </div>
@@ -63,10 +65,12 @@
               <p>Está seguro de eliminarla? </p>
           </div>
           <form id="eliminarDimension">
-              <div class="modal-footer">
+            <div class="container">
+              <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                   <button type="submit" class="btn btn-danger" (click)="Delete()">Eliminar</button>
               </div>
+            </div>
           </form>
       </div>
   </div>
