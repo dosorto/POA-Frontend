@@ -1,5 +1,4 @@
 <top-bar></top-bar>
-<h2>objetivos.nombre</h2>
 <body class="justify-content-center abs-center mt-5 pt-5" style="background-color: #EFF0FD;">
 <!-- Pantalla principal del modulo -->
 <div class="container d-flex align-items-center justify-content-center ">
@@ -9,32 +8,18 @@
         <div class="container shadow rounded border border-dark" style="background-color: white;">
         <div class="w-100 row m-auto">
             <div class="row text-center">
-                <div align="left" class="col-5">
-                    <button type="button" class="btn btn-success" [routerLink]="['/gestion_pei/dimension/list/',objetivos?.pei?.id]">
-                        <i class="bi bi-box-arrow-in-left"></i>
-                        <span>
-                            Áreas
-                        </span>
-                    </button>
-
-                </div>
                 <h2 class="l-4">Gestión de Objetivos</h2>
-                <h2 class="m-3" ><font color='black'>{{objetivos?.pei?.name}}/{{objetivos?.dimension?.nombre}}/</font></h2>
-
             </div>
             <div class="w-75 row m-auto mb-2">
                 <div class="col-10">
                     
                                 <label for="id" class="row col-form-label">Dimensión:</label>
                                 <select class="form-control" aria-label="Default select example" name="id"
-                                [(ngModel)]="dimension_seleccionado"  [routerLink]="['/gestion_pei/objetivos/list/',dimension_seleccionado]"     required>
-                                <!-- <input type="text" class="form-control" id="inputDimension" value="{{objetivos?.dimension?.nombre}}"disabled> -->
-                                <!-- <option  value="{{objetivos?.dimension?.nombre}}"></option> 
-                                <option  value="{{idDimension}}"></option>    -->
-                                <ng-container *ngFor="let x of dimensionList">
-                                        <option  value="{{x.id}}" [selected]="x.id===idDimension" >{{x.nombre}}</option>
+                                    [(ngModel)]="dimension_seleccionado" (click)="mostrar_objetivos_idDimension(dimension_seleccionado)" required>
+                                    <option value="" disabled selected hidden>Selecciona una dimension</option>
+                                    <ng-container *ngFor="let x of dimensionList">
+                                        <option value="{{x.id}}" >{{x.nombre}}</option>
                                     </ng-container>
-                                    <h2>{{dimension_seleccionado}}</h2>
                                     </select>
                                 
                                    
@@ -61,7 +46,7 @@
                 </div>
                 
                 <div class="col-4"  >
-                    <button type="button" class="btn btn-warning" (click)="toCreate()" >
+                    <button type="button" class="btn btn-warning" (click)="toCreate()">
                         <i class="bi bi-plus-square"></i>
                         <span>
                             Crear Objetivos
