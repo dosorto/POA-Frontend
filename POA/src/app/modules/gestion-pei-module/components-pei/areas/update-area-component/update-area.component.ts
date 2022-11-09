@@ -4,7 +4,7 @@ import { AreasService } from '../../../services-pei/areas.service';
 import { Area } from '../../../interfaces-pei/area.model';
 import { Objetivo } from "../../../interfaces-pei/objetivo.model";
 import { firstValueFrom } from 'rxjs';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -13,41 +13,61 @@ import Swal from 'sweetalert2';
   styleUrls: ['./update-area.component.css']
 })
 export class UpdateAreaComponent implements OnInit {
-  area:Array<Area>=[];
-  listaObjetivos: Array<Objetivo >=[];
-  user = this.Storage.get_storage("user");
-  _delete:string="";
-  pei_seleccionado:string="";
-  objetivo_seleccionado:string="";
-  dimension_seleccionado:string="";
-  data_update:Array<string>=[];
-  
 
-  constructor(private Storage:Storage, 
-              private service:AreasService,
-              private router:Router) { }
+
+
+  constructor(private Storage: Storage,
+    private service: AreasService,
+    private router: Router,
+    private _route: ActivatedRoute) { }
+
+  public idObjetivo: number = Number(this._route.snapshot.paramMap.get('idObjetivo'));
+  public id: number = Number(this._route.snapshot.paramMap.get('id'));
+  public area: Area | any = {};
+  public nombre: string = '';
+  errorMessage = '';
 
   ngOnInit(): void {
+    this.initData();
 
+    const id = Number(this._route.snapshot.paramMap.get('id'));
+    if (id) {
+      this.getAreas(id);  
+    }
+    console.log(this.area?.id)
+  }
+  getAreas(id: number): void {
+    this.service.getAreass(id).subscribe({
+      next: area => {this.area = area},
+      error: err => this.errorMessage = err
+    });
   }
 
- 
-  
+  async initData(){
+    this.area = await this.service.getArea(this.id).subscribe((response:any)=>{
+      this.area = response.area;
+      console.log(response);
+    }
+    );
+    console.log(this.area);
+  }
+  toDetail(){
+    this.router.navigate(['/gestion_pei/areas/detail/',this.id,this.idObjetivo]);
+  }
 
-  set_update(index:number){
-    const AreaUpdate = this.area[index]
-    this.data_update = [AreaUpdate.nombre, AreaUpdate.idObjetivos.toString(),AreaUpdate.id.toString()];
-  };
-  update(nombre:string,idObjetivo:string){
-     const id = this.data_update[2]; // ahi se aloja el id
-     // validaciones
-    if((nombre === '')){nombre = this.data_update[0]}
-    if((idObjetivo === '')){idObjetivo= this.data_update[1]}
 
-     try{
-     this.service.updateArea(nombre,parseInt(id),parseInt(idObjetivo)).subscribe((res:any)=>{
-       console.log(res);
-     
+
+
+  update() {
+    let nombre = this.nombre;
+
+    // validaciones
+    if ((nombre === '')) { nombre = this.area.nombre}
+
+    try {
+      this.service.updateArea(nombre, this.id,this.idObjetivo).subscribe((res: any) => {
+        console.log(res);
+
       }, (error: any) => {
         console.log(error);
       });
@@ -67,4 +87,4 @@ export class UpdateAreaComponent implements OnInit {
 
 
 }
-   
+
