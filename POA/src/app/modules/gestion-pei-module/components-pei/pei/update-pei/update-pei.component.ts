@@ -47,6 +47,34 @@ export class UpdatePeiComponent implements OnInit {
   //   this.router.navigate(['/gestion_pei/pei/detail/',this.id,this.idInsti]);
   // }
 
+  async Delete(){
+    try{
+    await this.service.eliminarPEI(this.id).subscribe((res:any)=>{
+      Swal.fire({
+        icon: 'success',
+        title: '¡Eliminado con éxito!',
+        showConfirmButton: false,
+        timer: 1000
+      })
+    });
+    setTimeout(function() {
+      window.location.reload();
+    },1000);
+  }catch(error){
+    Swal.fire({
+      icon: 'error',
+      title: '¡Ha ocurrido un error!',
+      showConfirmButton: false,
+      timer: 1000
+    })
+    setTimeout(function() {
+      window.location.reload();
+    },1000);
+  
+  }
+  }
+
+
   Update():any{
     let name = this.name;
     let initialYear = this.initialYear;
