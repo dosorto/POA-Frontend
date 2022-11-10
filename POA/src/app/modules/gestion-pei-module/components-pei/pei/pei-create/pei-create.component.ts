@@ -41,10 +41,10 @@ export class PeiCreateComponent implements OnInit {
         timer: 2500
       })
     });
-    //this.onBack()
+    this.onBack()
   }
-  //onBack(): void {
-  //this._route.navigate(['/gestion_pei/pei/list/idInsti']);
-  //}
+  onBack(): void {
+  this.router.navigate(['/gestion_pei/pei/list/',this.idInstitucion]);
+  }
 
 }

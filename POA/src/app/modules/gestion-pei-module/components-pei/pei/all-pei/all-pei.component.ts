@@ -61,6 +61,9 @@ export class AllPeiComponent implements OnInit {
   }
   selectInsti(){
     this.router.navigate(['/gestion_pei/pei/list/',this.InstiSeleccionado]);
+    setTimeout(function () {
+      window.location.reload();
+    }, 1500)
   }
   nextPage() {
     this.page = this.page + this.step;
