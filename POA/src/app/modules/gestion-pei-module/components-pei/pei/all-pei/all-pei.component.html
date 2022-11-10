@@ -6,22 +6,28 @@
     <div class="col-12 ">
         <!-- espacio para el titulo, buscador y boton de agregar uno nuevo -->
         <div class="w-100 row m-auto">
-
             <div class="w-75 row m-auto mb-2">
-                <div class="col-10  m-auto mb-2">
-                    <label class="col-10  m-auto mb-2">
-                        <h3 class="l-9">
-                            <font color='black'>Institución:</font>
-                        </h3>
-                    </label>
-                    <select class="form-control" aria-label="Default select example" name="id"
-                        [(ngModel)]="insti_seleccionado" (click)="mostrar_pei_idInsti(insti_seleccionado)" required>
-                        <option value="" disabled selected hidden>Seleccione una institución</option>
-                        <ng-container *ngFor="let x of instiList">
-                            <option value="{{x.id}}">{{x.nombre}}</option>
-                        </ng-container>
+                <div class="row">
+                    <label for="id" class="row col-form-label">Institución:</label>
+                                <select class="form-control" aria-label="Default select example" name="id"
+                                    [(ngModel)]="InstiSeleccionado"
+                                    (click)="selectInsti()" required>
+            
+                                    <ng-container *ngFor="let x of InstiList">
+                                        <option value="{{x.id}}" [selected]="x.id===idInsti">{{x.nombre}}</option>
+                                    </ng-container>
                     </select>
                 </div>
+            </div>
+            <div class="w-75 row m-auto mb-2">
+                <div class="col-2">
+                    <button class="btn btn-secondary rounded" (click)="toHome()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-left-short" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"/>
+                         </svg>
+                    </button>
+                </div>
+
                 <div class="col-8">
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Buscar por nombre" aria-label="Buscar"
@@ -37,7 +43,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-4">
+                <div class="col-2">
                     <button type="button" class="btn btn-warning" (click)="toCreate()">
                         <i class="bi bi-plus-square"></i>
                         <span>
@@ -47,6 +53,17 @@
                 </div>
             </div>
         </div>
+        <!-- <div class="row">
+            <label for="id" class="row col-form-label">Institución:</label>
+                        <select class="form-control" aria-label="Default select example" name="id"
+                            [(ngModel)]="InstiSeleccionado"
+                            (click)="selectInsti()" required>
+    
+                            <ng-container *ngFor="let x of InstiList">
+                                <option value="{{x.id}}" [selected]="x.id===idInsti">{{x.nombre}}</option>
+                            </ng-container>
+            </select>
+        </div> -->
         <!-- tabla dinamica que muestra todas las Dimensión -->
         <div class="w-75 m-auto row shadow alturaTabla">
             <table class="table table-hover g">

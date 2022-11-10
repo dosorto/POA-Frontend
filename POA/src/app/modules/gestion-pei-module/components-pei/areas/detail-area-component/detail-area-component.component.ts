@@ -4,10 +4,12 @@ import { AreasService } from '../../../services-pei/areas.service';
 import { Area } from '../../../interfaces-pei/area.model';
 import { Objetivo } from "../../../interfaces-pei/objetivo.model";
 import { Dimension } from '../../../interfaces-pei/dimension.model';
+import { Pei } from '../../../interfaces-pei/pei.model';
 
 import { firstValueFrom } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-detail-area-component',
   templateUrl: './detail-area-component.component.html',
@@ -17,7 +19,9 @@ export class DetailAreaComponentComponent implements OnInit {
   public idObjetivo:number = Number(this._route.snapshot.paramMap.get('idObjetivo'));
   public id:number = Number(this._route.snapshot.paramMap.get('id'));
   public area:Area | any = {};
+  public objetivo:Objetivo | any = {};
   public dimension:Dimension | any = {};
+  public pei:Pei | any = {};
 
 
 
@@ -39,15 +43,14 @@ export class DetailAreaComponentComponent implements OnInit {
       console.log(response);
     }
     );
-    console.log(this.area);
   
 
-  this.dimension = await this.service.getDimension(this.id).subscribe((response:any)=>{
+  this.objetivo = await this.service.getObjetivo(this.idObjetivo).subscribe((response:any)=>{
+    this.objetivo = response;
     this.dimension = response.dimension;
-    console.log(response);
+    this.pei = response.pei;
   }
   );
-  console.log(this.dimension);
 }
 
   toList(){

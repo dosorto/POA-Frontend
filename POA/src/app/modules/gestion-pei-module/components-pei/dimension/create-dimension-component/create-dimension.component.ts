@@ -21,8 +21,9 @@ export class CreateDimensionComponent implements OnInit {
   ngOnInit(): void {
   }
   public idPei:number = Number(this._route.snapshot.paramMap.get('idPei'));
+  public idInsti:number = Number(this._route.snapshot.paramMap.get('idInsti'));
   toList(){
-    this.router.navigate(['/gestion_pei/dimension/list/',this.idPei]);
+    this.router.navigate(['/gestion_pei/dimension/list/',this.idPei,this.idInsti]); //revisar
   }
   async crear_Dimension(nombre:string,descripcion:string){
     console.log(nombre.toString(),descripcion,this.idPei);

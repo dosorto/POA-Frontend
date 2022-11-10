@@ -77,5 +77,8 @@ async mostrarResultado(){
   toCreate(){
     this.router.navigate(['/gestion_pei/resultados/create/',this.idArea.toString()]);
   }
+  toArea(){
+    this.router.navigate(['gestion_pei/areas/detail/1/1']);
+  }
 
 }

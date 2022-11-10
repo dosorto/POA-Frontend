@@ -12,7 +12,9 @@ export class MenuComponent implements OnInit {
   user = this.Storage.get_storage("user");
   token = this.user.token;
   constructor(private Storage:Storage, public router:Router) { 
-    
+    if(Object.entries(this.user).length === 0){
+      this.router.navigate(['/login']);
+    }
   }
   
   ngOnInit(): void {

@@ -22,6 +22,9 @@ export class CreateAreaComponent implements OnInit {
   toList(){
     this.router.navigate(['/gestion_pei/areas/list/',this.idObjetivo]);
   }
+  toArea(){
+    this.router.navigate(['/gestion_pei/areas/list/1']);
+  }
   async crearArea(nombre:string){
     console.log(nombre.toString(),this.idObjetivo);
     await this.service.crearArea(nombre,this.idObjetivo).subscribe((res:any)=>{

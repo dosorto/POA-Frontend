@@ -97,7 +97,9 @@ export class AreasService {
   getArea(idArea:number) {
     return this.callHttp.httpGet<Area>(`${environment.servidor}area/get/`+idArea.toString());
   }
-  
+  getObjetivo(idObjetivo:number) {
+    return this.callHttp.httpGet<Objetivo>(`${environment.servidor}objetivos/get_all_by_id/`+idObjetivo.toString());
+  }
 
   getObjetivos() {
     return this.callHttp.httpGet<Array<Objetivo>>(`${environment.servidor}objetivos/get_all`)

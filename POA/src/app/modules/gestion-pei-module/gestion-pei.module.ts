@@ -76,11 +76,11 @@ const router = RouterModule.forChild([
   {path: 'pei/detail/:id/:idInsti', component: DetailPeiComponent},
   {path: 'pei/list/:idInsti', component: AllPeiComponent},
   // rutas de dimension
-  {path: 'dimension/create/:idPei', component: CreateDimensionComponent},
+  {path: 'dimension/create/:idPei/:idInsti', component: CreateDimensionComponent},
   {path: 'dimension/update/:id/:idPei', component: UpdateDimensionComponent},
   {path: 'dimension/delete/:id', component: DeleteDimensionComponent},
   {path: 'dimension/detail/:id/:idPei', component: DetailDimensionComponent},
-  {path: 'dimension/list/:idPei', component: AllDimensionComponent},
+  {path: 'dimension/list/:idPei/:idInsti', component: AllDimensionComponent},
 
   // rutas de objetivos
   {path: 'objetivos/create/:idDimension', component: CreateObjetivoComponentComponent},

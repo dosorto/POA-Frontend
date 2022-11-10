@@ -1,18 +1,22 @@
 <top-bar></top-bar>
-<body class="justify-content-center abs-center mt-5 pt-5" style="background-color: #c5cae9;">
-  <div class="col-12 ">
+<body class="justify-content-center abs-center mt-5 pt-5">
+  <div class="col-8">
       <br>
       <!-- espacio para el titulo, buscador y boton de agregar uno nuevo -->
-      <div class="container shadow rounded border border-dark" style="background-color: white;">
+      <div class="container  rounded border" style="background-color: white;">
  
-      <div class="w-100 row m-auto">
+      <div class="w-75 row m-auto">
       <br>
       <!-- espacio para el titulo, buscador y boton de agregar uno nuevo -->
       <div class="row text-center">
+        <!-- <h2 class="l-4" ><font color='black'>Detalles de los objetivos</font></h2> -->
+    </div>
+    <div>
+      <!-- <h2 class="m-3" ><font color='black'>{{objetivo?.pei?.name}}/{{objetivo?.dimension?.nombre}}/</font></h2>
+    </div> -->
+      <div class="row text-center">
           
-          <div class="row text-center">
-              <h2 class="l-4" ><font color='black'>Detalles de los objetivos</font></h2>
-          </div>
+         
           <div class="d-grid gap-2 d-md-flex justify-content-end">
             <button type="button" class="btn btn-warning" (click)="toUpdate()">Editar</button>
             <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarInst" (click)="set_id_delete(objetivo?.id)">
