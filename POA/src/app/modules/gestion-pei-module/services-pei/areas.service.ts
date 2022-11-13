@@ -89,16 +89,23 @@ export class AreasService {
         return response;
       }))
   }
+  getAreasss() {
+    return this.callHttp.httpGet<Array<Area>>(`${environment.servidor}area/get_All` )
+      .pipe(map(response => {
+        this._areas = response;               
+        return response;
+      }))
+  }
 
   getDimension(idDimension:number) {
     return this.callHttp.httpGet<Dimension>(`${environment.servidor}dimension/get/`+idDimension.toString());
   }
-  
+
   getArea(idArea:number) {
     return this.callHttp.httpGet<Area>(`${environment.servidor}area/get/`+idArea.toString());
   }
-  getObjetivo(idObjetivo:number) {
-    return this.callHttp.httpGet<Objetivo>(`${environment.servidor}objetivos/get_all_by_id/`+idObjetivo.toString());
+    getPEI_Id(idPei:number) {
+    return this.callHttp.httpGet<Pei>(`${environment.servidor}PEI/get/`+idPei.toString());
   }
 
   getObjetivos() {
@@ -126,13 +133,13 @@ export class AreasService {
   
 
 
-  eliminarArea(nombre: string) {
+  eliminarArea(id: number):any {
     const url = environment.servidor + 'area/eliminar';
 
     const params = new HttpParams({
       fromObject: {
         grant_type: 'password',
-        nombre: nombre
+        id: id
       }
     });
 
@@ -142,11 +149,8 @@ export class AreasService {
       })
     };
     //return this.directHttp.put(url, params, httpOptions);
-    this.directHttp.put(url,{nombre:nombre}).subscribe((response:any)=>
-    {
-      console.log(response);
-      return response;
-    })
+    return  this.directHttp.put(url,{id:id})
+ 
   }
 
   // alternativa a update
@@ -157,7 +161,6 @@ export class AreasService {
       fromObject: {
         grant_type: 'password',
         nombre: nombre,  
-         idObjetivo:idObjetivo
         
       }
     });
@@ -174,6 +177,13 @@ export class AreasService {
       return response;
     })
     return this.directHttp.put(url, params, httpOptions);
+  }
+
+  getAreass(id: number): Observable<Area | undefined> {
+    return this.getAreasss()
+      .pipe(
+        map((area: Area[]) => area.find(p => p.id === id))
+      );
   }
 
 }

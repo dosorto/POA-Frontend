@@ -55,9 +55,9 @@ export class AllAreaComponentComponent implements OnInit {
   toCreate(){
     this.router.navigate(['/gestion_pei/areas/create/',this.idObjetivo.toString()]);
   }
-  toObjetivo(){
-    this.router.navigate(['/gestion_pei/objetivos/detail/1/1']);
-  }
+ // toObjetivos(){
+   // this.router.navigate(['gestion_pei/objetivos/detail/1/1']);
+  //}
 
   nextPage(){
     this.page = this.page + this.step;
