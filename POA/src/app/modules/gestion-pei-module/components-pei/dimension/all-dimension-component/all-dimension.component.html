@@ -18,7 +18,6 @@
                                     (ngModelChange)="selectPei()" required>
             
                                     <ng-container *ngFor="let x of PeiList">
-                                        {{PeiList[0].name}}
                                         <option value="{{x.id}}" [selected]="x.id===idPei">{{x.name}}</option>
                                     </ng-container>
                     </select>
@@ -104,7 +103,6 @@
         </div>
     </div>
 </div>
-
 
 
 

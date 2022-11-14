@@ -21,7 +21,9 @@ export class DetailAreaComponentComponent implements OnInit {
   public pei:Pei | any = {};
   area: Area | any = {};
   errorMessage = '';
-
+  public idPei:number = Number(this._route.snapshot.paramMap.get('idPei'));
+  public idInsti:number = Number(this._route.snapshot.paramMap.get('idInsti'));
+  public idDimension:number = Number(this._route.snapshot.paramMap.get('idDimension'));
 
 
   _delete:string="";
@@ -72,13 +74,13 @@ console.log(this.pei);
 */
 
   toList(){
-    this.router.navigate(['/gestion_pei/areas/list/',this.idObjetivo]);
+    this.router.navigate(['/gestion_pei/areas/list/',this.idObjetivo,this.idDimension,this.idPei,this.idInsti]);
   }
   toResultados(){
     this.router.navigate(['/gestion_pei/resultados/list/',this.id]);
   }
   toUpdate(){
-    this.router.navigate(['/gestion_pei/areas/update/',this.id,this.idObjetivo]);
+    this.router.navigate(['/gestion_pei/areas/update/',this.id,this.idObjetivo,this.idDimension,this.idPei,this.idInsti]);
   }
 
   async Delete(){

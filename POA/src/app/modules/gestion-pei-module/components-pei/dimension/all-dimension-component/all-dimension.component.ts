@@ -42,7 +42,7 @@ export class AllDimensionComponent implements OnInit {
   
   public page:number=0;
   public actualpage:number = 1;
-  public step:number=10;
+  public step:number=5;
   public maxPages:number=1;
   public enumPages:number[]=[]
 
@@ -82,7 +82,7 @@ export class AllDimensionComponent implements OnInit {
   }
 
   selectPei(){
-    this.router.navigate(['/gestion_pei/dimension/list/',this.idPei,this.idInsti]);
+    this.router.navigate(['/gestion_pei/dimension/list/',this.pei_seleccionado,this.idInsti]);
     setTimeout(function () {
       window.location.reload();
     }, 10)

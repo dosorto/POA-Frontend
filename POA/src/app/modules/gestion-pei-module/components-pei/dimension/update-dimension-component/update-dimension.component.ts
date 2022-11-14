@@ -19,6 +19,7 @@ export class UpdateDimensionComponent implements OnInit {
               private _route: ActivatedRoute) { }
   
   public idPei:number = Number(this._route.snapshot.paramMap.get('idPei'));
+  public idInsti:number = Number(this._route.snapshot.paramMap.get('idInsti'));
   public id:number = Number(this._route.snapshot.paramMap.get('id'));
   public dimension:Dimension | any = {};
   public nombre:string='';
@@ -38,7 +39,7 @@ export class UpdateDimensionComponent implements OnInit {
     
   }
   toDetail(){
-    this.router.navigate(['/gestion_pei/dimension/detail/',this.id,this.idPei]);
+    this.router.navigate(['/gestion_pei/dimension/detail/',this.id,this.idPei,this.idInsti]);
   }
   Update():any{
    let nombre = this.nombre;

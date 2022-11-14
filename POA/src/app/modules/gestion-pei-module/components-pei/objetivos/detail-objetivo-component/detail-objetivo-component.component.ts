@@ -17,6 +17,8 @@ export class DetailObjetivoComponentComponent implements OnInit {
    constructor(private _route: ActivatedRoute, private _router: Router, private ObjetivoService:ObjetivosService) { }
     id = Number(this._route.snapshot.paramMap.get('id'));
     public idDimension = Number(this._route.snapshot.paramMap.get('idDimension'));
+    public idPei = Number(this._route.snapshot.paramMap.get('idPei'));
+    public idInsti = Number(this._route.snapshot.paramMap.get('idInsti'));
   ngOnInit(){
     const id = Number(this._route.snapshot.paramMap.get('id'));
     console.log("aqui ")
@@ -36,7 +38,7 @@ export class DetailObjetivoComponentComponent implements OnInit {
     }
 
     onBackGestion(): void {
-      this._router.navigate(['/gestion_pei/objetivos/list/',this.objetivo?.idDimension]);
+      this._router.navigate(['/gestion_pei/objetivos/list/',this.objetivo?.idDimension,this.idPei,this.idInsti]);
     }
 
 
@@ -75,7 +77,7 @@ export class DetailObjetivoComponentComponent implements OnInit {
       
     }
     toUpdate(){
-      this._router.navigate(['/gestion_pei/objetivos/update/',this.id,this.idDimension]);
+      this._router.navigate(['/gestion_pei/objetivos/update/',this.id,this.idDimension,this.idPei,this.idInsti]);
     }
     
   }
