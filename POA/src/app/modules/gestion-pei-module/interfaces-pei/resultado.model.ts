@@ -2,6 +2,7 @@ import { Pei } from "./pei.model";
 import { Dimension } from "./dimension.model";
 import { Objetivo } from "./objetivo.model";
 import { Area } from "./area.model";
+
 export interface Resultado {
     id:           number;
     nombre:       string;
@@ -12,9 +13,12 @@ export interface Resultado {
     idArea:      number;
     idObjetivos: number;
     idDimension: number;
-    idpei:        number;
+    idPei:        number;
     area:        Area;
     objetivo:    Objetivo;
     dimension:   Dimension;
     pei:         Pei;
 }
+
+
+

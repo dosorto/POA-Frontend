@@ -6,7 +6,7 @@ import { Resultado } from "./resultado.model";
 export interface Indicador {
     id:           number;
     nombre:       string;
-    descripcion?: string;
+    descripcion: string;
     isDelete:     boolean;
     createdAt:    Date;
     updatedAt:    Date;

@@ -50,8 +50,6 @@ export class ObjetivosService {
             map((objetivo: Objetivo[]) => objetivo.find(p => p.id === id))
           );
       }
-
-
       // getOBjetivo(id: number): Observable<Objetivo | undefined> {
       //   return this.getObjetivos()
       //     .pipe(
@@ -69,10 +67,6 @@ export class ObjetivosService {
   getdimensiones() {
     const url = `http://localhost:8080/dimension/get_all`;
     return this.http.get(url);
-  }
-  getDimensionid(id:number): Observable<any> {
-    const url = `http://localhost:8080/dimension/get/`;
-    return this.http.get(url + id);
   }
  
   mostrar_objetivos_id(id: number): Observable<any> {
