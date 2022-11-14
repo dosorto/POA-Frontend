@@ -43,7 +43,6 @@ const router = RouterModule.forChild([
   {path: 'actividad/detail/:id/:idObjetivo', component: DetailActividadComponent},
   {path: 'actividad/list/:idObjetivo', component: AllActividadComponent},
 
-  
 
 ])
 
