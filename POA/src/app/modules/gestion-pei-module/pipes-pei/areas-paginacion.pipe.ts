@@ -12,4 +12,8 @@ export class AreasPaginacionPipe implements PipeTransform {
     return area.slice(page,page+steps);
   }
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 29fba71618703f9691ab0cec18f61e3b19f43c29

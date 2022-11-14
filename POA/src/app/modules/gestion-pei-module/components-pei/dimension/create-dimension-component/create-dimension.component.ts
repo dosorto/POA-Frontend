@@ -45,4 +45,8 @@ export class CreateDimensionComponent implements OnInit {
       window.location.reload();
     },1500);
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 29fba71618703f9691ab0cec18f61e3b19f43c29

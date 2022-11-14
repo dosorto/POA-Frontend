@@ -11,7 +11,10 @@ import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 @Injectable({
   providedIn: 'root'
 })
+<<<<<<< HEAD
 
+=======
+>>>>>>> 29fba71618703f9691ab0cec18f61e3b19f43c29
 export class AreasService {
   constructor(private callHttp: CallHttpService, private directHttp: HttpClient) { }
   private _areas: Array<Area> = [];
@@ -38,7 +41,7 @@ export class AreasService {
        fromObject: {
          grant_type: 'password',
          nombre: nombre,
-         idObjetivo:idObjetivo
+         idObjetivos:idObjetivo
        }
        });
  
@@ -76,13 +79,39 @@ export class AreasService {
   };
 
 
-  getArea() {
+  /*getAreas() {
     return this.callHttp.httpGet<Array<Area>>(`${environment.servidor}area/get_All`)
       .pipe(map(response => {
         this._areas = response;
         return response;
       }))
+  }*/
+  getAreas(idObjetivo:number) {
+    return this.callHttp.httpGet<Array<Area>>(`${environment.servidor}area/get_all_by_idObjetivo/` + idObjetivo.toString())
+      .pipe(map(response => {
+        this._areas = response;               
+        return response;
+      }))
   }
+  getAreasss() {
+    return this.callHttp.httpGet<Array<Area>>(`${environment.servidor}area/get_All` )
+      .pipe(map(response => {
+        this._areas = response;               
+        return response;
+      }))
+  }
+
+  getDimension(idDimension:number) {
+    return this.callHttp.httpGet<Dimension>(`${environment.servidor}dimension/get/`+idDimension.toString());
+  }
+
+  getArea(idArea:number) {
+    return this.callHttp.httpGet<Area>(`${environment.servidor}area/get/`+idArea.toString());
+  }
+    getPEI_Id(idPei:number) {
+    return this.callHttp.httpGet<Pei>(`${environment.servidor}PEI/get/`+idPei.toString());
+  }
+
   getObjetivos() {
     return this.callHttp.httpGet<Array<Objetivo>>(`${environment.servidor}objetivos/get_all`)
       .pipe(map(response => {
@@ -108,13 +137,13 @@ export class AreasService {
   
 
 
-  eliminarArea(nombre: string) {
+  eliminarArea(id: number):any {
     const url = environment.servidor + 'area/eliminar';
 
     const params = new HttpParams({
       fromObject: {
         grant_type: 'password',
-        nombre: nombre
+        id: id
       }
     });
 
@@ -124,11 +153,8 @@ export class AreasService {
       })
     };
     //return this.directHttp.put(url, params, httpOptions);
-    this.directHttp.put(url,{nombre:nombre}).subscribe((response:any)=>
-    {
-      console.log(response);
-      return response;
-    })
+    return  this.directHttp.put(url,{id:id})
+ 
   }
 
   // alternativa a update
@@ -139,7 +165,6 @@ export class AreasService {
       fromObject: {
         grant_type: 'password',
         nombre: nombre,  
-         idObjetivo:idObjetivo
         
       }
     });
@@ -158,4 +183,15 @@ export class AreasService {
     return this.directHttp.put(url, params, httpOptions);
   }
 
+<<<<<<< HEAD
 }
+=======
+  getAreass(id: number): Observable<Area | undefined> {
+    return this.getAreasss()
+      .pipe(
+        map((area: Area[]) => area.find(p => p.id === id))
+      );
+  }
+
+}
+>>>>>>> 29fba71618703f9691ab0cec18f61e3b19f43c29
