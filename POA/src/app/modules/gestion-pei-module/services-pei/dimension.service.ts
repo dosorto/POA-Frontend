@@ -5,7 +5,6 @@ import { Dimension } from "../interfaces-pei/dimension.model";
 import { Pei } from "../interfaces-pei/pei.model";
 import { map, Observable } from "rxjs";
 import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
-import { response } from "express";
 
 @Injectable({
   providedIn: 'root'
@@ -76,9 +75,6 @@ export class DimensionService {
         return response;
       }))
   }
-  getDimension(idDimension:number) {
-    return this.callHttp.httpGet<Dimension>(`${environment.servidor}dimension/get/`+idDimension.toString());
-  }
 
   getPeiList() {
     return this.callHttp.httpGet<Array<Pei>>(`${environment.servidor}PEI/get_PEI`)
@@ -93,18 +89,13 @@ export class DimensionService {
         return response;
       }))
   }
-<<<<<<< HEAD
    eliminarDimension(nombre: string):any  {
-=======
-
-   eliminarDimension(id: number):any  {
->>>>>>> 29fba71618703f9691ab0cec18f61e3b19f43c29
     const url = environment.servidor + 'dimension/delete';
 
     const params = new HttpParams({
       fromObject: {
         grant_type: 'password',
-        id: id
+        nombre: nombre
       }
     });
 
@@ -114,7 +105,7 @@ export class DimensionService {
       })
     };
     //return this.directHttp.put(url, params, httpOptions);
-    return  this.directHttp.put(url,{id:id})
+    return  this.directHttp.put(url,{nombre:nombre})
   }
 
   // alternativa a update

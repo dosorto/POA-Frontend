@@ -18,8 +18,5 @@ export class MenuComponent implements OnInit {
   ngOnInit(): void {
     
   }
-  toPei(){
-    this.router.navigate(['/gestion_pei/pei/list/1'])
-  }
 
 }

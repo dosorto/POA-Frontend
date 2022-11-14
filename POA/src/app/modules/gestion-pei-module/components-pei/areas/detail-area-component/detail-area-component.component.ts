@@ -3,126 +3,75 @@ import { Storage } from 'src/app/_core/global-services/local_storage.service';
 import { AreasService } from '../../../services-pei/areas.service';
 import { Area } from '../../../interfaces-pei/area.model';
 import { Objetivo } from "../../../interfaces-pei/objetivo.model";
-import { Dimension } from '../../../interfaces-pei/dimension.model';
-import { Pei } from '../../../interfaces-pei/pei.model';
 import { firstValueFrom } from 'rxjs';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-<<<<<<< HEAD
 
-=======
->>>>>>> 29fba71618703f9691ab0cec18f61e3b19f43c29
 @Component({
   selector: 'app-detail-area-component',
   templateUrl: './detail-area-component.component.html',
   styleUrls: ['./detail-area-component.component.css']
 })
 export class DetailAreaComponentComponent implements OnInit {
-<<<<<<< HEAD
   area:Array<Area>=[];
   listaObjetivos: Array<Objetivo >=[];
   user = this.Storage.get_storage("user");
-=======
-  public idObjetivo:number = Number(this._route.snapshot.paramMap.get('idObjetivo'));
-  public id:number = Number(this._route.snapshot.paramMap.get('id'));
-  //public area:Area | any = {};
-  public dimension:Dimension | any = {};
-  public pei:Pei | any = {};
-  area: Area | any = {};
-  errorMessage = '';
-
-
-
->>>>>>> 29fba71618703f9691ab0cec18f61e3b19f43c29
   _delete:string="";
-
+  pei_seleccionado:string="";
+  objetivo_seleccionado:string="";
+  dimension_seleccionado:string="";
+  
+  public page:number=0;
+  public step:number=10;
+  public maxPages:number=1;
+  public enumPages:number[]=[]
 
   constructor(private Storage:Storage, 
               private service:AreasService,
-              private router:Router,
-              private _route: ActivatedRoute) { }
+              private router:Router) { }
 
   ngOnInit(): void {
-    const id = Number(this._route.snapshot.paramMap.get('id'));
-    if (id) {
-      this.getAreas(id);  
-    }
-    console.log(this.area?.id)
-   
-  }
-  getAreas(id: number): void {
-    this.service.getAreass(id).subscribe({
-      next: area => {this.area = area},
-      error: err => this.errorMessage = err
-    });
-  }
-  
-   /*async initData(){
-    this.area = await this.service.getAreass(this.id).subscribe((response:any)=>{
-      this.area = response.area;
-      console.log(response);
-    }
-    );
-    console.log(this.area);
-  } */
-
-  /*this.dimension = await this.service.getDimension(this.id).subscribe((response:any)=>{
-    this.dimension = response.dimension;
-    console.log(response);
-  }
-  );
-  console.log(this.dimension);
-
-this.pei = this.service.getPEI_Id(this.id).subscribe((response:any)=>{
-  this.pei = response.pei;
-  console.log(response);
-}
-);
-console.log(this.pei);
-*/
-
-  toList(){
-    this.router.navigate(['/gestion_pei/areas/list/',this.idObjetivo]);
-  }
-  toResultados(){
-    this.router.navigate(['/gestion_pei/resultados/list/',this.id]);
-  }
-  toUpdate(){
-    this.router.navigate(['/gestion_pei/areas/update/',this.id,this.idObjetivo]);
+    this.initData();
+  }async initData(){
+    let area = await firstValueFrom(this.service.getArea())
+    this.area = area;
+    this.maxPages = Math.round(this.area.length / this.step ) + 1  // cantidad de paginas para los botones
+    if((this.area.length % this.step ) !== 0 ){this.maxPages++}; // si sobran pocos elementos agrega otra pagina
+    this.enumPages =  Array(this.maxPages).fill(null).map((x,i)=>i).slice(1,this.maxPages);
+    console.log(this.area.length);
+    const Objetivos = await firstValueFrom(this.service.getObjetivos());
+    this.listaObjetivos = Objetivos;
+    console.log(this.listaObjetivos)
   }
 
-  async Delete(){
-    try{
-    await this.service.eliminarArea(this.id).subscribe((res:any)=>{
-      Swal.fire({
-        icon: 'success',
-        title: '¡Eliminado con éxito!',
-        showConfirmButton: false,
-        timer: 1000
-      })
-    });
-    setTimeout(function() {
-      window.location.reload();
-    },1000);
-    this.toList();
-  }catch(error){
+  set_id_delete(nombre:string){
+    this._delete = nombre;
+    console.log(this._delete)
+  }
+  async delete(){
+    await this.service.eliminarArea(this._delete);
     Swal.fire({
-      icon: 'error',
-      title: '¡Ha ocurrido un error!',
+      title: 'Area eliminada con exito',
       showConfirmButton: false,
-      timer: 1000
+      color:'white',
+      background:'#F5B7B1',
+      showClass: {
+        popup: 'animate__animated animate__fadeInDown'
+      },
+      hideClass: {
+        popup: 'animate__animated animate__fadeOutUp'
+      }
+      
     })
     setTimeout(function() {
+      window.location.reload();
+    },3000);
+    
+      
     window.location.reload();
-    },1000);
-  
+    
   }
-<<<<<<< HEAD
 
 
 }
    
-=======
-  }
-}
->>>>>>> 29fba71618703f9691ab0cec18f61e3b19f43c29
