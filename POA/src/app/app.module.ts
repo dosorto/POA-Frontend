@@ -40,9 +40,12 @@ import { TopBarComponent } from './_core/top-bar/top-bar.component';
     FormsModule,
     ReactiveFormsModule ,
     TopBarComponent
-    
+
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+
+
