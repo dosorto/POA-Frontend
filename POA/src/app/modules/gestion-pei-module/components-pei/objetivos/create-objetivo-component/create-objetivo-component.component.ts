@@ -16,6 +16,8 @@ export class CreateObjetivoComponentComponent implements OnInit {
   constructor(private _route: ActivatedRoute,private objetivosService:ObjetivosService,private _router: Router,private toastr: ToastrService) { }
    
   idDimension = Number(this._route.snapshot.paramMap.get('idDimension'));
+  public idPei = Number(this._route.snapshot.paramMap.get('idPei'));
+  public idInsti = Number(this._route.snapshot.paramMap.get('idInsti'));
   
   ngOnInit(): void {
     const id = Number(this._route.snapshot.paramMap.get('id'));
@@ -79,6 +81,6 @@ export class CreateObjetivoComponentComponent implements OnInit {
     // this.onBack()
   }
   onBack(): void {
-    this._router.navigate(['/gestion_pei/objetivos/list/',this.idDimension]);
+    this._router.navigate(['/gestion_pei/objetivos/list/',this.idDimension,this.idPei,this.idInsti]);
   }
 }

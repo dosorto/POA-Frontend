@@ -42,10 +42,10 @@ export class DetailDimensionComponent implements OnInit {
     this.router.navigate(['/gestion_pei/dimension/list/',this.idPei,this.idInsti]); //revisar
   }
   toObjetivos(){
-    this.router.navigate(['/gestion_pei/objetivos/list/',this.id]);
+    this.router.navigate(['/gestion_pei/objetivos/list/',this.id,this.idPei,this.idInsti]);
   }
   toUpdate(){
-    this.router.navigate(['/gestion_pei/dimension/update/',this.id,this.idPei]);
+    this.router.navigate(['/gestion_pei/dimension/update/',this.id,this.idPei,this.idInsti]);
   }
 
 async Delete(){

@@ -27,7 +27,7 @@ export class AllPeiComponent implements OnInit {
   rutaActual = "pei";
   public pei: Array<Pei> = [];
   public InstiList: Array<Institucion> = [];
-  public InstiSeleccionado : Institucion | any;
+  public InstiSeleccionado : number = this.idInsti;
   public user = this.Storage.get_storage("user"); // obtener el usuario logueado
   public filter: string = ""; // para filtar la tabla
   public _delete: string = ""; // define que elemento sera eliminado
@@ -63,7 +63,7 @@ export class AllPeiComponent implements OnInit {
     this.router.navigate(['/gestion_pei/pei/list/',this.InstiSeleccionado]);
     setTimeout(function () {
       window.location.reload();
-    }, 1500)
+    }, 10)
   }
   nextPage() {
     this.page = this.page + this.step;

@@ -1,24 +1,22 @@
 <top-bar></top-bar>
-<br><br>
-<div class="container  justify-content-center pt-5 mt-5">
-    <div class="row">
-        <div class="col-8 justify-content-center border rounded p-4 centrad">
-            <div class="text-black text-center">
-                <h5 class=" fs-5 text-center m-auto" id="exampleModalLabel">Crear una nueva Area</h5>
+<body class="justify-content-center abs-center mt-5 pt-5" style="background-color: #EFF0FD;">
+   
+    <div class="col-12">
+        <br>
+       
+        <div class="container shadow rounded border border-dark" style="background-color: white;">
+            <div class="w-100 row m-auto">
+                <br>
+                <div class="row text-center">
+                    <h1> </h1>
+                    <h2 class="l-4">Crear Area</h2>
+                </div>
             </div>
-            <div>
                 <form #AreaC="ngForm" (ngSubmit)="crearArea(AreaC.value.nombre)" id="createArea">
-                    <div class="col-2">
-                        <button class="btn btn-secondary rounded" (click)="toArea()">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-left-short" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"/>
-                             </svg>
-                        </button>
-                    </div>
-                    <div class="col-8">
+                    <div class="container">
                           <!-- Campo para el nombre de area -->
-                          <div class="mb-3 mx-2 px-2 pt-4">
-                            <label for="nombre" class="col-form-label">Nombre de area:</label>
+                          <div class="mb-3 mx-2 px-2 row">
+                            <label for="nombre" class="row col-form-label">Nombre de area:</label>
                             <div class="row">
                                 <input type="text" class="form-control" name="nombre" ngModel required>
                             </div>
@@ -26,11 +24,13 @@
                 </div>
           
                    
-                    <div class="modal-footer">
+                    <div class="container">
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                       <button type="button" class="btn btn-secondary"(click)="toList()">Regresar</button>
                       <button type="submit" class="btn btn-warning" [disabled]="AreaC.invalid">Guardar</button>          
                     </div>
-                  
+                </div>
+                <br>
                 </form>
             </div>
         </div>
