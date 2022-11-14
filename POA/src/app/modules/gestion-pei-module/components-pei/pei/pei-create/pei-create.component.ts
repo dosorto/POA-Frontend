@@ -31,17 +31,18 @@ export class PeiCreateComponent implements OnInit {
         icon: 'success',
         title: '¡Registrado con éxito!',
         showConfirmButton: false,
-        timer: 2500
+        timer: 1500
       })
+      this.onBack()
     }, (error: any) => {
       Swal.fire({
         icon: 'error',
         title: 'Ha ocurrido un error',
         showConfirmButton: false,
-        timer: 2500
+        timer: 1500
       })
     });
-    this.onBack()
+    
   }
   onBack(): void {
   this.router.navigate(['/gestion_pei/pei/list/',this.idInstitucion]);

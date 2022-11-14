@@ -91,6 +91,9 @@ export class PeiService {
         return response;
       }))
   }
+  getInsti_Id(idInsti:number) {
+    return this.callHttp.httpGet<Institucion>(`${environment.servidor}institucion/get/`+idInsti.toString());
+  }
 
   eliminarPEI(id: number): any {
     const url = environment.servidor + 'PEI/disablePEI';

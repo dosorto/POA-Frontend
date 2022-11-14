@@ -34,6 +34,7 @@ export class CreateDimensionComponent implements OnInit {
         showConfirmButton: false,
         timer: 2500
       })
+      this.toList();
     },(error:any)=>{
       Swal.fire({
         icon: 'error',
@@ -42,8 +43,6 @@ export class CreateDimensionComponent implements OnInit {
         timer: 2500
       })
     });
-    setTimeout(function() {
-      window.location.reload();
-    },1500);
+    
   }
 }
