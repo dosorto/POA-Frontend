@@ -1,19 +1,21 @@
 import { CallHttpService } from "../../../_core/global-services/call-http.service";
 import { Injectable } from '@angular/core';
 import { environment } from "../../../../environments/environment";
-import { Area }from "../interfaces-pei/area.model";
-import { Pei } from "../interfaces-pei/pei.model";
-import { Objetivo } from "../interfaces-pei/objetivo.model";
-import { Dimension } from "../interfaces-pei/dimension.model";
+import { Area } from "../../gestion-pei-module/interfaces-pei/area.model";
+import { Pei } from "../../gestion-pei-module/interfaces-pei/pei.model";
+import { Objetivo } from "../../gestion-pei-module/interfaces-pei/objetivo.model";
+import { Dimension } from "../../gestion-pei-module/interfaces-pei/dimension.model";
+import { Actividad } from "../interfaces-poa/actividad.model";
 import { map, Observable } from "rxjs";
 import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
 })
-export class AreasService {
+export class ActividadService {
   constructor(private callHttp: CallHttpService, private directHttp: HttpClient) { }
   private _areas: Array<Area> = [];
+  private _actividades: Array<Actividad> = [];
   private _peiList: Array<Pei> = [];
   private _objetivoList: Array<Objetivo> = [];
   private _dimensionList: Array<Dimension> = [];
@@ -29,6 +31,9 @@ export class AreasService {
   }
   get dimensiones() {
     return this._dimensionList;
+  }
+  get actividades(){
+    return this._actividades;
   }
   public crearArea (nombre:string,idObjetivo:number):any{
       const url = environment.servidor + 'area/crear';
@@ -82,10 +87,10 @@ export class AreasService {
         return response;
       }))
   }*/
-  getAreas(idObjetivo:number) {
-    return this.callHttp.httpGet<Array<Area>>(`${environment.servidor}area/get_all_by_idObjetivo/` + idObjetivo.toString())
+  getActividades(idResultado:number) {
+    return this.callHttp.httpGet<Array<Actividad>>(`${environment.servidor}actividad/get_all_by_idResultado/` + idResultado.toString())
       .pipe(map(response => {
-        this._areas = response;               
+        this._actividades = response;               
         return response;
       }))
   }
