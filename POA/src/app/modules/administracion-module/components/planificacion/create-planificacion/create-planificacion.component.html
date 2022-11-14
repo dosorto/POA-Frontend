@@ -1,0 +1,58 @@
+<top-bar></top-bar>
+<div class="container justify-content-center pt-5 mt-5">
+    <div>
+        <div class="col-12">
+            <div class="text-black text-center">
+                <h5 class=" fs-5 text-center m-auto" id="exampleModalLabel">Crear Nueva Planificación</h5>
+            </div>
+            <div>
+                <form>
+                    <div class="col">
+                      <div class="mb-3 mx-2 px-2 row">
+                        <label for="name" class="row col-form-label">Indicador</label>
+                        <div class="row">
+                          <select class="form-control" aria-label="Default select example" name="id">
+
+                            <ng-container>
+                                <option>opciones de indicador</option>
+                            </ng-container>
+            </select>
+                        </div>
+                    </div>
+                        <div class="mb-3 mx-2 px-2 row">
+                            <label for="name" class="row col-form-label">Trimestre:</label>
+                            <div class="row">
+                                <input type="text" class="form-control" name="name">
+                            </div>
+                        </div>
+                        <div class="mb-3 mx-2 px-2 row">
+                          <label for="initialYear" class="row col-form-label">Cantidad</label>
+                          <div class="row">
+                              <input type="number" class="form-control" name="initialYear" ngModel required>
+                          </div>
+                      </div>
+                        <div class="mb-3 mx-2 px-2 row">
+                            <label for="initialYear" class="row col-form-label">Año Inicial:</label>
+                            <div class="row">
+                                <input type="Date" class="form-control" name="initialYear" ngModel required>
+                            </div>
+                        </div>
+                        <div class="mb-3 mx-2 px-2 row">
+                            <label for="finalYear" class="row col-form-label">Año Final:</label>
+                            <div class="row">
+                                <input type="Date" class="form-control" name="finalYear" ngModel required>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary">Regresar</button>
+                        <button type="submit" class="btn btn-warning m-2">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -17,6 +17,7 @@ import { LoginComponent } from './modules/login-module/login.component';
 import {MatCardModule} from '@angular/material/card';
 import { ToastrModule } from 'ngx-toastr';
 import { TopBarComponent } from './_core/top-bar/top-bar.component';
+import { AdministracionModuleModule } from './modules/administracion-module/administracion-module.module';
 
 
 
@@ -39,8 +40,9 @@ import { TopBarComponent } from './_core/top-bar/top-bar.component';
     ToastrModule.forRoot(),
     FormsModule,
     ReactiveFormsModule ,
-    TopBarComponent
-    
+    TopBarComponent,
+    AdministracionModuleModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
