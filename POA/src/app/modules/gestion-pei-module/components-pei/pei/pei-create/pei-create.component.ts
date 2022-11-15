@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Router, ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
+import { Institucion } from 'src/app/modules/administracion-module/interfaces/institucion.model';
 
 @Component({
   selector: 'app-pei-create',
@@ -12,12 +13,24 @@ import Swal from 'sweetalert2';
 })
 export class PeiCreateComponent implements OnInit {
 
+  public id:number = Number(this._route.snapshot.paramMap.get('id'));
+  public idInsti:number = Number(this._route.snapshot.paramMap.get('idInsti'));
+  public insti:Institucion | any = {};
+
   constructor(private PeiService: PeiService, private _route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
   }
 
   public idInstitucion: number = Number(this._route.snapshot.paramMap.get('idInsti'));
+
+  async initData() {
+    this.insti = this.PeiService.getInsti_Id(this.idInsti).subscribe((response:any)=>{
+      this.insti = response.Institucion;
+    });
+  }
+
+
 
   toList() {
     this.router.navigate(['gestion_pei/pei/list/', this.idInstitucion]);
