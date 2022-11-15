@@ -13,19 +13,19 @@ import { Institucion } from 'src/app/modules/administracion-module/interfaces/in
 })
 export class PeiCreateComponent implements OnInit {
 
-  public id:number = Number(this._route.snapshot.paramMap.get('id'));
-  public idInsti:number = Number(this._route.snapshot.paramMap.get('idInsti'));
-  public insti:Institucion | any = {};
+  public idInsti: number = Number(this._route.snapshot.paramMap.get('idInsti'));
+  public insti: Institucion | any = {};
 
   constructor(private PeiService: PeiService, private _route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
+    this.initData();
   }
 
   public idInstitucion: number = Number(this._route.snapshot.paramMap.get('idInsti'));
 
   async initData() {
-    this.insti = this.PeiService.getInsti_Id(this.idInsti).subscribe((response:any)=>{
+    this.insti = this.PeiService.getInsti_Id(this.idInsti).subscribe((response: any) => {
       this.insti = response.Institucion;
     });
   }
@@ -40,25 +40,27 @@ export class PeiCreateComponent implements OnInit {
     console.log(name, initialYear, finalYear, this.idInstitucion);
     await this.PeiService.crearPEI(name, initialYear, finalYear, this.idInstitucion).subscribe((res: any) => {
       console.log(res);
-      Swal.fire({
-        icon: 'success',
-        title: '¡Registrado con éxito!',
-        showConfirmButton: false,
-        timer: 1500
-      })
-      this.onBack()
-    }, (error: any) => {
-      Swal.fire({
-        icon: 'error',
-        title: 'Ha ocurrido un error',
-        showConfirmButton: false,
-        timer: 1500
-      })
-    });
-    
+      if (initialYear < finalYear) {
+        Swal.fire({
+          icon: 'success',
+          title: '¡Registrado con éxito!',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        this.onBack()
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Ha ocurrido un error',
+          showConfirmButton: false,
+          timer: 1500
+        })
+      }
+    },);
+
   }
   onBack(): void {
-  this.router.navigate(['/gestion_pei/pei/list/',this.idInstitucion]);
+    this.router.navigate(['/gestion_pei/pei/list/', this.idInstitucion]);
   }
 
 }
