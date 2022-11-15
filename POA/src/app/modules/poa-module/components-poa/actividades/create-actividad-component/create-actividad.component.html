@@ -1,36 +1,88 @@
 <top-bar></top-bar>
+
 <body class="justify-content-center abs-center mt-5 pt-5" style="background-color: #EFF0FD;">
-   
+
     <div class="col-12">
         <br>
-       
+
         <div class="container shadow rounded border border-dark" style="background-color: white;">
             <div class="w-100 row m-auto">
                 <br>
                 <div class="row text-center">
                     <h1> </h1>
-                    <h2 class="l-4">Crear Area</h2>
+                    <h2 class="l-4">Crear actividad</h2>
                 </div>
             </div>
-                <form #AreaC="ngForm" (ngSubmit)="crearArea(AreaC.value.nombre)" id="createArea">
-                    <div class="container">
-                          <!-- Campo para el nombre de area -->
-                          <div class="mb-3 mx-2 px-2 row">
-                            <label for="nombre" class="row col-form-label">Nombre de area:</label>
-                            <div class="row">
-                                <input type="text" class="form-control" name="nombre" ngModel required>
-                            </div>
+            <form #AreaC="ngForm" (ngSubmit)="crearArea(AreaC.value.nombre)" id="createArea">
+                <div class="container">
+                    <!-- Campo para el nombre de area -->
+                    <div class="mb-3 mx-2 px-2 row">
+                        <label for="nombre" class="row col-form-label">Nombre de actividad:</label>
+                        <div class="row">
+                            <input type="text" class="form-control" name="nombre" ngModel required>
+                        </div>
                     </div>
                 </div>
-          
-                   
-                    <div class="container">
-                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                      <button type="button" class="btn btn-secondary"(click)="toList()">Regresar</button>
-                      <button type="submit" class="btn btn-warning" [disabled]="AreaC.invalid">Guardar</button>          
+
+                <div class="container">
+                    <div class="mb-3 mx-2 px-2 row">
+                        <label for="descripcion" class="row col-form-label">Descripción:</label>
+                        <div class="row">
+                            <input type="text" class="form-control" name="descripcion" ngModel required>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container">
+                    <div class="mb-3 mx-2 px-2 row">
+                        <label for="tipoActividad" class="row col-form-label">Tipo de actividad:</label>
+                        <div class="row">
+                            <input type="text" class="form-control" name="tipoActividad" ngModel required>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="container">
+                    <div class="mb-3 mx-2 px-2 row">
+                        <label for="categoria" class="row col-form-label"> Categoria:</label>
+                        <div class="row">
+                            <input type="text" class="form-control" name="categoria" ngModel required>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="container">
+                    <div class="mb-3 mx-2 px-2 row">
+                        <label for="Resultado" class="row col-form-label"> Resultado de la unidad:</label>
+                        <div class="row">
+                            <input type="text" class="form-control" name="Resultado" ngModel required>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container">
+                    <div class="mb-3 mx-2 px-2 row">
+                        <label for="Responsable" class="row col-form-label">Responsable:</label>
+                        <div class="row">
+                            <input type="text" class="form-control" name="Responsable" ngModel required>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container">
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button type="button" class="btn btn-secondary" (click)="toList()">Regresar</button>
+                        <button type="submit" class="btn btn-warning" [disabled]="AreaC.invalid">Guardar</button>
                     </div>
                 </div>
                 <br>
-                </form>
-            </div>
+            </form>
         </div>
+    </div>

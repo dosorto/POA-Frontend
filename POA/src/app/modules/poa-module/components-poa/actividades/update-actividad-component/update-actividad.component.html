@@ -1,50 +1,90 @@
+<top-bar></top-bar>
 
-      <top-bar></top-bar>
-      <body class="justify-content-center abs-center mt-5 pt-5 abs-center">
-          <div class="col-7">
-              <br>
-              <!-- espacio para el titulo, buscador y boton de agregar uno nuevo -->
-              <div class="container border rounded rounden-2 p-2">
-              <div class="w-100 row m-auto">
-              <br>
-              <!-- espacio para el titulo, buscador y boton de agregar uno nuevo -->
-              <div class="w-100 row m-auto">
-                   
-                  <div class="row text-center">
-                      <h2 class="l-4" ><font color='black'>Editar un area</font></h2>
-                  </div>
-                  
-                  <div class="d-grid gap-2 d-md-flex justify-content-end">
-      
-                  </div>
-                <div class="col-10">
-                  <label for="inputNombre" class="form-label"  name="nombre">Nombre:</label>
-                  <textarea type="text" class="form-control" id="exampleFormControlTextarea1" [(ngModel)]="nombre" rows="2" value="{{area.nombre}}" >
-                  </textarea>
-                  </div>
-                  <div class="col-10 mb-3">
-                    <label for="inputDescripcion" class="form-label">Objetivo:</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" value="{{area.objetivo.nombre}}" disabled></textarea>
-                  </div>
-                <div class="col-md-5">
-                    <label for="inputDimension" class="form-label">Dimensión:</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" value="{{area.dimension.nombre}}" disabled></textarea>
-                  </div>
-                  <div class="col-md-5">
-                    <label for="inputPEI" class="form-label">PEI:</label>
-                    <input type="text" class="form-control" id="inputPEI" value="{{area.pei.name}}"disabled>
-                  </div>
-                  <div class="container">
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                  <button type="button" class="btn btn-secondary" (click)="toDetail()">Regresar</button>
-                    <button type="submit" class="btn btn-warning" (click)="update()" >Actualizar</button>
+<body class="justify-content-center abs-center mt-5 pt-5" style="background-color: #EFF0FD;">
+
+    <div class="col-12">
+        <br>
+
+        <div class="container shadow rounded border border-dark" style="background-color: white;">
+            <div class="w-100 row m-auto">
+                <br>
+                <div class="row text-center">
+                    <h1> </h1>
+                    <h2 class="l-4">Gestionar  actividad</h2>
                 </div>
-              </div>
             </div>
+            <form #AreaC="ngForm" (ngSubmit)="crearArea(AreaC.value.nombre)" id="createArea">
+                <div class="container">
+                    <!-- Campo para el nombre de area -->
+                    <div class="mb-3 mx-2 px-2 row">
+                        <label for="nombre" class="row col-form-label">Nombre de actividad:</label>
+                        <div class="row">
+                            <input type="text" class="form-control" name="nombre" ngModel required>
+                        </div>
+                    </div>
+                </div>
 
-          </div>
-              </div>
-            </div>
-      </body>
+                <div class="container">
+                    <div class="mb-3 mx-2 px-2 row">
+                        <label for="descripcion" class="row col-form-label">Descripción:</label>
+                        <div class="row">
+                            <input type="text" class="form-control" name="descripcion" ngModel required>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container">
+                    <div class="mb-3 mx-2 px-2 row">
+                        <label for="tipoActividad" class="row col-form-label">Tipo de actividad:</label>
+                        <div class="row">
+                            <input type="text" class="form-control" name="tipoActividad" ngModel required>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="container">
+                    <div class="mb-3 mx-2 px-2 row">
+                        <label for="categoria" class="row col-form-label"> Categoria:</label>
+                        <div class="row">
+                            <input type="text" class="form-control" name="categoria" ngModel required>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="container">
+                    <div class="mb-3 mx-2 px-2 row">
+                        <label for="Resultado" class="row col-form-label"> Resultado de la unidad:</label>
+                        <div class="row">
+                            <input type="text" class="form-control" name="Resultado" ngModel required>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container">
+                    <div class="mb-3 mx-2 px-2 row">
+                        <label for="Responsable" class="row col-form-label">Responsable:</label>
+                        <div class="row">
+                            <input type="text" class="form-control" name="Responsable" ngModel required>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container">
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button type="button" class="btn btn-secondary" (click)="toList()">Cancelar</button>
+                        <button type="submit" class="btn btn-warning" [disabled]="AreaC.invalid">Actualizar</button>
+                    </div>
+                </div>
+                <br>
+            </form>
+        </div>
+    </div>
       
               
