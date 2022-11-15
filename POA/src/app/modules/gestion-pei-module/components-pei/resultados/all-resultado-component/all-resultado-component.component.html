@@ -1,4 +1,5 @@
 <top-bar></top-bar>
+<app-back-button [path]="['gestion_pei/areas/detail/',this.idArea,this.idObjetivo,idDimension,idPei,idInsti]"></app-back-button>
 <body class="justify-content-center mt-5 pt-5">
 
 <!-- Pantalla principal del modulo -->
@@ -14,16 +15,18 @@
                 <h2 class="l-4">Gestión de Resultado</h2>
             </div>
             <div class="w-75 row m-auto mb-2">
-               
-                <div><br></div>
-                <div class="col-2">
-                    <button class="btn btn-secondary rounded" (click)="toArea()">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-left-short" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"/>
-                         </svg>
-                    </button>
+                <div class="row">
+                    <label for="id" class="row col-form-label">Seleccione un Área:</label>
+                                <select class="form-control" aria-label="Default select example" name="id"
+                                    [(ngModel)]="area_seleccionado"
+                                    (ngModelChange)="selectArea()" required>
+            
+                                    <ng-container *ngFor="let x of areaList">
+                                        <option value="{{x.id}}" [selected]="x.id===idArea">{{x.nombre}}</option>
+                                    </ng-container>
+                    </select>
                 </div>
-                <div class="col-8">
+                <div class="col-8 mt-2">
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Buscar por nombre" aria-label="Buscar"
                             aria-describedby="btnGroupAddon" aria-describedby="btnGroupAddon" [(ngModel)]="filter" name="filter">
@@ -47,7 +50,8 @@
                 </div>
             </div>
         </div>
-        <!-- tabla dinamica que muestra todas los objetivos -->
+        <ng-container *ngIf="resultadoList.length > 0; else empty">
+            <!-- tabla dinamica que muestra todas los objetivos -->
         <div class="w-75 m-auto row ">
             <table class="table table-hover  rounded border" >
                 <thead class="text-center">
@@ -105,8 +109,16 @@
                 </ul>
             </nav>
             
-</div>
+
+        </div>
+        </ng-container>
+        
+        <ng-template #empty>
+            <app-empty></app-empty>
+        </ng-template>
 </div>
 </div>
 </div>
 </body>
+
+{{area_seleccionado}}

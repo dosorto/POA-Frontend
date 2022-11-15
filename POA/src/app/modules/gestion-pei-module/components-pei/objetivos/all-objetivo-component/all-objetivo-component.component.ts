@@ -154,12 +154,13 @@ export class AllObjetivoComponentComponent implements OnInit {
       this.router.navigate(['/gestion_pei/pei/list/',this.idInsti]);
     }
 
-    changeDimension(){
-      this.router.navigate(['/gestion_pei/objetivos/list/',this.idDimension,this.idPei,this.idInsti]);
-    setTimeout(function () {
-      window.location.reload();
-    }, 10)
+    selectDimension(){
+      this.router.navigate(['/gestion_pei/objetivos/list/',this.dimension_seleccionado,this.idPei,this.idInsti]);
+      setTimeout(function () {
+        window.location.reload();
+      }, 10)
     }
+
 
     toCreate(){
       this._route.paramMap.subscribe((params: ParamMap) => {

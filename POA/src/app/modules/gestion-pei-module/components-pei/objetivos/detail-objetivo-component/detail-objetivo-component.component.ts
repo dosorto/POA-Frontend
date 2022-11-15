@@ -4,6 +4,8 @@ import Swal from 'sweetalert2';
 import {AllObjetivoComponentComponent} from '../all-objetivo-component/all-objetivo-component.component';
 import { Objetivo } from '../../../interfaces-pei/objetivo.model';
 import { ObjetivosService } from '../../../services-pei/objetivos.service';
+import { Dimension } from '../../../interfaces-pei/dimension.model';
+import { DimensionService } from '../../../services-pei/dimension.service';
 @Component({
   selector: 'app-detail-objetivo-component',
   templateUrl: './detail-objetivo-component.component.html',
@@ -14,15 +16,21 @@ export class DetailObjetivoComponentComponent implements OnInit {
   errorMessage = '';
   objetivo: Objetivo | undefined;
   _delete:any;
-   constructor(private _route: ActivatedRoute, private _router: Router, private ObjetivoService:ObjetivosService) { }
+   constructor(private _route: ActivatedRoute, 
+               private _router: Router, 
+               private ObjetivoService:ObjetivosService,
+               private dimensionService:DimensionService) { }
     id = Number(this._route.snapshot.paramMap.get('id'));
     public idDimension = Number(this._route.snapshot.paramMap.get('idDimension'));
     public idPei = Number(this._route.snapshot.paramMap.get('idPei'));
     public idInsti = Number(this._route.snapshot.paramMap.get('idInsti'));
+    public dimension :Dimension|any={};
   ngOnInit(){
     const id = Number(this._route.snapshot.paramMap.get('id'));
-    console.log("aqui ")
-    console.log(id)
+    this.dimension = this.dimensionService.getDimension(this.idDimension).subscribe((response:any)=>{
+      this.dimension = response.dimension;
+      console.log(response);
+    })
     if (id) {
       this.getObjetivoss(id);  
     }

@@ -38,25 +38,26 @@ export class PeiCreateComponent implements OnInit {
 
   async crear_pei(name: string, initialYear: string, finalYear: string) {
     console.log(name, initialYear, finalYear, this.idInstitucion);
-    await this.PeiService.crearPEI(name, initialYear, finalYear, this.idInstitucion).subscribe((res: any) => {
-      console.log(res);
-      if (initialYear < finalYear) {
-        Swal.fire({
-          icon: 'success',
-          title: '¡Registrado con éxito!',
-          showConfirmButton: false,
-          timer: 1500
-        })
-        this.onBack()
-      } else {
-        Swal.fire({
-          icon: 'error',
-          title: 'Ha ocurrido un error',
-          showConfirmButton: false,
-          timer: 1500
-        })
-      }
-    },);
+    if (initialYear < finalYear) {
+      await this.PeiService.crearPEI(name, initialYear, finalYear, this.idInstitucion).subscribe((res: any) => {
+        console.log(res);
+      },);
+      Swal.fire({
+        icon: 'success',
+        title: '¡Registrado con éxito!',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Ha ocurrido un error, revise si ha introducido bien las fechas',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    }
+    this.onBack()
+    
 
   }
   onBack(): void {

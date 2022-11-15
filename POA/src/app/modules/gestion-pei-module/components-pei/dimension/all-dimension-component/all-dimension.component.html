@@ -1,4 +1,5 @@
 <top-bar></top-bar>
+<app-back-button [path]="['/gestion_pei/pei/detail/',this.idPei,this.idInsti.toString()]"></app-back-button>
 <!-- Pantalla principal del modulo -->
 <div class="container d-flex align-items-center justify-content-center mt-5 pt-5">
 
@@ -56,51 +57,58 @@
                 </div>
             </div>
         </div>
-        <!-- tabla dinamica que muestra todas las Dimensión -->
-        <div class="w-75 m-auto row shadow alturaTabla">
-            <table class="table table-hover g">
-                <thead class="text-center">
-                    <tr>
-                        <th class="table-secondary" scope="col">#</th>
-                        <th class="table-secondary" scope="col">Nombre</th>
-                        <th class="table-secondary" scope="col">Acción</th>
-                    </tr>
-                </thead>
-                <tbody class="text-center">
+        <ng-container *ngIf="dimensiones.length > 0; else empty">
+ <!-- tabla dinamica que muestra todas las Dimensión -->
+ <div class="w-75 m-auto row shadow alturaTabla">
+    <table class="table table-hover g">
+        <thead class="text-center">
+            <tr>
+                <th class="table-secondary" scope="col">#</th>
+                <th class="table-secondary" scope="col">Nombre</th>
+                <th class="table-secondary" scope="col">Acción</th>
+            </tr>
+        </thead>
+        <tbody class="text-center">
 
-                    <tr *ngFor="let x of dimensiones | dimensionFilter:filter | paginacion:step:page; index as i ">
-                        <!-- este contador no es id, solo es para enumerar -->
-                        <td>
-                            <ng-container *ngIf="page > 0; else elseNumeracion">
-                                {{i + page + 1}}
-                            </ng-container>
-                            <ng-template #elseNumeracion>
-                                {{i + 1}}
-                            </ng-template>
-                        </td>
-                        <td>{{x.nombre}}</td>
-                        <td>
-                            <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                                <button type="button" class="btn btn-secondary" (click)="toDetail(x.id)">Gestionar</button>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <tr *ngFor="let x of dimensiones | dimensionFilter:filter | paginacion:step:page; index as i ">
+                <!-- este contador no es id, solo es para enumerar -->
+                <td>
+                    <ng-container *ngIf="page > 0; else elseNumeracion">
+                        {{i + page + 1}}
+                    </ng-container>
+                    <ng-template #elseNumeracion>
+                        {{i + 1}}
+                    </ng-template>
+                </td>
+                <td>{{x.nombre}}</td>
+                <td>
+                    <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                        <button type="button" class="btn btn-secondary" (click)="toDetail(x.id)">Gestionar</button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 
-            <nav aria-label="Page navigation example">
-                <ul class="justify-content-star">Página {{actualpage}} de {{maxPages}}</ul>
-                <ul class="pagination justify-content-end">
-                    <ng-container>
-                        <li class="page-item" *ngIf="(page > 0)"><a class="page-link "
-                                (click)="previousPage()">Anterior</a></li>
-                    </ng-container>
-                    <ng-container *ngIf="(actualpage < maxPages)">
-                        <li class="page-item"><a class="page-link " (click)="nextPage()">Siguiente</a></li>
-                    </ng-container>
-                </ul>
-            </nav>
-        </div>
+    <nav aria-label="Page navigation example">
+        <ul class="justify-content-star">Página {{actualpage}} de {{maxPages}}</ul>
+        <ul class="pagination justify-content-end">
+            <ng-container>
+                <li class="page-item" *ngIf="(page > 0)"><a class="page-link "
+                        (click)="previousPage()">Anterior</a></li>
+            </ng-container>
+            <ng-container *ngIf="(actualpage < maxPages)">
+                <li class="page-item"><a class="page-link " (click)="nextPage()">Siguiente</a></li>
+            </ng-container>
+        </ul>
+    </nav>
+</div>
+        </ng-container>
+
+        <ng-template #empty>
+            <app-empty></app-empty>
+        </ng-template>
+       
     </div>
 </div>
 

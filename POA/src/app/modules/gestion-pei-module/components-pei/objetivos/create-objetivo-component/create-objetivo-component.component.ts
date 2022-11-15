@@ -5,6 +5,8 @@ import { ToastrService } from 'ngx-toastr';
 import Swal from 'sweetalert2';
 import { Objetivo } from '../../../interfaces-pei/objetivo.model';
 import { ObjetivosService } from '../../../services-pei/objetivos.service';
+import { Dimension } from '../../../interfaces-pei/dimension.model';
+import { DimensionService } from '../../../services-pei/dimension.service';
 @Component({
   selector: 'app-create-objetivo-component',
   templateUrl: './create-objetivo-component.component.html',
@@ -13,9 +15,14 @@ import { ObjetivosService } from '../../../services-pei/objetivos.service';
 export class CreateObjetivoComponentComponent implements OnInit {
   errorMessage = '';
   objetivos: Objetivo | undefined;
-  constructor(private _route: ActivatedRoute,private objetivosService:ObjetivosService,private _router: Router,private toastr: ToastrService) { }
+  dimension: Dimension|any={};
+  constructor(private _route: ActivatedRoute,
+              private objetivosService:ObjetivosService,
+              private _router: Router,
+              private toastr: ToastrService,
+              private dimensionService:DimensionService) { }
    
-  idDimension = Number(this._route.snapshot.paramMap.get('idDimension'));
+  public idDimension = Number(this._route.snapshot.paramMap.get('idDimension'));
   public idPei = Number(this._route.snapshot.paramMap.get('idPei'));
   public idInsti = Number(this._route.snapshot.paramMap.get('idInsti'));
   
@@ -28,6 +35,12 @@ export class CreateObjetivoComponentComponent implements OnInit {
     this.initData_Dimension();
     // console.log(this.mostrarObjetivo);
     this.objetivosService.getObjetivos().subscribe((response:any) =>console.log(response))
+
+    this.dimension = this.dimensionService.getDimension(this.idDimension).subscribe((response:any)=>{
+      this.dimension = response.dimension;
+      console.log(response);
+    })
+
   }
 
   public dimension_seleccionado:string="";

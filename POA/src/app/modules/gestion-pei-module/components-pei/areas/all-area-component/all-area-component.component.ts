@@ -49,7 +49,7 @@ export class AllAreaComponentComponent implements OnInit {
   public filter:string=""; // para filtar la tabla
   public _delete:string=""; // define que elemento sera eliminado
   public data_update :Area | any = this.area_example; // define datos de un elemento a actualizar
-  public pei_seleccionado:string="";
+  public objetivo_seleccionado:string="";
   
   public page:number=0;
   public step:number=5;
@@ -76,7 +76,7 @@ export class AllAreaComponentComponent implements OnInit {
       this.dimension = response.dimension;
     })
     
-    this.ObjetivoList = await firstValueFrom(this.ObjetivoService.mostrar_objetivos_id(this.idDimension));
+    this.ObjetivoList = await firstValueFrom(this.ObjetivoService.mostrar_objetivo_id(this.idDimension));
     console.log("00000000"+this.ObjetivoList)
       //this.router.navigate(['/gestion_pei/objetivos/list/',id]);
     
@@ -120,7 +120,10 @@ export class AllAreaComponentComponent implements OnInit {
     this._delete = nombre;
     console.log(this._delete)
   }
-  selectArea(){
-
+  selectObjetivo(){
+    this.router.navigate(['/gestion_pei/areas/list/',this.objetivo_seleccionado,this.idDimension,this.idPei,this.idInsti]);
+    setTimeout(function () {
+      window.location.reload();
+    }, 10)
   }
 }

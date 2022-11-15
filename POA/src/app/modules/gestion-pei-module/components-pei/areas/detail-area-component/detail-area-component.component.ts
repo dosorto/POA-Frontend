@@ -77,7 +77,7 @@ console.log(this.pei);
     this.router.navigate(['/gestion_pei/areas/list/',this.idObjetivo,this.idDimension,this.idPei,this.idInsti]);
   }
   toResultados(){
-    this.router.navigate(['/gestion_pei/resultados/list/',this.id]);
+    this.router.navigate(['/gestion_pei/resultados/list/',this.id,this.idObjetivo,this.idDimension,this.idPei,this.idInsti]);
   }
   toUpdate(){
     this.router.navigate(['/gestion_pei/areas/update/',this.id,this.idObjetivo,this.idDimension,this.idPei,this.idInsti]);

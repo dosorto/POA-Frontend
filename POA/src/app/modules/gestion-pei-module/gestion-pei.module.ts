@@ -10,6 +10,8 @@ import {MatSelectModule} from '@angular/material/select'
 // componentes independientes importados
 // --------------------------------
 import { TopBarComponent } from '../../_core/top-bar/top-bar.component'
+import { BackButtonComponent } from 'src/app/_core/back-button/back-button.component';
+import { EmptyComponent } from 'src/app/_core/empty/empty.component';
 // --------------------------------
 // pipes del modulo
 // --------------------------------
@@ -97,11 +99,11 @@ const router = RouterModule.forChild([
   {path: 'areas/list/:idObjetivo/:idDimension/:idPei/:idInsti', component: AllAreaComponentComponent},
 
   // rutas de resultados
-  {path: 'resultados/create/:idArea', component: CreateResultadoComponentComponent},
-  {path: 'resultados/update/:id/:idArea', component: UpdateResultadoComponentComponent},
+  {path: 'resultados/create/:idArea/:idObjetivo/:idDimension/:idPei/:idInsti', component: CreateResultadoComponentComponent},
+  {path: 'resultados/update/:id/:idArea/:idObjetivo/:idDimension/:idPei/:idInsti', component: UpdateResultadoComponentComponent},
   {path: 'resultados/delete/:id', component: DeleteResultadoComponentComponent},
-  {path: 'resultados/detail/:id/:idArea', component: DetailResultadoComponentComponent},
-  {path: 'resultados/list/:idArea', component: AllResultadoComponentComponent},
+  {path: 'resultados/detail/:id/:idArea/:idObjetivo/:idDimension/:idPei/:idInsti', component: DetailResultadoComponentComponent},
+  {path: 'resultados/list/:idArea/:idObjetivo/:idDimension/:idPei/:idInsti', component: AllResultadoComponentComponent},
 
   // rutas de indicadores
   {path: 'indicadores/create', component: CreateIndicadorComponentComponent},
@@ -162,7 +164,9 @@ CommonModule,
   router,
   MatSelectModule,
   FormsModule,
-  TopBarComponent
+  TopBarComponent,
+  BackButtonComponent,
+  EmptyComponent
   ]
 })
 export class GestionPeiModule { }
