@@ -14,6 +14,11 @@ const routes: Routes = [
     path: 'gestion_poa', children: [
       { path: '', loadChildren: () => import('./modules/poa-module/poa-module.module').then(t => t.PoaModuleModule) }
     ]
+  },
+  {
+    path: 'gestion_pei', children: [
+      {path: '', loadChildren: () => import('./modules/gestion-pei-module/gestion-pei.module').then(t=>t.GestionPeiModule)}
+    ]
   }
 ];
 

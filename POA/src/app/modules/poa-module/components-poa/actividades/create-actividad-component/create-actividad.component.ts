@@ -20,11 +20,11 @@ export class CreateActividadComponent implements OnInit {
   }
   public idObjetivo:number = Number(this._route.snapshot.paramMap.get('idObjetivo'));
   toList(){
-    this.router.navigate(['/gestion_pei/areas/list/',this.idObjetivo]);
+    this.router.navigate(['/gestion_poa/actividad/list/',this.idObjetivo]);
   }
-  async crearArea(nombre:string){
+  async crearArea(nombre:string,descripcion:string, estado:string,tipoActividad:string, categoria:string,){
     console.log(nombre.toString(),this.idObjetivo);
-    await this.service.crearArea(nombre,this.idObjetivo).subscribe((res:any)=>{
+    await this.service.crearActividad(nombre,descripcion,estado,tipoActividad,categoria,this.idObjetivo).subscribe((res:any)=>{
         Swal.fire({
         icon: 'success',
         title: '¡Creado con éxito!',

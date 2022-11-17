@@ -35,14 +35,20 @@ export class ActividadService {
   get actividades(){
     return this._actividades;
   }
-  public crearArea (nombre:string,idObjetivo:number):any{
-      const url = environment.servidor + 'area/crear';
+  public crearActividad (nombre:string,descripcion:string,
+    estado:string,tipoActividad:string, categoria:string,
+    idResultado:number):any{
+      const url = environment.servidor + 'actividad/crear';
  
       const params = new HttpParams({
        fromObject: {
          grant_type: 'password',
-         nombre: nombre,
-         idObjetivos:idObjetivo
+           nombre: nombre,
+            descripcion:descripcion,
+            estado: estado,
+            tipoActividad: tipoActividad,
+            categoria:categoria,
+            idResultado:idResultado
        }
        });
  
