@@ -30,7 +30,8 @@
 
                 <div class="mb-3 mx-2 px-2 row">
     <label for="estado" class="row col-form-label">Estado:</label>
-    <select class="form-select" aria-label="Default select example">
+    <select class="form-select" aria-label="Default select example"name="estado"
+    [(ngModel)]="estado_seleccionado" required>
         <option selected>Seleccione el estado actual de la actividad</option>
         <option value="1">FORMULACION</option>
         <option value="2">REFORMULACION</option>
@@ -40,25 +41,35 @@
         
       </select>
 </div>
+<div class="mb-3 mx-2 px-2 row">
+    <label for="tipoActividad" class="row col-form-label">Tipo de actividad:</label>
+    <select class="form-select" aria-label="Default select example"name="tipoActividad"
+    [(ngModel)]="tipo_seleccionado" required>
+                    <option selected>Seleccione el tipo de actual de la actividad</option>
+        <option value="1">ACADEMICA</option>
+        <option value="2">ADMINISTRATIVA</option>
+
+        
+      </select>
+</div>
+<div class="mb-3 mx-2 px-2 row">
+    <label for="categoria" class="row col-form-label">Categoria:</label>
+    <select class="form-select" aria-label="Default select example"name="categoria"[(ngModel)]="categoria_seleccionado" required>
+        <option selected>Seleccione el estado actual de la actividad</option>
+        <option value="1">COORDINACION</option>
+        <option value="2">JEFATURA</option>
+
+        
+      </select>
+</div>
                  
-                <div class="mb-3 mx-2 px-2 row">
+            <!--      <div class="mb-3 mx-2 px-2 row">
                     <label for="estado" class="row col-form-label">Estado:</label>
                     <div class="row">
                         <input type="text" class="form-control" name="estado" ngModel required>
                     </div>
-            </div>
-            <div class="mb-3 mx-2 px-2 row">
-                <label for="tipoActividad" class="row col-form-label">Tipo de actividad:</label>
-                <div class="row">
-                    <input type="text" class="form-control" name="tipoActividad" ngModel required>
-                </div>
-        </div>
-        <div class="mb-3 mx-2 px-2 row">
-            <label for="categoria" class="row col-form-label">Categoria:</label>
-            <div class="row">
-                <input type="text" class="form-control" name="categoria" ngModel required>
-            </div>
-    </div>
+            </div> -->
+       
     
    <!--  <div class="mb-3 mx-2 px-2 row">
         <label for="nombre" class="row col-form-label">Resultado:</label>

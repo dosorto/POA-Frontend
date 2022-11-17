@@ -10,29 +10,32 @@ import Swal from 'sweetalert2';
   styleUrls: ['./create-actividad.component.css']
 })
 export class CreateActividadComponent implements OnInit {
-  constructor(private Storage:Storage, 
-              private service:ActividadService,
-              private router:Router,
-              private _route: ActivatedRoute) { }
+  estado_seleccionado: string = "";
+  tipo_seleccionado: string = "";
+  categoria_seleccionado: string = "";
+  constructor(private Storage: Storage,
+    private service: ActividadService,
+    private router: Router,
+    private _route: ActivatedRoute) { }
 
   ngOnInit(): void {
-   
+
   }
-  public idObjetivo:number = Number(this._route.snapshot.paramMap.get('idObjetivo'));
-  toList(){
-    this.router.navigate(['/gestion_poa/actividad/list/',this.idObjetivo]);
+  public idObjetivo: number = Number(this._route.snapshot.paramMap.get('idObjetivo'));
+  toList() {
+    this.router.navigate(['/gestion_poa/actividad/list/', this.idObjetivo]);
   }
-  async crearArea(nombre:string,descripcion:string, estado:string,tipoActividad:string, categoria:string,){
-    console.log(nombre.toString(),this.idObjetivo);
-    await this.service.crearActividad(nombre,descripcion,estado,tipoActividad,categoria,this.idObjetivo).subscribe((res:any)=>{
-        Swal.fire({
+  async crearArea(nombre: string, descripcion: string, estado: string, tipoActividad: string, categoria: string,) {
+    console.log(nombre.toString(), this.idObjetivo);
+    await this.service.crearActividad(nombre, descripcion, estado, tipoActividad, categoria, this.idObjetivo).subscribe((res: any) => {
+      Swal.fire({
         icon: 'success',
         title: '¡Creado con éxito!',
         showConfirmButton: false,
         timer: 2500
       })
       this.toList();
-    },(error:any)=>{
+    }, (error: any) => {
       Swal.fire({
         icon: 'error',
         title: 'Ha ocurrido un error',
@@ -40,8 +43,8 @@ export class CreateActividadComponent implements OnInit {
         timer: 2500
       })
     });
-    setTimeout(function() {
+    setTimeout(function () {
       window.location.reload();
-    },1500);
+    }, 1500);
   }
 }
