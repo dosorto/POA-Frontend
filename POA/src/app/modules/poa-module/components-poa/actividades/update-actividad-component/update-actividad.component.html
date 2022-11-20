@@ -19,21 +19,48 @@
                   </div>
                 <div class="col-10">
                   <label for="inputNombre" class="form-label"  name="nombre">Nombre:</label>
-                  <textarea type="text" class="form-control" id="exampleFormControlTextarea1" [(ngModel)]="nombre" rows="2" value="{{area.nombre}}" >
+                  <textarea type="text" class="form-control" id="exampleFormControlTextarea1" [(ngModel)]="nombre" rows="2" value="{{actividad.nombre}}" >
                   </textarea>
+                  </div>     <div class="col-10 mb-3">
+                    <label for="inputDescripcion" class="form-label">Descripcion:</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" value="{{actividad.descripcion}}" ></textarea>
                   </div>
-                  <div class="col-10 mb-3">
-                    <label for="inputDescripcion" class="form-label">Objetivo:</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" value="{{area.objetivo.nombre}}" disabled></textarea>
-                  </div>
-                <div class="col-md-5">
-                    <label for="inputDimension" class="form-label">Dimensión:</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" value="{{area.dimension.nombre}}" disabled></textarea>
-                  </div>
-                  <div class="col-md-5">
-                    <label for="inputPEI" class="form-label">PEI:</label>
-                    <input type="text" class="form-control" id="inputPEI" value="{{area.pei.name}}"disabled>
-                  </div>
+                  <div class="col-10">
+                    <label for="estado" class="row col-form-label">Estado:</label>
+                    <select class="form-select" aria-label="Default select example"name="estado"
+                    [(ngModel)]="estado_seleccionado" required>
+                        <option selected>Seleccione el estado actual de la actividad</option>
+                        <option value="1">FORMULACION</option>
+                        <option value="2">REFORMULACION</option>
+                        <option value="3">REVISION</option>
+                        <option value="4">APROBADO</option>
+                        <option value="5">RECHAZADO</option>
+                        
+                      </select>
+                </div>
+                <div class="col-10">
+                    <label for="tipoActividad" class="row col-form-label">Tipo de actividad:</label>
+                    <select class="form-select" aria-label="Default select example"name="tipoActividad"
+                    [(ngModel)]="tipo_seleccionado" required>
+                                    <option selected>Seleccione el tipo de actual de la actividad</option>
+                        <option value="1">ACADEMICA</option>
+                        <option value="2">ADMINISTRATIVA</option>
+                
+                        
+                      </select>
+                </div>
+                <div class="col-10">
+                    <label for="categoria" class="row col-form-label">Categoria:</label>
+                    <select class="form-select" aria-label="Default select example"name="categoria"[(ngModel)]="categoria_seleccionado" required>
+                        <option selected>Seleccione el estado actual de la actividad</option>
+                        <option value="1">COORDINACION</option>
+                        <option value="2">JEFATURA</option>
+                        <option value="2">ADMINISTRATIVA</option>
+                
+                        
+                      </select>
+                </div>
+         
                   <div class="container">
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                   <button type="button" class="btn btn-secondary" (click)="toDetail()">Regresar</button>

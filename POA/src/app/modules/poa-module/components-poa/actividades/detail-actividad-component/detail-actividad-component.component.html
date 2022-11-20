@@ -16,7 +16,7 @@
 
             <div class="d-grid gap-2 d-md-flex justify-content-end">
               <button type="submit" class="btn btn-warning" (click)="toUpdate()" >Editar</button>
-              <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarArea" >
+              <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarActividad" >
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
                       <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
                   </svg>
@@ -24,20 +24,29 @@
             </div>
          <div class="col-10">
             <label for="inputNombre" class="form-label">Nombre:</label>
-            <textarea type="text" class="form-control" id="exampleFormControlTextarea1" rows="2" value="{{area.nombre}}" disabled>
+            <textarea type="text" class="form-control" id="exampleFormControlTextarea1" rows="2" value="{{actividad.nombre}}" disabled>
             </textarea>
             </div>
              <div class="col-10 mb-3">
-              <label for="inputDescripcion" class="form-label">Objetivo:</label>
-              <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" value="{{area.objetivo.nombre}}" disabled></textarea>
+              <label for="inputDescripcion" class="form-label">Descripcion:</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" value="{{actividad.descripcion}}" disabled></textarea>
             </div>
           <div class="col-md-5">
-              <label for="inputDimension" class="form-label">Dimensión:</label>
-              <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" value="{{area.dimension.nombre}}" disabled></textarea>
+              <label for="inputEstado" class="form-label">Estado:</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" value="{{actividad.estado}}" disabled></textarea>
             </div>
             <div class="col-md-5">
-              <label for="inputPEI" class="form-label">PEI:</label>
-              <input type="text" class="form-control" id="inputPEI" value="{{area.pei.name}}"disabled>
+              <label for="inputTipo" class="form-label">Tipo de actividad:</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" value="{{actividad.tipoActividad}}" disabled></textarea>
+            </div>
+            <div class="col-md-5">
+              <label for="inputCategoria" class="form-label">Categoria:</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" value="{{actividad.categoria}}" disabled></textarea>
+            </div>
+
+            <div class="col-10 mb-10">
+              <label for="inputresultado" class="form-label">Resultado:</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" value="{{actividad.resultado.nombre}}"disabled></textarea>
             </div>
               <div class="container">
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -54,7 +63,7 @@
       <!-- Este modal sirve para eliminar un AREA -->
   
 <!-- Este modal sirve para eliminar una Dimensión -->
-<div class="modal" tabindex="-1" id="eliminarArea">
+<div class="modal" tabindex="-1" id="eliminarActividad">
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header bg-danger">
@@ -64,7 +73,7 @@
           <div class="modal-body">
               <p>Está seguro de eliminarla? </p>
           </div>
-          <form id="eliminarDimension">
+          <form id="eliminarActividad">
             <div class="container">
               <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
