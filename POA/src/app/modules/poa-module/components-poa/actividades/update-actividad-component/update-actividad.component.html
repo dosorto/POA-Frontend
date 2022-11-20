@@ -1,77 +1,90 @@
+<h1>hola</h1>
 
-      <top-bar></top-bar>
-      <body class="justify-content-center abs-center mt-5 pt-5 abs-center">
-          <div class="col-7">
-              <br>
-              <!-- espacio para el titulo, buscador y boton de agregar uno nuevo -->
-              <div class="container border rounded rounden-2 p-2">
-              <div class="w-100 row m-auto">
-              <br>
-              <!-- espacio para el titulo, buscador y boton de agregar uno nuevo -->
-              <div class="w-100 row m-auto">
-                   
-                  <div class="row text-center">
-                      <h2 class="l-4" ><font color='black'>Editar un area</font></h2>
-                  </div>
-                  
-                  <div class="d-grid gap-2 d-md-flex justify-content-end">
-      
-                  </div>
-                <div class="col-10">
-                  <label for="inputNombre" class="form-label"  name="nombre">Nombre:</label>
-                  <textarea type="text" class="form-control" id="exampleFormControlTextarea1" [(ngModel)]="nombre" rows="2" value="{{actividad.nombre}}" >
-                  </textarea>
-                  </div>     <div class="col-10 mb-3">
-                    <label for="inputDescripcion" class="form-label">Descripcion:</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" value="{{actividad.descripcion}}" ></textarea>
-                  </div>
-                  <div class="col-10">
-                    <label for="estado" class="row col-form-label">Estado:</label>
-                    <select class="form-select" aria-label="Default select example"name="estado"
-                    [(ngModel)]="estado_seleccionado" required>
-                        <option selected>Seleccione el estado actual de la actividad</option>
-                        <option value="1">FORMULACION</option>
-                        <option value="2">REFORMULACION</option>
-                        <option value="3">REVISION</option>
-                        <option value="4">APROBADO</option>
-                        <option value="5">RECHAZADO</option>
-                        
-                      </select>
+
+<top-bar></top-bar>
+<body class="justify-content-center abs-center mt-5 pt-5" style="background-color: #EFF0FD;">
+   
+    <div class="col-12">
+        <br>
+       
+        <div class="container shadow rounded border border-dark" style="background-color: white;">
+            <div class="w-100 row m-auto">
+                <br>
+                <div class="row text-center">
+                    <h1> </h1>
+                    <h2 class="l-4">Crear actividad</h2>
                 </div>
-                <div class="col-10">
+            </div>
+               <!-- <form #AreaC="ngForm" (ngSubmit)="" id="">-->
+                    <div class="container">
+                          <!-- Campo para el nombre de area -->
+                          <div class="mb-3 mx-2 px-2 row">
+                            <label for="nombre" class="row col-form-label">Nombre de actividad:</label>
+                            <div class="row">
+                                <input type="text" class="form-control" name="nombre" ngModel required>
+                            </div>
+                    </div>
+                </div>
+
+                <div class="container">
+                    <div class="mb-3 mx-2 px-2 row">
+                    <label for="descripcion" class="row col-form-label">Descripción:</label>
+                    <div class="row">
+                    <input  type="text" class="form-control" name="descripcion" ngModel required>
+
+                  </div>
+                </div>
+                </div>
+
+                <div class="container">
+                    <div class="mb-3 mx-2 px-2 row">
                     <label for="tipoActividad" class="row col-form-label">Tipo de actividad:</label>
-                    <select class="form-select" aria-label="Default select example"name="tipoActividad"
-                    [(ngModel)]="tipo_seleccionado" required>
-                                    <option selected>Seleccione el tipo de actual de la actividad</option>
-                        <option value="1">ACADEMICA</option>
-                        <option value="2">ADMINISTRATIVA</option>
-                
-                        
-                      </select>
-                </div>
-                <div class="col-10">
-                    <label for="categoria" class="row col-form-label">Categoria:</label>
-                    <select class="form-select" aria-label="Default select example"name="categoria"[(ngModel)]="categoria_seleccionado" required>
-                        <option selected>Seleccione el estado actual de la actividad</option>
-                        <option value="1">COORDINACION</option>
-                        <option value="2">JEFATURA</option>
-                        <option value="2">ADMINISTRATIVA</option>
-                
-                        
-                      </select>
-                </div>
-         
-                  <div class="container">
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                  <button type="button" class="btn btn-secondary" (click)="toDetail()">Regresar</button>
-                    <button type="submit" class="btn btn-warning" (click)="update()" >Actualizar</button>
-                </div>
-              </div>
-            </div>
+                    <div class="row">
+                    <input  type="text" class="form-control" name="tipoActividad" ngModel required>
 
-          </div>
-              </div>
+                  </div>
+                </div>
+                </div>
+
+                
+                <div class="container">
+                    <div class="mb-3 mx-2 px-2 row">
+                    <label for="categoria" class="row col-form-label"> Categoria:</label>
+                    <div class="row">
+                    <input  type="text" class="form-control" name="categoria" ngModel required>
+
+                  </div>
+                </div>
+                </div>
+
+
+                <div class="container">
+                    <div class="mb-3 mx-2 px-2 row">
+                    <label for="Resultado" class="row col-form-label"> Resultado de la unidad:</label>
+                    <div class="row">
+                    <input  type="text" class="form-control" name="Resultado" ngModel required>
+
+                  </div>
+                </div>
+                </div>
+
+                <div class="container">
+                    <div class="mb-3 mx-2 px-2 row">
+                    <label for="Responsable" class="row col-form-label">Responsable:</label>
+                    <div class="row">
+                    <input  type="text" class="form-control" name="Responsable" ngModel required>
+
+                  </div>
+                </div>
+                </div>
+                   
+                    <div class="container">
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                      <button type="button" class="btn btn-secondary"(click)="toList()">Regresar</button>
+                      <button type="submit" class="btn btn-warning" [disabled]="AreaC.invalid">Guardar</button>          
+                    </div>
+                </div>
+                <br>
+                </form>
             </div>
-      </body>
-      
-              
+        </div>
