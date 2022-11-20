@@ -8,16 +8,23 @@ const routes: Routes = [
     {path: '',loadChildren: () => import('./modules/menu-module/menu.module').then(t => t.MenuModule)}
   ]
   },
-  {path: 'gestion_pei', children:[
-    {path: '', loadChildren: () => import('./modules/gestion-pei-module/gestion-pei.module').then(t=>t.GestionPeiModule)}
-  ]}
-  
+
+  {
+    path: 'gestion_poa', children: [
+      { path: '', loadChildren: () => import('./modules/poa-module/poa-module.module').then(t => t.PoaModuleModule) }
+    ]
+  },
+  {
+    path: 'gestion_pei', children: [
+      {path: '', loadChildren: () => import('./modules/gestion-pei-module/gestion-pei.module').then(t=>t.GestionPeiModule)}
+    ]
+  }
 ];
 
 @NgModule({
-  
+
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  
+
 })
 export class AppRoutingModule { }
