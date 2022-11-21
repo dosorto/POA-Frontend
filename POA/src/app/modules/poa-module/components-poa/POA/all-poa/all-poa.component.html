@@ -1,4 +1,3 @@
-<p>all-poa works!</p>
 <top-bar></top-bar>
 <body class="justify-content-center mt-5 pt-5">
 
@@ -41,7 +40,7 @@
                 </div>
             </div>
         </div>
-        <!-- tabla dinamica que muestra todas las Dimensión -->
+        <!-- tabla dinamica que muestra todas los POA -->
         <div class="w-75 m-auto row ">
             <div class="d-flex align-items-stretch"> 
                 <ng-container *ngFor="let x of poa; index as i"> 
@@ -54,7 +53,7 @@
                             {{i + 1}} 
                         </ng-template> 
                         <div class="card-body"> 
-                          <h1 class="card-title">Hola</h1> 
+                          <h1 class="card-title">{{x.name}}</h1> 
                           <button type="button" class="btn btn-warning float-center" (click)="toDetail(x.id)">Gestionar</button> 
                         </div> 
                       </div> 
