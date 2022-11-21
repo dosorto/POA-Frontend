@@ -48,13 +48,15 @@
                         <ng-container *ngIf="page > 0; else elseNumeracion"> 
                             {{i + page + 1}} 
                         </ng-container> 
+                        
                         <ng-template #elseNumeracion> 
-                            {{i + 1}} 
                         </ng-template>
                         <li *ngIf="x.estado ==='FORMULACION'">
-                        <div class="card  text-bg-secondary mb-3" style="width: 20rem;">
+                        <div class="card  text-bg-secondary mb-3" style="width: 20rem;"> 
                         <div class="card-body"> 
-                          <h1 class="card-title">{{x.nombre}}</h1> 
+                            <h1 class="text-center" >Actividad {{i + 1}} </h1>
+                            <h1 class="card-title">{{x.nombre}}</h1>
+
                           <h1 class="card-title">{{x.estado}}</h1> 
                           <button type="button" class="btn btn-warning float-center" (click)="toDetail(x.id)">Gestionar</button> 
                         </div> 
@@ -64,6 +66,7 @@
                 <li *ngIf="x.estado ==='REFORMULACION'">
                     <div class="card  text-bg-primary mb-3" style="width: 20rem;">
                     <div class="card-body"> 
+                        <h1 class="text-center" >Actividad {{i + 1}} </h1>
                       <h1 class="card-title">{{x.nombre}}</h1> 
                       <h1 class="card-title">{{x.estado}}</h1> 
                       <button type="button" class="btn btn-warning float-center" (click)="toDetail(x.id)">Gestionar</button> 
@@ -73,15 +76,17 @@
             <li *ngIf="x.estado ==='REVISION'">
                 <div class="card  text-bg-warning mb-3" style="width: 20rem;">
                 <div class="card-body"> 
+                    <h1 class="text-center" >Actividad {{i + 1}} </h1>
                   <h1 class="card-title">{{x.nombre}}</h1> 
                   <h1 class="card-title">{{x.estado}}</h1> 
-                  <button type="button" class="btn btn-warning float-center" (click)="toDetail(x.id)">Gestionar</button> 
+                  <button type="button" class="btn btn-success float-center" (click)="toDetail(x.id)">Gestionar</button> 
                 </div> 
             </div>
         </li>
         <li *ngIf="x.estado ==='APROBADO'">
             <div class="card  text-bg-success mb-3" style="width: 20rem;">
             <div class="card-body"> 
+                <h1 class="text-center" >Actividad {{i + 1}} </h1>
               <h1 class="card-title">{{x.nombre}}</h1> 
               <h1 class="card-title">{{x.estado}}</h1> 
               <button type="button" class="btn btn-warning float-center" (click)="toDetail(x.id)">Gestionar</button> 
@@ -91,6 +96,7 @@
     <li *ngIf="x.estado ==='RECHAZADO'">
         <div class="card  text-bg-danger mb-3" style="width: 20rem;">
         <div class="card-body"> 
+            <h1 class="text-center" >Actividad {{i + 1}} </h1>
           <h1 class="card-title">{{x.nombre}}</h1> 
           <h1 class="card-title">{{x.estado}}</h1> 
           <button type="button" class="btn btn-warning float-center" (click)="toDetail(x.id)">Gestionar</button> 
