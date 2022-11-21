@@ -4,7 +4,7 @@ import { UnidadEjecutora } from './unidad_ejecutora.model';
 export interface Poa {
     id:        number;
     name:      string;
-    anio:      Date;
+    anio:      string;
     fuente11:  string;
     fuente12:  string;
     fuente12B: string;
