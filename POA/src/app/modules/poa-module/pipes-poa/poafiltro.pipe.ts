@@ -15,5 +15,4 @@ export class POAFiltroPipe implements PipeTransform {
     };
     return result;
   }
-
 }

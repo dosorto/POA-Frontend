@@ -12,5 +12,4 @@ export class POApaginacionPipe implements PipeTransform {
     // y define desde donde comienza la pagina (page)
     return poas.slice(page,page+steps);
   }
-
 }

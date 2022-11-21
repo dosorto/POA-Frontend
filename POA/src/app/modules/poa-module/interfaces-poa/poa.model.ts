@@ -14,6 +14,4 @@ export interface Poa {
     updatedAt: Date;
     idDepto:   number;
     idUE:      number;
-    depto:     Depto;
-    ejecutora: UnidadEjecutora;
 }
