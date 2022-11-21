@@ -55,7 +55,7 @@ export class PoaService {
     
   }
 
-  actualizarPOA(name: string, anio: string, fuente11: string, fuente12: string, fuente12B: string, id: string, idDepto: number, idUE: number): any {
+  actualizarPOA(name: string, anio: string, fuente11: string, fuente12: string, fuente12B: string, id: number, idDepto: number, idUE: number): any {
     const url = environment.servidor + 'POA/updatePOA';
     const params = new HttpParams({
       fromObject: {
@@ -90,16 +90,25 @@ export class PoaService {
       }))
   }
 
-  getPEI_Id(idPoa:number) {
+  getPOA_Id(idPoa:number) {
     return this.callHttp.httpGet<Poa>(`${environment.servidor}POA/get/`+idPoa.toString());
   }
 
-  MostrarPOAbyIdDepto(idDepto:number){
-    return this.callHttp.httpGet<Array<Poa>>(`${environment.servidor}POA/poaById/` + idDepto.toString())
+  MostrarPoa(idDepto:number){
+    return this.callHttp.httpGet<Array<Poa>>(`${environment.servidor}POA/peiByIdDepto/` + idDepto.toString())
       .pipe(map(response => {
         this._poa = response;
         return response;
       }))
+  }
+  getdepartamentos(){
+    return this.callHttp.httpGet<Array<Depto>>(`${environment.servidor}departamento/get_all`)
+      .pipe(map(response => {
+        return response;
+      }))
+  }
+  getDepto_Id(idDepto:number) {
+    return this.callHttp.httpGet<Depto>(`${environment.servidor}departamento/get/`+idDepto.toString());
   }
 
   eliminarPOA(id: number): any {
@@ -119,6 +128,32 @@ export class PoaService {
     };
     //return this.directHttp.put(url, params, httpOptions);
     return this.directHttp.put(url, { id: id})
+  }
+
+  //alternativa a update
+  updatePOA(name: string, anio: string, fuente11: string, fuente12: string, fuente12B: string, id: number, idDepto: number, idUE: number): any {
+    const url = environment.servidor + 'POA/updatePOA';
+
+    const params = new HttpParams({
+      fromObject: {
+        grant_type: 'password',
+        name: name,
+        anio: anio,
+        fuente11: fuente11,
+        fuente12: fuente12,
+        fuente12B: fuente12B,
+        idDepto: idDepto,
+        idUE: idUE
+      }
+    });
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/x-www-form-urlencoded'
+      })
+    };
+    return this.directHttp.put(url, { name: name, anio: anio, fuente11:fuente11, fuente12:fuente12, fuente12B:fuente12B, id: id, idDepto:idDepto, idUE:idUE})
+
   }
 
 

@@ -44,6 +44,16 @@ export class AllPoaComponent implements OnInit {
   public maxPages:number=1;
   public enumPages:number[]=[]
 
+  async initData() {
+    this.poa = await firstValueFrom(this.service.MostrarPoa(this.idDepto));
+    const departamentos = await firstValueFrom(this.service.getdepartamentos());
+    this.DeptoList = departamentos;
+    console.log(this.poa);
+    this.maxPages = Math.round(this.poa.length / this.step);
+    // sirve para generar los botones en paginacion
+    this.enumPages =  Array(this.maxPages).fill(null).map((x,i)=>i).slice(1,this.maxPages + 1) ;
+  }
+
   toDetail(idPoa: number) {
     this.router.navigate(['/gestion_poa/poa/detail/', idPoa.toString(), this.idDepto]);
   }
