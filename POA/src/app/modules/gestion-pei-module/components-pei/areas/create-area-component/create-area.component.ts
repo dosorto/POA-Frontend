@@ -18,9 +18,12 @@ export class CreateAreaComponent implements OnInit {
   ngOnInit(): void {
    
   }
+  public idPei:number = Number(this._route.snapshot.paramMap.get('idPei'));
+  public idInsti:number = Number(this._route.snapshot.paramMap.get('idInsti'));
+  public idDimension:number = Number(this._route.snapshot.paramMap.get('idDimension'));
   public idObjetivo:number = Number(this._route.snapshot.paramMap.get('idObjetivo'));
   toList(){
-    this.router.navigate(['/gestion_pei/areas/list/',this.idObjetivo]);
+    this.router.navigate(['/gestion_pei/areas/list/',this.idObjetivo,this.idDimension,this.idPei,this.idInsti]);
   }
   async crearArea(nombre:string){
     console.log(nombre.toString(),this.idObjetivo);
@@ -31,6 +34,7 @@ export class CreateAreaComponent implements OnInit {
         showConfirmButton: false,
         timer: 2500
       })
+      this.toList();
     },(error:any)=>{
       Swal.fire({
         icon: 'error',

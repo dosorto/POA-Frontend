@@ -1,12 +1,12 @@
 <top-bar></top-bar>
-<body class="justify-content-center abs-center mt-5 pt-5" style="background-color: #EFF0FD;">
+<app-back-button [path]="['/gestion_pei/resultados/list/',this.resultado?.idArea,idObjetivo,idDimension,idPei,idInsti]"></app-back-button>
+<body class="justify-content-center abs-center mt-5 pt-5">
 <div class="col-12 ">
   <br>
-<div class="container shadow rounded border border-dark" style="background-color: white;">
+<div class="container  rounded border " style="background-color: white;">
   
     <!-- espacio para el titulo-->
     <div class="w-100 row m-auto">
-      <br>
       <div class="row text-center">
         <h1> </h1>
         <h2 class="l-4">Detalles del Resultado</h2>
@@ -53,11 +53,7 @@
       </div>
       
    
-      <div class="d-grid gap-2 d-md-flex justify-content-end">
-        <button type="button" class="btn btn-secondary" (click)='onBack()'>Cerrar</button>
-        <!-- [disabled]="Result.invalid" -->
-        <button type="submit" class="btn btn-success" [routerLink]="['/gestion_pei/indicadores/list/'+ resultado.id]">Mostrar Indicadores</button>
-      </div>
+      
 
 
     </form>

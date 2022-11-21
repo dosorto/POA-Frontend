@@ -10,6 +10,8 @@ import {MatSelectModule} from '@angular/material/select'
 // componentes independientes importados
 // --------------------------------
 import { TopBarComponent } from '../../_core/top-bar/top-bar.component'
+import { BackButtonComponent } from 'src/app/_core/back-button/back-button.component';
+import { EmptyComponent } from 'src/app/_core/empty/empty.component';
 // --------------------------------
 // pipes del modulo
 // --------------------------------
@@ -76,32 +78,32 @@ const router = RouterModule.forChild([
   {path: 'pei/detail/:id/:idInsti', component: DetailPeiComponent},
   {path: 'pei/list/:idInsti', component: AllPeiComponent},
   // rutas de dimension
-  {path: 'dimension/create/:idPei', component: CreateDimensionComponent},
-  {path: 'dimension/update/:id/:idPei', component: UpdateDimensionComponent},
+  {path: 'dimension/create/:idPei/:idInsti', component: CreateDimensionComponent},
+  {path: 'dimension/update/:id/:idPei/:idInsti', component: UpdateDimensionComponent},
   {path: 'dimension/delete/:id', component: DeleteDimensionComponent},
-  {path: 'dimension/detail/:id/:idPei', component: DetailDimensionComponent},
-  {path: 'dimension/list/:idPei', component: AllDimensionComponent},
+  {path: 'dimension/detail/:id/:idPei/:idInsti', component: DetailDimensionComponent},
+  {path: 'dimension/list/:idPei/:idInsti', component: AllDimensionComponent},
 
   // rutas de objetivos
-  {path: 'objetivos/create/:idDimension', component: CreateObjetivoComponentComponent},
-  {path: 'objetivos/update/:id/:idDimension', component: UpdateObjetivoComponentComponent},
-  {path: 'objetivos/delete/:id', component: DeleteObjetivoComponentComponent},
-  {path: 'objetivos/detail/:id/:idDimension', component: DetailObjetivoComponentComponent},
-  {path: 'objetivos/list/:idDimension', component: AllObjetivoComponentComponent},
+  {path: 'objetivos/create/:idDimension/:idPei/:idInsti', component: CreateObjetivoComponentComponent},
+  {path: 'objetivos/update/:id/:idDimension/:idPei/:idInsti', component: UpdateObjetivoComponentComponent},
+  {path: 'objetivos/delete/:id/', component: DeleteObjetivoComponentComponent},
+  {path: 'objetivos/detail/:id/:idDimension/:idPei/:idInsti', component: DetailObjetivoComponentComponent},
+  {path: 'objetivos/list/:idDimension/:idPei/:idInsti', component: AllObjetivoComponentComponent},
 
   // rutas de areas
-  {path: 'areas/create/:idObjetivo', component: CreateAreaComponent},
-  {path: 'areas/update/:id/:idObjetivo', component: UpdateAreaComponent},
+  {path: 'areas/create/:idObjetivo/:idDimension/:idPei/:idInsti', component: CreateAreaComponent},
+  {path: 'areas/update/:id/:idObjetivo/:idDimension/:idPei/:idInsti', component: UpdateAreaComponent},
   {path: 'areas/delete/:id', component: DeleteAreaComponentComponent},
-  {path: 'areas/detail/:id/:idObjetivo', component: DetailAreaComponentComponent},
-  {path: 'areas/list/:idObjetivo', component: AllAreaComponentComponent},
+  {path: 'areas/detail/:id/:idObjetivo/:idDimension/:idPei/:idInsti', component: DetailAreaComponentComponent},
+  {path: 'areas/list/:idObjetivo/:idDimension/:idPei/:idInsti', component: AllAreaComponentComponent},
 
   // rutas de resultados
-  {path: 'resultados/create/:idArea', component: CreateResultadoComponentComponent},
-  {path: 'resultados/update/:id/:idArea', component: UpdateResultadoComponentComponent},
+  {path: 'resultados/create/:idArea/:idObjetivo/:idDimension/:idPei/:idInsti', component: CreateResultadoComponentComponent},
+  {path: 'resultados/update/:id/:idArea/:idObjetivo/:idDimension/:idPei/:idInsti', component: UpdateResultadoComponentComponent},
   {path: 'resultados/delete/:id', component: DeleteResultadoComponentComponent},
-  {path: 'resultados/detail/:id/:idArea', component: DetailResultadoComponentComponent},
-  {path: 'resultados/list/:idArea', component: AllResultadoComponentComponent},
+  {path: 'resultados/detail/:id/:idArea/:idObjetivo/:idDimension/:idPei/:idInsti', component: DetailResultadoComponentComponent},
+  {path: 'resultados/list/:idArea/:idObjetivo/:idDimension/:idPei/:idInsti', component: AllResultadoComponentComponent},
 
   // rutas de indicadores
   {path: 'indicadores/create', component: CreateIndicadorComponentComponent},
@@ -162,7 +164,9 @@ CommonModule,
   router,
   MatSelectModule,
   FormsModule,
-  TopBarComponent
+  TopBarComponent,
+  BackButtonComponent,
+  EmptyComponent
   ]
 })
 export class GestionPeiModule { }

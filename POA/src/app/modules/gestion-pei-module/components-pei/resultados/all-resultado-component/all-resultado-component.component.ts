@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Area } from '../../../interfaces-pei/area.model';
 import { ResultadosService } from '../../../services-pei/resultados.service';
 @Component({
   selector: 'app-all-resultado-component',
@@ -11,7 +12,12 @@ export class AllResultadoComponentComponent implements OnInit {
 
   constructor( private resultadoService:ResultadosService, private router: Router, private toastr: ToastrService,private route: ActivatedRoute) { }
   id = Number(this.route.snapshot.paramMap.get('id'));
-  idArea = Number(this.route.snapshot.paramMap.get('idArea'));
+  public idArea = Number(this.route.snapshot.paramMap.get('idArea'));
+  idObjetivo:number = Number(this.route.snapshot.paramMap.get('idObjetivo'));
+  idDimension:number = Number(this.route.snapshot.paramMap.get('idDimension'));
+  idPei:number = Number(this.route.snapshot.paramMap.get('idPei'));
+  idInsti:number = Number(this.route.snapshot.paramMap.get('idInsti'));
+  //public areaList : Array<Area> = [];
   ngOnInit(): void {
     const idArea = Number(this.route.snapshot.paramMap.get('idArea'));
     this.mostrar_resultados_idArea(idArea)
@@ -71,11 +77,21 @@ async mostrarResultado(){
   }
 
   toDetail(id:number){
-    this.router.navigate(['/gestion_pei/resultados/detail/',id.toString(),this.idArea]);
+    this.router.navigate(['/gestion_pei/resultados/detail/',id.toString(),this.idArea,this.idObjetivo,this.idDimension,this.idPei,this.idInsti]);
   }
 
   toCreate(){
-    this.router.navigate(['/gestion_pei/resultados/create/',this.idArea.toString()]);
+    this.router.navigate(['/gestion_pei/resultados/create/',this.idArea.toString(),this.idObjetivo,this.idDimension,this.idPei,this.idInsti]);
+  }
+  toArea(){
+    this.router.navigate(['gestion_pei/areas/detail/1/1']);
+  }
+  selectArea(){
+    this.router.navigate(['/gestion_pei/resultados/list/',this.area_seleccionado,this.idObjetivo,this.idDimension,this.idPei,this.idInsti]);
+    console.log(this.area_seleccionado,this.idObjetivo,this.idDimension,this.idPei,this.idInsti);
+    setTimeout(function () {
+     window.location.reload();
+    }, 10)
   }
 
 }
