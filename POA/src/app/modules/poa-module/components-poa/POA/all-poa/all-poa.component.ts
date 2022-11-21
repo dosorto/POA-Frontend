@@ -23,10 +23,11 @@ export class AllPoaComponent implements OnInit {
     private _route: ActivatedRoute) { }
 
   ngOnInit(): void {
-
+    this.initData();
   }
 
   public idDepto: number = Number(this._route.snapshot.paramMap.get('idDepto'));
+  public idUE: number = Number(this._route.snapshot.paramMap.get('idUE'));
   private poa_example: Poa | any = {};
   rutaActual = "poa";
   public poa: Array<Poa> = [];
@@ -45,7 +46,7 @@ export class AllPoaComponent implements OnInit {
   public enumPages: number[] = []
 
   async initData() {
-    this.poa = await firstValueFrom(this.service.MostrarPoa(this.idDepto));
+    this.poa = await firstValueFrom(this.service.getPOA());
     const departamentos = await firstValueFrom(this.service.getdepartamentos());
     this.DeptoList = departamentos;
     console.log(this.poa);
@@ -55,7 +56,7 @@ export class AllPoaComponent implements OnInit {
   }
 
   toDetail(idPoa: number) {
-    this.router.navigate(['/gestion_poa/poa/detail/', idPoa.toString(), this.idDepto]);
+    this.router.navigate(['/gestion_poa/poa/detail/', idPoa.toString(), this.idUE ,this.idDepto]);
   }
   toCreate() {
     this.router.navigate(['/gestion_poa/poa/create/', this.idDepto.toString()]);

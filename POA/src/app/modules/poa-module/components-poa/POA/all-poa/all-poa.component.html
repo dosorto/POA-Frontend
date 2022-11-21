@@ -15,7 +15,6 @@
                             <label for="id" class="row col-form-label">Seleccione un departamento:</label>
                             <select class="form-control" aria-label="Default select example" name="id"
                                 [(ngModel)]="DeptoSeleccionado" (ngModelChange)="selectDepto()" required>
-
                                 <ng-container *ngFor="let x of DeptoList">
                                     <option value="{{x.id}}" [selected]="x.id===idDepto">{{x.name}}</option>
                                 </ng-container>
@@ -76,6 +75,10 @@
                                 </ng-template>
                                 <div class="card-body">
                                     <h1 class="card-title">{{x.name}}</h1>
+                                    <h3 class="card-body">{{x.anio}}</h3>
+                                    <h3 class="card-body">{{x.fuente11}}</h3>
+                                    <h3 class="card-body">{{x.fuente12}}</h3>
+                                    <h3 class="card-body">{{x.fuente12B}}</h3>
                                     <button type="button" class="btn btn-warning float-center"
                                         (click)="toDetail(x.id)">Gestionar</button>
                                 </div>

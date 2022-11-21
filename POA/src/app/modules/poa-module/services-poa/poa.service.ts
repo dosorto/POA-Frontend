@@ -27,6 +27,7 @@ export class PoaService {
   get unidadejecutora() {
     return this._unidadejecutora;
   }
+  
 
   public crearPOA(name: string, anio: string, fuente11: string, fuente12: string, fuente12B: string, idDepto: number, idUE: number): any {
     const url = environment.servidor + 'POA/new_POA';
