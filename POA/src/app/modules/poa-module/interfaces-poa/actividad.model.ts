@@ -1,5 +1,3 @@
-import { Resultado } from "../../gestion-pei-module/interfaces-pei/resultado.model";
-
 
 export interface Actividad{
     id:          number;
@@ -12,6 +10,5 @@ export interface Actividad{
     isDelete:    boolean;
     createdAt:   Date;
     updatedAt:   Date;
-    idResultado: number,
-    resultado : Resultado
+    idResultado: number
 }

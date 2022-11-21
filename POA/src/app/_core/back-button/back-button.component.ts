@@ -11,6 +11,9 @@ import { Router } from '@angular/router';
 export class BackButtonComponent implements OnInit {
   @Input()
   path: Array<any> = [];
+
+  @Input()
+  idActividad: number = 0;
   constructor(private _router:Router) { }
 
 
