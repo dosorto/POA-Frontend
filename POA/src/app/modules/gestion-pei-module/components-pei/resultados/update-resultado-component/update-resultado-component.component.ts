@@ -25,6 +25,10 @@ export class UpdateResultadoComponentComponent implements OnInit {
 
 public idArea:number = Number(this._route.snapshot.paramMap.get('idArea'));
 public id:number = Number(this._route.snapshot.paramMap.get('id'));
+idObjetivo:number = Number(this._route.snapshot.paramMap.get('idObjetivo'));
+idDimension:number = Number(this._route.snapshot.paramMap.get('idDimension'));
+idPei:number = Number(this._route.snapshot.paramMap.get('idPei'));
+idInsti:number = Number(this._route.snapshot.paramMap.get('idInsti'));
 public resultado: Resultado | any = {};
 public nombre:string='';
 public descripcion:string='';

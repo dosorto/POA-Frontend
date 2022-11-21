@@ -1,15 +1,41 @@
 <top-bar></top-bar>
+<app-back-button [path]="['/gestion_pei/objetivos/detail/',this.idObjetivo,this.idDimension,this.idPei,this.idInsti]"></app-back-button>
+<body class="justify-content-center mt-5 pt-5">
+
 <!-- Pantalla principal del modulo -->
-<div class="container d-flex align-items-center justify-content-center mt-5 pt-5">
-
+<div class="container d-flex align-items-center justify-content-center ">
     <!-- columna completa que agrupa todos los row -->
-    <div class="col-12 ">
+    <div class="col-12 w-75">
+        <br>
         <!-- espacio para el titulo, buscador y boton de agregar uno nuevo -->
+        <div class="container  rounded border border-dark" style="background-color: white;">
         <div class="w-100 row m-auto">
-
+            <div class="row text-center">
+                <h2></h2>
+                <h2 class="l-4">Gestión de Area</h2>
+            </div>
+            <div class="row justify-content-center text-center m-2 fs-5">
+                <span>Institución: <a (click)="toInsti()" class="text-decoration-none">{{insti.nombre}}</a>  - Pei: <a (click)="toPei()" class="text-decoration-none">{{pei.name}}</a> <br>
+                    Dimensión: <a (click)="toDimension()" class="text-decoration-none">{{dimension.nombre}}</a> 
+                    <br>
+                </span>
+                
+            </div>
             <div class="w-75 row m-auto mb-2">
+                <div class="row">
+                    <label for="id" class="row col-form-label">Seleccione un Objetivo:</label>
+                                <select class="form-control" aria-label="Default select example" name="id"
+                                    [(ngModel)]="objetivo_seleccionado"
+                                    (ngModelChange)="selectObjetivo()" required>
+            
+                                    <ng-container *ngFor="let x of ObjetivoList">
+                                        <option value="{{x.id}}" [selected]="x.id===idObjetivo">{{x.nombre}}</option>
+                                    </ng-container>
+                    </select>
+                </div>
+            <br><br>
 
-                <div class="col-8">
+                <div class="col-8 mt-2">
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Buscar por nombre" aria-label="Buscar"
                             aria-describedby="btnGroupAddon" [(ngModel)]="filter" name="filter">
@@ -22,7 +48,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-4">
+                <div class="col-4 mt-2">
                     <button type="button" class="btn btn-warning" (click)="toCreate()">
                         <i class="bi bi-plus-square"></i>
                         <span>
@@ -32,7 +58,8 @@
                 </div>
             </div>
         </div>
-        <!-- tabla dinamica que muestra todas las Dimensión -->
+        <ng-container *ngIf="areas.length > 0; else empty">
+            <!-- tabla dinamica que muestra todas las Dimensión -->
         <div class="w-75 m-auto row ">
             <table class="table table-hover">
                 <thead class="text-center">
@@ -82,5 +109,9 @@
                 </ul>
             </nav>
         </div>
+        </ng-container>
+        <ng-template #empty>
+            <app-empty></app-empty>
+        </ng-template>
     </div>
 </div>

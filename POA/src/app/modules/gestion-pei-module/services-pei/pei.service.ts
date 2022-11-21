@@ -5,6 +5,7 @@ import { Pei } from "../interfaces-pei/pei.model";
 import { map, Observable } from "rxjs";
 import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 //import { Storage } from 'src/app/_core/global-services/local_storage.service';
+import { Institucion } from '../../administracion-module/interfaces/institucion.model';
 
 @Injectable({
   providedIn: 'root'
@@ -83,6 +84,15 @@ export class PeiService {
         this._peis = response;
         return response;
       }))
+  }
+  getInstituciones(){
+    return this.callHttp.httpGet<Array<Institucion>>(`${environment.servidor}institucion/get_all`)
+      .pipe(map(response => {
+        return response;
+      }))
+  }
+  getInsti_Id(idInsti:number) {
+    return this.callHttp.httpGet<Institucion>(`${environment.servidor}institucion/get/`+idInsti.toString());
   }
 
   eliminarPEI(id: number): any {

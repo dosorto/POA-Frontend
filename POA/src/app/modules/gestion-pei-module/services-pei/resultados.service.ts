@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Objetivo } from '../interfaces-pei/objetivo.model';
 import { CallHttpService } from "src/app/_core/global-services/call-http.service";
-import { Pei } from '../interfaces-pei/pei.model';
+//import { Pei } from '../interfaces-pei/pei.model';
 import { map, Observable, tap } from "rxjs";
-import { Dimension } from "../interfaces-pei/dimension.model";
-import { Area } from '../interfaces-pei/area.model';
+//import { Dimension } from "../interfaces-pei/dimension.model";
+//import { Area } from '../interfaces-pei/area.model';
 import { environment } from "src/environments/environment";
-import { Resultado } from '../interfaces-pei/resultado.model';
+import { Objetivos, Resultado, Area, Dimension, Pei } from '../interfaces-pei/resultado.model';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Injectable({
@@ -25,7 +25,7 @@ export class ResultadosService {
     return this._dimensiones;
   }
 
-  private _objetivos: Array<Objetivo> = [];
+  private _objetivos: Array<Objetivos> = [];
   get objetivos() {
     return this._objetivos;
   }
@@ -40,9 +40,7 @@ export class ResultadosService {
     return this._resultado;
   }
 
-  constructor(private http:HttpClient,
-              private callHttp:CallHttpService,     
-              private directHttp: HttpClient) { }
+  constructor(private http:HttpClient, private callHttp:CallHttpService, private directHttp: HttpClient) { }
 
   getResultado2()  {
     return this.callHttp.httpGet<Array<Resultado>>(`${environment.servidor}resultados/get-all`)
@@ -133,7 +131,7 @@ export class ResultadosService {
        grant_type: 'password',
        nombre: nombre,
        descripcion:descripcion,
-       idArea:idArea,
+       idArea:idArea
 
      }
      });
