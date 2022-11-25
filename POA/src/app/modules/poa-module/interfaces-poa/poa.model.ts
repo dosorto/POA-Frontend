@@ -1,6 +1,3 @@
-import { Depto } from "./depto.model";
-import { UnidadEjecutora } from './unidad_ejecutora.model';
-
 export interface Poa {
     id:        number;
     name:      string;
@@ -14,4 +11,5 @@ export interface Poa {
     updatedAt: Date;
     idDepto:   number;
     idUE:      number;
+    idInsti: number;
 }

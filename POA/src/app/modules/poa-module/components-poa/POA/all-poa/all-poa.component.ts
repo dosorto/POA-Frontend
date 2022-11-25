@@ -6,6 +6,7 @@ import { PoaService } from '../../../services-poa/poa.service';
 import { Poa } from '../../../interfaces-poa/poa.model';
 import { Depto } from "../../..//interfaces-poa/depto.model";
 import { UnidadEjecutora } from "../../..//interfaces-poa/unidad_ejecutora.model";
+import { Institucion } from 'src/app/modules/administracion-module/interfaces/institucion.model';
 
 import { firstValueFrom } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -28,6 +29,7 @@ export class AllPoaComponent implements OnInit {
 
   public idDepto: number = Number(this._route.snapshot.paramMap.get('idDepto'));
   public idUE: number = Number(this._route.snapshot.paramMap.get('idUE'));
+  public idInsti: number = Number(this._route.snapshot.paramMap.get('idInsti'));
   private poa_example: Poa | any = {};
   rutaActual = "poa";
   public poa: Array<Poa> = [];
@@ -59,7 +61,7 @@ export class AllPoaComponent implements OnInit {
     this.router.navigate(['/gestion_poa/poa/detail/', idPoa.toString(), this.idUE ,this.idDepto]);
   }
   toCreate() {
-    this.router.navigate(['/gestion_poa/poa/create/', this.idDepto.toString()]);
+    this.router.navigate(['/gestion_poa/poa/create/', this.idDepto.toString(),this.idUE,this.idInsti]);
   }
   toHome() {
     this.router.navigate(['/home']);

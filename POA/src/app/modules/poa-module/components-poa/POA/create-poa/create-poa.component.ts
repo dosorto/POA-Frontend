@@ -31,15 +31,14 @@ export class CreatePoaComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
   async initData() {
     this.depto = this.PoaService.getDepto_Id(this.idDepto).subscribe((response: any) => {
-      this.depto = response.Institucion;
+      this.depto = response.departamento;
     });
   }
 
   toList() {
-    this.router.navigate(['gestion_poa/poa/list/', this.idUE, this.idDepto, this.idInsti]);
+    this.router.navigate(['gestion_poa/poa/list/', this.idDepto,this.idUE, this.idInsti]);
   }
 
   async crear_poa(name: string, anio: string, fuente11: string, fuente12: string, fuente12B: string) {
@@ -66,8 +65,9 @@ export class CreatePoaComponent implements OnInit {
 
 
   }
+
   onBack(): void {
-    this.router.navigate(['/gestion_poa/poa/list/', this.idUE, this.idDepto, this.idInsti]);
+    this.router.navigate(['/gestion_poa/poa/list/',this.idUE, this.idDepto, this.idInsti]);
   }
 
 }
