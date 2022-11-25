@@ -4,6 +4,7 @@ import { environment } from "../../../../environments/environment";
 import { Poa } from "../../poa-module/interfaces-poa/poa.model";
 import { Depto } from "../../poa-module/interfaces-poa/depto.model";
 import { UnidadEjecutora } from "../../poa-module/interfaces-poa/unidad_ejecutora.model";
+import { Institucion } from "../../administracion-module/interfaces/institucion.model";
 
 import { map, Observable } from "rxjs";
 import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
@@ -29,7 +30,7 @@ export class PoaService {
   }
   
 
-  public crearPOA(name: string, anio: string, fuente11: string, fuente12: string, fuente12B: string, idDepto: number, idUE: number): any {
+  public crearPOA(name: string, anio: string, fuente11: string, fuente12: string, fuente12B: string, idDepto: number, idUE: number, idInsti: number): any {
     const url = environment.servidor + 'POA/new_POA';
 
     const params = new HttpParams({
@@ -41,7 +42,8 @@ export class PoaService {
         fuente12: fuente12,
         fuente12B: fuente12B,
         idDepto: idDepto,
-        idUE: idUE
+        idUE: idUE,
+        idInsti: idInsti
 
       }
     });
@@ -56,7 +58,7 @@ export class PoaService {
     
   }
 
-  actualizarPOA(name: string, anio: string, fuente11: string, fuente12: string, fuente12B: string, id: number, idDepto: number, idUE: number): any {
+  actualizarPOA(name: string, anio: string, fuente11: string, fuente12: string, fuente12B: string, id: number, idDepto: number, idUE: number, idInsti: number): any {
     const url = environment.servidor + 'POA/updatePOA';
     const params = new HttpParams({
       fromObject: {
@@ -77,7 +79,7 @@ export class PoaService {
       })
     };
     //return this.directHttp.put(url, params, httpOptions);
-    this.directHttp.put(url, { name: name, anio: anio, fuente11:fuente11, fuente12:fuente12, fuente12B:fuente12B, id: id, idDepto:idDepto, idUE:idUE }).subscribe((response: any) => {
+    this.directHttp.put(url, { name: name, anio: anio, fuente11:fuente11, fuente12:fuente12, fuente12B:fuente12B, id: id, idDepto:idDepto, idUE:idUE, idInsti: idInsti }).subscribe((response: any) => {
       console.log(response);
       return response;
     })
@@ -96,12 +98,13 @@ export class PoaService {
   }
 
   MostrarPoa(idDepto:number){
-    return this.callHttp.httpGet<Array<Poa>>(`${environment.servidor}POA/peiByIdDepto/` + idDepto.toString())
+    return this.callHttp.httpGet<Array<Poa>>(`${environment.servidor}POA/poaByIdDepto/` + idDepto.toString())
       .pipe(map(response => {
         this._poa = response;
         return response;
       }))
   }
+
   getdepartamentos(){
     return this.callHttp.httpGet<Array<Depto>>(`${environment.servidor}departamento/get_all`)
       .pipe(map(response => {
@@ -132,7 +135,7 @@ export class PoaService {
   }
 
   //alternativa a update
-  updatePOA(name: string, anio: string, fuente11: string, fuente12: string, fuente12B: string, id: number, idDepto: number, idUE: number): any {
+  updatePOA(name: string, anio: string, fuente11: string, fuente12: string, fuente12B: string, id: number, idDepto: number, idUE: number, idInsti: number): any {
     const url = environment.servidor + 'POA/updatePOA';
 
     const params = new HttpParams({
@@ -144,7 +147,8 @@ export class PoaService {
         fuente12: fuente12,
         fuente12B: fuente12B,
         idDepto: idDepto,
-        idUE: idUE
+        idUE: idUE,
+        idInsti: idInsti
       }
     });
 
@@ -153,7 +157,7 @@ export class PoaService {
         'Content-Type': 'application/x-www-form-urlencoded'
       })
     };
-    return this.directHttp.put(url, { name: name, anio: anio, fuente11:fuente11, fuente12:fuente12, fuente12B:fuente12B, id: id, idDepto:idDepto, idUE:idUE})
+    return this.directHttp.put(url, { name: name, anio: anio, fuente11:fuente11, fuente12:fuente12, fuente12B:fuente12B, id: id, idDepto:idDepto, idUE:idUE, idInsti: idInsti})
 
   }
 

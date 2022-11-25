@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { PoaService } from '../../../services-poa/poa.service';
 import { Depto } from "../../..//interfaces-poa/depto.model";
 import { UnidadEjecutora } from "../../..//interfaces-poa/unidad_ejecutora.model";
+import { Institucion } from 'src/app/modules/administracion-module/interfaces/institucion.model';
 
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
@@ -22,13 +23,13 @@ export class CreatePoaComponent implements OnInit {
   public idUE: number = Number(this._route.snapshot.paramMap.get('idUE'));
   public ue: UnidadEjecutora | any = {};
 
+  public idInsti: number = Number(this._route.snapshot.paramMap.get('idInsti'));
+  public insti: Institucion | any = {};
+
   constructor(private PoaService: PoaService, private _route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
   }
-
-  public idDepartamento: number = Number(this._route.snapshot.paramMap.get('idDepto'));
-  public idUnidadE: number = Number(this._route.snapshot.paramMap.get('idDepto'));
 
 
   async initData() {
@@ -38,13 +39,13 @@ export class CreatePoaComponent implements OnInit {
   }
 
   toList() {
-    this.router.navigate(['gestion_poa/poa/list/', this.idUE, this.idDepartamento]);
+    this.router.navigate(['gestion_poa/poa/list/', this.idUE, this.idDepto, this.idInsti]);
   }
 
   async crear_poa(name: string, anio: string, fuente11: string, fuente12: string, fuente12B: string) {
-    console.log(name, anio, fuente11, fuente12, fuente12B, this.idDepartamento, this.idUnidadE);
+    console.log(name, anio, fuente11, fuente12, fuente12B, this.idDepto, this.idUE, this.idInsti);
     try {
-      await this.PoaService.crearPOA(name, anio, fuente11, fuente12, fuente12B, this.idDepartamento, this.idUnidadE).subscribe((res: any) => {
+      await this.PoaService.crearPOA(name, anio, fuente11, fuente12, fuente12B, this.idDepto, this.idUE, this.idInsti).subscribe((res: any) => {
         console.log(res);
       },);
       Swal.fire({
@@ -61,12 +62,12 @@ export class CreatePoaComponent implements OnInit {
         timer: 1500
       })
     }
-    this.toList() 
+    this.toList()
 
 
   }
   onBack(): void {
-    this.router.navigate(['/gestion_poa/poa/list/',this.idUnidadE,this.idDepartamento]);
+    this.router.navigate(['/gestion_poa/poa/list/', this.idUE, this.idDepto, this.idInsti]);
   }
 
 }

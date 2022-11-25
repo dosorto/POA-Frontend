@@ -108,7 +108,7 @@ export class UpdatePoaComponent implements OnInit {
 
     console.log(":"+name+":" + ":"+anio+":"+fuente11+":"+fuente12+":"+fuente12B);
      try{
-      this.service.actualizarPOA(name,anio,fuente11,fuente12, fuente12B, this.id, this.idDepto, this.idUE).subscribe((res:any)=>{
+      this.service.actualizarPOA(name,anio,fuente11,fuente12, fuente12B, this.id, this.idDepto, this.idUE, this.idInsti).subscribe((res:any)=>{
       Swal.fire({
         icon: 'success',
         title: '¡Actualizado con éxito!',

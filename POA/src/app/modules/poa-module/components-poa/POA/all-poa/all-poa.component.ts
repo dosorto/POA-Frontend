@@ -46,7 +46,7 @@ export class AllPoaComponent implements OnInit {
   public enumPages: number[] = []
 
   async initData() {
-    this.poa = await firstValueFrom(this.service.getPOA());
+    this.poa = await firstValueFrom(this.service.MostrarPoa(this.idDepto));
     const departamentos = await firstValueFrom(this.service.getdepartamentos());
     this.DeptoList = departamentos;
     console.log(this.poa);
