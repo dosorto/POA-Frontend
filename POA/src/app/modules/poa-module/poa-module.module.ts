@@ -6,6 +6,10 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { NgModel, FormControl, FormsModule} from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select'
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatAutocomplete, MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 // --------------------------------
 // componentes independientes importados
 // --------------------------------
@@ -75,15 +79,15 @@ const router = RouterModule.forChild([
   {path: 'actividad/list/:idInsti/:idDepto', component: AllActividadComponent},
 
   // rutas de tareas
-  {path: 'tareas/create/:idPoa/:idActividad/:idInsti/:idDepto', component: CreateTareasComponent},
+  {path: 'tareas/create/:idActividad', component: CreateTareasComponent},
   {path: 'tareas/update/:id/:idPoa/:idActividad/:idInsti/:idDepto', component: UpdateTareasComponent},
-  {path: 'tareas/detail/:id/:idPoa/:idActividad/:idInsti/:idDepto', component: DetailTareasComponent},
-  {path: 'tareas/list/:idActividad/:idPoa/:idInsti/:idDepto', component: AllTareasComponent},
+  {path: 'tareas/detail/:id/:idActividad', component: DetailTareasComponent},
+  {path: 'tareas/list/:idActividad', component: AllTareasComponent},
 
   // rutas de indicadores
   {path: 'indicadores/create/:idPoa/:idActividad/:idInsti/:idDepto', component: CreateIndicadoresComponent},
   {path: 'indicadores/update/:id/:idPoa/:idActividad/:idInsti/:idDepto', component: UpdateIndicadoresComponent},
-  {path: 'indicadores/detail/:id/:idPoa/:idActividad/:idInsti/:idDepto', component: DetailIndicadoresComponent},
+  {path: 'indicadores/detail', component: DetailIndicadoresComponent},
   {path: 'indicadores/list/:idActividad/:idPoa/:idInsti/:idDepto', component: AllIndicadoresComponent},
   // rutas de planificacion
   {path: 'planificacion/create/:idPoa/:idActividad/:idInsti/:idDepto', component: CreatePlanificacionComponent},
@@ -139,7 +143,11 @@ CommonModule,
   router,
   MatSelectModule,
   FormsModule,
-  TopBarComponent
+  TopBarComponent,
+  MatSlideToggleModule,
+  MatAutocompleteModule,
+  MatFormFieldModule,
+  MatInputModule
   ]
 })
 export class PoaModuleModule { }

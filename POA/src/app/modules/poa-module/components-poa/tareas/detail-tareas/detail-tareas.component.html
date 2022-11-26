@@ -1,1 +1,272 @@
-<p>detail-tareas works!</p>
+<top-bar></top-bar>
+
+<!-- <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet" />
+    <title>Bootstrap Example</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/angular-bootstrap-toggle@0.4.2/dist/angular-bootstrap-toggle.min.css">
+<script src="https://cdn.jsdelivr.net/npm/angular-bootstrap-toggle@0.4.2/dist/angular-bootstrap-toggle.min.js"></script>
+
+</head> -->
+
+<body class="justify-content-center abs-center mt-5 pt-5">
+    <div class="col-12 w-75">
+        <div class="container shadow rounded border border-dark" style="background-color: white;">
+            <div class="w-100 row m-auto">
+                <br>
+                <div class="row text-center">
+                    
+
+                    <h2 class="l-4">Detalles Tarea</h2>
+                </div>
+                <div class="row text-end">
+                    <h1> </h1>
+                    <h2 class="px-2"> Presupuesto
+                        <ng-container *ngIf="tareas.isPresupuesto==true; else nopresupuesto ">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="green" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                                <circle cx="200" cy="70" r="50" fill="#79C99E" />
+                            </svg>
+                            </ng-container>
+                        <ng-template #nopresupuesto>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="#BD1505" class="bi bi-dash-circle-fill" viewBox="0 0 16 16">
+                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1h-7z"/>
+                              </svg>
+                              
+                        </ng-template>
+                    </h2>
+                </div>
+
+                
+            </div>
+            
+
+            
+
+            <!-- espacio para el titulo, buscador y boton de agregar uno nuevo -->
+
+
+                <!-- <div class="col-10">
+                <label for="inputNombre" class="form-label">Nombre:</label>
+                <textarea type="text" class="form-control" id="exampleFormControlTextarea1" rows="2" value="{{objetivo?.nombre}}" disabled>
+                </textarea>
+                </div>
+                 campo para nombre -->
+                    <div class="example-container">
+                        <mat-form-field appearance="outline" class="example-form-textarea">
+                            <mat-label>Nombre de la tarea</mat-label>
+                            <textarea matInput readonly> {{tareas.nombre}} </textarea>
+                        </mat-form-field>
+                        
+                        <mat-form-field appearance="outline" class="example-form-textarea" >
+                            <mat-label>Descripcion de la tarea</mat-label>
+                            <textarea matInput placeholder="Ex. 100 Main St" readonly> {{tareas.descripcion}} </textarea>
+                          </mat-form-field>
+                    </div>
+                <div><br></div>
+                <!-- Default switch -->
+                <!-- <div class="form-check form-switch">
+                    <input mdbCheckbox class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="isPresupusto" >
+                    <label class="form-check-label" for="flexSwitchCheckDefault">Default switch checkbox
+                        input</label>
+                </div> -->
+                <!-- <mat-slide-toggle class="example-margin" [color]="color" [checked]="checked" [disabled]="disabled"
+                    [(ngModel)]="isPresupuesto" name="isPresupuesto">Presupuesto</mat-slide-toggle> -->
+
+                <div><br></div>
+                    
+                <ng-container *ngIf="tareas.isPresupuesto==false; else isPresupuestot"> 
+                    <mat-slide-toggle class="example-margin"
+          [color]="color"
+          [checked]="false"
+          [disabled]="disabled"
+                     name="isPresupuesto">Presupuesto</mat-slide-toggle></ng-container>
+                    <div class="mb-3">
+                    </div>
+                    <div><br></div>
+                    <ng-template #isPresupuestot>
+                        <mat-slide-toggle class="example-margin"
+          [color]="color"
+          [checked]="true"
+          [disabled]="disabled"
+                     name="isPresupuesto">Presupuesto</mat-slide-toggle>
+                    </ng-template>
+
+                <ng-container *ngIf="tareas.isPresupuesto==true">
+                                    <div class="example-container">
+                                        <mat-form-field appearance="outline" class="example-form-input">
+                                            <mat-label>Cantidad</mat-label>
+                                            <textarea matInput type="number" class="example-right-align"
+                                                name="cantidad" value="" 
+                                                placeholder="Placeholder" NgModel readonly>{{tareas.presupuesto.cantidad}}</textarea>
+                                            
+                                        </mat-form-field>
+                                        <mat-form-field appearance="outline" class="example-form-input">
+                                            <mat-label>Costo Unitario</mat-label>
+                                            <textarea matInput type="number" class="example-right-align"
+                                                name="cantidad" value="" 
+                                                placeholder="Placeholder" NgModel readonly>{{tareas.presupuesto.costounitario| currency:'L.'}}</textarea>
+                                            
+                                        </mat-form-field>
+                                        <!-- <mat-form-field appearance="fill" class="example-form-input">
+                                            <mat-label>Costo Unitario</mat-label>
+                                            <textarea matInput type="text" class="example-right-align"
+                                                name="costounitario" value=""
+                                                placeholder="Placeholder" ngModel readonly>{{tareas.presupuesto.costounitario }} </textarea>
+                                            
+                                        </mat-form-field> -->
+
+                                        <mat-form-field appearance="outline" floatLabel="always" class="example-form-input">
+                                            <mat-label>Total</mat-label>
+                                            <textarea matInput type="number" class="example-right-align"
+                                                placeholder="0" name="total"
+                                                value=""
+                                                readonly>{{tareas.presupuesto.total|currency:'L.' }}</textarea>
+                                        </mat-form-field>
+                                    </div>
+                                        
+                                    
+
+
+                                    
+                                    <div class="example-container">
+                                        <mat-form-field appearance="outline" floatLabel="always" class="example-form-inputt">
+                                            <mat-label>Objeto del gasto</mat-label>
+                                            <textarea matInput type="text" class="example-right-align"
+                                                placeholder="0" name="total"
+                                                value=""
+                                                readonly>{{tareas?.presupuesto?.grupogasto?.identificador+' - '+tareas?.presupuesto?.grupogasto?.nombre}}</textarea>
+                                        </mat-form-field>
+                                        <mat-form-field appearance="outline" floatLabel="always" class="example-form-inputt">
+                                            <mat-label>Grupo del gasto</mat-label>
+                                            <textarea matInput type="text" class="example-right-align"
+                                                placeholder="0" name="total"
+                                                value=""
+                                                readonly>{{tareas?.presupuesto?.objetogasto?.identificador+' - '+tareas?.presupuesto?.objetogasto?.nombre}}</textarea>
+                                        </mat-form-field>
+                                        <mat-form-field appearance="outline" floatLabel="always" class="example-form-inputt">
+                                            <mat-label>Unidad de medida</mat-label>
+                                            <textarea matInput type="text" class="example-right-align"
+                                                placeholder="0" name="total"
+                                                value=""
+                                                readonly>{{tareas?.presupuesto?.unidadmedida?.nombre}}</textarea>
+                                        </mat-form-field>
+                                        <mat-form-field appearance="outline" floatLabel="always" class="example-form-inputt">
+                                            <mat-label>Fuente</mat-label>
+                                            <textarea matInput type="text" class="example-right-align"
+                                                placeholder="0" name="total"
+                                                value=""
+                                                readonly>{{tareas?.presupuesto?.fuente?.nombre}}</textarea>
+                                        </mat-form-field>
+                                          
+                                          
+                                          <!-- <mat-form-field appearance="fill">
+                                            <mat-label>Grupo del gasto</mat-label>
+                                            <select matNativeControl  NgModel required>
+                                              <option value=""> {{tareass?.presupuesto?.grupogasto?.identificador+' - '+tareass?.presupuesto?.grupogasto?.nombre}}</option>
+                                            </select>
+                                          </mat-form-field>
+                                           -->
+                                          <!-- <mat-form-field appearance="fill">
+                                            <mat-label>Objeto del gasto</mat-label>
+                                            <mat-select matNativeControl name="idobjeto" [(ngModel)]="objetogasto_seleccionado" NgModel required>
+                                                <mat-option>-- None --</mat-option>
+                                                <mat-option value="{{tareass?.presupuesto?.objetogasto?.id}}" > {{tareass?.presupuesto?.objetogasto?.identificador+' - '+tareass?.presupuesto?.objetogasto?.nombre}}</mat-option>
+                                            </mat-select>
+                                          </mat-form-field>  -->
+
+                                          <!-- <mat-form-field appearance="fill">
+                                            <mat-label>Unidad de Medida</mat-label>
+                                            <mat-select  name="idunidad"  [(ngModel)]="unidadmedida_seleccionado" NgModel required>
+                                                <mat-option>-- None --</mat-option>
+                                                <mat-option value="{{tareass?.presupuesto?.unidadmedida?.id}}"> {{tareass?.presupuesto?.unidadmedida?.nombre}}</mat-option>
+                                            </mat-select>
+                                          </mat-form-field>
+                                          
+                                          <mat-form-field appearance="fill">
+                                            <mat-label>Fuentes</mat-label>
+                                            <mat-select  name="idunidad"  [(ngModel)]="fuente_seleccionado" NgModel required>
+                                                <mat-option>-- None --</mat-option>
+                                                <mat-option value="1">Fuente 11</mat-option>
+                                                <mat-option value="2">Fuente 12</mat-option>
+                                                <mat-option value="3">Fuente 12B </mat-option>
+                                            </mat-select>
+                                          </mat-form-field>                                           -->
+                                         </div>
+                                    <!-- <div class="col-3"> -->
+                                    <!-- <input type="number"  name="idobjeto" placeholder="CANTIDAD"  ngModel required>
+                                    <input type="number"  name="idunidad" placeholder="CANTIDAD" ngModel required>
+                                    <input type="number"  name="idfuente" placeholder="CANTIDAD" ngModel required>
+                                    <select class="form-select mb-2" aria-label="Default select example">
+                                        <option selected>UNIDAD DE MEDIDA</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select> -->
+                                    <!-- </div> -->
+
+                                    <!-- <input type="number" name="cantidad" placeholder="CANTIDAD"
+                                        [(ngModel)]="+cantidad" NgModel required>
+                                    <input type="number" name="costounitario" placeholder="COSTO"
+                                        [(ngModel)]='+costounitario' ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/"
+                                        step="0.01" ngModel required>
+                                    <div class="col-12">
+
+
+                                        <input type="text" name="total"
+                                            value="{{costounitario*cantidad || 0 | currency: 'L'}}"
+                                            placeholder="TOTAL" NgModel required>
+
+                                    </div> -->
+                         
+                       
+                        
+                        <div><br></div>
+                                <!-- <div class="row p-2 border rounded d-flex d-inline justify-content-center">
+                                    <div class="col-12">
+                                        <div class="col-3">
+                                            <select class="form-select mb-2" aria-label="Default select example">
+                                                <option selected>FUENTE</option>
+                                                <option value="1">One</option>
+                                                <option value="2">Two</option>
+                                                <option value="3">Three</option>
+                                            </select>
+                                        </div>
+                                        <ng-container *ngFor="let x of List">
+                                            <input type="text" placeholder="GRUPO DEL GASTO">
+                                        </ng-container>
+                                        <input type="text" placeholder="GRUPO DEL GASTO">
+                                        <div class="col-12"></div>
+                                    </div>
+                                </div> -->
+                    
+                            <div><br></div>
+
+                    </ng-container>
+                    
+                <!-- </ng-container> -->
+                <div class="container">
+                    <div class="d-grid gap-3 d-md-flex justify-content-md-end">
+                
+                    <button type="button" class="btn btn-danger float-start">Cerrar</button>
+                    <button type="submit" class="btn btn-success float-end"
+                        >Guardar</button> 
+                </div>
+                </div>
+
+        
+    
+
+
+
+
+<ul>
+<li>{{tareas?.presupuesto?.objetogasto?.nombre}}</li>
+</ul>
+
+
+
+
