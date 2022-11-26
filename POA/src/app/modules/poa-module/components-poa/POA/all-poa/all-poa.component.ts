@@ -58,7 +58,7 @@ export class AllPoaComponent implements OnInit {
   }
 
   toDetail(idPoa: number) {
-    this.router.navigate(['/gestion_poa/poa/detail/', idPoa.toString(), this.idUE ,this.idDepto]);
+    this.router.navigate(['/gestion_poa/poa/detail/', idPoa.toString(), this.idUE ,this.idDepto, this.idInsti]);
   }
   toCreate() {
     this.router.navigate(['/gestion_poa/poa/create/', this.idDepto.toString(),this.idUE,this.idInsti]);
