@@ -17,14 +17,15 @@ import { LoginComponent } from './modules/login-module/login.component';
 import {MatCardModule} from '@angular/material/card';
 import { ToastrModule } from 'ngx-toastr';
 import { TopBarComponent } from './_core/top-bar/top-bar.component';
-
+import { ChangepasswordComponent } from './archivos_antiguos/changepassword/changepassword.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    ChangepasswordComponent,
 
   ],
   imports: [
@@ -39,7 +40,8 @@ import { TopBarComponent } from './_core/top-bar/top-bar.component';
     ToastrModule.forRoot(),
     FormsModule,
     ReactiveFormsModule ,
-    TopBarComponent
+    TopBarComponent,
+    
     
   ],
   providers: [],

@@ -9,11 +9,12 @@ export class ChangePasswordService {
 
   }
 
-  public ChangeP(old_password:string,new_password:string,new_password_again:string):any {
+  public ChangeP(id:number,old_password:string,new_password:string,new_password_again:string):any {
     const url = 'http://localhost:8080/auth/changePassword';
 
     const params = new HttpParams({
      fromObject: {
+      id:id,
        grant_type: 'password',
        old_password:old_password,
        new_password:new_password,

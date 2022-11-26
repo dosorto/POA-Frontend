@@ -51,6 +51,7 @@
                         <ng-template #elseNumeracion> 
                             {{i + 1}} 
                         </ng-template>
+                        <p class="card-text" style="white-space: pre-line;"></p>
                         <li *ngIf="x.estado ==='FORMULACION'">
                         <div class="card  text-bg-secondary mb-3" style="width: 20rem;">
                         <div class="card-body"> 
@@ -79,6 +80,7 @@
                 </div> 
             </div>
         </li>
+        
         <li *ngIf="x.estado ==='APROBADO'">
             <div class="card  text-bg-success mb-3" style="width: 20rem;">
             <div class="card-body"> 
@@ -88,6 +90,7 @@
             </div> 
         </div>
     </li>
+    
     <li *ngIf="x.estado ==='RECHAZADO'">
         <div class="card  text-bg-danger mb-3" style="width: 20rem;">
         <div class="card-body"> 

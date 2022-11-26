@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
+  {path:'changepassword', loadChildren: ()=>import('./archivos_antiguos/changepassword/changepassword.component').then(t=> t.ChangepasswordComponent)},
   { path: '', pathMatch: 'full', redirectTo: 'login' },
   { path: 'login', loadChildren: () => import('./modules/login-module/login.module').then(t => t.LoginModule) },
   {
