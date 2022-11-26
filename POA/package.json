@@ -20,7 +20,8 @@
     "@angular/platform-browser": "^14.2.0",
     "@angular/platform-browser-dynamic": "^14.2.0",
     "@angular/router": "^14.2.0",
-    "ngx-filter-pipe": "^2.1.2",
+    "bootstrap-icons": "^1.9.1",
+    "ngx-pagination": "^6.0.2",
     "ngx-toastr": "^15.1.0",
     "rxjs": "~7.5.0",
     "sweetalert2": "^11.4.37",
@@ -28,7 +29,7 @@
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^14.2.5",
+    "@angular-devkit/build-angular": "^14.2.3",
     "@angular/cli": "~14.2.3",
     "@angular/compiler-cli": "^14.2.0",
     "@types/jasmine": "~4.0.0",
