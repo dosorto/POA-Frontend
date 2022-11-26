@@ -6,6 +6,7 @@ import { PoaService } from '../../../services-poa/poa.service';
 import { Poa } from '../../../interfaces-poa/poa.model';
 import { Depto } from "../../..//interfaces-poa/depto.model";
 import { UnidadEjecutora } from "../../..//interfaces-poa/unidad_ejecutora.model";
+import { Institucion } from 'src/app/modules/administracion-module/interfaces/institucion.model';
 
 import { firstValueFrom } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -19,8 +20,10 @@ import Swal from 'sweetalert2';
 export class DetailPoaComponent implements OnInit {
 
   public idDepto:number = Number(this._route.snapshot.paramMap.get('idDepto'));
+  public idUE: number = Number(this._route.snapshot.paramMap.get('idUE'));
   public idInsti:number = Number(this._route.snapshot.paramMap.get('idInsti'));
   public id:number = Number(this._route.snapshot.paramMap.get('id'));
+  public idObjetivo: number = Number(this._route.snapshot.paramMap.get('idObjetivo'));
   public poa:Poa | any = {};
   public depto:Depto | any = {};
   public unidadejecutora:UnidadEjecutora | any = {};
@@ -37,19 +40,18 @@ export class DetailPoaComponent implements OnInit {
     this.poa = this.service.getPOA_Id(this.id).subscribe((response:any)=>{
       this.poa = response.poa;
     });
-    this.depto = this.service.getDepto_Id(this.idDepto).subscribe((response:any)=>{
-      this.depto = response.Depto;
-    });
   }
 
-  toList(){
-   
-    this.router.navigate(['/gestion_poa/poa/list/',this.poa?.idDepto]); //revisar
+  toList(){ 
+    this.router.navigate(['/gestion_poa/poa/list/',this.poa?.idDepto, this.idUE,this.idInsti]); //revisar
   }
   toUpdate(){
-    this.router.navigate(['/gestion_poa/poa/update/',this.id,this.idInsti,this.idDepto]); //revisar
+    this.router.navigate(['/gestion_poa/poa/update/',this.id,this.idInsti,this.idUE,this.idDepto]); //revisar
   }
 
+  toActividad(){
+    this.router.navigate(['/gestion_poa/actividad/list/', this.idObjetivo]); //revisar
+  }
 
 
   async Delete(){

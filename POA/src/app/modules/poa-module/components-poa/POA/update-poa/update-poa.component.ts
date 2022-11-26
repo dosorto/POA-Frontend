@@ -40,9 +40,6 @@ export class UpdatePoaComponent implements OnInit {
   ngOnInit(): void {
     this.initData();
     console.log(this.initData)
-    this.depto = this.poaService.getDepto_Id(this.idDepto).subscribe((response: any) => {
-      this.depto = response.Depto;
-    });
   }
 
   async initData() {
@@ -56,8 +53,12 @@ export class UpdatePoaComponent implements OnInit {
 
   toDetail(idPoa:number){
     console.log(this.idDepto)
-    this.router.navigate(['gestion_poa/poa/detail/',idPoa.toString(),this.idInsti,this.idDepto]);
+    this.router.navigate(['gestion_poa/poa/detail/',idPoa.toString(),this.idInsti,this.idUE,this.idDepto]);
 
+  }
+
+  toList(){ 
+    this.router.navigate(['/gestion_poa/poa/list/',this.poa?.idDepto, this.idUE,this.idInsti]); //revisar
   }
   // toDetail(){
   //   this.router.navigate(['/gestion_pei/pei/detail/',this.id,this.idInsti]);
