@@ -69,10 +69,10 @@ const router = RouterModule.forChild([
   {path: 'poa/detail/:id/:idInsti/:idDepto', component: DetailPoaComponent},
   {path: 'poa/list/:idInsti/:idDepto', component: AllPoaComponent},
   // rutas de actividades
-  {path: 'actividad/create/:idPoa/:idInsti/:idDepto', component: CreateActividadComponent},
-  {path: 'actividad/update/:id/:idPoa/:idInsti/:idDepto', component: UpdateActividadComponent},
-  {path: 'actividad/detail/:id/:idPoa/:idInsti/:idDepto', component: DetailActividadComponent},
-  {path: 'actividad/list/:idInsti/:idDepto', component: AllActividadComponent},
+  {path: 'actividad/create/:idObjetivo', component: CreateActividadComponent},
+  {path: 'actividad/update/:id/:idObjetivo', component: UpdateActividadComponent},
+  {path: 'actividad/detail/:id/:idObjetivo', component: DetailActividadComponent},
+  {path: 'actividad/list/:idObjetivo', component: AllActividadComponent},
 
   // rutas de tareas
   {path: 'tareas/create/:idPoa/:idActividad/:idInsti/:idDepto', component: CreateTareasComponent},

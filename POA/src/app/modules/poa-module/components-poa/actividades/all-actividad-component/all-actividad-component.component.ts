@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Storage } from 'src/app/_core/global-services/local_storage.service';
 import { ActividadService } from '../../../services-poa/actividad.service';
 import { Area } from 'src/app/modules/gestion-pei-module/interfaces-pei/area.model';
-import { Objetivo } from 'src/app/modules/gestion-pei-module/interfaces-pei/objetivo.model';
 import { Actividad } from '../../../interfaces-poa/actividad.model';
 import { firstValueFrom } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';

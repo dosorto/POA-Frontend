@@ -72,9 +72,9 @@ export class UpdateActividadComponent implements OnInit {
   update() {
     let nombre = this.nombre;
     let descripcion = this.descripcion;
-    let estado = this.estado;
-    let tipoActividad = this.tipoActividad;
-    let categoria = this.categoria;
+    let estado = this.estado_seleccionado;
+    let tipoActividad = this.tipo_seleccionado;
+    let categoria = this.categoria_seleccionado;
 
     // validaciones
     if ((nombre === '')) { nombre = this.actividad.nombre}

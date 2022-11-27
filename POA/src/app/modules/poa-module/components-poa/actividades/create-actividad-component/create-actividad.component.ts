@@ -1,9 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+
 import { Storage } from 'src/app/_core/global-services/local_storage.service';
 import { ActividadService } from '../../../services-poa/actividad.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
+import { firstValueFrom } from 'rxjs';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
+import { Empleado } from '../../../interfaces-poa/empleados.model';
 @Component({
   selector: 'app-create-actividad',
   templateUrl: './create-actividad.component.html',
@@ -17,10 +21,18 @@ export class CreateActividadComponent implements OnInit {
     private service: ActividadService,
     private router: Router,
     private _route: ActivatedRoute) { }
+    listaEmpleados: Array<Empleado >=[];
+    
+    empleado_seleccionado:string="";
 
-  ngOnInit(): void {
-
-  }
+    ngOnInit(): void {
+      this.initData();
+    }async initData(){
+   
+      const Empleados = await firstValueFrom(this.service.getEmpleados());
+      this.listaEmpleados = Empleados;
+      console.log(this.listaEmpleados)
+    }
   public idObjetivo: number = Number(this._route.snapshot.paramMap.get('idObjetivo'));
   toList() {
     this.router.navigate(['/gestion_poa/actividad/list/', this.idObjetivo]);
