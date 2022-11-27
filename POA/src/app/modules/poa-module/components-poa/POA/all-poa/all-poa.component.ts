@@ -61,13 +61,13 @@ export class AllPoaComponent implements OnInit {
     this.router.navigate(['/gestion_poa/poa/detail/', idPoa.toString(), this.idUE ,this.idDepto, this.idInsti]);
   }
   toCreate() {
-    this.router.navigate(['/gestion_poa/poa/create/', this.idDepto.toString(),this.idUE,this.idInsti]);
+    this.router.navigate(['/gestion_poa/poa/create/', this.idInsti,this.idUE, this.idDepto.toString()]);
   }
   toHome() {
     this.router.navigate(['/home']);
   }
   selectDepto() {
-    this.router.navigate(['/gestion_poa/poa/list/', this.DeptoSeleccionado]);
+    this.router.navigate(['/gestion_poa/poa/list/', this.idInsti, this.idUE, this.DeptoSeleccionado]);
     setTimeout(function () {
       window.location.reload();
     }, 10)
