@@ -1,75 +1,87 @@
 <top-bar></top-bar>
 <div class="justify-content-center abs-center mt-5 pt-5 abs-center">
-    
-    <div class="col-7">
-        <!-- espacio para el titulo, buscador y boton de agregar uno nuevo -->
-        <div class="container border rounded rounden-2 p-2">
-        <div class="w-100 row m-auto">
+  <div class="col-7">
+    <div class="backButton">
+      <button class="btn btn-warning rounded" (click)="toList()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+          class="bi bi-arrow-left-short" viewBox="0 0 16 16">
+          <path fill-rule="evenodd"
+            d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z" />
+        </svg>
+      </button>
+    </div>
+    <div><br></div>
+    <!-- espacio para el titulo, buscador y boton de agregar uno nuevo -->
+    <div class="container border rounded rounden-2 p-2">
+      <div class="w-100 row m-auto">
         <br>
         <!-- espacio para el titulo, buscador y boton de agregar uno nuevo -->
         <div class="w-100 row m-auto">
-             <div class="row">
-                
-                <div class="col-10 text-center">
-                    <h2 class="l-4" ><font color='black'>Detalle de POA</font></h2>
-                    <span class="fs-5">
-                        Depto: <span class="text-primary ">{{depto.name}}</span>
-                    </span>
-                </div>
-                <div class="col-2">
-                    <div class="d-grid gap-2 d-md-flex justify-content-end">
-                        <button type="submit" class="btn btn-warning" (click)="toUpdate()" >Editar</button>
-                        </div>
-                </div>
-             </div>
-            
-            
-            
-            <div class="col-10">
-              <label for="inputname" class="form-label">Nombre POA:</label>
-              <input type="text" class="form-control" id="exampleFormControlTextarea1" rows="2" value="{{poa.name}}" disabled>
-              </div>
-            <div class="col-10 mb-3">
-              <label for="anio" class="form-label">Año:</label>
-              <input class="form-control" id="exampleFormControlTextarea1" rows="2" value="{{poa.anio}}" disabled>
+          <div class="row">
+
+            <div class="col-10 text-center">
+              <h2 class="l-4">
+                <font color='black'>Detalle de POA</font>
+              </h2>
+              <span class="fs-5">
+                Departamento: <span class="text-primary ">{{depto.name}}</span>
+              </span>
             </div>
-            <div class="col-10 mb-3">
-              <label for="fuente11" class="form-label">Fuente11:</label>
-              <input class="form-control" id="exampleFormControlTextarea1" rows="2" value="{{poa.fuente11}}" disabled>
-            </div>
-            <div class="col-10 mb-3">
-                <label for="fuente12" class="form-label">Fuente12:</label>
-                <input class="form-control" id="exampleFormControlTextarea1" rows="2" value="{{poa.fuente12}}" disabled>
+            <div class="col-2">
+              <div class="d-grid gap-2 d-md-flex justify-content-end">
+                <button type="submit" class="btn btn-warning" (click)="toUpdate()">Editar</button>
               </div>
-              <div class="col-10 mb-3">
-                <label for="fuente12B" class="form-label">Fuente12B:</label>
-                <input class="form-control" id="exampleFormControlTextarea1" rows="2" value="{{poa.fuente12B}}" disabled>
-              </div>
-            <div class="d-grid gap-2 d-md-flex justify-content-between">
-              <button type="button" class="btn btn-secondary" (click)="toList()" >Regresar</button>
-              <button type="button" class="btn btn-success" (click)="toActividad()" >Mostrar Actividades</button>
             </div>
+          </div>
+
+
+
+          <div class="col-10">
+            <label for="inputname" class="form-label">Nombre POA:</label>
+            <input type="text" class="form-control" id="exampleFormControlTextarea1" rows="2" value="{{poa.name}}"
+              disabled>
+          </div>
+          <div class="col-10 mb-3">
+            <label for="anio" class="form-label">Año:</label>
+            <input class="form-control" id="exampleFormControlTextarea1" rows="2" value="{{poa.anio}}" disabled>
+          </div>
+          <div class="col-10 mb-3">
+            <label for="fuente11" class="form-label">Fuente11:</label>
+            <input class="form-control" id="exampleFormControlTextarea1" rows="2" value="{{poa.fuente11}}" disabled>
+          </div>
+          <div class="col-10 mb-3">
+            <label for="fuente12" class="form-label">Fuente12:</label>
+            <input class="form-control" id="exampleFormControlTextarea1" rows="2" value="{{poa.fuente12}}" disabled>
+          </div>
+          <div class="col-10 mb-3">
+            <label for="fuente12B" class="form-label">Fuente12B:</label>
+            <input class="form-control" id="exampleFormControlTextarea1" rows="2" value="{{poa.fuente12B}}" disabled>
+          </div>
+          <div class="d-grid gap-2 d-md-flex justify-content-between">
+            <button type="button" class="btn btn-secondary" (click)="toList()">Regresar</button>
+            <button type="button" class="btn btn-success" (click)="toActividad()">Mostrar Actividades</button>
+          </div>
         </div>
-         
-        </div>
+
       </div>
-<!-- Este modal sirve para eliminar una Dimensión -->
-<div class="modal" tabindex="-1" id="eliminarDepto">
-  <div class="modal-dialog">
-      <div class="modal-content">
+    </div>
+    <!-- Este modal sirve para eliminar una Dimensión -->
+    <div class="modal" tabindex="-1" id="eliminarDepto">
+      <div class="modal-dialog">
+        <div class="modal-content">
           <div class="modal-header bg-danger">
-              <h5 class="modal-title fs-3 m-auto"></h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <h5 class="modal-title fs-3 m-auto"></h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-              <p>¿Está seguro de eliminarla? </p>
+            <p>¿Está seguro de eliminarla? </p>
           </div>
           <form id="eliminarDimension">
-              <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                  <button type="submit" class="btn btn-danger" (click)="Delete()">Eliminar</button>
-              </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+              <button type="submit" class="btn btn-danger" (click)="Delete()">Eliminar</button>
+            </div>
           </form>
+        </div>
       </div>
-  </div>
-  </div>
+    </div>

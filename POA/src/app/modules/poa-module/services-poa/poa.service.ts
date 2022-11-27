@@ -18,9 +18,9 @@ export class PoaService {
   private _poa: Array<Poa> = [];
   private _depto: Array<Depto> = [];
   private _unidadejecutora: Array<UnidadEjecutora> = [];
-  private _institucion: Array<Institucion>=[];
+  private _institucion: Array<Institucion> = [];
 
-    get poa() {
+  get poa() {
     return this._poa;
   }
   get depto() {
@@ -116,6 +116,7 @@ export class PoaService {
         return response;
       }))
   }
+
   getDepto_Id(idDepto: number) {
     return this.callHttp.httpGet<Depto>(`${environment.servidor}departamento/get/` + idDepto.toString());
   }
