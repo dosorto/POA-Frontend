@@ -5,5 +5,4 @@ export interface Depto {
     isDelete:    boolean;
     createdAt:   Date;
     updatedAt:   Date;
-    idUE: number;
 }
