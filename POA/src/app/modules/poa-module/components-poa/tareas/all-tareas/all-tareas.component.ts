@@ -18,8 +18,10 @@ import { Institucion } from 'src/app/modules/administracion-module/interfaces/in
 export class AllTareasComponent implements OnInit {
   //Variables de la rutas
   // public idActividad:number = Number(this._route.snapshot.paramMap.get('idActividad'));
-  public idActividad=1
+ 
+  public idActividad:number = Number(this._route.snapshot.paramMap.get('idActividad'));
   public id:number = Number(this._route.snapshot.paramMap.get('id'));
+  public actividad:Actividad|any={};
   // Aqui llamamos las variables
   public listTareas : Array<Tareas>=[];
   public listTareasP: Array<Tareas>=[];
@@ -42,9 +44,11 @@ export class AllTareasComponent implements OnInit {
   ngOnInit(): void {
     this.initData()
     const sumall = this.listTareas.map(item => item.presupuesto.total).reduce((prev, curr) => prev + curr,0);
-console.log(sumall)
+    console.log(sumall)
   }
+
   async initData(){
+
     const tareas = await firstValueFrom(this.tareaservice.getTarea(this.idActividad))
     this.listTareas = tareas;
 
@@ -59,6 +63,9 @@ console.log(sumall)
     
     // this.sumall = this.listTareas.map(item => item.presupuesto.total??0).reduce((prev, curr) => +prev + +curr,0);
     // console.log(this.sumall)
+    this.actividad = this.tareaservice.getActividades_Id(this.idActividad).subscribe((response:any)=>{
+      this.actividad = response.Actividad;
+    });
     
   }
 

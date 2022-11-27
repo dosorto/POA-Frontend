@@ -120,6 +120,33 @@ getTareas(id:number) {
   return this.callHttp.httpGet<Tareas>(`${environment.servidor}tarea/get_all_by_id/`+id.toString());
 }
 
+getActividades_Id(idActividad:number) {
+  return this.callHttp.httpGet<Actividad>(`${environment.servidor}actividad/get/`+idActividad.toString());
+}
+
+eliminarTarea(id: any) {
+  const url = "http://localhost:8080/tarea/eliminar/";
+
+  const params = new HttpParams({
+    fromObject: {
+      //grant_type: 'password',
+      id: id
+    }
+  });
+
+  const httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/x-www-form-urlencoded'
+    })
+  };
+  //return this.directHttp.put(url, params, httpOptions);
+  this.directHttp.get(url+id).subscribe((response:any)=>
+  {
+    console.log(response);
+    return response;
+  })
+}
+
 ///Notss
 // crear uno que una funcion que me liste todas las tareas con presupuestos y que sean distinct
 }
