@@ -28,6 +28,7 @@ import { TopBarComponent } from './_core/top-bar/top-bar.component';
 
   ],
   imports: [
+    
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,

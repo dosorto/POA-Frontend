@@ -29,7 +29,6 @@ import { DetailActividadComponent } from './components-poa/actividades/detail-ac
 import { ActividadFiltroPipe } from './pipes-poa/actividad-filtro.pipe';
 import { ActividadPaginacionPipe } from './pipes-poa/actividad-paginacion.pipe';
 
-import { NgSelectModule } from '@ng-select/ng-select';
 
 
 // enrutamiento
@@ -61,7 +60,6 @@ const router = RouterModule.forChild([
 
   ],
   imports: [
-    NgSelectModule,
 CommonModule,
   router,
   MatSelectModule,
