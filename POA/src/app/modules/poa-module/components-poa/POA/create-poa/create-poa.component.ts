@@ -17,9 +17,8 @@ import Swal from 'sweetalert2';
   styleUrls: ['./create-poa.component.css']
 })
 export class CreatePoaComponent implements OnInit {
-
   public idDepto: number = Number(this._route.snapshot.paramMap.get('idDepto'));
-  public departamento: Depto | any = {};
+  public depto: Depto | any = {};
 
   public idUE: number = Number(this._route.snapshot.paramMap.get('idUE'));
   public ue: UnidadEjecutora | any = {};
@@ -30,12 +29,11 @@ export class CreatePoaComponent implements OnInit {
   constructor(private PoaService: PoaService, private _route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
-    this.initData();
   }
 
   async initData() {
-    this.departamento = this.PoaService.getDepto_Id(this.idDepto).subscribe((response: any) => {
-      this.departamento = response.depto;
+    this.depto = this.PoaService.getDepto_Id(this.idDepto).subscribe((response: any) => {
+      this.depto = response.departamento;
     });
   }
 

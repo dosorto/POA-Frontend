@@ -10,8 +10,6 @@ import {MatSelectModule} from '@angular/material/select'
 // componentes independientes importados
 // --------------------------------
 import { TopBarComponent } from '../../_core/top-bar/top-bar.component'
-import { BackButtonComponent } from 'src/app/_core/back-button/back-button.component';
-import { EmptyComponent } from 'src/app/_core/empty/empty.component';
 // --------------------------------
 // pipes del modulo
 // --------------------------------
@@ -141,9 +139,7 @@ CommonModule,
   router,
   MatSelectModule,
   FormsModule,
-  TopBarComponent,
-  BackButtonComponent,
-  EmptyComponent
+  TopBarComponent
   ]
 })
 export class PoaModuleModule { }
