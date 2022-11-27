@@ -75,5 +75,8 @@ export class DetailTareasComponent implements OnInit {
   toList(){
     this.router.navigate(['/gestion_poa/tareas/list/',this.idActividad]); //revisar
   }
+  onBack(): void {
+    this.router.navigate(['/gestion_poa/tareas/list/',this.idActividad]);
+  }
   
 }
