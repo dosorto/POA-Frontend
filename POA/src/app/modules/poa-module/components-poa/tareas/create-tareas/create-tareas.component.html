@@ -39,7 +39,7 @@
 
                                 </button>
                                 <mat-autocomplete #auto="matAutocomplete" >
-                                    <mat-option *ngFor="let x of listTareasP|tareasFiltro:nombre;" [value]="x.nombre">
+                                    <mat-option *ngFor="let x of listTareasH |tareasFiltroH:nombre;" [value]="x.nombre">
                                         {{x.nombre}}
                                     </mat-option>
                                 <mat-option>

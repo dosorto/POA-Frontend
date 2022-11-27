@@ -12,6 +12,7 @@ import { ThemePalette } from '@angular/material/core';
 import { ObjetoGasto } from '../../../interfaces-poa/objeto_gasto.model';
 import { FormControl } from '@angular/forms';
 import { Presupuesto } from '../../../interfaces-poa/presupuesto.model';
+import { TareasH } from '../../../interfaces-poa/tareas_historico.model';
 
 @Component({
   selector: 'app-create-tareas',
@@ -35,7 +36,7 @@ export class CreateTareasComponent implements OnInit {
 
   public listTareas : Array<Tareas>=[];
   public listTareasP: Array<Tareas>=[];
-  
+  public listTareasH: Array<TareasH>=[];
   public nombre:string=""; // para filtar la tabla
 
   constructor( private Storage:Storage, 
@@ -144,6 +145,12 @@ public tareass:Presupuesto | any = {};
 
     const tareasP = await firstValueFrom(this.tareasService.getTareaP(this.idActividad))
     this.listTareasP = tareasP;
+
+    const tareasH = await firstValueFrom(this.tareasService.getTareasH())
+    this.listTareasH = tareasH;
+     
+    console.log(tareasH)
+
     // this.sumall = this.listTareasP.reduce((sum, value) => (typeof value.presupuesto.total == "number" ? sum + value.presupuesto.total : sum), 0);
     // console.log(this.sumall);
 

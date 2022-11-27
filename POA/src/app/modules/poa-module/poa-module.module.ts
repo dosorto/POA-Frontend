@@ -52,6 +52,7 @@ import { POAFiltroPipe } from './pipes-poa/poafiltro.pipe';
 import { POApaginacionPipe } from './pipes-poa/poapaginacion.pipe';
 import { TareasPaginacionPipe } from './pipes-poa/tareas-paginacion.pipe';
 import { TareasFiltroPipe } from './pipes-poa/tareas-filtro.pipe';
+import { TareasFiltroHPipe } from './pipes-poa/tareah-filtro.pipe';
 import { PlanificacionFiltroPipe } from './pipes-poa/planificacion-filtro.pipe';
 import { PlanificacionPaginacionPipe } from './pipes-poa/planificacion-paginacion.pipe';
 import { ResponsablePaginacionPipe } from './pipes-poa/responsable-paginacion.pipe';
@@ -129,6 +130,7 @@ const router = RouterModule.forChild([
     POApaginacionPipe,
     TareasPaginacionPipe,
     TareasFiltroPipe,
+    TareasFiltroHPipe,
     PlanificacionFiltroPipe,
     PlanificacionPaginacionPipe,
     ResponsablePaginacionPipe,

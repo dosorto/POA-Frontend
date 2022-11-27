@@ -7,6 +7,7 @@ import { map, Observable } from "rxjs";
 import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { response } from "express";
 import { Presupuesto } from '../interfaces-poa/presupuesto.model';
+import { TareasH } from '../interfaces-poa/tareas_historico.model';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,7 @@ export class TareasService {
   constructor(private callHttp: CallHttpService, private directHttp: HttpClient) { }
   private _actividades: Array<Actividad> = [];
   private _tareas: Array<Tareas> = [];
+  private _tareash: Array <TareasH>=[]
   private _presupuesto: Array<Presupuesto>=[]
   get actividades() {
     return this._actividades;
@@ -25,6 +27,9 @@ export class TareasService {
   }
   get presupuesto() {
     return this._presupuesto;
+  }
+  get tareash(){
+    return this._tareash
   }
 
   public crearTarea (nombre:string,descripcion:string,isPresupuesto:boolean,idActividad:number,cantidad:number,costounitario:number,total:number,idobjeto:number,idfuente:number,idunidad:number):any{
@@ -119,6 +124,14 @@ getPresupuesto(idtarea:number) {
 getTareas(id:number) {
   return this.callHttp.httpGet<Tareas>(`${environment.servidor}tarea/get_all_by_id/`+id.toString());
 }
+
+getTareasH()  {
+  return this.callHttp.httpGet<Array<TareasH>>(`http://localhost:8080/tareah/get_all`)
+    .pipe(map(response => {
+      this._tareash = response;
+      return response;
+    }))
+  }
 
 ///Notss
 // crear uno que una funcion que me liste todas las tareas con presupuestos y que sean distinct
