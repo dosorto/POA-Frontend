@@ -155,4 +155,7 @@ public tareass:Presupuesto | any = {};
     // console.log(this.sumall)
     
   }
+  onBack(): void {
+    this.router.navigate(['/gestion_poa/tareas/list/',this.idActividad]);
+  }
 }
