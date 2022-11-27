@@ -1,5 +1,5 @@
 // --------------------------------
-// importaciones necesarias 
+// importaciones necesarias
 // --------------------------------
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -10,6 +10,8 @@ import {MatSelectModule} from '@angular/material/select'
 // componentes independientes importados
 // --------------------------------
 import { TopBarComponent } from '../../_core/top-bar/top-bar.component'
+import { BackButtonComponent } from 'src/app/_core/back-button/back-button.component';
+import { EmptyComponent } from 'src/app/_core/empty/empty.component';
 // --------------------------------
 // pipes del modulo
 // --------------------------------
@@ -21,6 +23,11 @@ import { PaginacionPipe } from './pipes-pei/dimension-paginacion.pipe';
 // componente padre:
 import { GestionPeisComponent } from './gestion-peis.component';
 // componentes hijos:
+import { PeiCreateComponent } from './components-pei/pei/pei-create/pei-create.component';
+import { UpdatePeiComponent } from './components-pei/pei/update-pei/update-pei.component';
+import { DeletePeiComponent } from './components-pei/pei/delete-pei/delete-pei.component';
+import { AllPeiComponent } from './components-pei/pei/all-pei/all-pei.component';
+import { DetailPeiComponent } from './components-pei/pei/detail-pei/detail-pei.component';
 import { CreateDimensionComponent } from './components-pei/dimension/create-dimension-component/create-dimension.component';
 import { UpdateDimensionComponent } from './components-pei/dimension/update-dimension-component/update-dimension.component';
 import { DeleteDimensionComponent } from './components-pei/dimension/delete-dimension-component/delete-dimension.component';
@@ -58,56 +65,52 @@ import { ResultadosPaginacionPipe } from './pipes-pei/resultados-paginacion.pipe
 import { ResultadosFiltroPipe } from './pipes-pei/resultados-filtro.pipe';
 import { IndicadoresFiltroPipe } from './pipes-pei/indicadores-filtro.pipe';
 import { IndicadoresPaginacionPipe } from './pipes-pei/indicadores-paginacion.pipe';
-import { PeiCreateComponent } from './components-pei/pei/pei-create/pei-create.component';
-import { UpdatePeiComponent } from './components-pei/pei/update-pei/update-pei.component';
-import { DeletePeiComponent } from './components-pei/pei/delete-pei/delete-pei.component';
-import { AllPeiComponent } from './components-pei/pei/all-pei/all-pei.component';
-import { DetailPeiComponent } from './components-pei/pei/detail-pei/detail-pei.component';
+
 
 // enrutamiento
 const router = RouterModule.forChild([
   // rutas principal
   {path: '', component: GestionPeisComponent},
   // rutas de pei
-  {path: 'create', component: PeiCreateComponent},
-  {path: 'update/:id', component: UpdatePeiComponent},
-  {path: 'delete/:id', component: DeletePeiComponent},
-  {path: 'detail/:id', component: DetailPeiComponent},
-  {path: 'list/:idInsti', component: AllPeiComponent},
+  {path: 'pei/create/:idInsti', component: PeiCreateComponent},
+  {path: 'pei/update/:id/:idInsti', component: UpdatePeiComponent},
+  {path: 'pei/delete/:id', component: DeletePeiComponent},
+  {path: 'pei/detail/:id/:idInsti', component: DetailPeiComponent},
+  {path: 'pei/list/:idInsti', component: AllPeiComponent},
   // rutas de dimension
-  {path: 'dimension/create', component: CreateDimensionComponent},
-  {path: 'dimension/update/:id', component: UpdateDimensionComponent},
+  {path: 'dimension/create/:idPei/:idInsti', component: CreateDimensionComponent},
+  {path: 'dimension/update/:id/:idPei/:idInsti', component: UpdateDimensionComponent},
   {path: 'dimension/delete/:id', component: DeleteDimensionComponent},
-  {path: 'dimension/detail/:id', component: DetailDimensionComponent},
-  {path: 'dimension/list/:idPei', component: AllDimensionComponent},
+  {path: 'dimension/detail/:id/:idPei/:idInsti', component: DetailDimensionComponent},
+  {path: 'dimension/list/:idPei/:idInsti', component: AllDimensionComponent},
 
   // rutas de objetivos
-  {path: 'objetivos/create', component: CreateObjetivoComponentComponent},
-  {path: 'objetivos/update/:id', component: UpdateObjetivoComponentComponent},
-  {path: 'objetivos/delete/:id', component: DeleteObjetivoComponentComponent},
-  {path: 'objetivos/detail/:id', component: DetailObjetivoComponentComponent},
-  {path: 'objetivos/list/:idDimen', component: AllObjetivoComponentComponent},
+  {path: 'objetivos/create/:idDimension/:idPei/:idInsti', component: CreateObjetivoComponentComponent},
+  {path: 'objetivos/update/:id/:idDimension/:idPei/:idInsti', component: UpdateObjetivoComponentComponent},
+  {path: 'objetivos/delete/:id/', component: DeleteObjetivoComponentComponent},
+  {path: 'objetivos/detail/:id/:idDimension/:idPei/:idInsti', component: DetailObjetivoComponentComponent},
+  {path: 'objetivos/list/:idDimension/:idPei/:idInsti', component: AllObjetivoComponentComponent},
 
   // rutas de areas
-  {path: 'areas/create', component: CreateAreaComponent},
-  {path: 'areas/update/:id', component: UpdateAreaComponent},
+  {path: 'areas/create/:idObjetivo/:idDimension/:idPei/:idInsti', component: CreateAreaComponent},
+  {path: 'areas/update/:id/:idObjetivo/:idDimension/:idPei/:idInsti', component: UpdateAreaComponent},
   {path: 'areas/delete/:id', component: DeleteAreaComponentComponent},
-  {path: 'areas/detail/:id', component: DetailAreaComponentComponent},
-  {path: 'areas/list', component: AllAreaComponentComponent},
+  {path: 'areas/detail/:id/:idObjetivo/:idDimension/:idPei/:idInsti', component: DetailAreaComponentComponent},
+  {path: 'areas/list/:idObjetivo/:idDimension/:idPei/:idInsti', component: AllAreaComponentComponent},
 
   // rutas de resultados
-  {path: 'resultados/create', component: CreateResultadoComponentComponent},
-  {path: 'resultados/update/:id', component: UpdateResultadoComponentComponent},
+  {path: 'resultados/create/:idArea/:idObjetivo/:idDimension/:idPei/:idInsti', component: CreateResultadoComponentComponent},
+  {path: 'resultados/update/:id/:idArea/:idObjetivo/:idDimension/:idPei/:idInsti', component: UpdateResultadoComponentComponent},
   {path: 'resultados/delete/:id', component: DeleteResultadoComponentComponent},
-  {path: 'resultados/detail/:id', component: DetailResultadoComponentComponent},
-  {path: 'resultados/list/:idArea', component: AllResultadoComponentComponent},
-  
+  {path: 'resultados/detail/:id/:idArea/:idObjetivo/:idDimension/:idPei/:idInsti', component: DetailResultadoComponentComponent},
+  {path: 'resultados/list/:idArea/:idObjetivo/:idDimension/:idPei/:idInsti', component: AllResultadoComponentComponent},
+
   // rutas de indicadores
   {path: 'indicadores/create', component: CreateIndicadorComponentComponent},
   {path: 'indicadores/update/:id', component: UpdateIndicadorComponentComponent},
   {path: 'indicadores/delete/:id', component: DeleteIndicadorComponentComponent},
   {path: 'indicadores/detail/:id', component: DetailIndicadorComponentComponent},
-  {path: 'indicadores/list/:idResult', component: AllIndicadorComponentComponent}, 
+  {path: 'indicadores/list/:idResult', component: AllIndicadorComponentComponent},
 ])
 
 @NgModule({
@@ -156,11 +159,14 @@ const router = RouterModule.forChild([
     DetailPeiComponent
   ],
   imports: [
-  
+
 CommonModule,
   router,
   MatSelectModule,
-  FormsModule
+  FormsModule,
+  TopBarComponent,
+  BackButtonComponent,
+  EmptyComponent
   ]
 })
 export class GestionPeiModule { }

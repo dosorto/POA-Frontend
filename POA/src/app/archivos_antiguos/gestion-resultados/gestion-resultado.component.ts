@@ -72,7 +72,7 @@ public user = this.Storage.get_storage("user"); //Obtener el usuario logueado
 public filter:string=""; //Para filtar la tabla
 public _delete: any; // Define que elemento se eliminara
 public data_update :ResultadoModels.Resultado | any = this.resultado_example; //Define los datos de un elemento a actualizar
-data_create : ResultadoModels.Resultado | any = this.resultado_example;
+//data_create : ResultadoModels.Resultado | any = this.resultado_example;
 public area_seleccionado:string="";
 public dimension_seleccionado:string="";
 public objetivo_seleccionado:string="";

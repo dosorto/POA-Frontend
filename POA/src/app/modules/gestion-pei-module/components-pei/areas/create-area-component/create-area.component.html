@@ -1,53 +1,37 @@
-<body style="background-color: #c5cae9;">
-    <div class="col-12 ">
+<top-bar></top-bar>
+<app-back-button [path]="['/gestion_pei/areas/list/',this.idObjetivo,this.idDimension,this.idPei,this.idInsti]"></app-back-button>
+<body class="justify-content-center abs-center mt-5 pt-5">
+   
+    <div class="col-12 w-75">
         <br>
-        <!-- espacio para el titulo, buscador y boton de agregar uno nuevo -->
-        <div class="container" style="background-color: white;">
+       
+        <div class="container shadow rounded border border-dark" style="background-color: white;">
             <div class="w-100 row m-auto">
                 <br>
-                <!-- espacio para el titulo, buscador y boton de agregar uno nuevo -->
-                <div class="w-100 row m-auto">
-  
-                    <div class="row text-center">
-                        <h2 class="l-4">
-                            <font color='black'>Crear Area </font>
-                        </h2>
-                    </div>
-                    <div class="d-grid gap-2 d-md-flex justify-content-end">
+                <div class="row text-center">
+                    <h1> </h1>
+                    <h2 class="l-4">Crear Area</h2>
+                </div>
+            </div>
+                <form #AreaC="ngForm" (ngSubmit)="crearArea(AreaC.value.nombre)" id="createArea">
+                    <div class="container">
+                          <!-- Campo para el nombre de area -->
+                          <div class="mb-3 mx-2 px-2 row">
+                            <label for="nombre" class="row col-form-label">Nombre de area:</label>
+                            <div class="row">
+                                <input type="text" class="form-control" name="nombre" ngModel required>
+                            </div>
                     </div>
                 </div>
-                <form #AreaC="ngForm"
-                    (ngSubmit)="crearArea(AreaC.value.nombre,AreaC.value.idObjetivo)"
-                    id="createArea">
-                  
-                 <!-- campo para nombre -->
-                 
-                    <div class="col-10">
-                        <label for="name" class="row col-form-label">Nombre :</label>
-                        <div class="row">
-                            <input type="text" class="form-control" name="nombre"  ngModel required>
-                        </div>
-                    </div>
-                    <div class="col-10">
-                      <label for="idObjetivo" class="row col-form-label">Objetivo:</label>
-                      <select class="form-select w-75" aria-label="Default select example" name="idObjetivo"
-                          [(ngModel)]="objetivo_seleccionado" required>
-                          <option selected>Seleccione...</option>
-                          <ng-container *ngFor="let x of listaObjetivos">
-                              <option value="{{x.id}}">{{x.nombre}}</option>
-                          </ng-container>
-  
-                      </select>
-  
-                  </div>
-                   
-                   
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" [routerLink]="['/gestion_pei/areas/list']">Regresar</button>
-                      <button type="submit" class="btn btn-warning" data-bs-dismiss="modal">Aceptar</button>
           
+                   
+                    <div class="container">
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                      <button type="button" class="btn btn-secondary"(click)="toList()">Regresar</button>
+                      <button type="submit" class="btn btn-warning" [disabled]="AreaC.invalid">Guardar</button>          
                     </div>
-                  
+                </div>
+                <br>
                 </form>
             </div>
         </div>
