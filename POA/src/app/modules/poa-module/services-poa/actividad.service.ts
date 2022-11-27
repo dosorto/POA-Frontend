@@ -1,10 +1,7 @@
 import { CallHttpService } from "../../../_core/global-services/call-http.service";
 import { Injectable } from '@angular/core';
 import { environment } from "../../../../environments/environment";
-import { Area } from "../../gestion-pei-module/interfaces-pei/area.model";
-import { Pei } from "../../gestion-pei-module/interfaces-pei/pei.model";
-import { Objetivo } from "../../gestion-pei-module/interfaces-pei/objetivo.model";
-import { Dimension } from "../../gestion-pei-module/interfaces-pei/dimension.model";
+import { Empleado } from "../interfaces-poa/empleados.model";
 import { Actividad } from "../interfaces-poa/actividad.model";
 import { map, Observable } from "rxjs";
 import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
@@ -14,24 +11,14 @@ import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 })
 export class ActividadService {
   constructor(private callHttp: CallHttpService, private directHttp: HttpClient) { }
-  private _areas: Array<Area> = [];
   private _actividades: Array<Actividad> = [];
-  private _peiList: Array<Pei> = [];
-  private _objetivoList: Array<Objetivo> = [];
-  private _dimensionList: Array<Dimension> = [];
+  private _empleadoList: Array<Empleado> = [];
 
-  get areas() {
-    return this._areas;
+
+  get empleado() {
+    return this._empleadoList;
   }
-  get peis() {
-    return this._peiList;
-  }
-  get objetivos() {
-    return this._objetivoList;
-  }
-  get dimensiones() {
-    return this._dimensionList;
-  }
+ 
   get actividades(){
     return this._actividades;
   }
@@ -94,27 +81,14 @@ export class ActividadService {
   }
 
 
-  getObjetivos() {
-    return this.callHttp.httpGet<Array<Objetivo>>(`${environment.servidor}objetivos/get_all`)
+  getEmpleados() {
+    return this.callHttp.httpGet<Array<Empleado>>(`${environment.servidor}empleado/allEmpleados`)
       .pipe(map(response => {
-        this._objetivoList = response;
+        this._empleadoList = response;
         return response;
       }))
   } 
-  getPeiList() {
-    return this.callHttp.httpGet<Array<Pei>>(`${environment.servidor}PEI/get_PEI`)
-      .pipe(map(response => {
-        this._peiList = response;
-        return response;
-      }))
-  }
-  getDimensiones() {
-    return this.callHttp.httpGet<Array<Dimension>>(`${environment.servidor}dimension/get_all`)
-      .pipe(map(response => {
-        this._dimensionList = response;
-        return response;
-      }))
-  }
+
 
   
 

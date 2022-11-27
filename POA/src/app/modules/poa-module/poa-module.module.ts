@@ -60,7 +60,6 @@ const router = RouterModule.forChild([
 
   ],
   imports: [
-
 CommonModule,
   router,
   MatSelectModule,

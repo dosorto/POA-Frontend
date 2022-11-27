@@ -29,6 +29,7 @@ import { ChangepasswordComponent } from './archivos_antiguos/changepassword/chan
 
   ],
   imports: [
+    
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
