@@ -35,7 +35,7 @@ export class PoaService {
   }
 
 
-  public crearPOA(name: string, anio: string, fuente11: string, fuente12: string, fuente12B: string, idDepto: number, idUE: number, idInsti: number): any {
+  public crearPOA(name: string, anio: string, fuente11: string, fuente12: string, fuente12B: string, idDepto: number, idUE: number, idInstitucion: number): any {
     const url = environment.servidor + 'POA/new_POA';
     const params = new HttpParams({
       fromObject: {
@@ -47,7 +47,7 @@ export class PoaService {
         fuente12B: fuente12B,
         idDepto: idDepto,
         idUE: idUE,
-        idInsti: idInsti
+        idInstitucion: idInstitucion
 
       }
     });

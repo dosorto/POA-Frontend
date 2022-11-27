@@ -43,7 +43,7 @@ export class AllPoaComponent implements OnInit {
 
   public page: number = 0;
   public actualpage: number = 1;
-  public step: number = 5;
+  public step: number = 4;
   public maxPages: number = 1;
   public enumPages: number[] = []
 

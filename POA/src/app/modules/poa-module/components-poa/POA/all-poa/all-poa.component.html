@@ -64,7 +64,7 @@
                 <!-- tabla dinamica que muestra todas los POA -->
                 <div class="w-75 m-auto row ">
                     <div class="d-flex align-items-stretch">
-                        <ng-container *ngFor="let x of poa; index as i">
+                        <ng-container *ngFor="let x of poa | poaFiltro:filter|poaPaginacion:step:page; index as i">
                             <div class="card  text-bg-primary mb-3" style="width: 20rem;">
                                 <!-- este contador no es id, solo es para enumerar -->
                                 <ng-container *ngIf="page > 0; else elseNumeracion">
@@ -75,10 +75,10 @@
                                 </ng-template>
                                 <div class="card-body">
                                     <h1 class="card-title">{{x.name}}</h1>
-                                    <h3 class="card-body">{{x.anio}}</h3>
-                                    <h3 class="card-body">{{x.fuente11}}</h3>
-                                    <h3 class="card-body">{{x.fuente12}}</h3>
-                                    <h3 class="card-body">{{x.fuente12B}}</h3>
+                                    <p class="card-text">Fecha: {{x.anio}}, 
+                                        Fuente11: {{x.fuente11}}, 
+                                        Fuente12:{{x.fuente12}}, 
+                                        Fuente 12B: {{x.fuente12B}}</p>
                                     <button type="button" class="btn btn-warning float-center"
                                         (click)="toDetail(x.id)">Gestionar</button>
                                 </div>

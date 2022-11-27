@@ -40,6 +40,9 @@ export class UpdatePoaComponent implements OnInit {
   ngOnInit(): void {
     this.initData();
     console.log(this.initData)
+    this.depto = this.service.getDepto_Id(this.idDepto).subscribe((response: any) => {
+      this.depto = response.departamento;
+    });
   }
 
   async initData() {
@@ -125,7 +128,6 @@ export class UpdatePoaComponent implements OnInit {
       })
      });
      this.toDetail(this.id);
-     
    } catch(error){
      console.log(error);
    }

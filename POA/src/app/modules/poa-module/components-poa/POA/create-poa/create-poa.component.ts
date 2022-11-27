@@ -46,7 +46,7 @@ export class CreatePoaComponent implements OnInit {
     try {
       await this.PoaService.crearPOA(name, anio, fuente11, fuente12, fuente12B, this.idDepto, this.idUE, this.idInsti).subscribe((res: any) => {
         console.log(res);
-      },);
+      });
       Swal.fire({
         icon: 'success',
         title: '¡Registrado con éxito!',
