@@ -68,7 +68,35 @@ export class UpdatePoaComponent implements OnInit {
       await this.service.eliminarPOA(this.id).subscribe((res: any) => {
         Swal.fire({
           icon: 'success',
-          title: '¡Eliminado con éxito!',
+          title: 'Dehabilitado con éxito!',
+          showConfirmButton: false,
+          timer: 1000
+        })
+      });
+      setTimeout(function () {
+        window.location.reload();
+      }, 1000);
+    } catch (error) {
+      Swal.fire({
+        icon: 'error',
+        title: '¡Ha ocurrido un error!',
+        showConfirmButton: false,
+        timer: 1000
+      })
+      setTimeout(function () {
+        window.location.reload();
+      }, 1000);
+
+    }
+  }
+
+
+  async Activate() {
+    try {
+      await this.service.activarPOA(this.id).subscribe((res: any) => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Activado con éxito!',
           showConfirmButton: false,
           timer: 1000
         })

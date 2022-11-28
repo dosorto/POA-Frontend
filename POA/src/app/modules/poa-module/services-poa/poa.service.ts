@@ -139,6 +139,26 @@ export class PoaService {
     return this.directHttp.put(url, { id: id })
   }
 
+  //activar POA
+  activarPOA(id: number): any {
+    const url = environment.servidor + 'POA/activePOA';
+
+    const params = new HttpParams({
+      fromObject: {
+        grant_type: 'password',
+        id: id
+      }
+    });
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/x-www-form-urlencoded'
+      })
+    };
+    //return this.directHttp.put(url, params, httpOptions);
+    return this.directHttp.put(url, { id: id })
+  }
+
   //alternativa a update
   updatePOA(name: string, anio: string, fuente11: string, fuente12: string, fuente12B: string, id: number, idDepto: number, idUE: number, idInsti: number): any {
     const url = environment.servidor + 'POA/updatePOA';
