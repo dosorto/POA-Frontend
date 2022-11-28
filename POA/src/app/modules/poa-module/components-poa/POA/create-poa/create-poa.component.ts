@@ -62,8 +62,6 @@ export class CreatePoaComponent implements OnInit {
       })
     }
     this.toList()
-
-
   }
 
   onBack(): void {

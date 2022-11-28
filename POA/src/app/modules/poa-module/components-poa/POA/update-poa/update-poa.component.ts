@@ -10,14 +10,20 @@ import { UnidadEjecutora } from "../../..//interfaces-poa/unidad_ejecutora.model
 import { firstValueFrom } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import {ThemePalette} from '@angular/material/core';
+
 
 @Component({
   selector: 'app-update-poa',
   templateUrl: './update-poa.component.html',
-  styleUrls: ['./update-poa.component.css']
+  styleUrls: ['./update-poa.component.css'],
 })
 export class UpdatePoaComponent implements OnInit {
 
+  color: ThemePalette = 'accent';
+  checked = false;
+  disabled = false;
+  
   constructor(private Storage: Storage,
     private service: PoaService,
     private router: Router,
@@ -73,9 +79,6 @@ export class UpdatePoaComponent implements OnInit {
           timer: 1000
         })
       });
-      setTimeout(function () {
-        window.location.reload();
-      }, 1000);
     } catch (error) {
       Swal.fire({
         icon: 'error',
@@ -101,9 +104,6 @@ export class UpdatePoaComponent implements OnInit {
           timer: 1000
         })
       });
-      setTimeout(function () {
-        window.location.reload();
-      }, 1000);
     } catch (error) {
       Swal.fire({
         icon: 'error',
@@ -136,7 +136,7 @@ export class UpdatePoaComponent implements OnInit {
 
     console.log(":" + name + ":" + ":" + anio + ":" + fuente11 + ":" + fuente12 + ":" + fuente12B);
     try {
-      this.service.actualizarPOA(name,anio,fuente11,fuente12,fuente12B,this.id,this.idInsti,this.idUE,this.idDepto).subscribe((res:any)=>{
+      this.service.updatePOA(name,anio,fuente11,fuente12,fuente12B,this.id,this.idInsti,this.idUE,this.idDepto).subscribe((res:any)=>{
         Swal.fire({
           icon: 'success',
           title: '¡Actualizado con éxito!',

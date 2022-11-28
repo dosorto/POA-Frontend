@@ -5,7 +5,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { NgModel, FormControl, FormsModule} from '@angular/forms';
-import {MatSelectModule} from '@angular/material/select'
+import {MatSelectModule} from '@angular/material/select';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+
 // --------------------------------
 // componentes independientes importados
 // --------------------------------
@@ -139,7 +141,9 @@ CommonModule,
   router,
   MatSelectModule,
   FormsModule,
-  TopBarComponent
+  TopBarComponent,
+MatSlideToggleModule
+  
   ]
 })
 export class PoaModuleModule { }
