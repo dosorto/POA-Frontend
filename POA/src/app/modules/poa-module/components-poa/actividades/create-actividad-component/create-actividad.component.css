@@ -1,6 +1,5 @@
-.abs-center {
-    display: flex;
-    justify-content: center;
-    min-height: 100vh;
-    min-width: 250px;
-  }
+
+  @import "~@ng-select/ng-select/themes/default.theme.css";
+body {
+  padding: 20px;
+}

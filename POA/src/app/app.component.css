@@ -8,3 +8,4 @@
     width: 100%;
     min-width: 100%;
 }
+@import "~@ng-select/ng-select/themes/material.theme.css";

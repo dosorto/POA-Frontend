@@ -56,6 +56,7 @@ import { IndicadorFiltroPipe } from './pipes-poa/indicador-filtro.pipe';
 import { IndicadorPaginacionPipe } from './pipes-poa/indicador-paginacion.pipe';
 
 
+import { NgSelectModule } from '@ng-select/ng-select';
 
 // enrutamiento
 const router = RouterModule.forChild([
@@ -69,10 +70,15 @@ const router = RouterModule.forChild([
   {path: 'poa/detail/:id/:idInsti/:idDepto', component: DetailPoaComponent},
   {path: 'poa/list/:idInsti/:idDepto', component: AllPoaComponent},
   // rutas de actividades
-  {path: 'actividad/create/:idObjetivo', component: CreateActividadComponent},
+ /* {path: 'actividad/create/:idObjetivo', component: CreateActividadComponent},
   {path: 'actividad/update/:id/:idObjetivo', component: UpdateActividadComponent},
   {path: 'actividad/detail/:id/:idObjetivo', component: DetailActividadComponent},
   {path: 'actividad/list/:idObjetivo', component: AllActividadComponent},
+*/
+  {path: 'actividad/create/:idPoa', component: CreateActividadComponent},
+  {path: 'actividad/update/:id/:idPoa', component: UpdateActividadComponent},
+  {path: 'actividad/detail/:id/:idPoa', component: DetailActividadComponent},
+  {path: 'actividad/list/:idPoa', component: AllActividadComponent},
 
   // rutas de tareas
   {path: 'tareas/create/:idPoa/:idActividad/:idInsti/:idDepto', component: CreateTareasComponent},
@@ -134,7 +140,7 @@ const router = RouterModule.forChild([
 
   ],
   imports: [
-
+    NgSelectModule,
 CommonModule,
   router,
   MatSelectModule,

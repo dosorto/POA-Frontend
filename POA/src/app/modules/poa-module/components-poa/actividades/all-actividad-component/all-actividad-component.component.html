@@ -42,32 +42,35 @@
                         </div>
                     </div>
                 </div>
+
+
+
+
+
+
+
+
+
+
                 <!-- tabla dinamica que muestra todas las Dimensión -->
-                <div class="w-75 m-auto row ">
-                    <div class="d-flex align-items-stretch">
-                        <ng-container *ngFor="let x of actividades; index as i">
-                            <!-- este contador no es id, solo es para enumerar -->
-                            <ng-container *ngIf="page > 0; else elseNumeracion">
-                                {{i + page + 1}}
-                            </ng-container>
-
-                            <ng-template #elseNumeracion>
-                            </ng-template>
+                <div>
+                   
+                        <div class="row row-cols-1 row-cols-md-4 g-4">
+                            <ng-container *ngFor="let x of actividades; index as i">
                             <li *ngIf="x.estado ==='FORMULACION'">
-                                <div class="card  text-bg-secondary mb-3" style="width: 20rem;">
-                                    <div class="card-body">
-                                        <h1 class="text-center">Actividad {{i + 1}} </h1>
-                                        <h1 class="card-title">{{x.nombre}}</h1>
+                                    <div class="card  text-bg-secondary mb-3" style="width: 18rem;">
+                                        <div class="card-body">
+                                            <h1 class="text-center">Actividad {{i + 1}} </h1>
+                                            <h1 class="card-title">{{x.nombre}}</h1>
 
-                                        <h1 class="card-title">{{x.estado}}</h1>
-                                        <button type="button" class="btn btn-warning float-center"
-                                            (click)="toDetail(x.id)">Gestionar</button>
+                                            <h1 class="card-title">{{x.estado}}</h1>
+                                            <button type="button" class="btn btn-warning float-center"
+                                                (click)="toDetail(x.id)">Gestionar</button>
+                                        </div>
                                     </div>
-                                </div>
                             </li>
-
                             <li *ngIf="x.estado ==='REFORMULACION'">
-                                <div class="card  text-bg-primary mb-3" style="width: 20rem;">
+                                <div class="card  text-bg-primary mb-3" style="width: 18rem;">
                                     <div class="card-body">
                                         <h1 class="text-center">Actividad {{i + 1}} </h1>
                                         <h1 class="card-title">{{x.nombre}}</h1>
@@ -78,7 +81,7 @@
                                 </div>
                             </li>
                             <li *ngIf="x.estado ==='REVISION'">
-                                <div class="card  text-bg-warning mb-3" style="width: 20rem;">
+                                <div class="card  text-bg-warning mb-3" style="width: 18rem;">
                                     <div class="card-body">
                                         <h1 class="text-center">Actividad {{i + 1}} </h1>
                                         <h1 class="card-title">{{x.nombre}}</h1>
@@ -89,7 +92,7 @@
                                 </div>
                             </li>
                             <li *ngIf="x.estado ==='APROBADO'">
-                                <div class="card  text-bg-success mb-3" style="width: 20rem;">
+                                <div class="card  text-bg-success mb-3" style="width: 18rem;">
                                     <div class="card-body">
                                         <h1 class="text-center">Actividad {{i + 1}} </h1>
                                         <h1 class="card-title">{{x.nombre}}</h1>
@@ -100,7 +103,7 @@
                                 </div>
                             </li>
                             <li *ngIf="x.estado ==='RECHAZADO'">
-                                <div class="card  text-bg-danger mb-3" style="width: 20rem;">
+                                <div class="card  text-bg-danger mb-3" style="width: 18rem;">
                                     <div class="card-body">
                                         <h1 class="text-center">Actividad {{i + 1}} </h1>
                                         <h1 class="card-title">{{x.nombre}}</h1>
@@ -111,8 +114,9 @@
                                 </div>
                             </li>
                         </ng-container>
-                    </div>
+                        </div>
                 </div>
+
 
                 <nav aria-label="Page navigation example">
                     <ul class="pagination justify-content-end">

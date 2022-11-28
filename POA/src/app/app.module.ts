@@ -18,6 +18,7 @@ import {MatCardModule} from '@angular/material/card';
 import { ToastrModule } from 'ngx-toastr';
 import { TopBarComponent } from './_core/top-bar/top-bar.component';
 
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 
@@ -28,6 +29,7 @@ import { TopBarComponent } from './_core/top-bar/top-bar.component';
 
   ],
   imports: [
+    NgSelectModule,
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,

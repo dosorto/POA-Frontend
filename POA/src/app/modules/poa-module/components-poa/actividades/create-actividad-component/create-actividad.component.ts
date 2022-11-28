@@ -14,6 +14,9 @@ import { Empleado } from '../../../interfaces-poa/empleados.model';
   styleUrls: ['./create-actividad.component.css']
 })
 export class CreateActividadComponent implements OnInit {
+  selectedEncargadosIds: string="";
+
+
   estado_seleccionado: string = "";
   tipo_seleccionado: string = "";
   categoria_seleccionado: string = "";
@@ -28,18 +31,19 @@ export class CreateActividadComponent implements OnInit {
     ngOnInit(): void {
       this.initData();
     }async initData(){
-   
+
       const Empleados = await firstValueFrom(this.service.getEmpleados());
       this.listaEmpleados = Empleados;
       console.log(this.listaEmpleados)
+      
     }
-  public idObjetivo: number = Number(this._route.snapshot.paramMap.get('idObjetivo'));
+  public idPoa: number = Number(this._route.snapshot.paramMap.get('idPoa'));
   toList() {
-    this.router.navigate(['/gestion_poa/actividad/list/', this.idObjetivo]);
+    this.router.navigate(['/gestion_poa/actividad/list/', this.idPoa]);
   }
   async crearArea(nombre: string, descripcion: string, estado: string, tipoActividad: string, categoria: string,) {
-    console.log(nombre.toString(), this.idObjetivo);
-    await this.service.crearActividad(nombre, descripcion, estado, tipoActividad, categoria, this.idObjetivo).subscribe((res: any) => {
+    console.log(nombre.toString(), this.idPoa);
+    await this.service.crearActividad(nombre, descripcion, estado, tipoActividad, categoria, this.idPoa,this.selectedEncargadosIds).subscribe((res: any) => {
       Swal.fire({
         icon: 'success',
         title: '¡Creado con éxito!',

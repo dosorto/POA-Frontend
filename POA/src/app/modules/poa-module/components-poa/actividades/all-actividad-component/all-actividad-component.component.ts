@@ -22,7 +22,7 @@ export class AllActividadComponent implements OnInit {
   ngOnInit(): void {
     this.initData();
   }
-  public idResultado:number = Number(this._route.snapshot.paramMap.get('idObjetivo'));
+  public idPoa:number = Number(this._route.snapshot.paramMap.get('idPoa'));
   private area_example : Area | any = {};
   rutaActual = "Area"; //sirve para definir iconos del sidevar
   public actividades:Array<Actividad>=[]; // para llenar la tabla
@@ -41,7 +41,7 @@ export class AllActividadComponent implements OnInit {
   // metodos propios
   async initData(){
     // obtiene todas las dimensiones
-    const actividades = await firstValueFrom(this.service.getActividades(this.idResultado))
+    const actividades = await firstValueFrom(this.service.getActividades(this.idPoa))
     this.actividades = actividades;
     // sirve para definir un maximo de paginas en paginacion de tablas
     this.maxPages = ((this.actividades.length  % this.step ) === 0 ) ? Math.floor(this.actividades.length / this.step) : (Math.floor(this.actividades.length / this.step) + 1)// cantidad de paginas para los botones
@@ -50,10 +50,10 @@ export class AllActividadComponent implements OnInit {
     //obtiene todos los peis para dejarlos en el select
   }
   toDetail(idArea:number){
-    this.router.navigate(['/gestion_poa/actividad/detail/',idArea.toString(),this.idResultado]);
+    this.router.navigate(['/gestion_poa/actividad/detail/',idArea.toString(),this.idPoa]);
   }
   toCreate(){
-    this.router.navigate(['/gestion_poa/actividad/create/',this.idResultado.toString()]);
+    this.router.navigate(['/gestion_poa/actividad/create/',this.idPoa.toString()]);
   }
  // toObjetivos(){
    // this.router.navigate(['gestion_pei/objetivos/detail/1/1']);

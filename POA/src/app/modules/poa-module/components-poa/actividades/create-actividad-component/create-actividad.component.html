@@ -64,19 +64,19 @@
         
       </select>
 </div>
-<div class="col-10">
-    <label for="idEncargados" class="row col-form-label">Encargados:</label>
-    <select class="form-select w-75" aria-label="Default select example" name="idEncargados"
-        [(ngModel)]="empleado_seleccionado" required>
-        <option selected>Seleccione...</option>
-        <ng-container *ngFor="let x of listaEmpleados">
-            <option value="{{x.id}}">{{x.nombre}}</option>
-        </ng-container>
+    
+<div class="border border">  
+    <label>encargados</label>
+    <ng-select class="border " [items]="listaEmpleados"
+               bindLabel="nombre"
+               bindValue="id"
+               [multiple]="true"
+               placeholder=""
+               [(ngModel)]="selectedEncargadosIds">
+    </ng-select>
+   </div>
 
-    </select>
 
-</div>    
-  
             <!--      <div class="mb-3 mx-2 px-2 row">
                     <label for="estado" class="row col-form-label">Estado:</label>
                     <div class="row">
@@ -107,3 +107,13 @@
      
         </div>
         
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
