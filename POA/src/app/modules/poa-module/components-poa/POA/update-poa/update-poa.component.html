@@ -27,22 +27,15 @@
             </h2>
           </div>
           <div class="form-check form-switch form-check-reverse">
-            <input class="form-check-input" type="checkbox" id="flexSwitchCheckReverse" checked="Activate()" checked="Delete()">
+            <input class="form-check-input" type="checkbox" id="activatePOA" (click)="Activate()">
             <label class="form-check-label" for="flexSwitchCheckReverse">Habilitar
             </label>
           </div>
 
-          <h2 class="example-h2">Result</h2>
-          <section class="example-section">
-            <mat-slide-toggle class="example-margin" [color]="color" [checked]="checked" [disabled]="disabled">
-              Slide me!
-            </mat-slide-toggle>
-          </section>
-
-
+          <mat-slide-toggle [(ngModel)]="isChecked">Slide Toggle Checked: {{isChecked}}</mat-slide-toggle>
 
           <div class="form-check form-switch form-check-reverse">
-            <input class="form-check-input" type="checkbox" id="flexSwitchCheckReverse" (click)="Delete()">
+            <input class="form-check-input" type="checkbox" id="desactivatePOA" (click)="Delete()">
             <label class="form-check-label" for="flexSwitchCheckReverse">Deshabilitar
             </label>
           </div>
