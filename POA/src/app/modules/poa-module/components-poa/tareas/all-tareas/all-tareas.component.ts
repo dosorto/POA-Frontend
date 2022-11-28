@@ -39,6 +39,7 @@ export class AllTareasComponent implements OnInit {
 
     public filter:string=""; // para filtar la tabla
 
+    public techo_presupuestario:number=5000
   ngOnInit(): void {
     this.initData()
     const sumall = this.listTareas.map(item => item.presupuesto.total).reduce((prev, curr) => prev + curr,0);

@@ -60,15 +60,22 @@ export class TareasService {
 
 }
 
-actualizarTarea(nombre: string, descripcion:string, id:string,isPresupuesto:boolean):any {
-  const url = environment.servidor + 'dimension/update';
+actualizarTarea(nombre:string,descripcion:string,id:number,isPresupuesto:boolean,idActividad:number,cantidad:number,idP:number,costounitario:number,total:number,idobjeto:number,idfuente:number,idunidad:number):any {
+  const url = environment.servidor + 'tarea/actualizar';
 
   const params = new HttpParams({
     fromObject: {
       grant_type: 'password',
       nombre: nombre,
-      descripcion: descripcion,
-      isPresupuesto:isPresupuesto
+       descripcion: descripcion,
+       isPresupuesto:isPresupuesto,
+       idActividad:idActividad,
+       cantidad:cantidad,
+       costounitario:costounitario,
+       total:total,
+       idobjeto:idobjeto,
+       idfuente:idfuente,
+       idunidad:idunidad
     }
     });
 
@@ -78,7 +85,7 @@ actualizarTarea(nombre: string, descripcion:string, id:string,isPresupuesto:bool
     })
   };
   //return this.directHttp.put(url, params, httpOptions);
-  this.directHttp.put(url,{nombre:nombre,descripcion:descripcion,id:id,isPresupuesto:isPresupuesto}).subscribe((response:any)=>
+  this.directHttp.put(url,{nombre:nombre,descripcion:descripcion,id:id,isPresupuesto:isPresupuesto,idActividad:idActividad,cantidad:cantidad,costounitario:costounitario,idP:idP,total:total,idobjeto:idobjeto,idfuente:idfuente,idunidad:idunidad}).subscribe((response:any)=>
   {
     console.log(response);
     return response;
@@ -131,6 +138,29 @@ getTareasH()  {
       this._tareash = response;
       return response;
     }))
+  }
+
+  eliminarTarea(id: any) {
+    const url = "http://localhost:8080/tarea/eliminar/";
+  
+    const params = new HttpParams({
+      fromObject: {
+        //grant_type: 'password',
+        id: id
+      }
+    });
+  
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/x-www-form-urlencoded'
+      })
+    };
+    //return this.directHttp.put(url, params, httpOptions);
+    this.directHttp.get(url+id).subscribe((response:any)=>
+    {
+      console.log(response);
+      return response;
+    })
   }
 
 ///Notss

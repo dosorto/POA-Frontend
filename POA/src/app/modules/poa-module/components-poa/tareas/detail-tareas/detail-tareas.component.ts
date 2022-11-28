@@ -23,7 +23,7 @@ export class DetailTareasComponent implements OnInit {
   checked = true;
   disabled = true;
   
-
+  _delete: any;
   isPresupuesto:boolean=true;
   constructor(private route: ActivatedRoute, 
     private router: Router, 
@@ -62,18 +62,60 @@ export class DetailTareasComponent implements OnInit {
     
     this.tareas = await this.tareaservice.getTareas(this.id).subscribe((response:any)=>{
       this.tareas = response.tareas;
-      console.log("tamos bien1")
       console.log(response);
     }
       )
-      console.log("tamos bien2")
+      
       console.log(this.tareas)
-      console.log("tamos bien3")
+      
 
   }
 
   toList(){
     this.router.navigate(['/gestion_poa/tareas/list/',this.idActividad]); //revisar
   }
-  
+  onBack(): void {
+    this.router.navigate(['/gestion_poa/tareas/list/', this.idActividad]);
+  }
+  toUpdate(){
+    this.router.navigate(['/gestion_poa/tareas/update/',this.id,this.idActividad]);
+  }
+
+  set_id_delete(id: any) {
+    this._delete = id;
+    console.log(this._delete)
+  }
+
+  async delete() {
+
+    await this.tareaservice.eliminarTarea(this._delete)
+    Swal.fire({
+      title: 'Eliminado con exito',
+      showConfirmButton: false,
+      color: 'white',
+      background: '#F5B7B1',
+      timer: 300,
+      showClass: {
+        popup: 'animate__animated animate__fadeInDown'
+      },
+      hideClass: {
+        popup: 'animate__animated animate__fadeOutUp'
+      }
+
+    })
+    this.onBack();
+    // setTimeout(function() {
+    //   window.location.reload();
+    // },3000);
+    // setTimeout(function () {
+    //   window.location.reload();
+    // }, 100);
+
+    // window.location.reload();
+
+  }
+
+  // window.location.reload();
 }
+  
+

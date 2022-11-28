@@ -23,7 +23,7 @@ export class CreateTareasComponent implements OnInit {
   color: ThemePalette = 'primary';
   checked = false;
   disabled = false;
-
+  selected = "4"
   hide = true;
 
   value = 'Clear me';
@@ -58,7 +58,9 @@ export class CreateTareasComponent implements OnInit {
   isPresupuesto:boolean=false;
   async crear_Tarea(nombre:string,descripcion:string,isPresupuesto:boolean,
     cantidad:number,costounitario:number,total:number,idobjeto:number,idfuente:number,iduniad:number){
-    if(this.isPresupuesto){
+      if((costounitario==0)){costounitario = this.tareass.presupuesto.costounitario}
+    
+      if(this.isPresupuesto){
       //let isPresupuesto=true;
    
     total=cantidad*costounitario
@@ -68,10 +70,11 @@ export class CreateTareasComponent implements OnInit {
     
       Swal.fire({
         icon: 'success',
-        title: '¡Creado con éxito!',
+        title: '¡Tarea creada con éxito!',
         showConfirmButton: false,
         timer: 2500
       })
+      this.onBack()
       // this.toList();
     },(error:any)=>{
       Swal.fire({
@@ -88,10 +91,11 @@ export class CreateTareasComponent implements OnInit {
     
       Swal.fire({
         icon: 'success',
-        title: '¡Creado con éxito!',
+        title: '¡Tarea creada con éxito!',
         showConfirmButton: false,
         timer: 2500
       })
+      this.onBack()
       // this.toList();
     },(error:any)=>{
       Swal.fire({
@@ -161,5 +165,8 @@ public tareass:Presupuesto | any = {};
     // this.sumall = this.listTareas.map(item => item.presupuesto.total??0).reduce((prev, curr) => +prev + +curr,0);
     // console.log(this.sumall)
     
+  }
+  onBack(): void {
+    this.router.navigate(['/gestion_poa/tareas/list/',this.idActividad]);
   }
 }
