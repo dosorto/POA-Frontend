@@ -14,6 +14,7 @@ import { Empleado } from '../../../interfaces-poa/empleados.model';
   styleUrls: ['./create-actividad.component.css']
 })
 export class CreateActividadComponent implements OnInit {
+  
   estado_seleccionado: string = "";
   tipo_seleccionado: string = "";
   categoria_seleccionado: string = "";
@@ -59,4 +60,6 @@ export class CreateActividadComponent implements OnInit {
       window.location.reload();
     }, 1500);
   }
+
+  
 }

@@ -9,7 +9,7 @@ const router = RouterModule.forChild([
 
 
 @NgModule({
-  declarations: [ChangepasswordComponent],
+  declarations: [],
   imports: [
 CommonModule,
   router,
