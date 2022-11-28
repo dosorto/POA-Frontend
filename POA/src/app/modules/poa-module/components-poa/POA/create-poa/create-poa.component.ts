@@ -62,9 +62,6 @@ export class CreatePoaComponent implements OnInit {
       })
     }
     this.toList()
-    setTimeout(function () {
-      window.location.reload();
-    }, 1000);
   }
 
   onBack(): void {
