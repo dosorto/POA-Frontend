@@ -31,15 +31,15 @@
                     </div>
                      campo para nombre -->
                         <div class="example-container">
-                            <mat-form-field appearance="outline" class="example-form-textarea">
+                            <mat-form-field appearance="fill" class="example-form-textarea">
                                 <mat-label>Nombre de la Tarea</mat-label>
                                 <textarea matInput  type="text" [(ngModel)]="nombre" name="nombre"
                                     [matAutocomplete]="auto" (ngModelChange)="mostrarObjeto(nombre)" ngModel required></textarea>
-                                <button *ngIf="nombre" matSuffix mat-icon-button aria-label="Clear" (click)="nombre=''">
-
+                                <button mat-mini-fab color="warn" *ngIf="nombre"  matSuffix mat-icon-button aria-label="Clear" (click)="nombre=''">
+                                    <mat-icon>close</mat-icon>
                                 </button>
                                 <mat-autocomplete #auto="matAutocomplete" >
-                                    <mat-option *ngFor="let x of listTareasP|tareasFiltro:nombre;" [value]="x.nombre">
+                                    <mat-option *ngFor="let x of listTareasH |tareasFiltroH:nombre;" [value]="x.nombre">
                                         {{x.nombre}}
                                     </mat-option>
                                 <mat-option>
@@ -88,7 +88,6 @@
                                                 <input matInput type="number" class="example-right-align"
                                                     name="cantidad" [(ngModel)]='+cantidad' 
                                                     placeholder="Placeholder" NgModel required>
-                                                <mat-hint>Hint</mat-hint>
                                             </mat-form-field>
 
                                             <mat-form-field appearance="fill" floatLabel="always" class="example-form-input">
@@ -124,7 +123,7 @@
                                               <mat-form-field appearance="fill">
                                                 <mat-label>Grupo del gasto</mat-label>
                                                 <select matNativeControl  NgModel required>
-                                                  <option value=""> {{tareass?.presupuesto?.grupogasto?.identificador+' - '+tareass?.presupuesto?.grupogasto?.nombre}}</option>
+                                                  <option value=""> {{tareass?.grupo}}</option>
                                                 </select>
                                               </mat-form-field>
                                               
@@ -132,15 +131,17 @@
                                                 <mat-label>Objeto del gasto</mat-label>
                                                 <mat-select #mode value="{{tareass?.presupuesto?.objetogasto?.id}}" matNativeControl name="idobjeto" [(ngModel)]="objetogasto_seleccionado" NgModel required>
                                                     <mat-option>-- None --</mat-option>
-                                                    <mat-option value="{{tareass?.presupuesto?.objetogasto?.id}}" > {{tareass?.presupuesto?.objetogasto?.identificador+' - '+tareass?.presupuesto?.objetogasto?.nombre}}</mat-option>
+                                                    <mat-option value="{{tareass?.idobjeto}}" > {{tareass?.objeto}}</mat-option>
                                                 </mat-select>
                                               </mat-form-field> 
 
                                               <mat-form-field appearance="fill">
                                                 <mat-label>Unidad de Medida</mat-label>
-                                                <mat-select  name="idunidad"  [(ngModel)]="unidadmedida_seleccionado" NgModel required>
-                                                    <mat-option>-- None --</mat-option>
-                                                    <mat-option value="{{tareass?.presupuesto?.unidadmedida?.id}}"> {{tareass?.presupuesto?.unidadmedida?.nombre}}</mat-option>
+                                                <mat-select [(value)]="selected" name="idunidad"  [(ngModel)]="unidadmedida_seleccionado" NgModel required>
+                                                    <mat-option value="1">Litros</mat-option>
+                                                    <mat-option value="2">Kilogramos</mat-option>
+                                                    <mat-option value="3">Gramos</mat-option>
+                                                    <mat-option value="4">Unidad</mat-option>
                                                 </mat-select>
                                               </mat-form-field>
                                               
@@ -208,7 +209,7 @@
                     </ng-container>
                     <div class="modal-footer">
 
-                        <button type="button" class="btn btn-secondary" (click)='onBack()'>Cerrar</button>
+                        <button type="button" class="btn btn-secondary" (click)="onBack()">Cerrar</button>
                         <button type="submit" class="btn btn-warning m-2"
                             [disabled]="Tarea.invalid">Guardar</button>
                     </div>
@@ -219,5 +220,5 @@
                 </form>
 {{nombre}}
 <ul>
-    <li>{{tareass?.presupuesto?.objetogasto?.nombre}}</li>
+    <li>{{tareass?.objeto}}</li>
 </ul>

@@ -7,6 +7,7 @@ import { map, Observable } from "rxjs";
 import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { response } from "express";
 import { Presupuesto } from '../interfaces-poa/presupuesto.model';
+import { TareasH } from '../interfaces-poa/tareas_historico.model';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,7 @@ export class TareasService {
   constructor(private callHttp: CallHttpService, private directHttp: HttpClient) { }
   private _actividades: Array<Actividad> = [];
   private _tareas: Array<Tareas> = [];
+  private _tareash: Array <TareasH>=[]
   private _presupuesto: Array<Presupuesto>=[]
   get actividades() {
     return this._actividades;
@@ -25,6 +27,9 @@ export class TareasService {
   }
   get presupuesto() {
     return this._presupuesto;
+  }
+  get tareash(){
+    return this._tareash
   }
 
   public crearTarea (nombre:string,descripcion:string,isPresupuesto:boolean,idActividad:number,cantidad:number,costounitario:number,total:number,idobjeto:number,idfuente:number,idunidad:number):any{
@@ -55,15 +60,22 @@ export class TareasService {
 
 }
 
-actualizarTarea(nombre: string, descripcion:string, id:string,isPresupuesto:boolean):any {
-  const url = environment.servidor + 'dimension/update';
+actualizarTarea(nombre:string,descripcion:string,id:number,isPresupuesto:boolean,idActividad:number,cantidad:number,idP:number,costounitario:number,total:number,idobjeto:number,idfuente:number,idunidad:number):any {
+  const url = environment.servidor + 'tarea/actualizar';
 
   const params = new HttpParams({
     fromObject: {
       grant_type: 'password',
       nombre: nombre,
-      descripcion: descripcion,
-      isPresupuesto:isPresupuesto
+       descripcion: descripcion,
+       isPresupuesto:isPresupuesto,
+       idActividad:idActividad,
+       cantidad:cantidad,
+       costounitario:costounitario,
+       total:total,
+       idobjeto:idobjeto,
+       idfuente:idfuente,
+       idunidad:idunidad
     }
     });
 
@@ -73,7 +85,7 @@ actualizarTarea(nombre: string, descripcion:string, id:string,isPresupuesto:bool
     })
   };
   //return this.directHttp.put(url, params, httpOptions);
-  this.directHttp.put(url,{nombre:nombre,descripcion:descripcion,id:id,isPresupuesto:isPresupuesto}).subscribe((response:any)=>
+  this.directHttp.put(url,{nombre:nombre,descripcion:descripcion,id:id,isPresupuesto:isPresupuesto,idActividad:idActividad,cantidad:cantidad,costounitario:costounitario,idP:idP,total:total,idobjeto:idobjeto,idfuente:idfuente,idunidad:idunidad}).subscribe((response:any)=>
   {
     console.log(response);
     return response;
@@ -124,28 +136,37 @@ getActividades_Id(idActividad:number) {
   return this.callHttp.httpGet<Actividad>(`${environment.servidor}actividad/get/`+idActividad.toString());
 }
 
-eliminarTarea(id: any) {
-  const url = "http://localhost:8080/tarea/eliminar/";
 
-  const params = new HttpParams({
-    fromObject: {
-      //grant_type: 'password',
-      id: id
-    }
-  });
+getTareasH()  {
+  return this.callHttp.httpGet<Array<TareasH>>(`http://localhost:8080/tareah/get_all`)
+    .pipe(map(response => {
+      this._tareash = response;
+      return response;
+    }))
+  }
 
-  const httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/x-www-form-urlencoded'
+  eliminarTarea(id: any) {
+    const url = "http://localhost:8080/tarea/eliminar/";
+  
+    const params = new HttpParams({
+      fromObject: {
+        //grant_type: 'password',
+        id: id
+      }
+    });
+  
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/x-www-form-urlencoded'
+      })
+    };
+    //return this.directHttp.put(url, params, httpOptions);
+    this.directHttp.get(url+id).subscribe((response:any)=>
+    {
+      console.log(response);
+      return response;
     })
-  };
-  //return this.directHttp.put(url, params, httpOptions);
-  this.directHttp.get(url+id).subscribe((response:any)=>
-  {
-    console.log(response);
-    return response;
-  })
-}
+  }
 
 ///Notss
 // crear uno que una funcion que me liste todas las tareas con presupuestos y que sean distinct

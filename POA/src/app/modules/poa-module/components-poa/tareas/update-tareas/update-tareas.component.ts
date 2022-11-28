@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ThemePalette } from '@angular/material/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import Swal from 'sweetalert2';
+import { Tareas } from '../../../interfaces-poa/tareas.model';
+import { TareasService } from '../../../services-poa/tareas.service';
 
 @Component({
   selector: 'app-update-tareas',
@@ -6,10 +11,101 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./update-tareas.component.css']
 })
 export class UpdateTareasComponent implements OnInit {
+  color: ThemePalette = 'primary';
+  isPresupueseto=false;
+  checked = true;
+  disabled = false;
+  
+  isPresupuesto:boolean=true;
+  
+  public unidadmedida_seleccionado:string="";
+  public objetogasto_seleccionado:string="";
+  public grupogasto_seleccionado:string="";
+  public fuente_seleccionado:string="";
 
-  constructor() { }
+  id = Number(this.route.snapshot.paramMap.get('id'));
+  idActividad:number = Number(this.route.snapshot.paramMap.get('idActividad'));
+  idPresupuesto:number = Number(this.route.snapshot.paramMap.get('idPresupuesto'));
+  
+  public tareas:Tareas | any = {};
+  //variables 
+  public nombre:string='';
+  public descripcion:string='';
+  public costounitario:number=0
+  public cantidad:number=0
+  public total:number=0
+  public idobjeto:number=0
+  public idfuente:number=0
+  public idunidad:number=0
+
+
+
+  constructor(private route: ActivatedRoute, 
+    private router: Router, 
+    private tareaservice:TareasService) { }
 
   ngOnInit(): void {
+    if (this.id) {
+      this.getTareass(this.id);  
+    }
   }
 
+  getTareass(id: number): void {
+    this.tareaservice.getTareas(id).subscribe({
+      next: tareas => {this.tareas = tareas}
+      // error: err => this.errorMessage = err
+    });
+  }
+
+  Update():any{
+    let nombre = this.nombre;
+    let descripcion = this.descripcion;
+    let cantidad = this.cantidad;
+    let costounitario = this.costounitario;
+    let total = this.total;
+    let idobjeto = this.idobjeto;
+    let idfuente = this.idfuente;
+    let idunidad = this.idunidad;
+    console.log(":"+nombre+":" + ":"+descripcion);
+     // validaciones
+    if((nombre === '')){nombre = this.tareas.nombre}
+    if((descripcion === '')){descripcion = this.tareas.descripcion}
+    if((cantidad==0)){cantidad = this.tareas.presupuesto.cantidad}
+    if((costounitario==0)){costounitario = this.tareas.presupuesto.costounitario}
+    if((total==0)){total = this.tareas.presupuesto.total}
+    if((idobjeto==0)){idobjeto = this.tareas.presupuesto.idobjeto}
+    if((idfuente==0)){idfuente = this.tareas.presupuesto.idfuente}
+    if((idunidad==0)){idunidad = this.tareas.presupuesto.idunidad}
+    console.log(":"+nombre+":" + ":"+descripcion);
+     try{
+      this.tareaservice.actualizarTarea(nombre,descripcion,this.id,this.isPresupueseto,this.idActividad,cantidad,this.idPresupuesto,costounitario,total,idobjeto,idfuente,idunidad).subscribe((res:any)=>{    
+      Swal.fire({
+        icon: 'success',
+        title: '¡Actualizado con éxito!',
+        showConfirmButton: false,
+        timer: 2500
+      })
+     },(error:any)=>{
+      
+     });
+this.toDetail()
+
+} catch(error){
+  console.log(error);
+  Swal.fire({
+   icon: 'error',
+   title: 'Ha ocurrido un error',
+   showConfirmButton: false,
+   timer: 2500
+ })
 }
+setTimeout(function() {
+  window.location.reload();
+   },100);
+}
+
+toDetail(){
+  this.router.navigate(['/gestion_poa/tareas/detail/',this.id,this.idActividad]);
+}
+}
+

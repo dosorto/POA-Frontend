@@ -10,6 +10,8 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatAutocomplete, MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
 // --------------------------------
 // componentes independientes importados
 // --------------------------------
@@ -52,6 +54,7 @@ import { POAFiltroPipe } from './pipes-poa/poafiltro.pipe';
 import { POApaginacionPipe } from './pipes-poa/poapaginacion.pipe';
 import { TareasPaginacionPipe } from './pipes-poa/tareas-paginacion.pipe';
 import { TareasFiltroPipe } from './pipes-poa/tareas-filtro.pipe';
+import { TareasFiltroHPipe } from './pipes-poa/tareah-filtro.pipe';
 import { PlanificacionFiltroPipe } from './pipes-poa/planificacion-filtro.pipe';
 import { PlanificacionPaginacionPipe } from './pipes-poa/planificacion-paginacion.pipe';
 import { ResponsablePaginacionPipe } from './pipes-poa/responsable-paginacion.pipe';
@@ -80,7 +83,7 @@ const router = RouterModule.forChild([
 
   // rutas de tareas
   {path: 'tareas/create/:idActividad', component: CreateTareasComponent},
-  {path: 'tareas/update/:id/:idPoa/:idActividad/:idInsti/:idDepto', component: UpdateTareasComponent},
+  {path: 'tareas/update/:id/:idActividad', component: UpdateTareasComponent},
   {path: 'tareas/detail/:id/:idActividad', component: DetailTareasComponent},
   {path: 'tareas/list/:idActividad', component: AllTareasComponent},
 
@@ -129,6 +132,7 @@ const router = RouterModule.forChild([
     POApaginacionPipe,
     TareasPaginacionPipe,
     TareasFiltroPipe,
+    TareasFiltroHPipe,
     PlanificacionFiltroPipe,
     PlanificacionPaginacionPipe,
     ResponsablePaginacionPipe,
@@ -147,7 +151,9 @@ CommonModule,
   MatSlideToggleModule,
   MatAutocompleteModule,
   MatFormFieldModule,
-  MatInputModule
+  MatInputModule,
+  MatIconModule,
+  MatButtonModule
   ]
 })
 export class PoaModuleModule { }

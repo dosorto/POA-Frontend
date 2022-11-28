@@ -22,11 +22,17 @@
 
                     <h2 class="l-4">Detalles Tarea</h2>
                 </div>
-                <div class="col-10 text-center">
-                    <h2 class="l-4">
-                        <font color='black'>Detalle de PEI</font>
-                    </h2>
-                    <span>Actividad: <span class="text-primary">{{actividad.nombre}}</span></span>
+                <div class="container">
+                <div class="d-grid gap-2 d-md-flex justify-content-end">
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarInst"
+                    (click)="set_id_delete(tareas?.id)" >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor"
+                            class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
+                        </svg>
+                    </button>
+
 
                 </div>
                 <div class="row text-end">
@@ -50,16 +56,9 @@
                         </ng-template>
                     </h2>
                 </div>
-                <div class="d-grid gap-2 d-md-flex justify-content-start">
-                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarInst"
-                        (click)="set_id_delete(tareas?.id)">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                            class="bi bi-trash3-fill" viewBox="0 0 16 16">
-                            <path
-                                d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
-                        </svg>
-                    </button>
-
+            </div>
+            
+            
 
                 </div>
                 <div><br></div>
@@ -254,11 +253,17 @@
                 <!-- </ng-container> -->
                 <div class="container">
                     <div class="d-grid gap-3 d-md-flex justify-content-md-end">
-
-                        <button type="button" class="btn btn-danger" (click)='onBack()'>Cerrar</button>
-                        <button type="submit" class="btn btn-warning loat-end">Actualizar</button>
-                    </div>
+                
+                    <!-- <button type="button" class="btn btn-danger float-start">Cerrar</button> -->
+                    <button type="button" class="btn btn-danger" (click)='onBack()'>Cerrar</button>
+                    <button type="submit" class="btn btn-warning loat-end" (click)="toUpdate()">Actualizar</button>
                 </div>
+                </div> 
+
+
+               
+        
+    
 
 
 
@@ -269,6 +274,29 @@
                 <ul>
                     <li>{{tareas?.presupuesto?.objetogasto?.nombre}}</li>
                 </ul>
+
+<!-- Este modal sirve para eliminar un Objetivo -->
+
+<div class="modal" tabindex="-1" id="eliminarInst">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-danger">
+                <h5 class="modal-title fs-3 m-auto"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Deseas Eliminar la tarea <strong>{{tareas.nombre}}</strong></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary"
+                    data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-danger" (click)="delete()" 
+                    data-bs-dismiss="modal" >Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 

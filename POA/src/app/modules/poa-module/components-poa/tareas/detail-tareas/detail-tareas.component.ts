@@ -25,14 +25,15 @@ export class DetailTareasComponent implements OnInit {
   isPresupuesto: boolean = true;
   _delete: any;
   
-  constructor(private route: ActivatedRoute,
-    private router: Router,
-    private tareaservice: TareasService) { }
+  constructor(private route: ActivatedRoute, 
+    private router: Router, 
+    private tareaservice:TareasService) { }
 
-  //public listTareas : Array<Tareas>=[];
-  public listPresupuesto: Array<Presupuesto> = [];
-  id = Number(this.route.snapshot.paramMap.get('id'));
-  idActividad: number = Number(this.route.snapshot.paramMap.get('idActividad'));
+    //public listTareas : Array<Tareas>=[];
+    public listPresupuesto: Array<Presupuesto>=[];
+
+    id = Number(this.route.snapshot.paramMap.get('id'));
+    idActividad:number = Number(this.route.snapshot.paramMap.get('idActividad'));
   //idPresupuesto:number = Number(this.route.snapshot.paramMap.get('idPresupuesto'));
   
   public tareas: Tareas | any = {};
@@ -61,13 +62,12 @@ export class DetailTareasComponent implements OnInit {
 
     this.tareas = await this.tareaservice.getTareas(this.id).subscribe((response: any) => {
       this.tareas = response.tareas;
-      console.log("tamos bien1")
       console.log(response);
     }
-    )
-    console.log("tamos bien2")
-    console.log(this.tareas)
-    console.log("tamos bien3")
+      )
+      
+      console.log(this.tareas)
+      
 
   }
 
@@ -77,8 +77,8 @@ export class DetailTareasComponent implements OnInit {
   onBack(): void {
     this.router.navigate(['/gestion_poa/tareas/list/', this.idActividad]);
   }
-  onBackGestion(): void {
-    this.router.navigate(['/gestion_poa/tareas/list/',this.idActividad]);
+  toUpdate(){
+    this.router.navigate(['/gestion_poa/tareas/update/',this.id,this.idActividad]);
   }
 
   set_id_delete(id: any) {
@@ -86,7 +86,6 @@ export class DetailTareasComponent implements OnInit {
     console.log(this._delete)
   }
 
-  // metodos para eliminar
   async delete() {
 
     await this.tareaservice.eliminarTarea(this._delete)
@@ -104,13 +103,13 @@ export class DetailTareasComponent implements OnInit {
       }
 
     })
-    this.onBackGestion();
+    this.onBack();
     // setTimeout(function() {
     //   window.location.reload();
     // },3000);
-    setTimeout(function () {
-      window.location.reload();
-    }, 100);
+    // setTimeout(function () {
+    //   window.location.reload();
+    // }, 100);
 
     // window.location.reload();
 
@@ -118,3 +117,5 @@ export class DetailTareasComponent implements OnInit {
 
   // window.location.reload();
 }
+  
+
