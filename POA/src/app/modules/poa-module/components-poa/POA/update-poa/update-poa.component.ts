@@ -40,6 +40,7 @@ export class UpdatePoaComponent implements OnInit {
   public fuente11: string = '';
   public fuente12: string = '';
   public fuente12B: string = '';
+  public isActive: boolean = true;
 
   ngOnInit(): void {
     this.initData();
@@ -123,18 +124,19 @@ export class UpdatePoaComponent implements OnInit {
     let fuente11 = this.fuente11;
     let fuente12 = this.fuente12;
     let fuente12B = this.fuente12B;
+    let isActive = this.isActive;
 
-    console.log(":" + name + ":" + ":" + anio + ":" + fuente11 + ":" + fuente12 + ":" + fuente12B);
+    console.log(":" + name + ":" + ":" + anio + ":" + fuente11 + ":" + fuente12 + ":" + fuente12B + ":" + isActive);
     // validaciones
     if ((name === '')) { name = this.poa.name }
     if ((anio === '')) { anio = this.poa.anio }
     if ((fuente11 === '')) { fuente11 = this.poa.fuente11 }
     if ((fuente12 === '')) { fuente12 = this.poa.fuente12 }
     if ((fuente12B === '')) { fuente12B = this.poa.fuente12B }
-
-    console.log(":" + name + ":" + ":" + anio + ":" + fuente11 + ":" + fuente12 + ":" + fuente12B);
+    
+    console.log(":" + name + ":" + ":" + anio + ":" + fuente11 + ":" + fuente12 + ":" + fuente12B  + ":" + isActive);
     try {
-      this.service.updatePOA(name,anio,fuente11,fuente12,fuente12B,this.id,this.idInsti,this.idUE,this.idDepto).subscribe((res:any)=>{
+      this.service.updatePOA(name,anio,fuente11,fuente12,fuente12B,this.id,this.isActive,this.idInsti,this.idUE,this.idDepto).subscribe((res:any)=>{
         Swal.fire({
           icon: 'success',
           title: '¡Actualizado con éxito!',
