@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { NgModel, FormControl, FormsModule} from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { BackButtonComponent } from 'src/app/_core/back-button/back-button.component';
 
 // --------------------------------
 // componentes independientes importados
@@ -142,7 +143,8 @@ CommonModule,
   MatSelectModule,
   FormsModule,
   TopBarComponent,
-MatSlideToggleModule
+MatSlideToggleModule,
+BackButtonComponent
   
   ]
 })

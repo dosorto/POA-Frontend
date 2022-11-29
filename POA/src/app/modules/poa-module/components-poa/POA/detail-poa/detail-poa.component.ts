@@ -42,9 +42,10 @@ export class DetailPoaComponent implements OnInit {
     });
   }
 
-  toList(){ 
-    this.router.navigate(['/gestion_poa/poa/list/',this.poa?.idDepto, this.idUE,this.idInsti]); //revisar
+  onBack(): void {
+    this.router.navigate(['/gestion_poa/poa/list/',this.idInsti,this.idUE,this.idDepto]);
   }
+
   toUpdate(){
     this.router.navigate(['/gestion_poa/poa/update/',this.id,this.idInsti,this.idUE,this.idDepto]); //revisar
   }
@@ -67,7 +68,7 @@ export class DetailPoaComponent implements OnInit {
     setTimeout(function() {
       window.location.reload();
     },1000);
-    this.toList();
+    this.onBack();
   }catch(error){
     Swal.fire({
       icon: 'error',

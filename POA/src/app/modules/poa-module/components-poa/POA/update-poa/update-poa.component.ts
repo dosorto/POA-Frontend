@@ -151,6 +151,9 @@ export class UpdatePoaComponent implements OnInit {
           timer: 2500
         })
        });
+       setTimeout(function () {
+        window.location.reload();
+      }, 1000);
        this.toDetail(this.id);
     } catch (error) {
       setTimeout(function () {

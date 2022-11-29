@@ -38,7 +38,7 @@ export class CreatePoaComponent implements OnInit {
   }
 
   toList() {
-    this.router.navigate(['gestion_poa/poa/list/', this.idDepto,this.idUE, this.idInsti]);
+    this.router.navigate(['gestion_poa/poa/list/', this.idInsti,this.idUE,this.idDepto]);
   }
 
   async crear_poa(name: string, anio: string, fuente11: string, fuente12: string, fuente12B: string) {
@@ -68,7 +68,7 @@ export class CreatePoaComponent implements OnInit {
   }
 
   onBack(): void {
-    this.router.navigate(['/gestion_poa/poa/list/',this.idUE, this.idDepto, this.idInsti]);
+    this.router.navigate(['/gestion_poa/poa/list/',this.idInsti,this.idUE,this.idDepto]);
   }
 
 }
