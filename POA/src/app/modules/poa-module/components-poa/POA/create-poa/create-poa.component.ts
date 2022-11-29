@@ -29,11 +29,12 @@ export class CreatePoaComponent implements OnInit {
   constructor(private PoaService: PoaService, private _route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
+    this.initData();
   }
 
   async initData() {
     this.depto = this.PoaService.getDepto_Id(this.idDepto).subscribe((response: any) => {
-      this.depto = response.departamento;
+      this.depto = response.Depto;
     });
   }
 

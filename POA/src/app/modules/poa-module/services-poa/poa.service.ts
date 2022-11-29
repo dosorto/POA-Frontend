@@ -161,7 +161,7 @@ export class PoaService {
   }
 
   //alternativa a update
-  updatePOA(name: string, anio: string, fuente11: string, fuente12: string, fuente12B: string, id: number,isActive:boolean, idDepto: number, idUE: number, idInsti: number): any {
+  updatePOA(name: string, anio: string, fuente11: string, fuente12: string, fuente12B: string, id: number,isActive:boolean, idInsti: number, idUE: number,idDepto: number ): any {
     const url = environment.servidor + 'POA/updatePOA';
 
     const params = new HttpParams({
@@ -173,9 +173,9 @@ export class PoaService {
         fuente12: fuente12,
         fuente12B: fuente12B,
         isActive: isActive,
+        idInsti: idInsti,
         idDepto: idDepto,
-        idUE: idUE,
-        idInsti: idInsti
+        idUE: idUE
       }
     });
 
@@ -184,7 +184,7 @@ export class PoaService {
         'Content-Type': 'application/x-www-form-urlencoded'
       })
     };
-    return this.directHttp.put(url, { name: name, anio: anio, fuente11: fuente11, fuente12: fuente12, fuente12B: fuente12B, id: id,isActive, idDepto: idDepto, idUE: idUE, idInsti: idInsti })
+    return this.directHttp.put(url, { name: name, anio: anio, fuente11: fuente11, fuente12: fuente12, fuente12B: fuente12B, id: id,isActive, idInsti: idInsti, idDepto: idDepto, idUE: idUE })
 
   }
 
