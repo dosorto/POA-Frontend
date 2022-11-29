@@ -11,7 +11,7 @@
         <h1> </h1>
         <h2 class="l-4">Detalles del Resultado</h2>
         <span class="fs4">
-          Para el Area: <span class="text-primary">{{area.nombre}}</span> <br>
+          Perteneciente al Area: <span class="text-primary">{{area.nombre}}</span> <br>
           </span>
       </div>
       <div class="d-grid gap-2 d-md-flex justify-content-end" *ngIf="resultado">
@@ -30,7 +30,7 @@
       
       <div class="col-10" >
         <label for="inputNombre" class="form-label">Nombre:</label>
-        <input type="text" class="form-control" id="inputNombre" value="{{resultado.nombre}}" disabled>
+        <textarea type="text" class="form-control" id="inputNombre" rows="2" value="{{resultado.nombre}}" disabled></textarea>
       </div>
   
       <div class="col-10 mb-3">
