@@ -59,8 +59,8 @@ export class ActividadService {
         return response;
       }))
   }*/
-  getActividades(idResultado:number) {
-    return this.callHttp.httpGet<Array<Actividad>>(`${environment.servidor}actividad/get_all_by_idResultado/` + idResultado.toString())
+  getActividades(idPoa:number) {
+    return this.callHttp.httpGet<Array<Actividad>>(`${environment.servidor}actividad/get_all_by_idPoa/` + idPoa.toString())
       .pipe(map(response => {
         this._actividades = response;               
         return response;

@@ -35,7 +35,8 @@ export class CreateActividadComponent implements OnInit {
       const Empleados = await firstValueFrom(this.service.getEmpleados());
       this.listaEmpleados = Empleados;
       console.log(this.listaEmpleados)
-      
+
+      console.log(this.selectedEncargadosIds)
     }
   public idPoa: number = Number(this._route.snapshot.paramMap.get('idPoa'));
   toList() {
@@ -60,7 +61,7 @@ export class CreateActividadComponent implements OnInit {
       })
     });
     setTimeout(function () {
-      window.location.reload();
+   //   window.location.reload();
     }, 1500);
   }
 }
