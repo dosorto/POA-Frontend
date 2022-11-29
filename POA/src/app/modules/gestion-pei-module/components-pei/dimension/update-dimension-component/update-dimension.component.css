@@ -3,3 +3,9 @@
     justify-content: center;
     min-height: 100vh;
   }
+
+.backButton{
+    position: fixed;
+    left: 20px;
+    top: 80px;
+}

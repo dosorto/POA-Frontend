@@ -25,6 +25,10 @@ export class CreateResultadoComponentComponent implements OnInit {
 
   id = Number(this.route.snapshot.paramMap.get('id'));
   idArea = Number(this.route.snapshot.paramMap.get('idArea'));
+  idObjetivo:number = Number(this.route.snapshot.paramMap.get('idObjetivo'));
+  idDimension:number = Number(this.route.snapshot.paramMap.get('idDimension'));
+  idPei:number = Number(this.route.snapshot.paramMap.get('idPei'));
+  idInsti:number = Number(this.route.snapshot.paramMap.get('idInsti'));
   ngOnInit(): void {
     this.getArea();
   }

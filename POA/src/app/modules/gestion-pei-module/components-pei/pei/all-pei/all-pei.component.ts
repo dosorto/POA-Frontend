@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Storage } from 'src/app/_core/global-services/local_storage.service';
 import { PeiService } from '../../../services-pei/pei.service';
 import { Pei } from '../../../interfaces-pei/pei.model';
+import { Institucion } from 'src/app/modules/administracion-module/interfaces/institucion.model';
 import { firstValueFrom } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -25,24 +26,29 @@ export class AllPeiComponent implements OnInit {
   private pei_example: Pei | any = {};
   rutaActual = "pei";
   public pei: Array<Pei> = [];
+  public InstiList: Array<Institucion> = [];
+  public InstiSeleccionado : number = this.idInsti;
   public user = this.Storage.get_storage("user"); // obtener el usuario logueado
   public filter: string = ""; // para filtar la tabla
   public _delete: string = ""; // define que elemento sera eliminado
   public data_update: Pei | any = this.pei_example; // define datos de un elemento a actualizar
   public pei_seleccionado: string = "";
 
-  public page: number = 0;
-  public step: number = 5;
-  public maxPages: number = 1;
-  public enumPages: number[] = []
+  public page:number=0;
+  public actualpage:number = 1;
+  public step:number=5;
+  public maxPages:number=1;
+  public enumPages:number[]=[]
 
 
   async initData() {
-    const peis = await firstValueFrom(this.service.MostrarPei(this.idInsti))
-    this.pei = peis;
-    this.maxPages = ((this.pei.length % this.step) === 0) ? Math.floor(this.pei.length / this.step) : (Math.floor(this.pei.length / this.step) + 1)// cantidad de paginas para los botones
+    this.pei = await firstValueFrom(this.service.MostrarPei(this.idInsti));
+    const instituciones = await firstValueFrom(this.service.getInstituciones());
+    this.InstiList = instituciones;
+    console.log(this.pei);
+    this.maxPages = Math.round(this.pei.length / this.step);
     // sirve para generar los botones en paginacion
-    this.enumPages = Array(this.maxPages).fill(null).map((x, i) => i).slice(1, this.maxPages + 1);
+    this.enumPages =  Array(this.maxPages).fill(null).map((x,i)=>i).slice(1,this.maxPages + 1) ;
   }
   toDetail(idPei: number) {
     this.router.navigate(['/gestion_pei/pei/detail/', idPei.toString(), this.idInsti]);
@@ -50,13 +56,24 @@ export class AllPeiComponent implements OnInit {
   toCreate() {
     this.router.navigate(['/gestion_pei/pei/create/', this.idInsti.toString()]);
   }
-  nextPage() {
+  toHome(){
+    this.router.navigate(['/home']);
+  }
+  selectInsti(){
+    this.router.navigate(['/gestion_pei/pei/list/',this.InstiSeleccionado]);
+    setTimeout(function () {
+      window.location.reload();
+    }, 10)
+  }
+  nextPage(){
     this.page = this.page + this.step;
+    this.actualpage++;
   }
-  previousPage() {
+  previousPage(){
     this.page = this.page - this.step;
+    this.actualpage--;
   }
-  selectPage(numPage: number) {
+  selectPage(numPage:number){
     this.page = numPage * this.step;
   }
 

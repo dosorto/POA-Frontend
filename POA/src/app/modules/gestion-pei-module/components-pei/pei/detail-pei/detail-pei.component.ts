@@ -5,6 +5,7 @@ import { Pei } from '../../../interfaces-pei/pei.model';
 import { firstValueFrom } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { Institucion } from 'src/app/modules/administracion-module/interfaces/institucion.model';
 
 @Component({
   selector: 'app-detail-pei',
@@ -16,9 +17,11 @@ export class DetailPeiComponent implements OnInit {
   public idInsti:number = Number(this._route.snapshot.paramMap.get('idInsti'));
   public id:number = Number(this._route.snapshot.paramMap.get('id'));
   public pei:Pei | any = {};
+  public insti:Institucion | any = {};
 
   constructor(private service:PeiService,
-              private router:Router,private _route: ActivatedRoute) { }
+              private router:Router,private _route: ActivatedRoute,
+              private Storage:Storage) { }
 
   ngOnInit(): void {
     this.initData();
@@ -27,10 +30,10 @@ export class DetailPeiComponent implements OnInit {
   async initData() {
     this.pei = this.service.getPEI_Id(this.id).subscribe((response:any)=>{
       this.pei = response.pei;
-      console.log(response);
-    }
-    );
-    console.log(this.pei);
+    });
+    this.insti = this.service.getInsti_Id(this.idInsti).subscribe((response:any)=>{
+      this.insti = response.Institucion;
+    });
   }
 
   toList(){
@@ -42,7 +45,7 @@ export class DetailPeiComponent implements OnInit {
   }
 
   toDimensiones(){
-    this.router.navigate(["/gestion_pei/dimension/list/",this.id])
+    this.router.navigate(["/gestion_pei/dimension/list/",this.id,this.idInsti])
   }
 
   async Delete(){
