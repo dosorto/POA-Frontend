@@ -1,9 +1,15 @@
 <top-bar></top-bar>
-<div class="container justify-content-center  abs-center pt-5 mt-5 ">
+<app-back-button [path]="['/gestion_pei/dimension/list/',this.idPei,this.idInsti]"></app-back-button>
+<div class="alinear justify-content-center   pt-5 mt-5 ">
+    
     <div>
-        <div class="col-9">
+        <div class="col-9 border p-4">
             <div class="text-black text-center">
                 <h5 class=" fs-5 text-center m-auto" id="exampleModalLabel">Crear una nueva Dimensión</h5>
+                <span class="fs4">
+                    Crear dimensión para el pei: <span class="text-primary">{{pei.name}}</span> <br>
+                    Institución: <span class="text-primary">{{insti.nombre}}</span>
+                </span>
             </div>
             <div>
                 <form #Insti='ngForm'
@@ -21,7 +27,7 @@
                         <div class="mb-3 mx-2 px-2 row">
                             <label for="descripcion" class="row col-form-label">Descripcion:</label>
                             <div class="row">
-                                <input type="text" class="form-control" name="descripcion" ngModel required>
+                                <input type="text" class="form-control" name="descripcion" ngModel>
                             </div>
                         </div>
                         

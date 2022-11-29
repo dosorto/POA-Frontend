@@ -1,5 +1,4 @@
 <top-bar></top-bar>
-
 <body class="justify-content-center abs-center mt-5 pt-5" style="background-color: #EFF0FD;">
 
     <div class="col-12">
@@ -67,22 +66,21 @@
 
                         </select>
                     </div>
+
                     <div class="mb-3 mx-2 px-2 row">
-                        <label for="idEncargados" class="row col-form-label">Encargados:</label>
-                        <select class="form-select w-75" aria-label="Default select example" name="idEncargados"
-                            [(ngModel)]="empleado_seleccionado" required>
-                            <option selected>Seleccione...</option>
-                            <ng-container *ngFor="let x of listaEmpleados">
-                                <option value="{{x.id}}">{{x.nombre}}</option>
-                            </ng-container>
-
-                        </select>
-
-                   
+                        <label for="responsables" class="row col-form-label">responsables:</label>
+                        <ng-select class="form-select" aria-label="Default select example" name="responsables"
+                            [items]="listaEmpleados" bindLabel="nombre" bindValue="id" [multiple]="true" placeholder=""
+                            [(ngModel)]="selectedEncargadosIds" required>
 
 
 
+                            </ng-select>
                     </div>
+
+
+
+
 
                     <!--      <div class="mb-3 mx-2 px-2 row">
                     <label for="estado" class="row col-form-label">Estado:</label>
@@ -113,3 +111,9 @@
         </div>
 
     </div>
+
+
+
+
+
+    <h1> {{selectedEncargadosIds}}</h1>

@@ -7,6 +7,10 @@ import { Resultado } from 'src/app/modules/gestion-pei-module/interfaces-pei/res
 import { firstValueFrom } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
+import { Poa } from '../../../interfaces-poa/poa.model';
+import { Depto } from "../../..//interfaces-poa/depto.model";
+import { Institucion } from 'src/app/modules/administracion-module/interfaces/institucion.model';
+
 
 @Component({
   selector: 'app-update-actividad',
@@ -24,9 +28,13 @@ export class UpdateActividadComponent implements OnInit {
     private router: Router,
     private _route: ActivatedRoute) { }
 
-  public idObjetivo: number = Number(this._route.snapshot.paramMap.get('idObjetivo'));
   public id: number = Number(this._route.snapshot.paramMap.get('id'));
-
+  public idPoa:number = Number(this._route.snapshot.paramMap.get('idPoa'));
+  public idDepto: number = Number(this._route.snapshot.paramMap.get('idDepto'));
+  public idInsti: number = Number(this._route.snapshot.paramMap.get('idInsti'));
+  public poaList: Array<Poa> = [];
+  public DeptoList: Array<Depto> = []; 
+  public InstitucionesList: Array<Institucion> = [];
   actividad: Actividad | any = {};
   errorMessage = '';
   public nombre: string = '';
@@ -61,11 +69,11 @@ export class UpdateActividadComponent implements OnInit {
     console.log(this.actividad);
   }
   toDetail(){
-    this.router.navigate(['/gestion_poa/actividad/detail/',this.id,this.idObjetivo]);
+    this.router.navigate(['/gestion_poa/actividad/detail/',this.id,this.idPoa,this.idInsti,this.idDepto]);
   }
 
   toList() {
-    this.router.navigate(['/gestion_poa/actividad/list/', this.idObjetivo]);
+    this.router.navigate(['/gestion_poa/actividad/list/', this.idPoa,this.idInsti,this.idDepto]);
   }
 
 
@@ -85,7 +93,7 @@ export class UpdateActividadComponent implements OnInit {
 
     
     try {
-      this.service.updateActividad(this.id,nombre,descripcion,estado,tipoActividad,categoria, this.idObjetivo).subscribe((res: any) => {
+      this.service.updateActividad(this.id,nombre,descripcion,estado,tipoActividad,categoria, this.idPoa).subscribe((res: any) => {
         console.log(res);
 
       }, (error: any) => {
@@ -93,7 +101,7 @@ export class UpdateActividadComponent implements OnInit {
       });  
       Swal.fire({
         icon: 'success',
-        title: '!Actividad actualizado con éxito!',
+        title: '¡Actividad actualizado con éxito!',
         showConfirmButton: false,
         timer: 2500
       })

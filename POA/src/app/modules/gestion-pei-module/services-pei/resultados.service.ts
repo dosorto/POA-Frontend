@@ -131,7 +131,7 @@ export class ResultadosService {
        grant_type: 'password',
        nombre: nombre,
        descripcion:descripcion,
-       idArea:idArea,
+       idArea:idArea
 
      }
      });

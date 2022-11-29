@@ -23,6 +23,10 @@ export class DetailResultadoComponentComponent implements OnInit {
                 private resultadosService:ResultadosService) { }
                 ide = Number(this.route.snapshot.paramMap.get('id'));
                 id = Number(this.route.snapshot.paramMap.get('id'));
+                idObjetivo:number = Number(this.route.snapshot.paramMap.get('idObjetivo'));
+  idDimension:number = Number(this.route.snapshot.paramMap.get('idDimension'));
+  idPei:number = Number(this.route.snapshot.paramMap.get('idPei'));
+  idInsti:number = Number(this.route.snapshot.paramMap.get('idInsti'));
     public idArea = Number(this.route.snapshot.paramMap.get('idArea'));
                 ngOnInit(){
                   const id = Number(this.route.snapshot.paramMap.get('id'));
@@ -84,7 +88,7 @@ export class DetailResultadoComponentComponent implements OnInit {
                     
                   }
                   toUpdate(){
-                    this.router.navigate(['/gestion_pei/resultados/update/',this.id,this.idArea]);
+                    this.router.navigate(['/gestion_pei/resultados/update/',this.id,this.idArea,this.idObjetivo,this.idDimension,this.idPei,this.idInsti]);
                   }
 
                 }

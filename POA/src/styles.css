@@ -7,3 +7,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;padding: 0;b
 
 html, body { height: 100%; width: 100%;}
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif ;padding: 0; box-sizing: border-box;}
+
+.abs-center {
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+}
+@import "~@ng-select/ng-select/themes/default.theme.css";

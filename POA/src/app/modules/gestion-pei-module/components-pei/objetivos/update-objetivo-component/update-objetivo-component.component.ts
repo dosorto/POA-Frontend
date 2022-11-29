@@ -17,6 +17,8 @@ export class UpdateObjetivoComponentComponent implements OnInit {
   // public objetivo: Objetivo | any = {}
 
   public idDimension = Number(this._route.snapshot.paramMap.get('idDimension'));
+  public idPei = Number(this._route.snapshot.paramMap.get('idPei'));
+  public idInsti = Number(this._route.snapshot.paramMap.get('idInsti'));
   
   //id:Number = Number(this._route.snapshot.paramMap.get('id'));
    id=Number(this._route.snapshot.paramMap.get('id'));

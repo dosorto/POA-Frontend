@@ -27,6 +27,10 @@ export class UpdateAreaComponent implements OnInit {
   public nombre: string = '';
   errorMessage = '';
 
+  public idPei:number = Number(this._route.snapshot.paramMap.get('idPei'));
+  public idInsti:number = Number(this._route.snapshot.paramMap.get('idInsti'));
+  public idDimension:number = Number(this._route.snapshot.paramMap.get('idDimension'));
+
   ngOnInit(): void {
     this.initData();
 
@@ -52,10 +56,12 @@ export class UpdateAreaComponent implements OnInit {
     console.log(this.area);
   }
   toDetail(){
-    this.router.navigate(['/gestion_pei/areas/detail/',this.id,this.idObjetivo]);
+    this.router.navigate(['/gestion_pei/areas/detail/',this.id,this.idObjetivo,this.idDimension,this.idPei,this.idInsti]);
   }
 
-
+  toList() {
+    this.router.navigate(['/gestion_pei/areas/list/', this.idObjetivo]);
+  }
 
 
   update() {
@@ -70,7 +76,7 @@ export class UpdateAreaComponent implements OnInit {
 
       }, (error: any) => {
         console.log(error);
-      });
+      });  
       Swal.fire({
         icon: 'success',
         title: '!Area actualizado con éxito!',
@@ -79,7 +85,9 @@ export class UpdateAreaComponent implements OnInit {
       })
       setTimeout(function () {
         window.location.reload();
+        
       }, 2500);
+      this.toList();
     } catch (error) {
       console.log(error);
     }

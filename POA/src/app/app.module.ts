@@ -18,6 +18,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { TopBarComponent } from './_core/top-bar/top-bar.component';
 import { ChangepasswordComponent } from './modules/changepassword/changepassword.component';
 
+import { NgSelectModule } from '@ng-select/ng-select';
+
 
 
 @NgModule({
@@ -29,7 +31,7 @@ import { ChangepasswordComponent } from './modules/changepassword/changepassword
 
   ],
   imports: [
-    
+    NgSelectModule,
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,

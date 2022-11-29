@@ -3,6 +3,9 @@ import { Injectable } from '@angular/core';
 import { environment } from "../../../../environments/environment";
 import { Empleado } from "../interfaces-poa/empleados.model";
 import { Actividad } from "../interfaces-poa/actividad.model";
+import { Poa } from "../../poa-module/interfaces-poa/poa.model";
+import { Depto } from "../../poa-module/interfaces-poa/depto.model";
+import { Institucion } from "../../administracion-module/interfaces/institucion.model";
 import { map, Observable } from "rxjs";
 import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 
@@ -24,7 +27,7 @@ export class ActividadService {
   }
   public crearActividad (nombre:string,descripcion:string,
     estado:string,tipoActividad:string, categoria:string,
-    idResultado:number):any{
+    idPoa:number,responsables:string):any{
       const url = environment.servidor + 'actividad/crear';
  
       const params = new HttpParams({
@@ -35,7 +38,8 @@ export class ActividadService {
             estado: estado,
             tipoActividad: tipoActividad,
             categoria:categoria,
-            idResultado:idResultado
+            idPoa:idPoa,
+            responsables:responsables
        }
        });
  
@@ -59,8 +63,8 @@ export class ActividadService {
         return response;
       }))
   }*/
-  getActividades(idResultado:number) {
-    return this.callHttp.httpGet<Array<Actividad>>(`${environment.servidor}actividad/get_all_by_idResultado/` + idResultado.toString())
+  getActividades(idPoa:number) {
+    return this.callHttp.httpGet<Array<Actividad>>(`${environment.servidor}actividad/get_all_by_idPoa/` + idPoa.toString())
       .pipe(map(response => {
         this._actividades = response;               
         return response;
@@ -115,7 +119,7 @@ export class ActividadService {
 
   // alternativa a update
   updateActividad(id:number,nombre:string, descripcion:string,
-    estado:string,tipoActividad:string, categoria:string,idResultado:number):any {
+    estado:string,tipoActividad:string, categoria:string,idPoa:number):any {
     const url = environment.servidor + 'actividad/editar';
 
     const params = new HttpParams({
@@ -137,7 +141,7 @@ export class ActividadService {
     };
     //return this.directHttp.put(url, params, httpOptions);
     this.directHttp.put(url,{nombre:nombre,descripcion:descripcion,estado:estado,
-      tipoActividad:tipoActividad,categoria:categoria,id:id,idResultado:idResultado}).subscribe((response:any)=>
+      tipoActividad:tipoActividad,categoria:categoria,id:id,idPoa:idPoa}).subscribe((response:any)=>
     {
       console.log(response);
       return response;
@@ -150,6 +154,25 @@ export class ActividadService {
       .pipe(
         map((actividad: Actividad[]) => actividad.find(p => p.id === id))
       );
+  }
+
+  getPoas() {
+    return this.callHttp.httpGet<Array<Poa>>(`${environment.servidor}POA/get_POA`)
+      .pipe(map(response => {
+        return response;
+      }))
+  }
+  getdepartamentos() {
+    return this.callHttp.httpGet<Array<Depto>>(`${environment.servidor}departamento/get_all`)
+      .pipe(map(response => {
+        return response;
+      }))
+  }
+  getInstituciones() {
+    return this.callHttp.httpGet<Array<Institucion>>(`${environment.servidor}institucion/get_all`)
+      .pipe(map(response => {
+        return response;
+      }))
   }
 
 }
