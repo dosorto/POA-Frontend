@@ -3,6 +3,9 @@ import { Injectable } from '@angular/core';
 import { environment } from "../../../../environments/environment";
 import { Empleado } from "../interfaces-poa/empleados.model";
 import { Actividad } from "../interfaces-poa/actividad.model";
+import { Poa } from "../../poa-module/interfaces-poa/poa.model";
+import { Depto } from "../../poa-module/interfaces-poa/depto.model";
+import { Institucion } from "../../administracion-module/interfaces/institucion.model";
 import { map, Observable } from "rxjs";
 import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 
@@ -150,6 +153,25 @@ export class ActividadService {
       .pipe(
         map((actividad: Actividad[]) => actividad.find(p => p.id === id))
       );
+  }
+
+  getPoas() {
+    return this.callHttp.httpGet<Array<Poa>>(`${environment.servidor}POA/get_POA`)
+      .pipe(map(response => {
+        return response;
+      }))
+  }
+  getdepartamentos() {
+    return this.callHttp.httpGet<Array<Depto>>(`${environment.servidor}departamento/get_all`)
+      .pipe(map(response => {
+        return response;
+      }))
+  }
+  getInstituciones() {
+    return this.callHttp.httpGet<Array<Institucion>>(`${environment.servidor}institucion/get_all`)
+      .pipe(map(response => {
+        return response;
+      }))
   }
 
 }

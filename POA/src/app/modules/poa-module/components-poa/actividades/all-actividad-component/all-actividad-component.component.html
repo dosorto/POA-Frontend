@@ -14,8 +14,32 @@
                         <h2></h2>
                         <h2 class="l-4">Gestión de Actividad</h2>
                     </div>
-                    <div class="w-75 row m-auto mb-2">
+                    <ng-container *ngFor="let x of poaList">
+                        <div class="row justify-content-center text-center m-2 fs-5">
+                            <span>POA: <a  class="text-decoration-none">{{x.name}}</a>  - Departamento: <a  class="text-decoration-none">{{x.depto.name}}</a> <br>
 
+                                <br>
+                            </span>
+                            
+                        </div>
+
+                   
+                </ng-container>
+
+                    <div class="w-75 row m-auto mb-2">
+                        <div class="row">
+                            <label for="id" class="row col-form-label">Seleccione un POA:</label>
+                            <select class="form-control" aria-label="Default select example" name="id"
+                                [(ngModel)]="poaSeleccionado" (ngModelChange)="selectPoa()" required>
+                                <ng-container *ngFor="let x of poaList">
+                                    <option value="{{x.id}}" [selected]="x.id===idPoa">{{x.name}}</option>
+                                </ng-container>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="w-75 row m-auto mb-2">
+                   
                         <div><br></div>
 
                         <div class="col-8">
@@ -52,13 +76,20 @@
 
 
 
-                <!-- tabla dinamica que muestra todas las Dimensión -->
+                <!-- tabla dinamica que muestra todas las actividades -->
                 <div>
                    
                         <div class="row row-cols-1 row-cols-md-4 g-4">
-                            <ng-container *ngFor="let x of actividades; index as i">
+                            <ng-container *ngFor="let x of actividades| ActividadFilter:filter|actividadPaginacion:step:page; index as i">
                             <li *ngIf="x.estado ==='FORMULACION'">
                                     <div class="card  text-bg-secondary mb-3" style="width: 18rem;">
+                                         <!-- este contador no es id, solo es para enumerar -->
+                                    <ng-container *ngIf="page > 0; else elseNumeracion">
+                                        {{i + page + 1}}
+                                    </ng-container>
+                                    <ng-template #elseNumeracion>
+                                        {{i + 1}}
+                                    </ng-template>
                                         <div class="card-body">
                                             <h1 class="text-center">Actividad {{i + 1}} </h1>
                                             <h1 class="card-title">{{x.nombre}}</h1>
@@ -69,8 +100,33 @@
                                         </div>
                                     </div>
                             </li>
+                            <li *ngIf="x.estado ==='RECHAZADO'">
+                                <div class="card  text-bg-danger mb-3" style="width: 18rem;">
+                                     <!-- este contador no es id, solo es para enumerar -->
+                                     <ng-container *ngIf="page > 0; else elseNumeracion">
+                                        {{i + page + 1}}
+                                    </ng-container>
+                                    <ng-template #elseNumeracion>
+                                        {{i + 1}}
+                                    </ng-template>
+                                    <div class="card-body">
+                                        <h1 class="text-center">Actividad {{i + 1}} </h1>
+                                        <h1 class="card-title">{{x.nombre}}</h1>
+                                        <h1 class="card-title">{{x.estado}}</h1>
+                                        <button type="button" class="btn btn-warning float-center"
+                                            (click)="toDetail(x.id)">Gestionar</button>
+                                    </div>
+                                </div>
+                            </li>
                             <li *ngIf="x.estado ==='REFORMULACION'">
                                 <div class="card  text-bg-primary mb-3" style="width: 18rem;">
+                                     <!-- este contador no es id, solo es para enumerar -->
+                                     <ng-container *ngIf="page > 0; else elseNumeracion">
+                                        {{i + page + 1}}
+                                    </ng-container>
+                                    <ng-template #elseNumeracion>
+                                        {{i + 1}}
+                                    </ng-template>
                                     <div class="card-body">
                                         <h1 class="text-center">Actividad {{i + 1}} </h1>
                                         <h1 class="card-title">{{x.nombre}}</h1>
@@ -82,6 +138,13 @@
                             </li>
                             <li *ngIf="x.estado ==='REVISION'">
                                 <div class="card  text-bg-warning mb-3" style="width: 18rem;">
+                                     <!-- este contador no es id, solo es para enumerar -->
+                                     <ng-container *ngIf="page > 0; else elseNumeracion">
+                                        {{i + page + 1}}
+                                    </ng-container>
+                                    <ng-template #elseNumeracion>
+                                        {{i + 1}}
+                                    </ng-template>
                                     <div class="card-body">
                                         <h1 class="text-center">Actividad {{i + 1}} </h1>
                                         <h1 class="card-title">{{x.nombre}}</h1>
@@ -93,6 +156,13 @@
                             </li>
                             <li *ngIf="x.estado ==='APROBADO'">
                                 <div class="card  text-bg-success mb-3" style="width: 18rem;">
+                                     <!-- este contador no es id, solo es para enumerar -->
+                                     <ng-container *ngIf="page > 0; else elseNumeracion">
+                                        {{i + page + 1}}
+                                    </ng-container>
+                                    <ng-template #elseNumeracion>
+                                        {{i + 1}}
+                                    </ng-template>
                                     <div class="card-body">
                                         <h1 class="text-center">Actividad {{i + 1}} </h1>
                                         <h1 class="card-title">{{x.nombre}}</h1>
@@ -102,17 +172,10 @@
                                     </div>
                                 </div>
                             </li>
-                            <li *ngIf="x.estado ==='RECHAZADO'">
-                                <div class="card  text-bg-danger mb-3" style="width: 18rem;">
-                                    <div class="card-body">
-                                        <h1 class="text-center">Actividad {{i + 1}} </h1>
-                                        <h1 class="card-title">{{x.nombre}}</h1>
-                                        <h1 class="card-title">{{x.estado}}</h1>
-                                        <button type="button" class="btn btn-warning float-center"
-                                            (click)="toDetail(x.id)">Gestionar</button>
-                                    </div>
-                                </div>
-                            </li>
+
+              
+
+
                         </ng-container>
                         </div>
                 </div>

@@ -11,7 +11,7 @@
         <div class="w-100 row m-auto">
              
             <div class="row text-center">
-                <h2 class="l-4" ><font color='black'>Detalles de areas</font></h2>
+                <h2 class="l-4" ><font color='black'>Detalles de Actividad</font></h2>
             </div>
 
             <div class="d-grid gap-2 d-md-flex justify-content-end">
@@ -44,14 +44,15 @@
               <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" value="{{actividad.categoria}}" disabled></textarea>
             </div>
 
-            <div class="col-10 mb-10">
+         <!--   <div class="col-10 mb-10">
               <label for="inputresultado" class="form-label">Resultado:</label>
               <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" value="{{actividad.resultado.nombre}}"disabled></textarea>
-            </div>
+            </div>-->
+            <h1> </h1>
               <div class="container">
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
               <button type="button" class="btn btn-secondary" (click)="toList()" >Regresar</button>
-              <button type="button" class="btn btn-success ampliar-button" (click)="toResultados()" >Mostrar Resultados</button>
+              <button type="button" class="btn btn-success ampliar-button" (click)="toTareas()" >Mostrar Tareas</button>
           </div>
         </div>
 
