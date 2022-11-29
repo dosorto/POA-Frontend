@@ -54,7 +54,7 @@ export class DetailPoaComponent implements OnInit {
   }
 
   toActividad(){
-    this.router.navigate(['/gestion_poa/actividad/list/', this.idObjetivo]); //revisar
+    this.router.navigate(['/gestion_poa/actividad/list/', this.id,this.idInsti,this.idDepto]); //revisar
   }
 
 
