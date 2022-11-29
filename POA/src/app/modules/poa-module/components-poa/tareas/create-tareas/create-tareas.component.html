@@ -78,7 +78,7 @@
                             input</label>
                     </div> -->
                     <mat-slide-toggle class="example-margin" [color]="color" [checked]="checked" [disabled]="disabled"
-                        [(ngModel)]="isPresupuesto" name="isPresupuesto">Presupuesto</mat-slide-toggle>
+                        [(ngModel)]="isPresupuesto" name="isPresupuesto" >Presupuesto</mat-slide-toggle>
 
                     <div><br></div>
                     <ng-container *ngIf="isPresupuesto==true">
@@ -123,16 +123,27 @@
                                               <mat-form-field appearance="fill">
                                                 <mat-label>Grupo del gasto</mat-label>
                                                 <select matNativeControl  NgModel required>
+                                                    <optgroup label="Recomendado"></optgroup>
                                                   <option value=""> {{tareass?.grupo}}</option>
+                                                  <optgroup label="Todos los grupos"></optgroup>
                                                 </select>
                                               </mat-form-field>
                                               
                                               <mat-form-field appearance="fill">
                                                 <mat-label>Objeto del gasto</mat-label>
-                                                <mat-select #mode value="{{tareass?.presupuesto?.objetogasto?.id}}" matNativeControl name="idobjeto" [(ngModel)]="objetogasto_seleccionado" NgModel required>
-                                                    <mat-option>-- None --</mat-option>
-                                                    <mat-option value="{{tareass?.idobjeto}}" > {{tareass?.objeto}}</mat-option>
-                                                </mat-select>
+                                                <select  matNativeControl name="idobjeto" [(ngModel)]="objetogasto_seleccionado" NgModel required>
+                                                <ng-container   *ngIf="tareass?.idobjeto==undefined is true; else objetovacio">
+                                                    <optgroup label="Todos los grupos"></optgroup>
+                                                    <option *ngFor="let x of ListObjeto" value="{{x.id}}">{{x.identificador+" "+x.nombre}}</option>                                             
+                                                        </ng-container>
+                                                <ng-template #objetovacio>
+                                                    <optgroup label="Recomendado"></optgroup>
+                                                    <option value="{{tareass?.idobjeto}}" [selected]="tareass?.idobjeto"  > {{tareass?.objeto}}</option>
+
+                                                    
+                                                </ng-template>
+                                                
+                                                </select>
                                               </mat-form-field> 
 
                                               <mat-form-field appearance="fill">
@@ -221,4 +232,5 @@
 {{nombre}}
 <ul>
     <li>{{tareass?.objeto}}</li>
+    <li>{{tareass?.idobjeto}}</li>
 </ul>

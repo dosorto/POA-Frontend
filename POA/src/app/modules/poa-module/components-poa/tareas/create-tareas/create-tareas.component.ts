@@ -121,8 +121,9 @@ export class CreateTareasComponent implements OnInit {
 // var stringToConvert = "A123";
 // var numberValue = Number(stringToConvert);
 // console.log(numberValue);
-costounitario:any
-cantidad:any
+public costounitario:number=0
+public cantidad:number=0
+public total:number=0
 // numero1= Number(this.costounitario)
 // numero=Number(this.cantidad)
 
@@ -132,7 +133,9 @@ public tareass:Presupuesto | any = {};
     this.tareasService.Probando(nombre).subscribe({
       next: tareas => {this.tareass = tareas}
       // error: err => this.errorMessage = err
+      
     });
+    console.log(this.tareass.idobjeto)
   }
   // mostrarObjeto(nombre:string) {
   //   this.tareasService.Probando(nombre).subscribe((response:any) => 
@@ -155,6 +158,8 @@ public tareass:Presupuesto | any = {};
      
     console.log(tareasH)
 
+    this.mostrarObjetos()
+
     // this.sumall = this.listTareasP.reduce((sum, value) => (typeof value.presupuesto.total == "number" ? sum + value.presupuesto.total : sum), 0);
     // console.log(this.sumall);
 
@@ -169,4 +174,14 @@ public tareass:Presupuesto | any = {};
   onBack(): void {
     this.router.navigate(['/gestion_poa/tareas/list/',this.idActividad]);
   }
+
+  suma(){
+    this.total = (this.cantidad*this.costounitario );
+}
+ListObjeto: any=[];
+//para llenar el select
+mostrarObjetos(){
+  this.tareasService.getobjeto().subscribe((response:any) => 
+  this.ListObjeto = response);
+}
 }
