@@ -23,6 +23,9 @@
                 <div class="row text-center">
                     <h1> </h1>
                     <h2 class="l-4">Crear Resultado</h2>
+                    <span class="fs4">
+                        Para el Area: <span class="text-primary">{{area.nombre}}</span> <br>
+                        </span>
                 </div>
             </div>
 
@@ -59,7 +62,7 @@
                 </div>
                 <div class="container">
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <button type="button" class="btn btn-secondary" (click)='onBack()'>Cancelar</button>
+                        <button type="button" class="btn btn-secondary" (click)='toList()'>Cancelar</button>
                         <!-- [disabled]="Result.invalid" -->
                         <button type="submit" class="btn btn-warning" [disabled]="Resultado.invalid">Guardar</button>
                     </div>

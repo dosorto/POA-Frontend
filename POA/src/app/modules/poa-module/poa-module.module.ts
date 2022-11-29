@@ -6,7 +6,11 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { NgModel, FormControl, FormsModule} from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select'
-// --------------------------------
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatAutocomplete, MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatRadioModule} from '@angular/material/radio'
 // componentes independientes importados
 // --------------------------------
 import { TopBarComponent } from '../../_core/top-bar/top-bar.component'
@@ -24,6 +28,7 @@ import { CreateActividadComponent } from './components-poa/actividades/create-ac
 import { UpdateActividadComponent } from './components-poa/actividades/update-actividad-component/update-actividad.component';
 import { AllActividadComponent } from './components-poa/actividades/all-actividad-component/all-actividad-component.component';
 import { DetailActividadComponent } from './components-poa/actividades/detail-actividad-component/detail-actividad-component.component';
+import { BackButtonComponent } from 'src/app/_core/back-button/back-button.component';
 // Pipes
 import { ActividadFiltroPipe } from './pipes-poa/actividad-filtro.pipe';
 import { ActividadPaginacionPipe } from './pipes-poa/actividad-paginacion.pipe';
@@ -39,6 +44,7 @@ import { AllIndicadoresComponent } from './components-poa/indicadores/all-indica
 import { CreateIndicadoresComponent } from './components-poa/indicadores/create-indicadores/create-indicadores.component';
 import { UpdateIndicadoresComponent } from './components-poa/indicadores/update-indicadores/update-indicadores.component';
 import { DetailIndicadoresComponent } from './components-poa/indicadores/detail-indicadores/detail-indicadores.component';
+import { SeguimientoIndicadorComponent } from './components-poa/indicadores/seguimiento-indicador/seguimiento-indicador.component';
 import { DetailPlanificacionComponent } from './components-poa/planificacion/detail-planificacion/detail-planificacion.component';
 import { CreatePlanificacionComponent } from './components-poa/planificacion/create-planificacion/create-planificacion.component';
 import { UpdatePlanificacionComponent } from './components-poa/planificacion/update-planificacion/update-planificacion.component';
@@ -81,10 +87,12 @@ const router = RouterModule.forChild([
   {path: 'tareas/list/:idActividad/:idPoa/:idInsti/:idDepto', component: AllTareasComponent},
 
   // rutas de indicadores
-  {path: 'indicadores/create/:idPoa/:idActividad/:idInsti/:idDepto', component: CreateIndicadoresComponent},
-  {path: 'indicadores/update/:id/:idPoa/:idActividad/:idInsti/:idDepto', component: UpdateIndicadoresComponent},
-  {path: 'indicadores/detail/:id/:idPoa/:idActividad/:idInsti/:idDepto', component: DetailIndicadoresComponent},
-  {path: 'indicadores/list/:idActividad/:idPoa/:idInsti/:idDepto', component: AllIndicadoresComponent},
+  {path: 'indicadores/create/:idActividad/:idPoa/:idDepto/:idInsti', component: CreateIndicadoresComponent},
+  {path: 'indicadores/update/:id/:idActividad/:idPoa/:idDepto/:idInsti', component: UpdateIndicadoresComponent},
+  {path: 'indicadores/detail/:id/:idActividad/:idPoa/:idDepto/:idInsti', component: DetailIndicadoresComponent},
+  {path: 'indicadores/list/:idActividad/:idPoa/:idDepto/:idInsti', component: AllIndicadoresComponent},
+  {path: 'indicadores/seguimiento/:id/:idActividad/:idPoa/:idDepto/:idInsti', component: SeguimientoIndicadorComponent},
+
   // rutas de planificacion
   {path: 'planificacion/create/:idPoa/:idActividad/:idInsti/:idDepto', component: CreatePlanificacionComponent},
   {path: 'planificacion/update/:id/:idPoa/:idActividad/:idInsti/:idDepto', component: UpdatePlanificacionComponent},
@@ -130,16 +138,23 @@ const router = RouterModule.forChild([
     ResponsablePaginacionPipe,
     ResponsableFiltroPipe,
     IndicadorFiltroPipe,
-    IndicadorPaginacionPipe
+    IndicadorPaginacionPipe,
+    SeguimientoIndicadorComponent,
 
   ],
   imports: [
 
 CommonModule,
-  router,
-  MatSelectModule,
-  FormsModule,
-  TopBarComponent
+router,
+MatSelectModule,
+FormsModule,
+TopBarComponent,
+MatSlideToggleModule,
+MatAutocompleteModule,
+MatFormFieldModule,
+MatInputModule,
+MatRadioModule,
+BackButtonComponent
   ]
 })
 export class PoaModuleModule { }

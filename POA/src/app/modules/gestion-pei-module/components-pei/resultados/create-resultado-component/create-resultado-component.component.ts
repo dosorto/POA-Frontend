@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import Swal from 'sweetalert2';
+import { Area } from '../../../interfaces-pei/area.model';
 import { Resultado } from '../../../interfaces-pei/resultado.model';
 import { ResultadosService } from '../../../services-pei/resultados.service'; 
 
@@ -15,7 +16,7 @@ export class CreateResultadoComponentComponent implements OnInit {
 
   errorMessage = '';
   resultados: Resultado | undefined;
-  
+  public area:Area | any = {}
   constructor(private resultadosService:ResultadosService,
               private router: Router,  
               private route: ActivatedRoute) { }
@@ -31,6 +32,14 @@ export class CreateResultadoComponentComponent implements OnInit {
   idInsti:number = Number(this.route.snapshot.paramMap.get('idInsti'));
   ngOnInit(): void {
     this.getArea();
+this.initData();
+   
+  }
+
+  async initData(){
+    this.area = await this.resultadosService.getArea_Id(this.idArea).subscribe((response:any)=>{
+      this.area = response.area;
+    })
   }
 
 //Método que obtiene las áreas mediante el servico creado
@@ -40,7 +49,7 @@ async getArea(){
 }
 
 getResultado(id: number): void {
-  this.resultadosService.getResultado(id).subscribe({
+  this.resultadosService.getResultad(id).subscribe({
     next: resultado => {this.resultados = resultado},
     error: err => this.errorMessage = err
   });
@@ -52,8 +61,8 @@ public resultado:FormGroup = new FormGroup({
   idArea: new FormControl('',[Validators.required]),
 })
 
-onBack(): void {
-  this.router.navigate(['/gestion_pei/resultados/list/',this.idArea]);
+toList(): void {
+  this.router.navigate(['/gestion_pei/resultados/list/',this.idArea,this.idObjetivo,this.idDimension,this.idPei,this.idInsti]);
 }
   //Método para crear un nuevo resultado
 
@@ -65,7 +74,7 @@ onBack(): void {
         showConfirmButton: false,
         timer: 2500
       })
-      this.onBack();
+      this.toList();
       
     },(error:any)=>{
       Swal.fire({
