@@ -15,11 +15,10 @@ import { Empleado } from '../../../interfaces-poa/empleados.model';
 })
 export class CreateActividadComponent implements OnInit {
   selectedEncargadosIds: string="";
-
-
   estado_seleccionado: string = "";
   tipo_seleccionado: string = "";
   categoria_seleccionado: string = "";
+
   constructor(private Storage: Storage,
     private service: ActividadService,
     private router: Router,
@@ -36,13 +35,12 @@ export class CreateActividadComponent implements OnInit {
       this.listaEmpleados = Empleados;
       console.log(this.listaEmpleados)
 
-      console.log(this.selectedEncargadosIds)
     }
   public idPoa: number = Number(this._route.snapshot.paramMap.get('idPoa'));
   toList() {
     this.router.navigate(['/gestion_poa/actividad/list/', this.idPoa]);
   }
-  async crearArea(nombre: string, descripcion: string, estado: string, tipoActividad: string, categoria: string,) {
+  async crearArea(nombre: string, descripcion: string, estado: string, tipoActividad: string, categoria: string) {
     console.log(nombre.toString(), this.idPoa);
     await this.service.crearActividad(nombre, descripcion, estado, tipoActividad, categoria, this.idPoa,this.selectedEncargadosIds).subscribe((res: any) => {
       Swal.fire({
@@ -61,7 +59,7 @@ export class CreateActividadComponent implements OnInit {
       })
     });
     setTimeout(function () {
-   //   window.location.reload();
+      window.location.reload();
     }, 1500);
   }
 }

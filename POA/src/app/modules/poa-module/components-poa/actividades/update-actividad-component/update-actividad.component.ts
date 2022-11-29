@@ -101,7 +101,7 @@ export class UpdateActividadComponent implements OnInit {
       });  
       Swal.fire({
         icon: 'success',
-        title: '!Actividad actualizado con éxito!',
+        title: '¡Actividad actualizado con éxito!',
         showConfirmButton: false,
         timer: 2500
       })
