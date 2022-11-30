@@ -136,10 +136,11 @@ const router = RouterModule.forChild([
     IndicadorPaginacionPipe
 
   ],
+  
   imports: [
     NgSelectModule,
     BackButtonComponent,
-    
+
 CommonModule,
   router,
   MatSelectModule,
