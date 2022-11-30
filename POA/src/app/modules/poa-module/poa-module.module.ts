@@ -7,6 +7,8 @@ import { RouterModule } from '@angular/router';
 import { NgModel, FormControl, FormsModule} from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { BackButtonComponent } from 'src/app/_core/back-button/back-button.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 // --------------------------------
 // componentes independientes importados
@@ -74,8 +76,8 @@ const router = RouterModule.forChild([
   {path: 'actividad/create/:idPoa/:idInsti/:idDepto', component: CreateActividadComponent},
   {path: 'actividad/update/:id/:idPoa/:idInsti/:idDepto', component: UpdateActividadComponent},
   {path: 'actividad/detail/:id/:idPoa/:idInsti/:idDepto', component: DetailActividadComponent},
-  {path: 'actividad/list/:idInsti/:idDepto', component: AllActividadComponent},
-
+  {path: 'actividad/list/:idPoa/:idInsti/:idDepto', component: AllActividadComponent},
+  
   // rutas de tareas
   {path: 'tareas/create/:idPoa/:idActividad/:idInsti/:idDepto', component: CreateTareasComponent},
   {path: 'tareas/update/:id/:idPoa/:idActividad/:idInsti/:idDepto', component: UpdateTareasComponent},
@@ -136,7 +138,8 @@ const router = RouterModule.forChild([
 
   ],
   imports: [
-
+    NgSelectModule,
+    BackButtonComponent,
 CommonModule,
   router,
   MatSelectModule,

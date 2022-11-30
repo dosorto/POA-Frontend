@@ -2,11 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { Storage } from 'src/app/_core/global-services/local_storage.service';
 import { ActividadService } from '../../../services-poa/actividad.service';
 import { Area } from 'src/app/modules/gestion-pei-module/interfaces-pei/area.model';
-import { Objetivo } from 'src/app/modules/gestion-pei-module/interfaces-pei/objetivo.model';
 import { Actividad } from '../../../interfaces-poa/actividad.model';
 import { firstValueFrom } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Poa } from '../../../interfaces-poa/poa.model';
+import { Depto } from "../../..//interfaces-poa/depto.model";
+import { Institucion } from 'src/app/modules/administracion-module/interfaces/institucion.model';
 
+
+import { UnidadEjecutora } from "../../..//interfaces-poa/unidad_ejecutora.model";
 @Component({
   selector: 'app-all-actividad-component',
   templateUrl: './all-actividad-component.component.html',
@@ -23,11 +27,17 @@ export class AllActividadComponent implements OnInit {
   ngOnInit(): void {
     this.initData();
   }
-  public idResultado:number = Number(this._route.snapshot.paramMap.get('idObjetivo'));
+  public idPoa:number = Number(this._route.snapshot.paramMap.get('idPoa'));
+  public idDepto: number = Number(this._route.snapshot.paramMap.get('idDepto'));
+  public idInsti: number = Number(this._route.snapshot.paramMap.get('idInsti'));
+  public idUE: number = Number(this._route.snapshot.paramMap.get('idUE'));
+  public poaList: Array<Poa> = [];
+  public UEList: Array<UnidadEjecutora> = [];
+  public DeptoList: Array<Depto> = []; 
+  public InstitucionesList: Array<Institucion> = [];
+  public poaSeleccionado: number = this.idPoa;
   private area_example : Area | any = {};
-  rutaActual = "Area"; //sirve para definir iconos del sidevar
   public actividades:Array<Actividad>=[]; // para llenar la tabla
-  //public pei:Pei = this.dimensiones[0].pei; // para llenar la tabla
   public user = this.Storage.get_storage("user"); // obtener el usuario logueado
   public filter:string=""; // para filtar la tabla
   public _delete:string=""; // define que elemento sera eliminado
@@ -42,23 +52,37 @@ export class AllActividadComponent implements OnInit {
   // metodos propios
   async initData(){
     // obtiene todas las dimensiones
-    const actividades = await firstValueFrom(this.service.getActividades(this.idResultado))
+    const actividades = await firstValueFrom(this.service.getActividades(this.idPoa));
     this.actividades = actividades;
+    const poas = await firstValueFrom(this.service.getPoas());
+    this.poaList = poas;
+    const departamentos = await firstValueFrom(this.service.getdepartamentos());
+    this.DeptoList = departamentos;
+    const instituciones = await firstValueFrom(this.service.getInstituciones());
+    this.InstitucionesList = instituciones;
+//    console.log(this.DeptoList);
+  
     // sirve para definir un maximo de paginas en paginacion de tablas
     this.maxPages = ((this.actividades.length  % this.step ) === 0 ) ? Math.floor(this.actividades.length / this.step) : (Math.floor(this.actividades.length / this.step) + 1)// cantidad de paginas para los botones
     // sirve para generar los botones en paginacion
     this.enumPages =  Array(this.maxPages).fill(null).map((x,i)=>i).slice(1,this.maxPages + 1) ;
     //obtiene todos los peis para dejarlos en el select
   }
-  toDetail(idArea:number){
-    this.router.navigate(['/gestion_poa/actividad/detail/',idArea.toString(),this.idResultado]);
+  toDetail(idActividad:number){
+    this.router.navigate(['/gestion_poa/actividad/detail/',idActividad.toString(),this.idPoa,this.idInsti,this.idDepto]);
   }
   toCreate(){
-    this.router.navigate(['/gestion_poa/actividad/create/',this.idResultado.toString()]);
+    this.router.navigate(['/gestion_poa/actividad/create/',this.idPoa.toString(),this.idInsti,this.idDepto]);
   }
- // toObjetivos(){
-   // this.router.navigate(['gestion_pei/objetivos/detail/1/1']);
-  //}
+  toHome() {
+    this.router.navigate(['/home']);
+  }
+  selectPoa() {
+    this.router.navigate(['/gestion_poa/actividad/list/',this.poaSeleccionado, this.idInsti, this.idDepto ]);
+    setTimeout(function () {
+      window.location.reload();
+    }, 10)
+  }
 
   nextPage(){
     this.page = this.page + this.step;
