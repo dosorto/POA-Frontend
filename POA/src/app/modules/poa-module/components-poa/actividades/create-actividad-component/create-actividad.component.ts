@@ -6,6 +6,10 @@ import Swal from 'sweetalert2';
 import { firstValueFrom } from 'rxjs';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Poa } from '../../../interfaces-poa/poa.model';
+import { Depto } from "../../..//interfaces-poa/depto.model";
+import { Institucion } from 'src/app/modules/administracion-module/interfaces/institucion.model';
+
 
 import { Empleado } from '../../../interfaces-poa/empleados.model';
 @Component({
@@ -36,9 +40,15 @@ export class CreateActividadComponent implements OnInit {
       console.log(this.listaEmpleados)
 
     }
-  public idPoa: number = Number(this._route.snapshot.paramMap.get('idPoa'));
-  toList() {
-    this.router.navigate(['/gestion_poa/actividad/list/', this.idPoa]);
+    public idPoa:number = Number(this._route.snapshot.paramMap.get('idPoa'));
+    public idDepto: number = Number(this._route.snapshot.paramMap.get('idDepto'));
+    public idInsti: number = Number(this._route.snapshot.paramMap.get('idInsti'));
+    public poaList: Array<Poa> = [];
+    public DeptoList: Array<Depto> = []; 
+    public InstitucionesList: Array<Institucion> = [];
+
+    toList() {
+    this.router.navigate(['/gestion_poa/actividad/list/', this.idPoa,this.idInsti,this.idDepto]);
   }
   async crearArea(nombre: string, descripcion: string, estado: string, tipoActividad: string, categoria: string) {
     console.log(nombre.toString(), this.idPoa);

@@ -29,7 +29,9 @@ export class AllActividadComponent implements OnInit {
   public idPoa:number = Number(this._route.snapshot.paramMap.get('idPoa'));
   public idDepto: number = Number(this._route.snapshot.paramMap.get('idDepto'));
   public idInsti: number = Number(this._route.snapshot.paramMap.get('idInsti'));
+  public idUE: number = Number(this._route.snapshot.paramMap.get('idUE'));
   public poaList: Array<Poa> = [];
+  public UEList: Array<UnidadEjecutora> = [];
   public DeptoList: Array<Depto> = []; 
   public InstitucionesList: Array<Institucion> = [];
   public poaSeleccionado: number = this.idPoa;
@@ -65,8 +67,8 @@ export class AllActividadComponent implements OnInit {
     this.enumPages =  Array(this.maxPages).fill(null).map((x,i)=>i).slice(1,this.maxPages + 1) ;
     //obtiene todos los peis para dejarlos en el select
   }
-  toDetail(idArea:number){
-    this.router.navigate(['/gestion_poa/actividad/detail/',idArea.toString(),this.idPoa,this.idInsti,this.idDepto]);
+  toDetail(idActividad:number){
+    this.router.navigate(['/gestion_poa/actividad/detail/',idActividad.toString(),this.idPoa,this.idInsti,this.idDepto]);
   }
   toCreate(){
     this.router.navigate(['/gestion_poa/actividad/create/',this.idPoa.toString(),this.idInsti,this.idDepto]);

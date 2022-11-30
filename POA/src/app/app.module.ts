@@ -17,6 +17,7 @@ import {MatCardModule} from '@angular/material/card';
 import { ToastrModule } from 'ngx-toastr';
 import { TopBarComponent } from './_core/top-bar/top-bar.component';
 import { ChangepasswordComponent } from './modules/changepassword/changepassword.component';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 import { NgSelectModule } from '@ng-select/ng-select';
 
@@ -44,7 +45,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     FormsModule,
     ReactiveFormsModule ,
     TopBarComponent,
-    
+    MatSlideToggleModule
     
   ],
   providers: [],
