@@ -97,6 +97,9 @@ async initData(){
   this.objetivo = await this.resultadoService.getObjetivo_Id(this.idObjetivo).subscribe((response:any)=>{
     this.objetivo = response.objetivo;
   })
+  this.area = await this.resultadoService.getArea_Id(this.idArea).subscribe((response:any)=>{
+    this.area = response.area;
+  })
 
   this.AreaList = await firstValueFrom(this.AreaService.getAreas(this.idObjetivo));
     console.log("00000000"+ this.AreaList)

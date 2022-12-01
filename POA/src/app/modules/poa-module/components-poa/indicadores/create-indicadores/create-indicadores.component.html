@@ -75,7 +75,7 @@
                         <div class="col-4">
                             <label for="inputCantidad" class="row col-form-label">Cantidad Planificada:</label>
                             <div class="row">
-                                <input type="number" class="form-control" name="cantidadPlanificada" ngModel required>
+                                <input type="number" class="form-control" placeholder="Ingrese la cantidad" name="cantidadPlanificada" ngModel required>
                             </div>
                         </div>
                         <div class="container">
@@ -92,24 +92,29 @@
                         <div class="col-4">
                             <label for="inputPorcentaje" class="row col-form-label">Porcentaje Planificado:</label>
                             <div class="row">
-                                <input type="number" id="liveToastBtn" class="form-control" name="cantidadPlanificada" ngModel required>
-                                <div >
-                                <ng-container *ngIf="Indicador.value.cantidadPlanificada > 100"> 
+                                <input type="number" id="liveToastBtn" class="form-control" placeholder="Ingrese el porcentaje" name="cantidadPlanificada" ngModel required>
                                 
-                                    <span class="alert alert-danger"> El valor no debe ser mayor al 100% </span>
-                                </ng-container>
-                            </div>
+                                
                             </div>
                         </div>
+                        
+                        
                         <div class="container">
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end" name="isPorcentaje">
                                 <button type="button" class="btn btn-secondary" (click)="toList()">Cancelar</button>
                                 <button type="submit" class="btn btn-warning" *ngIf="Indicador.value.cantidadPlanificada <= 100" [disabled]="Indicador.invalid" >Guardar</button>
                                
                             </div>
+                            <div class="col-8">
+                                <ng-container *ngIf="Indicador.value.cantidadPlanificada > 100"> 
+                                
+                                    <span class="alert alert-danger"> El valor no debe exceder el 100% </span>
+                                </ng-container>
+                            </div>
                         </div>
+                        
                     </div>
-
+                    
                     
                 </div>
                 <div class="container">

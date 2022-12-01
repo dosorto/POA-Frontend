@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-
 import { IndicadorService } from '../../../services-poa/indicador.service'; 
 import { Indicadores } from '../../../interfaces-poa/Indicadores.model';
 import { Actividad } from '../../../interfaces-poa/actividad.model';
