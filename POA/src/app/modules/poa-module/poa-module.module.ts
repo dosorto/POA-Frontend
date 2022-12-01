@@ -5,7 +5,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { NgModel, FormControl, FormsModule} from '@angular/forms';
-import {MatSelectModule} from '@angular/material/select'
+import {MatSelectModule} from '@angular/material/select';
+
+import { BackButtonComponent } from 'src/app/_core/back-button/back-button.component';
+import { NgSelectModule } from '@ng-select/ng-select';
+
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatAutocomplete, MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -24,18 +28,17 @@ import { TopBarComponent } from '../../_core/top-bar/top-bar.component'
 // componente padre:
 import { GestionPoasComponent } from './poa-module.component';
 // componentes hijos:
-import { CreateActividadComponent } from './components-poa/actividades/create-actividad-component/create-actividad.component';
-import { UpdateActividadComponent } from './components-poa/actividades/update-actividad-component/update-actividad.component';
-import { AllActividadComponent } from './components-poa/actividades/all-actividad-component/all-actividad-component.component';
-import { DetailActividadComponent } from './components-poa/actividades/detail-actividad-component/detail-actividad-component.component';
-import { BackButtonComponent } from 'src/app/_core/back-button/back-button.component';
-// Pipes
-import { ActividadFiltroPipe } from './pipes-poa/actividad-filtro.pipe';
-import { ActividadPaginacionPipe } from './pipes-poa/actividad-paginacion.pipe';
 import { CreatePoaComponent } from './components-poa/POA/create-poa/create-poa.component';
 import { UpdatePoaComponent } from './components-poa/POA/update-poa/update-poa.component';
 import { AllPoaComponent } from './components-poa/POA/all-poa/all-poa.component';
 import { DetailPoaComponent } from './components-poa/POA/detail-poa/detail-poa.component';
+import { CreateActividadComponent } from './components-poa/actividades/create-actividad-component/create-actividad.component';
+import { UpdateActividadComponent } from './components-poa/actividades/update-actividad-component/update-actividad.component';
+import { AllActividadComponent } from './components-poa/actividades/all-actividad-component/all-actividad-component.component';
+import { DetailActividadComponent } from './components-poa/actividades/detail-actividad-component/detail-actividad-component.component';
+// Pipes
+import { ActividadFiltroPipe } from './pipes-poa/actividad-filtro.pipe';
+import { ActividadPaginacionPipe } from './pipes-poa/actividad-paginacion.pipe';
 import { AllTareasComponent } from './components-poa/tareas/all-tareas/all-tareas.component';
 import { CreateTareasComponent } from './components-poa/tareas/create-tareas/create-tareas.component';
 import { UpdateTareasComponent } from './components-poa/tareas/update-tareas/update-tareas.component';
@@ -70,16 +73,16 @@ const router = RouterModule.forChild([
 
 
   // rutas de poa
-  {path: 'poa/create/:idInsti/:idDepto', component: CreatePoaComponent},
-  {path: 'poa/update/:id/:idInsti/:idDepto', component: UpdatePoaComponent},
-  {path: 'poa/detail/:id/:idInsti/:idDepto', component: DetailPoaComponent},
-  {path: 'poa/list/:idInsti/:idDepto', component: AllPoaComponent},
+  {path: 'poa/create/:idInsti/:idUE/:idDepto', component: CreatePoaComponent},
+  {path: 'poa/update/:id/:idInsti/:idUE/:idDepto', component: UpdatePoaComponent},
+  {path: 'poa/detail/:id/:idInsti/:idUE/:idDepto', component: DetailPoaComponent},
+  {path: 'poa/list/:idInsti/:idUE/:idDepto', component: AllPoaComponent},
   // rutas de actividades
   {path: 'actividad/create/:idPoa/:idInsti/:idDepto', component: CreateActividadComponent},
   {path: 'actividad/update/:id/:idPoa/:idInsti/:idDepto', component: UpdateActividadComponent},
   {path: 'actividad/detail/:id/:idPoa/:idInsti/:idDepto', component: DetailActividadComponent},
-  {path: 'actividad/list/:idInsti/:idDepto', component: AllActividadComponent},
-
+  {path: 'actividad/list/:idPoa/:idInsti/:idDepto', component: AllActividadComponent},
+  
   // rutas de tareas
   {path: 'tareas/create/:idPoa/:idActividad/:idInsti/:idDepto', component: CreateTareasComponent},
   {path: 'tareas/update/:id/:idPoa/:idActividad/:idInsti/:idDepto', component: UpdateTareasComponent},
@@ -143,7 +146,8 @@ const router = RouterModule.forChild([
 
   ],
   imports: [
-
+    NgSelectModule,
+    BackButtonComponent,
 CommonModule,
 router,
 MatSelectModule,
@@ -154,7 +158,9 @@ MatAutocompleteModule,
 MatFormFieldModule,
 MatInputModule,
 MatRadioModule,
-BackButtonComponent
+BackButtonComponent,
+MatSlideToggleModule
+  
   ]
 })
 export class PoaModuleModule { }
