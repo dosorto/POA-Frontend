@@ -1,1 +1,130 @@
-<p>create-indicadores works!</p>
+<top-bar></top-bar>
+
+<app-back-button [path]="['/gestion_poa/indicadores/list/',this.idActividad,idPoa,idDepto,idInsti]"></app-back-button>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
+    <title>Bootstrap Example</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+
+<body class="justify-content-center abs-center mt-5 pt-5">
+
+    <div class="col-12 w-50">
+        <br>
+
+        <!-- espacio para el titulo, buscador y boton de agregar uno nuevo -->
+        <div class="container shadow rounded border border-dark p-2" style="background-color: white;">
+            <div class="w-100 row m-auto">
+                <br>
+                <div class="row text-center">
+                    <h1> </h1>
+                    <h2 class="l-4">Crear Indicador</h2>
+                    <span class="fs4">
+                        Para la Actividad: <span class="text-primary">{{ActividadList.nombre}}</span> <br>
+                        </span>
+                  
+
+                </div>
+            </div>
+
+            <form #Indicador="ngForm"
+                (ngSubmit)="crear_Indicador(Indicador.value.nombre,Indicador.value.descripcion,Indicador.value.cantidadPlanificada,Indicador.value.isCantidad,Indicador.value.isPorcentaje)"
+                id="Create_Indicador">
+                <div class="container">
+                    <!-- Campo para el nombre del Indicador -->
+                    <div class="mb-3 mx-2 px-2 row">
+                        <label for="nombre" class="row col-form-label">Nombre de Indicador:</label>
+                        <div class="row">
+                            <textarea type="text" class="form-control" name="nombre" ngModel required>
+                            </textarea>
+                        </div>
+                    </div>
+                    <!-- Campo para la descripción del Indicador -->
+                    <div class="mb-3 mx-2 px-2 row">
+                        <label for="inputDescripcion" class="row col-form-label">Descripción:</label>
+                        <div class="row">
+                            <textarea type="text" class="form-control" name="descripcion" ngModel required>
+                        </textarea>
+                        </div>
+                    </div>
+                
+
+                    <!-- Campo para seleccionar el tipo de cantidad -->
+                    <div>
+                    <mat-radio-group aria-label="Select an option">
+                        <div class="form-check form-check-inline">
+                        <mat-radio-button [checked]="checked" [disabled]="disabled"
+                        [(ngModel)]="isCantidad" name="isCantidad" value="1" (click)="showData1()">Cantidad</mat-radio-button>
+                  </div>
+                  <div class="form-check form-check-inline">
+                        <mat-radio-button [checked]="checked" [disabled]="disabled"
+                        [(ngModel)]="isPorcentaje" name="isPorcentaje" value="2"  (click)="showData()">Porcentaje</mat-radio-button>
+                    </div>
+                    </mat-radio-group>
+                      
+                    </div>
+                    
+
+                    <!-- Campo para la cantidad -->
+                    <div class="mb-3 mx-2 px-2 row" *ngIf="isCantidad == true" >
+                        <div class="col-4">
+                            <label for="inputCantidad" class="row col-form-label">Cantidad Planificada:</label>
+                            <div class="row">
+                                <input type="number" class="form-control" placeholder="Ingrese la cantidad" name="cantidadPlanificada" ngModel required>
+                            </div>
+                        </div>
+                        <div class="container">
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <button type="button" class="btn btn-secondary" (click)="toList()">Cancelar</button>
+                                <button type="submit" class="btn btn-warning" [disabled]="Indicador.invalid">Guardar</button>
+                            </div>
+                        </div>
+                    </div>
+
+                     <!-- Campo para el porcentaje -->
+                     <div class="mb-3 mx-2 px-2 row" *ngIf="isPorcentaje == true">
+                        
+                        <div class="col-4">
+                            <label for="inputPorcentaje" class="row col-form-label">Porcentaje Planificado:</label>
+                            <div class="row">
+                                <input type="number" id="liveToastBtn" class="form-control" placeholder="Ingrese el porcentaje" name="cantidadPlanificada" ngModel required>
+                                
+                                
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="container">
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end" name="isPorcentaje">
+                                <button type="button" class="btn btn-secondary" (click)="toList()">Cancelar</button>
+                                <button type="submit" class="btn btn-warning" *ngIf="Indicador.value.cantidadPlanificada <= 100" [disabled]="Indicador.invalid" >Guardar</button>
+                               
+                            </div>
+                            <div class="col-8">
+                                <ng-container *ngIf="Indicador.value.cantidadPlanificada > 100"> 
+                                
+                                    <span class="alert alert-danger"> El valor no debe exceder el 100% </span>
+                                </ng-container>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                    
+                </div>
+                <div class="container">
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end" *ngIf="isPorcentaje == false && isCantidad == false">
+                        <button type="button" class="btn btn-secondary" (click)="toList()">Cancelar</button>
+                        <!-- <button type="submit" class="btn btn-warning" [disabled]="Indicador.invalid">Guardar</button> -->
+                    </div>
+                </div>
+                <br>
+            </form>
+        </div>
+    </div>
+</body>

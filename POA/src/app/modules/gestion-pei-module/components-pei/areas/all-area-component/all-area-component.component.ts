@@ -5,7 +5,7 @@ import { Area } from '../../../interfaces-pei/area.model';
 import { Objetivo } from "../../../interfaces-pei/objetivo.model";
 import { firstValueFrom } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Objetivos } from '../../../interfaces-pei/resultado.model';
+//import { Objetivo } from '../../../interfaces-pei/resultado.model';
 import { Pei } from '../../../interfaces-pei/pei.model';
 import { Dimension } from '../../../interfaces-pei/dimension.model';
 import { Institucion } from 'src/app/modules/administracion-module/interfaces/institucion.model';
@@ -36,7 +36,7 @@ export class AllAreaComponentComponent implements OnInit {
   private area_example : Area | any = {};
   rutaActual = "Area"; //sirve para definir iconos del sidevar
   public areas:Array<Area>=[]; // para llenar la tabla
-  public ObjetivoList: Array<Objetivos> = [];
+  public ObjetivoList: Array<Objetivo> = [];
   public idPei:number = Number(this._route.snapshot.paramMap.get('idPei'));
   public idInsti:number = Number(this._route.snapshot.paramMap.get('idInsti'));
   public idDimension:number = Number(this._route.snapshot.paramMap.get('idDimension'));
