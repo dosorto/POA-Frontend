@@ -24,10 +24,7 @@ import { TopBarComponent } from '../../_core/top-bar/top-bar.component'
 // componente padre:
 import { GestionPoasComponent } from './poa-module.component';
 // componentes hijos:
-import { CreatePoaComponent } from './components-poa/POA/create-poa/create-poa.component';
-import { UpdatePoaComponent } from './components-poa/POA/update-poa/update-poa.component';
-import { AllPoaComponent } from './components-poa/POA/all-poa/all-poa.component';
-import { DetailPoaComponent } from './components-poa/POA/detail-poa/detail-poa.component';
+
 import { CreateActividadComponent } from './components-poa/actividades/create-actividad-component/create-actividad.component';
 import { UpdateActividadComponent } from './components-poa/actividades/update-actividad-component/update-actividad.component';
 import { AllActividadComponent } from './components-poa/actividades/all-actividad-component/all-actividad-component.component';
@@ -35,6 +32,10 @@ import { DetailActividadComponent } from './components-poa/actividades/detail-ac
 // Pipes
 import { ActividadFiltroPipe } from './pipes-poa/actividad-filtro.pipe';
 import { ActividadPaginacionPipe } from './pipes-poa/actividad-paginacion.pipe';
+import { CreatePoaComponent } from './components-poa/POA/create-poa/create-poa.component';
+import { UpdatePoaComponent } from './components-poa/POA/update-poa/update-poa.component';
+import { AllPoaComponent } from './components-poa/POA/all-poa/all-poa.component';
+import { DetailPoaComponent } from './components-poa/POA/detail-poa/detail-poa.component';
 import { AllTareasComponent } from './components-poa/tareas/all-tareas/all-tareas.component';
 import { CreateTareasComponent } from './components-poa/tareas/create-tareas/create-tareas.component';
 import { UpdateTareasComponent } from './components-poa/tareas/update-tareas/update-tareas.component';
@@ -61,11 +62,46 @@ import { IndicadorPaginacionPipe } from './pipes-poa/indicador-paginacion.pipe';
 
 
 
-
 // enrutamiento
 const router = RouterModule.forChild([
   // rutas principal
   {path: '', component: GestionPoasComponent},
+
+
+ 
+
+  // rutas de poa
+  {path: 'poa/create/:idInsti/:idUE/:idDepto', component: CreatePoaComponent},
+  {path: 'poa/update/:id/:idInsti/:idUE/:idDepto', component: UpdatePoaComponent},
+  {path: 'poa/detail/:id/:idInsti/:idUE/:idDepto', component: DetailPoaComponent},
+  {path: 'poa/list/:idInsti/:idUE/:idDepto', component: AllPoaComponent},
+  // rutas de actividades
+
+{path: 'actividad/create/:idPoa/:idInsti/:idDepto', component: CreateActividadComponent},
+{path: 'actividad/update/:id/:idPoa/:idInsti/:idDepto', component: UpdateActividadComponent},
+{path: 'actividad/detail/:id/:idPoa/:idInsti/:idDepto', component: DetailActividadComponent},
+{path: 'actividad/list/:idPoa/:idInsti/:idDepto', component: AllActividadComponent},
+
+  // rutas de tareas
+  {path: 'tareas/create/:idPoa/:idActividad/:idInsti/:idDepto', component: CreateTareasComponent},
+  {path: 'tareas/update/:id/:idPoa/:idActividad/:idInsti/:idDepto', component: UpdateTareasComponent},
+  {path: 'tareas/detail/:id/:idPoa/:idActividad/:idInsti/:idDepto', component: DetailTareasComponent},
+  {path: 'tareas/list/:idActividad/:idPoa/:idInsti/:idDepto', component: AllTareasComponent},
+
+  // rutas de indicadores
+  {path: 'indicadores/create/:idPoa/:idActividad/:idInsti/:idDepto', component: CreateIndicadoresComponent},
+  {path: 'indicadores/update/:id/:idPoa/:idActividad/:idInsti/:idDepto', component: UpdateIndicadoresComponent},
+  {path: 'indicadores/detail/:id/:idPoa/:idActividad/:idInsti/:idDepto', component: DetailIndicadoresComponent},
+  {path: 'indicadores/list/:idActividad/:idPoa/:idInsti/:idDepto', component: AllIndicadoresComponent},
+  // rutas de planificacion
+  {path: 'planificacion/create/:idPoa/:idActividad/:idInsti/:idDepto', component: CreatePlanificacionComponent},
+  {path: 'planificacion/update/:id/:idPoa/:idActividad/:idInsti/:idDepto', component: UpdatePlanificacionComponent},
+  {path: 'planificacion/detail/:id/:idPoa/:idActividad/:idInsti/:idDepto', component: DetailPlanificacionComponent},
+  {path: 'planificacion/list/:idActividad/:idPoa/:idInsti/:idDepto', component: AllPlanificacionComponent},
+  
+
+
+
 
 
   // rutas de poa
@@ -138,7 +174,6 @@ const router = RouterModule.forChild([
     IndicadorPaginacionPipe
 
   ],
-  
   imports: [
     NgSelectModule,
     BackButtonComponent,
