@@ -5,11 +5,14 @@ import { LoginComponent } from './login.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { FormsModule } from '@angular/forms';
 import { NewPasswordComponent } from './new-password/new-password.component';
+import { ChangepasswordComponent } from './changepassword/changepassword.component';
+
 
 const router = RouterModule.forChild([
   {path: '', component: LoginComponent},
   {path: 'forgotPassword', component: ForgotPasswordComponent},
-  {path: 'newPassword', component: NewPasswordComponent}
+  {path: 'newPassword', component: NewPasswordComponent},
+  {path: 'changePassword', component: ChangepasswordComponent}
 
 ])
 
@@ -17,7 +20,8 @@ const router = RouterModule.forChild([
 @NgModule({
   declarations: [
     ForgotPasswordComponent,
-    NewPasswordComponent
+    NewPasswordComponent,
+    ChangepasswordComponent
   ],
   imports: [
   CommonModule,
