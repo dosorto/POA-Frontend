@@ -27,6 +27,10 @@ export class UpdateAreaComponent implements OnInit {
   public nombre: string = '';
   errorMessage = '';
 
+  public idPei:number = Number(this._route.snapshot.paramMap.get('idPei'));
+  public idInsti:number = Number(this._route.snapshot.paramMap.get('idInsti'));
+  public idDimension:number = Number(this._route.snapshot.paramMap.get('idDimension'));
+
   ngOnInit(): void {
     this.initData();
 
@@ -52,7 +56,7 @@ export class UpdateAreaComponent implements OnInit {
     console.log(this.area);
   }
   toDetail(){
-    this.router.navigate(['/gestion_pei/areas/detail/',this.id,this.idObjetivo]);
+    this.router.navigate(['/gestion_pei/areas/detail/',this.id,this.idObjetivo,this.idDimension,this.idPei,this.idInsti]);
   }
 
   toList() {

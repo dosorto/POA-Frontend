@@ -1,4 +1,5 @@
 <top-bar></top-bar>
+<app-back-button [path]="['/gestion_pei/objetivos/list/',idDimension,idPei,idInsti]"></app-back-button>
 <body class="justify-content-center abs-center mt-5 pt-5">
   <div class="col-8">
       <br>
@@ -9,7 +10,8 @@
       <br>
       <!-- espacio para el titulo, buscador y boton de agregar uno nuevo -->
       <div class="row text-center">
-        <!-- <h2 class="l-4" ><font color='black'>Detalles de los objetivos</font></h2> -->
+        <h2 class="l-4" ><font color='black'>Detalles de los objetivos</font></h2>
+        <span>Dimensión: <span class="text-primary">{{dimension.nombre}}</span></span>
     </div>
     <div>
       <!-- <h2 class="m-3" ><font color='black'>{{objetivo?.pei?.name}}/{{objetivo?.dimension?.nombre}}/</font></h2>
@@ -51,9 +53,9 @@
             </div>
         
               <div class="d-grid gap-2 d-md-flex justify-content-end mb-3">
-                  <button type="button" class="btn btn-secondary" [routerLink]="['/gestion_pei/objetivos/list/',objetivo.idDimension]">Cerrar</button>
+                  <button type="button" class="btn btn-secondary" [routerLink]="['/gestion_pei/objetivos/list/',objetivo.idDimension,idPei,idInsti]">Cerrar</button>
                   <!-- [disabled]="Result.invalid" -->
-                  <button type="button" class="btn btn-success" [routerLink]="['/gestion_pei/areas/list/',objetivo.id]">Mostrar Áreas</button>               
+                  <button type="button" class="btn btn-success" [routerLink]="['/gestion_pei/areas/list/',objetivo.id,idDimension,idPei,idInsti]">Mostrar Áreas</button>               
               </div>
       
           

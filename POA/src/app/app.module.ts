@@ -17,7 +17,7 @@ import { LoginComponent } from './modules/login-module/login.component';
 import {MatCardModule} from '@angular/material/card';
 import { ToastrModule } from 'ngx-toastr';
 import { TopBarComponent } from './_core/top-bar/top-bar.component';
-import { AdministracionModuleModule } from './modules/administracion-module/administracion-module.module';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 
 
@@ -41,7 +41,7 @@ import { AdministracionModuleModule } from './modules/administracion-module/admi
     FormsModule,
     ReactiveFormsModule ,
     TopBarComponent,
-    AdministracionModuleModule
+    MatSlideToggleModule
 
   ],
   providers: [],

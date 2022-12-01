@@ -1,0 +1,120 @@
+<top-bar></top-bar>
+<app-back-button [path]="['/gestion_poa/actividad/list/',this.idPoa,this.idInsti,this.idDepto]"></app-back-button>
+<body class="justify-content-center abs-center mt-5 pt-5" style="background-color: #EFF0FD;">
+
+    <div class="col-12">
+        <br>
+
+        <div class="container shadow rounded border border-dark" style="background-color: white;">
+            <div class="w-100 row m-auto">
+                <br>
+                <div class="row text-center">
+                    <h1> </h1>
+                    <h2 class="l-4">Crear Actividad</h2>
+                </div>
+            </div>
+            <form #AreaC="ngForm"
+                (ngSubmit)="crearArea(AreaC.value.nombre,AreaC.value.descripcion,AreaC.value.estado,AreaC.value.tipoActividad,AreaC.value.categoria)"
+                id="createArea">
+                <div class="container">
+                    <!-- Campo para el nombre de area -->
+                    <div class="mb-3 mx-2 px-2 row">
+                        <label for="nombre" class="row col-form-label">Nombre de Actividad:</label>
+                        <div class="row">
+                            <input type="text" class="form-control" name="nombre" ngModel required>
+                        </div>
+                    </div>
+                    <div class="mb-3 mx-2 px-2 row">
+                        <label for="descripcion" class="row col-form-label">Descripcion:</label>
+                        <div class="row">
+                            <input type="text" class="form-control" name="descripcion" ngModel required>
+                        </div>
+                    </div>
+
+                    <div class="mb-3 mx-2 px-2 row">
+                        <label for="estado" class="row col-form-label">Estado:</label>
+                        <select class="form-select" aria-label="Default select example" name="estado"
+                            [(ngModel)]="estado_seleccionado" required>
+                            <option selected>Seleccione el estado actual de la actividad</option>
+                            <option value="1">FORMULACION</option>
+                            <option value="2">REFORMULACION</option>
+                            <option value="3">REVISION</option>
+                            <option value="4">APROBADO</option>
+                            <option value="5">RECHAZADO</option>
+
+                        </select>
+                    </div>
+                    <div class="mb-3 mx-2 px-2 row">
+                        <label for="tipoActividad" class="row col-form-label">Tipo de actividad:</label>
+                        <select class="form-select" aria-label="Default select example" name="tipoActividad"
+                            [(ngModel)]="tipo_seleccionado" required>
+                            <option selected>Seleccione el tipo de actual de la actividad</option>
+                            <option value="1">ACADEMICA</option>
+                            <option value="2">ADMINISTRATIVA</option>
+
+
+                        </select>
+                    </div>
+                    <div class="mb-3 mx-2 px-2 row">
+                        <label for="categoria" class="row col-form-label">Categoria:</label>
+                        <select class="form-select" aria-label="Default select example" name="categoria"
+                            [(ngModel)]="categoria_seleccionado" required>
+                            <option selected>Seleccione el estado actual de la actividad</option>
+                            <option value="1">COORDINACION</option>
+                            <option value="2">JEFATURA</option>
+                            <option value="2">ADMINISTRATIVA</option>
+
+
+                        </select>
+                    </div>
+
+                    <div class="mb-3 mx-2 px-2 row">
+                        <label for="responsables" class="row col-form-label">responsables:</label>
+                        <ng-select class="form-select" aria-label="Default select example" name="responsables"
+                            [items]="listaEmpleados" bindLabel="nombre" bindValue="id" [multiple]="true" placeholder=""
+                            [(ngModel)]="selectedEncargadosIds" required>
+
+
+
+                            </ng-select>
+                    </div>
+
+
+
+
+
+                    <!--      <div class="mb-3 mx-2 px-2 row">
+                    <label for="estado" class="row col-form-label">Estado:</label>
+                    <div class="row">
+                        <input type="text" class="form-control" name="estado" ngModel required>
+                    </div>
+            </div> -->
+
+
+                    <!--  <div class="mb-3 mx-2 px-2 row">
+        <label for="nombre" class="row col-form-label">Resultado:</label>
+        <div class="row">
+            <input type="text" class="form-control" name="nombre" ngModel required>
+        </div>
+</div> -->
+
+                </div>
+
+
+                <div class="container">
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button type="button" class="btn btn-secondary" (click)="toList()">Regresar</button>
+                        <button type="submit" class="btn btn-warning" [disabled]="AreaC.invalid">Guardar</button>
+                    </div>
+                </div>
+                <br>
+            </form>
+        </div>
+
+    </div>
+
+
+
+
+
+    <h1> {{selectedEncargadosIds}}</h1>

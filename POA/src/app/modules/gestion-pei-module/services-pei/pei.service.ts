@@ -85,11 +85,15 @@ export class PeiService {
         return response;
       }))
   }
+  
   getInstituciones(){
     return this.callHttp.httpGet<Array<Institucion>>(`${environment.servidor}institucion/get_all`)
       .pipe(map(response => {
         return response;
       }))
+  }
+  getInsti_Id(idInsti:number) {
+    return this.callHttp.httpGet<Institucion>(`${environment.servidor}institucion/get/`+idInsti.toString());
   }
 
   eliminarPEI(id: number): any {

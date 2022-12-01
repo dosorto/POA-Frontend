@@ -1,0 +1,101 @@
+<top-bar></top-bar>
+
+<body class="justify-content-center abs-center mt-5 pt-5 abs-center">
+  <div class="col-7">
+    <button class="btn btn-warning rounded" (click)="toDetail(poa.id)">
+      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-left-short"
+        viewBox="0 0 16 16">
+        <path fill-rule="evenodd"
+          d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z" />
+      </svg>
+    </button>
+    <div><br></div>
+    <!-- espacio para el titulo, buscador y boton de agregar uno nuevo -->
+    <div class="container border rounded rounden-2 p-2">
+      <div class="w-100 row m-auto">
+        <br>
+        <!-- espacio para el titulo, buscador y boton de agregar uno nuevo -->
+        <div class="w-100 row m-auto">
+
+          <div class="row text-center">
+            <h2 class="">
+              <font color='black'>Actualizar POA</font>
+              <br>
+              <span class="fs-5">
+                Departamento: <span class="text-primary ">{{depto}}</span>
+              </span>
+            </h2>
+          </div>
+          <div class="form-check form-switch form-check-reverse">
+            <input class="form-check-input" type="checkbox" id="flexSwitchCheckReverse" checked="Activate()" checked="Delete()">
+            <label class="form-check-label" for="flexSwitchCheckReverse">Habilitar
+            </label>
+          </div>
+
+          <h2 class="example-h2">Result</h2>
+          <section class="example-section">
+            <mat-slide-toggle class="example-margin" [color]="color" [checked]="checked" [disabled]="disabled">
+              Slide me!
+            </mat-slide-toggle>
+          </section>
+
+
+
+          <div class="form-check form-switch form-check-reverse">
+            <input class="form-check-input" type="checkbox" id="flexSwitchCheckReverse" (click)="Delete()">
+            <label class="form-check-label" for="flexSwitchCheckReverse">Deshabilitar
+            </label>
+          </div>
+          <div class="col-10">
+            <label for="inputName" class="form-label" name="name">Nombre:</label>
+            <input type="text" class="form-control" id="exampleFormControlTextarea1" [(ngModel)]="name" rows="2"
+              value="{{poa.name}}">
+          </div>
+          <div class="col-10 mb-3">
+            <label for="inputAnio" class="form-label">Año:</label>
+            <input type="Date" class="form-control" id="exampleFormControlTextarea1" [(ngModel)]="anio" rows="2"
+              value="{{poa.anio}}">
+          </div>
+          <div class="col-10 mb-3">
+            <label for="inputFuente11" class="form-label">Fuente11:</label>
+            <input type="text" class="form-control" id="exampleFormControlTextarea1" [(ngModel)]="fuente11" rows="2"
+              value="{{poa.fuente11}}">
+          </div>
+          <div class="col-10 mb-3">
+            <label for="inputFuente12" class="form-label">Fuente12:</label>
+            <input type="text" class="form-control" id="exampleFormControlTextarea1" [(ngModel)]="fuente12" rows="2"
+              value="{{poa.fuente12}}">
+          </div>
+          <div class="col-10 mb-3">
+            <label for="inputFuente12B" class="form-label">Fuente12B:</label>
+            <input type="text" class="form-control" id="exampleFormControlTextarea1" [(ngModel)]="fuente12B" rows="2"
+              value="{{poa.fuente12B}}">
+          </div>
+          <div class="d-grid gap-2 d-md-flex justify-content-end">
+            <button type="button" class="btn btn-secondary" (click)="toDetail(poa.id)">Regresar</button>
+            <button type="submit" class="btn btn-warning" (click)="Update()">Actualizar</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="modal" tabindex="-1" id="eliminarDepto">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header bg-danger">
+            <h5 class="modal-title fs-3 m-auto"></h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p>¿Está seguro de eliminarla? </p>
+          </div>
+          <form id="eliminarDimension">
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+              <button type="submit" class="btn btn-danger" (click)="Activate()">Eliminar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
