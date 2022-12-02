@@ -4,7 +4,7 @@ import { Storage } from 'src/app/_core/global-services/local_storage.service';
 import { PoaService } from '../../../services-poa/poa.service';
 
 import { Poa } from '../../../interfaces-poa/poa.model';
-import { Depto } from "../../..//interfaces-poa/depto.model";
+import { Depto } from "../../../interfaces-poa/depto.model";
 import { UnidadEjecutora } from "../../..//interfaces-poa/unidad_ejecutora.model";
 import { Institucion } from 'src/app/modules/administracion-module/interfaces/institucion.model';
 
@@ -26,6 +26,7 @@ export class DetailPoaComponent implements OnInit {
   public idObjetivo: number = Number(this._route.snapshot.paramMap.get('idObjetivo'));
   public poa:Poa | any = {};
   public depto:Depto | any = {};
+  public insti:Institucion | any = {};
   public unidadejecutora:UnidadEjecutora | any = {};
 
   constructor(private service:PoaService,
