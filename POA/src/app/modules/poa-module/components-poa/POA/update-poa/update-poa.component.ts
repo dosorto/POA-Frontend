@@ -20,7 +20,9 @@ import {ThemePalette} from '@angular/material/core';
 })
 export class UpdatePoaComponent implements OnInit {
 
-  isChecked = true;
+  color: ThemePalette = 'accent';
+  checked = false;
+  disabled = false;
   
   constructor(private Storage: Storage,
     private service: PoaService,

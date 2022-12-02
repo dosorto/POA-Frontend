@@ -17,6 +17,6 @@ export class AccountDetailComponent implements OnInit {
     console.log(this.user)
   }
   public changePassword(){
-    this.router.navigate(['/changePassword']);
+    this.router.navigate(['/login/changePassword']);
   }
 }

@@ -6,6 +6,8 @@ export interface Indicadores {
     cantidadPlanificada: number;
     cantidadEjecutada:   number;
     promedioAlcanzado:   number;
+    isCantidad:         boolean;
+    isPorcentaje:       boolean;
     isDelete:            boolean;
     createdAt:           Date;
     updatedAt:           Date;

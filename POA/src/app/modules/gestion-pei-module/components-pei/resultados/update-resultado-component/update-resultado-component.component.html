@@ -23,6 +23,9 @@
                 <div class="row text-center">
                     <h1> </h1>
                     <h2 class="l-4">Editar Resultado</h2>
+                    <span class="fs4">
+          Para el Area: <span class="text-primary">{{area.nombre}}</span> <br>
+          </span>
                 </div>
             </div>
 
@@ -45,7 +48,7 @@
                 </div>
                 <div class="container">
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button> -->
+                        <button type="button" class="btn btn-secondary" (click)="toDetail()" >Regresar</button>
                         <!-- [disabled]="Result.invalid" -->
                         <button type="submit" class="btn btn-warning" (click)="Update()" >Guardar</button>
                     </div>
