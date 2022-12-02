@@ -65,11 +65,17 @@
                     <textarea matInput readonly> {{tareas.nombre}} </textarea>
                 </mat-form-field>
 
+                <mat-form-field appearance="outline" class="example-form-textarea">
+                    <mat-label>Descripcion</mat-label>
+                    <textarea matInput type="text" name="descripcion" [(ngModel)]="descripcion"
+                        value="{{tareas.descripcion}}"></textarea>
+                </mat-form-field>
+                <!-- 
                 <div class="col-10 mb-3">
                     <label for="inputdescripcion" class="form-label">Descripción:</label>
                     <textarea class="form-control" id="exampleFormControlTextarea1" [(ngModel)]="descripcion"
                         name="descripcion" rows="2" value="{{tareas.descripcion}}"></textarea>
-                </div>
+                </div> -->
 
                 <!-- <mat-form-field appearance="outline" class="example-form-textarea">
                     <mat-label>Descripcion de la tarea</mat-label>
@@ -102,25 +108,40 @@
 
             <ng-container *ngIf="tareas.isPresupuesto==true">
                 <div class="example-container">
-                    <mat-form-field appearance="outline" class="example-form-input">
+                    <!-- <mat-form-field appearance="outline" class="example-form-input">
+                        <mat-label>Cantidad</mat-label>
+                        <textarea matInput type="number" class="example-right-align" name="cantidad" value=""
+                            placeholder="Placeholder" NgModel>{{tareas.presupuesto.cantidad}}</textarea>
+
+                    </mat-form-field> -->
+                    <mat-form-field appearance="fill" class="example-form-input">
                         <mat-label>Cantidad</mat-label>
                         <input matInput type="number" class="example-right-align" name="cantidad"
-                            [(ngModel)]='+cantidad' placeholder="" NgModel required>{{tareas.presupuesto.cantidad}}
+                            [(ngModel)]='+tareas.presupuesto.cantidad' placeholder="" NgModel required>
                     </mat-form-field>
+
 
                     <mat-form-field appearance="fill" floatLabel="always" class="example-form-input">
                         <mat-label>Costo Unitario</mat-label>
                         <input matInput type="number" class="example-right-align" name="costounitario"
-                            [(ngModel)]='+costounitario' placeholder="0" ngModel required>
+                            [(ngModel)]='+tareas.presupuesto.costounitario' placeholder="" ngModel required>
                         <span matPrefix>L.&nbsp;</span>
                         <span matSuffix>.00</span>
                     </mat-form-field>
 
                     <mat-form-field appearance="fill" floatLabel="always" class="example-form-input">
                         <mat-label>Total</mat-label>
-                        <input matInput type="number" class="example-right-align" placeholder="0" type="text"
-                            name="total" value="{{costounitario*cantidad|| 0|currency:'L.'}}" readonly>
+                        <input matInput type="number" class="example-right-align" name="total" placeholder=""
+                            type="text"
+                            value="{{tareas.presupuesto.costounitario*tareas.presupuesto.cantidad|| 0|currency:'L.'}}"
+                            readonly>
                     </mat-form-field>
+
+                    <!-- <mat-form-field appearance="fill" floatLabel="always" class="example-form-input">
+                        <mat-label>Total</mat-label>
+                        <input matInput type="number" class="example-right-align" placeholder="0" type="text"
+                            name="total"   [(ngModel)]='+tareas.presupuesto.total' value="{{tareas.presupuesto.costounitario*tareas.presupuesto.cantidad|| 0|currency:'L.'}}" readonly>
+                    </mat-form-field> -->
                 </div>
 
 
@@ -138,15 +159,26 @@
                         <textarea matInput type="text" class="example-right-align" placeholder="0" name="total" value=""
                             readonly>{{tareas?.presupuesto?.objetogasto?.identificador+' - '+tareas?.presupuesto?.objetogasto?.nombre}}</textarea>
                     </mat-form-field>
-                    <mat-form-field appearance="outline" floatLabel="always" class="example-form-inputt">
-                        <mat-label>Unidad de medida</mat-label>
-                        <textarea matInput type="text" class="example-right-align" placeholder="0" name="total" value=""
-                            readonly>{{tareas?.presupuesto?.unidadmedida?.nombre}}</textarea>
+
+
+                    <mat-form-field appearance="fill">
+                        <mat-label>{{tareas?.presupuesto?.unidadmedida?.nombre}}</mat-label>
+                        <mat-select name="idunidad" [(ngModel)]="idunidad" NgModel required>
+                            <mat-option value="1">Litros</mat-option>
+                            <mat-option value="2">Kilogramos</mat-option>
+                            <mat-option value="3">Gramos</mat-option>
+                            <mat-option value="4">Unidad</mat-option>
+                        </mat-select>
                     </mat-form-field>
-                    <mat-form-field appearance="outline" floatLabel="always" class="example-form-inputt">
-                        <mat-label>Fuente</mat-label>
-                        <textarea matInput type="text" class="example-right-align" placeholder="0" name="total" value=""
-                            readonly>{{tareas?.presupuesto?.fuente?.nombre}}</textarea>
+
+                    <mat-form-field appearance="fill">
+                        <mat-label>{{tareas?.presupuesto?.fuente?.nombre}}</mat-label>
+                        <mat-select name="idfuente" [(ngModel)]="idfuente" NgModel>
+                            <mat-option>-- None --</mat-option>
+                            <mat-option value="1">Fuente 11</mat-option>
+                            <mat-option value="2">Fuente 12</mat-option>
+                            <mat-option value="3">Fuente 12B </mat-option>
+                        </mat-select>
                     </mat-form-field>
 
 

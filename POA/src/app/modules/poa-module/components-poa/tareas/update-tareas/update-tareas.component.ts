@@ -12,7 +12,7 @@ import { TareasService } from '../../../services-poa/tareas.service';
 })
 export class UpdateTareasComponent implements OnInit {
   color: ThemePalette = 'primary';
-  isPresupueseto=false;
+  isPresupueseto=true;
   checked = true;
   disabled = false;
   
@@ -78,8 +78,9 @@ export class UpdateTareasComponent implements OnInit {
     if((idunidad==0)){idunidad = this.tareas.presupuesto.idunidad}
     console.log(":"+nombre+":" + ":"+descripcion);
      try{
+      total=cantidad*costounitario
       this.tareaservice.actualizarTarea(nombre,descripcion,this.id,this.isPresupueseto,this.idActividad,cantidad,this.idPresupuesto,costounitario,total,idobjeto,idfuente,idunidad).subscribe((res:any)=>{    
-      Swal.fire({
+        Swal.fire({
         icon: 'success',
         title: '¡Actualizado con éxito!',
         showConfirmButton: false,
@@ -88,22 +89,26 @@ export class UpdateTareasComponent implements OnInit {
      },(error:any)=>{
       
      });
-this.toDetail()
+this.onBack()
 
 } catch(error){
   console.log(error);
   Swal.fire({
-   icon: 'error',
+   icon: 'success',
    title: 'Ha ocurrido un error',
    showConfirmButton: false,
-   timer: 2500
+   timer: 2500,
  })
+ this.onBack()
 }
 setTimeout(function() {
   window.location.reload();
    },100);
 }
 
+onBack(): void {
+  this.router.navigate(['/gestion_poa/tareas/detail/',this.idActividad]);
+}
 toDetail(){
   this.router.navigate(['/gestion_poa/tareas/detail/',this.id,this.idActividad]);
 }
