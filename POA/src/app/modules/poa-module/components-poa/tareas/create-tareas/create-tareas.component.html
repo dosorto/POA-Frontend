@@ -1,1 +1,211 @@
-<p>create-tareas works!</p>
+<top-bar></top-bar>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
+    <title>Bootstrap Example</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body class="justify-content-center abs-center mt-5 pt-5">
+    <div class="col-12 w-75">
+        <div class="container shadow rounded border border-dark" style="background-color: white;">
+            <div class="w-100 row m-auto">
+                <br>
+                <div class="row text-center">
+                    <h1> </h1>
+                    <h2 class="l-4">Crear Tarea </h2>
+                </div>
+            </div>
+
+            <!-- espacio para el titulo, buscador y boton de agregar uno nuevo -->
+
+
+            <form #Tarea="ngForm"
+                (ngSubmit)="crear_Tarea(Tarea.value.nombre,Tarea.value.descripcion,Tarea.value.isPresupuesto,Tarea.value.cantidad,Tarea.value.costounitario,Tarea.value.total,Tarea.value.idobjeto,Tarea.value.idfuente,Tarea.value.idunidad)"
+                id="CreateTarea">
+                <!-- <div class="col-10">
+                    <label for="inputNombre" class="form-label">Nombre:</label>
+                    <textarea type="text" class="form-control" id="exampleFormControlTextarea1" rows="2" value="{{objetivo?.nombre}}" disabled>
+                    </textarea>
+                    </div>
+                     campo para nombre -->
+                <div class="example-container">
+                    <mat-form-field appearance="fill" class="example-form-textarea">
+                        <mat-label>Nombre de la Tarea</mat-label>
+                        <textarea matInput type="text" [(ngModel)]="nombre" name="nombre" [matAutocomplete]="auto"
+                            (ngModelChange)="mostrarObjeto2(nombre)" ngModel required></textarea>
+                        <button mat-mini-fab color="warn" *ngIf="nombre" matSuffix mat-icon-button aria-label="Clear"
+                            (click)="nombre=''">
+                            <mat-icon>close</mat-icon>
+                        </button>
+                        <mat-autocomplete #auto="matAutocomplete">
+                            <mat-option *ngFor="let x of listTareasH |tareasFiltroH:nombre;" [value]="x.nombre">
+                                {{x.nombre}}
+                            </mat-option>
+                            <mat-option>
+                                aqui
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="example-form-textarea">
+                        <mat-label>Descripcion</mat-label>
+                        <textarea matInput type="text" name="descripcion" ngModel required></textarea>
+
+                    </mat-form-field>
+
+                </div>
+
+                <div><br></div>
+                <mat-slide-toggle class="example-margin" [color]="color" [checked]="checked" [disabled]="disabled"
+                    [(ngModel)]="isPresupuesto" name="isPresupuesto">Presupuesto</mat-slide-toggle>
+
+                <div><br></div>
+                <ng-container *ngIf="isPresupuesto==true">
+                    <div class="example-container">
+                        <mat-form-field appearance="outline" class="example-form-input">
+                            <mat-label>Cantidad</mat-label>
+                            <input matInput type="number" class="example-right-align" name="cantidad"
+                                [(ngModel)]='+cantidad' placeholder="Placeholder" NgModel required>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="fill" floatLabel="always" class="example-form-input">
+                            <mat-label>Costo Unitario</mat-label>
+                            <input matInput type="number" class="example-right-align" name="costounitario"
+                                [(ngModel)]="+costounitario" placeholder="0" ngModel required>
+                            <span matPrefix>L.&nbsp;</span>
+
+                        </mat-form-field>
+
+                        <mat-form-field appearance="fill" floatLabel="always" class="example-form-input">
+                            <mat-label>Total</mat-label>
+                            <input matInput type="number" class="example-right-align" placeholder="0" type="text"
+                                name="total" value="{{costounitario*cantidad|| 0|currency:'L.'}}" readonly>
+                        </mat-form-field>
+                    </div>
+                    <ng-container *ngIf="tareass?.idobjeto==undefined is false; else objetovacio1">
+                        <div class="example-container">
+
+
+                            <mat-form-field appearance="fill" class="example-form-textarea">
+                                <mat-label>Objeto del gasto</mat-label>
+                                <select matNativeControl name="idobjeto" [(ngModel)]="objeto" NgModel required>
+                                    <ng-container *ngIf="tareass?.idobjeto==undefined is true; else objetovacio">
+                                        <optgroup label="Todos los grupos"></optgroup>
+                                        <option *ngFor="let x of ListObjeto" value="{{x.id}}">{{x.identificador+"
+                                            "+x.nombre}}</option>
+                                    </ng-container>
+                                    <ng-template #objetovacio>
+                                        <optgroup label="Recomendado"></optgroup>
+                                        <option value="{{tareass?.idobjeto}}"> {{tareass?.objeto}}</option>
+                                    </ng-template>
+
+                                </select>
+                            </mat-form-field>
+
+                            <mat-form-field appearance="fill">
+                                <mat-label>Unidad de Medida</mat-label>
+                                <mat-select [(value)]="selected" name="idunidad" [(ngModel)]="unidadmedida_seleccionado"
+                                    NgModel required>
+                                    <mat-option value="1">Litros</mat-option>
+                                    <mat-option value="2">Kilogramos</mat-option>
+                                    <mat-option value="3">Gramos</mat-option>
+                                    <mat-option value="4">Unidad</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+
+                            <mat-form-field appearance="fill">
+                                <mat-label>Fuentes</mat-label>
+                                <mat-select name="idfuente" [(ngModel)]="fuente_seleccionado" NgModel required>
+                                    <mat-option>-- None --</mat-option>
+                                    <mat-option value="1">Fuente 11</mat-option>
+                                    <mat-option value="2">Fuente 12</mat-option>
+                                    <mat-option value="3">Fuente 12B </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </ng-container>
+
+                    <!-- Aqui inicia -->
+                    <ng-template #objetovacio1>
+                        <div class="example-container">
+                            <!-- <input  class="form-control" id="exampleFormControlTextarea1"  rows="2" value="{{tareass.objeto}}" > -->
+
+                            <!-- <input  value="{{objeto}}"
+                                                    type="text" name="idobjeto" ngModel required> -->
+                            <mat-form-field appearance="outline" class="example-form-textarea">
+                                <mat-label>Objeto del Gasto</mat-label>
+                                <input matInput type="text" class="example-right-align" value="{{tareass.objeto}}"
+                                    placeholder="Placeholder" NgModel required>
+                            </mat-form-field>
+
+                            <!-- <input type="text" name="idobjeto">
+                                                <input type="text" disabled value="{{tareass.objeto}}"> -->
+                            <mat-form-field appearance="fill">
+                                <mat-label>Unidad de Medida</mat-label>
+                                <mat-select [(value)]="selected" name="idunidad" [(ngModel)]="unidadmedida_seleccionado"
+                                    NgModel required>
+                                    <mat-option value="1">Litros</mat-option>
+                                    <mat-option value="2">Kilogramos</mat-option>
+                                    <mat-option value="3">Gramos</mat-option>
+                                    <mat-option value="4">Unidad</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+
+                            <mat-form-field appearance="fill">
+                                <mat-label>Fuentes</mat-label>
+                                <mat-select name="idfuente" [(ngModel)]="fuente_seleccionado" NgModel required>
+                                    <mat-option>-- None --</mat-option>
+                                    <mat-option value="1">Fuente 11</mat-option>
+                                    <mat-option value="2">Fuente 12</mat-option>
+                                    <mat-option value="3">Fuente 12B </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+
+                    </ng-template>
+                    <div><br></div>
+                    <div><br></div>
+
+
+
+                </ng-container>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-secondary" (click)="onBack()">Cerrar</button>
+                    <button type="submit" class="btn btn-warning m-2"
+                        *ngIf="isPresupuesto === false || saldo >= costounitario*cantidad && +fuente_seleccionado===1 || saldo1 >= costounitario*cantidad && +fuente_seleccionado===2 || saldo2 >= costounitario*cantidad && +fuente_seleccionado===3"
+                        [disabled]="Tarea.invalid">Guardar</button>
+                </div>
+
+
+
+
+            </form>
+
+            <div class="position-absolute top-50 start-50">
+                <ng-container *ngIf="saldo < costounitario*cantidad && +fuente_seleccionado===1">
+                    <span class="alert alert-danger">El total excede el disponible en la Fuente11:
+                        {{saldo|currency:'L'}} </span>
+                </ng-container>
+                <ng-container *ngIf="saldo1 < costounitario*cantidad && +fuente_seleccionado===2">
+
+                    <span class="alert alert-danger"> El total excede el disponible en la Fuente 12:
+                        {{saldo1|currency:'L'}} </span>
+                </ng-container>
+                <ng-container *ngIf="saldo2 < costounitario*cantidad && +fuente_seleccionado===3">
+
+                    <span class="alert alert-danger"> El total excede el disponible en la Fuente 12B:
+                        {{saldo2|currency:'L'}} </span>
+                </ng-container>
+            </div>
+            <!-- {{nombre}}
+<ul>
+    <li>{{tareass?.objeto}}</li>
+    <li>{{tareass?.idobjeto}}</li>
+    <li>{{objeto}}</li>
+    <li>{{gastosFuente11}}</li>
+</ul>  -->

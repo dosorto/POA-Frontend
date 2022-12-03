@@ -1,4 +1,6 @@
 import { Actividad } from "./actividad.model";
+import { ObjetoGasto } from "./objeto_gasto.model";
+import { Presupuesto } from "./presupuesto.model";
 
 export interface Tareas {
     id:            number;
@@ -10,4 +12,6 @@ export interface Tareas {
     updatedAt:     Date;
     idActividad:   number;
     actividades:   Actividad;
+    presupuesto: Presupuesto;
+    objeto: ObjetoGasto;
 }
