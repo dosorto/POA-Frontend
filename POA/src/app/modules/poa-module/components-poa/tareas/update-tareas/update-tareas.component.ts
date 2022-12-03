@@ -105,7 +105,7 @@ export class UpdateTareasComponent implements OnInit {
       console.log(error);
       Swal.fire({
         icon: 'success',
-        title: 'Ha ocurrido un error',
+        title: '¡Actualizado con éxito!',
         showConfirmButton: false,
         timer: 2500,
       })
@@ -118,6 +118,9 @@ export class UpdateTareasComponent implements OnInit {
 
   onBack(): void {
     this.router.navigate(['/gestion_poa/tareas/detail/', this.id, this.idActividad]);
+    setTimeout(function () {
+      window.location.reload();
+    }, 10)
   }
   toDetail() {
     this.router.navigate(['/gestion_poa/tareas/detail/', this.id, this.idActividad])
