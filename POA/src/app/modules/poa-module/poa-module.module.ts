@@ -61,6 +61,7 @@ import { ResponsablePaginacionPipe } from './pipes-poa/responsable-paginacion.pi
 import { ResponsableFiltroPipe } from './pipes-poa/responsable-filtro.pipe';
 import { IndicadorFiltroPipe } from './pipes-poa/indicador-filtro.pipe';
 import { IndicadorPaginacionPipe } from './pipes-poa/indicador-paginacion.pipe';
+import { DetailPresupuestoComponent } from './components-poa/tareas/detail-presupuesto/detail-presupuesto.component';
 
 
 
@@ -138,7 +139,8 @@ const router = RouterModule.forChild([
     ResponsablePaginacionPipe,
     ResponsableFiltroPipe,
     IndicadorFiltroPipe,
-    IndicadorPaginacionPipe
+    IndicadorPaginacionPipe,
+    DetailPresupuestoComponent
 
   ],
   imports: [
