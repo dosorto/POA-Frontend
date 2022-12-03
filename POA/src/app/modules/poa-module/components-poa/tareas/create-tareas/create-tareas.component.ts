@@ -13,6 +13,7 @@ import { ObjetoGasto } from '../../../interfaces-poa/objeto_gasto.model';
 import { FormControl } from '@angular/forms';
 import { Presupuesto } from '../../../interfaces-poa/presupuesto.model';
 import { TareasH } from '../../../interfaces-poa/tareas_historico.model';
+import { Poa } from '../../../interfaces-poa/poa.model';
 
 @Component({
   selector: 'app-create-tareas',
@@ -29,6 +30,19 @@ export class CreateTareasComponent implements OnInit {
   value = 'Clear me';
 
   panelColor = new FormControl('red');
+
+  public gastosFuente11:number=0
+  public gastosFuente12:number=0  
+  public gastosFuente12B:number=0  
+  public listFuente11: Array<Tareas>=[];
+  public listFuente12: Array<Tareas>=[];
+  public listFuente12B: Array<Tareas>=[];
+  public idPoa = 1;
+  public saldo: number=0
+  public saldo1: number=0
+  public saldo2: number=0
+  public PoaList: Poa | any = {}
+
   public unidadmedida_seleccionado:string="";
   public objetogasto_seleccionado:string="";
   public grupogasto_seleccionado:string="";
@@ -38,6 +52,7 @@ export class CreateTareasComponent implements OnInit {
   public listTareasP: Array<Tareas>=[];
   public listTareasH: Array<TareasH>=[];
   public nombre:string=""; // para filtar la tabla
+  public objeto:any
 
   constructor( private Storage:Storage, 
     private tareasService: TareasService,
@@ -52,18 +67,19 @@ export class CreateTareasComponent implements OnInit {
   ngOnInit(): void {
     //this.mostrarObjeto(this.nombre)
     this.initData()
-    this.mostrarObjeto(this.nombre)
- 
+    //this.mostrarObjeto(this.nombre)
+    //this.mostrarObjeto2(this.nombre)
   }
   isPresupuesto:boolean=false;
   async crear_Tarea(nombre:string,descripcion:string,isPresupuesto:boolean,
     cantidad:number,costounitario:number,total:number,idobjeto:number,idfuente:number,iduniad:number){
-      if((costounitario==0)){costounitario = this.tareass.presupuesto.costounitario}
+      //if((costounitario==0)){costounitario = this.tareass.presupuesto.costounitario}
     
       if(this.isPresupuesto){
       //let isPresupuesto=true;
    
     total=cantidad*costounitario
+    idobjeto=this.objeto
     console.log(nombre.toString(),descripcion,isPresupuesto,this.idActividad,idobjeto,idfuente,costounitario,total,cantidad);
     await this.tareasService.crearTarea(nombre,descripcion,isPresupuesto,this.idActividad,
       cantidad,costounitario,total,idobjeto,idfuente,iduniad).subscribe((res:any)=>{
@@ -121,7 +137,7 @@ export class CreateTareasComponent implements OnInit {
 // var stringToConvert = "A123";
 // var numberValue = Number(stringToConvert);
 // console.log(numberValue);
-public costounitario:number=0
+public costounitario:any
 public cantidad:number=0
 public total:number=0
 // numero1= Number(this.costounitario)
@@ -137,6 +153,32 @@ public tareass:Presupuesto | any = {};
     });
     console.log(this.tareass.idobjeto)
   }
+
+  async mostrarObjeto2 (nombre:string) {
+    this.tareass = await this.tareasService.Probando(this.nombre).subscribe((response:any)=>{
+      this.tareass = response.tarea;
+      //console.log("asdsada",response.tarea.idobjeto);
+      //console.log(this.tareass.idobjeto)
+      //console.log(response.tarea.idobjeto)
+      //console.log("esta es",this.tareass.idobjeto)
+      this.objeto=response?.tarea?.idobjeto
+    //   if(this.tareass.idobjeto === response.tarea.idobjeto){
+        
+    //     console.log("aquiiiii")
+    //     //this.objeto=response.tarea.idobjeto
+    //     this.objeto=this.tareass.idobjeto
+    // }else{
+    //   console.log("toma este valor")
+    //   this.objeto=0
+    // }
+    
+    //console.log("esta es",this.tareass.idobjeto)
+    })
+    // console.log(this.tareass.idobjeto)
+    // console.log(this.objeto)
+    //console.log(this.tareass.idobjeto)
+  }
+
   // mostrarObjeto(nombre:string) {
   //   this.tareasService.Probando(nombre).subscribe((response:any) => 
   //   this.List = response);
@@ -146,7 +188,7 @@ public tareass:Presupuesto | any = {};
   //   }
 
   async initData(){
-    
+
     const tareas = await firstValueFrom(this.tareasService.getTarea(this.idActividad))
     this.listTareas = tareas;
 
@@ -160,6 +202,29 @@ public tareass:Presupuesto | any = {};
 
     this.mostrarObjetos()
 
+    const Fuente11 = await firstValueFrom(this.tareasService.getFuente11(this.idPoa))
+this.listFuente11 = Fuente11
+// fuente 12
+const Fuente12 = await firstValueFrom(this.tareasService.getFuente12(this.idPoa))
+this.listFuente12 = Fuente12
+// fuente 12B
+const Fuente12B = await firstValueFrom(this.tareasService.getFuente12B(this.idPoa))
+this.listFuente12B = Fuente12B
+
+  //console.log('aquiii',Fuente11)
+  //sumo todos los valores de las tareas que son agregadas a la fuente 11
+this.gastosFuente11 = this.listFuente11.reduce((sum, value) => (typeof value.presupuesto.total == "number" ? sum + value.presupuesto.total : sum), 0);
+//sumo todos los valores de las tareas que son agregadas a la fuente 12
+this.gastosFuente12 = this.listFuente12.reduce((sum, value) => (typeof value.presupuesto.total == "number" ? sum + value.presupuesto.total : sum), 0);
+//sumo todos los valores de las tareas que son agregadas a la fuente 12B
+this.gastosFuente12B = this.listFuente12B.reduce((sum, value) => (typeof value.presupuesto.total == "number" ? sum + value.presupuesto.total : sum), 0);
+
+this.PoaList = await this.tareasService.getPoa_Id(this.idPoa).subscribe((response:any)=>{
+  this.PoaList = response.poa;
+  this.saldo= +this.PoaList.fuente11 -this.gastosFuente11
+  this.saldo1= +this.PoaList.fuente12 -this.gastosFuente12
+  this.saldo2= +this.PoaList.fuente12B - this.gastosFuente12B
+})
     // this.sumall = this.listTareasP.reduce((sum, value) => (typeof value.presupuesto.total == "number" ? sum + value.presupuesto.total : sum), 0);
     // console.log(this.sumall);
 
@@ -180,8 +245,14 @@ public tareass:Presupuesto | any = {};
 }
 ListObjeto: any=[];
 //para llenar el select
+
 mostrarObjetos(){
   this.tareasService.getobjeto().subscribe((response:any) => 
   this.ListObjeto = response);
 }
+
+
+
+
+
 }

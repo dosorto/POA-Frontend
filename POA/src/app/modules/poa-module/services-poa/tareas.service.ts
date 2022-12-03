@@ -172,9 +172,39 @@ getTareasH()  {
     return this.directHttp.get(url);
   }
 
+ 
+
 
 ///////////////////////////////////////////////
 ////////////////////////////////////////////////////
+// getFuente11(idPoa:number) {
+//   return this.callHttp.httpGet<Institucion>(`${environment.servidor}tarea/suma/`+idPoa.toString());
+// }
+
+getFuente11(idActividad:number) {
+  return this.callHttp.httpGet<Array<Tareas>>(`${environment.servidor}tarea/suma/` + idActividad.toString())
+    .pipe(map(response => {
+      this._tareas = response;
+      return response;
+    }))
+}
+
+getFuente12(idActividad:number) {
+  return this.callHttp.httpGet<Array<Tareas>>(`${environment.servidor}tarea/suma_fuente12/` + idActividad.toString())
+    .pipe(map(response => {
+      this._tareas = response;
+      return response;
+    }))
+}
+
+getFuente12B(idActividad:number) {
+  return this.callHttp.httpGet<Array<Tareas>>(`${environment.servidor}tarea/suma_fuente12B/` + idActividad.toString())
+    .pipe(map(response => {
+      this._tareas = response;
+      return response;
+    }))
+}
+
 getInsti_Id(idInsti:number) {
   return this.callHttp.httpGet<Institucion>(`${environment.servidor}institucion/get/`+idInsti.toString());
 }
