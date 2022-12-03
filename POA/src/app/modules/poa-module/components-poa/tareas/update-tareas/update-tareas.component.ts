@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { Presupuesto } from '../../../interfaces-poa/presupuesto.model';
 import { Tareas } from '../../../interfaces-poa/tareas.model';
 import { TareasService } from '../../../services-poa/tareas.service';
 
@@ -13,15 +14,16 @@ import { TareasService } from '../../../services-poa/tareas.service';
 export class UpdateTareasComponent implements OnInit {
   color: ThemePalette = 'primary';
   isPresupueseto=true;
-  checked = true;
+  checked = false;
   disabled = false;
-  
-  isPresupuesto:boolean=true;
+  selected = "4"
+  isPresupuesto:boolean=false;
   
   public unidadmedida_seleccionado:string="";
   public objetogasto_seleccionado:string="";
   public grupogasto_seleccionado:string="";
   public fuente_seleccionado:string="";
+  
 
   id = Number(this.route.snapshot.paramMap.get('id'));
   idActividad:number = Number(this.route.snapshot.paramMap.get('idActividad'));
@@ -57,6 +59,14 @@ export class UpdateTareasComponent implements OnInit {
     });
   }
 
+  public tareass:Presupuesto | any = {};
+  List:Array<Tareas>=[];
+  mostrarObjeto(nombre:string): void {
+    this.tareaservice.Probando(nombre).subscribe({
+      next: tareas => {this.tareass = tareas}
+      // error: err => this.errorMessage = err
+    });
+  }
   Update():any{
     let nombre = this.nombre;
     let descripcion = this.descripcion;
@@ -101,9 +111,7 @@ this.onBack()
  })
  this.onBack()
 }
-setTimeout(function() {
-  window.location.reload();
-   },100);
+
 }
 
 onBack(): void {

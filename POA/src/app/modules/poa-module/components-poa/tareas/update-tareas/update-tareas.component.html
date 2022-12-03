@@ -50,19 +50,10 @@
 
 
 
-            <!-- espacio para el titulo, buscador y boton de agregar uno nuevo -->
-
-
-            <!-- <div class="col-10">
-                <label for="inputNombre" class="form-label">Nombre:</label>
-                <textarea type="text" class="form-control" id="exampleFormControlTextarea1" rows="2" value="{{objetivo?.nombre}}" disabled>
-                </textarea>
-                </div>
-                 campo para nombre -->
             <div class="example-container">
                 <mat-form-field appearance="outline" class="example-form-textarea">
                     <mat-label>Nombre de la tarea</mat-label>
-                    <textarea matInput readonly> {{tareas.nombre}} </textarea>
+                    <textarea matInput name="nombre" readonly> {{tareas.nombre}} </textarea>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" class="example-form-textarea">
@@ -70,34 +61,86 @@
                     <textarea matInput type="text" name="descripcion" [(ngModel)]="descripcion"
                         value="{{tareas.descripcion}}"></textarea>
                 </mat-form-field>
-                <!-- 
-                <div class="col-10 mb-3">
-                    <label for="inputdescripcion" class="form-label">Descripción:</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" [(ngModel)]="descripcion"
-                        name="descripcion" rows="2" value="{{tareas.descripcion}}"></textarea>
-                </div> -->
-
-                <!-- <mat-form-field appearance="outline" class="example-form-textarea">
-                    <mat-label>Descripcion de la tarea</mat-label>
-                    <textarea matInput placeholder="Ex. 100 Main St" readonly> {{tareas.descripcion}} </textarea>
-                </mat-form-field> -->
             </div>
             <div><br></div>
-            <!-- Default switch -->
-            <!-- <div class="form-check form-switch">
-                    <input mdbCheckbox class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="isPresupusto" >
-                    <label class="form-check-label" for="flexSwitchCheckDefault">Default switch checkbox
-                        input</label>
-                </div> -->
-            <!-- <mat-slide-toggle class="example-margin" [color]="color" [checked]="checked" [disabled]="disabled"
-                    [(ngModel)]="isPresupuesto" name="isPresupuesto">Presupuesto</mat-slide-toggle> -->
 
             <div><br></div>
 
+
+
+
+
             <ng-container *ngIf="tareas.isPresupuesto==false; else isPresupuestot">
-                <mat-slide-toggle class="example-margin" [color]="color" [checked]="true" [ ]="disabled"
-                    name="isPresupuesto">Presupuesto</mat-slide-toggle>
+                <mat-slide-toggle class="example-margin" [color]="color" [checked]="checked" [disabled]="disabled"
+                    [(ngModel)]="isPresupuesto" name="isPresupuesto">Presupuesto</mat-slide-toggle>
+
+                    
+                <ng-container name="isPresupuesto" *ngIf="isPresupuesto==true">
+                    <div class="example-container">
+                        <mat-form-field appearance="outline" class="example-form-input">
+                            <mat-label>Cantidad</mat-label>
+                            <input matInput type="number" class="example-right-align" name="cantidad"
+                                [(ngModel)]='+cantidad' placeholder="Placeholder" NgModel required>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="fill" floatLabel="always" class="example-form-input">
+                            <mat-label>Costo Unitario</mat-label>
+                            <input matInput type="number" class="example-right-align" name="costounitario"
+                                [(ngModel)]='+costounitario' placeholder="0" ngModel required>
+                            <span matPrefix>L.&nbsp;</span>
+                            <span matSuffix>.00</span>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="fill" floatLabel="always" class="example-form-input">
+                            <mat-label>Total</mat-label>
+                            <input matInput type="number" class="example-right-align" placeholder="0" type="text"
+                                name="total" value="{{costounitario*cantidad|| 0|currency:'L.'}}" readonly>
+                        </mat-form-field>
+                    </div>
+                    <div class="example-container">
+
+
+                        <mat-form-field appearance="outline" floatLabel="always" class="example-form-inputt">
+                            <mat-label>Objeto del gasto</mat-label>
+                            <textarea matInput type="text" class="example-right-align" placeholder="0" name="total"
+                                value=""
+                                readonly>{{tareas?.presupuesto?.grupogasto?.identificador+' - '+tareas?.presupuesto?.grupogasto?.nombre}}</textarea>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" floatLabel="always" class="example-form-inputt">
+                            <mat-label>Grupo del gasto</mat-label>
+                            <textarea matInput type="text" class="example-right-align" placeholder="0" name="total"
+                                value=""
+                                readonly>{{tareas?.presupuesto?.objetogasto?.identificador+' - '+tareas?.presupuesto?.objetogasto?.nombre}}</textarea>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="fill">
+                            <mat-label>Unidad de Medida</mat-label>
+                            <mat-select [(value)]="selected" name="idunidad" [(ngModel)]="unidadmedida_seleccionado"
+                                NgModel required>
+                                <mat-option value="1">Litros</mat-option>
+                                <mat-option value="2">Kilogramos</mat-option>
+                                <mat-option value="3">Gramos</mat-option>
+                                <mat-option value="4">Unidad</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="fill">
+                            <mat-label>Fuentes</mat-label>
+                            <mat-select name="idfuente" [(ngModel)]="fuente_seleccionado" NgModel required>
+                                <mat-option>-- None --</mat-option>
+                                <mat-option value="1">Fuente 11</mat-option>
+                                <mat-option value="2">Fuente 12</mat-option>
+                                <mat-option value="3">Fuente 12B </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </ng-container>
+
             </ng-container>
+
+
+
+
             <div class="mb-3">
             </div>
             <div><br></div>
@@ -151,7 +194,8 @@
                 <div class="example-container">
                     <mat-form-field appearance="outline" floatLabel="always" class="example-form-inputt">
                         <mat-label>Objeto del gasto</mat-label>
-                        <textarea matInput type="text" class="example-right-align" placeholder="0" name="total" value=""
+                        <textarea matInput type="text" class="example-right-align" placeholder="0" name="idobjeto"
+                            value=""
                             readonly>{{tareas?.presupuesto?.grupogasto?.identificador+' - '+tareas?.presupuesto?.grupogasto?.nombre}}</textarea>
                     </mat-form-field>
                     <mat-form-field appearance="outline" floatLabel="always" class="example-form-inputt">
