@@ -8,6 +8,10 @@ import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { response } from "express";
 import { Presupuesto } from '../interfaces-poa/presupuesto.model';
 import { TareasH } from '../interfaces-poa/tareas_historico.model';
+import { Poa } from '../interfaces-poa/poa.model';
+import { Institucion } from '../../administracion-module/interfaces/institucion.model';
+import { Indicadores } from '../interfaces-poa/Indicadores.model';
+import { Depto } from '../interfaces-poa/depto.model';
 
 @Injectable({
   providedIn: 'root'
@@ -168,6 +172,65 @@ getTareasH()  {
     })
   }
 
+  getobjeto() {
+    const url = `http://localhost:8080/objetogasto/get_all`;
+    return this.directHttp.get(url);
+  }
+
+ 
+
+
+///////////////////////////////////////////////
+////////////////////////////////////////////////////
+// getFuente11(idPoa:number) {
+//   return this.callHttp.httpGet<Institucion>(`${environment.servidor}tarea/suma/`+idPoa.toString());
+// }
+
+getFuente11(idActividad:number) {
+  return this.callHttp.httpGet<Array<Tareas>>(`${environment.servidor}tarea/suma/` + idActividad.toString())
+    .pipe(map(response => {
+      this._tareas = response;
+      return response;
+    }))
+}
+
+getFuente12(idActividad:number) {
+  return this.callHttp.httpGet<Array<Tareas>>(`${environment.servidor}tarea/suma_fuente12/` + idActividad.toString())
+    .pipe(map(response => {
+      this._tareas = response;
+      return response;
+    }))
+}
+
+getFuente12B(idActividad:number) {
+  return this.callHttp.httpGet<Array<Tareas>>(`${environment.servidor}tarea/suma_fuente12B/` + idActividad.toString())
+    .pipe(map(response => {
+      this._tareas = response;
+      return response;
+    }))
+}
+
+getInsti_Id(idInsti:number) {
+  return this.callHttp.httpGet<Institucion>(`${environment.servidor}institucion/get/`+idInsti.toString());
+}
+
+getPoa_Id(idPoa:number) {
+  return this.callHttp.httpGet<Poa>(`${environment.servidor}POA/get/`+ idPoa.toString());
+}
+
+getActividad_Id(idActividad:number) {
+  return this.callHttp.httpGet<Actividad>(`${environment.servidor}actividad/get/`+ idActividad.toString());
+}
+
+getIndicador_Id(idIndicador:number) {
+  return this.callHttp.httpGet<Indicadores>(`${environment.servidor}indicadoresPOA/get-Indicadores/`+idIndicador.toString());
+}
+
+
+
+getDepto_Id(idDepto:number) {
+  return this.callHttp.httpGet<Depto>(`${environment.servidor}indicadoresPOA/get-Depto/`+ idDepto.toString());
+} 
 ///Notss
 // crear uno que una funcion que me liste todas las tareas con presupuestos y que sean distinct
 }

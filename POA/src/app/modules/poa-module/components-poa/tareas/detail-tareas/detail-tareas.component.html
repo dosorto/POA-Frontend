@@ -138,35 +138,39 @@
                     </div>
 
 
-
-
-
-                    <div class="example-container">
-                        <mat-form-field appearance="outline" floatLabel="always" class="example-form-inputt">
-                            <mat-label>Objeto del gasto</mat-label>
-                            <textarea matInput type="text" class="example-right-align" placeholder="0" name="total"
-                                value=""
-                                readonly>{{tareas?.presupuesto?.grupogasto?.identificador+' - '+tareas?.presupuesto?.grupogasto?.nombre}}</textarea>
-                        </mat-form-field>
-                        <mat-form-field appearance="outline" floatLabel="always" class="example-form-inputt">
-                            <mat-label>Grupo del gasto</mat-label>
-                            <textarea matInput type="text" class="example-right-align" placeholder="0" name="total"
-                                value=""
-                                readonly>{{tareas?.presupuesto?.objetogasto?.identificador+' - '+tareas?.presupuesto?.objetogasto?.nombre}}</textarea>
-                        </mat-form-field>
-                        <mat-form-field appearance="outline" floatLabel="always" class="example-form-inputt">
-                            <mat-label>Unidad de medida</mat-label>
-                            <textarea matInput type="text" class="example-right-align" placeholder="0" name="total"
-                                value="" readonly>{{tareas?.presupuesto?.unidadmedida?.nombre}}</textarea>
-                        </mat-form-field>
-                        <mat-form-field appearance="outline" floatLabel="always" class="example-form-inputt">
-                            <mat-label>Fuente</mat-label>
-                            <textarea matInput type="text" class="example-right-align" placeholder="0" name="total"
-                                value="" readonly>{{tareas?.presupuesto?.fuente?.nombre}}</textarea>
-                        </mat-form-field>
-
-
-                        <!-- <mat-form-field appearance="fill">
+                                    
+                                    <div class="example-container">
+                                        <mat-form-field appearance="outline" floatLabel="always" class="example-form-inputt">
+                                            <mat-label>Objeto del gasto</mat-label>
+                                            <textarea matInput type="text" class="example-right-align"
+                                                placeholder="0" name="total"
+                                                value=""
+                                                readonly>{{tareas?.presupuesto?.grupogasto?.identificador+' - '+tareas?.presupuesto?.grupogasto?.nombre}}</textarea>
+                                        </mat-form-field>
+                                        <mat-form-field appearance="outline" floatLabel="always" class="example-form-inputt">
+                                            <mat-label>Grupo del gasto</mat-label>
+                                            <textarea matInput type="text" class="example-right-align"
+                                                placeholder="0" name="total"
+                                                value=""
+                                                readonly>{{tareas?.presupuesto?.objetogasto?.identificador+' - '+tareas?.presupuesto?.objetogasto?.nombre}}</textarea>
+                                        </mat-form-field>
+                                        <mat-form-field appearance="outline" floatLabel="always" class="example-form-inputt">
+                                            <mat-label>Unidad de medida</mat-label>
+                                            <textarea matInput type="text" class="example-right-align"
+                                                placeholder="0" name="total"
+                                                value=""
+                                                readonly>{{tareas?.presupuesto?.unidadmedida?.nombre}}</textarea>
+                                        </mat-form-field>
+                                        <mat-form-field appearance="outline" floatLabel="always" class="example-form-inputt">
+                                            <mat-label>Fuente</mat-label>
+                                            <textarea matInput type="text" class="example-right-align"
+                                                placeholder="0" name="total"
+                                                value=""
+                                                readonly>{{tareas?.presupuesto?.fuente?.identificador+' - '+tareas?.presupuesto?.fuente?.nombre}}</textarea>
+                                        </mat-form-field>
+                                          
+                                          
+                                          <!-- <mat-form-field appearance="fill">
                                             <mat-label>Grupo del gasto</mat-label>
                                             <select matNativeControl  NgModel required>
                                               <option value=""> {{tareass?.presupuesto?.grupogasto?.identificador+' - '+tareass?.presupuesto?.grupogasto?.nombre}}</option>
