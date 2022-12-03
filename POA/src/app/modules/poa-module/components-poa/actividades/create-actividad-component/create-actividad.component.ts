@@ -9,6 +9,7 @@ import { NgForm } from '@angular/forms';
 import { Poa } from '../../../interfaces-poa/poa.model';
 import { Depto } from "../../..//interfaces-poa/depto.model";
 import { Institucion } from 'src/app/modules/administracion-module/interfaces/institucion.model';
+import { UnidadEjecutora } from "../../..//interfaces-poa/unidad_ejecutora.model";
 
 
 import { Empleado } from '../../../interfaces-poa/empleados.model';
@@ -41,14 +42,16 @@ export class CreateActividadComponent implements OnInit {
 
     }
     public idPoa:number = Number(this._route.snapshot.paramMap.get('idPoa'));
+    public idUE: number = Number(this._route.snapshot.paramMap.get('idUE'));
     public idDepto: number = Number(this._route.snapshot.paramMap.get('idDepto'));
     public idInsti: number = Number(this._route.snapshot.paramMap.get('idInsti'));
+    public UEList: Array<UnidadEjecutora> = [];
     public poaList: Array<Poa> = [];
     public DeptoList: Array<Depto> = []; 
     public InstitucionesList: Array<Institucion> = [];
 
     toList() {
-    this.router.navigate(['/gestion_poa/actividad/list/', this.idPoa,this.idInsti,this.idDepto]);
+    this.router.navigate(['/gestion_poa/actividad/list/', this.idPoa,this.idInsti,this.idDepto,this.idUE]);
   }
   async crearArea(nombre: string, descripcion: string, estado: string, tipoActividad: string, categoria: string) {
     console.log(nombre.toString(), this.idPoa);

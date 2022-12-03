@@ -10,6 +10,7 @@ import Swal from 'sweetalert2';
 import { Poa } from '../../../interfaces-poa/poa.model';
 import { Depto } from "../../..//interfaces-poa/depto.model";
 import { Institucion } from 'src/app/modules/administracion-module/interfaces/institucion.model';
+import { UnidadEjecutora } from "../../..//interfaces-poa/unidad_ejecutora.model";
 
 
 @Component({
@@ -32,6 +33,8 @@ export class UpdateActividadComponent implements OnInit {
   public idPoa:number = Number(this._route.snapshot.paramMap.get('idPoa'));
   public idDepto: number = Number(this._route.snapshot.paramMap.get('idDepto'));
   public idInsti: number = Number(this._route.snapshot.paramMap.get('idInsti'));
+  public idUE: number = Number(this._route.snapshot.paramMap.get('idUE'));
+  public UEList: Array<UnidadEjecutora> = [];
   public poaList: Array<Poa> = [];
   public DeptoList: Array<Depto> = []; 
   public InstitucionesList: Array<Institucion> = [];
@@ -73,7 +76,7 @@ export class UpdateActividadComponent implements OnInit {
   }
 
   toList() {
-    this.router.navigate(['/gestion_poa/actividad/list/', this.idPoa,this.idInsti,this.idDepto]);
+    this.router.navigate(['/gestion_poa/actividad/list/', this.idPoa,this.idInsti,this.idDepto,this.idUE]);
   }
 
 
