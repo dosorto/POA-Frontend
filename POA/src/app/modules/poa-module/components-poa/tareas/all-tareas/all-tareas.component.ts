@@ -94,11 +94,11 @@ console.log(sumall)
     
       //console.log('aquiii',Fuente11)
       //sumo todos los valores de las tareas que son agregadas a la fuente 11
-    this.gastosFuente11 = this.listFuente11.reduce((sum, value) => (typeof value.presupuesto.total == "number" ? sum + value.presupuesto.total : sum), 0);
+    this.gastosFuente11 = this.listFuente11.reduce((sum, value) => (typeof Number(value.presupuesto.total) == "number" ? sum + +value.presupuesto.total : sum), 0);
     //sumo todos los valores de las tareas que son agregadas a la fuente 12
-    this.gastosFuente12 = this.listFuente12.reduce((sum, value) => (typeof value.presupuesto.total == "number" ? sum + value.presupuesto.total : sum), 0);
+    this.gastosFuente12 = this.listFuente12.reduce((sum, value) => (typeof +value.presupuesto.total == "number" ? sum + value.presupuesto.total : sum), 0);
 //sumo todos los valores de las tareas que son agregadas a la fuente 12B
-this.gastosFuente12B = this.listFuente12B.reduce((sum, value) => (typeof value.presupuesto.total == "number" ? sum + value.presupuesto.total : sum), 0);
+this.gastosFuente12B = this.listFuente12B.reduce((sum, value) => (typeof +value.presupuesto.total == "number" ? sum + value.presupuesto.total : sum), 0);
 
 
 
@@ -117,7 +117,7 @@ this.gastosFuente12B = this.listFuente12B.reduce((sum, value) => (typeof value.p
       this.PoaList = response.poa;
       this.saldo= +this.PoaList.fuente11 -this.gastosFuente11
     })
-    console.log('esta es',this.PoaList.fuente11)
+    console.log('esta es',this.saldo)
 
     this.ActividadList = await this.tareaservice.getActividad_Id(this.idActividad).subscribe((response:any)=>{
       this.ActividadList = response.actividad;

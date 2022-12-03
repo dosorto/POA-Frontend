@@ -213,11 +213,11 @@ this.listFuente12B = Fuente12B
 
   //console.log('aquiii',Fuente11)
   //sumo todos los valores de las tareas que son agregadas a la fuente 11
-this.gastosFuente11 = this.listFuente11.reduce((sum, value) => (typeof value.presupuesto.total == "number" ? sum + value.presupuesto.total : sum), 0);
+this.gastosFuente11 = this.listFuente11.reduce((sum, value) => (typeof +value.presupuesto.total == "number" ? sum + +value.presupuesto.total : sum), 0);
 //sumo todos los valores de las tareas que son agregadas a la fuente 12
-this.gastosFuente12 = this.listFuente12.reduce((sum, value) => (typeof value.presupuesto.total == "number" ? sum + value.presupuesto.total : sum), 0);
+this.gastosFuente12 = this.listFuente12.reduce((sum, value) => (typeof +value.presupuesto.total == "number" ? sum + +value.presupuesto.total : sum), 0);
 //sumo todos los valores de las tareas que son agregadas a la fuente 12B
-this.gastosFuente12B = this.listFuente12B.reduce((sum, value) => (typeof value.presupuesto.total == "number" ? sum + value.presupuesto.total : sum), 0);
+this.gastosFuente12B = this.listFuente12B.reduce((sum, value) => (typeof +value.presupuesto.total == "number" ? sum + +value.presupuesto.total : sum), 0);
 
 this.PoaList = await this.tareasService.getPoa_Id(this.idPoa).subscribe((response:any)=>{
   this.PoaList = response.poa;
