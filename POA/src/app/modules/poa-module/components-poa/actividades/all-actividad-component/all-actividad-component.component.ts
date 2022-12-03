@@ -76,7 +76,7 @@ export class AllActividadComponent implements OnInit {
       this.insti = response.Institucion;
     })
     this.depto = await this.service.getDepto_Id(this.idDepto).subscribe((response: any) => {
-      this.depto = response.depto;
+      this.depto = response.all_deptos;
     })
 
    
@@ -97,11 +97,11 @@ export class AllActividadComponent implements OnInit {
   toHome() {
     this.router.navigate(['/home']);
   }
-  toInsti() {
-    this.router.navigate(['/gestion_pei/pei/list/', this.idInsti.toString()]);
+  toPoa(){
+    this.router.navigate(['/gestion_poa/poa/list/',this.idInsti,this.idUE,this.idDepto]);
   }
   selectPoa() {
-    this.router.navigate(['/gestion_poa/actividad/list/', this.poaSeleccionado, this.idInsti, this.idDepto]);
+    this.router.navigate(['/gestion_poa/actividad/list/', this.poaSeleccionado, this.idInsti, this.idDepto,this.idUE]);
     setTimeout(function () {
       window.location.reload();
     }, 10)
