@@ -216,7 +216,7 @@
                     </mat-form-field>
 
                     <mat-form-field appearance="fill">
-                        <mat-label>{{tareas?.presupuesto?.fuente?.nombre}}</mat-label>
+                        <mat-label>{{tareas?.presupuesto?.fuente?.identificador +' - '+ tareas?.presupuesto?.fuente?.nombre}}</mat-label>
                         <mat-select name="idfuente" [(ngModel)]="idfuente" NgModel>
                             <mat-option>-- None --</mat-option>
                             <mat-option value="1">Fuente 11</mat-option>
