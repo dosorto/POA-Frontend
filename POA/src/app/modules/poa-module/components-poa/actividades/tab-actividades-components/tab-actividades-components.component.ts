@@ -41,12 +41,13 @@ export class TabActividadesComponentsComponent implements OnInit {
 ) { }
 
 public idInsti = Number(this.route.snapshot.paramMap.get('idInsti'));
-  // public idDepto = Number(this.route.snapshot.paramMap.get('idDpeto'));
-  public idPoa = Number(this.route.snapshot.paramMap.get('idPoa'));
-  public idActividad = Number(this.route.snapshot.paramMap.get('idActividad'));
+public idDepto = Number(this.route.snapshot.paramMap.get('idDepto'));
+public idUE = Number(this.route.snapshot.paramMap.get('idUE'));
+public idPoa = Number(this.route.snapshot.paramMap.get('idPoa'));
+public idActividad = Number(this.route.snapshot.paramMap.get('idActividad'));
 
   // public idInsti = 1;
-  public idDepto = 1;
+  // public idDepto = 1;
   // public idPoa = 1;
   // public idActividad = 1;
 
@@ -73,7 +74,7 @@ async initData(){
 
 
   selectActividad(){
-    this.router.navigate(['/gestion_poa/actividad/tab/',this.actividad_seleccionada,this.idPoa,this.idDepto,this.idInsti]);
+    this.router.navigate(['/gestion_poa/actividad/tab/',this.actividad_seleccionada,this.idPoa,this.idUE,this.idDepto,this.idInsti]);
     setTimeout(function () {
       window.location.reload();
     }, 10)

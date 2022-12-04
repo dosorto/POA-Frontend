@@ -104,11 +104,11 @@ const router = RouterModule.forChild([
   {path: 'tareas/list/:idActividad', component: AllTareasComponent},
 
   // rutas de indicadores
-  {path: 'indicadores/create/:idActividad/:idPoa/:idDepto/:idInsti', component: CreateIndicadoresComponent},
-  {path: 'indicadores/update/:id/:idActividad/:idPoa/:idDepto/:idInsti', component: UpdateIndicadoresComponent},
-  {path: 'indicadores/detail/:id/:idActividad/:idPoa/:idDepto/:idInsti', component: DetailIndicadoresComponent},
-  {path: 'indicadores/list/:idActividad/:idPoa/:idDepto/:idInsti', component: AllIndicadoresComponent},
-  {path: 'indicadores/seguimiento/:id/:idActividad/:idPoa/:idDepto/:idInsti', component: SeguimientoIndicadorComponent},
+  {path: 'indicadores/create/:idActividad/:idPoa/:idUE/:idDepto/:idInsti', component: CreateIndicadoresComponent},
+  {path: 'indicadores/update/:id/:idActividad/:idPoa/:idUE/:idDepto/:idInsti', component: UpdateIndicadoresComponent},
+  {path: 'indicadores/detail/:id/:idActividad/:idPoa/:idUE/:idDepto/:idInsti', component: DetailIndicadoresComponent},
+  {path: 'indicadores/list/:idActividad/:idPoa/:idUE/:idDepto/:idInsti', component: AllIndicadoresComponent},
+  {path: 'indicadores/seguimiento/:id/:idActividad/:idPoa/:idUE/:idDepto/:idInsti', component: SeguimientoIndicadorComponent},
 
   // rutas de planificacion
   {path: 'planificacion/create/:idPoa/:idActividad/:idInsti/:idDepto', component: CreatePlanificacionComponent},

@@ -93,7 +93,7 @@ console.log(this.pei);
   }
 
   toTab(){
-    this.router.navigate(['/gestion_poa/actividad/tab/', this.id,this.idPoa,this.idInsti,this.idDepto]);
+    this.router.navigate(['/gestion_poa/actividad/tab/', this.id,this.idPoa,this.idUE,this.idDepto,this.idInsti]);
   }
 
   async Delete() {
