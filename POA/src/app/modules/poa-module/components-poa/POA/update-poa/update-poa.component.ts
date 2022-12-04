@@ -23,11 +23,11 @@ export class UpdatePoaComponent implements OnInit {
   color: ThemePalette = 'accent';
   checked = false;
   disabled = false;
-  isActive = true;
-
+  
   constructor(private Storage: Storage,
     private service: PoaService,
     private router: Router,
+    private poaService: PoaService,
     private _route: ActivatedRoute) { }
 
   public idDepto: number = Number(this._route.snapshot.paramMap.get('idDepto'));
@@ -42,6 +42,7 @@ export class UpdatePoaComponent implements OnInit {
   public fuente11: string = '';
   public fuente12: string = '';
   public fuente12B: string = '';
+  public isActive: boolean = true;
 
   ngOnInit(): void {
     this.initData();
@@ -54,6 +55,7 @@ export class UpdatePoaComponent implements OnInit {
   async initData() {
     this.poa = await this.service.getPOA_Id(this.id).subscribe((response: any) => {
       this.poa = response.poa;
+      this.isActive=response.poa.isActive;
       console.log(response);
     }
     );
@@ -152,10 +154,10 @@ export class UpdatePoaComponent implements OnInit {
           timer: 2500
         })
        });
-       setTimeout(function () {
+       setTimeout(function() {
         window.location.reload();
-      }, 1000);
-       this.toDetail(this.id);
+      },1000);
+      this.toDetail(this.id);
     } catch (error) {
       setTimeout(function () {
         window.location.reload();
