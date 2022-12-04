@@ -1,15 +1,7 @@
 <top-bar></top-bar>
+<app-back-button [path]="['/gestion_poa/poa/list/',this.idInsti,this.idUE,this.idDepto]"></app-back-button>
 <div class="justify-content-center abs-center mt-5 pt-5 abs-center">
     <div class="col-7">
-      <div class="backButton">
-        <button class="btn btn-warning rounded" (click)="toList()">
-          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
-            class="bi bi-arrow-left-short" viewBox="0 0 16 16">
-            <path fill-rule="evenodd"
-              d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z" />
-          </svg>
-        </button>
-      </div>
       <div><br></div>
         <!-- espacio para el titulo, buscador y boton de agregar uno nuevo -->
         <div class="container border rounded rounden-2 p-2">
@@ -21,9 +13,6 @@
                 
                 <div class="col-10 text-center">
                     <h2 class="l-4" ><font color='black'>Detalle de POA</font></h2>
-                    <span class="fs-5">
-                        Depto: <span class="text-primary ">{{depto.name}}</span>
-                    </span>
                 </div>
                 <div class="col-2">
                     <div class="d-grid gap-2 d-md-flex justify-content-end">
@@ -55,7 +44,7 @@
                 <input class="form-control" id="exampleFormControlTextarea1" rows="2" value="{{poa.fuente12B}}" disabled>
               </div>
             <div class="d-grid gap-2 d-md-flex justify-content-between">
-              <button type="button" class="btn btn-secondary" (click)="toList()" >Regresar</button>
+              <button type="button" class="btn btn-secondary" (click)="onBack()" >Regresar</button>
               <button type="button" class="btn btn-success" (click)="toActividad()" >Mostrar Actividades</button>
             </div>
         </div>

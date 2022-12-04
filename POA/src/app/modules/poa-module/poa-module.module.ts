@@ -7,15 +7,19 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { NgModel, FormControl, FormsModule} from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 import { BackButtonComponent } from 'src/app/_core/back-button/back-button.component';
+//import { NgSelectModule } from '@ng-select/ng-select';
 import { NgSelectModule } from '@ng-select/ng-select';
 
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatAutocomplete, MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatRadioModule} from '@angular/material/radio'
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
+// --------------------------------
 // componentes independientes importados
 // --------------------------------
 import { TopBarComponent } from '../../_core/top-bar/top-bar.component'
@@ -58,12 +62,14 @@ import { POAFiltroPipe } from './pipes-poa/poafiltro.pipe';
 import { POApaginacionPipe } from './pipes-poa/poapaginacion.pipe';
 import { TareasPaginacionPipe } from './pipes-poa/tareas-paginacion.pipe';
 import { TareasFiltroPipe } from './pipes-poa/tareas-filtro.pipe';
+import { TareasFiltroHPipe } from './pipes-poa/tareah-filtro.pipe';
 import { PlanificacionFiltroPipe } from './pipes-poa/planificacion-filtro.pipe';
 import { PlanificacionPaginacionPipe } from './pipes-poa/planificacion-paginacion.pipe';
 import { ResponsablePaginacionPipe } from './pipes-poa/responsable-paginacion.pipe';
 import { ResponsableFiltroPipe } from './pipes-poa/responsable-filtro.pipe';
 import { IndicadorFiltroPipe } from './pipes-poa/indicador-filtro.pipe';
 import { IndicadorPaginacionPipe } from './pipes-poa/indicador-paginacion.pipe';
+import { DetailPresupuestoComponent } from './components-poa/tareas/detail-presupuesto/detail-presupuesto.component';
 
 
 
@@ -85,10 +91,10 @@ const router = RouterModule.forChild([
   {path: 'actividad/list/:idPoa/:idInsti/:idDepto', component: AllActividadComponent},
 
   // rutas de tareas
-  {path: 'tareas/create/:idPoa/:idActividad/:idInsti/:idDepto', component: CreateTareasComponent},
-  {path: 'tareas/update/:id/:idPoa/:idActividad/:idInsti/:idDepto', component: UpdateTareasComponent},
-  {path: 'tareas/detail/:id/:idPoa/:idActividad/:idInsti/:idDepto', component: DetailTareasComponent},
-  {path: 'tareas/list/:idActividad/:idPoa/:idInsti/:idDepto', component: AllTareasComponent},
+  {path: 'tareas/create/:idActividad', component: CreateTareasComponent},
+  {path: 'tareas/update/:id/:idActividad', component: UpdateTareasComponent},
+  {path: 'tareas/detail/:id/:idActividad', component: DetailTareasComponent},
+  {path: 'tareas/list/:idActividad/:idPoa/:idDepto/:idInsti', component: AllTareasComponent},
 
   // rutas de indicadores
   {path: 'indicadores/create/:idActividad/:idPoa/:idDepto/:idInsti', component: CreateIndicadoresComponent},
@@ -137,6 +143,7 @@ const router = RouterModule.forChild([
     POApaginacionPipe,
     TareasPaginacionPipe,
     TareasFiltroPipe,
+    TareasFiltroHPipe,
     PlanificacionFiltroPipe,
     PlanificacionPaginacionPipe,
     ResponsablePaginacionPipe,
@@ -144,16 +151,18 @@ const router = RouterModule.forChild([
     IndicadorFiltroPipe,
     IndicadorPaginacionPipe,
     SeguimientoIndicadorComponent,
+    DetailPresupuestoComponent,
 
   ],
   imports: [
     NgSelectModule,
     BackButtonComponent,
 CommonModule,
-router,
-MatSelectModule,
-FormsModule,
-TopBarComponent,
+  router,
+  MatSelectModule,
+  FormsModule,
+  TopBarComponent,
+BackButtonComponent,
 MatSlideToggleModule,
 MatAutocompleteModule,
 MatFormFieldModule,

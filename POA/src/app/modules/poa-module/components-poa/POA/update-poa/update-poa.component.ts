@@ -42,18 +42,20 @@ export class UpdatePoaComponent implements OnInit {
   public fuente11: string = '';
   public fuente12: string = '';
   public fuente12B: string = '';
+  public isActive: boolean = true;
 
   ngOnInit(): void {
     this.initData();
     console.log(this.initData)
     this.depto = this.service.getDepto_Id(this.idDepto).subscribe((response: any) => {
-      this.depto = response.depto;
+      this.depto = response.Depto;
     });
   }
 
   async initData() {
     this.poa = await this.service.getPOA_Id(this.id).subscribe((response: any) => {
       this.poa = response.poa;
+      this.isActive=response.poa.isActive;
       console.log(response);
     }
     );
@@ -125,18 +127,19 @@ export class UpdatePoaComponent implements OnInit {
     let fuente11 = this.fuente11;
     let fuente12 = this.fuente12;
     let fuente12B = this.fuente12B;
+    let isActive = this.isActive;
 
-    console.log(":" + name + ":" + ":" + anio + ":" + fuente11 + ":" + fuente12 + ":" + fuente12B);
+    console.log(":" + name + ":" + ":" + anio + ":" + fuente11 + ":" + fuente12 + ":" + fuente12B + ":" + isActive);
     // validaciones
     if ((name === '')) { name = this.poa.name }
     if ((anio === '')) { anio = this.poa.anio }
     if ((fuente11 === '')) { fuente11 = this.poa.fuente11 }
     if ((fuente12 === '')) { fuente12 = this.poa.fuente12 }
     if ((fuente12B === '')) { fuente12B = this.poa.fuente12B }
-
-    console.log(":" + name + ":" + ":" + anio + ":" + fuente11 + ":" + fuente12 + ":" + fuente12B);
+    
+    console.log(":" + name + ":" + ":" + anio + ":" + fuente11 + ":" + fuente12 + ":" + fuente12B  + ":" + isActive);
     try {
-      this.service.updatePOA(name,anio,fuente11,fuente12,fuente12B,this.id,this.idInsti,this.idUE,this.idDepto).subscribe((res:any)=>{
+      this.service.updatePOA(name,anio,fuente11,fuente12,fuente12B,this.id,this.isActive,this.idInsti,this.idUE,this.idDepto).subscribe((res:any)=>{
         Swal.fire({
           icon: 'success',
           title: '¡Actualizado con éxito!',
@@ -151,7 +154,10 @@ export class UpdatePoaComponent implements OnInit {
           timer: 2500
         })
        });
-       this.toDetail(this.id);
+       setTimeout(function() {
+        window.location.reload();
+      },1000);
+      this.toDetail(this.id);
     } catch (error) {
       setTimeout(function () {
         window.location.reload();

@@ -62,27 +62,60 @@
                     </div>
                 </div>
                 <!-- tabla dinamica que muestra todas los POA -->
-                <div class="w-75 m-auto row ">
-                    <div class="d-flex align-items-stretch">
+                
+                <div>
+                    <div class="row row-cols-1 row-cols-md-4 g-4">
                         <ng-container *ngFor="let x of poa | poaFiltro:filter|poaPaginacion:step:page; index as i">
-                            <div class="card  text-bg-primary mb-3" style="width: 20rem;">
-                                <!-- este contador no es id, solo es para enumerar -->
-                                <ng-container *ngIf="page > 0; else elseNumeracion">
-                                    {{i + page + 1}}
-                                </ng-container>
-                                <ng-template #elseNumeracion>
-                                    {{i + 1}}
-                                </ng-template>
-                                <div class="card-body" style="width: 15rem;">
-                                    <h1 class="card-title">{{x.name}}</h1>
-                                    <p class="card-text">Fecha:{{x.anio}},
-                                        Fuente11:{{x.fuente11}},
-                                        Fuente12:{{x.fuente12}},
-                                        Fuente12B:{{x.fuente12B}}</p>
-                                    <button type="button" class="btn btn-warning float-center"
-                                        (click)="toDetail(x.id)">Gestionar</button>
+                            <li *ngIf="x.isActive===true">
+                                <div class="card  text-bg-primary mb-3" style="width: 20 rem;">
+                                    <!-- este contador no es id, solo es para enumerar -->
+                                    <ng-container *ngIf="page > 0; else elseNumeracion">
+                                        {{i + page + 1}}
+                                    </ng-container>
+                                    <ng-template #elseNumeracion>
+                                        {{i + 1}}
+                                    </ng-template>
+
+                                    <div class="card-body" style="width: 15rem;">
+                                        <h1 class="card-title">{{x.name}}</h1>
+                                        <p class="card-text" style="width: 11rem;">
+                                            Fecha: {{x.anio}}
+                                            Fuente11: {{x.fuente11}}
+                                            Fuente12: {{x.fuente12}}
+                                            Fuente12B: {{x.fuente12B}}
+                                                    
+                                            Estado: Habilitado
+                                        </p>
+                                        <button type="button" class="btn btn-warning float-center"
+                                            (click)="toDetail(x.id)">Gestionar</button>
+                                    </div>
                                 </div>
-                            </div>
+                            </li>
+                            <li *ngIf="x.isActive===false">
+                                <div class="card  text-bg-secondary mb-3" style="width: 20 rem;">
+                                    <!-- este contador no es id, solo es para enumerar -->
+                                    <ng-container *ngIf="page > 0; else elseNumeracion">
+                                        {{i + page + 1}}
+                                    </ng-container>
+                                    <ng-template #elseNumeracion>
+                                        {{i + 1}}
+                                    </ng-template>
+
+                                    <div class="card-body" style="width: 15rem;">
+                                        <h1 class="card-title" >{{x.name}}</h1>
+                                        <p class="card-text" style="width: 11rem;">
+                                            Fecha: {{x.anio}}
+                                            Fuente11: {{x.fuente11}}
+                                            Fuente12: {{x.fuente12}}
+                                            Fuente12B: {{x.fuente12B}}
+                                                    
+                                            Estado: Deshabilitado
+                                        </p>
+                                        <button type="button" class="btn btn-warning float-center"
+                                            (click)="toDetail(x.id)">Gestionar</button>
+                                    </div>
+                                </div>
+                            </li>
                         </ng-container>
                     </div>
                 </div>

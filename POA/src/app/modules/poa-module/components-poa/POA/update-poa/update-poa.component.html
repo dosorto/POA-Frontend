@@ -1,15 +1,7 @@
 <top-bar></top-bar>
-
+<app-back-button [path]="['/gestion_poa/poa/detail/', id, this.idInsti, this.idUE, this.idDepto]"></app-back-button>
 <body class="justify-content-center abs-center mt-5 pt-5 abs-center">
   <div class="col-7">
-    <button class="btn btn-warning rounded" (click)="toDetail(poa.id)">
-      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-left-short"
-        viewBox="0 0 16 16">
-        <path fill-rule="evenodd"
-          d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z" />
-      </svg>
-    </button>
-    <div><br></div>
     <!-- espacio para el titulo, buscador y boton de agregar uno nuevo -->
     <div class="container border rounded rounden-2 p-2">
       <div class="w-100 row m-auto">
@@ -21,31 +13,12 @@
             <h2 class="">
               <font color='black'>Actualizar POA</font>
               <br>
-              <span class="fs-5">
-                Departamento: <span class="text-primary ">{{depto}}</span>
-              </span>
             </h2>
           </div>
-          <div class="form-check form-switch form-check-reverse">
-            <input class="form-check-input" type="checkbox" id="flexSwitchCheckReverse" checked="Activate()" checked="Delete()">
-            <label class="form-check-label" for="flexSwitchCheckReverse">Habilitar
-            </label>
+          <div class="col-10 mb-3">
+            <mat-slide-toggle  name="isActive" [(ngModel)]="isActive">Deshabilitar/Habilitar</mat-slide-toggle>
           </div>
-
-          <h2 class="example-h2">Result</h2>
-          <section class="example-section">
-            <mat-slide-toggle class="example-margin" [color]="color" [checked]="checked" [disabled]="disabled">
-              Slide me!
-            </mat-slide-toggle>
-          </section>
-
-
-
-          <div class="form-check form-switch form-check-reverse">
-            <input class="form-check-input" type="checkbox" id="flexSwitchCheckReverse" (click)="Delete()">
-            <label class="form-check-label" for="flexSwitchCheckReverse">Deshabilitar
-            </label>
-          </div>
+          
           <div class="col-10">
             <label for="inputName" class="form-label" name="name">Nombre:</label>
             <input type="text" class="form-control" id="exampleFormControlTextarea1" [(ngModel)]="name" rows="2"

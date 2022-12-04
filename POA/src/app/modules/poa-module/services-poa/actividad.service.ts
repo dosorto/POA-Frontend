@@ -174,5 +174,15 @@ export class ActividadService {
         return response;
       }))
   }
+  getInsti_Id(idInsti:number) {
+    return this.callHttp.httpGet<Institucion>(`${environment.servidor}institucion/get/`+idInsti.toString());
+  }
+  getPoa_Id(idPoa:number) {
+    return this.callHttp.httpGet<Poa>(`${environment.servidor}POA/get/`+idPoa.toString());
+  }
+  getDepto_Id(idDepto:number) {
+    return this.callHttp.httpGet<Depto>(`${environment.servidor}departamento/get/`+idDepto.toString());
+  }
 
 }
+
