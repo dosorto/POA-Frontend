@@ -236,6 +236,7 @@ this.PoaList = await this.tareasService.getPoa_Id(this.idPoa).subscribe((respons
     // console.log(this.sumall)
     
   }
+  
   onBack(): void {
     this.router.navigate(['/gestion_poa/tareas/list/',this.idActividad]);
   }

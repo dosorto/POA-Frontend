@@ -53,13 +53,14 @@
             <div class="example-container">
                 <mat-form-field appearance="outline" class="example-form-textarea">
                     <mat-label>Nombre de la tarea</mat-label>
-                    <textarea matInput name="nombre" readonly> {{tareas.nombre}} </textarea>
+                    <textarea matInput name="nombre" [(ngModel)]="nombre"
+                    value="{{tareas.nombre}}"> </textarea>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" class="example-form-textarea">
                     <mat-label>Descripcion</mat-label>
                     <textarea matInput type="text" name="descripcion" [(ngModel)]="descripcion"
-                        value="{{tareas.descripcion}}"></textarea>
+                        value="{{tareas.descripcion}}" NgModel required></textarea>
                 </mat-form-field>
             </div>
             <div><br></div>
@@ -160,7 +161,7 @@
                     <mat-form-field appearance="fill" class="example-form-input" >
                         <mat-label>Cantidad</mat-label>
                         <input matInput type="number" class="example-right-align" name="cantidad"
-                            [(ngModel)]='+tareas.presupuesto.cantidad' placeholder="" NgModel required>
+                            [(ngModel)]="+tareas.presupuesto.cantidad" placeholder="" NgModel required>
                     </mat-form-field>
 
 
@@ -315,8 +316,27 @@
                 <div class="d-grid gap-3 d-md-flex justify-content-md-end">
 
                     <button type="button" class="btn btn-danger float-start" (click)="toDetail()">Cerrar</button>
-                    <button type="submit" class="btn btn-success float-end" (click)="Update()">Guardar</button>
+                    <!-- <ng-container  *ngIf="||saldo > +tareas.presupuesto.costounitario*+tareas.presupuesto.cantidad && +idfuente===1 || saldo1 > +tareas.presupuesto.costounitario*+tareas.presupuesto.cantidad && +idfuente===2 || saldo2 > +tareas.presupuesto.costounitario*+tareas.presupuesto.cantidad && +idfuente===3"> -->
+                    <button type="submit" class="btn btn-success float-end"   [disabled]="tareas.invalid"   (click)="Update()">Guardar</button>
+                <!-- </ng-container>  -->
                 </div>
+            </div>
+
+            <div class="position-absolute top-50 start-50">
+                <ng-container *ngIf="saldo < +tareas.presupuesto.costounitario*+tareas.presupuesto.cantidad && +idfuente===1">
+                    <span class="alert alert-danger">El total excede el disponible en la Fuente11:
+                        {{saldo|currency:'L'}} </span>
+                </ng-container>
+                <ng-container *ngIf="saldo1 < +tareas.presupuesto.costounitario*+tareas.presupuesto.cantidad && +idfuente===2">
+
+                    <span class="alert alert-danger"> El total excede el disponible en la Fuente 12:
+                        {{saldo1|currency:'L'}} </span>
+                </ng-container>
+                <ng-container *ngIf="saldo2 < +tareas.presupuesto.costounitario*+tareas.presupuesto.cantidad && +idfuente===3">
+
+                    <span class="alert alert-danger"> El total excede el disponible en la Fuente 12B:
+                        {{saldo2|currency:'L'}} </span>
+                </ng-container>
             </div>
 
 
@@ -327,4 +347,6 @@
 
             <ul>
                 <li>{{tareas?.presupuesto?.objetogasto?.nombre}}</li>
+                <li>{{saldo}}</li>
+                <li>{{+tareas.presupuesto.costounitario*+tareas.presupuesto.cantidad}}</li>
             </ul>

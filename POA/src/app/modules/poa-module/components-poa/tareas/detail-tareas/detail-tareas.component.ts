@@ -79,15 +79,10 @@ export class DetailTareasComponent implements OnInit {
   }
   onBack(): void {
     this.router.navigate(['/gestion_poa/tareas/list/', this.idActividad]);
-    setTimeout(function () {
-      window.location.reload();
-    }, 10)
+    
   }
   toUpdate(){
     this.router.navigate(['/gestion_poa/tareas/update/',this.id,this.idActividad]);
-    setTimeout(function () {
-      window.location.reload();
-    }, 10)
   }
 
   set_id_delete(id: any) {
