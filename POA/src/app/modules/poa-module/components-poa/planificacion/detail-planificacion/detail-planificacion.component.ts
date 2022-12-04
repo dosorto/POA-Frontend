@@ -80,22 +80,22 @@ export class DetailPlanificacionComponent implements OnInit {
   }
 
   //Para regresar a la lista de planificaciones despues de eliminar
-  toList() {
-    this.router.navigate([
-      '/planificacion/list/:idActividad/:idPoa/:idInsti/:idDepto',
-    ]);
-  }
-  // toList(){
-  //   this.router.navigate(['/planificacion/list/', this.idActividad, this.idPoa, this.insti, this.idDepto]);
-  // };
+  // toList() {
+  //   this.router.navigate([
+  //     '/planificacion/list/:idActividad/:idPoa/:idInsti/:idDepto',
+  //   ]);
+  // }
+  toList(){
+    this.router.navigate(['/planificacion/list/', this.idActividad, this.idPoa, this.insti, this.idDepto]);
+  };
 
   // Para el boton de editar, pasa los id por la url
-  // toUpdate(){
-  //   this.router.navigate(['/planificacion/update/', this.id, this.idPoa, this.idActividad,this.idInsti, this.idDepto]);
-  // };
-  toUpdate() {
-    this.router.navigate(['/planificacion/update/', this.id]);
-  }
+  toUpdate(){
+    this.router.navigate(['/planificacion/update/', this.id, this.idPoa, this.idActividad,this.idInsti, this.idDepto]);
+  };
+  // toUpdate() {
+  //   this.router.navigate(['/planificacion/update/', this.id]);
+  // }
 
   // Para el boton de borrar la planificacion
   async Delete() {

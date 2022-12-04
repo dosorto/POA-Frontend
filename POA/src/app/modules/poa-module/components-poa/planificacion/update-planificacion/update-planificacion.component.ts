@@ -98,22 +98,22 @@ export class UpdatePlanificacionComponent implements OnInit {
   }
 
   // Pasa al componente de detalles despues de actualizar, regresa al componente de detalles
-  toDetail() {
-    this.router.navigate(['/planificacion/detail/', this.id]);
-  }
   // toDetail() {
-  //   this.router.navigate(['/planificacion/detail/', this.id, this.idPoa, this.idActividad, this.idInsti, this.idDepto,]);
+  //   this.router.navigate(['/planificacion/detail/', this.id]);
   // }
+  toDetail() {
+    this.router.navigate(['/planificacion/detail/', this.id, this.idPoa, this.idActividad, this.idInsti, this.idDepto,]);
+  }
 
   //Para regresar a la lista de planificaciones despues de eliminar
-  toList() {
-    this.router.navigate([
-      '/planificacion/list/:idActividad/:idPoa/:idInsti/:idDepto',
-    ]);
-  }
-  // toList(){
-  //   this.router.navigate(['/planificacion/list/', this.idActividad, this.idPoa, this.insti, this.idDepto]);
-  // };
+  // toList() {
+  //   this.router.navigate([
+  //     '/planificacion/list/:idActividad/:idPoa/:idInsti/:idDepto',
+  //   ]);
+  // }
+  toList(){
+    this.router.navigate(['/planificacion/list/', this.idActividad, this.idPoa, this.insti, this.idDepto]);
+  };
 
   // Actualiza la planificacion
   Update(): any {

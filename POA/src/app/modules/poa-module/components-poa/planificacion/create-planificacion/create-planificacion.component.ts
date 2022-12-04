@@ -71,14 +71,14 @@ export class CreatePlanificacionComponent implements OnInit {
   }
 
   //Para regresar a la lista de planificaciones despues de eliminar
-  toList() {
-    this.router.navigate([
-      '/planificacion/list/:idActividad/:idPoa/:idInsti/:idDepto',
-    ]);
-  }
-  // toList(){
-  //   this.router.navigate(['/planificacion/list/', this.idActividad, this.idPoa, this.insti, this.idDepto]);
-  // };
+  // toList() {
+  //   this.router.navigate([
+  //     '/planificacion/list/:idActividad/:idPoa/:idInsti/:idDepto',
+  //   ]);
+  // }
+  toList(){
+    this.router.navigate(['/planificacion/list/', this.idActividad, this.idPoa, this.insti, this.idDepto]);
+  };
 
   // Crea una nueva planificacion
   async crear_Planificacion(

@@ -123,22 +123,22 @@ export class AllPlanificacionComponent implements OnInit {
   }
 
   // Funcion para el boton de gestionar, pasa por url idPlanificacion, idPoa, idActividad, idInsti, idDepto
-  // toDetail(idPlanificacion: number) {
-  //   this.router.navigate([
-  //     '/planificacion/detail/',
-  //     idPlanificacion.toString(),
-  //     this.idPoa,
-  //     this.idActividad,
-  //     this.idInsti,
-  //     this.idDepto,
-  //   ]);
-  // }
   toDetail(idPlanificacion: number) {
     this.router.navigate([
       '/planificacion/detail/',
       idPlanificacion.toString(),
+      this.idPoa,
+      this.idActividad,
+      this.idInsti,
+      this.idDepto,
     ]);
   }
+  // toDetail(idPlanificacion: number) {
+  //   this.router.navigate([
+  //     '/planificacion/detail/',
+  //     idPlanificacion.toString(),
+  //   ]);
+  // }
 
   // Funcion para el boton de crear pasa por la url el idPoa, idActividad, idInsti, idDepto
   toCreate() {
