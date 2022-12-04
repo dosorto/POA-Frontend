@@ -68,6 +68,7 @@ import { ResponsablePaginacionPipe } from './pipes-poa/responsable-paginacion.pi
 import { ResponsableFiltroPipe } from './pipes-poa/responsable-filtro.pipe';
 import { IndicadorFiltroPipe } from './pipes-poa/indicador-filtro.pipe';
 import { IndicadorPaginacionPipe } from './pipes-poa/indicador-paginacion.pipe';
+import { DetailPresupuestoComponent } from './components-poa/tareas/detail-presupuesto/detail-presupuesto.component';
 
 
 
@@ -91,7 +92,7 @@ const router = RouterModule.forChild([
   {path: 'tareas/create/:idActividad', component: CreateTareasComponent},
   {path: 'tareas/update/:id/:idActividad', component: UpdateTareasComponent},
   {path: 'tareas/detail/:id/:idActividad', component: DetailTareasComponent},
-  {path: 'tareas/list/:idActividad', component: AllTareasComponent},
+  {path: 'tareas/list/:idActividad/:idPoa/:idDepto/:idInsti', component: AllTareasComponent},
 
   // rutas de indicadores
   {path: 'indicadores/create/:idActividad/:idPoa/:idDepto/:idInsti', component: CreateIndicadoresComponent},
@@ -148,6 +149,7 @@ const router = RouterModule.forChild([
     IndicadorFiltroPipe,
     IndicadorPaginacionPipe,
     SeguimientoIndicadorComponent,
+    DetailPresupuestoComponent,
 
   ],
   imports: [
