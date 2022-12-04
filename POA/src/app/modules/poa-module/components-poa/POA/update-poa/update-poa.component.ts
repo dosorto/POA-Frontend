@@ -23,11 +23,11 @@ export class UpdatePoaComponent implements OnInit {
   color: ThemePalette = 'accent';
   checked = false;
   disabled = false;
-  
+  isActive = true;
+
   constructor(private Storage: Storage,
     private service: PoaService,
     private router: Router,
-    private poaService: PoaService,
     private _route: ActivatedRoute) { }
 
   public idDepto: number = Number(this._route.snapshot.paramMap.get('idDepto'));
@@ -42,7 +42,6 @@ export class UpdatePoaComponent implements OnInit {
   public fuente11: string = '';
   public fuente12: string = '';
   public fuente12B: string = '';
-  public isActive: boolean = true;
 
   ngOnInit(): void {
     this.initData();

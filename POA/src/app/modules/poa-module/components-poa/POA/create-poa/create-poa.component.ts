@@ -20,8 +20,9 @@ export class CreatePoaComponent implements OnInit {
 
   constructor(private PoaService: PoaService, private _route: ActivatedRoute, private router: Router) { }
 
+
   public idDepto: number = Number(this._route.snapshot.paramMap.get('idDepto'));
-  public depto: Depto | any = {};
+  public departamento: Depto | any = {};
 
   public idUE: number = Number(this._route.snapshot.paramMap.get('idUE'));
   public ue: UnidadEjecutora | any = {};
@@ -31,12 +32,12 @@ export class CreatePoaComponent implements OnInit {
 
   ngOnInit(): void {
     this.initData();
-    this.depto = this.PoaService.getDepto_Id(this.idDepto).subscribe((response: any) => {
-      this.depto = response.Depto;
-    });
   }
 
   async initData() {
+    this.insti = this.PoaService.getInsti_Id(this.idInsti).subscribe((response:any)=>{
+      this.insti = response.Institucion;
+    });
   }
 
   toList() {

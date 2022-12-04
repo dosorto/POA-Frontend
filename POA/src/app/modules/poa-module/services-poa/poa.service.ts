@@ -117,11 +117,11 @@ export class PoaService {
         return response;
       }))
   }
-  getDepto_Id(idDepto: number) {
-    return this.callHttp.httpGet<Depto>(`${environment.servidor}departamento/get/` + idDepto.toString())
-    .pipe(map(response => {
-      return response;
-    }));
+  getDepto_Id(idDepto:number) {
+    return this.callHttp.httpGet<Depto>(`${environment.servidor}departamento/get/`+idDepto.toString());
+  }
+  getInsti_Id(idInsti:number) {
+    return this.callHttp.httpGet<Institucion>(`${environment.servidor}institucion/get/`+idInsti.toString());
   }
 
   eliminarPOA(id: number): any {
