@@ -1,0 +1,13 @@
+.tab{
+    position: relative;
+    top: 5%;
+    right: -100px;
+}
+
+/* .retorno{
+    
+} */
+.contenido{
+    position: relative;
+    right: 100px;
+}

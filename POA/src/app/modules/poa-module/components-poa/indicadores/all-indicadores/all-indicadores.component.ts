@@ -31,20 +31,21 @@ export class AllIndicadoresComponent implements OnInit {
 
   public id:number = Number(this.route.snapshot.paramMap.get('id'));
   public indicadorSeguimiento :Indicadores | any = {};
-  //public idInsti = Number(this.route.snapshot.paramMap.get('idInsti'));
-  //public idDepto = Number(this.route.snapshot.paramMap.get('idDpeto'));
-  //public idPoa = Number(this.route.snapshot.paramMap.get('idPoa'));
-  //public idActividades = Number(this.route.snapshot.paramMap.get('idActividad'));
-  public idActividad = 1;
+  public idInsti = Number(this.route.snapshot.paramMap.get('idInsti'));
+  // public idDepto = Number(this.route.snapshot.paramMap.get('idDpeto'));
+  public idPoa = Number(this.route.snapshot.paramMap.get('idPoa'));
+  public idActividad = Number(this.route.snapshot.paramMap.get('idActividad'));
+  //  public idActividad = 1;
   public idDepto = 1;
-  public idPoa = 1;
-  public idInsti =1;
+  // public idPoa = 1;
+  // public idInsti =1;
 
   public ActividadList: Actividad | any = {};
   public indicadores:Array<Indicadores>=[]; // para llenar la tabla
   public InstiList: Institucion | any = {};
   public DeptoList: Depto | any = {};
   public PoaList: Poa | any = {};
+  public ActividadListS : Array<Actividad> = []
   public filter:string=""; 
   // indicador: Indicadores | any = {};
   rutaActual = "Indicadores"; //sirve para definir iconos del sidevar
@@ -81,6 +82,9 @@ public enumPages:number[]=[]
       this.ActividadList = response.actividad;
     })
 
+    this.ActividadListS = await firstValueFrom(this.indicadorService.getActividades(this.idPoa));
+    console.log("00000000"+ this.ActividadListS)
+
 
     // sirve para definir un maximo de paginas en paginacion de tablas
     //this.maxPages = ((this.dimensiones.length  % this.step ) === 0 ) ? Math.floor(this.dimensiones.length / this.step) : (Math.floor(this.dimensiones.length / this.step) + 1)// cantidad de paginas para los botones
@@ -103,6 +107,12 @@ public enumPages:number[]=[]
     this.router.navigate(['/gestion_poa/indicadores/create/',this.idActividad.toString(),this.idPoa,this.idDepto,this.idInsti]);
   }
 
+  selectActividad(){
+    this.router.navigate(['/gestion_poa/actividad/tab/',this.actividad_seleccionada,this.idPoa,this.idDepto,this.idInsti]);
+    setTimeout(function () {
+      window.location.reload();
+    }, 10)
+  }
 
 nextPage(){
   this.page = this.page + this.step;

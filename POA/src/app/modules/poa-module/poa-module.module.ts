@@ -15,6 +15,14 @@ import {MatAutocomplete, MatAutocompleteModule} from '@angular/material/autocomp
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatRadioModule} from '@angular/material/radio'
+
+import { NzTabsModule } from 'ng-zorro-antd/tabs';
+const ENTRYCOMPONENTS = [
+  AllTareasComponent,
+  AllIndicadoresComponent,
+  AllPlanificacionComponent,
+  AllResponsableComponent
+];
 // componentes independientes importados
 // --------------------------------
 import { TopBarComponent } from '../../_core/top-bar/top-bar.component'
@@ -63,6 +71,7 @@ import { ResponsablePaginacionPipe } from './pipes-poa/responsable-paginacion.pi
 import { ResponsableFiltroPipe } from './pipes-poa/responsable-filtro.pipe';
 import { IndicadorFiltroPipe } from './pipes-poa/indicador-filtro.pipe';
 import { IndicadorPaginacionPipe } from './pipes-poa/indicador-paginacion.pipe';
+import { TabActividadesComponentsComponent } from './components-poa/actividades/tab-actividades-components/tab-actividades-components.component';
 
 
 
@@ -82,6 +91,7 @@ const router = RouterModule.forChild([
   {path: 'actividad/update/:id/:idPoa/:idInsti/:idDepto', component: UpdateActividadComponent},
   {path: 'actividad/detail/:id/:idPoa/:idInsti/:idDepto', component: DetailActividadComponent},
   {path: 'actividad/list/:idPoa/:idInsti/:idDepto', component: AllActividadComponent},
+  {path: 'actividad/tab/:idActividad/:idPoa/:idDepto/:idInsti', component: TabActividadesComponentsComponent},
   
   // rutas de tareas
   {path: 'tareas/create/:idPoa/:idActividad/:idInsti/:idDepto', component: CreateTareasComponent},
@@ -143,7 +153,8 @@ const router = RouterModule.forChild([
     IndicadorFiltroPipe,
     IndicadorPaginacionPipe,
     SeguimientoIndicadorComponent,
-
+    TabActividadesComponentsComponent,
+    ENTRYCOMPONENTS
   ],
   imports: [
     NgSelectModule,
@@ -159,8 +170,10 @@ MatFormFieldModule,
 MatInputModule,
 MatRadioModule,
 BackButtonComponent,
-MatSlideToggleModule
+MatSlideToggleModule,
+NzTabsModule
   
-  ]
+  ],
+  entryComponents: [ENTRYCOMPONENTS]
 })
 export class PoaModuleModule { }

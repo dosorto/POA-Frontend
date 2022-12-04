@@ -1,0 +1,33 @@
+<top-bar></top-bar>
+<app-back-button [path]="['gestion_poa/actividad/detail/',this.idActividad,idPoa,idDepto,idInsti]"></app-back-button>
+<div class="tab">
+<div class="justify-content-center mt-4 pt-5">
+  
+  
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+    
+
+        <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" 
+               role="tab" aria-controls="profile" aria-selected="false" *ngFor="let tab of tabs; let pos = index;"
+               [ngClass]="{'nav-link-active': pos === activeTab}"
+               (click)="changeTab(pos)">{{tab.title}}</button>
+           
+  </ul>
+</div>
+<div class="col-8">
+  <label for="id" class="row col-form-label">Seleccione una Actividad:</label>
+              <select class="form-control" aria-label="Default select example" name="id"
+                  [(ngModel)]="actividad_seleccionada"
+                  (ngModelChange)="selectActividad()" required>
+
+                  <ng-container *ngFor="let x of ActividadListS">
+                      <option value="{{x.id}}" [selected]="x.id===idActividad">{{x.nombre}}</option>
+                  </ng-container>
+  </select>
+</div>
+
+<div class="contenido">
+  <section class="row mt-3" #figureContainer></section>
+</div>
+</div>
+

@@ -158,4 +158,15 @@ getIndicador_Id(idIndicador:number) {
 getDepto_Id(idDepto:number) {
   return this.callHttp.httpGet<Depto>(`${environment.servidor}indicadoresPOA/get-Depto/`+ idDepto.toString());
 }
+
+
+
+
+getActividades(idPoa:number) {
+  return this.callHttp.httpGet<Array<Actividad>>(`${environment.servidor}actividad/get_all_by_idPoa/` + idPoa.toString())
+    .pipe(map(response => {
+      this._actividadList = response;               
+      return response;
+    }))
+}
 }
