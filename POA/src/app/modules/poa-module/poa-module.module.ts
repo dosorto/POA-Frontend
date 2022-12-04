@@ -1,3 +1,4 @@
+import { EmptyComponent } from 'src/app/_core/empty/empty.component';
 // --------------------------------
 // importaciones necesarias
 // --------------------------------
@@ -82,7 +83,7 @@ const router = RouterModule.forChild([
   {path: 'actividad/update/:id/:idPoa/:idInsti/:idDepto', component: UpdateActividadComponent},
   {path: 'actividad/detail/:id/:idPoa/:idInsti/:idDepto', component: DetailActividadComponent},
   {path: 'actividad/list/:idPoa/:idInsti/:idDepto', component: AllActividadComponent},
-  
+
   // rutas de tareas
   {path: 'tareas/create/:idPoa/:idActividad/:idInsti/:idDepto', component: CreateTareasComponent},
   {path: 'tareas/update/:id/:idPoa/:idActividad/:idInsti/:idDepto', component: UpdateTareasComponent},
@@ -101,7 +102,7 @@ const router = RouterModule.forChild([
   {path: 'planificacion/update/:id/:idPoa/:idActividad/:idInsti/:idDepto', component: UpdatePlanificacionComponent},
   {path: 'planificacion/detail/:id/:idPoa/:idActividad/:idInsti/:idDepto', component: DetailPlanificacionComponent},
   {path: 'planificacion/list/:idActividad/:idPoa/:idInsti/:idDepto', component: AllPlanificacionComponent},
-  
+
 
 ])
 
@@ -159,8 +160,9 @@ MatFormFieldModule,
 MatInputModule,
 MatRadioModule,
 BackButtonComponent,
-MatSlideToggleModule
-  
+MatSlideToggleModule,
+EmptyComponent
+
   ]
 })
 export class PoaModuleModule { }
