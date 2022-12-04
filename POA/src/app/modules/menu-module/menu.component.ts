@@ -24,4 +24,8 @@ export class MenuComponent implements OnInit {
     this.router.navigate(['/gestion_pei/pei/list/1'])
   }
 
+  toPOA(){
+    this.router.navigate(['/gestion_poa/poa/list/1/1/1'])
+  }
+
 }

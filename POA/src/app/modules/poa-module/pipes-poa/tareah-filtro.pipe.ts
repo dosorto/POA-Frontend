@@ -1,13 +1,13 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import {Tareas} from '../interfaces-poa/tareas.model'
+import { TareasH} from '../interfaces-poa/tareas_historico.model'
 
 @Pipe({
-  name: 'tareasFiltro'
+  name: 'tareasFiltroH'
 })
-export class TareasFiltroPipe implements PipeTransform {
+export class TareasFiltroHPipe implements PipeTransform {
 
-  transform(tareas: Array<Tareas>, busqueda:string): Array<Tareas> {
-    const result:Array<Tareas> = [];
+  transform(tareas: Array<TareasH>, busqueda:string): Array<TareasH> {
+    const result:Array<TareasH> = [];
     for(const post of tareas){
       if((post.nombre.toLocaleLowerCase().includes(busqueda.toLowerCase())) || (post.nombre.toUpperCase().includes(busqueda.toUpperCase()))){
          result.push(post);

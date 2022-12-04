@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { PoaService } from '../../../services-poa/poa.service';
-import { Depto } from "../../..//interfaces-poa/depto.model";
-import { UnidadEjecutora } from "../../..//interfaces-poa/unidad_ejecutora.model";
+import { Depto } from "../../../interfaces-poa/depto.model";
+import { UnidadEjecutora } from "../../../interfaces-poa/unidad_ejecutora.model";
 import { Institucion } from 'src/app/modules/administracion-module/interfaces/institucion.model';
 
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -17,6 +17,9 @@ import Swal from 'sweetalert2';
   styleUrls: ['./create-poa.component.css']
 })
 export class CreatePoaComponent implements OnInit {
+
+  constructor(private PoaService: PoaService, private _route: ActivatedRoute, private router: Router) { }
+
   public idDepto: number = Number(this._route.snapshot.paramMap.get('idDepto'));
   public depto: Depto | any = {};
 
@@ -26,19 +29,18 @@ export class CreatePoaComponent implements OnInit {
   public idInsti: number = Number(this._route.snapshot.paramMap.get('idInsti'));
   public insti: Institucion | any = {};
 
-  constructor(private PoaService: PoaService, private _route: ActivatedRoute, private router: Router) { }
-
   ngOnInit(): void {
-  }
-
-  async initData() {
+    this.initData();
     this.depto = this.PoaService.getDepto_Id(this.idDepto).subscribe((response: any) => {
-      this.depto = response.departamento;
+      this.depto = response.Depto;
     });
   }
 
+  async initData() {
+  }
+
   toList() {
-    this.router.navigate(['gestion_poa/poa/list/', this.idDepto,this.idUE, this.idInsti]);
+    this.router.navigate(['gestion_poa/poa/list/', this.idInsti,this.idUE,this.idDepto]);
   }
 
   async crear_poa(name: string, anio: string, fuente11: string, fuente12: string, fuente12B: string) {
@@ -65,7 +67,7 @@ export class CreatePoaComponent implements OnInit {
   }
 
   onBack(): void {
-    this.router.navigate(['/gestion_poa/poa/list/',this.idUE, this.idDepto, this.idInsti]);
+    this.router.navigate(['/gestion_poa/poa/list/',this.idInsti,this.idUE,this.idDepto]);
   }
 
 }

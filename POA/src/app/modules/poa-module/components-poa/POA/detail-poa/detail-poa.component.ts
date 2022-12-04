@@ -4,7 +4,7 @@ import { Storage } from 'src/app/_core/global-services/local_storage.service';
 import { PoaService } from '../../../services-poa/poa.service';
 
 import { Poa } from '../../../interfaces-poa/poa.model';
-import { Depto } from "../../..//interfaces-poa/depto.model";
+import { Depto } from "../../../interfaces-poa/depto.model";
 import { UnidadEjecutora } from "../../..//interfaces-poa/unidad_ejecutora.model";
 import { Institucion } from 'src/app/modules/administracion-module/interfaces/institucion.model';
 
@@ -26,6 +26,7 @@ export class DetailPoaComponent implements OnInit {
   public idObjetivo: number = Number(this._route.snapshot.paramMap.get('idObjetivo'));
   public poa:Poa | any = {};
   public depto:Depto | any = {};
+  public insti:Institucion | any = {};
   public unidadejecutora:UnidadEjecutora | any = {};
 
   constructor(private service:PoaService,
@@ -40,17 +41,21 @@ export class DetailPoaComponent implements OnInit {
     this.poa = this.service.getPOA_Id(this.id).subscribe((response:any)=>{
       this.poa = response.poa;
     });
+    this.depto = this.service.getDepto_Id(this.idDepto).subscribe((response:any)=>{
+      this.depto = response.Depto;
+    });
   }
 
-  toList(){ 
-    this.router.navigate(['/gestion_poa/poa/list/',this.poa?.idDepto, this.idUE,this.idInsti]); //revisar
+  onBack(): void {
+    this.router.navigate(['/gestion_poa/poa/list/',this.idInsti,this.idUE,this.idDepto]);
   }
+
   toUpdate(){
     this.router.navigate(['/gestion_poa/poa/update/',this.id,this.idInsti,this.idUE,this.idDepto]); //revisar
   }
 
   toActividad(){
-    this.router.navigate(['/gestion_poa/actividad/list/', this.idObjetivo]); //revisar
+    this.router.navigate(['/gestion_poa/actividad/list/', this.id,this.idInsti,this.idDepto]); //revisar
   }
 
 
@@ -67,7 +72,7 @@ export class DetailPoaComponent implements OnInit {
     setTimeout(function() {
       window.location.reload();
     },1000);
-    this.toList();
+    this.onBack();
   }catch(error){
     Swal.fire({
       icon: 'error',
