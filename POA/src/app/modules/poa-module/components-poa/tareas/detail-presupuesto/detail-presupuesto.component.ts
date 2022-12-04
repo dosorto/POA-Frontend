@@ -21,7 +21,7 @@ export class DetailPresupuestoComponent implements OnInit {
   public idActividad:number = Number(this._route.snapshot.paramMap.get('idActividad'));
   //public idActividad=1
   public idDepto = 1;
-  public idPoa = 1;
+  public idPoa = Number(this._route.snapshot.paramMap.get('idPoa'));
   public idInsti =1;
   public id:number = Number(this._route.snapshot.paramMap.get('id'));
   // Aqui llamamos las variables
@@ -49,7 +49,7 @@ export class DetailPresupuestoComponent implements OnInit {
     private _route: ActivatedRoute) { }
 
   ngOnInit(): void {
-
+      this.initData()
   }
   async initData(){
    

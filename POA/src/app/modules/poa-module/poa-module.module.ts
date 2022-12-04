@@ -86,7 +86,7 @@ const router = RouterModule.forChild([
   {path: 'tareas/create/:idActividad', component: CreateTareasComponent},
   {path: 'tareas/update/:id/:idActividad', component: UpdateTareasComponent},
   {path: 'tareas/detail/:id/:idActividad', component: DetailTareasComponent},
-  {path: 'tareas/list/:idActividad', component: AllTareasComponent},
+  {path: 'tareas/list/:idActividad/:idPoa/:idInsti/:idDepto', component: AllTareasComponent},
 
   // rutas de indicadores
   {path: 'indicadores/create/:idPoa/:idActividad/:idInsti/:idDepto', component: CreateIndicadoresComponent},

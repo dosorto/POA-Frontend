@@ -23,9 +23,10 @@ export class AllTareasComponent implements OnInit {
   //Variables de la rutas
  public idActividad:number = Number(this._route.snapshot.paramMap.get('idActividad'));
   //public idActividad=1
-  public idDepto = 1;
-  public idPoa = 1;
-  public idInsti =1;
+  public idDepto = Number(this._route.snapshot.paramMap.get('idDepto'));
+  public idPoa = Number(this._route.snapshot.paramMap.get('idPoa'));
+  public idInsti = Number(this._route.snapshot.paramMap.get('idInsti'));
+
   public id:number = Number(this._route.snapshot.paramMap.get('id'));
   // Aqui llamamos las variables
   public listTareas : Array<Tareas>=[];
