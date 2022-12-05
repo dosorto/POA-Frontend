@@ -1,24 +1,32 @@
 import { Component, OnInit } from '@angular/core';
 import { Storage } from 'src/app/_core/global-services/local_storage.service';
-import { Area } from 'src/app/modules/gestion-pei-module/interfaces-pei/area.model';
-import { Pei } from 'src/app/modules/gestion-pei-module/interfaces-pei/pei.model'
-import { Objetivo } from 'src/app/modules/gestion-pei-module/interfaces-pei/objetivo.model';
 
-import { Dimension } from 'src/app/modules/gestion-pei-module/interfaces-pei/dimension.model';
 import { firstValueFrom } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
 import { ActividadService } from '../../../services-poa/actividad.service';
 import { Actividad } from '../../../interfaces-poa/actividad.model';
-import { Resultado } from 'src/app/modules/gestion-pei-module/interfaces-pei/resultado.model';
+import { Poa } from '../../../interfaces-poa/poa.model';
+import { Depto } from "../../..//interfaces-poa/depto.model";
+import { Institucion } from 'src/app/modules/administracion-module/interfaces/institucion.model';
+import { UnidadEjecutora } from "../../..//interfaces-poa/unidad_ejecutora.model";
+
+
 @Component({
   selector: 'app-detail-actividad-component',
   templateUrl: './detail-actividad-component.component.html',
   styleUrls: ['./detail-actividad-component.component.css']
 })
 export class DetailActividadComponent implements OnInit {
-  public idObjetivo: number = Number(this._route.snapshot.paramMap.get('idObjetivo'));
   public id: number = Number(this._route.snapshot.paramMap.get('id'));
+  public idPoa:number = Number(this._route.snapshot.paramMap.get('idPoa'));
+  public idDepto: number = Number(this._route.snapshot.paramMap.get('idDepto'));
+  public idInsti: number = Number(this._route.snapshot.paramMap.get('idInsti'));
+  public poaList: Array<Poa> = [];
+  public DeptoList: Array<Depto> = []; 
+  public InstitucionesList: Array<Institucion> = [];
+  public idUE: number = Number(this._route.snapshot.paramMap.get('idUE'));
+  public UEList: Array<UnidadEjecutora> = [];
   //public area:Area | any = {};
 
 
@@ -75,13 +83,13 @@ console.log(this.pei);
 */
 
   toList() {
-    this.router.navigate(['/gestion_poa/actividad/list/', this.idObjetivo]);
+    this.router.navigate(['/gestion_poa/actividad/list/', this.idPoa,this.idInsti,this.idDepto,this.idUE]);
   }
-  toResultados() {
-    this.router.navigate(['/gestion_pei/resultados/list/', this.id]);
+  toTareas() {
+    this.router.navigate(['/gestion_poa/tareas/list/', this.id,this.idPoa,this.idInsti,this.idDepto]);
   }
   toUpdate() {
-    this.router.navigate(['/gestion_poa/actividad/update/', this.id, this.idObjetivo]);
+    this.router.navigate(['/gestion_poa/actividad/update/', this.id,this.idPoa,this.idInsti,this.idDepto]);
   }
 
   async Delete() {

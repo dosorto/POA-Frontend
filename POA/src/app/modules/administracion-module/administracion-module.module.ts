@@ -19,7 +19,6 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 
 registerLocaleData(es);
 
-import { TopBarComponent } from 'src/app/_core/top-bar/top-bar.component';
 import { BackButtonComponent } from 'src/app/_core/back-button/back-button.component';
 import { EmptyComponent } from 'src/app/_core/empty/empty.component';
 
@@ -43,6 +42,7 @@ import { CreateRolComponent } from './components/roles/create-rol/create-rol.com
 import { UpdateRolComponent } from './components/roles/update-rol/update-rol.component';
 import { AllRolComponent } from './components/roles/all-rol/all-rol.component';
 import { AdministracionComponent } from './administracion.component';
+import { TopBarComponent } from 'src/app/_core/top-bar/top-bar.component';
 import { RouterModule } from '@angular/router';
 import { UserFilterPipe } from './pipes/user-filter.pipe';
 import { NamesOnlyPipe } from './pipes/names-only.pipe';

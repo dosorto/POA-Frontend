@@ -17,6 +17,7 @@ import { LoginComponent } from './modules/login-module/login.component';
 import {MatCardModule} from '@angular/material/card';
 import { ToastrModule } from 'ngx-toastr';
 import { TopBarComponent } from './_core/top-bar/top-bar.component';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { es_ES } from 'ng-zorro-antd/i18n';
 import es from '@angular/common/locales/es';
@@ -48,10 +49,11 @@ registerLocaleData(es);
     FormsModule,
     ReactiveFormsModule ,
     TopBarComponent,
+    MatSlideToggleModule,
     IconsProviderModule,
     NzLayoutModule,
     NzMenuModule
-    
+
   ],
   providers: [
     { provide: NZ_I18N, useValue: es_ES }

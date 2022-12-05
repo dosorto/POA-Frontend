@@ -1,5 +1,6 @@
 
       <top-bar></top-bar>
+      <app-back-button  (click)="toDetail()"></app-back-button>
       <body class="justify-content-center abs-center mt-5 pt-5 abs-center">
           <div class="col-7">
               <br>
@@ -11,7 +12,7 @@
               <div class="w-100 row m-auto">
                    
                   <div class="row text-center">
-                      <h2 class="l-4" ><font color='black'>Editar un area</font></h2>
+                      <h2 class="l-4" ><font color='black'>Editar una Actividad</font></h2>
                   </div>
                   
                   <div class="d-grid gap-2 d-md-flex justify-content-end">
@@ -22,8 +23,8 @@
                   <textarea type="text" class="form-control" id="exampleFormControlTextarea1" [(ngModel)]="nombre" rows="2" value="{{actividad.nombre}}" >
                   </textarea>
                   </div>     <div class="col-10 mb-3">
-                    <label for="inputDescripcion" class="form-label">Descripcion:</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" value="{{actividad.descripcion}}" ></textarea>
+                    <label for="descripcion" class="form-label">Descripcion:</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" [(ngModel)]="descripcion" rows="2" value="{{actividad.descripcion}}" ></textarea>
                   </div>
                   <div class="col-10">
                     <label for="estado" class="row col-form-label">Estado:</label>
@@ -60,6 +61,8 @@
                         
                       </select>
                 </div>
+                <h1> </h1>
+
          
                   <div class="container">
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">

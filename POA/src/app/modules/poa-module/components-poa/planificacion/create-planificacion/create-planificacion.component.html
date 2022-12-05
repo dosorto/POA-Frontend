@@ -1,1 +1,63 @@
-<p>create-planificacion works!</p>
+<top-bar></top-bar>
+<!-- <app-back-button [path]="['/gestion_pei/dimension/list/',this.idPei,this.idInsti]"></app-back-button> -->
+<div class="alinear justify-content-center   pt-5 mt-5 ">
+  <div>
+    <div class="col-9 border p-4">
+      <div class="text-black text-center">
+        <h5 class=" fs-5 text-center m-auto" id="exampleModalLabel">Crear una nueva Planificación</h5>
+        <span class="fs4">
+          <span>Institución: <a class="text-decoration-none">{{insti.nombre}}</a></span>
+          <span>POA: <a class="text-decoration-none">{{poa.nombre}}</a></span>
+          <span>Actividad: <a class="text-decoration-none">{{act.nombre}}</a></span>
+          <span>Departamento: <a class="text-decoration-none">{{depto.nombre}}</a></span>
+        </span>
+      </div>
+      <div>
+        <form #Planificacion='ngForm'
+          (ngSubmit)="crear_Planificacion(Planificacion.value.trimestre, Planificacion.value.cantidad, Planificacion.value.fechaInicio, Planificacion.value.fechaFin)"
+          id="createDimension">
+          <div class="col">
+            <!-- Campo para el trimestre de la planificación -->
+            <div class="mb-3 mx-2 px-2 row">
+              <label for="trimestre" class="row col-form-label">Trimestre:</label>
+              <div class="row">
+                <input type="text" class="form-control" name="trimestre" ngModel required>
+              </div>
+            </div>
+
+            <!-- Campo para la cantidad de la planificación -->
+            <div class="mb-3 mx-2 px-2 row">
+              <label for="cantidad" class="row col-form-label">Cantidad:</label>
+              <div class="row">
+                <input type="number" class="form-control" name="cantidad" ngModel required>
+              </div>
+            </div>
+
+            <!-- Campo para la fecha de inicio de la planificacion -->
+            <div class="mb-3 mx-2 px-2 row">
+              <label for="fechaInicio" class="row col-form-label">Fecha Inicial:</label>
+              <div class="row">
+                <input type="date" class="form-control" name="fechaInicio" ngModel required>
+              </div>
+            </div>
+
+            <!-- Campo para la fecha de inicio de la planificacion -->
+            <div class="mb-3 mx-2 px-2 row">
+              <label for="fechaFin" class="row col-form-label">Fecha Final:</label>
+              <div class="row">
+                <input type="date" class="form-control" name="fechaFin" ngModel required>
+              </div>
+            </div>
+
+          </div>
+
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="toList()">Regresar</button>
+            <button type="submit" class="btn btn-warning m-2" [disabled]="Planificacion.invalid">Guardar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
