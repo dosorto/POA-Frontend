@@ -27,13 +27,18 @@ export class NewPasswordComponent implements OnInit {
         showConfirmButton: false,
         timer: 5000
       })
-      setTimeout(function() {
-        window.location.reload();
-      },5000);
       this.router.navigate(['/login']);
     }, (error: any) => {
-      console.log(error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Codigo incorrecto o contraseñas no coinciden',
+        showConfirmButton: false,
+        timer: 5000
+      })
     });
+    setTimeout(function () {
+      window.location.reload();
+    }, 1500);
   }
 
  
