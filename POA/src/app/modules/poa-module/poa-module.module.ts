@@ -12,6 +12,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 // --------------------------------
 // componentes independientes importados
 // --------------------------------
@@ -63,7 +65,7 @@ import { IndicadorFiltroPipe } from './pipes-poa/indicador-filtro.pipe';
 import { IndicadorPaginacionPipe } from './pipes-poa/indicador-paginacion.pipe';
 import { DetailPresupuestoComponent } from './components-poa/tareas/detail-presupuesto/detail-presupuesto.component';
 
-
+import { NzProgressModule } from 'ng-zorro-antd/progress';
 
 // enrutamiento
 const router = RouterModule.forChild([
@@ -155,7 +157,10 @@ CommonModule,
   MatFormFieldModule,
   MatInputModule,
   MatIconModule,
-  MatButtonModule
+  MatButtonModule,
+  NzProgressModule,
+  MatTabsModule,
+  MatProgressBarModule
   ]
 })
 export class PoaModuleModule { }
