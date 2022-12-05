@@ -62,7 +62,7 @@
                     </div>
                 </div>
                 <!-- tabla dinamica que muestra todas los POA -->
-                
+
                 <div>
                     <div class="row row-cols-1 row-cols-md-4 g-4">
                         <ng-container *ngFor="let x of poa | poaFiltro:filter|poaPaginacion:step:page; index as i">
@@ -83,7 +83,7 @@
                                             Fuente11: {{x.fuente11}}
                                             Fuente12: {{x.fuente12}}
                                             Fuente12B: {{x.fuente12B}}
-                                                    
+
                                             Estado: Habilitado
                                         </p>
                                         <button type="button" class="btn btn-warning float-center"
@@ -102,13 +102,13 @@
                                     </ng-template>
 
                                     <div class="card-body" style="width: 15rem;">
-                                        <h1 class="card-title" >{{x.name}}</h1>
+                                        <h1 class="card-title">{{x.name}}</h1>
                                         <p class="card-text" style="width: 11rem;">
                                             Fecha: {{x.anio}}
                                             Fuente11: {{x.fuente11}}
                                             Fuente12: {{x.fuente12}}
                                             Fuente12B: {{x.fuente12B}}
-                                                    
+
                                             Estado: Deshabilitado
                                         </p>
                                         <button type="button" class="btn btn-warning float-center"
