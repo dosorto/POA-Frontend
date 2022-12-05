@@ -48,8 +48,8 @@ export class UpdatePoaComponent implements OnInit {
     this.initData();
     console.log(this.initData)
     this.depto = this.service.getDepto_Id(this.idDepto).subscribe((response: any) => {
-      this.depto = response.Depto;
-    });
+      this.depto = response.all_deptos;
+    })
   }
 
   async initData() {
