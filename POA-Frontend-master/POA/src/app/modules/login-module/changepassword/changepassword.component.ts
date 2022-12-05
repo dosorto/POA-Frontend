@@ -40,6 +40,12 @@ export class ChangepasswordComponent implements OnInit {
     this.router.navigate(['/home/account']); 
   }, (error: any) => {
     console.log(error);
+    Swal.fire({
+      icon: 'error',
+      title: 'las contraseñas no coinciden',
+      showConfirmButton: false,
+      timer: 2500
+    })
     
   });
 }
