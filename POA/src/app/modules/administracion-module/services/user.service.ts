@@ -78,8 +78,8 @@ export class UserService {
     return this.callHttp.httpGet<Array<Empleado>>(`${environment.servidor}empleado/allEmpleados`);
   }
 
-   eliminarDimension(id: number):any  {
-    const url = environment.servidor + 'dimension/delete';
+   deleteUser(id: number):any  {
+    const url = environment.servidor + 'auth/delete-user/' + id;
 
     const params = new HttpParams({
       fromObject: {
@@ -94,7 +94,7 @@ export class UserService {
       })
     };
     //return this.directHttp.put(url, params, httpOptions);
-    return  this.directHttp.put(url,{id:id})
+    return  this.directHttp.get(url);
   }
 
   // alternativa a update

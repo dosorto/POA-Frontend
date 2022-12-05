@@ -36,6 +36,8 @@ export class AllUsuarioComponent implements OnInit {
   public rolSeleccionado:string='';
   public editMode:boolean=false;
   public createMode:boolean=false;
+  public idUserToDelete:number=0;
+  public userToUpdate: Usuario | any;
   public mode:string='view';
   public usersFromDb:Array<Usuario> = [];
   public rolesFromDb:Array<Role> = [];
@@ -71,12 +73,53 @@ export class AllUsuarioComponent implements OnInit {
         timer: 2500
       })
     });
-    console.log("entro");
+    setTimeout(function() {
+      window.location.reload();
+    },1000);
     }catch(e){
       console.log(e);
     }
   }
-  loadMore(){
+
+  async Delete(){
+    try{
+      if(this.idUserToDelete === 0){
+        console.log("no cambiado");
+        return 
+      }
+    await this.service.deleteUser(this.idUserToDelete).subscribe((res:any)=>{
+      Swal.fire({
+        icon: 'success',
+        title: '¡Eliminado con éxito!',
+        showConfirmButton: false,
+        timer: 1000
+      })
+    });
+    setTimeout(function() {
+      window.location.reload();
+    },1000);
+  }catch(error){
+    Swal.fire({
+      icon: 'error',
+      title: '¡Ha ocurrido un error!',
+      showConfirmButton: false,
+      timer: 1000
+    })
+    setTimeout(function() {
+      window.location.reload();
+    },1000);
+  
+  }
+  }
+  setDelete(number:number){
+    this.idUserToDelete = number;
+  }
+  setUpdate(user:Usuario){
+    this.userToUpdate = user;
+    this.editMode = true;
+    console.log(this.userToUpdate);
+  }
+ loadMore(){
 
   }
   change(){
