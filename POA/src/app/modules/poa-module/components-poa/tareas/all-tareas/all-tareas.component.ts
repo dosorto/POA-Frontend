@@ -23,9 +23,9 @@ export class AllTareasComponent implements OnInit {
   //Variables de la rutas
  public idActividad:number = Number(this._route.snapshot.paramMap.get('idActividad'));
   //public idActividad=1
-  public idDepto = 1;
-  public idPoa = 1;
-  public idInsti =1;
+  public idDepto = Number(this._route.snapshot.paramMap.get('idDepto'));
+  public idPoa = Number(this._route.snapshot.paramMap.get('idPoa'));
+  public idInsti = Number(this._route.snapshot.paramMap.get('idInsti'));
   public id:number = Number(this._route.snapshot.paramMap.get('id'));
   public actividad:Actividad|any={};
   // Aqui llamamos las variables
@@ -131,7 +131,7 @@ this.gastosFuente12B = this.listFuente12B.reduce((sum, value) => (typeof +value.
     
     // this.sumall = this.listTareas.map(item => item.presupuesto.total??0).reduce((prev, curr) => +prev + +curr,0);
     // console.log(this.sumall)
-    this.actividad = this.tareaservice.getActividades_Id(this.idActividad).subscribe((response:any)=>{
+    this.actividad = this.tareaservice.getActividad_Id(this.idActividad).subscribe((response:any)=>{
       this.actividad = response.Actividad;
     });
     
@@ -158,9 +158,10 @@ this.gastosFuente12B = this.listFuente12B.reduce((sum, value) => (typeof +value.
   }
 
   toDetail(id:number){
-    this.router.navigate(['/gestion_poa/tareas/detail/',id.toString(),this.idActividad]);
+    this.router.navigate(['/gestion_poa/tareas/detail/',id.toString(),this.idActividad,this.idPoa,this.idDepto,this.idInsti]);
+
   }
   toCreate(){
-    this.router.navigate(['/gestion_poa/tareas/create/',this.idActividad.toString()]);
+    this.router.navigate(['/gestion_poa/tareas/create/',this.idActividad.toString(),this.idPoa,this.idDepto,this.idInsti]);
   }
 }
