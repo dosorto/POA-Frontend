@@ -18,6 +18,11 @@ const routes: Routes = [
     path: 'gestion_pei', children: [
       {path: '', loadChildren: () => import('./modules/gestion-pei-module/gestion-pei.module').then(t=>t.GestionPeiModule)}
     ]
+  },
+  {
+    path: 'admin', children: [
+      {path: '', loadChildren: () => import('./modules/administracion-module/administracion-module.module').then(t=>t.AdministracionModuleModule)}
+    ]
   }
 ];
 
