@@ -1,0 +1,40 @@
+<div class="card border-info bg-light">
+    <h2 class="card-header bg-info" style="color:white;">Resumen de Presupuesto:</h2>
+    <div class="card-body p-0">
+        <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">Fuente</th>
+                <th scope="col">Techo Presupuestario</th>
+                <th scope="col">Asignado</th>
+                <th scope="col">Saldo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Fuente 11</th>
+                <td>{{+PoaList.fuente11| currency:'L'}}</td>
+                <td>{{gastosFuente11| currency:'L'}}</td>
+                <td ><strong>{{+PoaList.fuente11-gastosFuente11| currency:'L'}}</strong></td>                    
+                    <!-- <td >{{+PoaList.fuente11-gastosFuente11| currency:'L'}}</td> -->
+            
+              </tr>
+              <tr>
+                <th scope="row">Fuente 12</th>
+                <td>{{+PoaList.fuente12| currency:'L'}}</td>
+                <td>{{gastosFuente12| currency:'L'}}</td>
+                <td><strong>{{+PoaList.fuente12-gastosFuente12| currency:'L'}}</strong></td>
+              </tr>
+              <tr>
+                <th scope="row">Fuente 12B</th>
+                <td>{{+PoaList.fuente12B| currency:'L'}}</td>
+                <td>{{gastosFuente12B| currency:'L'}}</td>
+                <td><strong>{{+PoaList.fuente12B-gastosFuente12B| currency:'L'}}</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+    </div>
+</div>
+

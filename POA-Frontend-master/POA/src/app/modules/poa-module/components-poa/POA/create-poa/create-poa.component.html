@@ -1,0 +1,85 @@
+<top-bar></top-bar>
+
+<div class="justify-content-center abs-center mt-5 pt-5 abs-center">
+
+    <div class="col-7">
+        <div class="backButton">
+            <button class="btn btn-warning rounded" (click)="toList()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                    class="bi bi-arrow-left-short" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z" />
+                </svg>
+            </button>
+        </div>
+        <div><br></div>
+        <!-- espacio para el titulo, buscador y boton de agregar uno nuevo -->
+        <div class="container border rounded rounden-2 p-2">
+            <div class="w-100 row m-auto">
+                <br>
+                <!-- espacio para el titulo, buscador y boton de agregar uno nuevo -->
+                <div class="w-100 row m-auto">
+                    <div class="row">
+
+                        <div class="col-10 text-center">
+                            <h2 class="">
+                                <p>
+                                    <font color='black'>Crear POA</font>
+                                </p>
+                            </h2>
+
+                        </div>
+                        <div class="d-grid gap-2 d-md-flex justify-content-center">
+                            <form #Poa='ngForm'
+                                (ngSubmit)="crear_poa(Poa.value.name,Poa.value.anio,Poa.value.fuente11, Poa.value.fuente12, Poa.value.fuente12B)"
+                                id="createPOA">
+                                <div class="w-100 row m-auto">
+                                    <!-- Campo para el nombre de POA -->
+                                    <div class="col-10">
+                                        <label for="name" class="row col-form-label">Nombre de POA:</label>
+                                        <div class="row">
+                                            <input type="text" class="form-control" name="name" ngModel required>
+                                        </div>
+                                    </div>
+                                    <!-- Campo para la Año Inicial -->
+                                    <div class="col-10 mb-3">
+                                        <label for="anio" class="row col-form-label">Año:</label>
+                                        <div class="row">
+                                            <input type="Date" class="form-control" name="anio" ngModel required>
+                                        </div>
+                                    </div>
+                                    <div class="col-10 mb-3">
+                                        <label for="fuente11" class="row col-form-label">Fuente 11:</label>
+                                        <div class="row">
+                                            <input type="text" class="form-control" name="fuente11" ngModel required>
+                                        </div>
+                                    </div>
+                                    <div class="col-10 mb-3">
+                                        <label for="fuente12" class="row col-form-label">Fuente 12:</label>
+                                        <div class="row">
+                                            <input type="text" class="form-control" name="fuente12" ngModel required>
+                                        </div>
+                                    </div>
+                                    <div class="col-10 mb-3">
+                                        <label for="fuente12B" class="row col-form-label">Fuente 12B:</label>
+                                        <div class="row">
+                                            <input type="text" class="form-control" name="fuente12B" ngModel required>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" (click)="toList()">Regresar</button>
+                                    <button type="submit" class="btn btn-warning m-2"
+                                        [disabled]="Poa.invalid">Guardar</button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
