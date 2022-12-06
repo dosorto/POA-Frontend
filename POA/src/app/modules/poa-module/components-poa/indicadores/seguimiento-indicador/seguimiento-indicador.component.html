@@ -1,5 +1,5 @@
 <top-bar></top-bar>
-<app-back-button [path]="['/gestion_poa/indicadores/list/',this.idActividad,idPoa,idDepto,idInsti]"></app-back-button>
+<app-back-button [path]="['/gestion_poa/actividad/tab/',this.idActividad,idPoa,idDepto,idInsti]"></app-back-button>
 
 <head>
     <meta charset="utf-8">
@@ -48,8 +48,9 @@
                         <label for="inputArea" class="form-label">Porcetaje Planificado:</label>
                         </div>
                     <div class="col-2">
-                    <input type="text" class="form-control" id="cp" name="cantidadPlanificada" [(ngModel)]="cantidadPlanificada" value="{{indicadores.cantidadPlanificada}}" disabled>
+                    <input type="text" class="form-control" id="cp" name="cantidadPlanificada" [(ngModel)]="cantidadPlanificada" value="{{indicadores.cantidadPlanificada}}">
                   </div>
+            
   
                   <div class="col-8" *ngIf="indicadores.isCantidad === true">
                     <label for="inputObjetivo" class="form-label">Cantidad Ejecutada:</label>
@@ -59,7 +60,7 @@
                         </div>
                     <div class="col-2" >
                     <input type="text" class="form-control" id="ce" name="cantidadEjecutada" [(ngModel)]="cantidadEjecutada" value="{{indicadores.cantidadEjecutada}}" (keyup)="promedio()">
-                  </div>
+                     </div>
                   <!-- <div class="col-1">%</div> -->
 
                   <div class="col-8">
@@ -72,7 +73,7 @@
                   <div class="col-10" style="text-align: right;" >
                     <div class="col-5  badge text-bg-info" *ngIf="indicadores.isPorcentaje === true"><p>*Tipo de representación: 'Porcentaje' </p></div>
                       <p class="col-5  badge text-bg-info" *ngIf="indicadores.isCantidad === true"><span>*Tipo de representación: 'Cantidad' </span></p>
-                   </div>
+                       </div>
             
               </form>
              
@@ -80,7 +81,7 @@
               <br>
                 <div class="container">
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <button type="button" class="btn btn-secondary" (click)="toList()" >Cancelar</button>
+                        <button type="button" class="btn btn-secondary" (click)="toTab()" >Cancelar</button>
                         <!-- [disabled]="Result.invalid" -->
                         <button type="submit" class="btn btn-warning" (click)="UpdateSeguimiento()">Guardar</button>
                     </div>

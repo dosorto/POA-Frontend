@@ -28,12 +28,11 @@ export class UpdatePlanificacionComponent implements OnInit {
 
   // Obteniendo el id de actividad, poa, instituvcion y depto
   public id: number = Number(this._route.snapshot.paramMap.get('id'));
-  public idActividad: number = Number(
-    this._route.snapshot.paramMap.get('idActividad')
-  );
+  public idActividad: number = Number(this._route.snapshot.paramMap.get('idActividad'));
   public idPoa: number = Number(this._route.snapshot.paramMap.get('idPoa'));
   public idInsti: number = Number(this._route.snapshot.paramMap.get('idInsti'));
   public idDepto: number = Number(this._route.snapshot.paramMap.get('idDepto'));
+  public idUE: number = Number(this._route.snapshot.paramMap.get('idUE'));
 
   // Variables de tipo modelo para almacenar la actividad, Poa, Institución, el departamento y la planificacion
   public act: Actividad | any = {};
@@ -65,18 +64,17 @@ export class UpdatePlanificacionComponent implements OnInit {
       });
 
     // Busca un poa por el id de poa.
-    this.poa = this.poaService
-      .getPOA_Id(this.idPoa)
+    this.poa = this.actividadService
+      .getPoa_Id(this.idPoa)
       .subscribe((response: any) => {
-        this.poa = response.Poa;
-        console.log(this.poa);
+        this.poa = response.poa;
       });
 
     // Busca una actividad por el id de actividad
     this.act = this.actividadService
       .getActividad(this.idActividad)
       .subscribe((response: any) => {
-        this.act = response.Actividad;
+        this.act = response.actividad;
         console.log(this.act);
       });
 
@@ -89,31 +87,45 @@ export class UpdatePlanificacionComponent implements OnInit {
       });
 
     // Busca un departamento por el id de departamento
-    this.depto = this.poaService
-      .getDepto_Id(this.idDepto)
-      .subscribe((response: any) => {
-        this.depto = response.Depto;
-        console.log(this.insti);
-      });
+    this.depto = this.actividadService
+    .getDepto_Id(this.idDepto)
+    .subscribe((response: any) => {
+      this.depto = response.all_deptos;
+    });
   }
 
-  // Pasa al componente de detalles despues de actualizar, regresa al componente de detalles
-  // toDetail() {
-  //   this.router.navigate(['/planificacion/detail/', this.id]);
-  // }
+  // Pasa al componente de detalles despues de actualizar
   toDetail() {
-    this.router.navigate(['/planificacion/detail/', this.id, this.idPoa, this.idActividad, this.idInsti, this.idDepto,]);
+    this.router.navigate([
+      '/gestion_poa/planificacion/detail/',
+      this.id,
+      this.idPoa,
+      this.idActividad,
+      this.idInsti,
+      this.idDepto,
+    ]);
   }
 
-  //Para regresar a la lista de planificaciones despues de eliminar
-  // toList() {
-  //   this.router.navigate([
-  //     '/planificacion/list/:idActividad/:idPoa/:idInsti/:idDepto',
-  //   ]);
-  // }
-  toList(){
-    this.router.navigate(['/planificacion/list/', this.idActividad, this.idPoa, this.insti, this.idDepto]);
-  };
+  toList() {
+    this.router.navigate([
+      '/gestion_poa/planificacion/list/',
+      this.idPoa,
+      this.idActividad,
+      this.idInsti,
+      this.idDepto,
+    ]);
+  }
+
+
+  // Pasa al listado de poas
+  toPoa() {
+    this.router.navigate([
+      '/gestion_poa/poa/list/',
+      this.idInsti,
+      this.idUE,
+      this.idDepto,
+    ]);
+  }
 
   // Actualiza la planificacion
   Update(): any {
@@ -158,6 +170,8 @@ export class UpdatePlanificacionComponent implements OnInit {
       window.location.reload();
     }, 1500);
   }
+
+
 
   // Para el boton de borrar la planificacion
   async Delete() {

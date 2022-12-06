@@ -3,7 +3,7 @@
 <body class="justify-content-center abs-center mt-5 pt-5">
 <div class="col-8">
   <br>
-<div class="container  rounded border " style="background-color: white;">
+<div class="container  rounded border border-dark" style="background-color: white;">
   
     <!-- espacio para el titulo-->
     <div class="w-100 row m-auto">
@@ -72,18 +72,45 @@
       <!-- Este modal sirve para eliminar un Objetivo -->
 
 <div class="modal" tabindex="-1" id="eliminarInst">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <div class="modal-header bg-danger">
+      <div class="modal-header" style="background-color: red;">
         <h5 class="modal-title fs-3 m-auto"></h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
-        <p>Está seguro de eliminar el objetivo? </p>
+      <div class="modal-body text-center">
+        
+        
+            
+              <div class="col-md-12">
+                <div class="container">
+                 
+      
+                  <div class="row">
+                    <div class="circle">
+                    
+                      <div class="icons">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" fill="white" class="bi bi-trash" viewBox="0 0 16 16">
+                      <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                      <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                    </svg> 
+                  </div>
+                  </div>
+                  </div>
+                </div>
+              </div>
+            
+      
+        <br>
+        <p>¿Está seguro que desea eliminar el resultado? </p>
       </div>
       <div class="modal-footer">
+        <div class="boton-right">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+      </div>
+      <div class="boton-left">
         <button type="button" class="btn btn-danger" (click)="delete()" data-bs-dismiss="modal" >Eliminar</button>
+      </div>
       </div>
     </div>
   </div>

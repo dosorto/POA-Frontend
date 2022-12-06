@@ -1,5 +1,6 @@
 <top-bar></top-bar>
-<!-- <app-back-button [path]="['/gestion_pei/dimension/detail/',this.id,this.idPei,this.idInsti]"></app-back-button> -->
+<!-- <app-back-button [path]="['/gestion_poa/planificacion/detail/', this.id, this.idPoa, this.idActividad, this.idInsti, this.idDepto,]"></app-back-button> -->
+
 
 <body class="justify-content-center abs-center mt-5 pt-5 abs-center">
   <div class="col-7">
@@ -15,12 +16,15 @@
             <h2 class="l-4">
               <font color='black'>Detalle de Planificación</font>
             </h2>
-            <span class="fs4">
-              <span>Institución: <a class="text-decoration-none">{{insti.nombre}}</a></span>
-              <span>POA: <a class="text-decoration-none">{{poa.nombre}}</a></span>
-              <span>Actividad: <a class="text-decoration-none">{{act.nombre}}</a></span>
-              <span>Departamento: <a class="text-decoration-none">{{depto.nombre}}</a></span>
+            <div class="row justify-content-center text-center m-2 fs-5">
+              <span >POA: <a   (click)="toPoa()" class="text-decoration-none">{{poa.name}}</a>  - Institución: <a class="text-decoration-none">{{insti.nombre}}</a> <br>
+                <span class="-b-text-undexpanded"> Departamento: <a  class="text-decoration-none">{{depto.name}}</a></span> <br>
+                <span class="-b-text-undexpanded"> Actividad: <a  class="text-decoration-none">{{act.nombre}}</a></span>
+
+
+                <br>
             </span>
+            </div>
           </div>
 
           <div class="d-grid gap-2 d-md-flex justify-content-end">
@@ -55,6 +59,7 @@
             <label for="inputFechaFin" class="form-label" name="fechaFin">Fecha Final:</label>
             <input type="date" class="form-control" id="exampleFormControlTextarea1" [(ngModel)]="fechaFin"
               value="{{planificacion.fechaFin}}">
+              <br>
           </div>
 
 

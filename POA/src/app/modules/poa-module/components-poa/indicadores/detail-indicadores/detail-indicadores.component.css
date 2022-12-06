@@ -1,0 +1,43 @@
+.backButton{
+    position: fixed;
+    left: 20px;
+    top: 80px;
+}
+
+.circle {
+    background: red;
+    border-radius: 50%;
+    align-content: center;
+    width: 160px;
+    height: 160px;
+}
+
+.icons {
+    display: flex;
+    position: relative;
+    top: 18%;
+    justify-content: center;
+}
+
+.col-md-12 .container .row{
+    display: flex;
+    justify-content: center;
+  }
+
+.modal-lg {
+    max-width: 18% !important;
+}
+
+.boton-right{
+    display: flex;
+    position: relative;
+    right: 10%;
+    justify-content: center;
+}
+
+.boton-left{
+    display: flex;
+    position: relative;
+    left: -5%;
+    justify-content: center;
+}

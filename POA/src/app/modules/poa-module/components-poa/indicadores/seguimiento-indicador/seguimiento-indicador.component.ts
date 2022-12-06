@@ -21,28 +21,21 @@ export class SeguimientoIndicadorComponent implements OnInit {
               private router:Router,
               private _route: ActivatedRoute) { }
 
-
- //public idInsti = Number(this.route.snapshot.paramMap.get('idInsti'));
-  //public idDepto = Number(this.route.snapshot.paramMap.get('idDpeto'));
-  //public idPoa = Number(this.route.snapshot.paramMap.get('idPoa'));
-  //public idActividades = Number(this.route.snapshot.paramMap.get('idActividad'));
+// Obtencion de los id para las rutas
+public idInsti = Number(this._route.snapshot.paramMap.get('idInsti'));
+public idDepto = Number(this._route.snapshot.paramMap.get('idDepto'));
+public idPoa = Number(this._route.snapshot.paramMap.get('idPoa'));
+public idActividad = Number(this._route.snapshot.paramMap.get('idActividad'));
 public id:number = Number(this._route.snapshot.paramMap.get('id'));
+
+//Listas para almacenar los datos
 public indicadores:Indicadores | any = {};
+public ActividadList: Actividad | any = {};
+public InstiList: Institucion | any = {};
+public DeptoList: Depto | any = {};
+public PoaList: Poa | any = {};
 
-
-public idActividad =1;
-public idDepto = 1;
-public idPoa = 1;
-public idInsti =1;
-
-  public ActividadList: Actividad | any = {};
-
-  public InstiList: Institucion | any = {};
-  public DeptoList: Depto | any = {};
-  public PoaList: Poa | any = {};
-// public idIndicadores =3;
-// public insti:Institucion|any={};
-
+//Variables utilizadas para la funcion seguimiento
 public cantidadPlanificada :number=0;
 public cantidadEjecutada :number=0;
 public promedioAlcanzado :number=0;
@@ -51,7 +44,6 @@ public promedioAlcanzado :number=0;
 ngOnInit(): void {
   this.initData();
   
- 
 }
 
 async initData(){
@@ -80,6 +72,10 @@ async initData(){
 
 toList(){
   this.router.navigate(['/gestion_poa/indicadores/list/',this.idActividad,this.idPoa,this.idDepto,this.idInsti]); //revisar
+}
+
+toTab(){
+  this.router.navigate(['/gestion_poa/actividad/tab/',this.idActividad,this.idPoa,this.idDepto,this.idInsti]); //revisar
 }
 promedio(){
     this.promedioAlcanzado = (this.cantidadEjecutada / this.indicadores.cantidadPlanificada );
@@ -113,13 +109,13 @@ UpdateSeguimiento():any{
       timer: 2500
     })
    });
-   this.toList();
+   this.toTab();
    
  } catch(error){
    console.log(error);
  }
  setTimeout(function() {
-  //window.location.reload();
+  window.location.reload();
 },1500);
 
 }

@@ -1,0 +1,18 @@
+.tab{
+    position: relative;
+    top: 2%;
+    right: -8%;
+}
+
+/* .retorno{
+    
+} */
+.contenido{
+    position: relative;
+    right: 8%;
+}
+
+.select{
+    position:relative;
+    right: -9%;
+}

@@ -1,5 +1,5 @@
 <top-bar></top-bar>
-
+<app-back-button [path]="['/gestion_poa/actividad/tab/',this.idActividad,idPoa,idDepto,idInsti]"></app-back-button>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -45,9 +45,6 @@
                             <mat-option *ngFor="let x of listTareasH |tareasFiltroH:nombre;" [value]="x.nombre">
                                 {{x.nombre}}
                             </mat-option>
-                            <mat-option>
-                                aqui
-                            </mat-option>
                         </mat-autocomplete>
                     </mat-form-field>
 
@@ -69,13 +66,13 @@
                         <mat-form-field appearance="outline" class="example-form-input">
                             <mat-label>Cantidad</mat-label>
                             <input matInput type="number" class="example-right-align" name="cantidad"
-                                [(ngModel)]='+cantidad' placeholder="Placeholder" NgModel required>
+                                [(ngModel)]='+cantidad' placeholder="Placeholder" min="0" NgModel required>
                         </mat-form-field>
 
-                        <mat-form-field appearance="fill" floatLabel="always" class="example-form-input">
+                        <mat-form-field appearance="outline" floatLabel="always" class="example-form-input">
                             <mat-label>Costo Unitario</mat-label>
                             <input matInput type="number" class="example-right-align" name="costounitario"
-                                [(ngModel)]="+costounitario" placeholder="0" ngModel required>
+                                [(ngModel)]="+costounitario" placeholder="0" min="0" ngModel required>
                             <span matPrefix>L.&nbsp;</span>
 
                         </mat-form-field>
@@ -117,7 +114,7 @@
                                 </mat-select>
                             </mat-form-field>
 
-                            <mat-form-field appearance="fill">
+                            <mat-form-field appearance="outline">
                                 <mat-label>Fuentes</mat-label>
                                 <mat-select name="idfuente" [(ngModel)]="fuente_seleccionado" NgModel required>
                                     <mat-option>-- None --</mat-option>

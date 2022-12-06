@@ -26,12 +26,12 @@ export class CreatePlanificacionComponent implements OnInit {
   ) {}
 
   // Obteniendo el id de actividad, poa, instituvcion y depto
-  public idActividad: number = Number(
-    this._route.snapshot.paramMap.get('idActividad')
-  );
+  public idActividad: number = Number(this._route.snapshot.paramMap.get('idActividad'));
   public idPoa: number = Number(this._route.snapshot.paramMap.get('idPoa'));
   public idInsti: number = Number(this._route.snapshot.paramMap.get('idInsti'));
   public idDepto: number = Number(this._route.snapshot.paramMap.get('idDepto'));
+  public idUE: number = Number(this._route.snapshot.paramMap.get('idUE'));
+
 
   // Variables de tipo modelo para almacenar la actividad, Poa, Institución, el departamento
   public act: Actividad | any = {};
@@ -41,56 +41,76 @@ export class CreatePlanificacionComponent implements OnInit {
 
   ngOnInit(): void {
     // Busca un poa por el id de poa.
-    this.poa = this.poaService
-      .getPOA_Id(this.idPoa)
+    this.poa = this.actividadService
+      .getPoa_Id(this.idPoa)
       .subscribe((response: any) => {
-        this.poa = response.Poa;
+        this.poa = response.poa;
         console.log(this.poa);
       });
     // Busca una actividad por el id de actividad
     this.act = this.actividadService
       .getActividad(this.idActividad)
       .subscribe((response: any) => {
-        this.act = response.Actividad;
+        this.act = response.actividad;
         console.log(this.act);
       });
     // Busca una Institución por el id de institucion
-    this.insti = this.peiService
+    this.insti = this.actividadService
       .getInsti_Id(this.idInsti)
       .subscribe((response: any) => {
         this.insti = response.Institucion;
         console.log(this.insti);
       });
     // Busca un departamento por el id de departamento
-    this.depto = this.poaService
+    this.depto =  this.actividadService
       .getDepto_Id(this.idDepto)
       .subscribe((response: any) => {
-        this.depto = response.Depto;
-        console.log(this.insti);
+        this.depto = response.all_deptos;
+        console.log(this.depto);
       });
   }
 
   //Para regresar a la lista de planificaciones despues de eliminar
   // toList() {
   //   this.router.navigate([
-  //     '/planificacion/list/:idActividad/:idPoa/:idInsti/:idDepto',
+  //     '/gestion_poa/planificacion/list',
   //   ]);
   // }
-  toList(){
-    this.router.navigate(['/planificacion/list/', this.idActividad, this.idPoa, this.insti, this.idDepto]);
-  };
+  // toList(){
+  //   this.router.navigate(['/gestion_poa/planificacion/list/',  this.idPoa, this.idActividad, this.insti, this.idDepto,]);
+  // };
+
+  toList() {
+    this.router.navigate([
+      '/gestion_poa/planificacion/list/',
+      this.idPoa,
+      this.idActividad,
+      this.idInsti,
+      this.idDepto,
+    ]);
+  }
+
+
+  toPoa() {
+    this.router.navigate([
+      '/gestion_poa/poa/list/',
+      this.idInsti,
+      this.idUE,
+      this.idDepto,
+    ]);
+  }
 
   // Crea una nueva planificacion
   async crear_Planificacion(
     trimestre: string,
     cantidad: number,
     fechaInicio: Date,
-    fechaFin: Date
+    fechaFin: Date,
   ) {
-    console.log(trimestre, cantidad, fechaInicio, fechaFin);
+    console.log(trimestre, cantidad, fechaInicio, fechaFin, this.idActividad);
 
     await this.service
-      .crearPlanificacion(trimestre, cantidad, fechaInicio, fechaFin)
+      .crearPlanificacion(trimestre, cantidad, fechaInicio, fechaFin, this.idActividad)
       .subscribe(
         (res: any) => {
           Swal.fire({
