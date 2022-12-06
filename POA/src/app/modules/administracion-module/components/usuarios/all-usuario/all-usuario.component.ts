@@ -5,6 +5,7 @@ import { Role } from '../../../interfaces/role.model';
 import { Empleado } from '../../../interfaces/empleado.model';
 import { FormBuilder, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-all-usuario',
@@ -12,10 +13,14 @@ import Swal from 'sweetalert2';
   styleUrls: ['./all-usuario.component.css']
 })
 export class AllUsuarioComponent implements OnInit {
+toRoles() {
+  this.router.navigate(['/admin/roles'])
+}
   
 
   constructor(private service:UserService,
-              private fb: FormBuilder) { 
+              private fb: FormBuilder,
+              private router:Router) { 
     this.validateForm = this.fb.group({
       username: ['', Validators.required,Validators.minLength(5)],
       empleado: ['', [Validators.required]],
@@ -78,6 +83,30 @@ export class AllUsuarioComponent implements OnInit {
     },1000);
     }catch(e){
       console.log(e);
+    }
+  }
+  async updateUsuario(email:string,username:string,empleado:string,rol:string){
+    try{
+      console.log("salida: "+email)
+    await this.service.updateUser(this.userToUpdate.id,email,username,parseInt(empleado),parseInt(rol)).subscribe((response:any) =>{
+      Swal.fire({
+        icon: 'success',
+        title: '¡Creado con éxito!',
+        showConfirmButton: false,
+        timer: 2500
+      })
+    });
+    setTimeout(function() {
+      window.location.reload();
+    },1000);
+    }catch(e){
+      console.log(e);
+      Swal.fire({
+        icon: 'error',
+        title: '¡Ha ocurrido el siguiente error: '+ e,
+        showConfirmButton: true,
+        timer: 2500
+      })
     }
   }
 
