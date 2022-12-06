@@ -6,3 +6,6 @@
     width: 30%;
     height: 0%;
 }
+.top-bar{
+    z-index: 1;
+}

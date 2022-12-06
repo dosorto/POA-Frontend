@@ -25,6 +25,7 @@ export class DetailPlanificacionComponent implements OnInit {
   public idPoa: number = Number(this._route.snapshot.paramMap.get('idPoa'));
   public idInsti: number = Number(this._route.snapshot.paramMap.get('idInsti'));
   public idDepto: number = Number(this._route.snapshot.paramMap.get('idDepto'));
+  public idUE: number = Number(this._route.snapshot.paramMap.get('idUE'));
 
   // Variables para almacenar la planificacion, actividad, poa, institucion y el departamento
   public planificacion: Planificacion | any = {};
@@ -54,48 +55,65 @@ export class DetailPlanificacionComponent implements OnInit {
         this.planificacion = response.Planificacion;
       });
 
-    this.act = this.actividadService
+      this.act = this.actividadService
       .getActividad(this.idActividad)
       .subscribe((response: any) => {
-        this.act = response.Actividad;
+        this.act = response.actividad;
+        console.log(this.act);
       });
 
-    this.poa = this.poaService
-      .getPOA_Id(this.idPoa)
+      this.poa = this.actividadService
+      .getPoa_Id(this.idPoa)
       .subscribe((response: any) => {
-        this.poa = response.Poa;
+        this.poa = response.poa;
       });
 
-    this.insti = this.peiService
+    this.insti = this.actividadService
       .getInsti_Id(this.idInsti)
       .subscribe((response: any) => {
         this.insti = response.Institucion;
       });
 
-    this.depto = this.poaService
+      this.depto = this.actividadService
       .getDepto_Id(this.idDepto)
       .subscribe((response: any) => {
-        this.depto = response.Depto;
+        this.depto = response.all_deptos;
       });
   }
 
   //Para regresar a la lista de planificaciones despues de eliminar
   // toList() {
   //   this.router.navigate([
-  //     '/planificacion/list/:idActividad/:idPoa/:idInsti/:idDepto',
+  //     '/gestion_poa/planificacion/list',
   //   ]);
   // }
-  toList(){
-    this.router.navigate(['/planificacion/list/', this.idActividad, this.idPoa, this.insti, this.idDepto]);
-  };
+  toList() {
+    this.router.navigate([
+      '/gestion_poa/planificacion/list/',
+      this.idPoa,
+      this.idActividad,
+      this.idInsti,
+      this.idDepto,
+    ]);
+  }
 
   // Para el boton de editar, pasa los id por la url
   toUpdate(){
-    this.router.navigate(['/planificacion/update/', this.id, this.idPoa, this.idActividad,this.idInsti, this.idDepto]);
+    this.router.navigate(['/gestion_poa/planificacion/update/', this.id, this.idPoa, this.idActividad,this.idInsti, this.idDepto,]);
   };
   // toUpdate() {
-  //   this.router.navigate(['/planificacion/update/', this.id]);
+  //   this.router.navigate(['/gestion_poa/planificacion/update/', this.id]);
   // }
+
+  // Pasa al listado de poas
+  toPoa() {
+    this.router.navigate([
+      '/gestion_poa/poa/list/',
+      this.idInsti,
+      this.idUE,
+      this.idDepto,
+    ]);
+  }
 
   // Para el boton de borrar la planificacion
   async Delete() {

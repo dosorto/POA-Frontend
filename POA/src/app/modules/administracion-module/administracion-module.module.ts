@@ -1,5 +1,26 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { registerLocaleData } from '@angular/common';
+import { NZ_I18N } from 'ng-zorro-antd/i18n';
+import { es_ES } from 'ng-zorro-antd/i18n';
+import es from '@angular/common/locales/es';
+import { IconsProviderModule } from '../../icons-provider.module';
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import { NzMenuModule } from 'ng-zorro-antd/menu';
+import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzTabsModule } from 'ng-zorro-antd/tabs';
+import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzAutocompleteModule } from 'ng-zorro-antd/auto-complete';
+import { NzSelectModule } from 'ng-zorro-antd/select';
+
+registerLocaleData(es);
+
+import { BackButtonComponent } from 'src/app/_core/back-button/back-button.component';
+import { EmptyComponent } from 'src/app/_core/empty/empty.component';
 
 import { CreateUsuarioComponent } from './components/usuarios/create-usuario/create-usuario.component';
 import { UpdateUsuarioComponent } from './components/usuarios/update-usuario/update-usuario.component';
@@ -21,14 +42,18 @@ import { CreateRolComponent } from './components/roles/create-rol/create-rol.com
 import { UpdateRolComponent } from './components/roles/update-rol/update-rol.component';
 import { AllRolComponent } from './components/roles/all-rol/all-rol.component';
 import { AdministracionComponent } from './administracion.component';
-import { AllPlanificacionComponent } from './components/planificacion/all-planificacion/all-planificacion.component';
-import { CreatePlanificacionComponent } from './components/planificacion/create-planificacion/create-planificacion.component';
-import { DeletePlanificacionComponent } from './components/planificacion/delete-planificacion/delete-planificacion.component';
-import { DetailPlanificacionComponent } from './components/planificacion/detail-planificacion/detail-planificacion.component';
-import { UpdatePlanificacionComponent } from './components/planificacion/update-planificacion/update-planificacion.component';
 import { TopBarComponent } from 'src/app/_core/top-bar/top-bar.component';
+import { RouterModule } from '@angular/router';
+import { UserFilterPipe } from './pipes/user-filter.pipe';
+import { NamesOnlyPipe } from './pipes/names-only.pipe';
 
-
+// enrutamiento
+const router = RouterModule.forChild([
+  // rutas principal
+  {path: '', component: AdministracionComponent},
+  // rutas de pei
+  {path: 'users', component: AllUsuarioComponent},
+]);
 
 @NgModule({
   declarations: [
@@ -49,15 +74,30 @@ import { TopBarComponent } from 'src/app/_core/top-bar/top-bar.component';
     UpdateRolComponent,
     AllRolComponent,
     AdministracionComponent,
-    AllPlanificacionComponent,
-    CreatePlanificacionComponent,
-    DeletePlanificacionComponent,
-    DetailPlanificacionComponent,
-    UpdatePlanificacionComponent
+    UserFilterPipe,
+    NamesOnlyPipe
   ],
   imports: [
-    CommonModule,
-    TopBarComponent
+  CommonModule,
+    router,
+    FormsModule,
+    TopBarComponent,
+    BackButtonComponent,
+    EmptyComponent,
+    IconsProviderModule,
+    NzLayoutModule,
+    NzMenuModule,
+    NzTableModule,
+    NzButtonModule,
+    NzBreadCrumbModule,
+    NzFormModule,
+    NzTabsModule,
+    NzInputModule,
+    NzAutocompleteModule,
+    NzSelectModule
+  ],
+  providers: [
+    { provide: NZ_I18N, useValue: es_ES }
   ]
 })
 export class AdministracionModuleModule { }

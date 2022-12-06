@@ -24,8 +24,6 @@ export class AllPlanificacionComponent implements OnInit {
     private service: PlanificacionService,
     private router: Router,
     private _route: ActivatedRoute,
-    private peiService: PeiService,
-    private poaService: PoaService,
     private actividadService: ActividadService
   ) {}
 
@@ -35,29 +33,27 @@ export class AllPlanificacionComponent implements OnInit {
 
   // Obteniendo el id de actividad, poa, instituvcion y depto
   public id: number = Number(this._route.snapshot.paramMap.get('id'));
-  public idActividad: number = Number(
-    this._route.snapshot.paramMap.get('idActividad')
-  );
+  public idActividad: number = Number(this._route.snapshot.paramMap.get('idActividad'));
   public idPoa: number = Number(this._route.snapshot.paramMap.get('idPoa'));
   public idInsti: number = Number(this._route.snapshot.paramMap.get('idInsti'));
   public idDepto: number = Number(this._route.snapshot.paramMap.get('idDepto'));
+  public idUE: number = Number(this._route.snapshot.paramMap.get('idUE'));
+
+  // public idActividad: number = 1;
+  // public idPoa: number = 1;
+  // public idInsti: number = 1;
+  // public idDepto: number = 1;
 
   // Variables de tipo modelo para almacenar la actividad, Poa, Institución, el departamento y la planificacion
   public act: Actividad | any = {};
   public poa: Poa | any = {};
   public insti: Institucion | any = {};
   public depto: Depto | any = {};
-  private planificacion_example: Planificacion | any = {};
+  public actividadSeleccionada: number = this.idActividad;
 
-  public actividad_seleccionado:number = this.idActividad;
-
-  // Para almacenar la planificacion que se desea actualizar
-  public data_update: Planificacion | any = this.planificacion_example;
-
-  // Para almacenar todas las planificaciones disponibles
+  // Para almacenar todas las planificaciones disponibles y la lista de actividades
   public planificaciones: Array<Planificacion> = [];
-
-  // public pei_seleccionado:number=this.idPei;
+  public actividadesList: Array<Actividad> = [];
 
   // Para obtener el usuario
   public user = this.Storage.get_storage('user');
@@ -74,46 +70,56 @@ export class AllPlanificacionComponent implements OnInit {
   public step: number = 5;
   public maxPages: number = 1;
   public enumPages: number[] = [];
+  public resto: number = 0;
 
   async initData() {
-    // obtiene todas las planificaciones
-    const planificaciones = await firstValueFrom(
-      this.service.getPlanificaciones()
+
+    // obtiene todas las planificaciones que pertenecen a una actividad
+    this.planificaciones = await firstValueFrom(
+      this.service.getPlanificacionesIdActividad(this.idActividad)
     );
-    // Almacena en la variable de clase las planificaciones todas las planificaciones
-    this.planificaciones = planificaciones;
+    // Obtiene una lista de actividades que pertenecen a un poa
+    this.actividadesList = await firstValueFrom(this.actividadService.getActividades(this.idPoa));
+    console.log(this.actividadesList);
 
     // Busca un poa por el id de poa.
-    this.poa = this.poaService
-      .getPOA_Id(this.idPoa)
+    this.poa = this.actividadService
+      .getPoa_Id(this.idPoa)
       .subscribe((response: any) => {
-        this.poa = response.Poa;
-        console.log(this.poa);
+        this.poa = response.poa;
       });
     // Busca una actividad por el id de actividad
     this.act = this.actividadService
       .getActividad(this.idActividad)
       .subscribe((response: any) => {
-        this.act = response.Actividad;
+        this.act = response.actividad;
         console.log(this.act);
       });
     // Busca una Institución por el id de institucion
-    this.insti = this.peiService
+    this.insti = this.actividadService
       .getInsti_Id(this.idInsti)
       .subscribe((response: any) => {
         this.insti = response.Institucion;
         console.log(this.insti);
       });
     // Busca un departamento por el id de departamento
-    this.depto = this.poaService
+    this.depto = this.actividadService
       .getDepto_Id(this.idDepto)
       .subscribe((response: any) => {
-        this.depto = response.Depto;
-        console.log(this.insti);
+        this.depto = response.all_deptos;
       });
 
-    //
-    this.maxPages = Math.round(this.planificaciones.length / this.step);
+    this.resto = (this.planificaciones.length % this.step);
+
+    if(this.resto === 0) {
+      this.maxPages = (this.planificaciones.length / this.step);
+    } else if (this.resto === 3){
+      this.maxPages = Math.round(this.planificaciones.length / this.step);
+    } else if (this.resto === 4) {
+      this.maxPages = Math.round(this.planificaciones.length / this.step);
+    } else {
+      this.maxPages = Math.round(this.planificaciones.length / this.step) + 1;
+    }
 
     // sirve para generar los botones en paginacion
     this.enumPages = Array(this.maxPages)
@@ -125,7 +131,7 @@ export class AllPlanificacionComponent implements OnInit {
   // Funcion para el boton de gestionar, pasa por url idPlanificacion, idPoa, idActividad, idInsti, idDepto
   toDetail(idPlanificacion: number) {
     this.router.navigate([
-      '/planificacion/detail/',
+      '/gestion_poa/planificacion/detail/',
       idPlanificacion.toString(),
       this.idPoa,
       this.idActividad,
@@ -133,22 +139,42 @@ export class AllPlanificacionComponent implements OnInit {
       this.idDepto,
     ]);
   }
-  // toDetail(idPlanificacion: number) {
-  //   this.router.navigate([
-  //     '/planificacion/detail/',
-  //     idPlanificacion.toString(),
-  //   ]);
-  // }
-
   // Funcion para el boton de crear pasa por la url el idPoa, idActividad, idInsti, idDepto
   toCreate() {
     this.router.navigate([
-      '/planificacion/create/',
+      '/gestion_poa/planificacion/create/',
+        this.idPoa,
+        this.idActividad,
+        this.idInsti,
+        this.idDepto,
+    ]);
+  }
+
+  // Regresa a la pantalla de POA
+  toPoa() {
+    this.router.navigate([
+      '/gestion_poa/poa/list/',
+      this.idInsti,
+      this.idUE,
+      this.idDepto,
+    ]);
+  }
+
+  toActividadesList(){
+    this.router.navigate(['/gestion_poa/actividad/detail/', this.idActividad, this.idPoa, this.idInsti, this.idDepto]);
+  }
+
+  selectActividad(){
+    this.router.navigate([
+      '/gestion_poa/planificacion/list/',
       this.idPoa,
-      this.idActividad,
+      this.actividadSeleccionada,
       this.idInsti,
       this.idDepto,
     ]);
+    setTimeout(function () {
+      window.location.reload();
+    }, 10)
   }
 
   nextPage() {

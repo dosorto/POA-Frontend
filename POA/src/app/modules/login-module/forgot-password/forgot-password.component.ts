@@ -33,16 +33,22 @@ export class ForgotPasswordComponent implements OnInit {
         showConfirmButton: false,
         timer: 5000
       })
-      setTimeout(function() {
-        window.location.reload();
-      },5000);
       this.router.navigate(['/login/newPassword']);
     }, (error: any) => {
-      console.log(error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Usuario no encontrado',
+        showConfirmButton: false,
+        timer: 2500
+      })
     });
+    setTimeout(function () {
+      window.location.reload();
+    }, 1500);
   }
 
  
 
 }
+
 
