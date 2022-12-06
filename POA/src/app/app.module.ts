@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule, NgForm} from '@angular/forms'
-import { NgFor } from '@angular/common';
+import { NgFor, registerLocaleData } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -18,6 +18,14 @@ import {MatCardModule} from '@angular/material/card';
 import { ToastrModule } from 'ngx-toastr';
 import { TopBarComponent } from './_core/top-bar/top-bar.component';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { NZ_I18N } from 'ng-zorro-antd/i18n';
+import { es_ES } from 'ng-zorro-antd/i18n';
+import es from '@angular/common/locales/es';
+import { IconsProviderModule } from './icons-provider.module';
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import { NzMenuModule } from 'ng-zorro-antd/menu';
+
+registerLocaleData(es);
 
 
 
@@ -41,10 +49,15 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     FormsModule,
     ReactiveFormsModule ,
     TopBarComponent,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    IconsProviderModule,
+    NzLayoutModule,
+    NzMenuModule
 
   ],
-  providers: [],
+  providers: [
+    { provide: NZ_I18N, useValue: es_ES }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

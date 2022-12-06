@@ -9,14 +9,14 @@ import { Poa } from '../../../interfaces-poa/poa.model';
 import { Tareas } from '../../../interfaces-poa/tareas.model';
 import { TareasService } from '../../../services-poa/tareas.service';
 import { Storage } from 'src/app/_core/global-services/local_storage.service';
+import { ThemePalette } from '@angular/material/core';
 @Component({
   selector: 'app-detail-presupuesto',
   templateUrl: './detail-presupuesto.component.html',
   styleUrls: ['./detail-presupuesto.component.css']
 })
 export class DetailPresupuestoComponent implements OnInit {
-
-
+  color: ThemePalette = 'primary'
 
   public idActividad:number = Number(this._route.snapshot.paramMap.get('idActividad'));
   //public idActividad=1
@@ -75,9 +75,9 @@ export class DetailPresupuestoComponent implements OnInit {
       //sumo todos los valores de las tareas que son agregadas a la fuente 11
     this.gastosFuente11 = this.listFuente11.reduce((sum, value) => (typeof Number(value.presupuesto.total) == "number" ? sum + +value.presupuesto.total : sum), 0);
     //sumo todos los valores de las tareas que son agregadas a la fuente 12
-    this.gastosFuente12 = this.listFuente12.reduce((sum, value) => (typeof +value.presupuesto.total == "number" ? sum + value.presupuesto.total : sum), 0);
+    this.gastosFuente12 = this.listFuente12.reduce((sum, value) => (typeof +value.presupuesto.total == "number" ? sum + +value.presupuesto.total : sum), 0);
 //sumo todos los valores de las tareas que son agregadas a la fuente 12B
-this.gastosFuente12B = this.listFuente12B.reduce((sum, value) => (typeof +value.presupuesto.total == "number" ? sum + value.presupuesto.total : sum), 0);
+  	this.gastosFuente12B = this.listFuente12B.reduce((sum, value) => (typeof Number(value.presupuesto.total) == "number" ? sum  + +value.presupuesto.total : sum), 0);
 
 
 

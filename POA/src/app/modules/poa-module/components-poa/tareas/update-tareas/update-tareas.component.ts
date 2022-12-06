@@ -2,7 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
+import { Institucion } from 'src/app/modules/administracion-module/interfaces/institucion.model';
 import Swal from 'sweetalert2';
+import { Actividad } from '../../../interfaces-poa/actividad.model';
+import { Depto } from '../../../interfaces-poa/depto.model';
+import { Indicadores } from '../../../interfaces-poa/Indicadores.model';
 import { Poa } from '../../../interfaces-poa/poa.model';
 import { Presupuesto } from '../../../interfaces-poa/presupuesto.model';
 import { Tareas } from '../../../interfaces-poa/tareas.model';
@@ -32,15 +36,26 @@ export class UpdateTareasComponent implements OnInit {
   public listFuente11: Array<Tareas>=[];
   public listFuente12: Array<Tareas>=[];
   public listFuente12B: Array<Tareas>=[];
-  public idPoa = 1;
+
+  public id = Number(this.route.snapshot.paramMap.get('id'));
+  public idActividad:number = Number(this.route.snapshot.paramMap.get('idActividad'));
+  public idDepto = Number(this.route.snapshot.paramMap.get('idDepto'));
+public idPoa = Number(this.route.snapshot.paramMap.get('idPoa'));
+public idInsti = Number(this.route.snapshot.paramMap.get('idInsti'));
+  
   public saldo: number=0
   public saldo1: number=0
   public saldo2: number=0
+
   public PoaList: Poa | any = {}
 
-
-  id = Number(this.route.snapshot.paramMap.get('id'));
-  idActividad: number = Number(this.route.snapshot.paramMap.get('idActividad'));
+  public ActividadList: Actividad | any = {};
+  public indicadores:Array<Indicadores>=[]; // para llenar la tabla
+  public InstiList: Institucion | any = {};
+  public DeptoList: Depto | any = {};
+  
+  
+  
   idPresupuesto: number = Number(this.route.snapshot.paramMap.get('idPresupuesto'));
 
   public tareas: Tareas | any = {};
@@ -147,16 +162,10 @@ export class UpdateTareasComponent implements OnInit {
   
 
   onBack(): void {
-    this.router.navigate(['/gestion_poa/tareas/detail/', this.id, this.idActividad]);
-    setTimeout(function () {
-      window.location.reload();
-    }, 10)
+    this.router.navigate(['/gestion_poa/tareas/detail/', this.id, this.idActividad,this.idPoa,this.idDepto,this.idInsti]);
   }
   toDetail() {
-    this.router.navigate(['/gestion_poa/tareas/detail/', this.id, this.idActividad])
-    setTimeout(function () {
-      window.location.reload();
-    }, 10)
+    this.router.navigate(['/gestion_poa/tareas/detail/', this.id, this.idActividad,this.idPoa,this.idDepto,this.idInsti])
   }
 
 
@@ -198,6 +207,27 @@ this.PoaList = await this.tareaservice.getPoa_Id(this.idPoa).subscribe((response
   this.saldo1= +this.PoaList.fuente12 -this.gastosFuente12
   this.saldo2= +this.PoaList.fuente12B - this.gastosFuente12B
 })
+
+
+this.InstiList = await this.tareaservice.getInsti_Id(this.idInsti).subscribe((response:any)=>{
+  this.InstiList = response.Institucion;
+})
+
+this.DeptoList = await this.tareaservice.getDepto_Id(this.idDepto).subscribe((response:any)=>{
+  this.DeptoList = response.departamento;
+})
+
+
+this.PoaList = await this.tareaservice.getPoa_Id(this.idPoa).subscribe((response:any)=>{
+  this.PoaList = response.poa;
+  //this.saldo= +this.PoaList.fuente11 -this.gastosFuente11
+})
+//console.log('esta es',this.saldo)
+
+this.ActividadList = await this.tareaservice.getActividad_Id(this.idActividad).subscribe((response:any)=>{
+  this.ActividadList = response.actividad;
+})
+
     // this.sumall = this.listTareasP.reduce((sum, value) => (typeof value.presupuesto.total == "number" ? sum + value.presupuesto.total : sum), 0);
     // console.log(this.sumall);
 

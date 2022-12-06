@@ -19,6 +19,8 @@ import {MatInputModule} from '@angular/material/input';
 import {MatRadioModule} from '@angular/material/radio'
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 // --------------------------------
 // componentes independientes importados
 // --------------------------------
@@ -90,9 +92,9 @@ const router = RouterModule.forChild([
   {path: 'actividad/detail/:id/:idPoa/:idInsti/:idDepto', component: DetailActividadComponent},
   {path: 'actividad/list/:idPoa/:idInsti/:idDepto/:idUE', component: AllActividadComponent},
   // rutas de tareas
-  {path: 'tareas/create/:idActividad', component: CreateTareasComponent},
-  {path: 'tareas/update/:id/:idActividad', component: UpdateTareasComponent},
-  {path: 'tareas/detail/:id/:idActividad', component: DetailTareasComponent},
+  {path: 'tareas/create/:idActividad/:idPoa/:idDepto/:idInsti', component: CreateTareasComponent},
+  {path: 'tareas/update/:id/:idActividad/:idPoa/:idDepto/:idInsti', component: UpdateTareasComponent},
+  {path: 'tareas/detail/:id/:idActividad/:idPoa/:idDepto/:idInsti', component: DetailTareasComponent},
   {path: 'tareas/list/:idActividad/:idPoa/:idDepto/:idInsti', component: AllTareasComponent},
 
   // rutas de indicadores
@@ -154,9 +156,10 @@ const router = RouterModule.forChild([
 
   ],
   imports: [
+
     NgSelectModule,
     BackButtonComponent,
-CommonModule,
+  CommonModule,
   router,
   MatSelectModule,
   FormsModule,
@@ -170,7 +173,9 @@ MatRadioModule,
 BackButtonComponent,
 MatIconModule,
 MatButtonModule,
-EmptyComponent
+EmptyComponent,
+MatProgressBarModule,
+MatTabsModule
 
   ]
 })

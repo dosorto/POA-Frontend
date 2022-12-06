@@ -1,1 +1,229 @@
-<p>all-usuario works!</p>
+<app-back-button></app-back-button>
+<top-bar></top-bar>
+<div class="mt-5 pt-5 contenedor">
+    <div>
+        <nz-breadcrumb>
+            <nz-breadcrumb-item>
+              <a [routerLink]="['../../home']">inicio</a>
+            </nz-breadcrumb-item>
+            <nz-breadcrumb-item>Usuarios</nz-breadcrumb-item>
+        </nz-breadcrumb>
+    </div>
+    <div class="barra">
+        <span class="text-center text-dark fs-5">Gestión de Usuarios</span> <br>
+        <div id="busqueda" class="">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Buscar por nombre" aria-label="Buscar"
+                    aria-describedby="btnGroupAddon"  name="filter" [(ngModel)]="filter">
+                <div class="input-group-text" id="btnGroupAddon">
+                    <button>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-search" viewBox="0 0 16 16">
+                            <path
+                                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="crear">
+            <button nz-button nzType="primary" nzSize="large" class="">
+                <span> Gestionar Roles</span>
+            </button>
+        </div> -->
+    </div>
+    <main class="userList text-center pt-2 border rounded ">
+        <!-- --------------------------- -->
+
+        <!-- -------------------------------------- -->
+        <div class="tabla">
+            <nz-table [nzData]="usersFromDb" nzSize="small">
+                <thead class="text-center">
+                    <tr>
+                        <th class="table-secondary" scope="col">#</th>
+                        <th class="table-secondary" scope="col">Usuario</th>
+                        <th class="table-secondary" scope="col">Rol</th>
+                        <th class="table-secondary" scope="col">e-mail</th>
+                        <th class="table-secondary" scope="col">Nombre Empleado</th>
+                        <th class="table-secondary" scope="col">Institución</th>
+                        <th class="table-secondary" scope="col">Acción</th>
+                    </tr>
+                </thead>
+                <tbody class="tableBody">
+                    <tr class="fila" *ngFor="let x of usersFromDb|userFilter:filter; index as i">
+                        <td>{{i + 1}}</td>
+                        <td>{{x.username}}</td>
+                        <td>{{x.role.rol}}</td>
+                        <td>{{x.email}}</td>
+                        <td>{{x.empleado.nombre}}</td>
+                        <td>{{x.empleado.Institucion.nombre}}</td>
+                        <td>
+                            <button nz-button nzType="text" (click)="setUpdate(x)">
+                                <span nz-icon nzType="edit" nzTheme="outline"></span>Editar
+                            </button>
+                            <button nz-button nzType="primary" nzDanger class="text-white" data-bs-toggle="modal" data-bs-target="#eliminarInst" (click)="setDelete(x.id)">
+                                <span nz-icon nzType="delete" nzTheme="outline"></span>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </nz-table>
+        </div>
+        
+    </main>
+    <section class="createUser border rounded">
+        <nz-tabset nzType="card" nzCentered>
+            <nz-tab  [nzTitle]="'Crear Usuario'"*ngIf="!editMode">
+                <form nz-form #UserCreate='ngForm' 
+                (ngSubmit)="crearUsuario(UserCreate.value.email,UserCreate.value.username,UserCreate.value.password,UserCreate.value.password2,UserCreate.value.empleado,UserCreate.value.rol)"
+                    id="createDimension"
+                    class="px-2">
+                    <nz-form-item>
+                      <nz-form-label [nzSpan]="6" nzFor="username">Usuario</nz-form-label>
+                      <nz-form-control [nzSpan]="12">
+                        <input nz-input name="username" type="text" id="username" ngModel required minlength="4">
+                      </nz-form-control>
+                    </nz-form-item >
+                    <nz-form-item>
+                        <nz-form-label [nzSpan]="6" nzFor="email">Correo</nz-form-label>
+                        <nz-form-control [nzSpan]="12">
+                          <input nz-input name="email" type="text" id="email" ngModel required minlength="4">
+                        </nz-form-control>
+                      </nz-form-item >
+
+                    <nz-form-item>
+                        <nz-form-label [nzSpan]="6" nzFor="password">Contraseña</nz-form-label>
+                        <nz-form-control [nzSpan]="12">
+                          <input nz-input name="password" type="password" id="password" ngModel required minlength="8">
+                        </nz-form-control>
+                      </nz-form-item >
+                      <nz-form-item>
+                        <nz-form-label [nzSpan]="8" nzFor="password">Repetir Contraseña</nz-form-label>
+                        <nz-form-control [nzSpan]="10">
+                          <input nz-input name="password2" type="password" id="password2" ngModel required minlength="8">
+                        </nz-form-control>
+                      </nz-form-item >
+
+                      <nz-form-item>
+                        <nz-form-label [nzSpan]="6" nzFor="empleado">Empleado</nz-form-label>
+                        <nz-form-control [nzSpan]="12">
+                            <nz-select
+                            [(ngModel)]="nombreEmpleado"
+                            (nzScrollToBottom)="loadMore()"
+                            nzPlaceHolder="Seleccionar empleado"
+                            nzAllowClear
+                            required
+                            name="empleado"
+                            ngModel
+                            >
+                            <nz-option *ngFor="let o of empleadosFromDb" [nzValue]="o.id" [nzLabel]="o.nombre"></nz-option>
+                            </nz-select>
+                        </nz-form-control>
+                      </nz-form-item >
+
+                      <nz-form-item>
+                        <nz-form-label [nzSpan]="6" nzFor="empleado">Rol</nz-form-label>
+                        <nz-form-control [nzSpan]="12">
+                            <nz-select
+                            [(ngModel)]="rolSeleccionado"
+                            (nzScrollToBottom)="loadMore()"
+                            nzPlaceHolder="Seleccionar Rol"
+                            nzAllowClear
+                            required
+                            name="rol"
+                            ngModel
+                            >
+                            <nz-option *ngFor="let o of rolesFromDb" [nzValue]="o.id" [nzLabel]="o.rol"></nz-option>
+                            </nz-select>
+                        </nz-form-control>
+                      </nz-form-item>
+
+                      <nz-form-item nz-row class="register-area">
+                        <nz-form-control [nzSpan]="14" [nzOffset]="10">
+                          <button nz-button nzType="primary" type="submit" [disabled]="UserCreate.invalid">Crear</button>
+                        </nz-form-control>
+                      </nz-form-item>
+                  </form>
+            </nz-tab>
+            <nz-tab  [nzTitle]="'Editar Usuario'" *ngIf="editMode">
+                <form nz-form #UserCreate='ngForm' 
+                (ngSubmit)="crearUsuario(UserCreate.value.email,UserCreate.value.username,UserCreate.value.password,UserCreate.value.password2,UserCreate.value.empleado,UserCreate.value.rol)"
+                    id="createDimension"
+                    class="px-2">
+                    <nz-form-item>
+                      <nz-form-label [nzSpan]="6" nzFor="username">Usuario</nz-form-label>
+                      <nz-form-control [nzSpan]="12">
+                        <input nz-input name="username" type="text" id="username" ngModel required minlength="4" [(ngModel)]="userToUpdate.username">
+                      </nz-form-control>
+                    </nz-form-item >
+                    <nz-form-item>
+                        <nz-form-label [nzSpan]="6" nzFor="email">Correo</nz-form-label>
+                        <nz-form-control [nzSpan]="12">
+                          <input nz-input name="email" type="text" id="email" ngModel required minlength="4" [(ngModel)]="userToUpdate.email">
+                        </nz-form-control>
+                      </nz-form-item >
+
+
+                      <nz-form-item>
+                        <nz-form-label [nzSpan]="6" nzFor="empleado">Empleado</nz-form-label>
+                        <nz-form-control [nzSpan]="12">
+                            <nz-select
+                            ngModel="userToUpdate.empleado.nombre"
+                            nzPlaceHolder="Seleccionar empleado"
+                            nzAllowClear
+                            required
+                            name="empleado"
+                            >
+                            <nz-option  *ngFor="let o of empleadosFromDb" [nzValue]="o.id" [nzLabel]="o.nombre"></nz-option>
+                            </nz-select>
+                        </nz-form-control>
+                      </nz-form-item >
+
+                      <nz-form-item>
+                        <nz-form-label [nzSpan]="6" nzFor="empleado">Rol</nz-form-label>
+                        <nz-form-control [nzSpan]="12">
+                            <nz-select
+                            [(ngModel)]="rolSeleccionado"
+                            (nzScrollToBottom)="loadMore()"
+                            nzPlaceHolder="Seleccionar Rol"
+                            nzAllowClear
+                            required
+                            name="rol"
+                            ngModel
+                            >
+                            <nz-option *ngFor="let o of rolesFromDb" [nzValue]="o.id" [nzLabel]="o.rol"></nz-option>
+                            </nz-select>
+                        </nz-form-control>
+                      </nz-form-item>
+
+                      <nz-form-item nz-row class="register-area">
+                        <nz-form-control [nzSpan]="14" [nzOffset]="10">
+                          <button nz-button nzType="primary" type="submit" [disabled]="UserCreate.invalid">Actualizar</button>
+                        </nz-form-control>
+                      </nz-form-item>
+                  </form>
+            </nz-tab>
+        </nz-tabset>
+
+    </section>
+</div>
+<!-- Este modal sirve para eliminar un usuario -->
+<div class="modal" tabindex="-1" id="eliminarInst">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-danger">
+                <h5 class="modal-title fs-3 m-auto"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Está seguro de eliminarlo? </p>
+            </div>
+            <form id="eliminarDimension">
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-danger" (click)="Delete()">Eliminar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    </div>

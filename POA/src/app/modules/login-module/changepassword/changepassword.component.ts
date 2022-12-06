@@ -15,47 +15,52 @@ import { NgForm } from '@angular/forms';
 export class ChangepasswordComponent implements OnInit {
   constructor(private route: ActivatedRoute,
     private router: Router,
-    private ChangePasswordService:ChangePasswordService,
-    private local:Storage) { }
+    private ChangePasswordService: ChangePasswordService,
+    private local: Storage) { }
 
-    ngOnInit(): void {
+  ngOnInit(): void {
+  }
+
+  async ChangeP(old_password: string, new_password: string, new_password_again: string) {
+
+    try {
+
+      const user = this.local.get_storage("user");
+      await this.ChangePasswordService.ChangeP(user.id, old_password, new_password, new_password_again).subscribe((res: any) => {
+        console.log(res);
+        Swal.fire({
+          icon: 'success',
+          title: 'Contraseña se cambio con exito',
+          showConfirmButton: false,
+          timer: 5000
+        })
+        setTimeout(function () {
+          window.location.reload();
+        }, 5000);
+        this.router.navigate(['/home/account']);
+      }, (error: any) => {
+        console.log(error);
+        Swal.fire({
+          icon: 'error',
+          title: 'las contraseñas no coinciden',
+          showConfirmButton: false,
+          timer: 2500
+        })
+      });
     }
 
- async ChangeP(old_password:string,new_password:string,new_password_again:string){
-  
-  try{
-  
-    const user=this.local.get_storage("user");
-  await this.ChangePasswordService.ChangeP(user.id,old_password,new_password,new_password_again).subscribe((res:any)=>{
-    console.log(res);
-    Swal.fire({
-      icon: 'success',
-      title: 'Contraseña se cambio con exito',
-      showConfirmButton: false,
-      timer: 5000
-    })
-    setTimeout(function() {
-      window.location.reload();
-    },5000);
-    this.router.navigate(['/home/account']); 
-  }, (error: any) => {
-    console.log(error);
-    
-  });
-}
 
-
-catch(error){
-Swal.fire({
-  icon: 'error',
-  title: 'Ha ocurrido un error ',
-  showConfirmButton: false,
-  timer: 5000
-})
-setTimeout(function() {
-  window.location.reload();
-},5000);
-}
-}
+    catch (error) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Ha ocurrido un error ',
+        showConfirmButton: false,
+        timer: 5000
+      })
+      setTimeout(function () {
+        window.location.reload();
+      }, 5000);
+    }
+  }
 
 }
