@@ -26,19 +26,33 @@
                     <label for="descripcion" class="form-label">Descripcion:</label>
                     <textarea class="form-control" id="exampleFormControlTextarea1" [(ngModel)]="descripcion" rows="2" value="{{actividad.descripcion}}" ></textarea>
                   </div>
+
                   <div class="col-10">
-                    <label for="estado" class="row col-form-label">Estado:</label>
-                    <select class="form-select" aria-label="Default select example"name="estado"
-                    [(ngModel)]="estado_seleccionado" required>
-                        <option selected>Seleccione el estado actual de la actividad</option>
-                        <option value="1">FORMULACION</option>
-                        <option value="2">REFORMULACION</option>
-                        <option value="3">REVISION</option>
-                        <option value="4">APROBADO</option>
-                        <option value="5">RECHAZADO</option>
-                        
-                      </select>
+                    <label for="tipoActividad" class="row col-form-label">Tipo de actividad:</label>
+                    <select class="form-control" aria-label="Default select example" name="id"
+                        [(ngModel)]="tipo_seleccionado" required>
+                        <ng-container *ngFor="let x of actividadList">
+                            <option value="{{x.id}}" [selected]="x.id===id">{{x.tipoActividad}}</option>
+                            <option value="1">ACADEMICA</option>
+                            <option value="2">ADMINISTRATIVA</option>
+                        </ng-container>
+                    </select>
                 </div>
+                  <div class="col-10">
+                    <label for="categoria" class="row col-form-label">Categoria:</label>
+                    <select class="form-control" aria-label="Default select example" name="id"
+                        [(ngModel)]="categoria_seleccionado" required>
+                        <ng-container *ngFor="let x of actividadList">
+                            <option value="{{x.id}}" [selected]="x.id===id">{{x.categoria}}</option>
+                            <option value="1">COORDINACION</option>
+                            <option value="2">JEFATURA</option>
+                            <option value="3">ADMINISTRATIVA</option>
+                        </ng-container>
+                    </select>
+                </div>
+
+
+                  <!--            
                 <div class="col-10">
                     <label for="tipoActividad" class="row col-form-label">Tipo de actividad:</label>
                     <select class="form-select" aria-label="Default select example"name="tipoActividad"
@@ -52,7 +66,7 @@
                 </div>
                 <div class="col-10">
                     <label for="categoria" class="row col-form-label">Categoria:</label>
-                    <select class="form-select" aria-label="Default select example"name="categoria"[(ngModel)]="categoria_seleccionado" required>
+                    <select class="form-select" aria-label="Default select example"name="categoria"[(ngModel)]="categoria_seleccionado" required >
                         <option selected>Seleccione el estado actual de la actividad</option>
                         <option value="1">COORDINACION</option>
                         <option value="2">JEFATURA</option>
@@ -60,7 +74,7 @@
                 
                         
                       </select>
-                </div>
+                </div> -->
                 <h1> </h1>
 
          

@@ -25,8 +25,8 @@ export class ActividadService {
   get actividades(){
     return this._actividades;
   }
-  public crearActividad (nombre:string,descripcion:string,
-    estado:string,tipoActividad:string, categoria:string,
+  public crearActividad (nombre:string,descripcion:string
+    ,tipoActividad:string, categoria:string,
     idPoa:number,responsables:string):any{
       const url = environment.servidor + 'actividad/crear';
  
@@ -35,7 +35,6 @@ export class ActividadService {
          grant_type: 'password',
            nombre: nombre,
             descripcion:descripcion,
-            estado: estado,
             tipoActividad: tipoActividad,
             categoria:categoria,
             idPoa:idPoa,
@@ -118,8 +117,8 @@ export class ActividadService {
   }
 
   // alternativa a update
-  updateActividad(id:number,nombre:string, descripcion:string,
-    estado:string,tipoActividad:string, categoria:string,idPoa:number):any {
+  updateActividad(id:number,nombre:string, descripcion:string
+   ,tipoActividad:string, categoria:string,idPoa:number):any {
     const url = environment.servidor + 'actividad/editar';
 
     const params = new HttpParams({
@@ -127,7 +126,6 @@ export class ActividadService {
         grant_type: 'password',
         nombre: nombre,  
         descripcion:descripcion,
-        estado: estado,
         tipoActividad: tipoActividad,
         categoria:categoria,
         
@@ -140,7 +138,7 @@ export class ActividadService {
       })
     };
     //return this.directHttp.put(url, params, httpOptions);
-    this.directHttp.put(url,{nombre:nombre,descripcion:descripcion,estado:estado,
+    this.directHttp.put(url,{nombre:nombre,descripcion:descripcion,
       tipoActividad:tipoActividad,categoria:categoria,id:id,idPoa:idPoa}).subscribe((response:any)=>
     {
       console.log(response);
