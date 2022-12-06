@@ -35,22 +35,34 @@
           </div>
           <div class="col-10 mb-3">
             <label for="inputFuente11" class="form-label">Fuente11:</label>
-            <input type="text" class="form-control" id="exampleFormControlTextarea1" [(ngModel)]="fuente11" rows="2"
-              value="{{poa.fuente11}}">
+            <input type="number" class="form-control" [(ngModel)]="fuente11" value="{{poa.fuente11}}" ondrop="return false;" onpaste="return false;" onkeypress="return event.charCode>=48 && event.charCode<=57" min="0" max=""
+              ngModel required>
+              <ng-container *ngIf="+fuente11 < 0">
+                <span class="alert alert-danger">Revisa el valor ingresado
+                </span>
+            </ng-container>
           </div>
           <div class="col-10 mb-3">
             <label for="inputFuente12" class="form-label">Fuente12:</label>
-            <input type="text" class="form-control" id="exampleFormControlTextarea1" [(ngModel)]="fuente12" rows="2"
-              value="{{poa.fuente12}}">
+            <input type="number" class="form-control" [(ngModel)]="fuente12" value="{{poa.fuente12}}" ondrop="return false;" onpaste="return false;" onkeypress="return event.charCode>=48 && event.charCode<=57" min="0" max=""
+              ngModel required>
+              <ng-container *ngIf="+fuente12 < 0">
+                <span class="alert alert-danger">Revisa el valor ingresado
+                </span>
+            </ng-container>
           </div>
           <div class="col-10 mb-3">
             <label for="inputFuente12B" class="form-label">Fuente12B:</label>
-            <input type="text" class="form-control" id="exampleFormControlTextarea1" [(ngModel)]="fuente12B" rows="2"
-              value="{{poa.fuente12B}}">
+            <input type="number" class="form-control" [(ngModel)]="fuente12B" value="{{poa.fuente12B}}" ondrop="return false;" onpaste="return false;" onkeypress="return event.charCode>=48 && event.charCode<=57" min="0" max=""
+              ngModel required>
+              <ng-container *ngIf="+fuente12B < 0">
+                <span class="alert alert-danger">Revisa el valor ingresado
+                </span>
+            </ng-container>
           </div>
           <div class="d-grid gap-2 d-md-flex justify-content-end">
             <button type="button" class="btn btn-secondary" (click)="toDetail(poa.id)">Regresar</button>
-            <button type="submit" class="btn btn-warning" (click)="Update()">Actualizar</button>
+            <button type="submit" class="btn btn-warning" [disabled]="poa.invalid" (click)="Update()">Actualizar</button>
           </div>
         </div>
 
