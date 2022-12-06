@@ -1,3 +1,4 @@
+import { EmptyComponent } from 'src/app/_core/empty/empty.component';
 // --------------------------------
 // importaciones necesarias
 // --------------------------------
@@ -18,6 +19,9 @@ import {MatInputModule} from '@angular/material/input';
 import {MatRadioModule} from '@angular/material/radio'
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+
 // --------------------------------
 
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
@@ -77,6 +81,7 @@ import { ResponsableFiltroPipe } from './pipes-poa/responsable-filtro.pipe';
 import { IndicadorFiltroPipe } from './pipes-poa/indicador-filtro.pipe';
 import { IndicadorPaginacionPipe } from './pipes-poa/indicador-paginacion.pipe';
 import { TabActividadesComponentsComponent } from './components-poa/actividades/tab-actividades-components/tab-actividades-components.component';
+import { DetailPresupuestoComponent } from './components-poa/tareas/detail-presupuesto/detail-presupuesto.component';
 
 
 
@@ -96,26 +101,26 @@ const router = RouterModule.forChild([
   {path: 'actividad/update/:id/:idPoa/:idInsti/:idDepto', component: UpdateActividadComponent},
   {path: 'actividad/detail/:id/:idPoa/:idInsti/:idDepto', component: DetailActividadComponent},
   {path: 'actividad/list/:idPoa/:idInsti/:idDepto/:idUE', component: AllActividadComponent},
-  {path: 'actividad/tab/:idActividad/:idPoa/:idUE/:idDepto/:idInsti', component: TabActividadesComponentsComponent},
+  {path: 'actividad/tab/:idActividad/:idPoa/:idDepto/:idInsti', component: TabActividadesComponentsComponent},
   // rutas de tareas
-  {path: 'tareas/create/:idActividad', component: CreateTareasComponent},
-  {path: 'tareas/update/:id/:idActividad', component: UpdateTareasComponent},
-  {path: 'tareas/detail/:id/:idActividad', component: DetailTareasComponent},
-  {path: 'tareas/list/:idActividad', component: AllTareasComponent},
+  {path: 'tareas/create/:idActividad/:idPoa/:idDepto/:idInsti', component: CreateTareasComponent},
+  {path: 'tareas/update/:id/:idActividad/:idPoa/:idDepto/:idInsti', component: UpdateTareasComponent},
+  {path: 'tareas/detail/:id/:idActividad/:idPoa/:idDepto/:idInsti', component: DetailTareasComponent},
+  {path: 'tareas/list/:idActividad/:idPoa/:idDepto/:idInsti', component: AllTareasComponent},
 
   // rutas de indicadores
-  {path: 'indicadores/create/:idActividad/:idPoa/:idUE/:idDepto/:idInsti', component: CreateIndicadoresComponent},
-  {path: 'indicadores/update/:id/:idActividad/:idPoa/:idUE/:idDepto/:idInsti', component: UpdateIndicadoresComponent},
-  {path: 'indicadores/detail/:id/:idActividad/:idPoa/:idUE/:idDepto/:idInsti', component: DetailIndicadoresComponent},
-  {path: 'indicadores/list/:idActividad/:idPoa/:idUE/:idDepto/:idInsti', component: AllIndicadoresComponent},
-  {path: 'indicadores/seguimiento/:id/:idActividad/:idPoa/:idUE/:idDepto/:idInsti', component: SeguimientoIndicadorComponent},
+  {path: 'indicadores/create/:idActividad/:idPoa/:idDepto/:idInsti', component: CreateIndicadoresComponent},
+  {path: 'indicadores/update/:id/:idActividad/:idPoa/:idDepto/:idInsti', component: UpdateIndicadoresComponent},
+  {path: 'indicadores/detail/:id/:idActividad/:idPoa/:idDepto/:idInsti', component: DetailIndicadoresComponent},
+  {path: 'indicadores/list/:idActividad/:idPoa/:idDepto/:idInsti', component: AllIndicadoresComponent},
+  {path: 'indicadores/seguimiento/:id/:idActividad/:idPoa/:idDepto/:idInsti', component: SeguimientoIndicadorComponent},
 
   // rutas de planificacion
   {path: 'planificacion/create/:idPoa/:idActividad/:idInsti/:idDepto', component: CreatePlanificacionComponent},
   {path: 'planificacion/update/:id/:idPoa/:idActividad/:idInsti/:idDepto', component: UpdatePlanificacionComponent},
   {path: 'planificacion/detail/:id/:idPoa/:idActividad/:idInsti/:idDepto', component: DetailPlanificacionComponent},
   {path: 'planificacion/list/:idActividad/:idPoa/:idInsti/:idDepto', component: AllPlanificacionComponent},
-  
+
 
 ])
 
@@ -159,12 +164,15 @@ const router = RouterModule.forChild([
     IndicadorPaginacionPipe,
     SeguimientoIndicadorComponent,
     TabActividadesComponentsComponent,
-    ENTRYCOMPONENTS
+    DetailPresupuestoComponent,
+    ENTRYCOMPONENTS    
+
   ],
   imports: [
+
     NgSelectModule,
     BackButtonComponent,
-CommonModule,
+  CommonModule,
   router,
   MatSelectModule,
   FormsModule,
@@ -178,8 +186,11 @@ MatRadioModule,
 BackButtonComponent,
 MatIconModule,
 MatButtonModule,
-NzTabsModule
-  
+NzTabsModule,
+EmptyComponent,
+MatProgressBarModule,
+MatTabsModule
+
   ],
   entryComponents: [ENTRYCOMPONENTS]
 })

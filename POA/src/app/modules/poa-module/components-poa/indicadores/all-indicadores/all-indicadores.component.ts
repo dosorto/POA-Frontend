@@ -33,7 +33,7 @@ export class AllIndicadoresComponent implements OnInit {
   public indicadorSeguimiento :Indicadores | any = {};
   public idInsti = Number(this.route.snapshot.paramMap.get('idInsti'));
   public idDepto = Number(this.route.snapshot.paramMap.get('idDepto'));
-  public idUE = Number(this.route.snapshot.paramMap.get('idUE'))
+  // public idUE = Number(this.route.snapshot.paramMap.get('idUE'))
   public idPoa = Number(this.route.snapshot.paramMap.get('idPoa'));
   public idActividad = Number(this.route.snapshot.paramMap.get('idActividad'));
   //  public idActividad = 1;
@@ -99,17 +99,17 @@ public enumPages:number[]=[]
 
 
   toDetail(idIndicador:number){
-    this.router.navigate(['/gestion_poa/indicadores/detail/',idIndicador.toString(),this.idActividad,this.idPoa,this.idUE,this.idDepto,this.idInsti]);
+    this.router.navigate(['/gestion_poa/indicadores/detail/',idIndicador.toString(),this.idActividad,this.idPoa,this.idDepto,this.idInsti]);
   }
   toSeguimiento(idIndicador:number){
-    this.router.navigate(['/gestion_poa/indicadores/seguimiento/',idIndicador.toString(),this.idActividad,this.idPoa,this.idUE,this.idDepto,this.idInsti]);
+    this.router.navigate(['/gestion_poa/indicadores/seguimiento/',idIndicador.toString(),this.idActividad,this.idPoa,this.idDepto,this.idInsti]);
   }
   toCreate(){
-    this.router.navigate(['/gestion_poa/indicadores/create/',this.idActividad.toString(),this.idPoa,this.idUE,this.idDepto,this.idInsti]);
+    this.router.navigate(['/gestion_poa/indicadores/create/',this.idActividad.toString(),this.idPoa,this.idDepto,this.idInsti]);
   }
 
   selectActividad(){
-    this.router.navigate(['/gestion_poa/actividad/tab/',this.actividad_seleccionada,this.idPoa,this.idUE,this.idDepto,this.idInsti]);
+    this.router.navigate(['/gestion_poa/actividad/tab/',this.actividad_seleccionada,this.idPoa,this.idDepto,this.idInsti]);
     setTimeout(function () {
       window.location.reload();
     }, 10)

@@ -13,14 +13,12 @@
             <h2 class="">
               <font color='black'>Actualizar POA</font>
               <br>
-              <span class="fs-5">
-                Departamento: <span class="text-primary ">{{idDepto}}</span>
-            </span>
             </h2>
           </div>
           <div class="col-10 mb-3">
-            <mat-slide-toggle [(ngModel)]="isActive">Deshabilitar/Habilitar</mat-slide-toggle>
+            <mat-slide-toggle  name="isActive" [(ngModel)]="isActive">Deshabilitar/Habilitar</mat-slide-toggle>
           </div>
+          
           <div class="col-10">
             <label for="inputName" class="form-label" name="name">Nombre:</label>
             <input type="text" class="form-control" id="exampleFormControlTextarea1" [(ngModel)]="name" rows="2"

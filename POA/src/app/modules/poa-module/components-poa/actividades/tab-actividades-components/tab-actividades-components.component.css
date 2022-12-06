@@ -1,7 +1,7 @@
 .tab{
     position: relative;
     top: 2%;
-    right: -100px;
+    right: -8%;
 }
 
 /* .retorno{
@@ -9,5 +9,10 @@
 } */
 .contenido{
     position: relative;
-    right: 100px;
+    right: 8%;
+}
+
+.select{
+    position:relative;
+    right: -9%;
 }

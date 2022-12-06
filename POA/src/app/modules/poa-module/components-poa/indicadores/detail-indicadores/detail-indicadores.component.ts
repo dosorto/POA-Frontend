@@ -15,19 +15,19 @@ import { Poa } from '../../../interfaces-poa/poa.model';
 })
 export class DetailIndicadoresComponent implements OnInit {
 
-  // public idDepto:number = Number(this._route.snapshot.paramMap.get('idDepto'));
-  // public idInsti:number = Number(this._route.snapshot.paramMap.get('idInsti'));
-  // public idPoa:number = Number(this._route.snapshot.paramMap.get('idPoa'));
-  //public idActividad:number = Number(this._route.snapshot.paramMap.get('idActividad'));
+  public idDepto:number = Number(this._route.snapshot.paramMap.get('idDepto'));
+  public idInsti:number = Number(this._route.snapshot.paramMap.get('idInsti'));
+  public idPoa:number = Number(this._route.snapshot.paramMap.get('idPoa'));
+  public idActividad:number = Number(this._route.snapshot.paramMap.get('idActividad'));
   public id:number = Number(this._route.snapshot.paramMap.get('id'));
   public indicadores:Indicadores | any = {};
   public _delete: any;
   
   
-  public idActividad= 1;
-  public idDepto = 1;
-  public idPoa = 1;
-  public idInsti =1;
+  // public idActividad= 1;
+  // public idDepto = 1;
+  // public idPoa = 1;
+  // public idInsti =1;
 
   public ActividadList: Actividad | any = {};
   public InstiList: Institucion | any = {};
@@ -76,6 +76,10 @@ toList(){
   this.router.navigate(['/gestion_poa/indicadores/list/',this.idActividad,this.idPoa,this.idDepto,this.idInsti]); //revisar
 }
 
+toTab(){
+  this.router.navigate(['/gestion_poa/actividad/tab/',this.idActividad,this.idPoa,this.idDepto,this.idInsti]); //revisar
+}
+
 toUpdate(){
   this.router.navigate(['/gestion_poa/indicadores/update/',this.id,this.idActividad,this.idPoa,this.idDepto,this.idInsti]);
 }
@@ -92,7 +96,7 @@ async Delete(){
   setTimeout(function() {
      window.location.reload();
   },1000);
-   this.toList();
+   this.toTab();
 }catch(error){
   Swal.fire({
     icon: 'error',

@@ -42,7 +42,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     ReactiveFormsModule ,
     TopBarComponent,
     MatSlideToggleModule
-    
+
   ],
   providers: [],
   bootstrap: [AppComponent]

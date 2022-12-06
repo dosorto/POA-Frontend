@@ -34,14 +34,14 @@ export class CreateIndicadoresComponent implements OnInit {
 
   public id:number = Number(this._route.snapshot.paramMap.get('id'));
   public indicadorSeguimiento :Indicadores | any = {};
-  //public idInsti = Number(this.route.snapshot.paramMap.get('idInsti'));
-  //public idDepto = Number(this.route.snapshot.paramMap.get('idDpeto'));
-  //public idPoa = Number(this.route.snapshot.paramMap.get('idPoa'));
-  //public idActividades = Number(this.route.snapshot.paramMap.get('idActividad'));
-  public idActividad = 1;
-  public idDepto = 1;
-  public idPoa = 1;
-  public idInsti =1;
+  public idInsti = Number(this._route.snapshot.paramMap.get('idInsti'));
+  public idDepto = Number(this._route.snapshot.paramMap.get('idDepto'));
+  public idPoa = Number(this._route.snapshot.paramMap.get('idPoa'));
+  public idActividad = Number(this._route.snapshot.paramMap.get('idActividad'));
+  // public idActividad = 1;
+  // public idDepto = 1;
+  // public idPoa = 1;
+  // public idInsti =1;
 
   public ActividadList: Actividad | any = {};
 
@@ -90,6 +90,10 @@ export class CreateIndicadoresComponent implements OnInit {
   toList(){
     this.router.navigate(['/gestion_poa/indicadores/list/',this.idActividad,this.idPoa,this.idDepto,this.idInsti]); //revisar
   }
+
+  toTab(){
+    this.router.navigate(['/gestion_poa/actividad/tab/',this.idActividad,this.idPoa,this.idDepto,this.idInsti]); //revisar
+  }
   
 
   async crear_Indicador(nombre:string,descripcion:string, cantidadPlanificada:number,isCantidad:boolean,isPorcentaje:boolean ){
@@ -102,7 +106,7 @@ export class CreateIndicadoresComponent implements OnInit {
           showConfirmButton: false,
           timer: 2500
         })
-        this.toList();
+        this.toTab();
       },(error:any)=>{
         Swal.fire({
           icon: 'error',

@@ -1,6 +1,6 @@
 <top-bar></top-bar>
 
-<app-back-button [path]="['/gestion_poa/indicadores/list/',this.idActividad,idPoa,idDepto,idInsti]"></app-back-button>
+<app-back-button [path]="['/gestion_poa/actividad/tab/',this.idActividad,idPoa,idDepto,idInsti]"></app-back-button>
 
 <head>
     <meta charset="utf-8">
@@ -119,7 +119,7 @@
                 </div>
                 <div class="container">
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end" *ngIf="isPorcentaje == false && isCantidad == false">
-                        <button type="button" class="btn btn-secondary" (click)="toList()">Cancelar</button>
+                        <button type="button" class="btn btn-secondary" (click)="toTab()">Cancelar</button>
                         <!-- <button type="submit" class="btn btn-warning" [disabled]="Indicador.invalid">Guardar</button> -->
                     </div>
                 </div>

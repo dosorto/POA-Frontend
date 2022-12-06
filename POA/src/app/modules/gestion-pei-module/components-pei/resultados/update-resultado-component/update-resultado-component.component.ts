@@ -88,7 +88,7 @@ this.toDetail();
 console.log(error);
 }
 setTimeout(function() {
-//window.location.reload();
+window.location.reload();
 },1500);
 
 

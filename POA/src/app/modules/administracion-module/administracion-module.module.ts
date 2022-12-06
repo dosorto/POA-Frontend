@@ -21,6 +21,12 @@ import { CreateRolComponent } from './components/roles/create-rol/create-rol.com
 import { UpdateRolComponent } from './components/roles/update-rol/update-rol.component';
 import { AllRolComponent } from './components/roles/all-rol/all-rol.component';
 import { AdministracionComponent } from './administracion.component';
+import { AllPlanificacionComponent } from './components/planificacion/all-planificacion/all-planificacion.component';
+import { CreatePlanificacionComponent } from './components/planificacion/create-planificacion/create-planificacion.component';
+import { DeletePlanificacionComponent } from './components/planificacion/delete-planificacion/delete-planificacion.component';
+import { DetailPlanificacionComponent } from './components/planificacion/detail-planificacion/detail-planificacion.component';
+import { UpdatePlanificacionComponent } from './components/planificacion/update-planificacion/update-planificacion.component';
+import { TopBarComponent } from 'src/app/_core/top-bar/top-bar.component';
 
 
 
@@ -42,10 +48,16 @@ import { AdministracionComponent } from './administracion.component';
     CreateRolComponent,
     UpdateRolComponent,
     AllRolComponent,
-    AdministracionComponent
+    AdministracionComponent,
+    AllPlanificacionComponent,
+    CreatePlanificacionComponent,
+    DeletePlanificacionComponent,
+    DetailPlanificacionComponent,
+    UpdatePlanificacionComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    TopBarComponent
   ]
 })
 export class AdministracionModuleModule { }
