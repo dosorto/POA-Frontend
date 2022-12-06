@@ -41,9 +41,9 @@ export class DetailPoaComponent implements OnInit {
     this.poa = this.service.getPOA_Id(this.id).subscribe((response:any)=>{
       this.poa = response.poa;
     });
-    this.depto = this.service.getDepto_Id(this.idDepto).subscribe((response:any)=>{
-      this.depto = response.Depto;
-    });
+    this.depto = await this.service.getDepto_Id(this.idDepto).subscribe((response: any) => {
+      this.depto = response.all_deptos;
+    })
   }
 
   onBack(): void {

@@ -91,7 +91,7 @@ eliminarIndicador(idIndicador: number):any  {
 }
 
 
-updateIndicador(nombre: string, descripcion:string,  id:number,idActividad:number):any {
+updateIndicador(nombre: string, descripcion:string, cantidadPlanificada:number, id:number,idActividad:number):any {
   const url = environment.servidor + 'indicadoresPOA/updateIndicadores/';
 
   const params = new HttpParams({
@@ -99,6 +99,7 @@ updateIndicador(nombre: string, descripcion:string,  id:number,idActividad:numbe
       grant_type: 'password',
       nombre: nombre,
       descripcion:descripcion,
+      cantidadPlanificada:cantidadPlanificada,
     }
   });
 
@@ -108,7 +109,7 @@ updateIndicador(nombre: string, descripcion:string,  id:number,idActividad:numbe
     })
   };
   //return this.directHttp.put(url, params, httpOptions);
-  return this.directHttp.put(url,{nombre:nombre,descripcion:descripcion,id:id,idActividad:idActividad})
+  return this.directHttp.put(url,{nombre:nombre,descripcion:descripcion,cantidadPlanificada:cantidadPlanificada,id:id,idActividad:idActividad})
 }
 
 seguimientoIndicador(cantidadPlanificada: number, cantidadEjecutada:number, promedioAlcanzado:number,  id:number, idActividad:number):any {
@@ -157,5 +158,16 @@ getIndicador_Id(idIndicador:number) {
 
 getDepto_Id(idDepto:number) {
   return this.callHttp.httpGet<Depto>(`${environment.servidor}indicadoresPOA/get-Depto/`+ idDepto.toString());
+}
+
+
+
+
+getActividades(idPoa:number) {
+  return this.callHttp.httpGet<Array<Actividad>>(`${environment.servidor}actividad/get_all_by_idPoa/` + idPoa.toString())
+    .pipe(map(response => {
+      this._actividadList = response;               
+      return response;
+    }))
 }
 }

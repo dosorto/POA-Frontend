@@ -21,7 +21,16 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+
 // --------------------------------
+
+import { NzTabsModule } from 'ng-zorro-antd/tabs';
+const ENTRYCOMPONENTS = [
+  AllTareasComponent,
+  AllIndicadoresComponent,
+  AllPlanificacionComponent,
+  AllResponsableComponent
+];
 // componentes independientes importados
 // --------------------------------
 import { TopBarComponent } from '../../_core/top-bar/top-bar.component'
@@ -71,6 +80,7 @@ import { ResponsablePaginacionPipe } from './pipes-poa/responsable-paginacion.pi
 import { ResponsableFiltroPipe } from './pipes-poa/responsable-filtro.pipe';
 import { IndicadorFiltroPipe } from './pipes-poa/indicador-filtro.pipe';
 import { IndicadorPaginacionPipe } from './pipes-poa/indicador-paginacion.pipe';
+import { TabActividadesComponentsComponent } from './components-poa/actividades/tab-actividades-components/tab-actividades-components.component';
 import { DetailPresupuestoComponent } from './components-poa/tareas/detail-presupuesto/detail-presupuesto.component';
 
 
@@ -91,6 +101,7 @@ const router = RouterModule.forChild([
   {path: 'actividad/update/:id/:idPoa/:idInsti/:idDepto', component: UpdateActividadComponent},
   {path: 'actividad/detail/:id/:idPoa/:idInsti/:idDepto', component: DetailActividadComponent},
   {path: 'actividad/list/:idPoa/:idInsti/:idDepto/:idUE', component: AllActividadComponent},
+  {path: 'actividad/tab/:idActividad/:idPoa/:idDepto/:idInsti', component: TabActividadesComponentsComponent},
   // rutas de tareas
   {path: 'tareas/create/:idActividad/:idPoa/:idDepto/:idInsti', component: CreateTareasComponent},
   {path: 'tareas/update/:id/:idActividad/:idPoa/:idDepto/:idInsti', component: UpdateTareasComponent},
@@ -152,7 +163,9 @@ const router = RouterModule.forChild([
     IndicadorFiltroPipe,
     IndicadorPaginacionPipe,
     SeguimientoIndicadorComponent,
+    TabActividadesComponentsComponent,
     DetailPresupuestoComponent,
+    ENTRYCOMPONENTS    
 
   ],
   imports: [
@@ -173,10 +186,12 @@ MatRadioModule,
 BackButtonComponent,
 MatIconModule,
 MatButtonModule,
+NzTabsModule,
 EmptyComponent,
 MatProgressBarModule,
 MatTabsModule
 
-  ]
+  ],
+  entryComponents: [ENTRYCOMPONENTS]
 })
 export class PoaModuleModule { }

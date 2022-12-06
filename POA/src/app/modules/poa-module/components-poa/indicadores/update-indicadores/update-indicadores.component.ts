@@ -22,23 +22,18 @@ export class UpdateIndicadoresComponent implements OnInit {
               private router:Router,
               private _route: ActivatedRoute) { }
 
-  //public idInsti = Number(this.route.snapshot.paramMap.get('idInsti'));
-  //public idDepto = Number(this.route.snapshot.paramMap.get('idDpeto'));
-  //public idPoa = Number(this.route.snapshot.paramMap.get('idPoa'));
-  //public idActividades = Number(this.route.snapshot.paramMap.get('idActividad'));
+public idInsti = Number(this._route.snapshot.paramMap.get('idInsti'));
+public idDepto = Number(this._route.snapshot.paramMap.get('idDepto'));
+public idPoa = Number(this._route.snapshot.paramMap.get('idPoa'));
+public idActividad = Number(this._route.snapshot.paramMap.get('idActividad'));
 public id:number = Number(this._route.snapshot.paramMap.get('id'));
-public indicadores:Indicadores | any = {};
 
 
-public idIndicadores =13;
-public idActividad = 1;
-public idDepto = 1;
-public idPoa = 1;
-public idInsti =1;
-// public insti:Institucion|any={};
 public nombre:string='';
 public descripcion:string='';
+public cantidadPlanificada:number=0;
 
+public indicadores:Indicadores | any = {};
 public ActividadList: Actividad | any = {};
 public InstiList: Institucion | any = {};
 public DeptoList: Depto | any = {};
@@ -76,17 +71,20 @@ public PoaList: Poa | any = {};
   toDetail(){
     this.router.navigate(['/gestion_poa/indicadores/detail/',this.id,this.idActividad,this.idPoa,this.idDepto,this.idInsti]);
   }
+
   Update():any{
     let nombre = this.nombre;
     let descripcion = this.descripcion
-    console.log(":"+nombre+":" + ":"+descripcion);
+    let cantidadPlanificada = this.cantidadPlanificada
+    console.log(":"+nombre+":" + ":"+descripcion+":"+cantidadPlanificada);
      // validaciones
     if((nombre === '')){nombre = this.indicadores.nombre}
     if((descripcion === '')){descripcion = this.indicadores.descripcion}
+    if((cantidadPlanificada === 0)){cantidadPlanificada = this.indicadores.cantidadPlanificada}
  
-    console.log(":"+nombre+":" + ":"+descripcion);
+    console.log(":"+nombre+":" + ":"+descripcion+":"+cantidadPlanificada);
      try{
-      this.IndicadoreService.updateIndicador(nombre,descripcion,this.id,this.idActividad).subscribe((res:any)=>{
+      this.IndicadoreService.updateIndicador(nombre,descripcion,cantidadPlanificada,this.id,this.idActividad).subscribe((res:any)=>{
       
       Swal.fire({
         icon: 'success',
@@ -108,7 +106,7 @@ public PoaList: Poa | any = {};
      console.log(error);
    }
    setTimeout(function() {
-    //window.location.reload();
+    window.location.reload();
   },1500);
  
   

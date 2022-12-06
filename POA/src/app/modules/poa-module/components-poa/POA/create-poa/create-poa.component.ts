@@ -20,7 +20,9 @@ export class CreatePoaComponent implements OnInit {
 
   constructor(private PoaService: PoaService, private _route: ActivatedRoute, private router: Router) { }
 
-
+  ngOnInit(): void {
+    this.initData();
+  }
   public idDepto: number = Number(this._route.snapshot.paramMap.get('idDepto'));
   public departamento: Depto | any = {};
 
@@ -30,18 +32,16 @@ export class CreatePoaComponent implements OnInit {
   public idInsti: number = Number(this._route.snapshot.paramMap.get('idInsti'));
   public insti: Institucion | any = {};
 
-  ngOnInit(): void {
-    this.initData();
-  }
+  public InstitucionesList: Array<Institucion> = [];
 
   async initData() {
-    this.insti = this.PoaService.getInsti_Id(this.idInsti).subscribe((response:any)=>{
-      this.insti = response.Institucion;
-    });
+    this.departamento = await this.PoaService.getDepto_Id(this.idDepto).subscribe((response: any) => {
+      this.departamento = response.all_deptos;
+    })
   }
 
   toList() {
-    this.router.navigate(['gestion_poa/poa/list/', this.idInsti,this.idUE,this.idDepto]);
+    this.router.navigate(['gestion_poa/poa/list/', this.idInsti, this.idUE, this.idDepto]);
   }
 
   async crear_poa(name: string, anio: string, fuente11: string, fuente12: string, fuente12B: string) {
@@ -68,7 +68,7 @@ export class CreatePoaComponent implements OnInit {
   }
 
   onBack(): void {
-    this.router.navigate(['/gestion_poa/poa/list/',this.idInsti,this.idUE,this.idDepto]);
+    this.router.navigate(['/gestion_poa/poa/list/', this.idInsti, this.idUE, this.idDepto]);
   }
 
 }

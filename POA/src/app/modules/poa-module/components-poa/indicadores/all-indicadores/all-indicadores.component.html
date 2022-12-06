@@ -1,13 +1,13 @@
-<top-bar></top-bar>
+<!-- <top-bar></top-bar> -->
 <!-- <app-back-button [path]="['gestion_pei/areas/detail/',this.idArea,this.idObjetivo,idDimension,idPei,idInsti]"></app-back-button> -->
 <!-- Pantalla principal del modulo -->
-<div class="container d-flex align-items-center justify-content-center mt-5 pt-5 ">
+<!-- <div class="container d-flex align-items-center justify-content-center mt-5 pt-5 "> -->
     
     <!-- columna completa que agrupa todos los row -->
     <div class="col-12">
-        <br>
+        <!-- <br> -->
         <!-- espacio para el titulo, buscador y boton de agregar uno nuevo -->
-        <div class="container  rounded border border-dark" style="background-color: white;">
+        <div class="container" style="background-color: white;">
         <div class="w-100 row m-auto">
             <div class="row text-center">
                 <h2></h2>
@@ -21,17 +21,17 @@
                 
             </div>
             <div class="w-75 row m-auto mb-2">
-                <div class="row">
-                    <!-- <label for="id" class="row col-form-label">Seleccione un Área:</label>
+                <!-- <div class="row">
+                    <label for="id" class="row col-form-label">Seleccione un Área:</label>
                                 <select class="form-control" aria-label="Default select example" name="id"
-                                    [(ngModel)]="area_seleccionado"
-                                    (ngModelChange)="selectArea()" required>
-            
-                                    <ng-container *ngFor="let x of AreaList">
-                                        <option value="{{x.id}}" [selected]="x.id===idArea">{{x.nombre}}</option>
+                                    [(ngModel)]="actividad_seleccionada"
+                                    (ngModelChange)="selectActividad()" required>
+            s
+                                    <ng-container *ngFor="let x of ActividadListS">
+                                        <option value="{{x.id}}" [selected]="x.id===idActividad">{{x.nombre}}</option>
                                     </ng-container>
-                    </select> -->
-                </div>
+                    </select>
+                </div> -->
                 <div class="col-8 mt-2">
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Buscar por nombre" aria-label="Buscar"
@@ -56,7 +56,7 @@
                 </div>
             </div>
         </div>
-        <ng-container >
+        <ng-container *ngIf="indicadores.length > 0; else empty">
             <!-- tabla dinamica que muestra todas los objetivos -->
         <div class="w-75 m-auto row ">
             <table class="table table-hover  rounded border" >
@@ -136,10 +136,10 @@
         </ng-container>
         
         <ng-template #empty>
-            <!-- <app-empty></app-empty> -->
+            <app-empty></app-empty>
         </ng-template>
 </div>
 </div>
-</div>
+<!-- </div> -->
 
 

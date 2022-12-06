@@ -24,7 +24,7 @@ export class PlanificacionService {
   }
 
   // consulta para crear una planificación
-  public crearPlanificacion(trimestre:string, cantidad:number, fechaInicio:Date, fechaFin:Date): any {
+  public crearPlanificacion(trimestre:string, cantidad:number, fechaInicio:Date, fechaFin:Date, idActividad:number): any {
 
       const url = environment.servidor + 'planificacion/create';
 
@@ -35,6 +35,7 @@ export class PlanificacionService {
          cantidad: cantidad,
          fechaInicio:fechaInicio.toString(),
          fechaFin:fechaFin.toString(),
+         idActividad: idActividad
        }
        });
 
@@ -79,6 +80,15 @@ export class PlanificacionService {
         this._planificaciones = response;
         return response;
       }));
+  }
+
+  // Obtener todas las planificaciones de una actividad
+  getPlanificacionesIdActividad(idActividad:number) {
+    return this.callHttp.httpGet<Array<Planificacion>>(`${environment.servidor}planificacion/get_all_by_id_actividad/` + idActividad.toString())
+      .pipe(map(response => {
+        this._planificaciones = response;
+        return response;
+      }))
   }
 
   // Obtener una unica planificacion por el id

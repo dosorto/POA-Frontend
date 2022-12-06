@@ -106,33 +106,34 @@ ngOnInit(){
     console.log(this._delete)
   }
               
-              
-                  // metodos para eliminar
-async delete() {
-  
-  await this.resultadoService.eliminarResultado(this._delete)
-  Swal.fire({
-    title: 'Eliminado con exito',
-    showConfirmButton: false,
-    color:'white',
-    background:'#F5B7B1',
-    timer: 300,
-    showClass: {
-      popup: 'animate__animated animate__fadeInDown'
-    },
-    hideClass: {
-      popup: 'animate__animated animate__fadeOutUp'
-    }
-    
-  } )
+// metodos para eliminar
+
+  async delete(){
+    try{
+      await this.resultadoService.eliminarResultado(this._delete)
+      Swal.fire({
+        icon: 'success',
+        title: '¡Eliminado con éxito!',
+        showConfirmButton: false,
+        timer: 1000
+      })
  
-  setTimeout(function() {
-    window.location.reload();
-  },100);
-  this.toList();
-    
-  // window.location.reload();
+    setTimeout(function() {
+      window.location.reload();
+    },1000);
+    this.toList();
+  }catch(error){
+    Swal.fire({
+      icon: 'error',
+      title: '¡Ha ocurrido un error!',
+      showConfirmButton: false,
+      timer: 1000
+    })
+    setTimeout(function() {
+      window.location.reload();
+    },1000);
   
+  }
   }
   toUpdate(){
     this.router.navigate(['/gestion_pei/resultados/update/',this.id,this.idArea,this.idObjetivo,this.idDimension,this.idPei,this.idInsti]);

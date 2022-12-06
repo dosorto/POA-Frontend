@@ -36,6 +36,7 @@ export class UpdateActividadComponent implements OnInit {
   public idUE: number = Number(this._route.snapshot.paramMap.get('idUE'));
   public UEList: Array<UnidadEjecutora> = [];
   public poaList: Array<Poa> = [];
+  public actividadList: Array<Actividad> = [];
   public DeptoList: Array<Depto> = []; 
   public InstitucionesList: Array<Institucion> = [];
   actividad: Actividad | any = {};
@@ -45,10 +46,14 @@ export class UpdateActividadComponent implements OnInit {
   public tipoActividad: string = '';
   public estado: string = '';
   public categoria: string = '';
+  
 
 
+  public poaSeleccionado: number = this.idPoa;
+  public actividadSeleccionada: number = this.id;
   ngOnInit(): void {
     this.initData();
+    
 
     const id = Number(this._route.snapshot.paramMap.get('id'));
     if (id) {
@@ -64,6 +69,12 @@ export class UpdateActividadComponent implements OnInit {
   }
 
   async initData(){
+    const poas = await firstValueFrom(this.service.getPoas());
+    this.poaList = poas;
+
+    const actividades = await firstValueFrom(this.service.getActividadesss());
+    this.actividadList = actividades;
+
     this.actividad = await this.service.getActividad(this.id).subscribe((response:any)=>{
       this.actividad = response.actividad;
       console.log(response);
@@ -83,20 +94,18 @@ export class UpdateActividadComponent implements OnInit {
   update() {
     let nombre = this.nombre;
     let descripcion = this.descripcion;
-    let estado = this.estado_seleccionado;
     let tipoActividad = this.tipo_seleccionado;
     let categoria = this.categoria_seleccionado;
 
     // validaciones
     if ((nombre === '')) { nombre = this.actividad.nombre}
     if ((descripcion === '')) { descripcion = this.actividad.descripcion}
-    if ((estado === '')) { estado = this.actividad.estado}
     if ((tipoActividad === '')) { tipoActividad = this.actividad.tipoActividad}
     if ((categoria === '')) { categoria = this.actividad.categoria}
 
     
     try {
-      this.service.updateActividad(this.id,nombre,descripcion,estado,tipoActividad,categoria, this.idPoa).subscribe((res: any) => {
+      this.service.updateActividad(this.id,nombre,descripcion,tipoActividad,categoria, this.idPoa).subscribe((res: any) => {
         console.log(res);
 
       }, (error: any) => {

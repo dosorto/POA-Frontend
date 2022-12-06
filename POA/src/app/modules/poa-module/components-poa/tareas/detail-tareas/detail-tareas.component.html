@@ -1,5 +1,5 @@
 <top-bar></top-bar>
-
+<app-back-button [path]="['/gestion_poa/actividad/tab/',this.idActividad,idPoa,idDepto,idInsti]"></app-back-button>
 <!-- <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -24,6 +24,7 @@
                 </div>
                 <div class="container">
                 <div class="d-grid gap-2 d-md-flex justify-content-end">
+                    <button type="submit" class="btn btn-warning loat-end" (click)="toUpdate()">Actualizar</button>
                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarInst"
                     (click)="set_id_delete(tareas?.id)" >
                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor"
@@ -265,7 +266,7 @@
                 
                     <!-- <button type="button" class="btn btn-danger float-start">Cerrar</button> -->
                     <button type="button" class="btn btn-danger" (click)='onBack()'>Cerrar</button>
-                    <button type="submit" class="btn btn-warning loat-end" (click)="toUpdate()">Actualizar</button>
+                 
                 </div>
                 </div> 
 

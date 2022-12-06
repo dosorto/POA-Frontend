@@ -271,7 +271,7 @@ this.ActividadList = await this.tareasService.getActividad_Id(this.idActividad).
   }
   
   onBack(): void {
-    this.router.navigate(['/gestion_poa/tareas/list/',this.idActividad,this.idPoa,this.idDepto,this.idInsti]);
+    this.router.navigate(['/gestion_poa/actividad/tab/',this.idActividad,this.idPoa,this.idDepto,this.idInsti]);
   }
 
   suma(){

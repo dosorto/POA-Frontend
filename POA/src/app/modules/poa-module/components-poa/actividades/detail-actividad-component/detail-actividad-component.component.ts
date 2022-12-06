@@ -92,6 +92,10 @@ console.log(this.pei);
     this.router.navigate(['/gestion_poa/actividad/update/', this.id,this.idPoa,this.idInsti,this.idDepto]);
   }
 
+  toTab(){
+    this.router.navigate(['/gestion_poa/actividad/tab/', this.id,this.idPoa,this.idDepto,this.idInsti]);
+  }
+
   async Delete() {
     try {
       await this.service.eliminarActividad(this.id).subscribe((res: any) => {

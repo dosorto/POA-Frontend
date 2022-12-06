@@ -72,15 +72,15 @@ export class AllPoaComponent implements OnInit {
       window.location.reload();
     }, 10)
   }
-  nextPage() {
+  nextPage(){
     this.page = this.page + this.step;
     this.actualpage++;
   }
-  previousPage() {
+  previousPage(){
     this.page = this.page - this.step;
     this.actualpage--;
   }
-  selectPage(numPage: number) {
+  selectPage(numPage:number){
     this.page = numPage * this.step;
   }
 

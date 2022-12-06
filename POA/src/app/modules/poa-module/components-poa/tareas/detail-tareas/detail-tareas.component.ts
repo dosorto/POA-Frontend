@@ -104,13 +104,13 @@ export class DetailTareasComponent implements OnInit {
   }
 
   toList() {
-    this.router.navigate(['/gestion_poa/tareas/list/', this.idActividad]); //revisar
+    this.router.navigate(['/gestion_poa/actividad/tab/', this.idActividad,this.idPoa,this.idDepto,this.idInsti]); //revisar
     setTimeout(function () {
       window.location.reload();
     }, 10)
   }
   onBack(): void {
-    this.router.navigate(['/gestion_poa/tareas/list/', this.idActividad,this.idPoa,this.idDepto,this.idInsti]);
+    this.router.navigate(['/gestion_poa/actividad/tab/', this.idActividad,this.idPoa,this.idDepto,this.idInsti]);
     //tareas/list/:idActividad/:idPoa/:idDepto/:idInsti
     
   }

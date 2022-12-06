@@ -14,7 +14,7 @@
                 </div>
             </div>
             <form #AreaC="ngForm"
-                (ngSubmit)="crearArea(AreaC.value.nombre,AreaC.value.descripcion,AreaC.value.estado,AreaC.value.tipoActividad,AreaC.value.categoria)"
+                (ngSubmit)="crearArea(AreaC.value.nombre,AreaC.value.descripcion,AreaC.value.tipoActividad,AreaC.value.categoria)"
                 id="createArea">
                 <div class="container">
                     <!-- Campo para el nombre de area -->
@@ -31,19 +31,6 @@
                         </div>
                     </div>
 
-                    <div class="mb-3 mx-2 px-2 row">
-                        <label for="estado" class="row col-form-label">Estado:</label>
-                        <select class="form-select" aria-label="Default select example" name="estado"
-                            [(ngModel)]="estado_seleccionado" required>
-                            <option selected>Seleccione el estado actual de la actividad</option>
-                            <option value="1">FORMULACION</option>
-                            <option value="2">REFORMULACION</option>
-                            <option value="3">REVISION</option>
-                            <option value="4">APROBADO</option>
-                            <option value="5">RECHAZADO</option>
-
-                        </select>
-                    </div>
                     <div class="mb-3 mx-2 px-2 row">
                         <label for="tipoActividad" class="row col-form-label">Tipo de actividad:</label>
                         <select class="form-select" aria-label="Default select example" name="tipoActividad"
