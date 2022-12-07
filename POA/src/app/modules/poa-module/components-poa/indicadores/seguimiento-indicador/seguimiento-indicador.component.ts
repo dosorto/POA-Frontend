@@ -70,10 +70,6 @@ async initData(){
   })
 }
 
-toList(){
-  this.router.navigate(['/gestion_poa/indicadores/list/',this.idActividad,this.idPoa,this.idDepto,this.idInsti]); //revisar
-}
-
 toTab(){
   this.router.navigate(['/gestion_poa/actividad/tab/',this.idActividad,this.idPoa,this.idDepto,this.idInsti]); //revisar
 }

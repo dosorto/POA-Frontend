@@ -87,10 +87,6 @@ export class CreateIndicadoresComponent implements OnInit {
   }
 
 
-  toList(){
-    this.router.navigate(['/gestion_poa/indicadores/list/',this.idActividad,this.idPoa,this.idDepto,this.idInsti]); //revisar
-  }
-
   toTab(){
     this.router.navigate(['/gestion_poa/actividad/tab/',this.idActividad,this.idPoa,this.idDepto,this.idInsti]); //revisar
   }
@@ -123,7 +119,7 @@ export class CreateIndicadoresComponent implements OnInit {
           showConfirmButton: false,
           timer: 2500
         })
-        //  this.toList();
+          this.toTab();
       },(error:any)=>{
         Swal.fire({
           icon: 'error',

@@ -23,20 +23,12 @@ export class DetailIndicadoresComponent implements OnInit {
   public indicadores:Indicadores | any = {};
   public _delete: any;
   
-  
-  // public idActividad= 1;
-  // public idDepto = 1;
-  // public idPoa = 1;
-  // public idInsti =1;
 
   public ActividadList: Actividad | any = {};
   public InstiList: Institucion | any = {};
   public DeptoList: Depto | any = {};
   public PoaList: Poa | any = {};
 
-  //id = 2;
-  // public activiada:Actividad|any={};
-  // public insti:Institucion|any={};
 
   constructor(private serviceIndicador:IndicadorService,
               private router:Router,
@@ -71,10 +63,6 @@ export class DetailIndicadoresComponent implements OnInit {
   
     }
 
-
-toList(){
-  this.router.navigate(['/gestion_poa/indicadores/list/',this.idActividad,this.idPoa,this.idDepto,this.idInsti]); //revisar
-}
 
 toTab(){
   this.router.navigate(['/gestion_poa/actividad/tab/',this.idActividad,this.idPoa,this.idDepto,this.idInsti]); //revisar

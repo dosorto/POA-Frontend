@@ -80,7 +80,7 @@
                         </div>
                         <div class="container">
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                <button type="button" class="btn btn-secondary" (click)="toList()">Cancelar</button>
+                                <button type="button" class="btn btn-secondary" (click)="toTab()">Cancelar</button>
                                 <button type="submit" class="btn btn-warning" [disabled]="Indicador.invalid">Guardar</button>
                             </div>
                         </div>
@@ -101,7 +101,7 @@
                         
                         <div class="container">
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end" name="isPorcentaje">
-                                <button type="button" class="btn btn-secondary" (click)="toList()">Cancelar</button>
+                                <button type="button" class="btn btn-secondary" (click)="toTab()">Cancelar</button>
                                 <button type="submit" class="btn btn-warning" *ngIf="Indicador.value.cantidadPlanificada <= 100" [disabled]="Indicador.invalid" >Guardar</button>
                                
                             </div>
