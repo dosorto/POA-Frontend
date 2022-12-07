@@ -82,6 +82,7 @@ import { IndicadorFiltroPipe } from './pipes-poa/indicador-filtro.pipe';
 import { IndicadorPaginacionPipe } from './pipes-poa/indicador-paginacion.pipe';
 import { TabActividadesComponentsComponent } from './components-poa/actividades/tab-actividades-components/tab-actividades-components.component';
 import { DetailPresupuestoComponent } from './components-poa/tareas/detail-presupuesto/detail-presupuesto.component';
+import { PresupuestoPoaComponent } from './components-poa/POA/presupuesto-poa/presupuesto-poa.component';
 
 
 
@@ -165,7 +166,8 @@ const router = RouterModule.forChild([
     SeguimientoIndicadorComponent,
     TabActividadesComponentsComponent,
     DetailPresupuestoComponent,
-    ENTRYCOMPONENTS    
+    ENTRYCOMPONENTS,
+    PresupuestoPoaComponent    
 
   ],
   imports: [

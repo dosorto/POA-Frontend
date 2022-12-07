@@ -16,6 +16,7 @@ import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzAutocompleteModule } from 'ng-zorro-antd/auto-complete';
 import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzTransferModule } from 'ng-zorro-antd/transfer';
 
 registerLocaleData(es);
 
@@ -45,7 +46,9 @@ import { AdministracionComponent } from './administracion.component';
 import { TopBarComponent } from 'src/app/_core/top-bar/top-bar.component';
 import { RouterModule } from '@angular/router';
 import { UserFilterPipe } from './pipes/user-filter.pipe';
+import { RoleFilterPipe } from './pipes/role-filter.pipe';
 import { NamesOnlyPipe } from './pipes/names-only.pipe';
+import {PermisosFilterPipe} from './pipes/permisos-filter.pipe';
 
 // enrutamiento
 const router = RouterModule.forChild([
@@ -53,6 +56,7 @@ const router = RouterModule.forChild([
   {path: '', component: AdministracionComponent},
   // rutas de pei
   {path: 'users', component: AllUsuarioComponent},
+  {path: 'roles', component: AllRolComponent},
 ]);
 
 @NgModule({
@@ -75,7 +79,9 @@ const router = RouterModule.forChild([
     AllRolComponent,
     AdministracionComponent,
     UserFilterPipe,
-    NamesOnlyPipe
+    RoleFilterPipe,
+    NamesOnlyPipe,
+    PermisosFilterPipe
   ],
   imports: [
   CommonModule,
@@ -94,7 +100,8 @@ const router = RouterModule.forChild([
     NzTabsModule,
     NzInputModule,
     NzAutocompleteModule,
-    NzSelectModule
+    NzSelectModule,
+    NzTransferModule
   ],
   providers: [
     { provide: NZ_I18N, useValue: es_ES }

@@ -14,13 +14,18 @@
         </div>
         <div><br></div>
         <!-- espacio para el titulo, buscador y boton de agregar uno nuevo -->
-        <div class="container border rounded rounden-2 p-2">
+        <div class="container border rounded rounden-2 p-2 border-dark">
             <div class="w-100 row m-auto">
                 <br>
                 <!-- espacio para el titulo, buscador y boton de agregar uno nuevo -->
                 <div class="w-100 row m-auto">
                     <div class="row">
-
+                        <div class="row text-center m-2 fs-6 ">
+                            <span class="fs-5">
+                                <span class="-b-text-undexpanded"> Departamento: <a
+                                        class="text-primary">{{departamento.name}}</a></span>
+                            </span>
+                        </div>
                         <div class="col-10 text-center">
                             <h2 class="">
                                 <p>
@@ -51,19 +56,34 @@
                                     <div class="col-10 mb-3">
                                         <label for="fuente11" class="row col-form-label">Fuente 11:</label>
                                         <div class="row">
-                                            <input type="text" class="form-control" name="fuente11" ngModel required>
+                                            <input type="number" class="form-control" name="fuente11" ondrop="return false;" onpaste="return false;" onkeypress="return event.charCode>=48 && event.charCode<=57"  min="0" max="" 
+                                                ngModel required>
+                                            <ng-container *ngIf="Poa.value.fuente11 < 0">
+                                                <span class="alert alert-danger">Revisa el valor ingresado
+                                                </span>
+                                            </ng-container>
                                         </div>
                                     </div>
                                     <div class="col-10 mb-3">
                                         <label for="fuente12" class="row col-form-label">Fuente 12:</label>
                                         <div class="row">
-                                            <input type="text" class="form-control" name="fuente12" ngModel required>
+                                            <input type="number" class="form-control" name="fuente12" ondrop="return false;" onpaste="return false;" onkeypress="return event.charCode>=48 && event.charCode<=57" min="0" max=""
+                                                ngModel required>
+                                            <ng-container *ngIf="Poa.value.fuente12 < 0">
+                                                <span class="alert alert-danger">Revisa el valor ingresado
+                                                </span>
+                                            </ng-container>
                                         </div>
                                     </div>
                                     <div class="col-10 mb-3">
                                         <label for="fuente12B" class="row col-form-label">Fuente 12B:</label>
                                         <div class="row">
-                                            <input type="text" class="form-control" name="fuente12B" ngModel required>
+                                            <input type="number" class="form-control" name="fuente12B" ondrop="return false;" onpaste="return false;" onkeypress="return event.charCode>=48 && event.charCode<=57"  min="0" max=""
+                                                ngModel required>
+                                            <ng-container *ngIf="Poa.value.fuente12B < 0">
+                                                <span class="alert alert-danger">Revisa el valor ingresado
+                                                </span>
+                                            </ng-container>
                                         </div>
                                     </div>
 

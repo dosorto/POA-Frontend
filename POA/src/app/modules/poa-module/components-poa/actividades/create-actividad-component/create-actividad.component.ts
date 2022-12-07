@@ -53,9 +53,9 @@ export class CreateActividadComponent implements OnInit {
     toList() {
     this.router.navigate(['/gestion_poa/actividad/list/', this.idPoa,this.idInsti,this.idDepto,this.idUE]);
   }
-  async crearArea(nombre: string, descripcion: string, estado: string, tipoActividad: string, categoria: string) {
+  async crearArea(nombre: string, descripcion: string, tipoActividad: string, categoria: string) {
     console.log(nombre.toString(), this.idPoa);
-    await this.service.crearActividad(nombre, descripcion, estado, tipoActividad, categoria, this.idPoa,this.selectedEncargadosIds).subscribe((res: any) => {
+    await this.service.crearActividad(nombre, descripcion, tipoActividad, categoria, this.idPoa,this.selectedEncargadosIds).subscribe((res: any) => {
       Swal.fire({
         icon: 'success',
         title: '¡Creado con éxito!',

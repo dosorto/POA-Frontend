@@ -26,11 +26,11 @@
                 </div>
             </div>
         </div>
-        <!-- <div class="crear">
-            <button nz-button nzType="primary" nzSize="large" class="">
+        <div class="crear">
+            <button nz-button nzType="primary" nzSize="large" class="" (click)="toRoles()">
                 <span> Gestionar Roles</span>
             </button>
-        </div> -->
+        </div>
     </div>
     <main class="userList text-center pt-2 border rounded ">
         <!-- --------------------------- -->
@@ -147,7 +147,7 @@
             </nz-tab>
             <nz-tab  [nzTitle]="'Editar Usuario'" *ngIf="editMode">
                 <form nz-form #UserCreate='ngForm' 
-                (ngSubmit)="crearUsuario(UserCreate.value.email,UserCreate.value.username,UserCreate.value.password,UserCreate.value.password2,UserCreate.value.empleado,UserCreate.value.rol)"
+                (ngSubmit)="updateUsuario(UserCreate.value.email,UserCreate.value.username,UserCreate.value.empleado,UserCreate.value.rol)"
                     id="createDimension"
                     class="px-2">
                     <nz-form-item>
@@ -168,6 +168,7 @@
                         <nz-form-label [nzSpan]="6" nzFor="empleado">Empleado</nz-form-label>
                         <nz-form-control [nzSpan]="12">
                             <nz-select
+                            [(ngModel)]="userToUpdate.empleado.id"
                             ngModel="userToUpdate.empleado.nombre"
                             nzPlaceHolder="Seleccionar empleado"
                             nzAllowClear
@@ -183,7 +184,7 @@
                         <nz-form-label [nzSpan]="6" nzFor="empleado">Rol</nz-form-label>
                         <nz-form-control [nzSpan]="12">
                             <nz-select
-                            [(ngModel)]="rolSeleccionado"
+                            [(ngModel)]="userToUpdate.idRol"
                             (nzScrollToBottom)="loadMore()"
                             nzPlaceHolder="Seleccionar Rol"
                             nzAllowClear

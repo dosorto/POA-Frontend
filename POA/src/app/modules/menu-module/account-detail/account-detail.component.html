@@ -1,4 +1,6 @@
-<div class="container d-flex align-items-center justify-content-center p-0">
+<top-bar></top-bar>
+<app-back-button [path]="['../']"></app-back-button>
+<div class="container d-flex align-items-center justify-content-center p-0 mt-5 pt-5">
     <div class="container w-75 bg-light bg-gradient border border-2 rounded mt-5 shadow">
         <div class="row w-100 h-100 p-5 mx-3">
             <div class="row">
@@ -71,7 +73,7 @@
                         </div>
                     </div>
             <div class="row-12 d-flex justify-content-end">
-                <button type="button" class="btn btn-secondary">Editar</button>
+                <!-- <button type="button" class="btn btn-secondary">Editar</button> -->
                 <button type="button" class="btn btn-warning mx-2" (click)="changePassword()" >Cambiar Contraseña</button>
             </div>
 
