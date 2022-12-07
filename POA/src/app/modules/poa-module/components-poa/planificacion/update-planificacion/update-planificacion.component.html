@@ -32,7 +32,7 @@
           </div>
 
           <div class="d-grid gap-2 d-md-flex justify-content-end">
-            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarPlanificacion">
+            <button type="button" class="btn btn-danger" title="button" data-bs-toggle="modal" data-bs-target="#eliminarPlanificacion">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                 class="bi bi-trash3-fill" viewBox="0 0 16 16">
                 <path
@@ -54,18 +54,18 @@
           </div>
 
           <div class="col-10">
-            <label for="inputCantidad" class="form-label" name="cantidad">Cantidad:</label>
-            <input type="number" class="form-control" id="exampleFormControlTextarea1" [(ngModel)]="cantidad"
+            <label for="cantidad" class="form-label" name="cantidad">Cantidad:</label>
+            <input type="number" class="form-control" id="cantidad" [(ngModel)]="cantidad"
               value="{{planificacion.cantidad}}" min="0" required>
           </div>
           <div class="col-10">
-            <label for="inputFechaInicio" class="form-label" name="fechaInicio">Fecha Inicial:</label>
-            <input type="date" class="form-control" id="exampleFormControlTextarea1" [(ngModel)]="fechaInicio"
+            <label for="fechaInicio" class="form-label" name="fechaInicio">Fecha Inicial:</label>
+            <input type="date" class="form-control" id="fechaInicio" [(ngModel)]="fechaInicio"
               value="{{planificacion.fechaInicio}}" required>
           </div>
           <div class="col-10">
-            <label for="inputFechaFin" class="form-label" name="fechaFin">Fecha Final:</label>
-            <input type="date" class="form-control" id="exampleFormControlTextarea1" [(ngModel)]="fechaFin"
+            <label for="fechaFin" class="form-label" name="fechaFin">Fecha Final:</label>
+            <input type="date" class="form-control" id="fechaFin" [(ngModel)]="fechaFin"
               value="{{planificacion.fechaFin}}" required>
             <br>
           </div>
