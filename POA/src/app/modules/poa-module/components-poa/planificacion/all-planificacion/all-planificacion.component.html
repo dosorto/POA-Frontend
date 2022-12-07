@@ -1,12 +1,15 @@
 <top-bar></top-bar>
-<app-back-button [path]="['/gestion_poa/actividad/detail/', this.idActividad, this.idPoa, this.idInsti, this.idDepto]">
-</app-back-button>
 
+<app-back-button [path]="['/gestion_poa/actividad/detail/', this.idActividad, this.idPoa, this.idInsti, this.idDepto]">
+</app-back-button> <br>
 <!-- Pantalla principal del modulo -->
-<div class="container d-flex align-items-center justify-content-center mt-5 pt-5">
+<!-- <div class="container d-flex align-items-center justify-content-center mt-5 pt-5"> -->
 
   <!-- columna completa que agrupa todos los row -->
   <div class="col-12 ">
+    <div class="row text-center">
+      <h2 class="l-4">Gestión de Planificación</h2>
+  </div>
     <!-- espacio para el titulo, buscador y boton de agregar uno nuevo -->
     <div class="row justify-content-center text-center m-2 fs-5">
       <span>POA: <a (click)="toPoa()" class="text-decoration-none">{{poa.name}}</a> - Institución: <a
@@ -141,4 +144,4 @@
     </ng-template>
 
   </div>
-</div>
+<!-- </div> -->

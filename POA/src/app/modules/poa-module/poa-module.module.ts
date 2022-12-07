@@ -120,6 +120,8 @@ const router = RouterModule.forChild([
   {path: 'planificacion/update/:id/:idPoa/:idActividad/:idInsti/:idDepto', component: UpdatePlanificacionComponent},
   {path: 'planificacion/detail/:id/:idPoa/:idActividad/:idInsti/:idDepto', component: DetailPlanificacionComponent},
   {path: 'planificacion/list/:idActividad/:idPoa/:idInsti/:idDepto', component: AllPlanificacionComponent},
+  {path: 'planificacion/tab/:idActividad/:idPoa/:idDepto/:idInsti', component: TabActividadesComponentsComponent},
+
 
 
 ])
@@ -165,7 +167,7 @@ const router = RouterModule.forChild([
     SeguimientoIndicadorComponent,
     TabActividadesComponentsComponent,
     DetailPresupuestoComponent,
-    ENTRYCOMPONENTS    
+    ENTRYCOMPONENTS
 
   ],
   imports: [

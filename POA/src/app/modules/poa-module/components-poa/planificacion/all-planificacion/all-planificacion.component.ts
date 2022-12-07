@@ -26,6 +26,8 @@ export class AllPlanificacionComponent implements OnInit {
 
   ngOnInit(): void {
     this.initData();
+
+    this.planificaciones = this.listarPlanificaciones(this.planificaciones);
   }
 
   // Obteniendo el id de actividad, poa, instituvcion y depto
@@ -40,6 +42,7 @@ export class AllPlanificacionComponent implements OnInit {
 
   // Variables de tipo modelo para almacenar la actividad, Poa, Institución, el departamento y la planificacion
   public act: Actividad | any = {};
+  public act1: Actividad | any = {};
   public poa: Poa | any = {};
   public insti: Institucion | any = {};
   public depto: Depto | any = {};
@@ -48,6 +51,7 @@ export class AllPlanificacionComponent implements OnInit {
   // Para almacenar todas las planificaciones disponibles y la lista de actividades
   public planificaciones: Array<Planificacion> = [];
   public actividadesList: Array<Actividad> = [];
+
 
   // Para obtener el usuario
   public user = this.Storage.get_storage('user');
@@ -66,11 +70,24 @@ export class AllPlanificacionComponent implements OnInit {
   public enumPages: number[] = [];
   public resto: number = 0;
 
+  listarPlanificaciones(planificaciones: Array<Planificacion>) {
+
+    let nuevoArrelo: Array<any> = [];
+
+    nuevoArrelo = planificaciones.reverse();
+
+    return nuevoArrelo
+  }
+
   async initData() {
     // obtiene todas las planificaciones que pertenecen a una actividad
     this.planificaciones = await firstValueFrom(
       this.service.getPlanificacionesIdActividad(this.idActividad)
     );
+
+    // Invierte el listado de las planificaciones dejando la ultima que se crea al inicio
+    this.planificaciones = this.listarPlanificaciones(this.planificaciones)
+
     // Obtiene una lista de actividades que pertenecen a un poa
     this.actividadesList = await firstValueFrom(
       this.actividadService.getActividades(this.idPoa)
@@ -103,6 +120,11 @@ export class AllPlanificacionComponent implements OnInit {
       .subscribe((response: any) => {
         this.depto = response.all_deptos;
       });
+
+      this.act1 = await firstValueFrom(
+        this.actividadService.getActividadess(this.idActividad)
+      );
+      console.log(this.act1);
 
     this.resto = this.planificaciones.length % this.step;
 
