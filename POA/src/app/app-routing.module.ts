@@ -23,6 +23,21 @@ const routes: Routes = [
     path: 'admin', children: [
       {path: '', loadChildren: () => import('./modules/administracion-module/administracion-module.module').then(t=>t.AdministracionModuleModule)}
     ]
+  },
+  {
+    path: 'reportes', children: [
+      {path: '', loadChildren: () => import('./modules/reportes-module/reportes-module.module').then(t=>t.ReportesModuleModule)}
+    ]
+  },
+  {
+    path: 'revision', children: [
+      {path: '', loadChildren: () => import('./modules/revision-module/revision.module').then(t=>t.RevisionModule)}
+    ]
+  },
+  {
+    path: 'mis_poas', children: [
+      {path: '', loadChildren: () => import('./modules/mis-poas-module/mis-poas-module.module').then(t=>t.MisPoasModuleModule)}
+    ]
   }
 ];
 
