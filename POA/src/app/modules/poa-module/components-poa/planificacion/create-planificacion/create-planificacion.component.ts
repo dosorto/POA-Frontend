@@ -1,6 +1,4 @@
 import { ActividadService } from './../../../services-poa/actividad.service';
-import { PoaService } from './../../../services-poa/poa.service';
-import { PeiService } from './../../../../gestion-pei-module/services-pei/pei.service';
 import { Depto } from './../../../interfaces-poa/depto.model';
 import { Poa } from './../../../interfaces-poa/poa.model';
 import { Actividad } from './../../../interfaces-poa/actividad.model';
@@ -20,18 +18,17 @@ export class CreatePlanificacionComponent implements OnInit {
     private service: PlanificacionService,
     private router: Router,
     private _route: ActivatedRoute,
-    private peiService: PeiService,
-    private poaService: PoaService,
     private actividadService: ActividadService
   ) {}
 
   // Obteniendo el id de actividad, poa, instituvcion y depto
-  public idActividad: number = Number(this._route.snapshot.paramMap.get('idActividad'));
+  public idActividad: number = Number(
+    this._route.snapshot.paramMap.get('idActividad')
+  );
   public idPoa: number = Number(this._route.snapshot.paramMap.get('idPoa'));
   public idInsti: number = Number(this._route.snapshot.paramMap.get('idInsti'));
   public idDepto: number = Number(this._route.snapshot.paramMap.get('idDepto'));
   public idUE: number = Number(this._route.snapshot.paramMap.get('idUE'));
-
 
   // Variables de tipo modelo para almacenar la actividad, Poa, Institución, el departamento
   public act: Actividad | any = {};
@@ -46,6 +43,7 @@ export class CreatePlanificacionComponent implements OnInit {
       .subscribe((response: any) => {
         this.poa = response.poa;
         console.log(this.poa);
+        this.poa = response.poa;
       });
     // Busca una actividad por el id de actividad
     this.act = this.actividadService
@@ -62,7 +60,7 @@ export class CreatePlanificacionComponent implements OnInit {
         console.log(this.insti);
       });
     // Busca un departamento por el id de departamento
-    this.depto =  this.actividadService
+    this.depto = this.actividadService
       .getDepto_Id(this.idDepto)
       .subscribe((response: any) => {
         this.depto = response.all_deptos;
@@ -70,19 +68,10 @@ export class CreatePlanificacionComponent implements OnInit {
       });
   }
 
-  //Para regresar a la lista de planificaciones despues de eliminar
-  // toList() {
-  //   this.router.navigate([
-  //     '/gestion_poa/planificacion/list',
-  //   ]);
-  // }
-  // toList(){
-  //   this.router.navigate(['/gestion_poa/planificacion/list/',  this.idPoa, this.idActividad, this.insti, this.idDepto,]);
-  // };
-
+  // Para retornar a la lista de planificaciones
   toList() {
     this.router.navigate([
-      '/gestion_poa/planificacion/list/',
+      '/gestion_poa/planificacion/tab/',
       this.idPoa,
       this.idActividad,
       this.idInsti,
@@ -90,7 +79,7 @@ export class CreatePlanificacionComponent implements OnInit {
     ]);
   }
 
-
+  // Para ir a la lista de poas
   toPoa() {
     this.router.navigate([
       '/gestion_poa/poa/list/',
@@ -100,36 +89,54 @@ export class CreatePlanificacionComponent implements OnInit {
     ]);
   }
 
+  // Para mantenerlo en la pantalla de crear mientras edita bien la planificacion
+  corregirError() {
+    this.router.navigate([
+      '/gestion_poa/planificacion/create/',
+      this.idPoa,
+      this.idActividad,
+      this.idInsti,
+      this.idDepto,
+    ]);
+  }
+
   // Crea una nueva planificacion
   async crear_Planificacion(
     trimestre: string,
     cantidad: number,
     fechaInicio: Date,
-    fechaFin: Date,
+    fechaFin: Date
   ) {
-    console.log(trimestre, cantidad, fechaInicio, fechaFin, this.idActividad);
+    if (fechaInicio < fechaFin) {
+      await this.service
+        .crearPlanificacion(
+          trimestre,
+          cantidad,
+          fechaInicio,
+          fechaFin,
+          this.idActividad
+        )
+        .subscribe((res: any) => {
+          console.log(res);
+        });
 
-    await this.service
-      .crearPlanificacion(trimestre, cantidad, fechaInicio, fechaFin, this.idActividad)
-      .subscribe(
-        (res: any) => {
-          Swal.fire({
-            icon: 'success',
-            title: '¡Creado con éxito!',
-            showConfirmButton: false,
-            timer: 2500,
-          });
+      Swal.fire({
+        icon: 'success',
+        title: '¡Registrado con éxito!',
+        showConfirmButton: false,
+        timer: 1500,
+      });
 
-          this.toList();
-        },
-        (error: any) => {
-          Swal.fire({
-            icon: 'error',
-            title: 'Ha ocurrido un error',
-            showConfirmButton: false,
-            timer: 2500,
-          });
-        }
-      );
+      this.toList();
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Ha ocurrido un error, revise si ha introducido bien las fechas',
+        showConfirmButton: false,
+        timer: 2500,
+      });
+
+      this.corregirError();
+    }
   }
 }

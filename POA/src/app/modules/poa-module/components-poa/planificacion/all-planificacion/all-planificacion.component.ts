@@ -2,13 +2,10 @@ import { Depto } from './../../../interfaces-poa/depto.model';
 import { Actividad } from './../../../interfaces-poa/actividad.model';
 import { ActividadService } from './../../../services-poa/actividad.service';
 import { Poa } from './../../../interfaces-poa/poa.model';
-import { PoaService } from './../../../services-poa/poa.service';
-import { PeiService } from './../../../../gestion-pei-module/services-pei/pei.service';
 import { Institucion } from './../../../../administracion-module/interfaces/institucion.model';
 import { Component, OnInit } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
-import Swal from 'sweetalert2';
 import { Storage } from 'src/app/_core/global-services/local_storage.service';
 import { PlanificacionService } from '../../../services-poa/planificacion.service';
 import { Planificacion } from './../../../interfaces-poa/planificacion.model';
@@ -33,16 +30,13 @@ export class AllPlanificacionComponent implements OnInit {
 
   // Obteniendo el id de actividad, poa, instituvcion y depto
   public id: number = Number(this._route.snapshot.paramMap.get('id'));
-  public idActividad: number = Number(this._route.snapshot.paramMap.get('idActividad'));
+  public idActividad: number = Number(
+    this._route.snapshot.paramMap.get('idActividad')
+  );
   public idPoa: number = Number(this._route.snapshot.paramMap.get('idPoa'));
   public idInsti: number = Number(this._route.snapshot.paramMap.get('idInsti'));
   public idDepto: number = Number(this._route.snapshot.paramMap.get('idDepto'));
   public idUE: number = Number(this._route.snapshot.paramMap.get('idUE'));
-
-  // public idActividad: number = 1;
-  // public idPoa: number = 1;
-  // public idInsti: number = 1;
-  // public idDepto: number = 1;
 
   // Variables de tipo modelo para almacenar la actividad, Poa, Institución, el departamento y la planificacion
   public act: Actividad | any = {};
@@ -73,13 +67,14 @@ export class AllPlanificacionComponent implements OnInit {
   public resto: number = 0;
 
   async initData() {
-
     // obtiene todas las planificaciones que pertenecen a una actividad
     this.planificaciones = await firstValueFrom(
       this.service.getPlanificacionesIdActividad(this.idActividad)
     );
     // Obtiene una lista de actividades que pertenecen a un poa
-    this.actividadesList = await firstValueFrom(this.actividadService.getActividades(this.idPoa));
+    this.actividadesList = await firstValueFrom(
+      this.actividadService.getActividades(this.idPoa)
+    );
     console.log(this.actividadesList);
 
     // Busca un poa por el id de poa.
@@ -109,11 +104,11 @@ export class AllPlanificacionComponent implements OnInit {
         this.depto = response.all_deptos;
       });
 
-    this.resto = (this.planificaciones.length % this.step);
+    this.resto = this.planificaciones.length % this.step;
 
-    if(this.resto === 0) {
-      this.maxPages = (this.planificaciones.length / this.step);
-    } else if (this.resto === 3){
+    if (this.resto === 0) {
+      this.maxPages = this.planificaciones.length / this.step;
+    } else if (this.resto === 3) {
       this.maxPages = Math.round(this.planificaciones.length / this.step);
     } else if (this.resto === 4) {
       this.maxPages = Math.round(this.planificaciones.length / this.step);
@@ -143,10 +138,10 @@ export class AllPlanificacionComponent implements OnInit {
   toCreate() {
     this.router.navigate([
       '/gestion_poa/planificacion/create/',
-        this.idPoa,
-        this.idActividad,
-        this.idInsti,
-        this.idDepto,
+      this.idPoa,
+      this.idActividad,
+      this.idInsti,
+      this.idDepto,
     ]);
   }
 
@@ -160,11 +155,17 @@ export class AllPlanificacionComponent implements OnInit {
     ]);
   }
 
-  toActividadesList(){
-    this.router.navigate(['/gestion_poa/actividad/detail/', this.idActividad, this.idPoa, this.idInsti, this.idDepto]);
+  toActividadesList() {
+    this.router.navigate([
+      '/gestion_poa/actividad/detail/',
+      this.idActividad,
+      this.idPoa,
+      this.idInsti,
+      this.idDepto,
+    ]);
   }
 
-  selectActividad(){
+  selectActividad() {
     this.router.navigate([
       '/gestion_poa/planificacion/list/',
       this.idPoa,
@@ -174,7 +175,7 @@ export class AllPlanificacionComponent implements OnInit {
     ]);
     setTimeout(function () {
       window.location.reload();
-    }, 10)
+    }, 10);
   }
 
   nextPage() {
