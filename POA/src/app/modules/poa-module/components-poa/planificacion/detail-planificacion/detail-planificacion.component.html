@@ -1,6 +1,6 @@
 <top-bar></top-bar>
 <app-back-button
-  [path]="['/gestion_poa/planificacion/tab/', this.idPoa, this.idActividad, this.idInsti, this.idDepto,]">
+  [path]="['/gestion_poa/actividad/tab/',  this.idActividad, this.idPoa, this.idDepto, this.idInsti,]">
 </app-back-button>
 
 
@@ -32,7 +32,7 @@
 
           <div class="d-grid gap-2 d-md-flex justify-content-end">
             <button type="submit" class="btn btn-warning" (click)="toUpdate()">Editar</button>
-            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarPlanificacion">
+            <button type="button" title="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarPlanificacion">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                 class="bi bi-trash3-fill" viewBox="0 0 16 16">
                 <path
@@ -42,23 +42,23 @@
 
           </div>
           <div class="col-10">
-            <label for="inputNombre" class="form-label">Trimestre:</label>
-            <input type="text" class="form-control" id="exampleFormControlTextarea1" value="{{planificacion.trimestre}}"
+            <label for="trimestre" class="form-label">Trimestre:</label>
+            <input type="text" class="form-control" id="trimestre" value="{{planificacion.trimestre}}"
               disabled>
           </div>
           <div class="col-10 mb-3">
-            <label for="inputDescripcion" class="form-label">Cantidad:</label>
-            <input type="number" class="form-control" id="exampleFormControlTextarea1"
+            <label for="cantidad" class="form-label">Cantidad:</label>
+            <input type="number" class="form-control" id="cantidad"
               value="{{planificacion.cantidad}}" disabled>
           </div>
           <div class="col-10 mb-3">
-            <label for="inputDescripcion" class="form-label">Fecha Inicial:</label>
-            <input type="date" class="form-control" id="exampleFormControlTextarea1"
+            <label for="fechaInicio" class="form-label">Fecha Inicial:</label>
+            <input type="date" class="form-control" id="fechaInicio"
               value="{{planificacion.fechaInicio}}" disabled>
           </div>
           <div class="col-10 mb-3">
-            <label for="inputDescripcion" class="form-label">Fecha Final:</label>
-            <input type="date" class="form-control" id="exampleFormControlTextarea1" value="{{planificacion.fechaFin}}"
+            <label for="fechaFin" class="form-label">Fecha Final:</label>
+            <input type="date" class="form-control" id="fechaFin" value="{{planificacion.fechaFin}}"
               disabled>
           </div>
 

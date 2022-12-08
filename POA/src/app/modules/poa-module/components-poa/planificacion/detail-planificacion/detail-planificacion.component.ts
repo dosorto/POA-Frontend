@@ -84,11 +84,7 @@ export class DetailPlanificacionComponent implements OnInit {
   //Para regresar a la lista de planificaciones despues de eliminar
   toList() {
     this.router.navigate([
-      '/gestion_poa/planificacion/tab/',
-      this.idPoa,
-      this.idActividad,
-      this.idInsti,
-      this.idDepto,
+      '/gestion_poa/actividad/tab/',  this.idActividad, this.idPoa, this.idDepto, this.idInsti,
     ]);
   }
 

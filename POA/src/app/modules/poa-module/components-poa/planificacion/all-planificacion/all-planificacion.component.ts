@@ -187,18 +187,18 @@ export class AllPlanificacionComponent implements OnInit {
     ]);
   }
 
-  selectActividad() {
-    this.router.navigate([
-      '/gestion_poa/planificacion/list/',
-      this.idPoa,
-      this.actividadSeleccionada,
-      this.idInsti,
-      this.idDepto,
-    ]);
-    setTimeout(function () {
-      window.location.reload();
-    }, 10);
-  }
+  // selectActividad() {
+  //   this.router.navigate([
+  //     '/gestion_poa/planificacion/list/',
+  //     this.idPoa,
+  //     this.actividadSeleccionada,
+  //     this.idInsti,
+  //     this.idDepto,
+  //   ]);
+  //   setTimeout(function () {
+  //     window.location.reload();
+  //   }, 10);
+  // }
 
   nextPage() {
     this.page = this.page + this.step;

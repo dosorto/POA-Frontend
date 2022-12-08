@@ -71,11 +71,7 @@ export class CreatePlanificacionComponent implements OnInit {
   // Para retornar a la lista de planificaciones
   toList() {
     this.router.navigate([
-      '/gestion_poa/planificacion/tab/',
-      this.idPoa,
-      this.idActividad,
-      this.idInsti,
-      this.idDepto,
+      '/gestion_poa/actividad/tab/',  this.idActividad, this.idPoa, this.idDepto, this.idInsti,
     ]);
   }
 
