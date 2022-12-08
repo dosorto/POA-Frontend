@@ -167,7 +167,7 @@ const router = RouterModule.forChild([
     TabActividadesComponentsComponent,
     DetailPresupuestoComponent,
     ENTRYCOMPONENTS,
-    PresupuestoPoaComponent    
+    PresupuestoPoaComponent
 
   ],
   imports: [
