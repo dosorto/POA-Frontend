@@ -1,11 +1,11 @@
 import { CallHttpService } from "../../../_core/global-services/call-http.service";
 import { Injectable } from '@angular/core';
 import { environment } from "../../../../environments/environment";
-import { Area } from "../../gestion-pei-module/interfaces-pei/area.model";
-import { Pei } from "../../gestion-pei-module/interfaces-pei/pei.model";
-import { Objetivo } from "../../gestion-pei-module/interfaces-pei/objetivo.model";
-import { Dimension } from "../../gestion-pei-module/interfaces-pei/dimension.model";
+import { Empleado } from "../interfaces-poa/empleados.model";
 import { Actividad } from "../interfaces-poa/actividad.model";
+import { Poa } from "../../poa-module/interfaces-poa/poa.model";
+import { Depto } from "../../poa-module/interfaces-poa/depto.model";
+import { Institucion } from "../../administracion-module/interfaces/institucion.model";
 import { map, Observable } from "rxjs";
 import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 
@@ -14,30 +14,20 @@ import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 })
 export class ActividadService {
   constructor(private callHttp: CallHttpService, private directHttp: HttpClient) { }
-  private _areas: Array<Area> = [];
   private _actividades: Array<Actividad> = [];
-  private _peiList: Array<Pei> = [];
-  private _objetivoList: Array<Objetivo> = [];
-  private _dimensionList: Array<Dimension> = [];
+  private _empleadoList: Array<Empleado> = [];
 
-  get areas() {
-    return this._areas;
+
+  get empleado() {
+    return this._empleadoList;
   }
-  get peis() {
-    return this._peiList;
-  }
-  get objetivos() {
-    return this._objetivoList;
-  }
-  get dimensiones() {
-    return this._dimensionList;
-  }
+ 
   get actividades(){
     return this._actividades;
   }
-  public crearActividad (nombre:string,descripcion:string,
-    estado:string,tipoActividad:string, categoria:string,
-    idResultado:number):any{
+  public crearActividad (nombre:string,descripcion:string
+    ,tipoActividad:string, categoria:string,
+    idPoa:number,responsables:string):any{
       const url = environment.servidor + 'actividad/crear';
  
       const params = new HttpParams({
@@ -45,10 +35,10 @@ export class ActividadService {
          grant_type: 'password',
            nombre: nombre,
             descripcion:descripcion,
-            estado: estado,
             tipoActividad: tipoActividad,
             categoria:categoria,
-            idResultado:idResultado
+            idPoa:idPoa,
+            responsables:responsables
        }
        });
  
@@ -72,8 +62,8 @@ export class ActividadService {
         return response;
       }))
   }*/
-  getActividades(idResultado:number) {
-    return this.callHttp.httpGet<Array<Actividad>>(`${environment.servidor}actividad/get_all_by_idResultado/` + idResultado.toString())
+  getActividades(idPoa:number) {
+    return this.callHttp.httpGet<Array<Actividad>>(`${environment.servidor}actividad/get_all_by_idPoa/` + idPoa.toString())
       .pipe(map(response => {
         this._actividades = response;               
         return response;
@@ -94,27 +84,14 @@ export class ActividadService {
   }
 
 
-  getObjetivos() {
-    return this.callHttp.httpGet<Array<Objetivo>>(`${environment.servidor}objetivos/get_all`)
+  getEmpleados() {
+    return this.callHttp.httpGet<Array<Empleado>>(`${environment.servidor}empleado/allEmpleados`)
       .pipe(map(response => {
-        this._objetivoList = response;
+        this._empleadoList = response;
         return response;
       }))
   } 
-  getPeiList() {
-    return this.callHttp.httpGet<Array<Pei>>(`${environment.servidor}PEI/get_PEI`)
-      .pipe(map(response => {
-        this._peiList = response;
-        return response;
-      }))
-  }
-  getDimensiones() {
-    return this.callHttp.httpGet<Array<Dimension>>(`${environment.servidor}dimension/get_all`)
-      .pipe(map(response => {
-        this._dimensionList = response;
-        return response;
-      }))
-  }
+
 
   
 
@@ -140,8 +117,8 @@ export class ActividadService {
   }
 
   // alternativa a update
-  updateActividad(id:number,nombre:string, descripcion:string,
-    estado:string,tipoActividad:string, categoria:string,idResultado:number):any {
+  updateActividad(id:number,nombre:string, descripcion:string
+   ,tipoActividad:string, categoria:string,idPoa:number):any {
     const url = environment.servidor + 'actividad/editar';
 
     const params = new HttpParams({
@@ -149,7 +126,6 @@ export class ActividadService {
         grant_type: 'password',
         nombre: nombre,  
         descripcion:descripcion,
-        estado: estado,
         tipoActividad: tipoActividad,
         categoria:categoria,
         
@@ -162,8 +138,8 @@ export class ActividadService {
       })
     };
     //return this.directHttp.put(url, params, httpOptions);
-    this.directHttp.put(url,{nombre:nombre,descripcion:descripcion,estado:estado,
-      tipoActividad:tipoActividad,categoria:categoria,id:id,idResultado:idResultado}).subscribe((response:any)=>
+    this.directHttp.put(url,{nombre:nombre,descripcion:descripcion,
+      tipoActividad:tipoActividad,categoria:categoria,id:id,idPoa:idPoa}).subscribe((response:any)=>
     {
       console.log(response);
       return response;
@@ -178,4 +154,33 @@ export class ActividadService {
       );
   }
 
+  getPoas() {
+    return this.callHttp.httpGet<Array<Poa>>(`${environment.servidor}POA/get_POA`)
+      .pipe(map(response => {
+        return response;
+      }))
+  }
+  getdepartamentos() {
+    return this.callHttp.httpGet<Array<Depto>>(`${environment.servidor}departamento/get_all`)
+      .pipe(map(response => {
+        return response;
+      }))
+  }
+  getInstituciones() {
+    return this.callHttp.httpGet<Array<Institucion>>(`${environment.servidor}institucion/get_all`)
+      .pipe(map(response => {
+        return response;
+      }))
+  }
+  getInsti_Id(idInsti:number) {
+    return this.callHttp.httpGet<Institucion>(`${environment.servidor}institucion/get/`+idInsti.toString());
+  }
+  getPoa_Id(idPoa:number) {
+    return this.callHttp.httpGet<Poa>(`${environment.servidor}POA/get/`+idPoa.toString());
+  }
+  getDepto_Id(idDepto:number) {
+    return this.callHttp.httpGet<Depto>(`${environment.servidor}departamento/get/`+idDepto.toString());
+  }
+
 }
+

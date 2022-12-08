@@ -1,0 +1,24 @@
+.contenedor{
+    display: flex;
+    flex-flow: row grap;
+    gap: 5px;
+
+}
+
+.usuarios{
+    width: 80%;
+    height: 600px;
+    padding: 10px;
+    overflow-y: scroll;
+}
+.agregar{
+    width: 19%;
+    height: 600px;
+    padding: 10px;
+}
+.elementos{
+    width: 100%;
+    height: 50px;
+    margin: 5px;
+    
+}

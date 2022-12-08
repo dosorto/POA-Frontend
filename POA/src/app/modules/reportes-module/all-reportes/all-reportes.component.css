@@ -1,0 +1,56 @@
+.contenedor{
+    position: relative;
+    margin-right: 2%;
+    margin-left: 2%;
+}
+
+.contenedor_card{
+    position: relative;
+    margin-left: 2%;
+    margin-bottom: 0%;
+    margin-bottom: 4%;
+ 
+}
+
+.mat-tab-group {
+    margin-bottom: auto;
+  }
+
+
+
+.select{
+    position:relative;
+    right: -7%;
+    margin-bottom: 20px;
+    margin-top: -2%;
+}
+
+table {
+    position: relative;
+    width: 96%;
+    margin-top: -2%;
+    margin-right: 2%;
+    margin-left: 2%;
+    margin-bottom: 2%;
+  }
+
+.card {
+    height: 250px;
+}
+
+.example-button-row button,
+.example-button-row a {
+  margin-right: 8px;
+}
+
+.example-disabled {
+  display: inline-block;
+}
+
+.boton {
+    position:relative;
+    margin-left: 30%;
+    margin-top: -2%;
+    margin-bottom: 1%;
+
+}

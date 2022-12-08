@@ -1,1 +1,223 @@
-<p>all-tareas works!</p>
+<!-- <top-bar></top-bar> -->
+
+<!-- <app-back-button [path]="['gestion_pei/areas/detail/',this.idArea,this.idObjetivo,idDimension,idPei,idInsti]"></app-back-button> -->
+<!-- Pantalla principal del modulo -->
+<!-- <div class="container d-flex align-items-center justify-content-center mt-5 pt-5 "> -->
+
+    <!-- columna completa que agrupa todos los row -->
+    <div class="col-12">
+
+        <!-- espacio para el titulo, buscador y boton de agregar uno nuevo -->
+        <div class="container" style="background-color: white;">
+            <div class="w-100 row m-auto">
+                <div class="row">
+                    <div class="row text-center">
+                        <h2></h2>
+                        <h2 class="l-4">Gestión de Tareas</h2>
+                    </div>
+
+
+
+
+                    <div class="row justify-content-center text-center m-2 fs-5">
+                        <span>Institución: <a class="text-decoration-none">{{InstiList.nombre}}</a> -
+                            Departamento: <a class="text-decoration-none">{{DeptoList.name}}</a> <br>
+                            POA: <a class="text-decoration-none">{{PoaList.name}}</a> - Actividad: <a
+                                class="text-decoration-none">{{ActividadList.nombre}}</a>
+                            <br>
+
+                        </span>
+
+                    </div>
+
+                </div>
+                <div class="row justify-content-center text-center m-2 fs-5">
+                    <!-- <span>Institución: <a (click)="toInsti()" class="text-decoration-none">{{insti.nombre}}</a>  - Pei: <a (click)="toPei()" class="text-decoration-none">{{pei.name}}</a> <br>
+                    Dimensión: <a (click)="toDimension()" class="text-decoration-none">{{dimension.nombre}}</a> - Objetivo: <a (click)="toObjetivo()" class="text-decoration-none">{{objetivo.nombre}}</a>
+                    <br>
+                </span> -->
+
+                </div>
+                <div class="w-75 row m-auto mb-2">
+                    <!-- <div class="row">
+                    <label for="id" class="row col-form-label">Seleccione un Área:</label>
+                                <select class="form-control" aria-label="Default select example" name="id"
+                                    [(ngModel)]="#"
+                                    (ngModelChange)="#" required>
+            
+                                    <ng-container *ngFor="let x of AreaList">
+                                        <option value="{{x.id}}" [selected]="x.id===idArea">{{x.nombre}}</option>
+                                    </ng-container>
+                    </select>
+                </div> -->
+                    <div class="col-8 mt-2">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Buscar por nombre" aria-label="Buscar"
+                                aria-describedby="btnGroupAddon" [(ngModel)]="filter" name="filter">
+                            <div class="input-group-text" id="btnGroupAddon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-search" viewBox="0 0 16 16">
+                                    <path
+                                        d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-4 mt-2">
+                        <button type="button" class="btn btn-warning" (click)="toCreate()">
+                            <i class="bi bi-plus-square"></i>
+                            <span>
+                                Crear Tarea
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="row">
+
+
+                <div class="col-8">
+                    <ng-container *ngIf="listTareas.length > 0; else empty">
+                        <!-- tabla dinamica que muestra todas los objetivos -->
+                        <div class="table-responsive">
+                        <table class="table table-hover rounded border">
+                            <thead class="text-center">
+                                <tr>
+                                    <th class="table-secondary" scope="col">#</th>
+                                    <th class="table-secondary" scope="col">Nombre</th>
+                                    <th class="table-secondary" scope="col">Costo</th>
+                                    <th class="table-secondary" scope="col">Presupuesto</th>
+                                    <th class="table-secondary" scope="col">Acciones</th>
+
+                                </tr>
+                            </thead>
+                            <tbody class="text-center">
+
+                                <tr *ngFor="let x of listTareas|tareasFiltro:filter; index as i ">
+                                    <!-- este contador no es id, solo es para enumerar -->
+                                    <td>
+                                        <ng-container *ngIf="page > 0; else elseNumeracion">
+                                            {{i + page + 1}}
+                                        </ng-container>
+                                        <ng-template #elseNumeracion>
+                                            {{i + 1}}
+                                        </ng-template>
+                                    </td>
+                                    <!-- <td>{{x.Tareas.nombre}}</td> -->
+                                    <td>{{x.nombre}}</td>
+
+                                    <!-- <td>{{}}</td> -->
+                                    <td>
+                                        <ng-container *ngIf="x.isPresupuesto==true; else presupuestono">
+                                            <h3>{{x.presupuesto.total| currency: 'L'}}</h3>
+                                        </ng-container>
+                                        <ng-template #presupuestono>
+                                            <h3>---------</h3>
+                                        </ng-template>
+                                    </td>
+
+                                    <td>
+                                        <ng-container *ngIf="x.isPresupuesto==true; else nopresupuesto ">
+
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"
+                                                fill="#049D29" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                                            </svg>
+                                        </ng-container>
+                                        <ng-template #nopresupuesto>
+
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"
+                                                fill="#BD1505" class="bi bi-dash-circle-fill" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1h-7z" />
+                                            </svg>
+
+                                        </ng-template>
+                                    </td>
+                                    <td>
+                                        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                            <button type="button" class="btn btn-secondary"
+                                                (click)="toDetail(x.id)">Gestionar</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <nav aria-label="Page navigation example">
+                            <ul class="justify-content-star">Página {{actualpage}} de {{maxPages}}</ul>
+                            <ul class="pagination justify-content-end">
+                                <ng-container>
+                                    <li class="page-item" *ngIf="(page > 0)"><a class="page-link "
+                                            (click)="previousPage()">Anterior</a></li>
+                                </ng-container>
+                                <ng-container *ngIf="(actualpage < maxPages)">
+                                    <li class="page-item"><a class="page-link " (click)="nextPage()">Siguiente</a>
+                                    </li>
+                                </ng-container>
+                            </ul>
+                        </nav>
+
+
+                    </div>
+                    </ng-container>
+                
+                </div>
+
+                <ng-template #empty>
+                    <app-empty></app-empty>
+                </ng-template>
+
+                <div class="col-4">
+                    <app-detail-presupuesto></app-detail-presupuesto>
+                    <!-- <div class="card border-info bg-light">
+                        <h2 class="card-header bg-info" style="color:white;">Resumen de Presupuesto:</h2>
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Fuente</th>
+                                            <th scope="col">Techo Presupuestario</th>
+                                            <th scope="col">Asignado</th>
+                                            <th scope="col">Saldo</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">Fuente 11</th>
+                                            <td>{{+PoaList.fuente11| currency:'L'}}</td>
+                                            <td>{{gastosFuente11| currency:'L'}}</td>
+                                            <td><strong>{{+PoaList.fuente11-gastosFuente11| currency:'L'}}</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Fuente 12</th>
+                                            <td>{{+PoaList.fuente12| currency:'L'}}</td>
+                                            <td>{{gastosFuente12| currency:'L'}}</td>
+                                            <td><strong>{{+PoaList.fuente12-gastosFuente12| currency:'L'}}</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Fuente 12B</th>
+                                            <td>{{+PoaList.fuente12B| currency:'L'}}</td>
+                                            <td>{{gastosFuente12B| currency:'L'}}</td>
+                                            <td><strong>{{+PoaList.fuente12B-gastosFuente12B| currency:'L'}}</strong>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+<!-- </div> -->
+<!-- {{area_seleccionado}} -->

@@ -42,12 +42,15 @@ export class AllObjetivoComponentComponent implements OnInit {
     this.peiServices.getInsti_Id(this.idInsti).subscribe((response:any)=>{
       this.insti = response.Institucion;
     })
+
     this.dimension = this.dimensionService.getDimension(this.idDimension).subscribe((response:any)=>{
       this.dimension = response;
     })
+
     this.pei =  this.peiServices.getPEI_Id(this.idPei).subscribe((response:any)=>{
       this.pei = response.pei;
     })
+    
     this._route.paramMap.subscribe((params: ParamMap) => {
       const idDimension = Number(this._route.snapshot.paramMap.get('idDimension'));
       

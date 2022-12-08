@@ -11,6 +11,8 @@ import { Area } from '../../../interfaces-pei/area.model'
 
 import { ResultadosService } from '../../../services-pei/resultados.service';
 
+
+
 @Component({
   selector: 'app-update-resultado-component',
   templateUrl: './update-resultado-component.component.html',
@@ -18,11 +20,13 @@ import { ResultadosService } from '../../../services-pei/resultados.service';
 })
 export class UpdateResultadoComponentComponent implements OnInit {
 
+
   constructor(private Storage:Storage, 
     private resultadosService:ResultadosService,
     private router:Router,
     private _route: ActivatedRoute) { }
 
+public area:Area | any = {}
 public idArea:number = Number(this._route.snapshot.paramMap.get('idArea'));
 public id:number = Number(this._route.snapshot.paramMap.get('id'));
 idObjetivo:number = Number(this._route.snapshot.paramMap.get('idObjetivo'));
@@ -45,9 +49,12 @@ console.log(response);
 );
 console.log(this.resultado);
 
+this.area = await this.resultadosService.getArea_Id(this.idArea).subscribe((response:any)=>{
+  this.area = response.area;
+})
 }
 toDetail(){
-this.router.navigate(['/gestion_pei/resultados/detail/',this.id,this.idArea]);
+this.router.navigate(['/gestion_pei/resultados/detail/',this.id,this.idArea,this.idObjetivo,this.idDimension,this.idPei,this.idInsti]);
 }
 Update():any{
 let nombre = this.nombre;
@@ -81,7 +88,7 @@ this.toDetail();
 console.log(error);
 }
 setTimeout(function() {
-//window.location.reload();
+window.location.reload();
 },1500);
 
 

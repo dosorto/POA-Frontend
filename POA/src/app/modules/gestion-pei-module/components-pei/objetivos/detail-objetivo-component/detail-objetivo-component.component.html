@@ -4,12 +4,13 @@
   <div class="col-8">
       <br>
       <!-- espacio para el titulo, buscador y boton de agregar uno nuevo -->
-      <div class="container  rounded border" style="background-color: white;">
+      <div class="container  rounded border border-dark" style="background-color: white;">
  
       <div class="w-75 row m-auto">
       <br>
       <!-- espacio para el titulo, buscador y boton de agregar uno nuevo -->
       <div class="row text-center">
+        <h2></h2>
         <h2 class="l-4" ><font color='black'>Detalles de los objetivos</font></h2>
         <span>Dimensión: <span class="text-primary">{{dimension.nombre}}</span></span>
     </div>
@@ -17,8 +18,7 @@
       <!-- <h2 class="m-3" ><font color='black'>{{objetivo?.pei?.name}}/{{objetivo?.dimension?.nombre}}/</font></h2>
     </div> -->
       <div class="row text-center">
-          
-         
+      
           <div class="d-grid gap-2 d-md-flex justify-content-end">
             <button type="button" class="btn btn-warning" (click)="toUpdate()">Editar</button>
             <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarInst" (click)="set_id_delete(objetivo?.id)">

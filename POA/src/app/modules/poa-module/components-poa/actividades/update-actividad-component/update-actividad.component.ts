@@ -7,6 +7,11 @@ import { Resultado } from 'src/app/modules/gestion-pei-module/interfaces-pei/res
 import { firstValueFrom } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
+import { Poa } from '../../../interfaces-poa/poa.model';
+import { Depto } from "../../..//interfaces-poa/depto.model";
+import { Institucion } from 'src/app/modules/administracion-module/interfaces/institucion.model';
+import { UnidadEjecutora } from "../../..//interfaces-poa/unidad_ejecutora.model";
+
 
 @Component({
   selector: 'app-update-actividad',
@@ -24,9 +29,16 @@ export class UpdateActividadComponent implements OnInit {
     private router: Router,
     private _route: ActivatedRoute) { }
 
-  public idObjetivo: number = Number(this._route.snapshot.paramMap.get('idObjetivo'));
   public id: number = Number(this._route.snapshot.paramMap.get('id'));
-
+  public idPoa:number = Number(this._route.snapshot.paramMap.get('idPoa'));
+  public idDepto: number = Number(this._route.snapshot.paramMap.get('idDepto'));
+  public idInsti: number = Number(this._route.snapshot.paramMap.get('idInsti'));
+  public idUE: number = Number(this._route.snapshot.paramMap.get('idUE'));
+  public UEList: Array<UnidadEjecutora> = [];
+  public poaList: Array<Poa> = [];
+  public actividadList: Array<Actividad> = [];
+  public DeptoList: Array<Depto> = []; 
+  public InstitucionesList: Array<Institucion> = [];
   actividad: Actividad | any = {};
   errorMessage = '';
   public nombre: string = '';
@@ -34,10 +46,14 @@ export class UpdateActividadComponent implements OnInit {
   public tipoActividad: string = '';
   public estado: string = '';
   public categoria: string = '';
+  
 
 
+  public poaSeleccionado: number = this.idPoa;
+  public actividadSeleccionada: number = this.id;
   ngOnInit(): void {
     this.initData();
+    
 
     const id = Number(this._route.snapshot.paramMap.get('id'));
     if (id) {
@@ -53,6 +69,12 @@ export class UpdateActividadComponent implements OnInit {
   }
 
   async initData(){
+    const poas = await firstValueFrom(this.service.getPoas());
+    this.poaList = poas;
+
+    const actividades = await firstValueFrom(this.service.getActividadesss());
+    this.actividadList = actividades;
+
     this.actividad = await this.service.getActividad(this.id).subscribe((response:any)=>{
       this.actividad = response.actividad;
       console.log(response);
@@ -61,31 +83,29 @@ export class UpdateActividadComponent implements OnInit {
     console.log(this.actividad);
   }
   toDetail(){
-    this.router.navigate(['/gestion_poa/actividad/detail/',this.id,this.idObjetivo]);
+    this.router.navigate(['/gestion_poa/actividad/detail/',this.id,this.idPoa,this.idInsti,this.idDepto]);
   }
 
   toList() {
-    this.router.navigate(['/gestion_poa/actividad/list/', this.idObjetivo]);
+    this.router.navigate(['/gestion_poa/actividad/list/', this.idPoa,this.idInsti,this.idDepto,this.idUE]);
   }
 
 
   update() {
     let nombre = this.nombre;
     let descripcion = this.descripcion;
-    let estado = this.estado;
-    let tipoActividad = this.tipoActividad;
-    let categoria = this.categoria;
+    let tipoActividad = this.tipo_seleccionado;
+    let categoria = this.categoria_seleccionado;
 
     // validaciones
     if ((nombre === '')) { nombre = this.actividad.nombre}
     if ((descripcion === '')) { descripcion = this.actividad.descripcion}
-    if ((estado === '')) { estado = this.actividad.estado}
     if ((tipoActividad === '')) { tipoActividad = this.actividad.tipoActividad}
     if ((categoria === '')) { categoria = this.actividad.categoria}
 
     
     try {
-      this.service.updateActividad(this.id,nombre,descripcion,estado,tipoActividad,categoria, this.idObjetivo).subscribe((res: any) => {
+      this.service.updateActividad(this.id,nombre,descripcion,tipoActividad,categoria, this.idPoa).subscribe((res: any) => {
         console.log(res);
 
       }, (error: any) => {
@@ -93,7 +113,7 @@ export class UpdateActividadComponent implements OnInit {
       });  
       Swal.fire({
         icon: 'success',
-        title: '!Actividad actualizado con éxito!',
+        title: '¡Actividad actualizado con éxito!',
         showConfirmButton: false,
         timer: 2500
       })

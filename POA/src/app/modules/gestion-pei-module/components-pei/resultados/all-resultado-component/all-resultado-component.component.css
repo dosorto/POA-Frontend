@@ -3,3 +3,19 @@
     left: 20px;
     top: 80px;
 }
+
+
+.-b-text-undexpanded {
+    display: -webkit-box;
+    height: 23.2px;
+    -webkit-line-clamp: 1; /* Número de líneas */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.3;
+  }
+  
+  .-b-expander {
+    cursor: pointer 1;
+    line-height: 1.3;
+  }
