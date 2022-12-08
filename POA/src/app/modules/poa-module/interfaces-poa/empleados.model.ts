@@ -1,4 +1,4 @@
-import { InstitucionModels } from "src/app/archivos_antiguos/gestion-institucion-module/institucion.model";
+
 export interface Empleado{
     id:          number;
     dni:string,
