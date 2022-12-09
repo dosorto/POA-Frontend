@@ -1,5 +1,5 @@
 <top-bar></top-bar>
-
+<app-back-button [path]="['/gestion_poa/actividad/tab/',this.idActividad,idPoa,idDepto,idInsti]"></app-back-button>
 <!-- <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -18,12 +18,13 @@
             <div class="w-100 row m-auto">
                 <br>
                 <div class="row text-center">
-                    
+
 
                     <h2 class="l-4">Detalles Tarea</h2>
                 </div>
                 <div class="container">
                 <div class="d-grid gap-2 d-md-flex justify-content-end">
+                    <button type="submit" class="btn btn-warning loat-end" (click)="toUpdate()">Actualizar</button>
                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarInst"
                     (click)="set_id_delete(tareas?.id)" >
                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor"
@@ -39,16 +40,20 @@
                     <h1> </h1>
                     <h2 class="px-2"> Presupuesto
                         <ng-container *ngIf="tareas.isPresupuesto==true; else nopresupuesto ">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="green" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
-                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="green"
+                                class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                                <path
+                                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
                                 <circle cx="200" cy="70" r="50" fill="#79C99E" />
                             </svg>
-                            </ng-container>
+                        </ng-container>
                         <ng-template #nopresupuesto>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="#BD1505" class="bi bi-dash-circle-fill" viewBox="0 0 16 16">
-                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1h-7z"/>
-                              </svg>
-                              
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="#BD1505"
+                                class="bi bi-dash-circle-fill" viewBox="0 0 16 16">
+                                <path
+                                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1h-7z" />
+                            </svg>
+
                         </ng-template>
                     </h2>
                 </div>
@@ -56,9 +61,13 @@
             
             
 
-            
+                </div>
+                <div><br></div>
 
-            <!-- espacio para el titulo, buscador y boton de agregar uno nuevo -->
+
+
+
+                <!-- espacio para el titulo, buscador y boton de agregar uno nuevo -->
 
 
                 <!-- <div class="col-10">
@@ -67,17 +76,19 @@
                 </textarea>
                 </div>
                  campo para nombre -->
-                    <div class="example-container">
-                        <mat-form-field appearance="outline" class="example-form-textarea">
-                            <mat-label>Nombre de la tarea</mat-label>
-                            <textarea matInput readonly> {{tareas.nombre}} </textarea>
-                        </mat-form-field>
-                        
-                        <mat-form-field appearance="outline" class="example-form-textarea" >
-                            <mat-label>Descripcion de la tarea</mat-label>
-                            <textarea matInput placeholder="Ex. 100 Main St" readonly> {{tareas.descripcion}} </textarea>
-                          </mat-form-field>
-                    </div>
+                <div class="example-container">
+                    <mat-form-field appearance="outline" class="example-form-textarea">
+                        <mat-label>Nombre de la tarea</mat-label>
+                        <textarea matInput readonly> {{tareas.nombre}} </textarea>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="example-form-textarea">
+                        <mat-label>Nombre de la tarea</mat-label>
+                        <textarea matInput readonly> {{tareas.descripcion}} </textarea>
+                    </mat-form-field>
+
+
+                </div>
                 <div><br></div>
                 <!-- Default switch -->
                 <!-- <div class="form-check form-switch">
@@ -89,41 +100,35 @@
                     [(ngModel)]="isPresupuesto" name="isPresupuesto">Presupuesto</mat-slide-toggle> -->
 
                 <div><br></div>
-                    
-                <ng-container *ngIf="tareas.isPresupuesto==false; else isPresupuestot"> 
-                    <mat-slide-toggle class="example-margin"
-          [color]="color"
-          [checked]="false"
-          [disabled]="disabled"
-                     name="isPresupuesto">Presupuesto</mat-slide-toggle></ng-container>
-                    <div class="mb-3">
-                    </div>
-                    <div><br></div>
-                    <ng-template #isPresupuestot>
-                        <mat-slide-toggle class="example-margin"
-          [color]="color"
-          [checked]="true"
-          [disabled]="disabled"
-                     name="isPresupuesto">Presupuesto</mat-slide-toggle>
-                    </ng-template>
+
+                <ng-container *ngIf="tareas.isPresupuesto==false; else isPresupuestot">
+                    <mat-slide-toggle class="example-margin" [color]="color" [checked]="false" [disabled]="disabled"
+                        name="isPresupuesto">Presupuesto</mat-slide-toggle>
+                </ng-container>
+                <div class="mb-3">
+                </div>
+                <div><br></div>
+                <ng-template #isPresupuestot>
+                    <mat-slide-toggle class="example-margin" [color]="color" [checked]="true" [disabled]="disabled"
+                        name="isPresupuesto">Presupuesto</mat-slide-toggle>
+                </ng-template>
 
                 <ng-container *ngIf="tareas.isPresupuesto==true">
-                                    <div class="example-container">
-                                        <mat-form-field appearance="outline" class="example-form-input">
-                                            <mat-label>Cantidad</mat-label>
-                                            <textarea matInput type="number" class="example-right-align"
-                                                name="cantidad" value="" 
-                                                placeholder="Placeholder" NgModel readonly>{{tareas.presupuesto.cantidad}}</textarea>
-                                            
-                                        </mat-form-field>
-                                        <mat-form-field appearance="outline" class="example-form-input">
-                                            <mat-label>Costo Unitario</mat-label>
-                                            <textarea matInput type="number" class="example-right-align"
-                                                name="cantidad" value="" 
-                                                placeholder="Placeholder" NgModel readonly>{{tareas.presupuesto.costounitario| currency:'L.'}}</textarea>
-                                            
-                                        </mat-form-field>
-                                        <!-- <mat-form-field appearance="fill" class="example-form-input">
+                    <div class="example-container">
+                        <mat-form-field appearance="outline" class="example-form-input">
+                            <mat-label>Cantidad</mat-label>
+                            <textarea matInput type="number" class="example-right-align" name="cantidad" value=""
+                                placeholder="Placeholder" NgModel readonly>{{tareas.presupuesto.cantidad}}</textarea>
+
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" class="example-form-input">
+                            <mat-label>Costo Unitario</mat-label>
+                            <textarea matInput type="number" class="example-right-align" name="cantidad" value=""
+                                placeholder="Placeholder" NgModel
+                                readonly>{{tareas.presupuesto.costounitario| currency:'L.'}}</textarea>
+
+                        </mat-form-field>
+                        <!-- <mat-form-field appearance="fill" class="example-form-input">
                                             <mat-label>Costo Unitario</mat-label>
                                             <textarea matInput type="text" class="example-right-align"
                                                 name="costounitario" value=""
@@ -131,16 +136,12 @@
                                             
                                         </mat-form-field> -->
 
-                                        <mat-form-field appearance="outline" floatLabel="always" class="example-form-input">
-                                            <mat-label>Total</mat-label>
-                                            <textarea matInput type="number" class="example-right-align"
-                                                placeholder="0" name="total"
-                                                value=""
-                                                readonly>{{tareas.presupuesto.total|currency:'L.' }}</textarea>
-                                        </mat-form-field>
-                                    </div>
-                                        
-                                    
+                        <mat-form-field appearance="outline" floatLabel="always" class="example-form-input">
+                            <mat-label>Total</mat-label>
+                            <textarea matInput type="number" class="example-right-align" placeholder="0" name="total"
+                                value="" readonly>{{tareas.presupuesto.total|currency:'L.' }}</textarea>
+                        </mat-form-field>
+                    </div>
 
 
                                     
@@ -182,7 +183,7 @@
                                             </select>
                                           </mat-form-field>
                                            -->
-                                          <!-- <mat-form-field appearance="fill">
+                        <!-- <mat-form-field appearance="fill">
                                             <mat-label>Objeto del gasto</mat-label>
                                             <mat-select matNativeControl name="idobjeto" [(ngModel)]="objetogasto_seleccionado" NgModel required>
                                                 <mat-option>-- None --</mat-option>
@@ -190,7 +191,7 @@
                                             </mat-select>
                                           </mat-form-field>  -->
 
-                                          <!-- <mat-form-field appearance="fill">
+                        <!-- <mat-form-field appearance="fill">
                                             <mat-label>Unidad de Medida</mat-label>
                                             <mat-select  name="idunidad"  [(ngModel)]="unidadmedida_seleccionado" NgModel required>
                                                 <mat-option>-- None --</mat-option>
@@ -207,9 +208,9 @@
                                                 <mat-option value="3">Fuente 12B </mat-option>
                                             </mat-select>
                                           </mat-form-field>                                           -->
-                                         </div>
-                                    <!-- <div class="col-3"> -->
-                                    <!-- <input type="number"  name="idobjeto" placeholder="CANTIDAD"  ngModel required>
+                    </div>
+                    <!-- <div class="col-3"> -->
+                    <!-- <input type="number"  name="idobjeto" placeholder="CANTIDAD"  ngModel required>
                                     <input type="number"  name="idunidad" placeholder="CANTIDAD" ngModel required>
                                     <input type="number"  name="idfuente" placeholder="CANTIDAD" ngModel required>
                                     <select class="form-select mb-2" aria-label="Default select example">
@@ -218,9 +219,9 @@
                                         <option value="2">Two</option>
                                         <option value="3">Three</option>
                                     </select> -->
-                                    <!-- </div> -->
+                    <!-- </div> -->
 
-                                    <!-- <input type="number" name="cantidad" placeholder="CANTIDAD"
+                    <!-- <input type="number" name="cantidad" placeholder="CANTIDAD"
                                         [(ngModel)]="+cantidad" NgModel required>
                                     <input type="number" name="costounitario" placeholder="COSTO"
                                         [(ngModel)]='+costounitario' ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/"
@@ -233,11 +234,11 @@
                                             placeholder="TOTAL" NgModel required>
 
                                     </div> -->
-                         
-                       
-                        
-                        <div><br></div>
-                                <!-- <div class="row p-2 border rounded d-flex d-inline justify-content-center">
+
+
+
+                    <div><br></div>
+                    <!-- <div class="row p-2 border rounded d-flex d-inline justify-content-center">
                                     <div class="col-12">
                                         <div class="col-3">
                                             <select class="form-select mb-2" aria-label="Default select example">
@@ -254,18 +255,18 @@
                                         <div class="col-12"></div>
                                     </div>
                                 </div> -->
-                    
-                            <div><br></div>
 
-                    </ng-container>
-                    
+                    <div><br></div>
+
+                </ng-container>
+
                 <!-- </ng-container> -->
                 <div class="container">
                     <div class="d-grid gap-3 d-md-flex justify-content-md-end">
                 
                     <!-- <button type="button" class="btn btn-danger float-start">Cerrar</button> -->
                     <button type="button" class="btn btn-danger" (click)='onBack()'>Cerrar</button>
-                    <button type="submit" class="btn btn-warning loat-end" (click)="toUpdate()">Actualizar</button>
+                 
                 </div>
                 </div> 
 
@@ -277,9 +278,12 @@
 
 
 
-<ul>
-<li>{{tareas?.presupuesto?.objetogasto?.nombre}}</li>
-</ul>
+
+
+
+                <ul>
+                    <li>{{tareas?.presupuesto?.objetogasto?.nombre}}</li>
+                </ul>
 
 <!-- Este modal sirve para eliminar un Objetivo -->
 
@@ -307,3 +311,28 @@
 
 
 
+
+
+
+                <!-- Este modal sirve para eliminar un Objetivo -->
+
+                <div class="modal" tabindex="-1" id="eliminarInst">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header bg-danger">
+                                <h5 class="modal-title fs-3 m-auto"></h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Está seguro de eliminar el objetivo? </p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary"
+                                    data-bs-dismiss="modal">Cancelar</button>
+                                <button type="button" class="btn btn-danger" (click)="delete()"
+                                    data-bs-dismiss="modal">Eliminar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>

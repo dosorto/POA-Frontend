@@ -93,30 +93,30 @@ export class UpdatePeiComponent implements OnInit {
 
     console.log(":"+name+":" + ":"+initialYear+":"+finalYear);
      try{
-      this.service.updatePEI(name,initialYear,finalYear,this.id,this.idInsti).subscribe((res:any)=>{
-      Swal.fire({
-        icon: 'success',
-        title: '¡Actualizado con éxito!',
-        showConfirmButton: false,
-        timer: 2500
-      })
-     },(error:any)=>{
-      Swal.fire({
-        icon: 'error',
-        title: 'Ha ocurrido un error',
-        showConfirmButton: false,
-        timer: 2500
-      })
-     });
-     this.toDetail(this.id);
-     
+      if (initialYear < finalYear) {
+         this.service.updatePEI(name,initialYear,finalYear,this.id,this.idInsti).subscribe((res: any) => {
+          console.log(res);
+        },);
+        Swal.fire({
+          icon: 'success',
+          title: '¡Registrado con éxito!',
+          showConfirmButton: false,
+          timer: 1500
+        })
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Ha ocurrido un error, revise si ha introducido bien las fechas',
+          showConfirmButton: false,
+          timer: 1500
+        })
+      } 
+      this.toDetail(this.id);
    } catch(error){
      console.log(error);
    }
    setTimeout(function() {
     window.location.reload();
-  },1500);
- 
-  
+  },1500);  
   }
 }

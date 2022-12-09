@@ -14,6 +14,8 @@ import { FormControl } from '@angular/forms';
 import { Presupuesto } from '../../../interfaces-poa/presupuesto.model';
 import { TareasH } from '../../../interfaces-poa/tareas_historico.model';
 import { Poa } from '../../../interfaces-poa/poa.model';
+import { Indicadores } from '../../../interfaces-poa/Indicadores.model';
+import { Depto } from '../../../interfaces-poa/depto.model';
 
 @Component({
   selector: 'app-create-tareas',
@@ -37,11 +39,25 @@ export class CreateTareasComponent implements OnInit {
   public listFuente11: Array<Tareas>=[];
   public listFuente12: Array<Tareas>=[];
   public listFuente12B: Array<Tareas>=[];
-  public idPoa = 1;
+  
+  public ActividadList: Actividad | any = {};
+  public indicadores:Array<Indicadores>=[]; // para llenar la tabla
+  public InstiList: Institucion | any = {};
+  public DeptoList: Depto | any = {};
+  public PoaList: Poa | any = {}
+  
+  public idActividad:number = Number(this._route.snapshot.paramMap.get('idActividad'));
+  //public idActividad=1
+  public idDepto = Number(this._route.snapshot.paramMap.get('idDepto'));
+  public idPoa = Number(this._route.snapshot.paramMap.get('idPoa'));
+  public idInsti = Number(this._route.snapshot.paramMap.get('idInsti'));
+  public id:number = Number(this._route.snapshot.paramMap.get('id'));
+
+
   public saldo: number=0
   public saldo1: number=0
   public saldo2: number=0
-  public PoaList: Poa | any = {}
+  //public PoaList: Poa | any = {}
 
   public unidadmedida_seleccionado:string="";
   public objetogasto_seleccionado:string="";
@@ -61,7 +77,7 @@ export class CreateTareasComponent implements OnInit {
     private _route: ActivatedRoute) { }
 
     // Variable que recoge idActividad
-    public idActividad:number = Number(this._route.snapshot.paramMap.get('idActividad'));
+    // public idActividad:number = Number(this._route.snapshot.paramMap.get('idActividad'));
     
 
   ngOnInit(): void {
@@ -225,6 +241,23 @@ this.PoaList = await this.tareasService.getPoa_Id(this.idPoa).subscribe((respons
   this.saldo1= +this.PoaList.fuente12 -this.gastosFuente12
   this.saldo2= +this.PoaList.fuente12B - this.gastosFuente12B
 })
+
+
+this.InstiList = await this.tareasService.getInsti_Id(this.idInsti).subscribe((response:any)=>{
+  this.InstiList = response.Institucion;
+})
+
+this.DeptoList = await this.tareasService.getDepto_Id(this.idDepto).subscribe((response:any)=>{
+  this.DeptoList = response.departamento;
+})
+
+
+
+
+this.ActividadList = await this.tareasService.getActividad_Id(this.idActividad).subscribe((response:any)=>{
+  this.ActividadList = response.actividad;
+})
+
     // this.sumall = this.listTareasP.reduce((sum, value) => (typeof value.presupuesto.total == "number" ? sum + value.presupuesto.total : sum), 0);
     // console.log(this.sumall);
 
@@ -236,8 +269,9 @@ this.PoaList = await this.tareasService.getPoa_Id(this.idPoa).subscribe((respons
     // console.log(this.sumall)
     
   }
+  
   onBack(): void {
-    this.router.navigate(['/gestion_poa/tareas/list/',this.idActividad]);
+    this.router.navigate(['/gestion_poa/actividad/tab/',this.idActividad,this.idPoa,this.idDepto,this.idInsti]);
   }
 
   suma(){

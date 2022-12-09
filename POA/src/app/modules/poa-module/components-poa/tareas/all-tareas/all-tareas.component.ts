@@ -12,6 +12,7 @@ import { Indicadores } from '../../../interfaces-poa/Indicadores.model';
 import { Depto } from '../../../interfaces-poa/depto.model';
 import { Poa } from '../../../interfaces-poa/poa.model';
 import { Presupuesto } from '../../../interfaces-poa/presupuesto.model';
+import { MatTableDataSource } from '@angular/material/table';
 
 
 @Component({
@@ -26,8 +27,8 @@ export class AllTareasComponent implements OnInit {
   public idDepto = Number(this._route.snapshot.paramMap.get('idDepto'));
   public idPoa = Number(this._route.snapshot.paramMap.get('idPoa'));
   public idInsti = Number(this._route.snapshot.paramMap.get('idInsti'));
-
   public id:number = Number(this._route.snapshot.paramMap.get('id'));
+  public actividad:Actividad|any={};
   // Aqui llamamos las variables
   public listTareas : Array<Tareas>=[];
   public listTareasP: Array<Tareas>=[];
@@ -38,6 +39,7 @@ export class AllTareasComponent implements OnInit {
   public listFuente11: Array<Tareas>=[];
   public listFuente12: Array<Tareas>=[];
   public listFuente12B: Array<Tareas>=[];
+  public ListPoa: Array<Poa>=[];
 
   public saldo: number=0
   ////
@@ -46,6 +48,8 @@ export class AllTareasComponent implements OnInit {
   public InstiList: Institucion | any = {};
   public DeptoList: Depto | any = {};
   public PoaList: Poa | any = {}
+
+
   //paginacion
   public page:number=0;
   public actualpage:number = 1;
@@ -64,13 +68,24 @@ export class AllTareasComponent implements OnInit {
     //public techo_presupuestario:number=5000
   ngOnInit(): void {
     this.initData()
-    const sumall = this.listTareas.map(item => item.presupuesto.total).reduce((prev, curr) => prev + curr,0);
-console.log(sumall)
+    //const sumall = this.listTareas.map(item => item.presupuesto.total).reduce((prev, curr) => prev + curr,0);
+    //console.log(sumall)
+    //console.log(this.dataSource)
   }
-
+  displayedColumns: any[] = ['nombre', 'isPresupuesto','idP'];
+  dataSource:any[]=[]
   async initData(){
+
+    
     const tareas = await firstValueFrom(this.tareaservice.getTarea(this.idActividad))
     this.listTareas = tareas;
+
+    const poas = await firstValueFrom(this.tareaservice.getPoa_id_iddepto(this.idDepto,this.idPoa))
+    this.ListPoa = poas;
+
+    console.log("esta es",this.ListPoa)
+  this.dataSource = this.listTareas;
+    console.log("aqui",this.dataSource)
 
     const tareasP = await firstValueFrom(this.tareaservice.getTareaP(this.idPoa))
     this.listTareasP = tareasP;
@@ -130,6 +145,9 @@ this.gastosFuente12B = this.listFuente12B.reduce((sum, value) => (typeof +value.
     
     // this.sumall = this.listTareas.map(item => item.presupuesto.total??0).reduce((prev, curr) => +prev + +curr,0);
     // console.log(this.sumall)
+    this.actividad = this.tareaservice.getActividad_Id(this.idActividad).subscribe((response:any)=>{
+      this.actividad = response.Actividad;
+    });
     
   }
 
@@ -154,9 +172,15 @@ this.gastosFuente12B = this.listFuente12B.reduce((sum, value) => (typeof +value.
   }
 
   toDetail(id:number){
-    this.router.navigate(['/gestion_poa/tareas/detail/',id.toString(),this.idActividad]);
+    this.router.navigate(['/gestion_poa/tareas/detail/',id.toString(),this.idActividad,this.idPoa,this.idDepto,this.idInsti]);
+
   }
   toCreate(){
-    this.router.navigate(['/gestion_poa/tareas/create/',this.idActividad.toString()]);
+    this.router.navigate(['/gestion_poa/tareas/create/',this.idActividad.toString(),this.idPoa,this.idDepto,this.idInsti]);
   }
+
+  // displayedColumns: string[] = ['car', 'type', 'performance', 'fueleconomy', 'engine', 'passengers', 'msrp', 'added'];
+  // dataSource: MatTableDataSource<Tareas> | undefined;
+
+  
 }

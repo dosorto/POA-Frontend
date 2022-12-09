@@ -5,7 +5,7 @@ import { Area } from '../../../interfaces-pei/area.model';
 import { Objetivo } from "../../../interfaces-pei/objetivo.model";
 import { firstValueFrom } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
-
+//import { Objetivo } from '../../../interfaces-pei/resultado.model';
 import { Pei } from '../../../interfaces-pei/pei.model';
 import { Dimension } from '../../../interfaces-pei/dimension.model';
 import { Institucion } from 'src/app/modules/administracion-module/interfaces/institucion.model';

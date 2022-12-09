@@ -1,3 +1,7 @@
+import { Resultado } from "../../gestion-pei-module/interfaces-pei/resultado.model";
+import { Presupuesto } from "./presupuesto.model";
+import { Tareas } from "./tareas.model";
+
 
 export interface Actividad{
     id:          number;
@@ -10,5 +14,8 @@ export interface Actividad{
     isDelete:    boolean;
     createdAt:   Date;
     updatedAt:   Date;
-    idResultado: number
+    idResultado: number,
+    resultado : Resultado,
+    tareas: Tareas,
+    presupuesto: Presupuesto
 }

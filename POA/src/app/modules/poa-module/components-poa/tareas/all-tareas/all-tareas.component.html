@@ -1,19 +1,19 @@
-<top-bar></top-bar>
+<!-- <top-bar></top-bar> -->
 
 <!-- <app-back-button [path]="['gestion_pei/areas/detail/',this.idArea,this.idObjetivo,idDimension,idPei,idInsti]"></app-back-button> -->
 <!-- Pantalla principal del modulo -->
-<div class="container d-flex align-items-center justify-content-center mt-5 pt-5 ">
+<!-- <div class="container d-flex align-items-center justify-content-center mt-5 pt-5 "> -->
 
     <!-- columna completa que agrupa todos los row -->
     <div class="col-12">
-        <br>
+
         <!-- espacio para el titulo, buscador y boton de agregar uno nuevo -->
-        <div class="container  rounded border border-dark" style="background-color: white;">
+        <div class="container" style="background-color: white;">
             <div class="w-100 row m-auto">
                 <div class="row">
                     <div class="row text-center">
                         <h2></h2>
-                        <h2 class="l-4">Gestión de Tareas {{saldo}}</h2>
+                        <h2 class="l-4">Gestión de Tareas</h2>
                     </div>
 
 
@@ -110,7 +110,6 @@
                                     </td>
                                     <!-- <td>{{x.Tareas.nombre}}</td> -->
                                     <td>{{x.nombre}}</td>
-
                                     <!-- <td>{{}}</td> -->
                                     <td>
                                         <ng-container *ngIf="x.isPresupuesto==true; else presupuestono">
@@ -170,7 +169,7 @@
                 </div>
 
                 <ng-template #empty>
-                    <!-- <app-empty></app-empty> -->
+                    <app-empty></app-empty>
                 </ng-template>
 
                 <div class="col-4">
@@ -219,5 +218,44 @@
         </div>
     </div>
 
-</div>
+<!-- </div> -->
 <!-- {{area_seleccionado}} -->
+
+<button mat-button (click)="exporter.exportTable('xlsx',{fileName:ActividadList.nombre})">Descargar</button>
+<table mat-table matTableExporter [dataSource]="dataSource" class="mat-elevation-z8" #exporter="matTableExporter">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+  
+    <!-- Position Column -->
+    <ng-container  matColumnDef="nombre" >
+      <th mat-header-cell *matHeaderCellDef> No. </th>
+      <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+    </ng-container>
+  
+    <!-- Name Column -->
+    <ng-container matColumnDef="isPresupuesto">
+      <th mat-header-cell *matHeaderCellDef> Nombre </th>
+      <td mat-cell *matCellDef="let element"> {{element.actividade?.poa.name}} </td>
+    </ng-container>
+  
+    <!-- Weight Column -->
+    <ng-container matColumnDef="idP">
+      <th mat-header-cell *matHeaderCellDef> Total </th>
+      <td mat-cell *matCellDef="let element"> {{element?.depto.name}} </td>
+    </ng-container>
+    <li>asdasdasdasd</li>
+    <tr *ngFor="let x of listTareas">
+        <td>{{x.nombre}}</td>
+      </tr>
+  
+    <!-- Symbol Column -->
+    <!-- <ng-container matColumnDef="symbol">
+      <th mat-header-cell *matHeaderCellDef> Symbol </th>
+      <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+    </ng-container> -->
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  

@@ -21,6 +21,7 @@ export class TareasService {
   constructor(private callHttp: CallHttpService, private directHttp: HttpClient) { }
   private _actividades: Array<Actividad> = [];
   private _tareas: Array<Tareas> = [];
+  private _poa: Array<Poa>=[]
   private _tareash: Array <TareasH>=[]
   private _presupuesto: Array<Presupuesto>=[]
   get actividades() {
@@ -100,6 +101,14 @@ actualizarTarea(nombre:string,descripcion:string,id:number,isPresupuesto:boolean
 //   return this.callHttp.httpGet<Tareas>(`${environment.servidor}tarea/get_all_by_idActividad/`+idActividad.toString());
 // }
 
+getPoa_id_iddepto(idDepto:number,idPoa:number) {
+  return this.callHttp.httpGet<Array<Poa>>(`${environment.servidor}reportes/get_all_depto/` +idDepto.toString()+`/`+idPoa.toString())
+    .pipe(map(response => {
+      this._poa = response;
+      return response;
+    }))
+}
+
 getTarea(idActividad:number) {
   return this.callHttp.httpGet<Array<Tareas>>(`${environment.servidor}tarea/get_all_by_idActividad/` + idActividad.toString())
     .pipe(map(response => {
@@ -107,6 +116,7 @@ getTarea(idActividad:number) {
       return response;
     }))
 }
+
 
 getTareaP(idActividad:number) {
   return this.callHttp.httpGet<Array<Tareas>>(`${environment.servidor}tarea/get_all_presupuesto/` + idActividad.toString())
@@ -135,6 +145,11 @@ getPresupuesto(idtarea:number) {
 getTareas(id:number) {
   return this.callHttp.httpGet<Tareas>(`${environment.servidor}tarea/get_all_by_id/`+id.toString());
 }
+
+getActividades_Id(idActividad:number) {
+  return this.callHttp.httpGet<Actividad>(`${environment.servidor}actividad/get/`+idActividad.toString());
+}
+
 
 getTareasH()  {
   return this.callHttp.httpGet<Array<TareasH>>(`http://localhost:8080/tareah/get_all`)
