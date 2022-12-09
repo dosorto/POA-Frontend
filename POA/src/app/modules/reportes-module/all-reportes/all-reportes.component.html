@@ -138,27 +138,27 @@
               
               <ng-container matColumnDef="Cantidad">
                 <th align="center" mat-header-cell *matHeaderCellDef >Cantidad</th>
-                <td align="center" mat-cell *matCellDef="let element"> {{element?.presupuesto?.cantidad}} </td>
+                <td align="center" mat-cell *matCellDef="let element"> {{element?.presupuesto?.cantidad||0}} </td>
               </ng-container>
               <ng-container matColumnDef="costo">
                 <th align="center" mat-header-cell *matHeaderCellDef >Costo</th>
-                <td align="center" mat-cell *matCellDef="let element"> {{element?.presupuesto?.costounitario| currency:'L.'}} </td>
+                <td align="center" mat-cell *matCellDef="let element"> {{element?.presupuesto?.costounitario||0| currency:'L.'}} </td>
               </ng-container>
               <ng-container matColumnDef="total" >
                 <th align="center" mat-header-cell *matHeaderCellDef >Total</th>
-                <td align="center" mat-cell *matCellDef="let element"> {{element?.presupuesto.total| currency:'L.'}} </td>
+                <td align="center" mat-cell *matCellDef="let element"> {{element?.presupuesto?.total||0| currency:'L.'}} </td>
               </ng-container>
               <ng-container matColumnDef="fuente" >
                 <th mat-header-cell *matHeaderCellDef>Fuente</th>
-                <td align="center" mat-cell *matCellDef="let element"> {{element?.presupuesto.fuente.identificador}} </td>
+                <td align="center" mat-cell *matCellDef="let element"> {{element?.presupuesto?.fuente?.identificador}} </td>
               </ng-container>
               <ng-container matColumnDef="grupo">
                 <th mat-header-cell *matHeaderCellDef >Objeto</th>
-                <td mat-cell *matCellDef="let element"> {{element?.presupuesto.grupogasto.identificador}} </td>
+                <td mat-cell *matCellDef="let element"> {{element?.presupuesto?.grupogasto?.identificador}} </td>
               </ng-container>
               <ng-container matColumnDef="objeto" stickyEnd>
                 <th mat-header-cell *matHeaderCellDef >Grupo</th>
-                <td mat-cell *matCellDef="let element"> {{element?.presupuesto.objetogasto.identificador}} </td>
+                <td mat-cell *matCellDef="let element"> {{element?.presupuesto?.objetogasto?.identificador}} </td>
               </ng-container>
 
             <!-- Symbol Column -->
