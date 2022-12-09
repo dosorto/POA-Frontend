@@ -9,7 +9,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatTabsModule } from '@angular/material/tabs';
 import { BackButtonComponent } from 'src/app/_core/back-button/back-button.component';
 import {MatButtonModule} from '@angular/material/button';
-
+import {MatTableModule} from '@angular/material/table';
+import { MatTableExporterModule } from 'mat-table-exporter';
 const router = RouterModule.forChild([
   {path: '', component: ReportesModuleComponent},
 
@@ -29,7 +30,9 @@ const router = RouterModule.forChild([
     MatCardModule,
     MatTabsModule,
     BackButtonComponent,
-    MatButtonModule
+    MatButtonModule,
+    MatTableModule,
+    MatTableExporterModule
   ]
 })
 export class ReportesModuleModule { }
