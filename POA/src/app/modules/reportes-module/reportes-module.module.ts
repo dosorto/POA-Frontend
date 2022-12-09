@@ -11,6 +11,9 @@ import { BackButtonComponent } from 'src/app/_core/back-button/back-button.compo
 import {MatButtonModule} from '@angular/material/button';
 import {MatTableModule} from '@angular/material/table';
 import { MatTableExporterModule } from 'mat-table-exporter';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { NgModel, FormControl, FormsModule} from '@angular/forms';
+
 const router = RouterModule.forChild([
   {path: '', component: ReportesModuleComponent},
 
@@ -32,7 +35,9 @@ const router = RouterModule.forChild([
     BackButtonComponent,
     MatButtonModule,
     MatTableModule,
-    MatTableExporterModule
+    MatTableExporterModule,
+    NgSelectModule,
+    FormsModule
   ]
 })
 export class ReportesModuleModule { }

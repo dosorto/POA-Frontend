@@ -1,34 +1,47 @@
 <top-bar></top-bar>
 <app-back-button></app-back-button>
-<div class="mt-5 pt-4">
-    <div class="contenedor rounded border border-dark" style="background-color: white;">
-        <div class="row">
-            <div class="row text-center">
+<div class="container-fluid">
+<div class="d-flex align-items-center justify-content-center mt-5 pt-4">
+ <div> 
+    <div class="contenedor justify-content-center rounded border border-dark" style="background-color: white;">
+        <div class=" titulo">
+            <div class="titulo">
                 <h2></h2>
                 <h2 class="l-4">Reportes y Estadisticos</h2>
-                <div class="boton">
-                    <button mat-raised-button style="background-color: green; color: white;" (click)="exporter.exportTable('xlsx',{fileName:'prueba'})"><i
-                            class="bi bi-arrow-down"></i>
-                        Exportar a Excel</button>
-                </div>
+              
             </div>
         </div>
-        <div class="contenedor_card">
-            <div class="col-10 select">
-                <label for="id"  style="font-size: 18px;">Seleccione un Departamento mi loco:</label>
-                <select class="form-control" style="border-radius: 20px;" aria-label="Default select example" name="id"
-                    required>
-                    <!-- <select class="form-control" style="border-radius: 20px;" aria-label="Default select example" name="id"
-                            [(ngModel)]="actividad_seleccionada"
-                            (ngModelChange)="selectActividad()" required> -->
+       
+            <div class=" container row row-cols-1 row-cols-md-2 select" >
+              <div class="col">
+                <label for="id"  style="font-size: 18px;">Seleccione un Departamento:</label>
+        
+                    <select class="form-control" style="border-radius: 20px;" aria-label="Default select example" name="id"
+                    [(ngModel)]="departamento_seleccionado"
+                            (ngModelChange)="selectDepto()" required>
 
-                    <!-- <ng-container *ngFor="let x of ActividadListS">
-                                <option value="{{x.id}}" [selected]="x.id===idActividad">{{x.nombre}}</option>
-                            </ng-container> -->
-                            <option> No ha seleccionado nada mi loco</option>
+                    <ng-container *ngFor="let x of deptoList">
+                                <option value="{{x.id}}" [selected]="x.id===idDepto">{{x.name}}</option>
+                            </ng-container>
+                           
                 </select>
+              </div>
+              <div class="col">
+                <label for="id"  style="font-size: 18px;">Seleccione un POA:</label>
+        
+                    <select class="form-control" style="border-radius: 20px;" aria-label="Default select example" name="id"
+                    [(ngModel)]="poa_seleccionado"
+                            (ngModelChange)="selectPoa()" required>
+
+                    <ng-container *ngFor="let x of poaList">
+                                <option value="{{x.id}}" [selected]="x.id===idPoa">{{x.name}}</option>
+                            </ng-container>
+                           
+                </select>
+              </div>
 
             </div>
+             <div class="contenedor_card">
             <div class="row row-cols-1 row-cols-md-3 g-4">
                 <div class="col">
                     <div class="card border-secondary ">
@@ -67,10 +80,19 @@
             </div>
 
         </div>
-
-
-        
-
+<div class="row row-cols-1 row-cols-md-6 boton">
+        <div class="col ">
+          <button mat-raised-button style="background-color: green; color: white;" (click)="exporter.exportTable('xlsx',{fileName:'prueba'})"><i
+                  class="bi bi-arrow-down"></i>
+              Exportar a Excel</button>
+      </div>
+      <div class=" col">
+        <button mat-raised-button style="background-color: green; color: white;" (click)="exporter.exportTable('xlsx',{fileName:'prueba'})"><i
+                class="bi bi-arrow-down"></i>
+            Exportar a CSV</button>
+    </div>
+  </div>
+<br>
         <table mat-table matTableExporter [dataSource]="dataSource" class="mat-elevation-z8" #exporter="matTableExporter" tabindex="0">
 
             <!--- Note that these columns can be defined in any order.
@@ -170,7 +192,9 @@
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>>
           </table>
+        </div>
 
 
-    </div>
+</div>
+</div>
 </div>
