@@ -31,4 +31,8 @@ export class MenuComponent implements OnInit {
     this.router.navigate(['/gestion_poa/poa/list/1/1/1'])
   }
 
+  tomisPOA(){
+    this.router.navigate(['mipoa/list'])
+  }
+
 }
