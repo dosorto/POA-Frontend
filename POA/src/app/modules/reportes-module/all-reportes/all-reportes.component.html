@@ -1,7 +1,7 @@
 <top-bar></top-bar>
 <app-back-button></app-back-button>
-<div class="container-fluid">
-<div class="d-flex align-items-center justify-content-center mt-5 pt-4">
+<div>
+<div class=" mt-5 pt-4">
  <div> 
     <div class="contenedor justify-content-center rounded border border-dark" style="background-color: white;">
         <div class=" titulo">
@@ -92,15 +92,17 @@
             Exportar a CSV</button>
     </div>
   </div>
+
+<div class="scroll">
 <br>
-        <table mat-table matTableExporter [dataSource]="dataSource" class="mat-elevation-z8" #exporter="matTableExporter" tabindex="0">
+        <table mat-table matTableExporter [dataSource]="dataSource" #exporter="matTableExporter" tabindex="0">
 
             <!--- Note that these columns can be defined in any order.
                   The actual rendered columns are set as a property on the row definition" -->
           
             <!-- Position Column -->
             <ng-container  matColumnDef="Nombre_Departamento" sticky>
-              <th mat-header-cell *matHeaderCellDef>Nombre del Departamento </th>
+              <th style="min-width: 270px; text-align: center;" mat-header-cell *matHeaderCellDef>Nombre del Departamento </th>
               <td mat-cell *matCellDef="let element"> {{element.depto.name}} </td>
             </ng-container>
           
@@ -112,28 +114,28 @@
           
             <!-- Weight Column -->
             <ng-container matColumnDef="Nombre_Poa">
-              <th mat-header-cell *matHeaderCellDef> Nombre del POA </th>
+              <th style="min-width: 100px; text-align: center;"  mat-header-cell *matHeaderCellDef> Nombre del POA </th>
               <td mat-cell *matCellDef="let element"> {{element?.poa.name}} </td>
             </ng-container>
 
             <ng-container matColumnDef="Año">
-                <th mat-header-cell *matHeaderCellDef> Año del POA </th>
+                <th style="min-width: 90px; text-align: center;" mat-header-cell *matHeaderCellDef> Año del POA </th>
                 <td mat-cell *matCellDef="let element"> {{element?.poa.anio}} </td>
               </ng-container>
               <ng-container matColumnDef="Fuente11">
-                <th mat-header-cell *matHeaderCellDef> Fuente 11 </th>
+                <th style="min-width: 70px; text-align: center;" mat-header-cell *matHeaderCellDef> Fuente 11 </th>
                 <td mat-cell *matCellDef="let element"> {{element?.poa.fuente11}} </td>
               </ng-container>
               <ng-container matColumnDef="Fuente12">
-                <th mat-header-cell *matHeaderCellDef> Fuente 12 </th>
+                <th style="min-width: 70px; text-align: center;" mat-header-cell *matHeaderCellDef> Fuente 12 </th>
                 <td mat-cell *matCellDef="let element"> {{element?.poa.fuente12}} </td>
               </ng-container>
               <ng-container matColumnDef="Fuente12B">
-                <th mat-header-cell *matHeaderCellDef> Fuente 12B </th>
+                <th style="min-width: 70px; text-align: center;" mat-header-cell *matHeaderCellDef> Fuente 12B </th>
                 <td mat-cell *matCellDef="let element"> {{element?.poa.fuente12B}} </td>
               </ng-container>
               <ng-container matColumnDef="Nombre_Actividad">
-                <th mat-header-cell *matHeaderCellDef> Nombre de la Actividad </th>
+                <th style="min-width: 180px; text-align: center;" mat-header-cell *matHeaderCellDef> Nombre de la Actividad </th>
                 <td mat-cell *matCellDef="let element"> {{element?.actividade.nombre}} </td>
               </ng-container>
               <!-- <ng-container matColumnDef="Descripcion">
@@ -141,45 +143,43 @@
                 <td mat-cell *matCellDef="let element"> {{element?.actividade.descripcion}}</td>
               </ng-container> -->
               <ng-container matColumnDef="Estado">
-                <th mat-header-cell *matHeaderCellDef> Estado de la Actividad </th>
+                <th style="min-width: 130px; text-align: center;" mat-header-cell *matHeaderCellDef> Estado de la Actividad </th>
                 <td mat-cell *matCellDef="let element"> {{element?.actividade.estado}} </td>
               </ng-container>
               <ng-container matColumnDef="Tipo_Actividad">
-                <th mat-header-cell *matHeaderCellDef> Tipo de Actividad </th>
+                <th style="min-width: 130px; text-align: center;" mat-header-cell *matHeaderCellDef> Tipo de Actividad </th>
                 <td mat-cell *matCellDef="let element"> {{element?.actividade.tipoActividad}} </td>
               </ng-container>
-              <ng-container matColumnDef="Categoria_Actividad" stickyEnd>
-                <th mat-header-cell *matHeaderCellDef > Categoria de la Actividad</th>
+              <ng-container matColumnDef="Categoria_Actividad">
+                <th style="min-width: 140px; text-align: center;" mat-header-cell *matHeaderCellDef > Categoria de la Actividad</th>
                 <td mat-cell *matCellDef="let element"> {{element?.actividade.categoria}} </td>
               </ng-container>
-              <ng-container matColumnDef="Nombre_Tarea" stickyEnd>
-                <th mat-header-cell *matHeaderCellDef > Tarea</th>
+              <ng-container matColumnDef="Nombre_Tarea">
+                <th style="min-width: 160px; text-align: center;" mat-header-cell *matHeaderCellDef > Tarea</th>
                 <td mat-cell *matCellDef="let element"> {{element?.nombre}}</td>
               </ng-container>
-
-              
               <ng-container matColumnDef="Cantidad">
-                <th align="center" mat-header-cell *matHeaderCellDef >Cantidad</th>
+                <th style="min-width: 70px; text-align: center;" align="center" mat-header-cell *matHeaderCellDef >Cantidad</th>
                 <td align="center" mat-cell *matCellDef="let element"> {{element?.presupuesto?.cantidad||0}} </td>
               </ng-container>
               <ng-container matColumnDef="costo">
-                <th align="center" mat-header-cell *matHeaderCellDef >Costo</th>
+                <th style="min-width: 100px; text-align: center;" align="center" mat-header-cell *matHeaderCellDef >Costo</th>
                 <td align="center" mat-cell *matCellDef="let element"> {{element?.presupuesto?.costounitario||0| currency:'L.'}} </td>
               </ng-container>
               <ng-container matColumnDef="total" >
-                <th align="center" mat-header-cell *matHeaderCellDef >Total</th>
+                <th style="min-width: 100px; text-align: center;" align="center" mat-header-cell *matHeaderCellDef >Total</th>
                 <td align="center" mat-cell *matCellDef="let element"> {{element?.presupuesto?.total||0| currency:'L.'}} </td>
               </ng-container>
               <ng-container matColumnDef="fuente" >
-                <th mat-header-cell *matHeaderCellDef>Fuente</th>
+                <th style="min-width: 60px; text-align: center;" mat-header-cell *matHeaderCellDef>Fuente</th>
                 <td align="center" mat-cell *matCellDef="let element"> {{element?.presupuesto?.fuente?.identificador}} </td>
               </ng-container>
               <ng-container matColumnDef="grupo">
-                <th mat-header-cell *matHeaderCellDef >Objeto</th>
+                <th style="min-width: 70px; text-align: center;" mat-header-cell *matHeaderCellDef >Grupo</th>
                 <td mat-cell *matCellDef="let element"> {{element?.presupuesto?.grupogasto?.identificador}} </td>
               </ng-container>
-              <ng-container matColumnDef="objeto" stickyEnd>
-                <th mat-header-cell *matHeaderCellDef >Grupo</th>
+              <ng-container matColumnDef="objeto">
+                <th style="min-width: 70px; text-align: center;" mat-header-cell *matHeaderCellDef >Objeto</th>
                 <td mat-cell *matCellDef="let element"> {{element?.presupuesto?.objetogasto?.identificador}} </td>
               </ng-container>
 
@@ -193,6 +193,7 @@
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>>
           </table>
         </div>
+      </div>
 
 
 </div>
