@@ -30,8 +30,10 @@ th{
   padding: 10px;
 }
 
+p{
+  margin-top: -20%;
+}
 td{
-
   height: 50px;
 }
 
