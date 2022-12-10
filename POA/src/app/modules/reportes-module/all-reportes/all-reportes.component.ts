@@ -6,6 +6,7 @@ import { ReportesService } from '../services-reportes/reportes.service';
 import { Storage } from 'src/app/_core/global-services/local_storage.service';
 import { Depto } from '../../poa-module/interfaces-poa/depto.model';
 import { Poa } from '../../poa-module/interfaces-poa/poa.model';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-all-reportes',
@@ -17,7 +18,8 @@ export class AllReportesComponent implements OnInit {
   constructor(private Storage:Storage, 
     private service:ReportesService,
     private router:Router,
-    private _route: ActivatedRoute) { }
+    private _route: ActivatedRoute,
+    private _snackBar: MatSnackBar) { }
 
   public idDepto : number = 1;
   public idPoa :number=1;
@@ -27,6 +29,14 @@ export class AllReportesComponent implements OnInit {
 
 public departamento_seleccionado:number=this.idDepto;
 public poa_seleccionado:number=this.idPoa;
+
+openSnackBar() {
+  this._snackBar.open('Descargado con exito', 'undo', {
+    horizontalPosition: 'start',
+    verticalPosition: 'bottom',
+    panelClass: ['mat-primary']
+  });
+}
 
   ngOnInit(): void {
     this.initData(),
