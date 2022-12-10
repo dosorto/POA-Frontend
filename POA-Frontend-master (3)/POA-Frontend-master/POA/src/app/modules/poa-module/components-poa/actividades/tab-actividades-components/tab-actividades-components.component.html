@@ -1,0 +1,32 @@
+<top-bar></top-bar>
+<app-back-button [path]="['gestion_poa/actividad/detail/',this.idActividad,idPoa,idDepto,idInsti]"></app-back-button>
+
+<div class="container d-flex align-items-center justify-content-center mt-4 pt-5 ">
+
+<div class="container rounded border border-dark" style="background-color: white;">
+
+  
+<div class="justify-content-center">
+  <br>
+  <div class="col-10 select">
+    <label for="id" class="row col-form-label " style="font-size: 18px;"><u><b>Seleccione una Actividad:</b></u></label>
+                <select class="form-control" style="border-radius: 20px;" aria-label="Default select example" name="id"
+                    [(ngModel)]="actividad_seleccionada"
+                    (ngModelChange)="selectActividad()" required>
+  
+                    <ng-container *ngFor="let x of ActividadListS">
+                        <option value="{{x.id}}" [selected]="x.id===idActividad">{{x.nombre}}</option>
+                    </ng-container>
+    </select>
+  </div>
+  <mat-tab-group mat-align-tabs = "center"> 
+    <mat-tab  label = "Tareas" > <app-all-tareas></app-all-tareas> </mat-tab> 
+    <mat-tab  label = "Indicadores" > <app-all-indicadores></app-all-indicadores></mat-tab> 
+    <mat-tab  label = "Planificacion" > <app-all-planificacion></app-all-planificacion> </mat-tab>
+    <mat-tab  label = "Responsables" > <app-all-responsable></app-all-responsable> </mat-tab>
+  </mat-tab-group >
+  
+</div>
+</div>
+</div>
+
