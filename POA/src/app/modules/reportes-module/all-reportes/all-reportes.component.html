@@ -47,9 +47,47 @@
                     <div class="card border-secondary ">
                         <div class="card-body">
                             <mat-tab-group mat-align-tabs="center">
-                                <mat-tab label="Cantidad">egresga </mat-tab>
-                                <mat-tab label="Porcentaje"> aegeblgke</mat-tab>
-                                <mat-tab label="La Que se ocurra">welfbwhlefdlh</mat-tab>
+                                <mat-tab label="Techo Presupuestario">
+                                  <div class="card border-info bg-light" style="height: 250px">
+                                    <!-- <h2 class="card-header bg-info" style="color:white;">Resumen de Presupuesto:</h2> -->
+                                    <div class=" bg-white card-body p-0">
+                                      <div class="table-responsive">
+                                        <table class="table table-hover">
+                                          <thead>
+                                            <tr>
+                                              <th scope="col">F.</th>
+                                              <th scope="col">Techo</th>
+                                              <th scope="col">Gastado</th>
+                                              <th scope="col">Disponible</th>
+                                            </tr>
+                                          </thead>
+                                          <tbody>
+                                            <tr>
+                                              <th scope="row">Fuente 11</th>
+                                              <td>{{+PoaList.fuente11| currency:'L'}}</td>
+                                              <td>{{gastosFuente11| currency:'L'}}</td>
+                                              <td><strong>{{+PoaList.fuente11-gastosFuente11| currency:'L'}}</strong></td>
+                                              <!-- <td >{{+PoaList.fuente11-gastosFuente11| currency:'L'}}</td> -->
+                              
+                                            </tr>
+                                            <tr>
+                                              <th scope="row">Fuente 12</th>
+                                              <td>{{+PoaList.fuente12| currency:'L'}}</td>
+                                              <td>{{gastosFuente12| currency:'L'}}</td>
+                                              <td><strong>{{+PoaList.fuente12-gastosFuente12| currency:'L'}}</strong></td>
+                                            </tr>
+                                            <tr>
+                                              <th scope="row">Fuente 12B</th>
+                                              <td>{{+PoaList.fuente12B| currency:'L'}}</td>
+                                              <td>{{gastosFuente12B| currency:'L'}}</td>
+                                              <td><strong>{{+PoaList.fuente12B-gastosFuente12B| currency:'L'}}</strong></td>
+                                            </tr>
+                                          </tbody>
+                                        </table>
+                                      </div>
+                                    </div>
+                                  </div>  
+                                </mat-tab>
                             </mat-tab-group>
                         </div>
                     </div>
@@ -60,16 +98,33 @@
                         <div class="card-body">
                             <mat-tab-group mat-align-tabs="center">
                                 <mat-tab label="Estado">
-                                  <div style="width: 170px;">
-                                    <nz-progress [nzPercent]="30" nzType="line" nzSize="small"></nz-progress>
-                                    <nz-progress [nzPercent]="50" nzType="line" nzSize="small" nzStatus="active"></nz-progress>
-                                    <nz-progress [nzPercent]="70" nzType="line"></nz-progress>
-                                    <nz-progress [nzPercent]="100" nzType="circle" nzSize="small"></nz-progress>
-                                    <nz-progress [nzPercent]="50"  nzStrokeColor="red" nzType="line" ></nz-progress>
-                                  </div>  
+                                  <nz-row>
+                                    <nz-col [nzSpan]="8">
+                                      <nz-statistic align="center" [nzValue]="(listTareas.length | number)!" [nzTitle]="'Actividades'"></nz-statistic>
+                                      
+                                    </nz-col>
+                                    <nz-col [nzSpan]="8">
+                                      <nz-statistic align="center" [nzValue]="(listsPTareas.length | number)!" [nzTitle]="'Formulacion'"></nz-statistic>
+                                    </nz-col>
+                                    <nz-col [nzSpan]="8">
+                                      <nz-statistic align="center" [nzValue]="(listnPTareas.length | number)!" [nzTitle]="'Reformulacion'"></nz-statistic>
+                                    </nz-col>
+                                  </nz-row>
+                                  <nz-row>
+                                    <nz-col [nzSpan]="8">
+                                     <nz-statistic align="center" [nzValue]="(listFuente11.length | number)!" [nzTitle]="'Revision'" ></nz-statistic>
+                                     
+                                    </nz-col>
+                                    <nz-col [nzSpan]="8">
+                                      <nz-statistic align="center" [nzValue]="(listFuente12.length | number)!" [nzTitle]="'Aprobada'"></nz-statistic>
+                                    </nz-col>
+                                    <nz-col [nzSpan]="8">
+                                      <nz-statistic align="center" [nzValue]="(listFuente12B.length | number)!" [nzTitle]="'Rechazada'"></nz-statistic>
+                                    </nz-col>
+                                  </nz-row>
+
                                 </mat-tab>
-                                <mat-tab label="Porcentaje"> aegeblgke</mat-tab>
-                                <mat-tab label="La Que se ocurra">welfbwhlefdlh</mat-tab>
+                                <mat-tab label="Porcentaje"></mat-tab>
                             </mat-tab-group>
                         </div>
                     </div>
@@ -87,10 +142,10 @@
                                       
                                     </nz-col>
                                     <nz-col [nzSpan]="8">
-                                      <nz-statistic align="center" [nzValue]="(listsPTareas.length | number)!" [nzTitle]="'presupuesto'"></nz-statistic>
+                                      <nz-statistic align="center" [nzValue]="(listsPTareas.length | number)!" [nzTitle]="'Presupuesto'"></nz-statistic>
                                     </nz-col>
                                     <nz-col [nzSpan]="8">
-                                      <nz-statistic align="center" [nzValue]="(listnPTareas.length | number)!" [nzTitle]="'presupuesto'"></nz-statistic>
+                                      <nz-statistic align="center" [nzValue]="(listnPTareas.length | number)!" [nzTitle]="'Sin presupuesto'"></nz-statistic>
                                     </nz-col>
                                   </nz-row>
                                   <nz-row>
@@ -112,20 +167,19 @@
                                   <br>
                                   <div class="container row row-cols-1 row-cols-md-3" style="text-align: center;">
                                     <div class="col">
-                                      <p>Tal cosa</p>
-                                  <nz-progress [nzPercent]="90" nzType="circle" [nzWidth]="90"></nz-progress>
+                                      <p>Fuente 11</p>
+                                  <nz-progress [nzPercent]="(gastosFuente11/+PoaList.fuente11*100)|number : '1.2-2'" nzType="circle" [nzWidth]="90"></nz-progress>
                                 </div>
                                 <div class="col">
-                                  <p>Tal cosa</p>
-                                  <nz-progress [nzPercent]="70" nzType="circle" [nzWidth]="90"></nz-progress>
+                                  <p>Fuente 12</p>
+                                  <nz-progress [nzPercent]="(gastosFuente12/+PoaList.fuente12*100)|number : '1.2-2'" nzType="circle" [nzWidth]="90"></nz-progress>
                                 </div>
                                 <div class="col">
-                                  <p>Tal cosa</p>
-                                  <nz-progress [nzPercent]="100" nzType="dashboard" [nzWidth]="90">Fuente</nz-progress>
+                                  <p>Fuente 12B</p>
+                                  <nz-progress [nzPercent]="(gastosFuente12B/+PoaList.fuente12B*100)|number : '1.2-2'" nzType="circle" [nzWidth]="90">Fuente</nz-progress>
                                 </div>
                               </div>
                                 </mat-tab>
-                                <mat-tab label="La Que se ocurra">welfbwhlefdlh</mat-tab>
                             </mat-tab-group>
                         </div>
                     </div>
@@ -251,8 +305,5 @@
 
 </div>
 </div>
-</div>
-<div style="width: 100%">
-  <nz-progress [nzPercent]="39" nzStrokeColor="red"></nz-progress>
 </div>
 
