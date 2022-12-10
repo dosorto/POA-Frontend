@@ -59,7 +59,15 @@
 
                         <div class="card-body">
                             <mat-tab-group mat-align-tabs="center">
-                                <mat-tab label="Cantidad">egresga </mat-tab>
+                                <mat-tab label="Estado">
+                                  <div style="width: 170px;">
+                                    <nz-progress [nzPercent]="30" nzType="line" nzSize="small"></nz-progress>
+                                    <nz-progress [nzPercent]="50" nzType="line" nzSize="small" nzStatus="active"></nz-progress>
+                                    <nz-progress [nzPercent]="70" nzType="line"></nz-progress>
+                                    <nz-progress [nzPercent]="100" nzType="circle" nzSize="small"></nz-progress>
+                                    <nz-progress [nzPercent]="50"  nzStrokeColor="red" nzType="line" ></nz-progress>
+                                  </div>  
+                                </mat-tab>
                                 <mat-tab label="Porcentaje"> aegeblgke</mat-tab>
                                 <mat-tab label="La Que se ocurra">welfbwhlefdlh</mat-tab>
                             </mat-tab-group>
@@ -75,18 +83,26 @@
                                   <br>
                                   <nz-row>
                                     <nz-col [nzSpan]="8">
-                                      <nz-statistic align="center" [nzValue]="(listTareas.length | number)!" [nzTitle]="'Tareas'" [nzPrefix]="prefixTpl"></nz-statistic>
-                                      <ng-template #prefixTpl><span><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="#F4D03F" class="bi bi-list-task" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd" d="M2 2.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5V3a.5.5 0 0 0-.5-.5H2zM3 3H2v1h1V3z"/>
-                                        <path d="M5 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM5.5 7a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 4a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9z"/>
-                                        <path fill-rule="evenodd" d="M1.5 7a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5V7zM2 7h1v1H2V7zm0 3.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5H2zm1 .5H2v1h1v-1z"/>
-                                      </svg></span></ng-template>
+                                      <nz-statistic align="center" [nzValue]="(listTareas.length | number)!" [nzTitle]="'Tareas'"></nz-statistic>
+                                      
                                     </nz-col>
                                     <nz-col [nzSpan]="8">
-                                      <nz-statistic align="center" [nzValue]="(listTareas.length | number)!" [nzTitle]="'presupuesto'"></nz-statistic>
+                                      <nz-statistic align="center" [nzValue]="(listsPTareas.length | number)!" [nzTitle]="'presupuesto'"></nz-statistic>
                                     </nz-col>
                                     <nz-col [nzSpan]="8">
-                                      <nz-statistic align="center" [nzValue]="(listTareas.length | number)!" [nzTitle]="'presupuesto'"></nz-statistic>
+                                      <nz-statistic align="center" [nzValue]="(listnPTareas.length | number)!" [nzTitle]="'presupuesto'"></nz-statistic>
+                                    </nz-col>
+                                  </nz-row>
+                                  <nz-row>
+                                    <nz-col [nzSpan]="8">
+                                     <nz-statistic align="center" [nzValue]="(listFuente11.length | number)!" [nzTitle]="'Fuente 11'" ></nz-statistic>
+                                     
+                                    </nz-col>
+                                    <nz-col [nzSpan]="8">
+                                      <nz-statistic align="center" [nzValue]="(listFuente12.length | number)!" [nzTitle]="'Fuente 12'"></nz-statistic>
+                                    </nz-col>
+                                    <nz-col [nzSpan]="8">
+                                      <nz-statistic align="center" [nzValue]="(listFuente12B.length | number)!" [nzTitle]="'Fuente 12B'"></nz-statistic>
                                     </nz-col>
                                   </nz-row>
 
@@ -119,7 +135,7 @@
         </div>
 <div class="row row-cols-1 row-cols-md-6 boton">
         <div class="col ">
-          <button mat-raised-button style="background-color: green; color: white;" (click)="exporter.exportTable('xlsx',{fileName:'prueba12'});openSnackBar()">
+          <button mat-raised-button style="background-color: green; color: white;" (click)="exporter.exportTable('xlsx',{fileName:PoaList.name});openSnackBar()">
             <i class="bi bi-file-spreadsheet-fill"></i>
               Exportar a Excel</button>
       </div>
@@ -236,3 +252,7 @@
 </div>
 </div>
 </div>
+<div style="width: 100%">
+  <nz-progress [nzPercent]="39" nzStrokeColor="red"></nz-progress>
+</div>
+

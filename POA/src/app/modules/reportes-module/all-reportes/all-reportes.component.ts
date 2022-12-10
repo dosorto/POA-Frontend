@@ -24,14 +24,25 @@ export class AllReportesComponent implements OnInit {
   public idDepto : number = 1;
   public idPoa :number=1;
   public listTareas : Array<Tareas>=[]
+  public listnPTareas : Array<Tareas>=[]
+  public listsPTareas : Array<Tareas>=[]
+
   public deptoList:Array<Depto> = [];
   public poaList : Array<Poa> = []
+  public PoaList: Poa | any = {}
+
+  public gastosFuente11:number=0
+  public gastosFuente12:number=0  
+  public gastosFuente12B:number=0  
+  public listFuente11: Array<Tareas>=[];
+  public listFuente12: Array<Tareas>=[];
+  public listFuente12B: Array<Tareas>=[];
 
 public departamento_seleccionado:number=this.idDepto;
 public poa_seleccionado:number=this.idPoa;
 
 openSnackBar() {
-  this._snackBar.open('Descargado con exito', 'undo', {
+  this._snackBar.open('Procesando descarga'+' '+this.PoaList.name, 'undo', {
     horizontalPosition: 'start',
     verticalPosition: 'bottom',
     panelClass: ['mat-primary']
@@ -52,12 +63,44 @@ openSnackBar() {
   async initData(){
     const tareas = await firstValueFrom(this.service.getPoa_id_iddepto(this.idPoa,this.idDepto))
     this.listTareas = tareas;
+
+    const nptareas = await firstValueFrom(this.service.getnoPTareas(this.idPoa))
+    this.listnPTareas = nptareas;
+
+    const sptareas = await firstValueFrom(this.service.getsiPTareas(this.idPoa))
+    this.listsPTareas = sptareas;
+
+
     
     this.dataSource = this.listTareas;
     console.log("aqui",this.dataSource)
 
     this.poaList = await firstValueFrom(this.service.getPoa(this.idDepto));
     console.log("00000000"+ this.poaList)
+
+    this.PoaList = await this.service.getPoa_Id(this.idPoa).subscribe((response:any)=>{
+      this.PoaList = response.poa;
+      //this.saldo= +this.PoaList.fuente11 -this.gastosFuente11
+    })
+
+        // obtengo la lista de las tareas que tienen presupuesto
+    // fuente 11
+    const Fuente11 = await firstValueFrom(this.service.getFuente11(this.idPoa))
+    this.listFuente11 = Fuente11
+    
+    // fuente 12
+    const Fuente12 = await firstValueFrom(this.service.getFuente12(this.idPoa))
+    this.listFuente12 = Fuente12
+    // fuente 12B
+    const Fuente12B = await firstValueFrom(this.service.getFuente12B(this.idPoa))
+    this.listFuente12B = Fuente12B
+
+    this.gastosFuente11 = this.listFuente11.reduce((sum, value) => (typeof Number(value.presupuesto.total) == "number" ? sum + +value.presupuesto.total : sum), 0);
+    //sumo todos los valores de las tareas que son agregadas a la fuente 12
+    this.gastosFuente12 = this.listFuente12.reduce((sum, value) => (typeof +value.presupuesto.total == "number" ? sum + value.presupuesto.total : sum), 0);
+    //sumo todos los valores de las tareas que son agregadas a la fuente 12B
+    this.gastosFuente12B = this.listFuente12B.reduce((sum, value) => (typeof +value.presupuesto.total == "number" ? sum + value.presupuesto.total : sum), 0);
+
 
   }
 
