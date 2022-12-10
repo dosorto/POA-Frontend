@@ -11,8 +11,17 @@ import { BackButtonComponent } from 'src/app/_core/back-button/back-button.compo
 import {MatButtonModule} from '@angular/material/button';
 import {MatTableModule} from '@angular/material/table';
 import { MatTableExporterModule } from 'mat-table-exporter';
-import { NgSelectModule } from '@ng-select/ng-select';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { NzStatisticModule } from 'ng-zorro-antd/statistic';
+import { NZ_I18N } from 'ng-zorro-antd/i18n';
+import { es_ES } from 'ng-zorro-antd/i18n';
+import es from '@angular/common/locales/es';
+import { registerLocaleData } from '@angular/common';
+import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NgModel, FormControl, FormsModule} from '@angular/forms';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzProgressModule } from 'ng-zorro-antd/progress';
+registerLocaleData(es);
 
 const router = RouterModule.forChild([
   {path: '', component: ReportesModuleComponent},
@@ -36,8 +45,16 @@ const router = RouterModule.forChild([
     MatButtonModule,
     MatTableModule,
     MatTableExporterModule,
-    NgSelectModule,
-    FormsModule
+    MatSnackBarModule,
+    NzStatisticModule,
+    NzGridModule,
+    FormsModule,
+    NzIconModule,
+    NzProgressModule
+  ],
+  providers: [
+    { provide: NZ_I18N, useValue: es_ES }
   ]
 })
 export class ReportesModuleModule { }
+
