@@ -1,6 +1,6 @@
-<p>mis-poas-module works!</p>
+<top-bar></top-bar>
+<app-back-button [path]="['/home']"></app-back-button>
 <body class="justify-content-center mt-5 pt-5">
-
     <!-- Pantalla principal del modulo -->
     <div class="container d-flex align-items-center justify-content-center ">
         <!-- columna completa que agrupa todos los row -->
@@ -9,26 +9,30 @@
             <!-- espacio para el titulo, buscador y boton de agregar uno nuevo -->
             <div class="container  rounded border border-dark" style="background-color: white;">
                 <div class="w-100 row m-auto">
+                    <div class="w-75 row m-auto mb-2">
+                        <div class="row">
+                            <label for="id" class="row col-form-label">Seleccione un departamento:</label>
+                            <select class="form-control" aria-label="Default select example" name="id"
+                                [(ngModel)]="DeptoSeleccionado" (ngModelChange)="selectDepto()" required>
+                                <ng-container *ngFor="let x of DeptoList">
+                                    <option value="{{x.id}}" [selected]="x.id===idDepto">{{x.name}}</option>
+                                </ng-container>
+                            </select>
+                        </div>
+                    </div>
                     <div class="row text-center">
                         <h2></h2>
-                        <h2 class="l-4">MIS POAS</h2>
+                        <h2 class="l-4">Gestión de POA</h2>
+                        {{user.empleado.id}}
                     </div>
                     <div class="w-75 row m-auto mb-2">
-                        <div class="backButton">
-                            <button class="btn btn-warning rounded">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
-                                    class="bi bi-arrow-left-short" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd"
-                                        d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z" />
-                                </svg>
-                            </button>
-                        </div>
                         <div><br></div>
 
                         <div class="col-8">
                             <div class="input-group">
                                 <input type="text" class="form-control" placeholder="Buscar por nombre"
-                                    aria-label="Buscar" aria-describedby="btnGroupAddon">
+                                    aria-label="Buscar" aria-describedby="btnGroupAddon" [(ngModel)]="filter"
+                                    name="filter">
                                 <div class="input-group-text" id="btnGroupAddon">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                         class="bi bi-search" viewBox="0 0 16 16">
@@ -41,54 +45,75 @@
                     </div>
                 </div>
                 <!-- tabla dinamica que muestra todas los POA -->
-                
                 <div>
                     <div class="row row-cols-1 row-cols-md-4 g-4">
-                        <ng-container >
-                            <li>
+                        <ng-container *ngFor="let x of poa; index as i">
+                            <li *ngIf="x.isActive===true">
                                 <div class="card  text-bg-primary mb-3" style="width: 20 rem;">
                                     <!-- este contador no es id, solo es para enumerar -->
-
-                                    <div class="card-body" style="width: 15rem;">
-                                        <h1 class="card-title"></h1>
-                                        <p class="card-text" style="width: 11rem;">
-                                            Fecha:
-                                            Fuente11: 
-                                            Fuente12: 
-                                            Fuente12B: 
-                                                    
-                                            Estado: Habilitado
-                                        </p>
-                                        <button type="button" class="btn btn-warning float-center">Gestionar</button>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="card  text-bg-secondary mb-3" style="width: 20 rem;">
-                                    <!-- este contador no es id, solo es para enumerar -->
-                                    <ng-container>
-                                        
+                                    <ng-container *ngIf="page > 0; else elseNumeracion">
+                                        {{i + page + 1}}
                                     </ng-container>
-                                    <ng-template>
-                                        
+                                    <ng-template #elseNumeracion>
+                                        {{i + 1}}
                                     </ng-template>
 
                                     <div class="card-body" style="width: 15rem;">
-                                        <h1 class="card-title" ></h1>
+                                        <h1 class="card-title">{{x.name}}</h1>
                                         <p class="card-text" style="width: 11rem;">
-                                            Fecha: 
-                                            Fuente11: 
-                                            Fuente12: 
-                                            Fuente12B: 
+                                            Fecha: {{x.anio}}
+                                            Fuente11: {{x.fuente11| currency: 'L'}}
+                                            Fuente12: {{x.fuente12| currency: 'L'}}
+                                            Fuente12B: {{x.fuente12B| currency: 'L'}}
+                                                    
+                                            Estado: Habilitado
+                                        </p>
+                                        <button type="button" class="btn btn-warning float-center"
+                                            (click)="toDetail(x.id)">Gestionar</button>
+                                    </div>
+                                </div>
+                            </li>
+                            <li *ngIf="x.isActive===false">
+                                <div class="card  text-bg-secondary mb-3" style="width: 20 rem;">
+                                    <!-- este contador no es id, solo es para enumerar -->
+                                    <ng-container *ngIf="page > 0; else elseNumeracion">
+                                        {{i + page + 1}}
+                                    </ng-container>
+                                    <ng-template #elseNumeracion>
+                                        {{i + 1}}
+                                    </ng-template>
+
+                                    <div class="card-body" style="width: 15rem;">
+                                        <h1 class="card-title" >{{x.name}}</h1>
+                                        <p class="card-text" style="width: 11rem;">
+                                            Fecha: {{x.anio}}
+                                            Fuente11: {{x.fuente11| currency: 'L '}}
+                                            Fuente12: {{x.fuente12 | currency: 'L '}}
+                                            Fuente12B: {{x.fuente12B | currency: 'L '}}
                                                     
                                             Estado: Deshabilitado
                                         </p>
-                                        <button type="button" class="btn btn-warning float-center">Gestionar</button>
+                                        <button type="button" class="btn btn-warning float-center"
+                                            (click)="toDetail(x.id)">Gestionar</button>
                                     </div>
                                 </div>
                             </li>
                         </ng-container>
                     </div>
                 </div>
+
+                <nav aria-label="Page navigation example">
+                    <ul class="justify-content-star">Página {{actualpage}} de {{maxPages}}</ul>
+                    <ul class="pagination justify-content-end">
+                        <ng-container>
+                            <li class="page-item" *ngIf="(page > 0)"><a class="page-link "
+                                    (click)="previousPage()">Anterior</a></li>
+                        </ng-container>
+                        <ng-container *ngIf="(actualpage < maxPages)">
+                            <li class="page-item"><a class="page-link " (click)="nextPage()">Siguiente</a></li>
+                        </ng-container>
+                    </ul>
+                </nav>
+            </div>
         </div>
     </div>
