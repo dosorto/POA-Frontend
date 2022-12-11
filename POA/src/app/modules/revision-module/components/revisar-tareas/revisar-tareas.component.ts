@@ -106,7 +106,7 @@ export class RevisarTareasComponent implements OnInit {
     }, 10)
   }
   onBack(): void {
-    this.router.navigate(['/gestion_poa/actividad/tab/', this.idActividad,this.idPoa,this.idDepto,this.idInsti]);
+    this.router.navigate(['/revision/']);
     //tareas/list/:idActividad/:idPoa/:idDepto/:idInsti
     
   }

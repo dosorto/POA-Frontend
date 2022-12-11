@@ -7,17 +7,6 @@
                     <div class="row text-center">
                         <h2 class="l-4">Revisión de tarea</h2>
                     </div>
-                    <div class="w-75 row m-auto mb-2">
-                        <div class="row">
-                            <label for="id" class="row col-form-label">Seleccione un departamento:</label>
-                            <!-- <select class="form-control" aria-label="Default select example" name="id"
-                                [(ngModel)]="DeptoSeleccionado" (ngModelChange)="selectDepto()" required>
-                                <ng-container *ngFor="let x of DeptoList">
-                                    <option value="{{x.id}}" [selected]="x.id===idDepto">{{x.name}}</option>
-                                </ng-container>
-                            </select> -->
-                        </div>
-                    </div>
                 </div>
                 <div class="example-container">
                     <div class="col-10">
@@ -25,152 +14,152 @@
                         <textarea type="text" class="form-control" id="exampleFormControlTextarea1" rows="2"
                             value="{{tareas.nombre}}" disabled>
                         </textarea>
-                        <div class="example-container">
-                            <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off"
-                                checked>
-                            <label class="btn btn-success" for="option1">Aceptar</label>
-
-                            <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off">
-                            <label class="btn btn-warning" for="option2">Corregir</label>
+                        <div class="container">
+                            <div class="form-check form-check-inline">
+                                <input class="btn-check" type="radio" name="nombre1" id="inlineRadio1" value="1">
+                                <label class="btn btn-outline-success" for="inlineRadio1">Aceptar</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="btn-check" type="radio" name="nombre1" id="inlineRadio2" value="2">
+                                <label class="btn btn-outline-warning" for="inlineRadio2">Mandar a corrección</label>
+                            </div>
                         </div>
                     </div>
                     <div class="col-10 mb-3">
                         <label for="inputDescripcion" class="form-label">Descripcion:</label>
                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"
                             value="{{tareas.descripcion}}" disabled></textarea>
-                        <div class="example-container">
-                            <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off"
-                                checked>
-                            <label class="btn btn-success" for="option1">Aceptar</label>
-
-                            <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off">
-                            <label class="btn btn-warning" for="option2">Corregir</label>
-                            <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#exampleModal">
-                                Launch demo modal
-                            </button>
-
-                            <!-- Modal -->
-                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                                aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            ...
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-bs-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary">Save changes</button>
-                                        </div>
-                                    </div>
-                                </div>
+                        <div class="container">
+                            <div class="form-check form-check-inline">
+                                <input class="btn-check" type="radio" name="descripcion1" id="inlineRadio4" value="1">
+                                <label class="btn btn-outline-success" for="inlineRadio4">Aceptar</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="btn-check" type="radio" name="descripcion1" id="inlineRadio5" value="2">
+                                <label class="btn btn-outline-warning" for="inlineRadio5">Mandar a corrección</label>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-5">
-                        <label for="inputEstado" class="form-label">Estado:</label>
+                        <label for="inputEstado" class="form-label">Cantidad</label>
                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"
                             value="{{tareas.presupuesto.cantidad}}" disabled></textarea>
-                        <div class="example-container">
-                            <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off"
-                                checked>
-                            <label class="btn btn-success" for="option1">Aceptar</label>
-
-                            <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off">
-                            <label class="btn btn-warning" for="option2">Corregir</label>
-                        </div>
+                            <div class="container">
+                                <div class="form-check form-check-inline">
+                                    <input class="btn-check" type="radio" name="cantidad1" id="inlineRadio6" value="1">
+                                    <label class="btn btn-outline-success" for="inlineRadio6">Aceptar</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="btn-check" type="radio" name="cantidad1" id="inlineRadio7" value="2">
+                                    <label class="btn btn-outline-warning" for="inlineRadio7">Mandar a corrección</label>
+                                </div>
+                            </div>
                     </div>
                     <div class="col-md-5">
-                        <label for="inputTipo" class="form-label">Tipo de actividad:</label>
+                        <label for="inputTipo" class="form-label">Costo unitario</label>
                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"
                             value="{{tareas.presupuesto.costounitario| currency:'L.'}}" disabled></textarea>
-                        <div class="example-container">
-                            <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off"
-                                checked>
-                            <label class="btn btn-success" for="option1">Aceptar</label>
-
-                            <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off">
-                            <label class="btn btn-warning" for="option2">Corregir</label>
-                        </div>
+                            <div class="container">
+                                <div class="form-check form-check-inline">
+                                    <input class="btn-check" type="radio" name="costounitario1" id="inlineRadio8" value="1">
+                                    <label class="btn btn-outline-success" for="inlineRadio8">Aceptar</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="btn-check" type="radio" name="costounitario1" id="inlineRadio9" value="2">
+                                    <label class="btn btn-outline-warning" for="inlineRadio9">Mandar a corrección</label>
+                                </div>
+                            </div>
                     </div>
-                    <div class="col-md-5">
-                        <label for="inputCategoria" class="form-label">Categoria:</label>
+                    <div class="col-md-5" for="total">
+                        <label for="total" class="form-label">Total</label>
                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"
-                            value="{{tareas.presupuesto.total|currency:'L.' }}" disabled></textarea>
-                        <div class="example-container">
-                            <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off"
-                                checked>
-                            <label class="btn btn-success" for="option1">Aceptar</label>
-
-                            <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off">
-                            <label class="btn btn-warning" for="option2">Corregir</label>
-                        </div>
+                            value="{{tareas.presupuesto.total| currency:'L.'}}" disabled></textarea>
+                            <div class="container">
+                                <div class="form-check form-check-inline">
+                                    <input class="btn-check" type="radio" name="total1" id="inlineRadio10" value="1">
+                                    <label class="btn btn-outline-success" for="inlineRadio10">Aceptar</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="btn-check" type="radio" name="total1" id="inlineRadio11" value="2">
+                                    <label class="btn btn-outline-warning" for="inlineRadio11">Mandar a corrección</label>
+                                </div>
+                            </div>
                     </div>
+
                     <div class="col-md-5">
-                        <label for="inputEstado" class="form-label">Estado:</label>
+                        <label for="inputEstado" class="form-label">Objeto del grupo:</label>
                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"
                             value="{{tareas?.presupuesto?.grupogasto?.identificador+' - '+tareas?.presupuesto?.grupogasto?.nombre}}"
                             disabled></textarea>
-                        <div class="example-container">
-                            <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off"
-                                checked>
-                            <label class="btn btn-success" for="option1">Aceptar</label>
-
-                            <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off">
-                            <label class="btn btn-warning" for="option2">Corregir</label>
-                        </div>
+                            <div class="container">
+                                <div class="form-check form-check-inline">
+                                    <input class="btn-check" type="radio" name="objetogasto1" id="inlineRadio13" value="1">
+                                    <label class="btn btn-outline-success" for="inlineRadio13">Aceptar</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="btn-check" type="radio" name="objetogasto1" id="inlineRadio14" value="2">
+                                    <label class="btn btn-outline-warning" for="inlineRadio14">Mandar a corrección</label>
+                                </div>
+                            </div>
                     </div>
                     <div class="col-md-5">
-                        <label for="inputTipo" class="form-label">Tipo de actividad:</label>
+                        <label for="inputTipo" class="form-label">Grupo del gasto</label>
                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"
                             value="{{tareas?.presupuesto?.objetogasto?.identificador+' - '+tareas?.presupuesto?.objetogasto?.nombre}}"
                             disabled></textarea>
-                        <div class="example-container">
-                            <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off"
-                                checked>
-                            <label class="btn btn-success" for="option1">Aceptar</label>
-
-                            <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off">
-                            <label class="btn btn-warning" for="option2">Corregir</label>
-                        </div>
+                            <div class="container">
+                                <div class="form-check form-check-inline">
+                                    <input class="btn-check" type="radio" name="grupogasto1" id="inlineRadio15" value="1">
+                                    <label class="btn btn-outline-success" for="inlineRadio15">Aceptar</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="btn-check" type="radio" name="grupogasto1" id="inlineRadio16" value="2">
+                                    <label class="btn btn-outline-warning" for="inlineRadio16">Mandar a corrección</label>
+                                </div>
+                            </div>
                     </div>
                     <div class="col-md-5">
-                        <label for="inputCategoria" class="form-label">Categoria:</label>
+                        <label for="inputCategoria" class="form-label">Unidad de medida</label>
                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"
                             value="{{tareas?.presupuesto?.unidadmedida?.nombre}}" disabled></textarea>
-                        <div class="example-container">
-                            <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off"
-                                checked>
-                            <label class="btn btn-success" for="option1">Aceptar</label>
-
-                            <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off">
-                            <label class="btn btn-warning" for="option2">Corregir</label>
-                        </div>
+                            <div class="container">
+                                <div class="form-check form-check-inline">
+                                    <input class="btn-check" type="radio" name="unidadmedida1" id="inlineRadio17" value="1">
+                                    <label class="btn btn-outline-success" for="inlineRadio17" >Aceptar</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="btn-check" type="radio" name="unidadmedida1" id="inlineRadio18" value="2">
+                                    <label class="btn btn-outline-warning" for="inlineRadio18">Mandar a corrección</label>
+                                </div>
+                            </div>
                     </div>
 
                     <div class="col-md-5">
-                        <label for="inputCategoria" class="form-label">Categoria:</label>
+                        <label for="inputCategoria" class="form-label">Fuente:</label>
                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"
                             value="{{tareas?.presupuesto?.fuente?.identificador+' - '+tareas?.presupuesto?.fuente?.nombre}}"
                             disabled></textarea>
-                        <div class="example-container">
-                            <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off"
-                                checked>
-                            <label class="btn btn-success" for="option1">Aceptar</label>
-
-                            <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off">
-                            <label class="btn btn-warning" for="option2">Corregir</label>
-                        </div>
+                            <div class="container">
+                                <div class="form-check form-check-inline">
+                                    <input class="btn-check" type="radio" name="fuente1" id="inlineRadio19" value="1">
+                                    <label class="btn btn-outline-success" for="inlineRadio20">Aceptar</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="btn-check" type="radio" name="fuente1" id="inlineRadio20" value="2">
+                                    <label class="btn btn-outline-warning" for="inlineRadio20">Mandar a corrección</label>
+                                </div>
+                            </div>
                     </div>
 
                 </div>
+                <div class="container">
+                    <div class="d-grid gap-3 d-md-flex justify-content-md-end">
+                
+                    <!-- <button type="button" class="btn btn-danger float-start">Cerrar</button> -->
+                    <button type="button" class="btn btn-warning" (click)='onBack()'>Terminar Revisión</button>
+                 
+                </div>
+                </div> 
             </div>
         </div>
     </div>

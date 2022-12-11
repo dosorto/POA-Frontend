@@ -106,7 +106,7 @@ export class RevisionComponent implements OnInit {
   }
 
   toDetail(idPoa: number) {
-    this.router.navigate(['/gestion_poa/actividad/tab/', idPoa.toString(),this.idInsti,this.idUE ,this.idDepto,]);
+    this.router.navigate(['/revision/tareas/', idPoa.toString()]);
   }
   toHome() {
     this.router.navigate(['/home']);
