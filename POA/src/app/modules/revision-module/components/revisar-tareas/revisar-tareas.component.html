@@ -4,6 +4,9 @@
             <br>
             <div class="container  rounded border border-dark" style="background-color: white;">
                 <div class="w-100 row m-auto">
+                    <div class="row text-center">
+                        <h2 class="l-4">Revisión de tarea</h2>
+                    </div>
                     <div class="w-75 row m-auto mb-2">
                         <div class="row">
                             <label for="id" class="row col-form-label">Seleccione un departamento:</label>
@@ -15,6 +18,158 @@
                             </select> -->
                         </div>
                     </div>
+                </div>
+                <div class="example-container">
+                    <div class="col-10">
+                        <label for="inputNombre" class="form-label">Nombre:</label>
+                        <textarea type="text" class="form-control" id="exampleFormControlTextarea1" rows="2"
+                            value="{{tareas.nombre}}" disabled>
+                        </textarea>
+                        <div class="example-container">
+                            <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off"
+                                checked>
+                            <label class="btn btn-success" for="option1">Aceptar</label>
+
+                            <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off">
+                            <label class="btn btn-warning" for="option2">Corregir</label>
+                        </div>
+                    </div>
+                    <div class="col-10 mb-3">
+                        <label for="inputDescripcion" class="form-label">Descripcion:</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"
+                            value="{{tareas.descripcion}}" disabled></textarea>
+                        <div class="example-container">
+                            <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off"
+                                checked>
+                            <label class="btn btn-success" for="option1">Aceptar</label>
+
+                            <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off">
+                            <label class="btn btn-warning" for="option2">Corregir</label>
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal">
+                                Launch demo modal
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            ...
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary">Save changes</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <label for="inputEstado" class="form-label">Estado:</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"
+                            value="{{tareas.presupuesto.cantidad}}" disabled></textarea>
+                        <div class="example-container">
+                            <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off"
+                                checked>
+                            <label class="btn btn-success" for="option1">Aceptar</label>
+
+                            <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off">
+                            <label class="btn btn-warning" for="option2">Corregir</label>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <label for="inputTipo" class="form-label">Tipo de actividad:</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"
+                            value="{{tareas.presupuesto.costounitario| currency:'L.'}}" disabled></textarea>
+                        <div class="example-container">
+                            <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off"
+                                checked>
+                            <label class="btn btn-success" for="option1">Aceptar</label>
+
+                            <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off">
+                            <label class="btn btn-warning" for="option2">Corregir</label>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <label for="inputCategoria" class="form-label">Categoria:</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"
+                            value="{{tareas.presupuesto.total|currency:'L.' }}" disabled></textarea>
+                        <div class="example-container">
+                            <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off"
+                                checked>
+                            <label class="btn btn-success" for="option1">Aceptar</label>
+
+                            <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off">
+                            <label class="btn btn-warning" for="option2">Corregir</label>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <label for="inputEstado" class="form-label">Estado:</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"
+                            value="{{tareas?.presupuesto?.grupogasto?.identificador+' - '+tareas?.presupuesto?.grupogasto?.nombre}}"
+                            disabled></textarea>
+                        <div class="example-container">
+                            <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off"
+                                checked>
+                            <label class="btn btn-success" for="option1">Aceptar</label>
+
+                            <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off">
+                            <label class="btn btn-warning" for="option2">Corregir</label>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <label for="inputTipo" class="form-label">Tipo de actividad:</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"
+                            value="{{tareas?.presupuesto?.objetogasto?.identificador+' - '+tareas?.presupuesto?.objetogasto?.nombre}}"
+                            disabled></textarea>
+                        <div class="example-container">
+                            <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off"
+                                checked>
+                            <label class="btn btn-success" for="option1">Aceptar</label>
+
+                            <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off">
+                            <label class="btn btn-warning" for="option2">Corregir</label>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <label for="inputCategoria" class="form-label">Categoria:</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"
+                            value="{{tareas?.presupuesto?.unidadmedida?.nombre}}" disabled></textarea>
+                        <div class="example-container">
+                            <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off"
+                                checked>
+                            <label class="btn btn-success" for="option1">Aceptar</label>
+
+                            <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off">
+                            <label class="btn btn-warning" for="option2">Corregir</label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-5">
+                        <label for="inputCategoria" class="form-label">Categoria:</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"
+                            value="{{tareas?.presupuesto?.fuente?.identificador+' - '+tareas?.presupuesto?.fuente?.nombre}}"
+                            disabled></textarea>
+                        <div class="example-container">
+                            <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off"
+                                checked>
+                            <label class="btn btn-success" for="option1">Aceptar</label>
+
+                            <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off">
+                            <label class="btn btn-warning" for="option2">Corregir</label>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
