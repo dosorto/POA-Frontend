@@ -1,22 +1,22 @@
 <top-bar></top-bar>
 <app-back-button></app-back-button>
 <div>
-<div class=" mt-5 pt-4">
- <div> 
-    <div class="contenedor justify-content-center rounded border border-dark" style="background-color: white;">
+<div class=" mt-2 pt-1">
+ 
+    <div class="contenedor justify-content-center rounded border border-dark shadow-lg" style="background-color: white;">
         <div class=" titulo">
             <div class="titulo">
                 <h2></h2>
-                <h2 class="l-4">Reportes y Estadisticos</h2>
+                <h2 class="l-4 ">Reportes y Estadisticos</h2>
               
             </div>
         </div>
        
-            <div class=" container row row-cols-1 row-cols-md-2 select" >
-              <div class="col">
+            <div class=" container row row-cols-1 row-cols-md-2 select " >
+              <div class="col ">
                 <label for="id"  style="font-size: 18px;">Seleccione un Departamento:</label>
         
-                    <select class="form-control" style="border-radius: 20px;" aria-label="Default select example" name="id"
+                    <select class="form-control shadow" style="border-radius: 20px;" aria-label="Default select example" name="id"
                     [(ngModel)]="departamento_seleccionado"
                             (ngModelChange)="selectDepto()" required>
 
@@ -29,7 +29,7 @@
               <div class="col">
                 <label for="id"  style="font-size: 18px;">Seleccione un POA:</label>
         
-                    <select class="form-control" style="border-radius: 20px;" aria-label="Default select example" name="id"
+                    <select class="form-control shadow" style="border-radius: 20px;" aria-label="Default select example" name="id"
                     [(ngModel)]="poa_seleccionado"
                             (ngModelChange)="selectPoa()" required>
 
@@ -42,17 +42,18 @@
 
             </div>
              <div class="contenedor_card">
-            <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="row row-cols-1 row-cols-md-3 ">
                 <div class="col">
-                    <div class="card border-secondary ">
+                    <div class="card border-secondary shadow">
                         <div class="card-body">
-                            <mat-tab-group mat-align-tabs="center">
-                                <mat-tab label="Techo Presupuestario">
-                                  <div class="card border-info bg-light" style="height: 250px">
+                            <mat-tab-group mat-align-tabs="center" style="margin-top: -3%;">
+                              
+                                <mat-tab label="Techo Presupuestario" >
+
                                     <!-- <h2 class="card-header bg-info" style="color:white;">Resumen de Presupuesto:</h2> -->
-                                    <div class=" bg-white card-body p-0">
+                                   
                                       <div class="table-responsive">
-                                        <table class="table table-hover">
+                                        <table class="table table-hover shadow-lg" style="margin-top: 2%;">
                                           <thead>
                                             <tr>
                                               <th scope="col">F.</th>
@@ -85,40 +86,40 @@
                                           </tbody>
                                         </table>
                                       </div>
-                                    </div>
-                                  </div>  
+                                  
+                        
                                 </mat-tab>
                             </mat-tab-group>
                         </div>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="card border-secondary">
+                <div class="col"> 
+                    <div class="card border-secondary shadow">
 
                         <div class="card-body">
-                            <mat-tab-group mat-align-tabs="center">
-                                <mat-tab label="Estado">
-                                  <nz-row>
-                                    <nz-col [nzSpan]="8">
+                            <mat-tab-group mat-align-tabs="center" style="margin-top: -3%;">
+                                <mat-tab label="Estado" >
+                                  <nz-row class="border rounded" style="margin-top: 3%; margin-bottom: 3%; ">
+                                    <nz-col [nzSpan]="8" style="margin-top: 2%; margin-bottom: 2%;">
                                       <nz-statistic align="center" [nzValue]="(listTareas.length | number)!" [nzTitle]="'Actividades'"></nz-statistic>
                                       
                                     </nz-col>
-                                    <nz-col [nzSpan]="8">
+                                    <nz-col [nzSpan]="8" style="margin-top: 2%; margin-bottom: 2%;">
                                       <nz-statistic align="center" [nzValue]="(listsPTareas.length | number)!" [nzTitle]="'Formulacion'"></nz-statistic>
                                     </nz-col>
-                                    <nz-col [nzSpan]="8">
+                                    <nz-col [nzSpan]="8" style="margin-top: 2%; margin-bottom: 2%;">
                                       <nz-statistic align="center" [nzValue]="(listnPTareas.length | number)!" [nzTitle]="'Reformulacion'"></nz-statistic>
                                     </nz-col>
                                   </nz-row>
-                                  <nz-row>
-                                    <nz-col [nzSpan]="8">
+                                  <nz-row class="border rounded" style="margin-top: 3%; margin-bottom: 3%;">
+                                    <nz-col [nzSpan]="8" style="margin-top: 2%; margin-bottom: 2%;">
                                      <nz-statistic align="center" [nzValue]="(listFuente11.length | number)!" [nzTitle]="'Revision'" ></nz-statistic>
                                      
                                     </nz-col>
-                                    <nz-col [nzSpan]="8">
+                                    <nz-col [nzSpan]="8" style="margin-top: 2%; margin-bottom: 2%;">
                                       <nz-statistic align="center" [nzValue]="(listFuente12.length | number)!" [nzTitle]="'Aprobada'"></nz-statistic>
                                     </nz-col>
-                                    <nz-col [nzSpan]="8">
+                                    <nz-col [nzSpan]="8" style="margin-top: 2%; margin-bottom: 2%;">
                                       <nz-statistic align="center" [nzValue]="(listFuente12B.length | number)!" [nzTitle]="'Rechazada'"></nz-statistic>
                                     </nz-col>
                                   </nz-row>
@@ -130,54 +131,55 @@
                     </div>
                 </div>
                 <div class="col">
-                    <div class="card border-secondary" style="margin-right: 6%;">
+                    <div class="card border-secondary shadow" style="margin-right: 6%;">
                         <div class="card-body">
-                            <mat-tab-group mat-align-tabs="center">
+                            <mat-tab-group mat-align-tabs="center" style="margin-top: -3%;">
                                 <mat-tab label="Cantidad">
-                                  <br>
-                                  <br>
-                                  <nz-row>
-                                    <nz-col [nzSpan]="8">
+                     
+                                  <nz-row class="border rounded" style="margin-top: 3%; margin-bottom: 3%;  ">
+                                    <nz-col [nzSpan]="8" style="margin-top: 2%; margin-bottom: 2%;">
                                       <nz-statistic align="center" [nzValue]="(listTareas.length | number)!" [nzTitle]="'Tareas'"></nz-statistic>
                                       
                                     </nz-col>
-                                    <nz-col [nzSpan]="8">
+                                    <nz-col [nzSpan]="8" style="margin-top: 2%; margin-bottom: 2%;">
                                       <nz-statistic align="center" [nzValue]="(listsPTareas.length | number)!" [nzTitle]="'Presupuesto'"></nz-statistic>
                                     </nz-col>
-                                    <nz-col [nzSpan]="8">
+                                    <nz-col [nzSpan]="8" style="margin-top: 2%; margin-bottom: 2%;">
                                       <nz-statistic align="center" [nzValue]="(listnPTareas.length | number)!" [nzTitle]="'Sin presupuesto'"></nz-statistic>
                                     </nz-col>
                                   </nz-row>
-                                  <nz-row>
-                                    <nz-col [nzSpan]="8">
+                                  <nz-row class="border rounded" style="margin-top: 3%; margin-bottom: 3%;">
+                                    <nz-col [nzSpan]="8" style="margin-top: 2%; margin-bottom: 2%;">
                                      <nz-statistic align="center" [nzValue]="(listFuente11.length | number)!" [nzTitle]="'Fuente 11'" ></nz-statistic>
                                      
                                     </nz-col>
-                                    <nz-col [nzSpan]="8">
+                                    <nz-col [nzSpan]="8" style="margin-top: 2%; margin-bottom: 2%;">
                                       <nz-statistic align="center" [nzValue]="(listFuente12.length | number)!" [nzTitle]="'Fuente 12'"></nz-statistic>
                                     </nz-col>
-                                    <nz-col [nzSpan]="8">
+                                    <nz-col [nzSpan]="8" style="margin-top: 2%; margin-bottom: 2%;">
                                       <nz-statistic align="center" [nzValue]="(listFuente12B.length | number)!" [nzTitle]="'Fuente 12B'"></nz-statistic>
                                     </nz-col>
                                   </nz-row>
 
                                 </mat-tab>
                                 <mat-tab label="Porcentaje">
-                                  <br>
-                                  <br>
-                                  <div class="container row row-cols-1 row-cols-md-3" style="text-align: center;">
-                                    <div class="col">
+                                  
+                                  <div class="container row row-cols-1 row-cols-md-3" style="text-align: center; margin-top: 11%;">
+                                    <div class="col" >
                                       <p>Fuente 11</p>
-                                  <nz-progress [nzPercent]="(gastosFuente11/+PoaList.fuente11*100)|number : '1.2-2'" nzType="circle" [nzWidth]="90"></nz-progress>
+                                  <nz-progress [nzPercent]="90|number : '1.2-2'" nzType="circle" [nzStrokeColor]="{ '0%': '#F09A1A', '100%': '#F0253A' }" [nzWidth]="90"></nz-progress>
                                 </div>
+                                <!-- (gastosFuente11/+PoaList.fuente11*100) -->
                                 <div class="col">
                                   <p>Fuente 12</p>
-                                  <nz-progress [nzPercent]="(gastosFuente12/+PoaList.fuente12*100)|number : '1.2-2'" nzType="circle" [nzWidth]="90"></nz-progress>
+                                  <nz-progress [nzPercent]="90|number : '1.2-2'" nzType="circle" [nzStrokeColor]="{ '0%': '#439FAD', '100%': '#41F01D' }" [nzWidth]="90"></nz-progress>
                                 </div>
+                                <!-- [nzPercent]="(gastosFuente12/+PoaList.fuente12*100) -->
                                 <div class="col">
                                   <p>Fuente 12B</p>
-                                  <nz-progress [nzPercent]="(gastosFuente12B/+PoaList.fuente12B*100)|number : '1.2-2'" nzType="circle" [nzWidth]="90">Fuente</nz-progress>
+                                  <nz-progress [nzPercent]="90|number : '1.2-2'" nzType="circle" [nzStrokeColor]="{ '0%': '#19D0E3', '100%': '#AF2FE6' }" [nzWidth]="90" >Fuente</nz-progress>
                                 </div>
+                                <!-- (gastosFuente12B/+PoaList.fuente12B*100) -->
                               </div>
                                 </mat-tab>
                             </mat-tab-group>
@@ -199,16 +201,19 @@
             Exportar a CSV</button>
     </div>
   </div>
-
+ 
+<div class="card shadow" style="width: 96%; margin-left: 2%; margin-top: 2%; height: 225px;">
+<div class="card-body" style="margin-left: -1%;">
 <div class="scroll">
 <br>
-        <table mat-table matTableExporter [dataSource]="dataSource" #exporter="matTableExporter" tabindex="0">
+<br>
+        <table class="shadow-lg" mat-table matTableExporter [dataSource]="dataSource" #exporter="matTableExporter" tabindex="0">
 
             <!--- Note that these columns can be defined in any order.
                   The actual rendered columns are set as a property on the row definition" -->
           
             <!-- Position Column -->
-            <ng-container  matColumnDef="Nombre_Departamento" sticky>
+            <ng-container  matColumnDef="Nombre_Departamento">
               <th style="min-width: 270px; text-align: center;" mat-header-cell *matHeaderCellDef>Nombre del Departamento </th>
               <td mat-cell *matCellDef="let element"> {{element.depto.name}} </td>
             </ng-container>
@@ -300,10 +305,14 @@
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>>
           </table>
         </div>
+   
+    </div>
+    </div>
+    <br>
       </div>
 
 
 </div>
 </div>
-</div>
+
 

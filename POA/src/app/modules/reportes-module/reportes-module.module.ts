@@ -21,6 +21,7 @@ import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NgModel, FormControl, FormsModule} from '@angular/forms';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzProgressModule } from 'ng-zorro-antd/progress';
+import {MatIconModule} from '@angular/material/icon';
 
 
 registerLocaleData(es);
@@ -52,7 +53,8 @@ const router = RouterModule.forChild([
     NzGridModule,
     FormsModule,
     NzIconModule,
-    NzProgressModule
+    NzProgressModule,
+    MatIconModule
   ],
   providers: [
     { provide: NZ_I18N, useValue: es_ES }
