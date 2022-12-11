@@ -10,7 +10,7 @@ import { BackButtonComponent } from 'src/app/_core/back-button/back-button.compo
 const router = RouterModule.forChild([
   { path: '', component: MisPoasModuleComponent },
 
-  { path: 'mipoa/list/:idDepto', component: MisPoasModuleComponent },
+  { path: 'mipoa/list/:idDepto/:idPoa', component: MisPoasModuleComponent },
 ])
 
 @NgModule({

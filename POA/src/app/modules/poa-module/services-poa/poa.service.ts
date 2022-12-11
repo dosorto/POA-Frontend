@@ -62,7 +62,7 @@ export class PoaService {
 
   }
 
-  actualizarPOA(name: string, anio: string, fuente11: string, fuente12: string, fuente12B: string, id: number, isActive: boolean ,idDepto: number, idUE: number, idInsti: number): any {
+  actualizarPOA(name: string, anio: string, fuente11: string, fuente12: string, fuente12B: string, id: number, isActive: boolean, idDepto: number, idUE: number, idInsti: number): any {
     const url = environment.servidor + 'POA/updatePOA';
     const params = new HttpParams({
       fromObject: {
@@ -85,7 +85,7 @@ export class PoaService {
       })
     };
     //return this.directHttp.put(url, params, httpOptions);
-    this.directHttp.put(url, { name: name, anio: anio, fuente11: fuente11, fuente12: fuente12, fuente12B: fuente12B, id: id,isActive: isActive, idDepto: idDepto, idUE: idUE, idInsti: idInsti }).subscribe((response: any) => {
+    this.directHttp.put(url, { name: name, anio: anio, fuente11: fuente11, fuente12: fuente12, fuente12B: fuente12B, id: id, isActive: isActive, idDepto: idDepto, idUE: idUE, idInsti: idInsti }).subscribe((response: any) => {
       console.log(response);
       return response;
     })
@@ -103,12 +103,12 @@ export class PoaService {
     return this.callHttp.httpGet<Poa>(`${environment.servidor}POA/get/` + idPoa.toString());
   }
 
-  MisPOAS(IdEmpleado: number, idDepto: number) {
-    return this.callHttp.httpGet<Array<Poa>>(`${environment.servidor}POA/getMisPoas/` + IdEmpleado.toString()+`/`+idDepto.toString())
-    .pipe(map(response => {
-      this._poa = response;
-      return response;
-    }))
+  MisPOAS(IdEmpleado: number, idDepto: number, idPoa: number) {
+    return this.callHttp.httpGet<Array<Poa>>(`${environment.servidor}POA/getMisPoas/` + IdEmpleado.toString() + `/` + idDepto.toString() + `/` + idPoa.toString())
+      .pipe(map(response => {
+        this._poa = response;
+        return response;
+      }))
   }
 
   MostrarPoa(idDepto: number) {
@@ -125,11 +125,11 @@ export class PoaService {
         return response;
       }))
   }
-  getDepto_Id(idDepto:number) {
-    return this.callHttp.httpGet<Depto>(`${environment.servidor}departamento/get/`+idDepto.toString());
+  getDepto_Id(idDepto: number) {
+    return this.callHttp.httpGet<Depto>(`${environment.servidor}departamento/get/` + idDepto.toString());
   }
-  getInsti_Id(idInsti:number) {
-    return this.callHttp.httpGet<Institucion>(`${environment.servidor}institucion/get/`+idInsti.toString());
+  getInsti_Id(idInsti: number) {
+    return this.callHttp.httpGet<Institucion>(`${environment.servidor}institucion/get/` + idInsti.toString());
   }
 
   eliminarPOA(id: number): any {
@@ -172,7 +172,7 @@ export class PoaService {
   }
 
   //alternativa a update
-  updatePOA(name: string, anio: string, fuente11: string, fuente12: string, fuente12B: string, id: number,isActive:boolean, idInsti: number, idUE: number,idDepto: number ): any {
+  updatePOA(name: string, anio: string, fuente11: string, fuente12: string, fuente12B: string, id: number, isActive: boolean, idInsti: number, idUE: number, idDepto: number): any {
     const url = environment.servidor + 'POA/updatePOA';
 
     const params = new HttpParams({
@@ -195,7 +195,7 @@ export class PoaService {
         'Content-Type': 'application/x-www-form-urlencoded'
       })
     };
-    return this.directHttp.put(url, { name: name, anio: anio, fuente11: fuente11, fuente12: fuente12, fuente12B: fuente12B, id: id,isActive, idInsti: idInsti, idDepto: idDepto, idUE: idUE })
+    return this.directHttp.put(url, { name: name, anio: anio, fuente11: fuente11, fuente12: fuente12, fuente12B: fuente12B, id: id, isActive, idInsti: idInsti, idDepto: idDepto, idUE: idUE })
 
   }
 
