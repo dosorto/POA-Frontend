@@ -1,0 +1,90 @@
+<top-bar></top-bar>
+<app-back-button [path]="['/gestion_poa/poa/detail/', id, this.idInsti, this.idUE, this.idDepto]"></app-back-button>
+<body class="justify-content-center abs-center mt-5 pt-5 abs-center">
+  <div class="col-7">
+    <!-- espacio para el titulo, buscador y boton de agregar uno nuevo -->
+    <div class="container border rounded rounden-2 p-2 border-dark">
+      <div class="w-100 row m-auto">
+        <br>
+        <!-- espacio para el titulo, buscador y boton de agregar uno nuevo -->
+        <div class="w-100 row m-auto">
+
+          <div class="row text-center">
+            <span class="fs-5 text-center">
+              <span class="-b-text-undexpanded"> Departamento: <a class="text-primary">{{depto.name}}</a></span>
+            </span>
+            <div></div>
+            <h2 class="">
+              <font color='black'>Actualizar POA</font>
+              <br>
+            </h2>
+          </div>
+          <div class="col-10 mb-3">
+            <mat-slide-toggle  name="isActive" [(ngModel)]="isActive">Deshabilitar/Habilitar</mat-slide-toggle>
+          </div>
+          
+          <div class="col-10">
+            <label for="inputName" class="form-label" name="name">Nombre:</label>
+            <input type="text" class="form-control" id="exampleFormControlTextarea1" [(ngModel)]="name" rows="2"
+              value="{{poa.name}}">
+          </div>
+          <div class="col-10 mb-3">
+            <label for="inputAnio" class="form-label">Año:</label>
+            <input type="Date" min="2017-01-01" class="form-control" id="exampleFormControlTextarea1" [(ngModel)]="anio" rows="2"
+              value="{{poa.anio}}">
+          </div>
+          <div class="col-10 mb-3">
+            <label for="inputFuente11" class="form-label">Fuente11:</label>
+            <input type="number" class="form-control" [(ngModel)]="fuente11" value="{{poa.fuente11}}" ondrop="return false;" onpaste="return false;" onkeypress="return event.charCode>=48 && event.charCode<=57" min="0" max=""
+              ngModel required>
+              <ng-container *ngIf="+fuente11 < 0">
+                <span class="alert alert-danger">Revisa el valor ingresado
+                </span>
+            </ng-container>
+          </div>
+          <div class="col-10 mb-3">
+            <label for="inputFuente12" class="form-label">Fuente12:</label>
+            <input type="number" class="form-control" [(ngModel)]="fuente12" value="{{poa.fuente12}}" ondrop="return false;" onpaste="return false;" onkeypress="return event.charCode>=48 && event.charCode<=57" min="0" max=""
+              ngModel required>
+              <ng-container *ngIf="+fuente12 < 0">
+                <span class="alert alert-danger">Revisa el valor ingresado
+                </span>
+            </ng-container>
+          </div>
+          <div class="col-10 mb-3">
+            <label for="inputFuente12B" class="form-label">Fuente12B:</label>
+            <input type="number" class="form-control" [(ngModel)]="fuente12B" value="{{poa.fuente12B}}" ondrop="return false;" onpaste="return false;" onkeypress="return event.charCode>=48 && event.charCode<=57" min="0" max=""
+              ngModel required>
+              <ng-container *ngIf="+fuente12B < 0">
+                <span class="alert alert-danger">Revisa el valor ingresado
+                </span>
+            </ng-container>
+          </div>
+          <div class="d-grid gap-2 d-md-flex justify-content-end">
+            <button type="button" class="btn btn-secondary" (click)="toDetail(poa.id)">Regresar</button>
+            <button type="submit" class="btn btn-warning" [disabled]="poa.invalid" (click)="Update()">Actualizar</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="modal" tabindex="-1" id="eliminarDepto">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header bg-danger">
+            <h5 class="modal-title fs-3 m-auto"></h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p>¿Está seguro de eliminarla? </p>
+          </div>
+          <form id="eliminarDimension">
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+              <button type="submit" class="btn btn-danger" (click)="Activate()">Eliminar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
