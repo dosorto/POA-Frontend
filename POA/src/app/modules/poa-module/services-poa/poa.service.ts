@@ -104,7 +104,7 @@ export class PoaService {
   }
 
   MisPOAS(IdEmpleado: number, idDepto: number) {
-    return this.callHttp.httpGet<Array<Poa>>(`${environment.servidor}POA/getMisPoas/` + IdEmpleado.toString() + idDepto.toString())
+    return this.callHttp.httpGet<Array<Poa>>(`${environment.servidor}POA/getMisPoas/` + IdEmpleado.toString()+`/`+idDepto.toString())
     .pipe(map(response => {
       this._poa = response;
       return response;

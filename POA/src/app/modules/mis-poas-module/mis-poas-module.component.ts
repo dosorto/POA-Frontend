@@ -78,7 +78,7 @@ export class MisPoasModuleComponent implements OnInit {
     const actividades = await firstValueFrom(this.serviceActividad.getActividades(this.idPoa));
     this.actividad = actividades;
 
-    this.poa = await firstValueFrom(this.service.MisPOAS(this.user.empleado.IdEmpleado.toString(),this.idDepto));
+    this.poa = await firstValueFrom(this.service.MisPOAS(this.user.empleado.id,this.idDepto));
   
     const departamentos = await firstValueFrom(this.service.getdepartamentos());
     this.DeptoList = departamentos;
