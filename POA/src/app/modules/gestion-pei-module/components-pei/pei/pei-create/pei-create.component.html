@@ -1,0 +1,64 @@
+<top-bar></top-bar>
+<app-back-button [path]="['/gestion_pei/pei/list/', this.idInstitucion]"></app-back-button>
+<div class="justify-content-center abs-center mt-5 pt-5 abs-center">
+
+    <div class="col-7">
+        <!-- espacio para el titulo, buscador y boton de agregar uno nuevo -->
+        <div class="container border rounded rounden-2 p-2">
+            <div class="w-100 row m-auto">
+                <br>
+                <!-- espacio para el titulo, buscador y boton de agregar uno nuevo -->
+                <div class="w-100 row m-auto">
+                    <div class="row">
+                    
+                        <div class="col-10 text-center">
+                            <h2 class="">
+                                <p><font color='black'>Crear PEI</font></p>
+                                <span class="fs-5">
+                                    Pei para la Institución: <span class="text-primary ">{{insti.nombre}}</span>
+                                </span>
+                            </h2>
+                        </div>
+                        <div class="d-grid gap-2 d-md-flex justify-content-center">
+                            <form #Pei='ngForm'
+                                (ngSubmit)="crear_pei(Pei.value.name,Pei.value.initialYear,Pei.value.finalYear)"
+                                id="createDimension">
+                                <div class="w-100 row m-auto">
+                                    <!-- Campo para el nombre de PEI -->
+                                    <div class="col-10">
+                                        <label for="name" class="row col-form-label">Nombre de PEI:</label>
+                                        <div class="row">
+                                            <input type="text" class="form-control" name="name" ngModel required>
+                                        </div>
+                                    </div>
+                                    <!-- Campo para la Año Inicial -->
+                                    <div class="col-10 mb-3">
+                                        <label for="initialYear" class="row col-form-label">Año Inicial:</label>
+                                        <div class="row">
+                                            <input type="Date" min="2017-01-01" class="form-control" name="initialYear" ngModel required>
+                                        </div>
+                                    </div>
+                                    <!-- Campo para la Final Inicial -->
+                                    <div class="col-10 mb-3">
+                                        <label for="finalYear" class="row col-form-label">Año Final:</label>
+                                        <div class="row">
+                                            <input type="Date" min="2017-01-01" class="form-control" name="finalYear" ngModel required>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" (click)="toList()">Regresar</button>
+                                    <button type="submit" class="btn btn-warning m-2"
+                                        [disabled]="Pei.invalid">Guardar</button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

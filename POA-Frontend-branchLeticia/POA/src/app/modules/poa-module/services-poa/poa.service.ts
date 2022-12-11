@@ -103,6 +103,17 @@ export class PoaService {
     return this.callHttp.httpGet<Poa>(`${environment.servidor}POA/get/` + idPoa.toString());
   }
 
+<<<<<<< HEAD:POA-Frontend-branchLeticia/POA/src/app/modules/poa-module/services-poa/poa.service.ts
+=======
+  MisPOAS(IdEmpleado: number, idDepto: number) {
+    return this.callHttp.httpGet<Array<Poa>>(`${environment.servidor}POA/getMisPoas/` + IdEmpleado.toString()+`/`+idDepto.toString())
+    .pipe(map(response => {
+      this._poa = response;
+      return response;
+    }))
+  }
+
+>>>>>>> origin/branchLeticia:POA/src/app/modules/poa-module/services-poa/poa.service.ts
   MostrarPoa(idDepto: number) {
     return this.callHttp.httpGet<Array<Poa>>(`${environment.servidor}POA/poaByIdDepto/` + idDepto.toString())
       .pipe(map(response => {

@@ -16,9 +16,3 @@ export class NamesOnlyPipe implements PipeTransform {
   }
 
 }
-
-
-
-
-
-
