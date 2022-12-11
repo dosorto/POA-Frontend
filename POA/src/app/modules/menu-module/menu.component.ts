@@ -30,5 +30,17 @@ export class MenuComponent implements OnInit {
   toPOA(){
     this.router.navigate(['/gestion_poa/poa/list/1/1/1'])
   }
+  toInstitucion(){
+    this.router.navigate(['/admin/instituciones'])
+  }
+  toMisPoas(){
+    this.router.navigate(['/mis_poas'])
+  }
+  toRevision(){
+    this.router.navigate(['/revision'])
+  }
+  toReportes(){
+    this.router.navigate(['/reportes'])
+  }
 
 }

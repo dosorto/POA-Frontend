@@ -58,6 +58,7 @@ const router = RouterModule.forChild([
   // rutas de pei
   {path: 'users', component: AllUsuarioComponent},
   {path: 'roles', component: AllRolComponent},
+  {path: 'instituciones', component: AllInstitucionComponent},
 ]);
 
 @NgModule({
