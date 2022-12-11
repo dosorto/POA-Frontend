@@ -17,11 +17,11 @@
                 <label for="id"  style="font-size: 18px;">Seleccione un Departamento:</label>
         
                     <select class="form-control shadow" style="border-radius: 20px;" aria-label="Default select example" name="id"
-                    [(ngModel)]="departamento_seleccionado"
-                            (ngModelChange)="selectDepto()" required>
-
+                    [(ngModel)]="idDepto"
+                            (ngModelChange)="selectdepto(idDepto)" required>
+                            <option>Seleccione</option>
                     <ng-container *ngFor="let x of deptoList">
-                                <option value="{{x.id}}" [selected]="x.id===idDepto">{{x.name}}</option>
+                                <option value="{{x.id}}">{{x.name}}</option>
                             </ng-container>
                            
                 </select>
@@ -30,11 +30,11 @@
                 <label for="id"  style="font-size: 18px;">Seleccione un POA:</label>
         
                     <select class="form-control shadow" style="border-radius: 20px;" aria-label="Default select example" name="id"
-                    [(ngModel)]="poa_seleccionado"
-                            (ngModelChange)="selectPoa()" required>
-
+                    [(ngModel)]="idPoa"
+                    (ngModelChange)="initData(idPoa,idDepto)">
+                    <option>Seleccione</option>
                     <ng-container *ngFor="let x of poaList">
-                                <option value="{{x.id}}" [selected]="x.id===idPoa">{{x.name}}</option>
+                                <option value="{{x.id}}" >{{x.name}}</option>
                             </ng-container>
                            
                 </select>
@@ -101,26 +101,26 @@
                                 <mat-tab label="Estado" >
                                   <nz-row class="border rounded" style="margin-top: 3%; margin-bottom: 3%; ">
                                     <nz-col [nzSpan]="8" style="margin-top: 2%; margin-bottom: 2%;">
-                                      <nz-statistic align="center" [nzValue]="(listTareas.length | number)!" [nzTitle]="'Actividades'"></nz-statistic>
+                                      <nz-statistic align="center" [nzValue]="(listActividades.length | number)!" [nzTitle]="'Actividades'"></nz-statistic>
                                       
                                     </nz-col>
                                     <nz-col [nzSpan]="8" style="margin-top: 2%; margin-bottom: 2%;">
-                                      <nz-statistic align="center" [nzValue]="(listsPTareas.length | number)!" [nzTitle]="'Formulacion'"></nz-statistic>
+                                      <nz-statistic align="center" [nzValue]="(listActividadesFormulacion.length | number)!" [nzTitle]="'Formulacion'"></nz-statistic>
                                     </nz-col>
                                     <nz-col [nzSpan]="8" style="margin-top: 2%; margin-bottom: 2%;">
-                                      <nz-statistic align="center" [nzValue]="(listnPTareas.length | number)!" [nzTitle]="'Reformulacion'"></nz-statistic>
+                                      <nz-statistic align="center" [nzValue]="(listActividadesReFormulacion.length | number)!" [nzTitle]="'Reformulacion'"></nz-statistic>
                                     </nz-col>
                                   </nz-row>
                                   <nz-row class="border rounded" style="margin-top: 3%; margin-bottom: 3%;">
                                     <nz-col [nzSpan]="8" style="margin-top: 2%; margin-bottom: 2%;">
-                                     <nz-statistic align="center" [nzValue]="(listFuente11.length | number)!" [nzTitle]="'Revision'" ></nz-statistic>
+                                     <nz-statistic align="center" [nzValue]="(listActividadesRevision.length | number)!" [nzTitle]="'Revision'" ></nz-statistic>
                                      
                                     </nz-col>
                                     <nz-col [nzSpan]="8" style="margin-top: 2%; margin-bottom: 2%;">
-                                      <nz-statistic align="center" [nzValue]="(listFuente12.length | number)!" [nzTitle]="'Aprobada'"></nz-statistic>
+                                      <nz-statistic align="center" [nzValue]="(listActividadesAprobada.length | number)!" [nzTitle]="'Aprobada'"></nz-statistic>
                                     </nz-col>
                                     <nz-col [nzSpan]="8" style="margin-top: 2%; margin-bottom: 2%;">
-                                      <nz-statistic align="center" [nzValue]="(listFuente12B.length | number)!" [nzTitle]="'Rechazada'"></nz-statistic>
+                                      <nz-statistic align="center" [nzValue]="(listActividadesRechazada.length | number)!" [nzTitle]="'Rechazada'"></nz-statistic>
                                     </nz-col>
                                   </nz-row>
 
@@ -167,17 +167,17 @@
                                   <div class="container row row-cols-1 row-cols-md-3" style="text-align: center; margin-top: 11%;">
                                     <div class="col" >
                                       <p>Fuente 11</p>
-                                  <nz-progress [nzPercent]="90|number : '1.2-2'" nzType="circle" [nzStrokeColor]="{ '0%': '#F09A1A', '100%': '#F0253A' }" [nzWidth]="90"></nz-progress>
+                                  <nz-progress [nzPercent]="(gastosFuente11/+PoaList.fuente11*100)|number : '1.2-2'" nzType="circle" [nzStrokeColor]="{ '0%': '#F09A1A', '100%': '#F0253A' }" [nzWidth]="90"></nz-progress>
                                 </div>
                                 <!-- (gastosFuente11/+PoaList.fuente11*100) -->
                                 <div class="col">
                                   <p>Fuente 12</p>
-                                  <nz-progress [nzPercent]="90|number : '1.2-2'" nzType="circle" [nzStrokeColor]="{ '0%': '#439FAD', '100%': '#41F01D' }" [nzWidth]="90"></nz-progress>
+                                  <nz-progress [nzPercent]="(gastosFuente12/+PoaList.fuente12*100)|number : '1.2-2'" nzType="circle" [nzStrokeColor]="{ '0%': '#439FAD', '100%': '#41F01D' }" [nzWidth]="90"></nz-progress>
                                 </div>
                                 <!-- [nzPercent]="(gastosFuente12/+PoaList.fuente12*100) -->
                                 <div class="col">
                                   <p>Fuente 12B</p>
-                                  <nz-progress [nzPercent]="90|number : '1.2-2'" nzType="circle" [nzStrokeColor]="{ '0%': '#19D0E3', '100%': '#AF2FE6' }" [nzWidth]="90" >Fuente</nz-progress>
+                                  <nz-progress [nzPercent]="(gastosFuente12B/+PoaList.fuente12B*100)|number : '1.2-2'" nzType="circle" [nzStrokeColor]="{ '0%': '#19D0E3', '100%': '#AF2FE6' }" [nzWidth]="90" >Fuente</nz-progress>
                                 </div>
                                 <!-- (gastosFuente12B/+PoaList.fuente12B*100) -->
                               </div>
@@ -201,6 +201,8 @@
             Exportar a CSV</button>
     </div>
   </div>
+
+  
  
 <div class="card shadow" style="width: 96%; margin-left: 2%; margin-top: 2%; height: 225px;">
 <div class="card-body" style="margin-left: -1%;">

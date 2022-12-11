@@ -11,6 +11,8 @@ import { BackButtonComponent } from 'src/app/_core/back-button/back-button.compo
 import {MatButtonModule} from '@angular/material/button';
 import {MatTableModule} from '@angular/material/table';
 import { MatTableExporterModule } from 'mat-table-exporter';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { NzStatisticModule } from 'ng-zorro-antd/statistic';
 import { NZ_I18N } from 'ng-zorro-antd/i18n';
@@ -54,7 +56,9 @@ const router = RouterModule.forChild([
     FormsModule,
     NzIconModule,
     NzProgressModule,
-    MatIconModule
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [
     { provide: NZ_I18N, useValue: es_ES }

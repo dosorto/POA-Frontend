@@ -6,15 +6,21 @@ import { Tareas }from '../../../../app/modules/poa-module/interfaces-poa/tareas.
 import { map, Observable } from "rxjs";
 import { Depto } from '../../poa-module/interfaces-poa/depto.model';
 import { Poa } from '../../poa-module/interfaces-poa/poa.model';
+import { Actividad } from '../../poa-module/interfaces-poa/actividad.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ReportesService {
   private _tareas: Array<Tareas> = [];
+  private _actividades:Array<Actividad>=[];
   get tareas() {
     return this._tareas;
   }
+  get actividades() {
+    return this._actividades;
+  }
+
 
   private _poaList: Array<Poa> = [];
 
@@ -23,7 +29,7 @@ export class ReportesService {
   }
   constructor(private callHttp: CallHttpService, private directHttp: HttpClient) { }
   getPoa_id_iddepto(idPoa:number,idDepto:number) {
-    return this.callHttp.httpGet<Array<Tareas>>(`${environment.servidor}reportes/get_all_depto_poa/` +idDepto.toString()+`/`+idPoa.toString())
+    return this.callHttp.httpGet<Array<Tareas>>(`${environment.servidor}reportes/get_all_depto_poa/` +idPoa.toString()+`/`+idDepto.toString())
       .pipe(map(response => {
         this._tareas = response;
         return response;
@@ -86,7 +92,54 @@ export class ReportesService {
           return response;
         }))
     }
-    
+
+    getActvidades_Formulacion(idPoa:number) {
+      return this.callHttp.httpGet<Array<Actividad>>(`${environment.servidor}reportes/estado_Formulacio/` + idPoa.toString())
+        .pipe(map(response => {
+          this._actividades = response;
+          return response;
+        }))
+    }
+
+    getActvidades_ReFormulacion(idPoa:number) {
+      return this.callHttp.httpGet<Array<Actividad>>(`${environment.servidor}reportes/estado_ReFormulacion/` + idPoa.toString())
+        .pipe(map(response => {
+          this._actividades = response;
+          return response;
+        }))
+    }
+
+    getActvidades_Revision(idPoa:number) {
+      return this.callHttp.httpGet<Array<Actividad>>(`${environment.servidor}reportes/estado_Revision/` + idPoa.toString())
+        .pipe(map(response => {
+          this._actividades = response;
+          return response;
+        }))
+    }
+
+    getActvidades_Aprobada(idPoa:number) {
+      return this.callHttp.httpGet<Array<Actividad>>(`${environment.servidor}reportes/estado_Aprobada/` + idPoa.toString())
+        .pipe(map(response => {
+          this._actividades = response;
+          return response;
+        }))
+    }
+
+    getActvidades_Rechazada(idPoa:number) {
+      return this.callHttp.httpGet<Array<Actividad>>(`${environment.servidor}reportes/estado_Rechazada/` + idPoa.toString())
+        .pipe(map(response => {
+          this._actividades = response;
+          return response;
+        }))
+    }
+
+    getActvidades(idPoa:number) {
+      return this.callHttp.httpGet<Array<Actividad>>(`${environment.servidor}reportes/actividades/` + idPoa.toString())
+        .pipe(map(response => {
+          this._actividades = response;
+          return response;
+        }))
+    }
 
 }
 
