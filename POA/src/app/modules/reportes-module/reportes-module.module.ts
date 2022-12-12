@@ -24,7 +24,7 @@ import { NgModel, FormControl, FormsModule} from '@angular/forms';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzProgressModule } from 'ng-zorro-antd/progress';
 import {MatIconModule} from '@angular/material/icon';
-
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 registerLocaleData(es);
 
@@ -58,7 +58,8 @@ const router = RouterModule.forChild([
     NzProgressModule,
     MatIconModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatProgressBarModule
   ],
   providers: [
     { provide: NZ_I18N, useValue: es_ES }
