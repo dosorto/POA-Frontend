@@ -125,7 +125,13 @@
                                   </nz-row>
 
                                 </mat-tab>
-                                <mat-tab label="Porcentaje"></mat-tab>
+                                <mat-tab label="Porcentaje">
+                                  <nz-progress [nzPercent]="75" nzType="circle" [nzWidth]="90"></nz-progress>
+                                  <nz-progress [nzPercent]="70" nzType="circle" [nzWidth]="90" nzStatus="exception"></nz-progress>
+                                  <nz-progress [nzPercent]="90" nzType="circle" [nzWidth]="90"></nz-progress>
+                                  <nz-progress [nzPercent]="75" nzType="circle" [nzWidth]="90"></nz-progress>
+                                  <nz-progress [nzPercent]="70" nzType="circle" [nzWidth]="90" nzStatus="exception"></nz-progress>
+                                </mat-tab>
                             </mat-tab-group>
                         </div>
                     </div>
@@ -160,7 +166,7 @@
                                       <nz-statistic align="center" [nzValue]="(listFuente12B.length | number)!" [nzTitle]="'Fuente 12B'"></nz-statistic>
                                     </nz-col>
                                   </nz-row>
-
+                                  
                                 </mat-tab>
                                 <mat-tab label="Porcentaje">
                                   
