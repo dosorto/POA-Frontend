@@ -85,6 +85,10 @@ export class MisPoasModuleComponent implements OnInit {
   toDetail(idPoa: number) {
     this.router.navigate(['/gestion_poa/actividad/tab/', idPoa.toString(), this.idInsti, this.idUE, this.idDepto,]);
   }
+  toActividad(){
+    this.router.navigate(['/gestion_poa/actividad/list/', this.id,this.idInsti,this.idDepto,this.idUE]); 
+  }
+
   toHome() {
     this.router.navigate(['/home']);
   }
