@@ -77,10 +77,10 @@ export class MisPoasModuleComponent implements OnInit {
   async initData() {
     const actividades = await firstValueFrom(this.serviceActividad.getActividades(this.idPoa));
     this.actividad = actividades;
-    this.poa = await firstValueFrom(this.service.MisPOAS(this.user.empleado.id,this.idDepto,this.idPoa));
+    this.poa = await firstValueFrom(this.service.MisPOAS(this.user.empleado.id,this.idDepto));
     const departamentos = await firstValueFrom(this.service.getdepartamentos());
     this.DeptoList = departamentos;
-    console.log(this.idPoa);
+    console.log(this.poa);
   }
   toDetail(idPoa: number) {
     this.router.navigate(['/gestion_poa/actividad/tab/', idPoa.toString(), this.idInsti, this.idUE, this.idDepto,]);

@@ -8,9 +8,7 @@ import { TopBarComponent } from '../../_core/top-bar/top-bar.component'
 import { BackButtonComponent } from 'src/app/_core/back-button/back-button.component';
 
 const router = RouterModule.forChild([
-  { path: '', component: MisPoasModuleComponent },
-
-  { path: 'mipoa/list/:idDepto/:idPoa', component: MisPoasModuleComponent },
+  { path: ':idDepto', component: MisPoasModuleComponent },
 ])
 
 @NgModule({
