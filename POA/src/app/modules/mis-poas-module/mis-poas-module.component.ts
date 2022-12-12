@@ -37,6 +37,7 @@ export class MisPoasModuleComponent implements OnInit {
     private serviceTarea: TareasService,
     private router: Router,
     private _route: ActivatedRoute,
+   
   ) { }
 
   ngOnInit(): void {
@@ -66,6 +67,8 @@ export class MisPoasModuleComponent implements OnInit {
   public data_update: Poa | any = this.poa_example; // define datos de un elemento a actualizar
   public poa_seleccionado: string = "";
   public poaSeleccionado: number = this.idPoa;
+
+  public POAFiltroPipe: Array <POAFiltroPipe>= []; 
 
 
   public page: number = 0;

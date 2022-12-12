@@ -46,7 +46,7 @@
                 <!-- tabla dinamica que muestra todas los POA -->
                 <div>
                     <div class="row row-cols-1 row-cols-md-4 g-4">
-                        <ng-container *ngFor="let x of poa; index as i">
+                        <ng-container *ngFor="let x of poa | poaFiltro:filter|poaPaginacion:step:page; index as i">
                             <li *ngIf="x.isActive===true">
                                 <div class="card  text-bg-primary mb-3" style="width: 20 rem;">
                                     <!-- este contador no es id, solo es para enumerar -->
