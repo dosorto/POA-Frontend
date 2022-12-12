@@ -1,7 +1,7 @@
 <top-bar></top-bar>
 <app-back-button></app-back-button>
 <div>
-<div class=" mt-2 pt-1">
+<div class=" mt-5 pt-4">
  
     <div class="contenedor justify-content-center rounded border border-dark shadow-lg" style="background-color: white;">
         <div class=" titulo">
@@ -153,6 +153,26 @@
                     <div class="card border-secondary shadow" style="margin-right: 6%;">
                         <div class="card-body">
                             <mat-tab-group mat-align-tabs="center" style="margin-top: -3%;">
+                              <mat-tab label="Porcentaje">
+                                  
+                                <div class="container row row-cols-1 row-cols-md-3" style="text-align: center; margin-top: 11%;">
+                                  <div class="col" >
+                                    <p>Fuente 11</p>
+                                <nz-progress [nzPercent]="(gastosFuente11/+PoaList.fuente11*100)|number : '1.2-2'" nzType="circle" [nzStrokeColor]="{ '0%': '#F09A1A', '100%': '#F0253A' }" [nzWidth]="90"></nz-progress>
+                              </div>
+                              <!-- (gastosFuente11/+PoaList.fuente11*100) -->
+                              <div class="col">
+                                <p>Fuente 12</p>
+                                <nz-progress [nzPercent]="(gastosFuente12/+PoaList.fuente12*100)|number : '1.2-2'" nzType="circle" [nzStrokeColor]="{ '0%': '#439FAD', '100%': '#41F01D' }" [nzWidth]="90"></nz-progress>
+                              </div>
+                              <!-- [nzPercent]="(gastosFuente12/+PoaList.fuente12*100) -->
+                              <div class="col">
+                                <p>Fuente 12B</p>
+                                <nz-progress [nzPercent]="(gastosFuente12B/+PoaList.fuente12B*100)|number : '1.2-2'" nzType="circle" [nzStrokeColor]="{ '0%': '#19D0E3', '100%': '#AF2FE6' }" [nzWidth]="90" >Fuente</nz-progress>
+                              </div>
+                              <!-- (gastosFuente12B/+PoaList.fuente12B*100) -->
+                            </div>
+                              </mat-tab>
                                 <mat-tab label="Cantidad">
                      
                                   <nz-row class="border rounded" style="margin-top: 3%; margin-bottom: 3%;  ">
@@ -181,26 +201,7 @@
                                   </nz-row>
                                   
                                 </mat-tab>
-                                <mat-tab label="Porcentaje">
-                                  
-                                  <div class="container row row-cols-1 row-cols-md-3" style="text-align: center; margin-top: 11%;">
-                                    <div class="col" >
-                                      <p>Fuente 11</p>
-                                  <nz-progress [nzPercent]="(gastosFuente11/+PoaList.fuente11*100)|number : '1.2-2'" nzType="circle" [nzStrokeColor]="{ '0%': '#F09A1A', '100%': '#F0253A' }" [nzWidth]="90"></nz-progress>
-                                </div>
-                                <!-- (gastosFuente11/+PoaList.fuente11*100) -->
-                                <div class="col">
-                                  <p>Fuente 12</p>
-                                  <nz-progress [nzPercent]="(gastosFuente12/+PoaList.fuente12*100)|number : '1.2-2'" nzType="circle" [nzStrokeColor]="{ '0%': '#439FAD', '100%': '#41F01D' }" [nzWidth]="90"></nz-progress>
-                                </div>
-                                <!-- [nzPercent]="(gastosFuente12/+PoaList.fuente12*100) -->
-                                <div class="col">
-                                  <p>Fuente 12B</p>
-                                  <nz-progress [nzPercent]="(gastosFuente12B/+PoaList.fuente12B*100)|number : '1.2-2'" nzType="circle" [nzStrokeColor]="{ '0%': '#19D0E3', '100%': '#AF2FE6' }" [nzWidth]="90" >Fuente</nz-progress>
-                                </div>
-                                <!-- (gastosFuente12B/+PoaList.fuente12B*100) -->
-                              </div>
-                                </mat-tab>
+                                
                             </mat-tab-group>
                         </div>
                     </div>
@@ -223,8 +224,8 @@
 
   
  
-<div class="card shadow" style="width: 96%; margin-left: 2%; margin-top: 2%; height: 225px;">
-<div class="card-body" style="margin-left: -1%;">
+<div class="card shadow" style="width: 96%; margin-left: 2%; margin-top: 2%; height: 420px; margin-bottom: 1%;">
+<div class="card-body" style="margin-left: -1%; margin-bottom: -15%;">
 <div class="scroll">
 <br>
 <br>
@@ -325,8 +326,9 @@
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>>
           </table>
+          
         </div>
-   
+       
     </div>
     </div>
     <br>
@@ -334,6 +336,7 @@
 
 
 </div>
+<br>
 </div>
 
 

@@ -17,11 +17,14 @@
 
 
 .scroll{
-  max-height: 90%;
+  height: 70%;
   max-width: 100%;
   margin-top: -1%;
+  margin-bottom: -1%;
+  overflow: hidden;
   overflow-y: scroll;
   overflow-x: scroll;
+  position: sticky;
 }
 
 
@@ -63,9 +66,9 @@ th{
 }
 
 table {
-    position:relative;
+    position:sticky;
     width: auto;
-    height: auto;
+    max-height: 250px;
     margin-top: -2%;
     margin-right: 2%;
     margin-left: 2%;
@@ -74,6 +77,11 @@ table {
 
 .card {
     height: 250px;
+    overflow: hidden;
+}
+
+.card-body{
+  overflow: hidden;
 }
 
 mat-icon{
