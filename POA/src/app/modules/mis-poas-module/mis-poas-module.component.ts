@@ -89,7 +89,7 @@ export class MisPoasModuleComponent implements OnInit {
     this.router.navigate(['/home']);
   }
   selectDepto() {
-    this.router.navigate(['/gestion_poa/poa/list/', this.idInsti, this.idUE, this.DeptoSeleccionado]);
+    this.router.navigate(['/mis_poas/', this.DeptoSeleccionado]);
     setTimeout(function () {
       window.location.reload();
     }, 10)
