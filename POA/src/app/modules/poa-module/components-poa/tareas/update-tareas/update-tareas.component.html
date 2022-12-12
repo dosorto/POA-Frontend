@@ -206,8 +206,15 @@
                             readonly>{{tareas?.presupuesto?.objetogasto?.identificador+' - '+tareas?.presupuesto?.objetogasto?.nombre}}</textarea>
                     </mat-form-field>
 
+                    <mat-form-field appearance="outline" floatLabel="always" class="example-form-inputt">
+                        <mat-label>Unidad de Medida</mat-label>
+                        <textarea matInput type="text" class="example-right-align" placeholder="0" name="total" value=""
+                            readonly>{{tareas?.presupuesto?.unidadmedida?.nombre}}</textarea>
+                    </mat-form-field>
 
-                    <mat-form-field appearance="fill">
+
+
+                    <!-- <mat-form-field appearance="fill">
                         <mat-label>{{tareas?.presupuesto?.unidadmedida?.nombre}}</mat-label>
                         <mat-select name="idunidad" [(ngModel)]="idunidad" NgModel required>
                             <mat-option value="1">Litros</mat-option>
@@ -215,7 +222,7 @@
                             <mat-option value="3">Gramos</mat-option>
                             <mat-option value="4">Unidad</mat-option>
                         </mat-select>
-                    </mat-form-field>
+                    </mat-form-field> -->
 
                     <mat-form-field appearance="fill">
                         <mat-label>{{tareas?.presupuesto?.fuente?.identificador +' - '+
