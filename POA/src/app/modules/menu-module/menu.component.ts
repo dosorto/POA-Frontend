@@ -40,7 +40,7 @@ export class MenuComponent implements OnInit {
     this.router.navigate(['/revision'])
   }
   toReportes(){
-    this.router.navigate(['/reportes'])
+    this.router.navigate(['/reportes/list'])
   }
 
   tomisPOA(){

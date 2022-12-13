@@ -1,0 +1,113 @@
+.contenedor{
+    position: relative;
+    max-width: max-content;
+    margin-right: 2%;
+    margin-left: 2%;
+    margin-bottom: 3%;
+}
+
+.contenedor_card{
+    position: relative;
+    margin-left: 2%;
+    margin-bottom: 0%;
+    margin-bottom: 4%;
+    position: sticky;
+ 
+}
+
+
+.scroll{
+  height: 70%;
+  max-width: 100%;
+  margin-top: -1%;
+  margin-bottom: -1%;
+  overflow: hidden;
+  overflow-y: scroll;
+  overflow-x: scroll;
+  position: sticky;
+}
+
+
+th{
+  background-color: #9097E6;
+  color: black;
+  padding: 10px;
+}
+
+p{
+  margin-top: -20%;
+}
+
+
+
+th, td{
+  border: 1px solid;
+
+}
+
+th{
+  font-weight: bold;
+}
+.mat-tab-group {
+    margin-bottom: auto;
+  }
+
+.select{
+  margin: auto;
+    position:relative;
+    margin-bottom: 2%;
+    margin-top: -1%;
+}
+.titulo{
+  margin: auto;
+  text-align: center;
+
+  margin-bottom: 3%;
+}
+
+table {
+    position:sticky;
+    width: auto;
+    max-height: 250px;
+    margin-top: -2%;
+    margin-right: 2%;
+    margin-left: 2%;
+    margin-bottom: 3%;
+  }
+
+.card {
+    height: 250px;
+    overflow: hidden;
+}
+
+.card-body{
+  overflow: hidden;
+}
+
+mat-icon{
+  position:relative;
+}
+
+
+
+.example-button-row button,
+.example-button-row a {
+  margin-right: 8px;
+}
+
+.example-disabled {
+  display: inline-block;
+}
+
+.boton {
+    position:relative;
+    margin-left: 3%;
+    margin-top: -2%;
+    margin-bottom: -1%;
+}
+
+nz-progress {
+  margin-right: 8px;
+  margin-bottom: 8px;
+  display: inline-block;
+}

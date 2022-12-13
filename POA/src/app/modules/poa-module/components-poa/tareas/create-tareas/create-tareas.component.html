@@ -111,6 +111,7 @@
                                     <mat-option value="2">Kilogramos</mat-option>
                                     <mat-option value="3">Gramos</mat-option>
                                     <mat-option value="4">Unidad</mat-option>
+                                    <mat-option value="5">Mililitros</mat-option>
                                 </mat-select>
                             </mat-form-field>
 
@@ -133,15 +134,21 @@
 
                             <!-- <input  value="{{objeto}}"
                                                     type="text" name="idobjeto" ngModel required> -->
-                            <mat-form-field appearance="outline" class="example-form-textarea">
+                            <mat-form-field appearance="outline" class="example-form-input">
                                 <mat-label>Objeto del Gasto</mat-label>
                                 <input matInput type="text" class="example-right-align" value="{{tareass.objeto}}"
-                                    placeholder="Placeholder" NgModel required>
+                                    placeholder="Placeholder" readonly NgModel required>
+                            </mat-form-field>
+
+                            <mat-form-field appearance="outline" class="example-form-input">
+                                <mat-label>Unidad de Medida</mat-label>
+                                <input matInput type="text" class="example-right-align" value="{{tareass.unidad}}"
+                                    placeholder="Placeholder" readonly NgModel required>
                             </mat-form-field>
 
                             <!-- <input type="text" name="idobjeto">
                                                 <input type="text" disabled value="{{tareass.objeto}}"> -->
-                            <mat-form-field appearance="fill">
+                            <!-- <mat-form-field appearance="fill">
                                 <mat-label>Unidad de Medida</mat-label>
                                 <mat-select [(value)]="selected" name="idunidad" [(ngModel)]="unidadmedida_seleccionado"
                                     NgModel required>
@@ -150,7 +157,7 @@
                                     <mat-option value="3">Gramos</mat-option>
                                     <mat-option value="4">Unidad</mat-option>
                                 </mat-select>
-                            </mat-form-field>
+                            </mat-form-field> -->
 
                             <mat-form-field appearance="fill">
                                 <mat-label>Fuentes</mat-label>
