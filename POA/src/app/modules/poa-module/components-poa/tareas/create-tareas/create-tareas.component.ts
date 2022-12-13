@@ -59,7 +59,7 @@ export class CreateTareasComponent implements OnInit {
   public saldo2: number=0
   //public PoaList: Poa | any = {}
 
-  public unidadmedida_seleccionado:any;
+  public unidadmedida_seleccionado:string="";
   public objetogasto_seleccionado:string="";
   public grupogasto_seleccionado:string="";
   public fuente_seleccionado:string="";
@@ -96,7 +96,6 @@ export class CreateTareasComponent implements OnInit {
    
     total=cantidad*costounitario
     idobjeto=this.objeto
-    iduniad=this.unidadmedida_seleccionado
     console.log(nombre.toString(),descripcion,isPresupuesto,this.idActividad,idobjeto,idfuente,costounitario,total,cantidad);
     await this.tareasService.crearTarea(nombre,descripcion,isPresupuesto,this.idActividad,
       cantidad,costounitario,total,idobjeto,idfuente,iduniad).subscribe((res:any)=>{
@@ -179,8 +178,6 @@ public tareass:Presupuesto | any = {};
       //console.log(response.tarea.idobjeto)
       //console.log("esta es",this.tareass.idobjeto)
       this.objeto=response?.tarea?.idobjeto
-      this.unidadmedida_seleccionado=response?.tarea.idunidad
-
     //   if(this.tareass.idobjeto === response.tarea.idobjeto){
         
     //     console.log("aquiiiii")
