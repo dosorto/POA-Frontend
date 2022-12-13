@@ -8,6 +8,7 @@ import { Depto } from '../../poa-module/interfaces-poa/depto.model';
 import { Poa } from '../../poa-module/interfaces-poa/poa.model';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { Actividad } from '../../poa-module/interfaces-poa/actividad.model';
+import { Indicador } from '../../gestion-pei-module/interfaces-pei/indicadores.model';
 
 @Component({
   selector: 'app-all-reportes',
@@ -25,6 +26,7 @@ export class AllReportesComponent implements OnInit {
   public idDepto : number = 1;
   public idPoa :number=1;
   public listTareas : Array<Tareas>=[]
+  public listIndicadores : Array<Indicador>=[]
   public listnPTareas : Array<Tareas>=[]
   public listsPTareas : Array<Tareas>=[]
   //Listas
@@ -64,12 +66,14 @@ openSnackBar() {
     //this.selectpoa(this.idPoa,this.idDepto)
   }
 
-  displayedColumns: any[] = ['Nombre_Departamento',
-  'Nombre_Poa','Año','Fuente11','Fuente12','Fuente12B','Nombre_Actividad','Estado'
- ,'Tipo_Actividad','Categoria_Actividad','Nombre_Tarea','Cantidad',
- 'costo','total','fuente','grupo','objeto'
+  displayedColumns: any[] = ['Pei_Institucional','Dimension_Institucional','Objetivo_Institucional',
+  'Area_Institucional','Resultado_Institucional','Nombre_Departamento','Nombre_Poa','Año',
+  'Fuente11','Fuente12','Fuente12B','Nombre_Actividad','Estado','Tipo_Actividad','Categoria_Actividad',
+  'indicador','cantidad_Planificada','cantidad_Ejecutada','promedio_Alcanzado','Nombre_Tarea','Cantidad',
+ 'costo','total','fuente','grupo','objeto','Trimestre','CantidadP','Fecha_Inicio','Fecha_Final','Encargado'
 ];
   dataSource:any[]=[]
+
 
   async initData(idPoa:number,idDepto:number){
     // const deptos = await firstValueFrom(this.service.getDepto())
@@ -107,7 +111,7 @@ openSnackBar() {
     
     
     console.log("aqui",this.dataSource)
-
+  
    
     //console.log("00000000"+ this.poaList)
 

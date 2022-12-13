@@ -7,6 +7,7 @@ import { map, Observable } from "rxjs";
 import { Depto } from '../../poa-module/interfaces-poa/depto.model';
 import { Poa } from '../../poa-module/interfaces-poa/poa.model';
 import { Actividad } from '../../poa-module/interfaces-poa/actividad.model';
+import { Indicador } from '../../gestion-pei-module/interfaces-pei/indicadores.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +15,12 @@ import { Actividad } from '../../poa-module/interfaces-poa/actividad.model';
 export class ReportesService {
   private _tareas: Array<Tareas> = [];
   private _actividades:Array<Actividad>=[];
+  private _indicadores:Array<Indicador>=[];
   get tareas() {
     return this._tareas;
+  }
+  get indicadores() {
+    return this._indicadores;
   }
   get actividades() {
     return this._actividades;
@@ -32,6 +37,14 @@ export class ReportesService {
     return this.callHttp.httpGet<Array<Tareas>>(`${environment.servidor}reportes/get_all_depto_poa/` +idPoa.toString()+`/`+idDepto.toString())
       .pipe(map(response => {
         this._tareas = response;
+        return response;
+      }))
+  }
+
+  getPoa_id_iddeptoIndicador(idPoa:number,idDepto:number) {
+    return this.callHttp.httpGet<Array<Indicador>>(`${environment.servidor}reportes/indicadores/` +idPoa.toString()+`/`+idDepto.toString())
+      .pipe(map(response => {
+        this._indicadores = response;
         return response;
       }))
   }
