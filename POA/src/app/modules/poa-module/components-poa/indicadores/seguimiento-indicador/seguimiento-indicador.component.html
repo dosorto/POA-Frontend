@@ -108,93 +108,200 @@
 
         <div class="row text-center">
           <h1> </h1>
-          <h2 class="l-4">Seguimiento Indicador</h2>
+          <h2 class="l-4">Seguimiento de POA "2021"</h2>
           <span class="fs4">
             Para la Actividad: <span class="text-primary">{{ActividadList.nombre}}</span> <br>
           </span>
         </div>
       </div>
-
       <form class='row g-3 justify-content-center'>
         <mat-accordion>
-          <mat-expansion-panel hideToggle>
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                This is the expansion title
-              </mat-panel-title>
-              <mat-panel-description>
-                This is a summary of the content
-              </mat-panel-description>
-            </mat-expansion-panel-header>
-            <p>This is the primary content of the panel.</p>
-          </mat-expansion-panel>
           <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
             <mat-expansion-panel-header>
               <mat-panel-title>
-                Self aware panel
+                Primer Trimestre
               </mat-panel-title>
               <mat-panel-description>
                 Currently I am {{panelOpenState ? 'open' : 'closed'}}
               </mat-panel-description>
             </mat-expansion-panel-header>
-            <p>I'm visible because I am open</p>
+            <div class="modal-footer d-grid gap-2 d-md-flex justify-content-md-end">
+              <a class="btn btn-primary" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button"
+                aria-expanded="false" aria-controls="multiCollapseExample1">Enero</a>
+              <button class="btn btn-primary" type="button" data-bs-toggle="collapse"
+                data-bs-target="#multiCollapseExample2" aria-expanded="false"
+                aria-controls="multiCollapseExample2">Febrero</button>
+              <button class="btn btn-primary" type="button" data-bs-toggle="collapse"
+                data-bs-target="#multiCollapseExample3" aria-expanded="false"
+                aria-controls="multiCollapseExample3">Marzo</button>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="collapse multi-collapse" id="multiCollapseExample1">
+                  <div class="card card-body d-grid gap-2 d-md-flex justify-content-md-end">
+                    Some placeholder content for the first collapse component of this multi-collapse example. This panel
+                    is hidden by default but revealed when the user activates the relevant trigger.
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="collapse multi-collapse" id="multiCollapseExample2">
+                  <div class="card card-body d-grid gap-2 d-md-flex justify-content-md-end">
+                    Some placeholder content for the second collapse component of this multi-collapse example. This
+                    panel is hidden by default but revealed when the user activates the relevant trigger.
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="collapse multi-collapse" id="multiCollapseExample3">
+                  <div class="card card-body d-grid gap-2 d-md-flex justify-content-md-end">
+                    Some placeholder content for the second collapse component of this multi-collapse example. This
+                    panel is hidden by default but revealed when the user activates the relevant trigger.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </mat-expansion-panel>
+          <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Segundo Trimestre
+              </mat-panel-title>
+              <mat-panel-description>
+                Currently I am {{panelOpenState ? 'open' : 'closed'}}
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div class="modal-footer d-grid gap-2 d-md-flex justify-content-md-end">
+              <a class="btn btn-primary" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button"
+                aria-expanded="false" aria-controls="multiCollapseExample1">Abril</a>
+              <button class="btn btn-primary" type="button" data-bs-toggle="collapse"
+                data-bs-target="#multiCollapseExample2" aria-expanded="false"
+                aria-controls="multiCollapseExample2">Mayo</button>
+              <button class="btn btn-primary" type="button" data-bs-toggle="collapse"
+                data-bs-target="#multiCollapseExample3" aria-expanded="false"
+                aria-controls="multiCollapseExample3">Junio</button>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="collapse multi-collapse" id="multiCollapseExample1">
+                  <div class="card card-body d-grid gap-2 d-md-flex justify-content-md-end">
+                    Some placeholder content for the first collapse component of this multi-collapse example. This panel
+                    is hidden by default but revealed when the user activates the relevant trigger.
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="collapse multi-collapse" id="multiCollapseExample2">
+                  <div class="card card-body d-grid gap-2 d-md-flex justify-content-md-end">
+                    Some placeholder content for the second collapse component of this multi-collapse example. This
+                    panel is hidden by default but revealed when the user activates the relevant trigger.
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="collapse multi-collapse" id="multiCollapseExample3">
+                  <div class="card card-body d-grid gap-2 d-md-flex justify-content-md-end">
+                    Some placeholder content for the second collapse component of this multi-collapse example. This
+                    panel is hidden by default but revealed when the user activates the relevant trigger.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </mat-expansion-panel>
+          <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Tercer Trimestre
+              </mat-panel-title>
+              <mat-panel-description>
+                Currently I am {{panelOpenState ? 'open' : 'closed'}}
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div class="modal-footer d-grid gap-2 d-md-flex justify-content-md-end">
+              <a class="btn btn-primary" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button"
+                aria-expanded="false" aria-controls="multiCollapseExample1">Julio</a>
+              <button class="btn btn-primary" type="button" data-bs-toggle="collapse"
+                data-bs-target="#multiCollapseExample2" aria-expanded="false"
+                aria-controls="multiCollapseExample2">Agosto</button>
+              <button class="btn btn-primary" type="button" data-bs-toggle="collapse"
+                data-bs-target="#multiCollapseExample3" aria-expanded="false"
+                aria-controls="multiCollapseExample3">Septiembre</button>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="collapse multi-collapse" id="multiCollapseExample1">
+                  <div class="card card-body d-grid gap-2 d-md-flex justify-content-md-end">
+                    Some placeholder content for the first collapse component of this multi-collapse example. This panel
+                    is hidden by default but revealed when the user activates the relevant trigger.
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="collapse multi-collapse" id="multiCollapseExample2">
+                  <div class="card card-body d-grid gap-2 d-md-flex justify-content-md-end">
+                    Some placeholder content for the second collapse component of this multi-collapse example. This
+                    panel is hidden by default but revealed when the user activates the relevant trigger.
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="collapse multi-collapse" id="multiCollapseExample3">
+                  <div class="card card-body d-grid gap-2 d-md-flex justify-content-md-end">
+                    Some placeholder content for the second collapse component of this multi-collapse example. This
+                    panel is hidden by default but revealed when the user activates the relevant trigger.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </mat-expansion-panel>
+          <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Cuarto Trimestre
+              </mat-panel-title>
+              <mat-panel-description>
+                Currently I am {{panelOpenState ? 'open' : 'closed'}}
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div class="modal-footer d-grid gap-2 d-md-flex justify-content-md-end">
+              <a class="btn btn-primary" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button"
+                aria-expanded="false" aria-controls="multiCollapseExample1">Octubre</a>
+              <button class="btn btn-primary" type="button" data-bs-toggle="collapse"
+                data-bs-target="#multiCollapseExample2" aria-expanded="false"
+                aria-controls="multiCollapseExample2">Noviembre</button>
+              <button class="btn btn-primary" type="button" data-bs-toggle="collapse"
+                data-bs-target="#multiCollapseExample3" aria-expanded="false"
+                aria-controls="multiCollapseExample3">Diciembre</button>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="collapse multi-collapse" id="multiCollapseExample1">
+                  <div class="card card-body d-grid gap-2 d-md-flex justify-content-md-end">
+                    Some placeholder content for the first collapse component of this multi-collapse example. This panel
+                    is hidden by default but revealed when the user activates the relevant trigger.
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="collapse multi-collapse" id="multiCollapseExample2">
+                  <div class="card card-body d-grid gap-2 d-md-flex justify-content-md-end">
+                    Some placeholder content for the second collapse component of this multi-collapse example. This
+                    panel is hidden by default but revealed when the user activates the relevant trigger.
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="collapse multi-collapse" id="multiCollapseExample3">
+                  <div class="card card-body d-grid gap-2 d-md-flex justify-content-md-end">
+                    Some placeholder content for the second collapse component of this multi-collapse example. This
+                    panel is hidden by default but revealed when the user activates the relevant trigger.
+                  </div>
+                </div>
+              </div>
+            </div>
           </mat-expansion-panel>
         </mat-accordion>
-        <div class="col-10">
-          <label for="inputNombre" class="form-label">Nombre:</label>
-          <textarea type="text" class="form-control" id="inputNombre" rows="2" value="{{indicadores.nombre}}"
-            disabled></textarea>
-        </div>
-
-        <div class="col-10 mb-3">
-          <label for="inputDescripcion" class="form-label">Descripción:</label>
-          <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" value="{{indicadores.descripcion}}"
-            disabled></textarea>
-        </div>
-
-        <div class="col-8" *ngIf="indicadores.isCantidad === true">
-          <label for="inputArea" class="form-label">Cantidad Planificada:</label>
-        </div>
-        <div class="col-8" *ngIf="indicadores.isCantidad === false">
-          <label for="inputArea" class="form-label">Porcetaje Planificado:</label>
-        </div>
-        <div class="col-2">
-          <input type="text" class="form-control" id="cp" name="cantidadPlanificada" [(ngModel)]="cantidadPlanificada"
-            value="{{indicadores.cantidadPlanificada}}">
-        </div>
-
-
-        <div class="col-8" *ngIf="indicadores.isCantidad === true">
-          <label for="inputObjetivo" class="form-label">Cantidad Ejecutada:</label>
-        </div>
-        <div class="col-8" *ngIf="indicadores.isCantidad === false">
-          <label for="inputArea" class="form-label">Porcetaje Ejecutado:</label>
-        </div>
-        <div class="col-2">
-          <input type="text" class="form-control" id="ce" name="cantidadEjecutada" [(ngModel)]="cantidadEjecutada"
-            value="{{indicadores.cantidadEjecutada}}" (keyup)="promedio()">
-        </div>
-        <!-- <div class="col-1">%</div> -->
-
-        <div class="col-8">
-          <label for="inputObjetivo" class="form-label">Promedio Alcanzado:</label>
-        </div>
-        <div class="col-md-2">
-          <input type="text" class="form-control" id="pa" name="promedioAlcanzado" [(ngModel)]="promedioAlcanzado"
-            value="{{indicadores.promedioAlcanzado}}" disabled>
-        </div>
-
-        <div class="col-10" style="text-align: right;">
-          <div class="col-5  badge text-bg-info" *ngIf="indicadores.isPorcentaje === true">
-            <p>*Tipo de representación: 'Porcentaje' </p>
-          </div>
-          <p class="col-5  badge text-bg-info" *ngIf="indicadores.isCantidad === true"><span>*Tipo de representación:
-              'Cantidad' </span></p>
-        </div>
-
       </form>
-
-
       <br>
       <div class="container">
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
