@@ -21,6 +21,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatExpansionModule} from '@angular/material/expansion'; 
 
 // --------------------------------
 
@@ -192,7 +193,8 @@ MatButtonModule,
 NzTabsModule,
 EmptyComponent,
 MatProgressBarModule,
-MatTabsModule
+MatTabsModule,
+MatExpansionModule
 
   ],
   entryComponents: [ENTRYCOMPONENTS]

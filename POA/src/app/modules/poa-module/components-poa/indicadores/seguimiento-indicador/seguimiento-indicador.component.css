@@ -3,3 +3,6 @@
     left: 20px;
     top: 80px;
   }
+  .mat-mdc-form-field + .mat-mdc-form-field {
+    margin-left: 8px;
+  }

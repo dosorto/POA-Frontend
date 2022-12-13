@@ -16,7 +16,7 @@ import { Poa } from '../../../interfaces-poa/poa.model';
   styleUrls: ['./seguimiento-indicador.component.css']
 })
 export class SeguimientoIndicadorComponent implements OnInit {
-
+  panelOpenState = false;
   constructor(private IndicadoreService:IndicadorService,
               private router:Router,
               private _route: ActivatedRoute) { }
