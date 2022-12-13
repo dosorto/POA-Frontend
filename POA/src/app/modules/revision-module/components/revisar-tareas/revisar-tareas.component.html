@@ -1,3 +1,5 @@
+<top-bar></top-bar>
+<app-back-button [path]="['/revision/']"></app-back-button>
 <body class="justify-content-center mt-5 pt-5">
     <div class="container d-flex align-items-center justify-content-center ">
         <div class="col-12 ">
@@ -20,7 +22,7 @@
                                 <label class="btn btn-outline-success" for="inlineRadio1">Aceptar</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="btn-check" type="radio" name="nombre1" id="inlineRadio2" value="2">
+                                <input class="btn-check"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"  type="radio" name="nombre1" id="inlineRadio2" value="2">
                                 <label class="btn btn-outline-warning" for="inlineRadio2">Mandar a corrección</label>
                             </div>
                         </div>
@@ -35,7 +37,7 @@
                                 <label class="btn btn-outline-success" for="inlineRadio4">Aceptar</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="btn-check" type="radio" name="descripcion1" id="inlineRadio5" value="2">
+                                <input class="btn-check"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"  type="radio" name="descripcion1" id="inlineRadio5" value="2">
                                 <label class="btn btn-outline-warning" for="inlineRadio5">Mandar a corrección</label>
                             </div>
                         </div>
@@ -50,7 +52,7 @@
                                     <label class="btn btn-outline-success" for="inlineRadio6">Aceptar</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="btn-check" type="radio" name="cantidad1" id="inlineRadio7" value="2">
+                                    <input class="btn-check"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"  type="radio" name="cantidad1" id="inlineRadio7" value="2">
                                     <label class="btn btn-outline-warning" for="inlineRadio7">Mandar a corrección</label>
                                 </div>
                             </div>
@@ -65,7 +67,7 @@
                                     <label class="btn btn-outline-success" for="inlineRadio8">Aceptar</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="btn-check" type="radio" name="costounitario1" id="inlineRadio9" value="2">
+                                    <input class="btn-check"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"  type="radio" name="costounitario1" id="inlineRadio9" value="2">
                                     <label class="btn btn-outline-warning" for="inlineRadio9">Mandar a corrección</label>
                                 </div>
                             </div>
@@ -80,7 +82,7 @@
                                     <label class="btn btn-outline-success" for="inlineRadio10">Aceptar</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="btn-check" type="radio" name="total1" id="inlineRadio11" value="2">
+                                    <input class="btn-check"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"  type="radio" name="total1" id="inlineRadio11" value="2">
                                     <label class="btn btn-outline-warning" for="inlineRadio11">Mandar a corrección</label>
                                 </div>
                             </div>
@@ -97,7 +99,7 @@
                                     <label class="btn btn-outline-success" for="inlineRadio13">Aceptar</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="btn-check" type="radio" name="objetogasto1" id="inlineRadio14" value="2">
+                                    <input class="btn-check"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"  type="radio" name="objetogasto1" id="inlineRadio14" value="2">
                                     <label class="btn btn-outline-warning" for="inlineRadio14">Mandar a corrección</label>
                                 </div>
                             </div>
@@ -113,7 +115,7 @@
                                     <label class="btn btn-outline-success" for="inlineRadio15">Aceptar</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="btn-check" type="radio" name="grupogasto1" id="inlineRadio16" value="2">
+                                    <input class="btn-check"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"  type="radio" name="grupogasto1" id="inlineRadio16" value="2">
                                     <label class="btn btn-outline-warning" for="inlineRadio16">Mandar a corrección</label>
                                 </div>
                             </div>
@@ -128,7 +130,7 @@
                                     <label class="btn btn-outline-success" for="inlineRadio17" >Aceptar</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="btn-check" type="radio" name="unidadmedida1" id="inlineRadio18" value="2">
+                                    <input class="btn-check"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"  type="radio" name="unidadmedida1" id="inlineRadio18" value="2">
                                     <label class="btn btn-outline-warning" for="inlineRadio18">Mandar a corrección</label>
                                 </div>
                             </div>
@@ -142,10 +144,10 @@
                             <div class="container">
                                 <div class="form-check form-check-inline">
                                     <input class="btn-check" type="radio" name="fuente1" id="inlineRadio19" value="1">
-                                    <label class="btn btn-outline-success" for="inlineRadio20">Aceptar</label>
+                                    <label class="btn btn-outline-success" for="inlineRadio19">Aceptar</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="btn-check" type="radio" name="fuente1" id="inlineRadio20" value="2">
+                                    <input class="btn-check" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo" type="radio" name="fuente1" id="inlineRadio20" value="2">
                                     <label class="btn btn-outline-warning" for="inlineRadio20">Mandar a corrección</label>
                                 </div>
                             </div>
@@ -161,6 +163,28 @@
                 </div>
                 </div> 
             </div>
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Comentario para Corrección</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form>
+                        <div class="mb-3">
+                          <label for="message-text" class="col-form-label">Comentario:</label>
+                          <textarea class="form-control" id="message-text"></textarea>
+                        </div>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                      <button type="button" class="btn btn-primary">Enviar Corrección</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
         </div>
     </div>
 </body>
