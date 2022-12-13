@@ -1,5 +1,6 @@
 <top-bar></top-bar>
 <app-back-button [path]="['/home']"></app-back-button>
+
 <body class="justify-content-center mt-5 pt-5">
     <!-- Pantalla principal del modulo -->
     <div class="container d-flex align-items-center justify-content-center ">
@@ -7,11 +8,16 @@
         <div class="col-12 ">
             <br>
             <!-- espacio para el titulo, buscador y boton de agregar uno nuevo -->
-            <div class="container  rounded border border-dark" style="background-color: white;">
+            <div class="container  rounded border border-dark" style="background-color: white; box-shadow: 2px 2px 5px #999;">
+                <div class="row text-center">
+                    <h2></h2>
+                    <h1 class="l-4" style="font-weight: bold;">Mis POA</h1>
+                    <h2><em>Esta sección muestra los POA que usted tiene asignados por departamento</em></h2>
+                </div>
                 <div class="w-100 row m-auto">
                     <div class="w-75 row m-auto mb-2">
                         <div class="row">
-                            <label for="id" class="row col-form-label">Seleccione un departamento:</label>
+                            <h2 for="id" class="row col-form-label ">Seleccione un departamento:</h2>
                             <select class="form-control" aria-label="Default select example" name="id"
                                 [(ngModel)]="DeptoSeleccionado" (ngModelChange)="selectDepto()" required>
                                 <ng-container *ngFor="let x of DeptoList">
@@ -20,16 +26,11 @@
                             </select>
                         </div>
                     </div>
-                    <div class="row text-center">
-                        <h2></h2>
-                        <h2 class="l-4">Mis POA</h2>
-                    </div>
                     <div class="w-75 row m-auto mb-2">
                         <div><br></div>
-
                         <div class="col-8">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Buscar por nombre"
+                                <input type="text" class="form-control" placeholder="Buscar POA"
                                     aria-label="Buscar" aria-describedby="btnGroupAddon" [(ngModel)]="filter"
                                     name="filter">
                                 <div class="input-group-text" id="btnGroupAddon">
@@ -64,7 +65,7 @@
                                             Fuente11: {{x.fuente11| currency: 'L'}}
                                             Fuente12: {{x.fuente12| currency: 'L'}}
                                             Fuente12B: {{x.fuente12B| currency: 'L'}}
-                                                    
+
                                             Estado: Habilitado
                                         </p>
                                         <button type="button" class="btn btn-warning float-center"
@@ -83,13 +84,13 @@
                                     </ng-template>
 
                                     <div class="card-body" style="width: 15rem;">
-                                        <h1 class="card-title" >{{x.name}}</h1>
+                                        <h1 class="card-title">{{x.name}}</h1>
                                         <p class="card-text" style="width: 11rem;">
                                             Fecha: {{x.anio}}
                                             Fuente11: {{x.fuente11| currency: 'L '}}
                                             Fuente12: {{x.fuente12 | currency: 'L '}}
                                             Fuente12B: {{x.fuente12B | currency: 'L '}}
-                                                    
+
                                             Estado: Deshabilitado
                                         </p>
                                         <button type="button" class="btn btn-warning float-center"
