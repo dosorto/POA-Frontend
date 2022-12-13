@@ -87,6 +87,7 @@ public idInsti = Number(this.route.snapshot.paramMap.get('idInsti'));
       next: tareas => { this.tareas = tareas }
       // error: err => this.errorMessage = err
     });
+    
   }
 
   public tareass: Presupuesto | any = {};
@@ -157,7 +158,7 @@ public idInsti = Number(this.route.snapshot.paramMap.get('idInsti'));
       showConfirmButton: false,
       timer: 2500
     })
-
+    this.onBack()
   }
   
 
