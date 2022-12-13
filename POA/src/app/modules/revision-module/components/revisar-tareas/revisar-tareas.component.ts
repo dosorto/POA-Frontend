@@ -11,8 +11,10 @@ import { Presupuesto } from 'src/app/modules/poa-module/interfaces-poa/presupues
 import { Tareas } from 'src/app/modules/poa-module/interfaces-poa/tareas.model';
 import { PoaService } from 'src/app/modules/poa-module/services-poa/poa.service';
 import { TareasService } from 'src/app/modules/poa-module/services-poa/tareas.service';
+import { RevisionService } from '../../services/revision.services';
 import { Storage } from 'src/app/_core/global-services/local_storage.service';
 import Swal from 'sweetalert2';
+import { response } from 'express';
 
 
 @Component({
@@ -31,7 +33,8 @@ export class RevisarTareasComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, 
     private router: Router, 
-    private tareaservice:TareasService) { }
+    private tareaservice:TareasService,
+    private revisionService:RevisionService) { }
 
   public listPresupuesto: Array<Presupuesto>=[];
 
@@ -49,6 +52,27 @@ export class RevisarTareasComponent implements OnInit {
   public tareas: Tareas | any = {};
   public presupuesto: Presupuesto | any = {};
   public actividad: Actividad | any = {};
+
+  // elementos a evaluar:
+  public notificacion:string = '';
+
+  public nombre: string = '';
+  public nombre_aprobado: boolean = false;
+  public descripcion: string = '';
+  public descripcion_aprobado: boolean  = false;
+  public cantidad: string = '';
+  public cantidad_aprobado: boolean  = false;
+  public costoUnitario: string = '';
+  public costoUnitario_aprobado: boolean  = false;
+  public objeto_grupo: string = '';
+  public objeto_grupo_aprobado: boolean  = false;
+  public grupo_gasto: string = '';
+  public grupo_gasto_aprobado: boolean  = false;
+  public unidad_medida: string = '';
+  public unidad_medida_aprobado: boolean  = false;
+  public fuente: string = '';
+  public fuente_aprobado: boolean  = false;
+  public idTarea:number = 0;
 
 
   ngOnInit(): void {
@@ -138,6 +162,53 @@ export class RevisarTareasComponent implements OnInit {
     })
     this.onBack();
   }
-
+  
+  set_comment(){
+    console.log(this.notificacion);
+  }
+  createRevision(){
+    this.revisionService.crearRevision(this.nombre,this.nombre_aprobado,this.descripcion,this.descripcion_aprobado,this.cantidad,
+                                      this.cantidad_aprobado,this.costoUnitario,this.costoUnitario_aprobado,this.objeto_grupo,this.objeto_grupo_aprobado
+                                      ,this.grupo_gasto,this.grupo_gasto_aprobado,this.unidad_medida,this.unidad_medida_aprobado,this.fuente,
+                                      this.fuente_aprobado,this.id).subscribe(
+                                        (response:any) => {
+                                          Swal.fire({
+                                            icon: 'success',
+                                            title: '¡Creado con éxito!',
+                                            showConfirmButton: false,
+                                            timer: 2500
+                                          })
+                                          this.onBack();
+                                        },(error:any) => {
+                                          Swal.fire({
+                                            icon: 'error',
+                                            title: '¡Ha ocurrido un error!',
+                                            showConfirmButton: false,
+                                            timer: 2500
+                                          })
+                                          this.onBack();
+                                        }
+                                      )
+  }
+  resetRevision(){
+    this.revisionService.eliminarRevision(this.id).subscribe(
+      (response:any) => {
+        Swal.fire({
+          title: 'Eliminado con exito',
+          showConfirmButton: false,
+          color: 'white',
+          background: '#F5B7B1',
+          timer: 300,
+          showClass: {
+            popup: 'animate__animated animate__fadeInDown'
+          },
+          hideClass: {
+            popup: 'animate__animated animate__fadeOutUp'
+          }
+    
+        })
+      }
+    )
+  }
 
 }

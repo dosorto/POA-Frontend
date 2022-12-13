@@ -13,6 +13,7 @@ import { ThemePalette } from '@angular/material/core';
 import { Indicadores } from '../../../interfaces-poa/Indicadores.model';
 import { Depto } from '../../../interfaces-poa/depto.model';
 import { Poa } from '../../../interfaces-poa/poa.model';
+import { RevisionService } from '../../../../revision-module/services/revision.services';
 
 @Component({
   selector: 'app-detail-tareas',
@@ -30,7 +31,8 @@ export class DetailTareasComponent implements OnInit {
   
   constructor(private route: ActivatedRoute, 
     private router: Router, 
-    private tareaservice:TareasService) { }
+    private tareaservice:TareasService,
+    private RevisionService:RevisionService) { }
 
     //public listTareas : Array<Tareas>=[];
     public listPresupuesto: Array<Presupuesto>=[];
@@ -53,11 +55,14 @@ export class DetailTareasComponent implements OnInit {
   public tareas: Tareas | any = {};
   public presupuesto: Presupuesto | any = {};
   public actividad: Actividad | any = {};
+  public revision:any;
+  public existeRevision:boolean=true;
 
   ngOnInit(): void {
     if (this.id) {
       this.getTareass(this.id);
     }
+    this.obtenerRevision();
   }
 
   getTareass(id: number): void {
@@ -151,7 +156,18 @@ export class DetailTareasComponent implements OnInit {
     // window.location.reload();
 
   }
-
+  public obtenerRevision(){
+    this.RevisionService.getRevisionesByIdTarea(this.id).subscribe(
+      (response:any)=>{
+        this.revision = response
+        
+        if(response.length === 0){
+          this.existeRevision = false;
+        }
+        console.log(this.revision);
+      }
+    )
+  }
   // window.location.reload();
 }
   
