@@ -9,6 +9,7 @@ import { Poa } from '../../../interfaces-poa/poa.model';
 import { Depto } from "../../..//interfaces-poa/depto.model";
 import { Institucion } from 'src/app/modules/administracion-module/interfaces/institucion.model';
 import { UnidadEjecutora } from "../../..//interfaces-poa/unidad_ejecutora.model";
+import { MisPoasModuleComponent } from 'src/app/modules/mis-poas-module/mis-poas-module.component';
 @Component({
   selector: 'app-all-actividad-component',
   templateUrl: './all-actividad-component.component.html',

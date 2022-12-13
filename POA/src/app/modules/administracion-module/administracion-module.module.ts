@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { registerLocaleData } from '@angular/common';
 import { NZ_I18N } from 'ng-zorro-antd/i18n';
@@ -17,6 +17,7 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzAutocompleteModule } from 'ng-zorro-antd/auto-complete';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzTransferModule } from 'ng-zorro-antd/transfer';
+import { NzModalModule } from 'ng-zorro-antd/modal';
 
 registerLocaleData(es);
 
@@ -57,6 +58,7 @@ const router = RouterModule.forChild([
   // rutas de pei
   {path: 'users', component: AllUsuarioComponent},
   {path: 'roles', component: AllRolComponent},
+  {path: 'instituciones', component: AllInstitucionComponent},
 ]);
 
 @NgModule({
@@ -101,7 +103,8 @@ const router = RouterModule.forChild([
     NzInputModule,
     NzAutocompleteModule,
     NzSelectModule,
-    NzTransferModule
+    NzTransferModule,
+    NzModalModule
   ],
   providers: [
     { provide: NZ_I18N, useValue: es_ES }

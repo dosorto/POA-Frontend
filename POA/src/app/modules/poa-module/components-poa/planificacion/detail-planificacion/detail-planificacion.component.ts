@@ -55,14 +55,14 @@ export class DetailPlanificacionComponent implements OnInit {
         this.planificacion = response.Planificacion;
       });
 
-      this.act = this.actividadService
+    this.act = this.actividadService
       .getActividad(this.idActividad)
       .subscribe((response: any) => {
         this.act = response.actividad;
         console.log(this.act);
       });
 
-      this.poa = this.actividadService
+    this.poa = this.actividadService
       .getPoa_Id(this.idPoa)
       .subscribe((response: any) => {
         this.poa = response.poa;
@@ -74,7 +74,7 @@ export class DetailPlanificacionComponent implements OnInit {
         this.insti = response.Institucion;
       });
 
-      this.depto = this.actividadService
+    this.depto = this.actividadService
       .getDepto_Id(this.idDepto)
       .subscribe((response: any) => {
         this.depto = response.all_deptos;
@@ -82,28 +82,23 @@ export class DetailPlanificacionComponent implements OnInit {
   }
 
   //Para regresar a la lista de planificaciones despues de eliminar
-  // toList() {
-  //   this.router.navigate([
-  //     '/gestion_poa/planificacion/list',
-  //   ]);
-  // }
   toList() {
     this.router.navigate([
-      '/gestion_poa/planificacion/list/',
+      '/gestion_poa/actividad/tab/',  this.idActividad, this.idPoa, this.idDepto, this.idInsti,
+    ]);
+  }
+
+  // Para el boton de editar, pasa los id por la url
+  toUpdate() {
+    this.router.navigate([
+      '/gestion_poa/planificacion/update/',
+      this.id,
       this.idPoa,
       this.idActividad,
       this.idInsti,
       this.idDepto,
     ]);
   }
-
-  // Para el boton de editar, pasa los id por la url
-  toUpdate(){
-    this.router.navigate(['/gestion_poa/planificacion/update/', this.id, this.idPoa, this.idActividad,this.idInsti, this.idDepto,]);
-  };
-  // toUpdate() {
-  //   this.router.navigate(['/gestion_poa/planificacion/update/', this.id]);
-  // }
 
   // Pasa al listado de poas
   toPoa() {
