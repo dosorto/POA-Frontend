@@ -27,7 +27,8 @@ export class ActividadService {
   }
   public crearActividad (nombre:string,descripcion:string
     ,tipoActividad:string, categoria:string,
-    idPoa:number,responsables:string):any{
+    idPoa:number,responsables:string,
+    idResultado:number):any{
       const url = environment.servidor + 'actividad/crear';
  
       const params = new HttpParams({
@@ -38,7 +39,8 @@ export class ActividadService {
             tipoActividad: tipoActividad,
             categoria:categoria,
             idPoa:idPoa,
-            responsables:responsables
+            responsables:responsables,
+            idResultado:idResultado
        }
        });
  

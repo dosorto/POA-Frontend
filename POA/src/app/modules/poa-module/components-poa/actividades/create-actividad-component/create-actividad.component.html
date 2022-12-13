@@ -56,6 +56,17 @@
                     </div>
 
                     <div class="mb-3 mx-2 px-2 row">
+                        <label for="id" class="row col-form-label">Seleccione un Resultado:</label>
+                                    <select class="form-select" aria-label="Default select example" name="id"
+                                        [(ngModel)]="resultado_seleccionado" required>
+                                        <ng-container *ngFor="let x of resultadoList">
+                                            <option value="{{x.id}}" [selected]="x.id===idPei">{{x.nombre}}</option>
+                                        </ng-container>
+                        </select>
+                 
+                </div>
+
+                    <div class="mb-3 mx-2 px-2 row">
                         <label for="responsables" class="row col-form-label">responsables:</label>
                         <ng-select class="form-select" aria-label="Default select example" name="responsables"
                             [items]="listaEmpleados" bindLabel="nombre" bindValue="id" [multiple]="true" placeholder=""

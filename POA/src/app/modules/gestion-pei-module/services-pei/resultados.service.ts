@@ -172,10 +172,17 @@ export class ResultadosService {
   getResultad(id: number): Observable<Resultado | undefined> {
     return this.getResultado2()
       .pipe(
-        map((resultado: Resultado[]) => resultado.find(p => p.id === id))
+        map((resultado: Resultado[]) => resultado.find(p => p.id === id)) 
       );
   }
 
+  MostrarResultado(idPei:number){
+    return this.callHttp.httpGet<Array<Resultado>>(`${environment.servidor}resultados/getResultado_by_idPei/` + idPei.toString())
+      .pipe(map(response => {
+        this._resultado = response;
+        return response;
+      }))
+  }
   // getResultados(): Observable<Resultado[]>{
 
   //   return this.http.get<Resultado[]>(environment.servidor + `resultados/get-all`)

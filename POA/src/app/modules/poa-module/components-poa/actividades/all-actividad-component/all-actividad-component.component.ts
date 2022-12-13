@@ -9,7 +9,11 @@ import { Poa } from '../../../interfaces-poa/poa.model';
 import { Depto } from "../../..//interfaces-poa/depto.model";
 import { Institucion } from 'src/app/modules/administracion-module/interfaces/institucion.model';
 import { UnidadEjecutora } from "../../..//interfaces-poa/unidad_ejecutora.model";
-import { MisPoasModuleComponent } from 'src/app/modules/mis-poas-module/mis-poas-module.component';
+import { Pei } from 'src/app/modules/gestion-pei-module/interfaces-pei/pei.model';
+import { Resultado } from 'src/app/modules/gestion-pei-module/interfaces-pei/resultado.model';
+import { PeiService } from 'src/app/modules/gestion-pei-module/services-pei/pei.service';
+import { ResultadosService } from 'src/app/modules/gestion-pei-module/services-pei/resultados.service';
+
 @Component({
   selector: 'app-all-actividad-component',
   templateUrl: './all-actividad-component.component.html',
@@ -19,6 +23,8 @@ export class AllActividadComponent implements OnInit {
   constructor(
     private Storage: Storage,
     private service: ActividadService,
+    private peiService:PeiService,
+    private ResultadosService:ResultadosService,
     private router: Router,
     private _route: ActivatedRoute
   ) { }
@@ -48,7 +54,8 @@ export class AllActividadComponent implements OnInit {
   public filter: string = ""; // para filtar la tabla
   public _delete: string = ""; // define que elemento sera eliminado
   public data_update: Area | any = this.area_example; // define datos de un elemento a actualizar
-  public pei_seleccionado: string = "";
+  public pei_seleccionado:string = "";
+  public PeiList:Array<Pei> = [];
 
   public page: number = 0;
   public step: number = 5;
@@ -66,6 +73,8 @@ export class AllActividadComponent implements OnInit {
     this.DeptoList = departamentos;
     const instituciones = await firstValueFrom(this.service.getInstituciones());
     this.InstitucionesList = instituciones;
+
+    this.PeiList = await firstValueFrom(this.peiService.MostrarPei(this.idInsti));
 //console.log(this.DeptoList);
        console.log(this.depto);
        console.log(this.insti);
@@ -78,7 +87,12 @@ export class AllActividadComponent implements OnInit {
     })
     this.depto = await this.service.getDepto_Id(this.idDepto).subscribe((response: any) => {
       this.depto = response.all_deptos;
+    
     })
+
+
+    
+    
 
    
 
@@ -93,7 +107,7 @@ export class AllActividadComponent implements OnInit {
     this.router.navigate(['/gestion_poa/actividad/detail/', idActividad.toString(), this.idPoa, this.idInsti, this.idDepto]);
   }
   toCreate() {
-    this.router.navigate(['/gestion_poa/actividad/create/', this.idPoa.toString(), this.idInsti, this.idDepto]);
+    this.router.navigate(['/gestion_poa/actividad/create/', this.idPoa.toString(), this.idInsti, this.idDepto, this.pei_seleccionado]);
   }
   toHome() {
     this.router.navigate(['/home']);
@@ -105,6 +119,12 @@ export class AllActividadComponent implements OnInit {
     this.router.navigate(['/gestion_poa/actividad/list/', this.poaSeleccionado, this.idInsti, this.idDepto,this.idUE]);
     setTimeout(function () {
       window.location.reload();
+    }, 10)
+  }
+  
+  selectPei(){
+    this.router.navigate(['/gestion_poa/actividad/list/',this.poaSeleccionado, this.idInsti, this.idDepto,this.idUE]);
+    setTimeout(function () {
     }, 10)
   }
 
