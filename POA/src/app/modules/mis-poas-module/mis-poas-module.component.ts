@@ -1,27 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { NgModel, FormControl, FormsModule} from '@angular/forms';
-import { NgModule } from '@angular/core';
 import { Storage } from 'src/app/_core/global-services/local_storage.service';
-import { AllPoaComponent } from '../poa-module/components-poa/POA/all-poa/all-poa.component';
-import { AllActividadComponent } from '../poa-module/components-poa/actividades/all-actividad-component/all-actividad-component.component';
 import { POAFiltroPipe } from '../poa-module/pipes-poa/poafiltro.pipe';
-import { POApaginacionPipe } from '../poa-module/pipes-poa/poapaginacion.pipe';
-import { ActividadFiltroPipe } from '../poa-module/pipes-poa/actividad-filtro.pipe';
-import { ActividadPaginacionPipe } from '../poa-module/pipes-poa/actividad-paginacion.pipe';
 import { PoaService } from '../poa-module/services-poa/poa.service';
 import { Poa } from '../poa-module/interfaces-poa/poa.model';
 import { Depto } from '../poa-module/interfaces-poa/depto.model';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
-import { UnidadEjecutora } from '../poa-module/interfaces-poa/unidad_ejecutora.model';
 import { Institucion } from '../administracion-module/interfaces/institucion.model';
-import { Area } from '../gestion-pei-module/interfaces-pei/area.model';
 import { Actividad } from '../poa-module/interfaces-poa/actividad.model';
 import { ActividadService } from '../poa-module/services-poa/actividad.service';
 import { TareasService } from '../poa-module/services-poa/tareas.service';
-import { Tareas } from '../poa-module/interfaces-poa/tareas.model';
-import { Indicadores } from '../poa-module/interfaces-poa/Indicadores.model';
 
 @Component({
   selector: 'app-mis-poas-module',

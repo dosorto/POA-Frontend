@@ -8,7 +8,6 @@ import { POApaginacionPipe } from './poapaginacion.pipe';
 
 import { TopBarComponent } from '../../_core/top-bar/top-bar.component'
 import { BackButtonComponent } from 'src/app/_core/back-button/back-button.component';
-import { AllActividadComponent } from '../poa-module/components-poa/actividades/all-actividad-component/all-actividad-component.component';
 
 const router = RouterModule.forChild([
   { path: ':idInsti/:idUE/:idDepto', component: MisPoasModuleComponent },

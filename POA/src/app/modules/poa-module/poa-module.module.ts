@@ -85,9 +85,6 @@ import { IndicadorPaginacionPipe } from './pipes-poa/indicador-paginacion.pipe';
 import { TabActividadesComponentsComponent } from './components-poa/actividades/tab-actividades-components/tab-actividades-components.component';
 import { DetailPresupuestoComponent } from './components-poa/tareas/detail-presupuesto/detail-presupuesto.component';
 import { PresupuestoPoaComponent } from './components-poa/POA/presupuesto-poa/presupuesto-poa.component';
-
-
-
 // enrutamiento
 const router = RouterModule.forChild([
   // rutas principal
@@ -198,6 +195,9 @@ MatExpansionModule,
 NzPopoverModule
 
   ],
-  entryComponents: [ENTRYCOMPONENTS]
+  entryComponents: [ENTRYCOMPONENTS],
+  exports:[
+    AllActividadComponent
+  ]
 })
 export class PoaModuleModule { }
