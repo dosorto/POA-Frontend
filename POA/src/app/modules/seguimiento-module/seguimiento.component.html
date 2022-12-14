@@ -19,7 +19,7 @@
                     <div class="w-75 row m-auto mb-2">
                         <div class="row">
                             <label for="id" class="row col-form-label">Seleccione un POA:</label>
-                            <select class="form-control" aria-label="Default select example" name="id"
+                            <select class="form-control" style="border-radius: 20px;" aria-label="Default select example" name="id"
                                 [(ngModel)]="poaSeleccionado" (ngModelChange)="selectPoa()" required>
                                 <ng-container *ngFor="let x of poa">
                                     <option value="{{x.id}}" [selected]="x.id===idPoa">{{x.name}}</option>
@@ -27,17 +27,6 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-10 select">
-                        <label for="id" class="row col-form-label " style="font-size: 18px;"><u><b>Seleccione una Actividad:</b></u></label>
-                                    <select class="form-control" style="border-radius: 20px;" aria-label="Default select example" name="id"
-                                        [(ngModel)]="actividad_seleccionada"
-                                        (ngModelChange)="selectActividad()" required>
-                      
-                                        <ng-container *ngFor="let x of ActividadListS">
-                                            <option value="{{x.id}}" [selected]="x.id===idActividad">{{x.nombre}}</option>
-                                        </ng-container>
-                        </select>
-                      </div>
                 </div>
                 <ng-container *ngIf="actividad.length > 0; ">
                     <!-- tabla dinamica que muestra todas las Dimensión -->
@@ -64,8 +53,8 @@
                                         </ng-template>
                                     </td>
                                     <td >{{x.nombre}}</td>
-                                    <td>{{x.tareas[0].nombre}}</td>
-                                    <td>{{x.indicadoresPoas[0].nombre}}</td>
+                                    <td>{{x.tareas.length}}</td>
+                                    <td>{{x.indicadoresPoas.length}}</td>
 
                                     <td>
                                         <div class="btn-group" role="group" aria-label="Basic mixed styles example">
