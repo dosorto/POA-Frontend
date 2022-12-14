@@ -8,7 +8,7 @@ import { TopBarComponent } from '../../_core/top-bar/top-bar.component'
 import { BackButtonComponent } from 'src/app/_core/back-button/back-button.component';
 
 const router = RouterModule.forChild([
-  {path: '', component: SeguimientoComponent}
+  {path: ':idPoa', component: SeguimientoComponent}
 ]
 )
 

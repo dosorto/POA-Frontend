@@ -13,9 +13,11 @@
             <div class="w-75 row m-auto mb-2">
                 <div class="row">
                     <label for="id" class="row col-form-label">Seleccione un POA:</label>
-                    <select class="form-control" aria-label="Default select example" name="id" required>
-
-
+                    <select class="form-control" aria-label="Default select example" name="id"
+                        [(ngModel)]="poaSeleccionado" (ngModelChange)="selectPoa()" required>
+                        <ng-container *ngFor="let x of poa">
+                            <option value="{{x.id}}" [selected]="x.id===idPoa">{{x.name}}</option>
+                        </ng-container>
                     </select>
                 </div>
             </div>
