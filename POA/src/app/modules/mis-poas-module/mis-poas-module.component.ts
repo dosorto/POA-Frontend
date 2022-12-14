@@ -88,15 +88,15 @@ export class MisPoasModuleComponent implements OnInit {
   toDetail(idPoa: number) {
     this.router.navigate(['/gestion_poa/actividad/tab/', idPoa.toString(), this.idInsti, this.idUE, this.idDepto,]);
   }
-  toActividad(){
-    this.router.navigate(['/gestion_poa/actividad/list/', this.id,this.idInsti,this.idDepto,this.idUE]); 
+  toActividad(idPoa: number){
+    this.router.navigate(['/gestion_poa/actividad/list/', idPoa.toString(),this.idInsti,this.idDepto,this.idUE]); 
   }
 
   toHome() {
     this.router.navigate(['/home']);
   }
   selectDepto() {
-    this.router.navigate(['/mis_poas/', this.DeptoSeleccionado]);
+    this.router.navigate(['/mis_poas/', this.idInsti,this.idUE,this.DeptoSeleccionado]);
     setTimeout(function () {
       window.location.reload();
     }, 10)
