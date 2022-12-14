@@ -39,6 +39,7 @@ export class SeguimientoComponent implements OnInit {
   private poa_example: Poa | any = {};
   rutaActual = "poa";
   public actividad: Actividad | any = {};
+  public actividad1: Array <Actividad>= [];
   public poa: Array<Poa> = [];
   public DeptoList: Array<Depto> = [];
   public InstitucionesList: Array<Institucion> = [];
@@ -62,10 +63,12 @@ export class SeguimientoComponent implements OnInit {
   async initData(){
     const actividades = await firstValueFrom(this.service.MostrarAllActivities(this.idPoa));
     this.actividad = actividades;
+    console.log("hola",this.actividad);
     this.poa = await firstValueFrom(this.service.MisPOAS(this.user.empleado.id,this.idDepto));
     const poas = await firstValueFrom(this.service.getPOA());
     this.poa = poas;
     console.log(this.poa);
+
     this.maxPages = Math.round(this.poa.length / this.step);
     // sirve para generar los botones en paginacion
     this.enumPages = Array(this.maxPages).fill(null).map((x, i) => i).slice(1, this.maxPages + 1);
