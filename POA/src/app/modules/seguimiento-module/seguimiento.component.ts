@@ -84,7 +84,7 @@ export class SeguimientoComponent implements OnInit {
   }
 
   selectPoa() {
-    this.router.navigate(['/seguimiento/', this.poaSeleccionado]);
+    this.router.navigate(['/seguimiento/', this.poaSeleccionado,this.idActividad]);
     setTimeout(function () {
       window.location.reload();
     }, 10)
@@ -95,7 +95,7 @@ export class SeguimientoComponent implements OnInit {
   }
 
   selectActividad() {
-    this.router.navigate(['/seguimiento/', this.poaSeleccionado, this.actividad_seleccionada]);
+    this.router.navigate(['/seguimiento/', this.idPoa, this.actividad_seleccionada]);
     setTimeout(function () {
       window.location.reload();
     }, 10)
