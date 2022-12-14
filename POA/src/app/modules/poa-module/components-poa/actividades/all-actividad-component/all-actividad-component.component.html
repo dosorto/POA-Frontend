@@ -38,17 +38,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="w-75 row m-auto mb-2">
-                        <div class="row">
-                            <label for="id" class="row col-form-label">Seleccione un Pei:</label>
-                            <select class="form-control" aria-label="Default select example" name="id"
-                                [(ngModel)]="pei_seleccionado" (ngModelChange)="selectPei()" required>
-                                <ng-container *ngFor="let x of PeiList">
-                                    <option value="{{x.id}}" [selected]="x.id===idPoa">{{x.name}}</option>
-                                </ng-container>
-                            </select>
-                        </div>
-                    </div>
+         
 
                        <!-- <div class="mb-3 mx-2 px-2 row">
                         <label for="id" class="row col-form-label">Seleccione un Pei:</label>

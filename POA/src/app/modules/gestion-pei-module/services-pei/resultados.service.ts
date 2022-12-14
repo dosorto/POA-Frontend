@@ -251,5 +251,11 @@ export class ResultadosService {
     };
     // alternativa a update
    
-
+    Probando(nombre:string){
+      return this.callHttp.httpGet<Array<Resultado>>(`${environment.servidor}resultado/prueba/` + nombre.toString())
+        .pipe(map(response => {
+          this._resultado = response;
+          return response;
+        }))
+    }
 }
