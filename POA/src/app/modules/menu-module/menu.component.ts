@@ -48,6 +48,6 @@ export class MenuComponent implements OnInit {
   }
 
   toSeguimiento(){
-    this.router.navigate(['seguimiento/1'])
+    this.router.navigate(['seguimiento/1/1'])
   }
 }

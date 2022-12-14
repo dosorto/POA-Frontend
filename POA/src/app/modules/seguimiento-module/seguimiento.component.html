@@ -1,5 +1,5 @@
 <top-bar></top-bar>
-<app-back-button [path]="['/']"></app-back-button>
+<app-back-button [path]="['/home']"></app-back-button>
 
 <body class="justify-content-center mt-5 pt-5">
 
@@ -27,6 +27,17 @@
                             </select>
                         </div>
                     </div>
+                    <div class="col-10 select">
+                        <label for="id" class="row col-form-label " style="font-size: 18px;"><u><b>Seleccione una Actividad:</b></u></label>
+                                    <select class="form-control" style="border-radius: 20px;" aria-label="Default select example" name="id"
+                                        [(ngModel)]="actividad_seleccionada"
+                                        (ngModelChange)="selectActividad()" required>
+                      
+                                        <ng-container *ngFor="let x of ActividadListS">
+                                            <option value="{{x.id}}" [selected]="x.id===idActividad">{{x.nombre}}</option>
+                                        </ng-container>
+                        </select>
+                      </div>
                 </div>
                 <ng-container *ngIf="actividad.length > 0; ">
                     <!-- tabla dinamica que muestra todas las Dimensión -->
@@ -58,8 +69,10 @@
 
                                     <td>
                                         <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                                            <button type="button" class="btn btn-secondary">Gestionar</button>
-
+                                            <button style="background-color: #FF7615; color: white;" 
+                                            title="Seguimiento del indicador" type="button" class="btn" 
+                                            (click)="toSeguimiento(x.id)"><i class="bi bi-card-checklist"></i></button>
+                               
 
                                         </div>
                                     </td>

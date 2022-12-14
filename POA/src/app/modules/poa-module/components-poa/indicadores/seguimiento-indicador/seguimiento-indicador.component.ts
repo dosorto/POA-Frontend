@@ -71,7 +71,7 @@ async initData(){
 }
 
 toTab(){
-  this.router.navigate(['/gestion_poa/actividad/tab/',this.idActividad,this.idPoa,this.idDepto,this.idInsti]); //revisar
+  this.router.navigate(['/seguimiento/',this.idPoa,this.idActividad]); //revisar
 }
 promedio(){
     this.promedioAlcanzado = (this.cantidadEjecutada / this.indicadores.cantidadPlanificada );

@@ -46,7 +46,7 @@ export class SeguimientoComponent implements OnInit {
   public actividad: Actividad | any = {};
   public tarea: Tareas | any = {};
   public indicador: Indicadores | any = {};
-  public actividad1: Array <Actividad>= [];
+  public actividad1: Array<Actividad> = [];
   public poa: Array<Poa> = [];
   public DeptoList: Array<Depto> = [];
   public InstitucionesList: Array<Institucion> = [];
@@ -60,6 +60,8 @@ export class SeguimientoComponent implements OnInit {
   public data_update: Poa | any = this.poa_example; // define datos de un elemento a actualizar
   public poa_seleccionado: string = "";
   public poaSeleccionado: number = this.idPoa;
+  public actividad_seleccionada: number = this.idActividad;
+  public ActividadListS: Array<Actividad> = []
 
   public page: number = 0;
   public actualpage: number = 1;
@@ -67,11 +69,11 @@ export class SeguimientoComponent implements OnInit {
   public maxPages: number = 1;
   public enumPages: number[] = []
 
-  async initData(){
-    const actividades = await firstValueFrom(this.service.MostrarAllActivities(this.idPoa)); 
+  async initData() {
+    const actividades = await firstValueFrom(this.service.MostrarAllActivities(this.idPoa));
     this.actividad = actividades;
-    console.log("hola",this.actividad);
-    this.poa = await firstValueFrom(this.service.MisPOAS(this.user.empleado.id,this.idDepto));
+    console.log("hola", this.actividad);
+    this.poa = await firstValueFrom(this.service.MisPOAS(this.user.empleado.id, this.idDepto));
     const poas = await firstValueFrom(this.service.getPOA());
     this.poa = poas;
     console.log(this.poa);
@@ -88,15 +90,27 @@ export class SeguimientoComponent implements OnInit {
     }, 10)
   }
 
-  nextPage(){
+  toSeguimiento(idIndicador: number) {
+    this.router.navigate(['/gestion_poa/indicadores/seguimiento/', idIndicador.toString(), this.idPoa,this.idActividad]);
+  }
+
+  selectActividad() {
+    this.router.navigate(['/seguimiento/', this.poaSeleccionado, this.actividad_seleccionada]);
+    setTimeout(function () {
+      window.location.reload();
+    }, 10)
+  }
+
+
+  nextPage() {
     this.page = this.page + this.step;
     this.actualpage++;
   }
-  previousPage(){
+  previousPage() {
     this.page = this.page - this.step;
     this.actualpage--;
   }
-  selectPage(numPage:number){
+  selectPage(numPage: number) {
     this.page = numPage * this.step;
   }
 
