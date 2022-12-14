@@ -85,6 +85,9 @@ import { IndicadorPaginacionPipe } from './pipes-poa/indicador-paginacion.pipe';
 import { TabActividadesComponentsComponent } from './components-poa/actividades/tab-actividades-components/tab-actividades-components.component';
 import { DetailPresupuestoComponent } from './components-poa/tareas/detail-presupuesto/detail-presupuesto.component';
 import { PresupuestoPoaComponent } from './components-poa/POA/presupuesto-poa/presupuesto-poa.component';
+
+import { ResultadosFiltroPipe } from './pipes-poa/resultados-filtro.pipe';
+
 // enrutamiento
 const router = RouterModule.forChild([
   // rutas principal
@@ -97,7 +100,7 @@ const router = RouterModule.forChild([
   {path: 'poa/detail/:id/:idInsti/:idUE/:idDepto', component: DetailPoaComponent},
   {path: 'poa/list/:idInsti/:idUE/:idDepto', component: AllPoaComponent},
   // rutas de actividades
-  {path: 'actividad/create/:idPoa/:idInsti/:idDepto/:idPei', component: CreateActividadComponent},
+  {path: 'actividad/create/:idPoa/:idInsti/:idDepto', component: CreateActividadComponent},
   {path: 'actividad/update/:id/:idPoa/:idInsti/:idDepto', component: UpdateActividadComponent},
   {path: 'actividad/detail/:id/:idPoa/:idInsti/:idDepto', component: DetailActividadComponent},
   {path: 'actividad/list/:idPoa/:idInsti/:idDepto/:idUE', component: AllActividadComponent},
@@ -166,7 +169,8 @@ const router = RouterModule.forChild([
     TabActividadesComponentsComponent,
     DetailPresupuestoComponent,
     ENTRYCOMPONENTS,
-    PresupuestoPoaComponent
+    PresupuestoPoaComponent,
+    ResultadosFiltroPipe
 
   ],
   imports: [

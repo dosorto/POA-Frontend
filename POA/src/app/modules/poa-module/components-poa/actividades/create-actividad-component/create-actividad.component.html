@@ -1,5 +1,7 @@
 <top-bar></top-bar>
-<app-back-button [path]="['/gestion_poa/actividad/list/',this.idPoa,this.idInsti,this.idDepto,this.idUE]"></app-back-button>
+<app-back-button
+    [path]="['/gestion_poa/actividad/list/',this.idPoa,this.idInsti,this.idDepto,this.idUE]"></app-back-button>
+
 <body class="justify-content-center abs-center mt-5 pt-5" style="background-color: #EFF0FD;">
 
     <div class="col-12">
@@ -14,14 +16,14 @@
                 </div>
             </div>
             <form #AreaC="ngForm"
-                (ngSubmit)="crearArea(AreaC.value.nombre,AreaC.value.descripcion,AreaC.value.tipoActividad,AreaC.value.categoria)"
+                (ngSubmit)="crearArea(AreaC.value.nombre1,AreaC.value.descripcion,AreaC.value.tipoActividad,AreaC.value.categoria)"
                 id="createArea">
                 <div class="container">
                     <!-- Campo para el nombre de area -->
                     <div class="mb-3 mx-2 px-2 row">
-                        <label for="nombre" class="row col-form-label">Nombre de Actividad:</label>
+                        <label for="nombre1" class="row col-form-label">Nombre de Actividad:</label>
                         <div class="row">
-                            <input type="text" class="form-control" name="nombre" ngModel required>
+                            <input type="text" class="form-control" name="nombre1" ngModel required>
                         </div>
                     </div>
                     <div class="mb-3 mx-2 px-2 row">
@@ -30,7 +32,6 @@
                             <input type="text" class="form-control" name="descripcion" ngModel required>
                         </div>
                     </div>
-
                     <div class="mb-3 mx-2 px-2 row">
                         <label for="tipoActividad" class="row col-form-label">Tipo de actividad:</label>
                         <select class="form-select" aria-label="Default select example" name="tipoActividad"
@@ -38,8 +39,6 @@
                             <option selected>Seleccione el tipo de actual de la actividad</option>
                             <option value="1">ACADEMICA</option>
                             <option value="2">ADMINISTRATIVA</option>
-
-
                         </select>
                     </div>
                     <div class="mb-3 mx-2 px-2 row">
@@ -50,55 +49,36 @@
                             <option value="1">COORDINACION</option>
                             <option value="2">JEFATURA</option>
                             <option value="2">ADMINISTRATIVA</option>
-
-
                         </select>
                     </div>
-
                     <div class="mb-3 mx-2 px-2 row">
-                        <label for="id" class="row col-form-label">Seleccione un Resultado:</label>
-                                    <select class="form-select" aria-label="Default select example" name="id"
-                                        [(ngModel)]="resultado_seleccionado" required>
-                                        <ng-container *ngFor="let x of resultadoList">
-                                            <option value="{{x.id}}" [selected]="x.id===idPei">{{x.nombre}}</option>
-                                        </ng-container>
-                        </select>
-                 
-                </div>
+                        <label for="id" class="row col-form-label">Resultado:</label>
+                        <mat-form-field appearance="fill" class="example-form-textarea">
 
+                            <textarea matInput type="text" [(ngModel)]="nombre" name="nombre" [matAutocomplete]="auto"
+                                (ngModelChange)="mostrarObjeto2(nombre)" ngModel required></textarea>
+                            <button mat-mini-fab color="warn" *ngIf="nombre" matSuffix mat-icon-button
+                                aria-label="Clear" (click)="nombre=''">
+                                <mat-icon>close</mat-icon>
+                            </button>
+                            <mat-autocomplete #auto="matAutocomplete">
+                                <mat-option *ngFor="let x of listResultado |resultadosFiltro:nombre;"
+                                    [value]="x.nombre">
+                                    {{x.nombre}}
+                                </mat-option>
+                            </mat-autocomplete>
+                        </mat-form-field>
+
+                    </div>
                     <div class="mb-3 mx-2 px-2 row">
                         <label for="responsables" class="row col-form-label">responsables:</label>
                         <ng-select class="form-select" aria-label="Default select example" name="responsables"
                             [items]="listaEmpleados" bindLabel="nombre" bindValue="id" [multiple]="true" placeholder=""
                             [(ngModel)]="selectedEncargadosIds" required>
 
-
-
-                            </ng-select>
+                        </ng-select>
                     </div>
-
-
-
-
-
-                    <!--      <div class="mb-3 mx-2 px-2 row">
-                    <label for="estado" class="row col-form-label">Estado:</label>
-                    <div class="row">
-                        <input type="text" class="form-control" name="estado" ngModel required>
-                    </div>
-            </div> -->
-
-
-                    <!--  <div class="mb-3 mx-2 px-2 row">
-        <label for="nombre" class="row col-form-label">Resultado:</label>
-        <div class="row">
-            <input type="text" class="form-control" name="nombre" ngModel required>
-        </div>
-</div> -->
-
                 </div>
-
-
                 <div class="container">
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                         <button type="button" class="btn btn-secondary" (click)="toList()">Regresar</button>

@@ -107,7 +107,7 @@ export class AllActividadComponent implements OnInit {
     this.router.navigate(['/gestion_poa/actividad/detail/', idActividad.toString(), this.idPoa, this.idInsti, this.idDepto]);
   }
   toCreate() {
-    this.router.navigate(['/gestion_poa/actividad/create/', this.idPoa.toString(), this.idInsti, this.idDepto, this.pei_seleccionado]);
+    this.router.navigate(['/gestion_poa/actividad/create/', this.idPoa.toString(), this.idInsti, this.idDepto]);
   }
   toHome() {
     this.router.navigate(['/home']);
