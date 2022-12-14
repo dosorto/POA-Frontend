@@ -22,6 +22,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatExpansionModule} from '@angular/material/expansion'; 
+import { NzPopoverModule } from 'ng-zorro-antd/popover';
 
 // --------------------------------
 
@@ -90,7 +91,7 @@ import { PresupuestoPoaComponent } from './components-poa/POA/presupuesto-poa/pr
 // enrutamiento
 const router = RouterModule.forChild([
   // rutas principal
-  {path: '', component: GestionPoasComponent},
+  {path: '', component: PresupuestoPoaComponent},
 
 
   // rutas de poa
@@ -98,9 +99,8 @@ const router = RouterModule.forChild([
   {path: 'poa/update/:id/:idInsti/:idUE/:idDepto', component: UpdatePoaComponent},
   {path: 'poa/detail/:id/:idInsti/:idUE/:idDepto', component: DetailPoaComponent},
   {path: 'poa/list/:idInsti/:idUE/:idDepto', component: AllPoaComponent},
-  {path: 'poa/presupuesto', component:PresupuestoPoaComponent},
   // rutas de actividades
-  {path: 'actividad/create/:idPoa/:idInsti/:idDepto', component: CreateActividadComponent},
+  {path: 'actividad/create/:idPoa/:idInsti/:idDepto/:idPei', component: CreateActividadComponent},
   {path: 'actividad/update/:id/:idPoa/:idInsti/:idDepto', component: UpdateActividadComponent},
   {path: 'actividad/detail/:id/:idPoa/:idInsti/:idDepto', component: DetailActividadComponent},
   {path: 'actividad/list/:idPoa/:idInsti/:idDepto/:idUE', component: AllActividadComponent},
@@ -194,7 +194,8 @@ NzTabsModule,
 EmptyComponent,
 MatProgressBarModule,
 MatTabsModule,
-MatExpansionModule
+MatExpansionModule,
+NzPopoverModule
 
   ],
   entryComponents: [ENTRYCOMPONENTS]

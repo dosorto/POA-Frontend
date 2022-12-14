@@ -237,23 +237,23 @@
             <!-- Position Column -->
             <ng-container  matColumnDef="Pei_Institucional">
               <th style="min-width: 270px; text-align: center;" mat-header-cell *matHeaderCellDef>Pei Institucional</th>
-              <td style="padding: 10px;" mat-cell *matCellDef="let element"> {{'h'}} </td>
+              <td style="padding: 10px;" mat-cell *matCellDef="let element"> {{element?.actividade?.resultado?.pei?.name}} </td>
             </ng-container>
             <ng-container  matColumnDef="Dimension_Institucional">
               <th style="min-width: 270px; text-align: center;" mat-header-cell *matHeaderCellDef>Dimensión Institucional</th>
-              <td style="padding: 10px;" mat-cell *matCellDef="let element"> {{'h'}} </td>
+              <td style="padding: 10px;" mat-cell *matCellDef="let element"> {{element?.actividade?.resultado?.dimension?.nombre}} </td>
             </ng-container>
             <ng-container  matColumnDef="Objetivo_Institucional">
               <th style="min-width: 270px; text-align: center;" mat-header-cell *matHeaderCellDef>Objetivo Institucional</th>
-              <td style="padding: 10px;" mat-cell *matCellDef="let element"> {{'h'}} </td>
+              <td style="padding: 10px;" mat-cell *matCellDef="let element"> {{element?.actividade?.resultado?.objetivo?.nombre}} </td>
             </ng-container>
             <ng-container  matColumnDef="Area_Institucional">
               <th style="min-width: 270px; text-align: center;" mat-header-cell *matHeaderCellDef>Área Institucional</th>
-              <td style="padding: 10px;" mat-cell *matCellDef="let element"> {{'h'}} </td>
+              <td style="padding: 10px;" mat-cell *matCellDef="let element"> {{element?.actividade?.resultado?.area?.nombre}} </td>
             </ng-container>
             <ng-container  matColumnDef="Resultado_Institucional">
               <th style="min-width: 270px; text-align: center;" mat-header-cell *matHeaderCellDef>Resultado Institucional</th>
-              <td style="padding: 10px;" mat-cell *matCellDef="let element"> {{'h'}} </td>
+              <td style="padding: 10px;" mat-cell *matCellDef="let element"> {{element?.actividade?.resultado?.nombre}} </td>
             </ng-container>
 
 
@@ -361,23 +361,23 @@
               </ng-container>
               <ng-container matColumnDef="Trimestre">
                 <th style="min-width: 70px; text-align: center;" mat-header-cell *matHeaderCellDef >Trimestre</th>
-                <td style="padding: 10px;" mat-cell *matCellDef="let element"> {{element?.actividade?.planificacions[0].trimestre}} </td>
+                <td style="padding: 10px;" mat-cell *matCellDef="let element"> {{element?.actividade?.planificacions[0]?.trimestre}} </td>
               </ng-container>
               <ng-container matColumnDef="CantidadP">
                 <th style="min-width: 70px; text-align: center;" mat-header-cell *matHeaderCellDef >Cantidad</th>
-                <td style="padding: 10px;" mat-cell *matCellDef="let element"> {{element?.actividade?.planificacions[0].cantidad||0| currency:'L.'}} </td>
+                <td style="padding: 10px;" mat-cell *matCellDef="let element"> {{element?.actividade?.planificacions[0]?.cantidad||0| currency:'L.'}} </td>
               </ng-container>
               <ng-container matColumnDef="Fecha_Inicio">
                 <th style="min-width: 70px; text-align: center;" mat-header-cell *matHeaderCellDef >Fecha Inico</th>
-                <td style="padding: 10px;" mat-cell *matCellDef="let element"> {{element?.actividade?.planificacions[0].fechaInicio}} </td>
+                <td style="padding: 10px;" mat-cell *matCellDef="let element"> {{element?.actividade?.planificacions[0]?.fechaInicio}} </td>
               </ng-container>
               <ng-container matColumnDef="Fecha_Final">
                 <th style="min-width: 70px; text-align: center;" mat-header-cell *matHeaderCellDef >Fecha Final</th>
-                <td style="padding: 10px;" mat-cell *matCellDef="let element"> {{element?.actividade?.planificacions[0].fechaFin}} </td>
+                <td style="padding: 10px;" mat-cell *matCellDef="let element"> {{element?.actividade?.planificacions[0]?.fechaFin}} </td>
               </ng-container>
               <ng-container matColumnDef="Encargado">
                 <th style="min-width: 70px; text-align: center; padding: 10px;" mat-header-cell *matHeaderCellDef >Encargado</th>
-                <td style="padding: 10px;" mat-cell *matCellDef="let element"> {{element?.actividade?.ACencargados[0].empleado.nombre}} </td>
+                <td style="padding: 10px;" mat-cell *matCellDef="let element"> {{element?.actividade?.ACencargados[0]?.empleado?.nombre}} </td>
               </ng-container>
 
             <!-- Symbol Column -->

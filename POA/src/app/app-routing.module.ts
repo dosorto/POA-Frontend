@@ -38,6 +38,11 @@ const routes: Routes = [
     path: 'mis_poas', children: [
       {path: '', loadChildren: () => import('./modules/mis-poas-module/mis-poas-module.module').then(t=>t.MisPoasModuleModule)}
     ]
+  },
+  {
+    path: 'seguimiento', children: [
+      {path: '', loadChildren: () => import('./modules/seguimiento-module/seguimiento.module').then(t=>t.SeguimientoModule)}
+    ]
   }
 ];
 

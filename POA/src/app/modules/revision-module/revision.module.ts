@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { RevisionComponent } from './revision.component';
 import { RouterModule } from '@angular/router';
 import { TopBarComponent } from '../../_core/top-bar/top-bar.component';
@@ -8,6 +9,8 @@ import { TareasRevisadasComponent } from './components/tareas-revisadas/tareas-r
 import { TareasAprobadasComponent } from './components/tareas-aprobadas/tareas-aprobadas.component';
 import { TareasRechazadasComponent } from './components/tareas-rechazadas/tareas-rechazadas.component';
 import { BackButtonComponent } from 'src/app/_core/back-button/back-button.component';
+import { NzInputModule } from 'ng-zorro-antd/input';
+import { BrowserModule } from '@angular/platform-browser';
 
 const router = RouterModule.forChild([
   {path: '', component: RevisionComponent},
@@ -29,9 +32,11 @@ const router = RouterModule.forChild([
   ],
   imports: [
     CommonModule,
+    FormsModule,
     router,
     TopBarComponent,
-    BackButtonComponent
+    BackButtonComponent,
+    NzInputModule
   ]
 })
 export class RevisionModule { }

@@ -1,1 +1,126 @@
-<p>presupuesto-poa works!</p>
+<top-bar></top-bar>
+
+<body class="justify-content-center mt-5 w-100 ">
+
+    <!-- Pantalla principal del modulo -->
+    <div class=" d-flex align-items-center justify-content-center ">
+        <!-- columna completa que agrupa todos los row -->
+        <div class="col-12 w-75">
+            <br>
+            <!-- espacio para el titulo, buscador y boton de agregar uno nuevo -->
+            <div>
+                <div class="w-100 row m-auto">
+                    <div class="w-100 row m-auto mb-2">
+                        <div class="row">
+                            <label for="id" class="row col-form-label">Seleccione una Unidad Ejecutora:</label>
+                            <select class="form-control" aria-label="Default select example" name="id"
+                                [(ngModel)]="UnidadEjecutoraSeleccionada" (ngModelChange)="selectUA()" required>
+                                <ng-container *ngFor="let x of UAListFromDb">
+                                    <option value="{{x.id}}" [selected]="x.id===idUESelect">{{x.name}}</option>
+                                </ng-container>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="w-100 row m-auto">
+                        <div class="col-8">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Buscar por año"
+                                    aria-label="Buscar" aria-describedby="btnGroupAddon" [(ngModel)]="filter"
+                                    name="filter">
+                                <div class="input-group-text" id="btnGroupAddon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-search" viewBox="0 0 16 16">
+                                        <path
+                                            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <button type="button" class="btn btn-warning" (click)="toCreate()">
+                                <i class="bi bi-plus-square"></i>
+                                <span>
+                                    Crear POA
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- tabla dinamica que muestra todas los Unidades ejecutoras -->
+                
+                <div>
+                    <div class="row row-cols-1 row-cols-md-4 g-4">
+                        <ng-container *ngFor="let x of presupuesto_unidadesEjecutorasFromDb | poaFiltro:filter|poaPaginacion:step:page; index as i">
+                            <li *ngIf="x.isActive===true">
+                                <div class="card  text-bg-primary mb-3" style="width: 20 rem;">
+                                    <!-- este contador no es id, solo es para enumerar -->
+                                    <ng-container *ngIf="page > 0; else elseNumeracion">
+                                        {{i + page + 1}}
+                                    </ng-container>
+                                    <ng-template #elseNumeracion>
+                                        {{i + 1}}
+                                    </ng-template>
+
+                                    <div class="card-body" style="width: 15rem;">
+                                        <h1 class="card-title">{{x.name}}</h1>
+                                        <p class="card-text" style="width: 11rem;">
+                                            Fecha: {{x.anio}}
+                                            Fuente11: {{x.fuente11| currency: 'L'}}
+                                            Fuente12: {{x.fuente12| currency: 'L'}}
+                                            Fuente12B: {{x.fuente12B| currency: 'L'}}
+                                                    
+                                            Estado: Habilitado
+                                        </p>
+                                        <button type="button" class="btn btn-warning float-center"
+                                            (click)="toDetail(x.id)">Gestionar</button>
+                                    </div>
+                                </div>
+                            </li>
+                            <li *ngIf="x.isActive===false">
+                                <div class="card  text-bg-secondary mb-3" style="width: 20 rem;">
+                                    <!-- este contador no es id, solo es para enumerar -->
+                                    <ng-container *ngIf="page > 0; else elseNumeracion">
+                                        {{i + page + 1}}
+                                    </ng-container>
+                                    <ng-template #elseNumeracion>
+                                        {{i + 1}}
+                                    </ng-template>
+
+                                    <div class="card-body" style="width: 15rem;">
+                                        <h1 class="card-title" >{{x.name}}</h1>
+                                        <p class="card-text" style="width: 11rem;">
+                                            Fecha: {{x.anio}}
+                                            Fuente11: {{x.fuente11| currency: 'L '}}
+                                            Fuente12: {{x.fuente12 | currency: 'L '}}
+                                            Fuente12B: {{x.fuente12B | currency: 'L '}}
+                                                    
+                                            Estado: Deshabilitado
+                                        </p>
+                                        <button type="button" class="btn btn-warning float-center"
+                                            (click)="toDetail(x.id)">Gestionar</button>
+                                    </div>
+                                </div>
+                            </li>
+                        </ng-container>
+                    </div>
+                </div>
+
+                <nav aria-label="Page navigation example">
+                    <ul class="justify-content-star">Página {{actualpage}} de {{maxPages}}</ul>
+                    <ul class="pagination justify-content-end">
+                        <ng-container>
+                            <li class="page-item" *ngIf="(page > 0)"><a class="page-link "
+                                    (click)="previousPage()">Anterior</a></li>
+                        </ng-container>
+                        <ng-container *ngIf="(actualpage < maxPages)">
+                            <li class="page-item"><a class="page-link " (click)="nextPage()">Siguiente</a></li>
+                        </ng-container>
+                    </ul>
+                </nav>
+            </div>
+            <ng-template #empty>
+                <app-empty></app-empty>
+            </ng-template>
+        </div>
+    </div>

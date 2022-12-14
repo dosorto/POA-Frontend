@@ -12,17 +12,17 @@
                 </div>
                 <div class="example-container">
                     <div class="col-10">
-                        <label for="inputNombre" class="form-label">Nombre:</label>
+                        <label for="inputNombre" class="form-label">Nombre:{{notificacion}}</label>
                         <textarea type="text" class="form-control" id="exampleFormControlTextarea1" rows="2"
                             value="{{tareas.nombre}}" disabled>
                         </textarea>
-                        <div class="container">
+                        <div class="container mt-2">
                             <div class="form-check form-check-inline">
-                                <input class="btn-check" type="radio" name="nombre1" id="inlineRadio1" value="1">
-                                <label class="btn btn-outline-success" for="inlineRadio1">Aceptar</label>
+                                <input class="btn-check" type="radio" name="nombre1" id="inlineRadio1" value="1" (click)="nombre_aprobado=true">
+                                <label class="btn btn-outline-success" for="inlineRadio1" >Aceptar</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="btn-check"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"  type="radio" name="nombre1" id="inlineRadio2" value="2">
+                                <input class="btn-check"  data-bs-toggle="modal" data-bs-target="#modalNombre" data-bs-whatever="@mdo"  type="radio" name="nombre1" id="inlineRadio2" value="2">
                                 <label class="btn btn-outline-warning" for="inlineRadio2">Mandar a corrección</label>
                             </div>
                         </div>
@@ -31,13 +31,13 @@
                         <label for="inputDescripcion" class="form-label">Descripcion:</label>
                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"
                             value="{{tareas.descripcion}}" disabled></textarea>
-                        <div class="container">
+                        <div class="container mt-2">
                             <div class="form-check form-check-inline">
-                                <input class="btn-check" type="radio" name="descripcion1" id="inlineRadio4" value="1">
-                                <label class="btn btn-outline-success" for="inlineRadio4">Aceptar</label>
+                                <input class="btn-check" type="radio" name="descripcion1" id="inlineRadio4" value="1" (click)="descripcion_aprobado=true">
+                                <label class="btn btn-outline-success" for="inlineRadio4" >Aceptar</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="btn-check"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"  type="radio" name="descripcion1" id="inlineRadio5" value="2">
+                                <input class="btn-check"  data-bs-toggle="modal" data-bs-target="#modalDescripcion" data-bs-whatever="@mdo"  type="radio" name="descripcion1" id="inlineRadio5" value="2">
                                 <label class="btn btn-outline-warning" for="inlineRadio5">Mandar a corrección</label>
                             </div>
                         </div>
@@ -46,13 +46,13 @@
                         <label for="inputEstado" class="form-label">Cantidad</label>
                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"
                             value="{{tareas.presupuesto.cantidad}}" disabled></textarea>
-                            <div class="container">
+                            <div class="container mt-2">
                                 <div class="form-check form-check-inline">
-                                    <input class="btn-check" type="radio" name="cantidad1" id="inlineRadio6" value="1">
-                                    <label class="btn btn-outline-success" for="inlineRadio6">Aceptar</label>
+                                    <input class="btn-check" type="radio" name="cantidad1" id="inlineRadio6" value="1" (click)="cantidad_aprobado=true">
+                                    <label class="btn btn-outline-success" for="inlineRadio6"  >Aceptar</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="btn-check"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"  type="radio" name="cantidad1" id="inlineRadio7" value="2">
+                                    <input class="btn-check"  data-bs-toggle="modal" data-bs-target="#modalCantidad" data-bs-whatever="@mdo"  type="radio" name="cantidad1" id="inlineRadio7" value="2">
                                     <label class="btn btn-outline-warning" for="inlineRadio7">Mandar a corrección</label>
                                 </div>
                             </div>
@@ -61,45 +61,44 @@
                         <label for="inputTipo" class="form-label">Costo unitario</label>
                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"
                             value="{{tareas.presupuesto.costounitario| currency:'L.'}}" disabled></textarea>
-                            <div class="container">
+                            <div class="container mt-2">
                                 <div class="form-check form-check-inline">
-                                    <input class="btn-check" type="radio" name="costounitario1" id="inlineRadio8" value="1">
+                                    <input class="btn-check" type="radio" name="costounitario1" id="inlineRadio8" value="1" (click)="costoUnitario_aprobado=true">
                                     <label class="btn btn-outline-success" for="inlineRadio8">Aceptar</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="btn-check"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"  type="radio" name="costounitario1" id="inlineRadio9" value="2">
+                                    <input class="btn-check"  data-bs-toggle="modal" data-bs-target="#modalCosto_unitario" data-bs-whatever="@mdo"  type="radio" name="costounitario1" id="inlineRadio9" value="2">
                                     <label class="btn btn-outline-warning" for="inlineRadio9">Mandar a corrección</label>
                                 </div>
                             </div>
                     </div>
-                    <div class="col-md-5" for="total">
+                    <!-- <div class="col-md-5" for="total">
                         <label for="total" class="form-label">Total</label>
                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"
                             value="{{tareas.presupuesto.total| currency:'L.'}}" disabled></textarea>
-                            <div class="container">
+                            <div class="container mt-2">
                                 <div class="form-check form-check-inline">
                                     <input class="btn-check" type="radio" name="total1" id="inlineRadio10" value="1">
                                     <label class="btn btn-outline-success" for="inlineRadio10">Aceptar</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="btn-check"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"  type="radio" name="total1" id="inlineRadio11" value="2">
+                                    <input class="btn-check"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"  type="radio" name="total1" id="inlineRadio11" value="2" >
                                     <label class="btn btn-outline-warning" for="inlineRadio11">Mandar a corrección</label>
                                 </div>
                             </div>
-                    </div>
-
+                    </div> -->
                     <div class="col-md-5">
                         <label for="inputEstado" class="form-label">Objeto del grupo:</label>
                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"
                             value="{{tareas?.presupuesto?.grupogasto?.identificador+' - '+tareas?.presupuesto?.grupogasto?.nombre}}"
                             disabled></textarea>
-                            <div class="container">
+                            <div class="container mt-2">
                                 <div class="form-check form-check-inline">
-                                    <input class="btn-check" type="radio" name="objetogasto1" id="inlineRadio13" value="1">
+                                    <input class="btn-check" type="radio" name="objetogasto1" id="inlineRadio13" value="1" (click)="grupo_gasto_aprobado=true">
                                     <label class="btn btn-outline-success" for="inlineRadio13">Aceptar</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="btn-check"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"  type="radio" name="objetogasto1" id="inlineRadio14" value="2">
+                                    <input class="btn-check"  data-bs-toggle="modal" data-bs-target="#modalGrupo_gasto" data-bs-whatever="@mdo"  type="radio" name="objetogasto1" id="inlineRadio14" value="2">
                                     <label class="btn btn-outline-warning" for="inlineRadio14">Mandar a corrección</label>
                                 </div>
                             </div>
@@ -109,13 +108,13 @@
                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"
                             value="{{tareas?.presupuesto?.objetogasto?.identificador+' - '+tareas?.presupuesto?.objetogasto?.nombre}}"
                             disabled></textarea>
-                            <div class="container">
+                            <div class="container mt-2">
                                 <div class="form-check form-check-inline">
-                                    <input class="btn-check" type="radio" name="grupogasto1" id="inlineRadio15" value="1">
+                                    <input class="btn-check" type="radio" name="grupogasto1" id="inlineRadio15" value="1" (click)="objeto_grupo_aprobado=true"> 
                                     <label class="btn btn-outline-success" for="inlineRadio15">Aceptar</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="btn-check"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"  type="radio" name="grupogasto1" id="inlineRadio16" value="2">
+                                    <input class="btn-check"  data-bs-toggle="modal" data-bs-target="#modalObjeto_grupo" data-bs-whatever="@mdo"  type="radio" name="grupogasto1" id="inlineRadio16" value="2">
                                     <label class="btn btn-outline-warning" for="inlineRadio16">Mandar a corrección</label>
                                 </div>
                             </div>
@@ -124,13 +123,13 @@
                         <label for="inputCategoria" class="form-label">Unidad de medida</label>
                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"
                             value="{{tareas?.presupuesto?.unidadmedida?.nombre}}" disabled></textarea>
-                            <div class="container">
+                            <div class="container mt-2">
                                 <div class="form-check form-check-inline">
-                                    <input class="btn-check" type="radio" name="unidadmedida1" id="inlineRadio17" value="1">
+                                    <input class="btn-check" type="radio" name="unidadmedida1" id="inlineRadio17" value="1" (click)="unidad_medida_aprobado=true">
                                     <label class="btn btn-outline-success" for="inlineRadio17" >Aceptar</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="btn-check"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"  type="radio" name="unidadmedida1" id="inlineRadio18" value="2">
+                                    <input class="btn-check"  data-bs-toggle="modal" data-bs-target="#modalUnidad_medida" data-bs-whatever="@mdo"  type="radio" name="unidadmedida1" id="inlineRadio18" value="2">
                                     <label class="btn btn-outline-warning" for="inlineRadio18">Mandar a corrección</label>
                                 </div>
                             </div>
@@ -141,29 +140,33 @@
                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"
                             value="{{tareas?.presupuesto?.fuente?.identificador+' - '+tareas?.presupuesto?.fuente?.nombre}}"
                             disabled></textarea>
-                            <div class="container">
+                            <div class="container mt-2">
                                 <div class="form-check form-check-inline">
-                                    <input class="btn-check" type="radio" name="fuente1" id="inlineRadio19" value="1">
+                                    <input class="btn-check" type="radio" name="fuente1" id="inlineRadio19" value="1" (click)="fuente_aprobado=true">
                                     <label class="btn btn-outline-success" for="inlineRadio19">Aceptar</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="btn-check" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo" type="radio" name="fuente1" id="inlineRadio20" value="2">
+                                    <input class="btn-check" data-bs-toggle="modal" data-bs-target="#modalFuente" data-bs-whatever="@mdo" type="radio" name="fuente1" id="inlineRadio20" value="2">
                                     <label class="btn btn-outline-warning" for="inlineRadio20">Mandar a corrección</label>
                                 </div>
                             </div>
                     </div>
 
+
                 </div>
+                
                 <div class="container">
                     <div class="d-grid gap-3 d-md-flex justify-content-md-end">
-                
+                        
                     <!-- <button type="button" class="btn btn-danger float-start">Cerrar</button> -->
-                    <button type="button" class="btn btn-warning" (click)='onBack()'>Terminar Revisión</button>
-                 
+                    <button type="button" class="btn btn-warning m-4" (click)='createRevision()'>Terminar Revisión</button>
+                    <button type="button" class="btn btn-warning m-4" (click)='resetRevision()'>Restaurar Revisión</button>
                 </div>
                 </div> 
             </div>
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
+            
+            <!-- modal para nombre -->
+            <div class="modal fade" id="modalNombre" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -174,17 +177,242 @@
                       <form>
                         <div class="mb-3">
                           <label for="message-text" class="col-form-label">Comentario:</label>
-                          <textarea class="form-control" id="message-text"></textarea>
+                          <textarea
+                            nz-input
+                            placeholder="Por favor escriba su observación"
+                            [nzAutosize]="{ minRows: 2, maxRows: 6 }"
+                            [(ngModel)]="nombre"
+                            [ngModelOptions]="{standalone:true}"
+                          ></textarea>
+
                         </div>
                       </form>
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                      <button type="button" class="btn btn-primary">Enviar Corrección</button>
+                      <button type="button" class="btn btn-primary" (click)="set_comment()" data-bs-dismiss="modal">Enviar Corrección</button>
                     </div>
                   </div>
                 </div>
               </div>
+
+              <!-- modal para descripcion -->
+            <div class="modal fade" id="modalDescripcion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Comentario para Corrección</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form>
+                        <div class="mb-3">
+                          <label for="message-text" class="col-form-label">Comentario:</label>
+                          <textarea
+                            nz-input
+                            placeholder="Por favor escriba su observación"
+                            [nzAutosize]="{ minRows: 2, maxRows: 6 }"
+                            [(ngModel)]="descripcion"
+                            [ngModelOptions]="{standalone:true}"
+                          ></textarea>
+
+                        </div>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                      <button type="button" class="btn btn-primary" (click)="set_comment()" data-bs-dismiss="modal">Enviar Corrección</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- modal para cantidad -->
+            <div class="modal fade" id="modalCantidad" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Comentario para Corrección</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form>
+                        <div class="mb-3">
+                          <label for="message-text" class="col-form-label">Comentario:</label>
+                          <textarea
+                            nz-input
+                            placeholder="Por favor escriba su observación"
+                            [nzAutosize]="{ minRows: 2, maxRows: 6 }"
+                            [(ngModel)]="cantidad"
+                            [ngModelOptions]="{standalone:true}"
+                          ></textarea>
+
+                        </div>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                      <button type="button" class="btn btn-primary" (click)="set_comment()" data-bs-dismiss="modal">Enviar Corrección</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- modal para costoUnitario -->
+            <div class="modal fade" id="modalCosto_unitario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Comentario para Corrección</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form>
+                        <div class="mb-3">
+                          <label for="message-text" class="col-form-label">Comentario:</label>
+                          <textarea
+                            nz-input
+                            placeholder="Por favor escriba su observación"
+                            [nzAutosize]="{ minRows: 2, maxRows: 6 }"
+                            [(ngModel)]="costoUnitario"
+                            [ngModelOptions]="{standalone:true}"
+                          ></textarea>
+
+                        </div>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                      <button type="button" class="btn btn-primary" (click)="set_comment()" data-bs-dismiss="modal">Enviar Corrección</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- modal para objetogrupo -->
+            <div class="modal fade" id="modalObjeto_grupo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Comentario para Corrección</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form>
+                        <div class="mb-3">
+                          <label for="message-text" class="col-form-label">Comentario:</label>
+                          <textarea
+                            nz-input
+                            placeholder="Por favor escriba su observación"
+                            [nzAutosize]="{ minRows: 2, maxRows: 6 }"
+                            [(ngModel)]="objeto_grupo"
+                            [ngModelOptions]="{standalone:true}"
+                          ></textarea>
+
+                        </div>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                      <button type="button" class="btn btn-primary" (click)="set_comment()">Enviar Corrección</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- modal para grupogasto -->
+            <div class="modal fade" id="modalGrupo_gasto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Comentario para Corrección</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form>
+                        <div class="mb-3">
+                          <label for="message-text" class="col-form-label">Comentario:</label>
+                          <textarea
+                            nz-input
+                            placeholder="Por favor escriba su observación"
+                            [nzAutosize]="{ minRows: 2, maxRows: 6 }"
+                            [(ngModel)]="grupo_gasto"
+                            [ngModelOptions]="{standalone:true}"
+                          ></textarea>
+
+                        </div>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                      <button type="button" class="btn btn-primary" (click)="set_comment()">Enviar Corrección</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- modal para unidad de medida -->
+            <div class="modal fade" id="modalUnidad_medida" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Comentario para Corrección</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form>
+                        <div class="mb-3">
+                          <label for="message-text" class="col-form-label">Comentario:</label>
+                          <textarea
+                            nz-input
+                            placeholder="Por favor escriba su observación"
+                            [nzAutosize]="{ minRows: 2, maxRows: 6 }"
+                            [(ngModel)]="unidad_medida"
+                            [ngModelOptions]="{standalone:true}"
+                          ></textarea>
+
+                        </div>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                      <button type="button" class="btn btn-primary" (click)="set_comment()">Enviar Corrección</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+               <!-- modal para fuente -->
+            <div class="modal fade" id="modalFuente" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Comentario para Corrección</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form>
+                        <div class="mb-3">
+                          <label for="message-text" class="col-form-label">Comentario:</label>
+                          <textarea
+                            nz-input
+                            placeholder="Por favor escriba su observación"
+                            [nzAutosize]="{ minRows: 2, maxRows: 6 }"
+                            [(ngModel)]="fuente"
+                            [ngModelOptions]="{standalone:true}"
+                          ></textarea>
+
+                        </div>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                      <button type="button" class="btn btn-primary" (click)="set_comment()" data-bs-dismiss="modal">Enviar Corrección</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
         </div>
     </div>
 </body>

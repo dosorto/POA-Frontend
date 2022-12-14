@@ -47,4 +47,7 @@ export class MenuComponent implements OnInit {
     this.router.navigate(['mipoa/list'])
   }
 
+  toSeguimiento(){
+    this.router.navigate(['seguimiento'])
+  }
 }
