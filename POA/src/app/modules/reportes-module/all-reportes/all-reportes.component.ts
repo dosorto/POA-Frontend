@@ -159,6 +159,7 @@ openSnackBar() {
 
   async selectdepto(idDepto:number){
     this.poaList = await firstValueFrom(this.service.getPoa(idDepto));
+    
   }
 
   //  async 
@@ -171,5 +172,8 @@ openSnackBar() {
   //   console.log("asd",this.dataSource)
   // }
 
+  toPoaUnificado(){
+    this.router.navigate(['/reportes/list_UE']); //revisar
+  }
 
 }
