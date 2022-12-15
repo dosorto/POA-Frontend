@@ -319,23 +319,23 @@
               </ng-container>
               <ng-container matColumnDef="indicador">
                 <th style="min-width: 270px; text-align: center;" mat-header-cell *matHeaderCellDef >Indicador</th>
-                <td style="padding: 10px;" mat-cell *matCellDef="let element"> {{element?.actividade?.indicadoresPoas[0].nombre}} </td>
+                <td style="padding: 10px;" mat-cell *matCellDef="let element"> {{element?.actividade?.indicadoresPoas[0]?.nombre}} </td>
               </ng-container>
               <ng-container matColumnDef="cantidad_Planificada">
                 <th style="min-width: 75px; text-align: center;" mat-header-cell *matHeaderCellDef >Cantidad Planificada</th>
-                <td style="padding: 10px; text-align: center;" mat-cell *matCellDef="let element"> {{element?.actividade?.indicadoresPoas[0].cantidadPlanificada}} 
-                <ng-container *ngIf="element?.actividade?.indicadoresPoas[0].isPorcentaje==true; else nopresupuesto ">%</ng-container>
+                <td style="padding: 10px; text-align: center;" mat-cell *matCellDef="let element"> {{element?.actividade?.indicadoresPoas[0]?.cantidadPlanificada}} 
+                <ng-container *ngIf="element?.actividade?.indicadoresPoas[0]?.isPorcentaje==true; else nopresupuesto ">%</ng-container>
                 <ng-template #nopresupuesto></ng-template></td>
               </ng-container>
               <ng-container matColumnDef="cantidad_Ejecutada">
                 <th style="min-width: 75px; text-align: center;" mat-header-cell *matHeaderCellDef >Cantidad Ejecutada</th>
-                <td style="padding: 10px; text-align: center;" mat-cell *matCellDef="let element"> {{element?.actividade?.indicadoresPoas[0].cantidadEjecutada}} 
-                <ng-container *ngIf="element?.actividade?.indicadoresPoas[0].isPorcentaje==true; else nopresupuesto ">%</ng-container>
+                <td style="padding: 10px; text-align: center;" mat-cell *matCellDef="let element"> {{element?.actividade?.indicadoresPoas[0]?.cantidadEjecutada}} 
+                <ng-container *ngIf="element?.actividade?.indicadoresPoas[0]?.isPorcentaje==true; else nopresupuesto ">%</ng-container>
                 <ng-template #nopresupuesto></ng-template></td>
               </ng-container>
               <ng-container matColumnDef="promedio_Alcanzado" >
                 <th style="min-width: 75px; text-align: center;" mat-header-cell *matHeaderCellDef >Promedio Alcanzado</th>
-                <td style="padding: 10px; text-align: center;" mat-cell *matCellDef="let element"> {{element?.actividade?.indicadoresPoas[0].promedioAlcanzado | percent}} </td>
+                <td style="padding: 10px; text-align: center;" mat-cell *matCellDef="let element"> {{element?.actividade?.indicadoresPoas[0]?.promedioAlcanzado | percent}} </td>
               </ng-container>
 
               <ng-container matColumnDef="Nombre_Tarea">
