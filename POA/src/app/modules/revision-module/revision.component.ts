@@ -1,21 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { Storage } from 'src/app/_core/global-services/local_storage.service';
 
-import { PoaService } from '../poa-module/services-poa/poa.service';
 import { Poa } from '../poa-module/interfaces-poa/poa.model';
 import { Depto } from '../poa-module/interfaces-poa/depto.model';
 
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
-import { UnidadEjecutora } from '../poa-module/interfaces-poa/unidad_ejecutora.model';
-import { Institucion } from '../administracion-module/interfaces/institucion.model';
-import { Area } from '../gestion-pei-module/interfaces-pei/area.model';
 import { Actividad } from '../poa-module/interfaces-poa/actividad.model';
-import { ActividadService } from '../poa-module/services-poa/actividad.service';
 import { TareasService } from '../poa-module/services-poa/tareas.service';
 import { Tareas } from '../poa-module/interfaces-poa/tareas.model';
-import { Indicadores } from '../poa-module/interfaces-poa/Indicadores.model';
+import { RevisionService } from './services/revision.services';
+import { Indicador } from '../gestion-pei-module/interfaces-pei/indicadores.model';
 
 //import { Poa } from './interface-revision/poa.model';
 
@@ -25,55 +21,39 @@ import { Indicadores } from '../poa-module/interfaces-poa/Indicadores.model';
   styleUrls: ['./revision.component.css']
 })
 export class RevisionComponent implements OnInit {
-
+  public idActividad=1
+  public id:number = Number(this._route.snapshot.paramMap.get('id'));
+  public actividad:Actividad|any={};
 
   constructor(
     private Storage: Storage,
-    private service: PoaService,
-    private serviceActividad: ActividadService,
-    private serviceTarea: TareasService,
+    private service: RevisionService,
+    private tareaservice:TareasService,
     private router: Router,
     private _route: ActivatedRoute) { }
 
+  public idDepto : number = 1;
+  public idPoa :number=1;
+  public listTareas : Array<Tareas>=[]
+  public listIndicadores : Array<Indicador>=[]
+  public listnPTareas : Array<Tareas>=[]
+  public listsPTareas : Array<Tareas>=[]
+
+  public listActividades: Array<Actividad>=[]
+  public ActividadList: Actividad | any = {};
+
+  public deptoList:Array<Depto> = [];
+  public poaList : Array<Poa> = []
+  public PoaList: Poa | any = {}
+
+  public idInsti = Number(this._route.snapshot.paramMap.get('idInsti'));
+
   ngOnInit(): void {
-    this.initData();
+    this.initData(this.idPoa,this.idDepto);
+    this.getDeptos();
+    this.selectdepto(this.idDepto);
+    this.tareas(this.idActividad)
   }
-  public idDepto: number = Number(this._route.snapshot.paramMap.get('idDepto'));
-  public idUE: number = Number(this._route.snapshot.paramMap.get('idUE'));
-  public idInsti: number = Number(this._route.snapshot.paramMap.get('idInsti'));
-  public idPoa: number = Number(this._route.snapshot.paramMap.get('idPoa'));
-  public idActividad:number = Number(this._route.snapshot.paramMap.get('idActividad'));
-  public id:number = Number(this._route.snapshot.paramMap.get('id'));
-
-  private poa_example: Poa | any = {};
-  rutaActual = "poa";
-
-  public actividad:Actividad|any={};
-  public poa: Array<Poa> = [];
-  public DeptoList: Array<Depto> = [];
-  public InstitucionesList: Array<Institucion> = [];
-  public indicadores:Array<Indicadores>=[];
-    // Aqui llamamos las variables
-    public listTareas : Array<Tareas>=[];
-    public listTareasP: Array<Tareas>=[];
-
-  public depto: Depto | any = {};
-  public insti: Institucion | any = {};
-
-
-  private area_example: Area | any = {};
-  public actividades: Array<Actividad> = []; // para llenar la tabla
-  public data_updateA: Area | any = this.area_example; // define datos de un elemento a actualizar
-  public pei_seleccionado: string = "";
-
-
-  public DeptoSeleccionado: number = this.idDepto;
-  public user = this.Storage.get_storage("user"); // obtener el usuario logueado
-  public filter: string = ""; // para filtar la tabla
-  public _delete: string = ""; // define que elemento sera eliminado
-  public data_update: Poa | any = this.poa_example; // define datos de un elemento a actualizar
-  public poa_seleccionado: string = "";
-  public poaSeleccionado: number = this.idPoa;
 
   public page: number = 0;
   public actualpage: number = 1;
@@ -81,42 +61,48 @@ export class RevisionComponent implements OnInit {
   public maxPages: number = 1;
   public enumPages: number[] = []
 
-  async initData() {
-    const tareas = await firstValueFrom(this.serviceTarea.getTarea(1))
-    this.listTareas = tareas;
 
-    const tareasP = await firstValueFrom(this.serviceTarea.getTareaP(this.idPoa))
-    this.listTareasP = tareasP;
+  async initData(idPoa:number,idDepto:number) {
 
-    const actividades = await firstValueFrom(this.serviceActividad.getActividades(1));
-    this.actividades = actividades;
     
-    this.poa = await firstValueFrom(this.service.MostrarPoa(1));
 
-    const departamentos = await firstValueFrom(this.service.getdepartamentos());
-    this.DeptoList = departamentos;
-    console.log(this.poa);
+    // const tareas = await firstValueFrom(this.service.getPoa_id_iddepto(idPoa,idDepto))
+    // this.listTareas = tareas;
 
-  }
-  selectPoa() {
-    this.router.navigate(['/gestion_poa/actividad/list/', this.poaSeleccionado, this.idInsti, this.idDepto,this.idUE]);
-    setTimeout(function () {
-      window.location.reload();
-    }, 10)
+    const actividades = await firstValueFrom(this.service.getActvidades(idPoa))
+    this.listActividades = actividades
+
+    this.PoaList = await this.service.getPoa_Id(idPoa).subscribe((response:any)=>{
+      this.PoaList = response.poa;
+    })
+
+    this.ActividadList = await this.tareaservice.getActividad_Id(this.idActividad).subscribe((response:any)=>{
+      this.ActividadList = response.actividad;
+    })
+
+    this.actividad = this.tareaservice.getActividad_Id(this.idActividad).subscribe((response:any)=>{
+      this.actividad = response.Actividad;
+    });
   }
 
-  toDetail(idPoa: number) {
-    this.router.navigate(['/revision/tareas/', idPoa.toString()]);
+  async tareas(idActividad:number){ 
+    const tareas = await firstValueFrom(this.tareaservice.getTarea(idActividad))
+    this.listTareas = tareas;
+    console.log("aquiiii",tareas)
   }
-  toHome() {
-    this.router.navigate(['/home']);
+
+  async getDeptos(){
+    await this.service.getDepto().subscribe((response:Array<Depto>)=>{
+      this.deptoList = response;
+      console.log(response);
+      return response;
+    })
   }
-  selectDepto() {
-    this.router.navigate(['/gestion_poa/poa/list/', this.idInsti, this.idUE, this.DeptoSeleccionado]);
-    setTimeout(function () {
-      window.location.reload();
-    }, 10)
+
+  async selectdepto(idDepto:number){
+    this.poaList = await firstValueFrom(this.service.getPoa(idDepto));
   }
+
   nextPage(){
     this.page = this.page + this.step;
     this.actualpage++;
@@ -128,7 +114,14 @@ export class RevisionComponent implements OnInit {
   selectPage(numPage:number){
     this.page = numPage * this.step;
   }
+  toDetail(idArea:number){
+    this.router.navigate(['/revision/tareas/',this.idPoa.toString()]);
+  }
 
+  RevisarTareas(id:number){
+    this.router.navigate(['/revision/tareas/',id.toString()]);
+
+  }
   
 
 }

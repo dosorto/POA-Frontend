@@ -119,7 +119,7 @@ export class UpdateActividadComponent implements OnInit {
      
   }
   toDetail() {
-    this.router.navigate(['/gestion_poa/actividad/detail/', this.id, this.idPoa, this.idInsti, this.idDepto]);
+    this.router.navigate(['/gestion_poa/actividad/detail/', this.id, this.idPoa, this.idInsti, this.idDepto,this.idUE]);
   }
 
   toList() {
