@@ -21,6 +21,7 @@ public idInsti = Number(this.route.snapshot.paramMap.get('idInsti'));
 public idDepto = Number(this.route.snapshot.paramMap.get('idDepto'));
 public idPoa = Number(this.route.snapshot.paramMap.get('idPoa'));
 public idActividad = Number(this.route.snapshot.paramMap.get('idActividad'));
+public idUE = Number(this.route.snapshot.paramMap.get('idUE'));
 
 public actividad_seleccionada:number=this.idActividad;
 public ActividadListS : Array<Actividad> = []

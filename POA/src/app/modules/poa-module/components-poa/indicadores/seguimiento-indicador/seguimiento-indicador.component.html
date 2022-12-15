@@ -1,5 +1,5 @@
 <top-bar></top-bar>
-<app-back-button [path]="['/seguimiento/',idPoa,idActividad]"></app-back-button>
+<app-back-button  [path]="['/seguimiento/',idPoa,idActividad]"></app-back-button>
 
 <head>
   <meta charset="utf-8">
@@ -51,7 +51,8 @@
         </div>
         <div class="col-2">
           <input type="text" class="form-control" id="cp" name="cantidadPlanificada" [(ngModel)]="cantidadPlanificada"
-            value="{{indicadores.cantidadPlanificada}}">
+            value="{{indicadores.cantidadPlanificada}}" ondrop="return false;" onpaste="return false;" onkeypress="return event.charCode>=48 && event.charCode<=57" min="0" max=""
+            ngModel required>
         </div>
 
 
@@ -62,8 +63,9 @@
           <label for="inputArea" class="form-label">Porcetaje Ejecutado:</label>
         </div>
         <div class="col-2">
-          <input type="text" class="form-control" id="ce" name="cantidadEjecutada" [(ngModel)]="cantidadEjecutada"
-            value="{{indicadores.cantidadEjecutada}}" (keyup)="promedio()">
+          <input type="text" class="form-control" id="ce" name="cantidadEjecutada" [(ngModel)]="cantidadEjecutada" 
+            value="{{indicadores.cantidadEjecutada}}" (keyup)="promedio()" ondrop="return false;" onpaste="return false;" onkeypress="return event.charCode>=48 && event.charCode<=57" min="0" max=""
+            ngModel required>
         </div>
         <!-- <div class="col-1">%</div> -->
 
