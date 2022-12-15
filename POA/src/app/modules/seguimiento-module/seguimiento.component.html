@@ -19,8 +19,9 @@
                     <div class="w-75 row m-auto mb-2">
                         <div class="row">
                             <label for="id" class="row col-form-label">Seleccione un POA:</label>
-                            <select class="form-control" style="border-radius: 20px;" aria-label="Default select example" name="id"
-                                [(ngModel)]="poaSeleccionado" (ngModelChange)="selectPoa()" required>
+                            <select class="form-control" style="border-radius: 20px;"
+                                aria-label="Default select example" name="id" [(ngModel)]="poaSeleccionado"
+                                (ngModelChange)="selectPoa()" required>
                                 <ng-container *ngFor="let x of poa">
                                     <option value="{{x.id}}" [selected]="x.id===idPoa">{{x.name}}</option>
                                 </ng-container>
@@ -52,23 +53,23 @@
                                             {{i + 1}}
                                         </ng-template>
                                     </td>
-                                    <td >{{x.nombre}}</td>
-                                    <td>{{x.tareas.length}}</td>
-                                    <td>{{x.indicadoresPoas.length}}</td>
-
-                                    <td>
-                                        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                                            <button style="background-color: #FF7615; color: white;" 
-                                            title="Seguimiento del indicador" type="button" class="btn" 
-                                            (click)="toSeguimiento(x.id)"><i class="bi bi-card-checklist"></i></button>
-                               
-
-                                        </div>
+                                    <td>{{x.nombre}}</td>
+                                    <td><ng-container *ngFor="let j of x.tareas">{{j.nombre}}<br></ng-container></td>
+                                    <td><ng-container *ngFor="let f of x.indicadoresPoas"><br>{{f.nombre}} <br></ng-container></td>
+                                    <td><ng-container *ngFor="let f of x.indicadoresPoas">
+                                        <h1></h1>
+                                            <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                                <button style="background-color: #FF7615; color: white;"
+                                                    title="Seguimiento" type="button" class="btn"
+                                                    (click)="toSeguimiento(f.id)"><i
+                                                        class="bi bi-card-checklist"></i></button>
+                                            </div>
+                                        <br>
+                                        </ng-container>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
-
                     </div>
                 </ng-container>
 

@@ -25,6 +25,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzProgressModule } from 'ng-zorro-antd/progress';
 import {MatIconModule} from '@angular/material/icon';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { ReportesUEComponent } from './reportes-ue/reportes-ue.component';
 
 registerLocaleData(es);
 
@@ -32,12 +33,14 @@ const router = RouterModule.forChild([
   {path: '', component: ReportesModuleComponent},
 
   {path: 'list', component: AllReportesComponent},
+  {path: 'list_UE', component: ReportesUEComponent},
 ])
 
 @NgModule({
   declarations: [
     ReportesModuleComponent,
-    AllReportesComponent
+    AllReportesComponent,
+    ReportesUEComponent
 
   ],
   imports: [
