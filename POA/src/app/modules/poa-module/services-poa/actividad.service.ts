@@ -164,7 +164,7 @@ export class ActividadService {
       }))
   }
   getdepartamentos() {
-    return this.callHttp.httpGet<Array<Depto>>(`${environment.servidor}departamento/get_all`)
+    return this.callHttp.httpGet<Array<Depto>>(`${environment.servidor}depto/get_all/1`)
       .pipe(map(response => {
         return response;
       }))
@@ -182,7 +182,7 @@ export class ActividadService {
     return this.callHttp.httpGet<Poa>(`${environment.servidor}POA/get/`+idPoa.toString());
   }
   getDepto_Id(idDepto:number) {
-    return this.callHttp.httpGet<Depto>(`${environment.servidor}departamento/get/`+idDepto.toString());
+    return this.callHttp.httpGet<Depto>(`${environment.servidor}depto/get/`+idDepto.toString());
   }
 
 }
