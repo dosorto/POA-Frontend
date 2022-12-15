@@ -1,5 +1,6 @@
 <top-bar></top-bar>
 <app-back-button [path]="['/home/']"></app-back-button>
+
 <body class="justify-content-center mt-5 pt-5">
     <div class="container d-flex align-items-center justify-content-center ">
         <div class="col-12 ">
@@ -14,23 +15,44 @@
                     </div>
                     <div class="w-75 row m-auto mb-2">
                         <div class="row">
-                            <label for="id" class="row col-form-label">Seleccione un departamento:</label>
+                            <label for="id" class="row col-form-label">Seleccione un Departamento:</label>
                             <select class="form-control" aria-label="Default select example" name="id"
-                                (ngModelChange)="selectDepto()" required>
-                                <ng-container *ngFor="let x of DeptoList">
-                                    <option value="{{x.id}}" [selected]="x.id===idDepto">{{x.name}}</option>
+                                [(ngModel)]="idDepto" (ngModelChange)="selectdepto(idDepto)" required>
+                                <option>Seleccione</option>
+                                <ng-container *ngFor="let x of deptoList">
+                                    <option value="{{x.id}}">{{x.name}}</option>
                                 </ng-container>
+
                             </select>
                         </div>
                     </div>
                     <div class="w-75 row m-auto mb-2">
                         <div class="row">
                             <label for="id" class="row col-form-label">Seleccione un POA:</label>
-                            <select class="form-control" aria-label="Default select example" name="id"
-                                 (ngModelChange)="selectPoa()" required>
-                                <ng-container *ngFor="let x of poa">
-                                    <option value="{{x.id}}" [selected]="x.id===idPoa">{{x.name}}</option>
+                            <select class="form-control shadow"
+                                aria-label="Default select example" name="id" [(ngModel)]="idPoa"
+                                (ngModelChange)="initData(idPoa,idDepto)">
+                                <option>Seleccione</option>
+                                <ng-container *ngFor="let x of poaList">
+                                    <option value="{{x.id}}">{{x.name}}</option>
                                 </ng-container>
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="w-75 row m-auto mb-2">
+                        <div class="row">
+                            <label for="id" class="row col-form-label">Seleccione una Actividad:</label>
+                            <select class="form-control shadow"
+                                aria-label="Default select example" name="id" [(ngModel)]="idActividad"
+                            >
+                                <option>Seleccione</option>
+                                <ng-container>
+                                    <option value=1>1</option>
+                                    <option value=2>2</option>
+                                    <option value=3>3</option>
+                                </ng-container>
+
                             </select>
                         </div>
                     </div>
@@ -62,64 +84,72 @@
 
 
                 <div class="w-75 m-auto row ">
-                    <div class="container-xl" >
-                        <div class="g-col-4 bg-white rounded border border">
-                            <div class="accordion" id="">
-                                <div class="accordion-item" *ngFor="let x of actividades index as i">
-                                  <h2 class="accordion-header" id="{{i}}">
-                                    <button
-                                      class="accordion-button collapsed"
-                                      type="button"
-                                      data-bs-toggle="collapse"
-                                      [attr.data-bs-target]="'#collapse'+i"
-                                      aria-expanded="false"
-                                      aria-controls="collapse"
-                                    >
-                                    {{x.nombre}}
+                    <div class="container-xl">
+
+                        <div class="accordion" id="">
+                            <div class="accordion-item" *ngFor="let x of listActividades index as i">
+                                <h2 class="accordion-header" id="{{i}}">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        [attr.data-bs-target]="'#collapse'+i" aria-expanded="false"
+                                        aria-controls="collapse">
+                                        {{x.nombre}}
                                     </button>
-                                  </h2>
-                                  <div
-                                    id="collapse{{i}}"
-                                    class="accordion-collapse collapse"
-                                    aria-labelledby="heading"
-                                    data-bs-parent="#accordionExample"
-                                    >
+                                </h2>
+                                <div id="collapse{{i}}" class="accordion-collapse collapse" aria-labelledby="heading"
+                                    data-bs-parent="#accordionExample">
                                     <div class="accordion-body"></div>
-                                    <table class="table table-hover shadow rounded border">
-                                        <thead class="text-center">
-                                            <tr>
-                                                <th class="table-secondary" scope="col">#</th>
-                                                <th align="left" class="table-secondary" scope="col">Nombre</th>
-                                                <th align="left" class="table-secondary" scope="col">Costo</th>
-                                                <th class="table-secondary" scope="col">Acciones</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody class="text-center" >
-                                            <tr *ngFor="let x of listTareas  index as i">
-                                                <td>
-                                                    <ng-container *ngIf="page > 0; else elseNumeracion">
-                                                        {{i + page + 1}}
-                                                    </ng-container>
-                                                    <ng-template #elseNumeracion>
-                                                        {{i + 1}}
-                                                    </ng-template>
-                                                </td>
-                                                <td align="center">{{x.nombre}}</td>
-                                                <td align="center">{{x.presupuesto.total}}</td>
-                                                <td>
-                                                    <div class="btn-group" role="group"
-                                                        aria-label="Basic mixed styles example">
-                                                        <button type="button" class="btn btn-secondary" (click)="toDetail(x.id)">Revisar
-                                                            Tareas</button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                  </div>
+                                    <div class="g-col-4 bg-white rounded border border">
+                                        <div>
+                                            <ul class="nav nav-tabs">
+                                                <li class="nav-item">
+                                                    <a class="nav-link active" aria-current="page" href="#">Nuevas</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="#">Revisadas</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="#">Reformuladas</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <table class="table table-hover shadow rounded border">
+                                                <thead class="text-center">
+                                                    <tr>
+                                                        <th class="table-secondary" scope="col">#</th>
+                                                        <th align="left" class="table-secondary" scope="col">Nombre</th>
+                                                        <th align="left" class="table-secondary" scope="col">Costo</th>
+                                                        <th class="table-secondary" scope="col">Acciones</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="text-center">
+                                                    <tr *ngFor="let x of listTareas  index as i">
+                                                        <td>
+                                                            <ng-container *ngIf="page > 0; else elseNumeracion">
+                                                                {{i + page + 1}}
+                                                            </ng-container>
+                                                            <ng-template #elseNumeracion>
+                                                                {{i + 1}}
+                                                            </ng-template>
+                                                        </td>
+                                                        <td align="center">{{x.nombre}}</td>
+                                                        <td align="center">{{x.presupuesto.total}}</td>
+                                                        <td>
+                                                            <div class="btn-group" role="group"
+                                                                aria-label="Basic mixed styles example">
+                                                                <button type="button" class="btn btn-secondary"
+                                                                    (click)="RevisarTareas(x.id)">Revisar
+                                                                    Tareas</button>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
                                 </div>
 
-                              </div>
+                            </div>
                             <!-- <div class="accordion" id="accordionPanelsStayOpenExample">
                                 <div class="accordion-item" *ngFor="let x of poa">
                                     <h2 class="accordion-header" id="flush-heading">
