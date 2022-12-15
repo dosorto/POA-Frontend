@@ -46,6 +46,9 @@ export class AllRolComponent implements OnInit {
   public empleadosFromDb:Array<Empleado> = [];
   public list: TransferItem[] = [];
 
+  public rol: string = '';
+  public descripcion: string = '';
+
   async getRolesFromDB(){
     await this.service.getRoles().subscribe((response:Array<Role>)=>{
       this.rolesFromDb = response;
@@ -83,7 +86,7 @@ export class AllRolComponent implements OnInit {
     await this.rolService.updateRol(this.userToUpdate.id,rol,descripcion,this.listIdPermisos).subscribe((response:any) =>{
       Swal.fire({
         icon: 'success',
-        title: '¡Creado con éxito!',
+        title: '¡Editado con éxito!',
         showConfirmButton: false,
         timer: 2500
       })
@@ -102,6 +105,42 @@ export class AllRolComponent implements OnInit {
     }
   }
 
+  Update(): any {
+    let rol= this.rol;
+    let descripcion = this.descripcion;
+    let userToUpdate = this.userToUpdate;
+    
+
+    console.log(":" + rol + ":" + ":" + descripcion + ":" + userToUpdate);
+    // validaciones
+    if ((rol === '')) { rol = this.userToUpdate.rol }
+    if ((descripcion === '')) { descripcion = this.userToUpdate.descripcion }
+    if ((userToUpdate === '')) { userToUpdate = this.userToUpdate.userToUpdate }
+   
+    
+    console.log(":" + rol + ":" + ":" + descripcion + ":" + userToUpdate);
+    try {
+      this.rolService.updateRol(this.userToUpdate.id,rol, descripcion, this.listIdPermisos).subscribe((res:any)=>{
+        Swal.fire({
+          icon: 'success',
+          title: '¡Editado con éxito!',
+          showConfirmButton: false,
+          timer: 2500
+        })
+      });
+      setTimeout(function() {
+        window.location.reload();
+      },1000);
+      }catch(e){
+        console.log(e);
+        Swal.fire({
+          icon: 'error',
+          title: '¡Ha ocurrido el siguiente error: '+ e,
+          showConfirmButton: true,
+          timer: 2500
+        })
+      }
+    }
   async obtenerPermisosFromDbByRol(idRol:number){
     try{
     this.permisosFromDbOfRol = await this.rolService.getPermisosByIdRol(idRol).subscribe((response:any) =>{
