@@ -44,9 +44,6 @@
                             </thead>
                             <tbody class="text-center">
                                 <tr *ngFor="let x of actividad; index as i">
-                                    <script>
-                                        data = Object.values(actividad)
-                                    </script>
                                     <!-- este contador no es id, solo es para enumerar -->
                                     <td>
                                         <ng-container *ngIf="page > 0; else elseNumeracion">
@@ -57,14 +54,18 @@
                                         </ng-template>
                                     </td>
                                     <td>{{x.nombre}}</td>
-                                    <td><ng-container *ngFor="let j of x.tareas">{{j.nombre}}, </ng-container></td>
-                                    <td><ng-container *ngFor="let f of x.indicadoresPoas">{{f.nombre}}</ng-container></td>
-                                    <td>
-                                        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                                            <button style="background-color: #FF7615; color: white;"
-                                                title="Seguimiento" type="button" class="btn"
-                                                (click)="toSeguimiento(x.id)"><i class="bi bi-card-checklist"></i></button>
-                                        </div>
+                                    <td><ng-container *ngFor="let j of x.tareas">{{j.nombre}}<br></ng-container></td>
+                                    <td><ng-container *ngFor="let f of x.indicadoresPoas"><br>{{f.nombre}} <br></ng-container></td>
+                                    <td><ng-container *ngFor="let f of x.indicadoresPoas">
+                                        <h1></h1>
+                                            <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                                <button style="background-color: #FF7615; color: white;"
+                                                    title="Seguimiento" type="button" class="btn"
+                                                    (click)="toSeguimiento(f.id)"><i
+                                                        class="bi bi-card-checklist"></i></button>
+                                            </div>
+                                        <br>
+                                        </ng-container>
                                     </td>
                                 </tr>
                             </tbody>
