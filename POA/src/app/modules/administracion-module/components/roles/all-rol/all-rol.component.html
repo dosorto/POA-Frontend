@@ -160,7 +160,7 @@
     </div>
     </div>
 
-    <nz-modal [(nzVisible)]="modalVisible" nzTitle="The first Modal" (nzOnOk)="closeModal()" (nzOnCancel)="closeModal()"nzNoAnimation>
+    <nz-modal [(nzVisible)]="modalVisible" nzTitle="Permisos" (nzOnOk)="closeModal()" (nzOnCancel)="closeModal()"nzNoAnimation>
         <ng-container *nzModalContent>
             <ul class="list-group">
                     <li class="list-group-item" *ngFor="let j of permisosFromDbOfRol">{{j.Permiso}}</li>
