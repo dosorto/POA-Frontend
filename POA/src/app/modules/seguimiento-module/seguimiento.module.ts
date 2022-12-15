@@ -21,7 +21,7 @@ const router = RouterModule.forChild([
     router,
     FormsModule,
     TopBarComponent,
-    BackButtonComponent
+    BackButtonComponent,
   ]
 })
 export class SeguimientoModule { }

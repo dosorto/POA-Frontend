@@ -9,12 +9,8 @@ import { Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { Institucion } from '../administracion-module/interfaces/institucion.model';
 import { Actividad } from '../poa-module/interfaces-poa/actividad.model';
-import { ActividadService } from '../poa-module/services-poa/actividad.service';
-import { TareasService } from '../poa-module/services-poa/tareas.service';
-import { IndicadorService } from '../poa-module/services-poa/indicador.service';
 import { Tareas } from '../poa-module/interfaces-poa/tareas.model';
 import { Indicadores } from '../poa-module/interfaces-poa/Indicadores.model';
-
 
 @Component({
   selector: 'app-seguimiento',
@@ -26,8 +22,6 @@ export class SeguimientoComponent implements OnInit {
   constructor(private Storage: Storage,
     private service: PoaService,
     private router: Router,
-    private serviceT: TareasService,
-    private serviceI: IndicadorService,
     private _route: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -62,7 +56,6 @@ export class SeguimientoComponent implements OnInit {
   public poaSeleccionado: number = this.idPoa;
   public actividad_seleccionada: number = this.idActividad;
   public ActividadListS: Array<Actividad> = []
-
   public page: number = 0;
   public actualpage: number = 1;
   public step: number = 40;
