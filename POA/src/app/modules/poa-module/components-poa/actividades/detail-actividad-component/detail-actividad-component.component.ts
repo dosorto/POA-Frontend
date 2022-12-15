@@ -89,7 +89,7 @@ console.log(this.pei);
     this.router.navigate(['/gestion_poa/tareas/list/', this.id,this.idPoa,this.idInsti,this.idDepto]);
   }
   toUpdate() {
-    this.router.navigate(['/gestion_poa/actividad/update/', this.id,this.idPoa,this.idInsti,this.idDepto]);
+    this.router.navigate(['/gestion_poa/actividad/update/', this.id,this.idPoa,this.idInsti,this.idDepto,this.idUE]);
   }
 
   toTab(){
