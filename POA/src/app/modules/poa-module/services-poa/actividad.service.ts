@@ -120,7 +120,7 @@ export class ActividadService {
 
   // alternativa a update
   updateActividad(id:number,nombre:string, descripcion:string
-   ,tipoActividad:string, categoria:string,idPoa:number):any {
+   ,tipoActividad:string, categoria:string,idPoa:number,idResultado:number):any {
     const url = environment.servidor + 'actividad/editar';
 
     const params = new HttpParams({
@@ -130,6 +130,7 @@ export class ActividadService {
         descripcion:descripcion,
         tipoActividad: tipoActividad,
         categoria:categoria,
+        idResultado:idResultado
         
       }
     });
@@ -141,7 +142,7 @@ export class ActividadService {
     };
     //return this.directHttp.put(url, params, httpOptions);
     this.directHttp.put(url,{nombre:nombre,descripcion:descripcion,
-      tipoActividad:tipoActividad,categoria:categoria,id:id,idPoa:idPoa}).subscribe((response:any)=>
+      tipoActividad:tipoActividad,categoria:categoria,id:id,idPoa:idPoa,idResultado:idResultado}).subscribe((response:any)=>
     {
       console.log(response);
       return response;
