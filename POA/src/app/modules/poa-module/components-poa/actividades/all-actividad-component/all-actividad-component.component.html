@@ -1,5 +1,5 @@
 <top-bar></top-bar>
-<app-back-button [path]="['/mis_poas/',this.idInsti,this.idUE,this.idDepto]"></app-back-button>
+<app-back-button  [path]="['/mis_poas/',this.idInsti,this.idUE,this.idDepto]"></app-back-button>
 
 
 <body class="justify-content-center mt-5 pt-5">
@@ -16,17 +16,19 @@
                         <h2></h2>
                         <h2 class="l-4">Gestión de Actividad</h2>
                     </div>
-         
+
                     <div class="row text-center m-2 fs-6 ">
-                        <span >POA: <a   (click)="toPoa()" class="text-decoration-none">{{poa.name}}</a>  - Institución: <a class="text-decoration-none">{{insti.nombre}}</a> <br>
-                            <span class="-b-text-undexpanded"> Departamento: <a  class="text-decoration-none">{{depto.name}}</a></span>
+                        <span>POA: <a (click)="toPoa()" class="text-decoration-none">{{poa.name}}</a> - Institución: <a
+                                class="text-decoration-none">{{insti.nombre}}</a> <br>
+                            <span class="-b-text-undexpanded"> Departamento: <a
+                                    class="text-decoration-none">{{depto.name}}</a></span>
 
                             <br>
                         </span>
-                        
+
                     </div>
 
-      
+
                     <div class="w-75 row m-auto mb-2">
                         <div class="row">
                             <label for="id" class="row col-form-label">Seleccione un POA:</label>
@@ -38,9 +40,9 @@
                             </select>
                         </div>
                     </div>
-         
 
-                       <!-- <div class="mb-3 mx-2 px-2 row">
+
+                    <!-- <div class="mb-3 mx-2 px-2 row">
                         <label for="id" class="row col-form-label">Seleccione un Pei:</label>
                                     <select class="form-select" aria-label="Default select example" name="id"
                                         [(ngModel)]="pei_seleccionado" (ngModelChange)="selectPei()" required>
@@ -50,9 +52,9 @@
                         </select>
                  
                 </div> -->
-                    
+
                     <div class="w-75 row m-auto mb-2">
-                   
+
                         <div><br></div>
 
                         <div class="col-8">
@@ -91,32 +93,33 @@
 
                 <!-- tabla dinamica que muestra todas las actividades -->
                 <div>
-                   
-                        <div class="row row-cols-1 row-cols-md-4 g-4">
-                            <ng-container *ngFor="let x of actividades| ActividadFilter:filter|actividadPaginacion:step:page; index as i">
+
+                    <div class="row row-cols-1 row-cols-md-4 g-4">
+                        <ng-container
+                            *ngFor="let x of actividades| ActividadFilter:filter|actividadPaginacion:step:page; index as i">
                             <li *ngIf="x.estado ==='FORMULACION'">
-                                    <div class="card  text-bg-secondary mb-3" style="width: 18rem;">
-                                         <!-- este contador no es id, solo es para enumerar -->
+                                <div class="card  text-bg-secondary mb-3" style="width: 18rem;">
+                                    <!-- este contador no es id, solo es para enumerar -->
                                     <ng-container *ngIf="page > 0; else elseNumeracion">
                                         {{i + page + 1}}
                                     </ng-container>
                                     <ng-template #elseNumeracion>
                                         {{i + 1}}
                                     </ng-template>
-                                        <div class="card-body">
-                                            <h1 class="text-center">Actividad {{i + 1}} </h1>
-                                            <h1 class="card-title">{{x.nombre}}</h1>
+                                    <div class="card-body">
+                                        <h1 class="text-center">Actividad {{i + 1}} </h1>
+                                        <h1 class="card-title">{{x.nombre}}</h1>
 
-                                            <h1 class="card-title">{{x.estado}}</h1>
-                                            <button type="button" class="btn btn-warning float-center"
-                                                (click)="toDetail(x.id)">Gestionar</button>
-                                        </div>
+                                        <h1 class="card-title">{{x.estado}}</h1>
+                                        <button type="button" class="btn btn-warning float-center"
+                                            (click)="toDetail(x.id)">Gestionar</button>
                                     </div>
+                                </div>
                             </li>
                             <li *ngIf="x.estado ==='RECHAZADO'">
                                 <div class="card  text-bg-danger mb-3" style="width: 18rem;">
-                                     <!-- este contador no es id, solo es para enumerar -->
-                                     <ng-container *ngIf="page > 0; else elseNumeracion">
+                                    <!-- este contador no es id, solo es para enumerar -->
+                                    <ng-container *ngIf="page > 0; else elseNumeracion">
                                         {{i + page + 1}}
                                     </ng-container>
                                     <ng-template #elseNumeracion>
@@ -133,8 +136,8 @@
                             </li>
                             <li *ngIf="x.estado ==='REFORMULACION'">
                                 <div class="card  text-bg-primary mb-3" style="width: 18rem;">
-                                     <!-- este contador no es id, solo es para enumerar -->
-                                     <ng-container *ngIf="page > 0; else elseNumeracion">
+                                    <!-- este contador no es id, solo es para enumerar -->
+                                    <ng-container *ngIf="page > 0; else elseNumeracion">
                                         {{i + page + 1}}
                                     </ng-container>
                                     <ng-template #elseNumeracion>
@@ -151,8 +154,8 @@
                             </li>
                             <li *ngIf="x.estado ==='REVISION'">
                                 <div class="card  text-bg-warning mb-3" style="width: 18rem;">
-                                     <!-- este contador no es id, solo es para enumerar -->
-                                     <ng-container *ngIf="page > 0; else elseNumeracion">
+                                    <!-- este contador no es id, solo es para enumerar -->
+                                    <ng-container *ngIf="page > 0; else elseNumeracion">
                                         {{i + page + 1}}
                                     </ng-container>
                                     <ng-template #elseNumeracion>
@@ -169,8 +172,8 @@
                             </li>
                             <li *ngIf="x.estado ==='APROBADO'">
                                 <div class="card  text-bg-success mb-3" style="width: 18rem;">
-                                     <!-- este contador no es id, solo es para enumerar -->
-                                     <ng-container *ngIf="page > 0; else elseNumeracion">
+                                    <!-- este contador no es id, solo es para enumerar -->
+                                    <ng-container *ngIf="page > 0; else elseNumeracion">
                                         {{i + page + 1}}
                                     </ng-container>
                                     <ng-template #elseNumeracion>
@@ -186,11 +189,11 @@
                                 </div>
                             </li>
 
-              
+
 
 
                         </ng-container>
-                        </div>
+                    </div>
                 </div>
 
 
