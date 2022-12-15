@@ -22,10 +22,10 @@ export class DetailActividadComponent implements OnInit {
   public idPoa:number = Number(this._route.snapshot.paramMap.get('idPoa'));
   public idDepto: number = Number(this._route.snapshot.paramMap.get('idDepto'));
   public idInsti: number = Number(this._route.snapshot.paramMap.get('idInsti'));
+  public idUE: number = Number(this._route.snapshot.paramMap.get('idUE'));
   public poaList: Array<Poa> = [];
   public DeptoList: Array<Depto> = []; 
   public InstitucionesList: Array<Institucion> = [];
-  public idUE: number = Number(this._route.snapshot.paramMap.get('idUE'));
   public UEList: Array<UnidadEjecutora> = [];
   //public area:Area | any = {};
 
@@ -49,7 +49,7 @@ export class DetailActividadComponent implements OnInit {
       this.getActividades(id);
     }
     console.log(this.actividad?.id)
-
+console.log("ue",this.idUE);
   }
   getActividades(id: number): void {
     this.service.getActividadess(id).subscribe({

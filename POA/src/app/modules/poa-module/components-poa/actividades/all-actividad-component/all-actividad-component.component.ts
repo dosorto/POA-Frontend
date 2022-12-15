@@ -104,7 +104,7 @@ export class AllActividadComponent implements OnInit {
     //obtiene todos los peis para dejarlos en el select
   }
   toDetail(idActividad: number) {
-    this.router.navigate(['/gestion_poa/actividad/detail/', idActividad.toString(), this.idPoa, this.idInsti, this.idDepto]);
+    this.router.navigate(['/gestion_poa/actividad/detail/', idActividad.toString(), this.idPoa, this.idInsti, this.idDepto,this.idUE]);
   }
   toCreate() {
     this.router.navigate(['/gestion_poa/actividad/create/', this.idPoa.toString(), this.idInsti, this.idDepto,this.idUE]);
