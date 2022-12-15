@@ -215,7 +215,7 @@
               Exportar a Excel</button>
       </div>
       <div class=" col">
-        <button mat-raised-button style="background-color: green; color: white;" (click)="exporter.exportTable('csv',{fileName:'prueba12'});openSnackBar()">
+        <button mat-raised-button style="background-color: green; color: white;" (click)="exporter.exportTable('csv',{fileName:'POA-UNIFICADO'+' '+anio});openSnackBar()">
           <i class="bi bi-file-spreadsheet-fill"></i>
             Exportar a CSV</button>
     </div>
@@ -359,13 +359,13 @@
                 <td style="padding: 10px;" mat-cell *matCellDef="let element"> {{element?.presupuesto?.objetogasto?.identificador}} </td>
               </ng-container>
               <ng-container matColumnDef="Trimestre">
-                <th style="min-width: 70px; text-align: center;" mat-header-cell *matHeaderCellDef >Trimestre</th>
-                <td style="padding: 10px;" mat-cell *matCellDef="let element"> {{element?.actividade?.planificacions[0]?.trimestre}} </td>
+                <th style="min-width: 220px; text-align: center;" mat-header-cell *matHeaderCellDef >Trimestre</th>
+                <td style="padding: 10px;" mat-cell *matCellDef="let element"> {{element?.actividade?.planificacions[1]?.trimestre}} -- {{element?.actividade?.planificacions[0]?.cantidad||0| currency:'L.'}} </td>
               </ng-container>
-              <ng-container matColumnDef="CantidadP">
+              <!-- <ng-container matColumnDef="CantidadP">
                 <th style="min-width: 70px; text-align: center;" mat-header-cell *matHeaderCellDef >Cantidad</th>
                 <td style="padding: 10px;" mat-cell *matCellDef="let element"> {{element?.actividade?.planificacions[0]?.cantidad||0| currency:'L.'}} </td>
-              </ng-container>
+              </ng-container> -->
               <ng-container matColumnDef="Fecha_Inicio">
                 <th style="min-width: 70px; text-align: center;" mat-header-cell *matHeaderCellDef >Fecha Inico</th>
                 <td style="padding: 10px;" mat-cell *matCellDef="let element"> {{element?.actividade?.planificacions[0]?.fechaInicio}} </td>

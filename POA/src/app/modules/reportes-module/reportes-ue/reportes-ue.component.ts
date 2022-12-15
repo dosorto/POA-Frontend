@@ -65,13 +65,14 @@ export class ReportesUEComponent implements OnInit {
     this.getUE();
     this.initData(this.idUE,this.anio)
     this.selectUE(this.idUE)
+
   }
 
   displayedColumns: any[] = ['Pei_Institucional','Dimension_Institucional','Objetivo_Institucional',
   'Area_Institucional','Resultado_Institucional','Nombre_Departamento','Nombre_Poa','Año',
   'Fuente11','Fuente12','Fuente12B','Nombre_Actividad','Estado','Tipo_Actividad','Categoria_Actividad',
   'indicador','cantidad_Planificada','cantidad_Ejecutada','promedio_Alcanzado','Nombre_Tarea','Cantidad',
- 'costo','total','fuente','grupo','objeto','Trimestre','CantidadP','Fecha_Inicio','Fecha_Final','Encargado'
+ 'costo','total','fuente','grupo','objeto','Trimestre','Fecha_Inicio','Fecha_Final','Encargado'
 ];
 
 dataSource:any[]=[]
