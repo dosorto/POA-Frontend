@@ -27,7 +27,7 @@ export class ReportesUEComponent implements OnInit {
   // public idDepto : number = 1;
   // public idPoa :number=1;
   public idUE : number =1;
-  public anio = '2021';
+  public anio = '2022';
   public listTareas : Array<Tareas>=[]
   // public listIndicadores : Array<Indicador>=[]
   public listnPTareas : Array<Tareas>=[]
