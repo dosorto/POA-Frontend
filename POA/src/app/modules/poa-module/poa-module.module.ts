@@ -26,6 +26,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { NzPopoverModule } from 'ng-zorro-antd/popover';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzListModule } from 'ng-zorro-antd/list';
+import { NzModalModule } from 'ng-zorro-antd/modal';
 
 // --------------------------------
 
@@ -208,7 +210,9 @@ MatExpansionModule,
 NzPopoverModule,
 NzDatePickerModule,
 NzTableModule,
-NzTreeSelectModule
+NzTreeSelectModule,
+NzListModule,
+NzModalModule
 
   ],
   entryComponents: [ENTRYCOMPONENTS],

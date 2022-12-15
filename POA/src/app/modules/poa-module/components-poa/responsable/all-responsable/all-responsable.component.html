@@ -1,13 +1,27 @@
     <div class="contenedor">
         <div class="usuarios">
-            <ng-container *ngFor="let x of [1,2,3,4]">
-                <div class="elementos border rounded">
-                    <i class="bi bi-x-lg justify-content-end"></i>
-                </div>
-            </ng-container>
+            
+
+            <ul nz-list [nzDataSource]="encargados" nzBordered nzSize="large">
+                <nz-list-header>Empleados encargados de esta actividad</nz-list-header>
+                <li nz-list-item *ngFor="let item of encargados" nzNoFlex>
+                  <ul nz-list-item-actions>
+                    <nz-list-item-action>
+                      <a (click)="delete(item.id)" style="color:red ;">eliminar</a>
+                    </nz-list-item-action>
+                  </ul>
+                  {{ item.nombre }}
+                </li>
+              </ul>
         </div>
         <div class="agregar ">
-            <button class="btn btn-primary">Agregar</button>
+            <button class="btn btn-primary" (click)="change()">Agregar</button>
         </div>
     </div>
+
+    <nz-modal [(nzVisible)]="isVisible" nzTitle="Agregar responsables" (nzOnCancel)="change()" (nzOnOk)="change()">
+        <ng-container *nzModalContent>
+            <p>Hemmes</p>
+        </ng-container>
+      </nz-modal>
 
