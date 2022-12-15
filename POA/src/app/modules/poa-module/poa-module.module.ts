@@ -116,7 +116,7 @@ const router = RouterModule.forChild([
   {path: 'indicadores/update/:id/:idActividad/:idPoa/:idDepto/:idInsti', component: UpdateIndicadoresComponent},
   {path: 'indicadores/detail/:id/:idActividad/:idPoa/:idDepto/:idInsti', component: DetailIndicadoresComponent},
   {path: 'indicadores/list/:idActividad/:idPoa/:idDepto/:idInsti', component: AllIndicadoresComponent},
-  {path: 'indicadores/seguimiento/:id/:idActividad/:idPoa/:idDepto/:idInsti', component: SeguimientoIndicadorComponent},
+  {path: 'indicadores/seguimiento/:id/:idPoa/:idActividad', component: SeguimientoIndicadorComponent},
 
   // rutas de planificacion
   {path: 'planificacion/create/:idPoa/:idActividad/:idInsti/:idDepto', component: CreatePlanificacionComponent},
@@ -199,6 +199,9 @@ MatExpansionModule,
 NzPopoverModule
 
   ],
-  entryComponents: [ENTRYCOMPONENTS]
+  entryComponents: [ENTRYCOMPONENTS],
+  exports:[
+    AllActividadComponent
+  ]
 })
 export class PoaModuleModule { }

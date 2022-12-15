@@ -151,6 +151,15 @@ export class PoaService {
     return this.directHttp.put(url, { id: id })
   }
 
+  //Mostrar ACtividades de POAS
+  MostrarAllActivities(id:number){
+    return this.callHttp.httpGet<Array<Poa>>(`${environment.servidor}POA/getAllActivites/` + id.toString())
+    .pipe(map(response => {
+      this._poa = response;
+      return response;
+    }))
+  }
+
   //activar POA
   activarPOA(id: number): any {
     const url = environment.servidor + 'POA/activePOA';

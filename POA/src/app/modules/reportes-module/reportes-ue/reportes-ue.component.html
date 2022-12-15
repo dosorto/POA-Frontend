@@ -1,5 +1,5 @@
 <top-bar></top-bar>
-<app-back-button [path]="['/home']"></app-back-button>
+<app-back-button [path]="['/reportes/list']"></app-back-button>
 <div>
 <div class=" mt-5 pt-4">
  
@@ -11,44 +11,38 @@
               
             </div>
         </div>
-         <div class="row" >
-          <div class="col boton2" align="right">
-            <button mat-raised-button style="background-color: green; color: white;" (click)="toPoaUnificado()">
-              <i class="bi bi-file-spreadsheet-fill"></i>
-                Ver todos los poas</button>
-        </div>
-    </div> 
        
             <div class=" container row row-cols-1 row-cols-md-2 select " >
               <div class="col ">
-                <label for="id"  style="font-size: 18px;">Seleccione un Departamento:</label>
+                <label for="id"  style="font-size: 18px;">Seleccione una Unidad Ejecutora:</label>
         
                     <select class="form-control shadow" style="border-radius: 20px;" aria-label="Default select example" name="id"
-                    [(ngModel)]="idDepto"
-                            (ngModelChange)="selectdepto(idDepto)" required>
+                    [(ngModel)]="idUE"
+                            (ngModelChange)="selectUE(idUE)" required>
                             <option>Seleccione</option>
-                    <ng-container *ngFor="let x of deptoList">
+                    <ng-container *ngFor="let x of UEList">
                                 <option value="{{x.id}}">{{x.name}}</option>
                             </ng-container>
                            
                 </select>
               </div>
               <div class="col">
-                <label for="id"  style="font-size: 18px;">Seleccione un POA:</label>
-        
+                <label for="id"  style="font-size: 18px;">Seleccione un Año:</label>
                     <select class="form-control shadow" style="border-radius: 20px;" aria-label="Default select example" name="id"
-                    [(ngModel)]="idPoa"
-                    (ngModelChange)="initData(idPoa,idDepto)">
+                    [(ngModel)]="anio"
+                    (ngModelChange)="initData(idUE,anio)">
                     <option>Seleccione</option>
-                    <ng-container *ngFor="let x of poaList">
-                                <option value="{{x.id}}" >{{x.name}}</option>
+                    <ng-container>
+                                <option value="2020" >2020</option>
+                                <option value="2021" >2021</option>
+                                <option value="2022" >2022</option>
                             </ng-container>
                            
                 </select>
               </div>
 
             </div>
-             <div class="contenedor_card">
+             <!-- <div class="contenedor_card">
             <div class="row row-cols-1 row-cols-md-3 ">
                 <div class="col">
                     <div class="card border-secondary shadow">
@@ -56,8 +50,6 @@
                             <mat-tab-group mat-align-tabs="center" style="margin-top: -3%;">
                               
                                 <mat-tab label="Techo Presupuestario" >
-
-                                    <!-- <h2 class="card-header bg-info" style="color:white;">Resumen de Presupuesto:</h2> -->
                                    
                                       <div class="table-responsive">
                                         <table class="table table-hover shadow-lg" style="margin-top: 2%;">
@@ -75,7 +67,7 @@
                                               <td>{{+PoaList.fuente11| currency:'L'}}</td>
                                               <td>{{gastosFuente11| currency:'L'}}</td>
                                               <td><strong>{{+PoaList.fuente11-gastosFuente11| currency:'L'}}</strong></td>
-                                              <!-- <td >{{+PoaList.fuente11-gastosFuente11| currency:'L'}}</td> -->
+                                              
                               
                                             </tr>
                                             <tr>
@@ -132,7 +124,7 @@
                                   </nz-row>
 
                                 </mat-tab>
-                                <!-- <mat-tab label="Porcentaje">
+                                <mat-tab label="Porcentaje">
                                   Formulación
                                   <div class="row">
                                     <div class="col-10">
@@ -151,7 +143,7 @@
                                   Rechazada
                                   <mat-progress-bar style="height: 15px;" color="warn" mode="determinate" value="{{(listActividadesRechazada.length/listActividades.length)*100}}"></mat-progress-bar>
 
-                                </mat-tab> -->
+                                </mat-tab>
                             </mat-tab-group>
                         </div>
                     </div>
@@ -167,17 +159,17 @@
                                     <p>Fuente 11</p>
                                 <nz-progress [nzPercent]="(gastosFuente11/+PoaList.fuente11*100)|number : '1.2-2'" nzType="circle" [nzStrokeColor]="{ '0%': '#F09A1A', '100%': '#F0253A' }" [nzWidth]="90"></nz-progress>
                               </div>
-                              <!-- (gastosFuente11/+PoaList.fuente11*100) -->
+                             
                               <div class="col">
                                 <p>Fuente 12</p>
                                 <nz-progress [nzPercent]="(gastosFuente12/+PoaList.fuente12*100)|number : '1.2-2'" nzType="circle" [nzStrokeColor]="{ '0%': '#439FAD', '100%': '#41F01D' }" [nzWidth]="90"></nz-progress>
                               </div>
-                              <!-- [nzPercent]="(gastosFuente12/+PoaList.fuente12*100) -->
+                              
                               <div class="col">
                                 <p>Fuente 12B</p>
                                 <nz-progress [nzPercent]="(gastosFuente12B/+PoaList.fuente12B*100)|number : '1.2-2'" nzType="circle" [nzStrokeColor]="{ '0%': '#19D0E3', '100%': '#AF2FE6' }" [nzWidth]="90" >Fuente</nz-progress>
                               </div>
-                              <!-- (gastosFuente12B/+PoaList.fuente12B*100) -->
+                             
                             </div>
                               </mat-tab>
                                 <mat-tab label="Cantidad">
@@ -215,15 +207,15 @@
                 </div>
             </div>
 
-        </div>
+        </div> -->
 <div class="row row-cols-1 row-cols-md-6 boton">
         <div class="col ">
-          <button mat-raised-button style="background-color: green; color: white;" (click)="exporter.exportTable('xlsx',{fileName:PoaList.name});openSnackBar()">
+          <button mat-raised-button style="background-color: green; color: white;" (click)="exporter.exportTable('xlsx',{fileName:'POA-UNIFICADO'+' '+anio});openSnackBar()">
             <i class="bi bi-file-spreadsheet-fill"></i>
               Exportar a Excel</button>
       </div>
       <div class=" col">
-        <button mat-raised-button style="background-color: green; color: white;" (click)="exporter.exportTable('csv',{fileName:PoaList.name});openSnackBar()">
+        <button mat-raised-button style="background-color: green; color: white;" (click)="exporter.exportTable('csv',{fileName:'POA-UNIFICADO'+' '+anio});openSnackBar()">
           <i class="bi bi-file-spreadsheet-fill"></i>
             Exportar a CSV</button>
     </div>
@@ -266,7 +258,7 @@
 
             <ng-container  matColumnDef="Nombre_Departamento">
               <th style="min-width: 270px; text-align: center;" mat-header-cell *matHeaderCellDef>Nombre del Departamento </th>
-              <td style="padding: 10px;" mat-cell *matCellDef="let element"> {{element.depto.name}} </td>
+              <td style="padding: 10px;" mat-cell *matCellDef="let element"> {{element?.depto?.name}} </td>
             </ng-container>
           
             <!-- Name Column -->
@@ -278,28 +270,28 @@
             <!-- Weight Column -->
             <ng-container matColumnDef="Nombre_Poa">
               <th style="min-width: 100px; text-align: center;"  mat-header-cell *matHeaderCellDef> Nombre del POA </th>
-              <td style="padding: 10px;" mat-cell *matCellDef="let element"> {{element?.poa.name}} </td>
+              <td style="padding: 10px;" mat-cell *matCellDef="let element"> {{element?.poa?.name}} </td>
             </ng-container>
 
             <ng-container matColumnDef="Año">
                 <th style="min-width: 90px; text-align: center;" mat-header-cell *matHeaderCellDef> Año del POA </th>
-                <td style="padding: 10px;" mat-cell *matCellDef="let element"> {{element?.poa.anio}} </td>
+                <td style="padding: 10px;" mat-cell *matCellDef="let element"> {{element?.poa?.anio}} </td>
               </ng-container>
               <ng-container matColumnDef="Fuente11">
                 <th style="min-width: 70px; text-align: center;" mat-header-cell *matHeaderCellDef> Fuente 11 </th>
-                <td style="padding: 10px;" mat-cell *matCellDef="let element"> {{element?.poa.fuente11}} </td>
+                <td style="padding: 10px;" mat-cell *matCellDef="let element"> {{element?.poa?.fuente11}} </td>
               </ng-container>
               <ng-container matColumnDef="Fuente12">
                 <th style="min-width: 70px; text-align: center;" mat-header-cell *matHeaderCellDef> Fuente 12 </th>
-                <td style="padding: 10px;" mat-cell *matCellDef="let element"> {{element?.poa.fuente12}} </td>
+                <td style="padding: 10px;" mat-cell *matCellDef="let element"> {{element?.poa?.fuente12}} </td>
               </ng-container>
               <ng-container matColumnDef="Fuente12B">
                 <th style="min-width: 70px; text-align: center;" mat-header-cell *matHeaderCellDef> Fuente 12B </th>
-                <td style="padding: 10px;" mat-cell *matCellDef="let element"> {{element?.poa.fuente12B}} </td>
+                <td style="padding: 10px;" mat-cell *matCellDef="let element"> {{element?.poa?.fuente12B}} </td>
               </ng-container>
               <ng-container matColumnDef="Nombre_Actividad">
                 <th style="min-width: 270px; text-align: center;" mat-header-cell *matHeaderCellDef> Nombre de la Actividad </th>
-                <td style="padding: 10px;" mat-cell *matCellDef="let element"> {{element?.actividade.nombre}} </td>
+                <td style="padding: 10px;" mat-cell *matCellDef="let element"> {{element?.actividade?.nombre}} </td>
               </ng-container>
               <!-- <ng-container matColumnDef="Descripcion">
                 <th mat-header-cell *matHeaderCellDef> Descripcion de la Actividad </th>
@@ -307,15 +299,15 @@
               </ng-container> -->
               <ng-container matColumnDef="Estado">
                 <th style="min-width: 130px; text-align: center;" mat-header-cell *matHeaderCellDef> Estado de la Actividad </th>
-                <td style="padding: 10px;" mat-cell *matCellDef="let element"> {{element?.actividade.estado}} </td>
+                <td style="padding: 10px;" mat-cell *matCellDef="let element"> {{element?.actividade?.estado}} </td>
               </ng-container>
               <ng-container matColumnDef="Tipo_Actividad">
                 <th style="min-width: 130px; text-align: center;" mat-header-cell *matHeaderCellDef> Tipo de Actividad </th>
-                <td style="padding: 10px;" mat-cell *matCellDef="let element"> {{element?.actividade.tipoActividad}} </td>
+                <td style="padding: 10px;" mat-cell *matCellDef="let element"> {{element?.actividade?.tipoActividad}} </td>
               </ng-container>
               <ng-container matColumnDef="Categoria_Actividad">
                 <th style="min-width: 140px; text-align: center;" mat-header-cell *matHeaderCellDef > Categoria de la Actividad</th>
-                <td style="padding: 10px;" mat-cell *matCellDef="let element"> {{element?.actividade.categoria}} </td>
+                <td style="padding: 10px;" mat-cell *matCellDef="let element"> {{element?.actividade?.categoria}} </td>
               </ng-container>
               <ng-container matColumnDef="indicador">
                 <th style="min-width: 270px; text-align: center;" mat-header-cell *matHeaderCellDef >Indicador</th>
@@ -367,13 +359,13 @@
                 <td style="padding: 10px;" mat-cell *matCellDef="let element"> {{element?.presupuesto?.objetogasto?.identificador}} </td>
               </ng-container>
               <ng-container matColumnDef="Trimestre">
-                <th style="min-width: 70px; text-align: center;" mat-header-cell *matHeaderCellDef >Trimestre</th>
-                <td style="padding: 10px;" mat-cell *matCellDef="let element"> {{element?.actividade?.planificacions[0]?.trimestre}} </td>
+                <th style="min-width: 220px; text-align: center;" mat-header-cell *matHeaderCellDef >Trimestre</th>
+                <td style="padding: 10px;" mat-cell *matCellDef="let element"> {{element?.actividade?.planificacions[1]?.trimestre}} -- {{element?.actividade?.planificacions[0]?.cantidad||0| currency:'L.'}} </td>
               </ng-container>
-              <ng-container matColumnDef="CantidadP">
+              <!-- <ng-container matColumnDef="CantidadP">
                 <th style="min-width: 70px; text-align: center;" mat-header-cell *matHeaderCellDef >Cantidad</th>
                 <td style="padding: 10px;" mat-cell *matCellDef="let element"> {{element?.actividade?.planificacions[0]?.cantidad||0| currency:'L.'}} </td>
-              </ng-container>
+              </ng-container> -->
               <ng-container matColumnDef="Fecha_Inicio">
                 <th style="min-width: 70px; text-align: center;" mat-header-cell *matHeaderCellDef >Fecha Inico</th>
                 <td style="padding: 10px;" mat-cell *matCellDef="let element"> {{element?.actividade?.planificacions[0]?.fechaInicio}} </td>

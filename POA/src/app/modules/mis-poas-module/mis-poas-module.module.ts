@@ -6,12 +6,11 @@ import { RouterModule } from '@angular/router';
 import { POAFiltroPipe } from './poafiltro.pipe';
 import { POApaginacionPipe } from './poapaginacion.pipe';
 
-
 import { TopBarComponent } from '../../_core/top-bar/top-bar.component'
 import { BackButtonComponent } from 'src/app/_core/back-button/back-button.component';
 
 const router = RouterModule.forChild([
-  { path: ':idDepto', component: MisPoasModuleComponent },
+  { path: ':idInsti/:idUE/:idDepto', component: MisPoasModuleComponent },
 ])
 
 @NgModule({
@@ -24,9 +23,8 @@ const router = RouterModule.forChild([
     router,
     FormsModule,
     TopBarComponent,
-    BackButtonComponent,
+    BackButtonComponent
   ]
 })
 export class MisPoasModuleModule { 
-
 }

@@ -2,9 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SeguimientoComponent } from './seguimiento.component';
 import { RouterModule } from '@angular/router';
+import { NgModel, FormControl, FormsModule} from '@angular/forms';
+
+import { TopBarComponent } from '../../_core/top-bar/top-bar.component'
+import { BackButtonComponent } from 'src/app/_core/back-button/back-button.component';
 
 const router = RouterModule.forChild([
-  {path: '', component: SeguimientoComponent}
+  {path: ':idPoa/:idActividad', component: SeguimientoComponent}
 ]
 )
 
@@ -14,7 +18,10 @@ const router = RouterModule.forChild([
   ],
   imports: [
     CommonModule,
-    router
+    router,
+    FormsModule,
+    TopBarComponent,
+    BackButtonComponent,
   ]
 })
 export class SeguimientoModule { }

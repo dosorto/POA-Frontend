@@ -5,8 +5,6 @@ import { PoaService } from '../../../services-poa/poa.service';
 
 import { Poa } from '../../../interfaces-poa/poa.model';
 import { Depto } from "../../..//interfaces-poa/depto.model";
-import { UnidadEjecutora } from "../../..//interfaces-poa/unidad_ejecutora.model";
-import { Institucion } from 'src/app/modules/administracion-module/interfaces/institucion.model';
 
 import { firstValueFrom } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
