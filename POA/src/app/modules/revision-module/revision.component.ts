@@ -39,7 +39,7 @@ export class RevisionComponent implements OnInit {
   public listnPTareas : Array<Tareas>=[]
   public listsPTareas : Array<Tareas>=[]
 
-  public listActividades: Array<Actividad>=[]
+  public listActividades: any=[]
   public ActividadList: Actividad | any = {};
 
   public deptoList:Array<Depto> = [];
@@ -69,8 +69,11 @@ export class RevisionComponent implements OnInit {
     // const tareas = await firstValueFrom(this.service.getPoa_id_iddepto(idPoa,idDepto))
     // this.listTareas = tareas;
 
-    const actividades = await firstValueFrom(this.service.getActvidades(idPoa))
-    this.listActividades = actividades
+   await this.service.getActvidades(idPoa).subscribe((response:any)=>{
+      this.listActividades = response
+      console.log(response);
+    })
+    
 
     this.PoaList = await this.service.getPoa_Id(idPoa).subscribe((response:any)=>{
       this.PoaList = response.poa;

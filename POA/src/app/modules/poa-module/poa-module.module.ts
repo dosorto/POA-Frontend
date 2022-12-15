@@ -12,6 +12,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { BackButtonComponent } from 'src/app/_core/back-button/back-button.component';
 //import { NgSelectModule } from '@ng-select/ng-select';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { NzTreeSelectModule } from 'ng-zorro-antd/tree-select';
 
 import {MatAutocomplete, MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -206,7 +207,8 @@ MatTabsModule,
 MatExpansionModule,
 NzPopoverModule,
 NzDatePickerModule,
-NzTableModule
+NzTableModule,
+NzTreeSelectModule
 
   ],
   entryComponents: [ENTRYCOMPONENTS],

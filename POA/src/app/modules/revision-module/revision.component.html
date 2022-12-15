@@ -45,7 +45,7 @@
                             <select class="form-control shadow" aria-label="Default select example" name="id"
                                 [(ngModel)]="idActividad" (ngModelChange)="tareas(idActividad)">
                                 <option>Seleccione</option>
-                                <ng-container *ngFor="let x of listActividades">
+                                <ng-container *ngFor="let x of listActividades.act_formulacion">
                                     <option value={{x.id}}>{{x.nombre}}</option>
                                 </ng-container>
 
@@ -120,11 +120,66 @@
                                 </table>
                             </mat-tab>
                             <mat-tab label="Tareas Aprobadas">
-                                <app-tareas-aprobadas></app-tareas-aprobadas>
+                                <nz-table #basicTable [nzData]="listActividades.act_aprobado">
+                                    <thead>
+                                      <tr>
+                                        <th>#</th>
+                                        <th>Nombre</th>
+                                        <th>Costo</th>
+                                        <th>Acciones</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr *ngFor="let data of basicTable.data; index as i">
+                                        <td>{{i}}</td>
+                                        <td>{{data}}</td>
+                                        <td>{{data}}</td>
+                                        <td>{{data}}</td>
+                                        
+                                      </tr>
+                                    </tbody>
+                                  </nz-table>
 
                             </mat-tab>
-                            <mat-tab label="Tareas en reformulación"><app-tareas-revisadas></app-tareas-revisadas></mat-tab>
-                            <mat-tab label="Tareas Rechazadas"><app-tareas-rechazadas></app-tareas-rechazadas></mat-tab>
+                            <mat-tab label="Tareas en reformulación">
+                                <nz-table #basicTable [nzData]="listActividades.act_aprobado">
+                                    <thead>
+                                      <tr>
+                                        <th>#</th>
+                                        <th>Nombre</th>
+                                        <th>Costo</th>
+                                        <th>Acciones</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr *ngFor="let data of basicTable.data; index as i">
+                                        <td>{{i}}</td>
+                                        <td>{{data}}</td>
+                                        <td>{{data}}</td>
+                                        <td>{{data}}</td>
+                                        
+                                      </tr>
+                                    </tbody>
+                                  </nz-table></mat-tab>
+                            <mat-tab label="Tareas Rechazadas"><nz-table #basicTable [nzData]="listActividades.act_aprobado">
+                                <thead>
+                                  <tr>
+                                    <th>#</th>
+                                    <th>Nombre</th>
+                                    <th>Costo</th>
+                                    <th>Acciones</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr *ngFor="let data of basicTable.data; index as i">
+                                    <td>{{i}}</td>
+                                    <td>{{data}}</td>
+                                    <td>{{data}}</td>
+                                    <td>{{data}}</td>
+                                    
+                                  </tr>
+                                </tbody>
+                              </nz-table></mat-tab>
                         </mat-tab-group>
                     </div>
 

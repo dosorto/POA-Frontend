@@ -68,11 +68,7 @@ export class RevisionService {
   }
 
   getActvidades(idPoa:number) {
-    return this.callHttp.httpGet<Array<Actividad>>(`${environment.servidor}reportes/actividades/` + idPoa.toString())
-      .pipe(map(response => {
-        this._actividades = response;
-        return response;
-      }))
+    return this.directHttp.get(`${environment.servidor}revision/actividadesByEstado/` + idPoa.toString());
   }
 
   public crearRevision(nombre: string, nombre_aprobado: boolean, descripcion: string, descripcion_aprobado: boolean,

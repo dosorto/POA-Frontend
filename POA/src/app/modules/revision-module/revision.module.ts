@@ -12,6 +12,7 @@ import { BackButtonComponent } from 'src/app/_core/back-button/back-button.compo
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { BrowserModule } from '@angular/platform-browser';
 import {MatTabsModule} from '@angular/material/tabs';
+import { NzTableModule } from 'ng-zorro-antd/table';
 
 const router = RouterModule.forChild([
   {path: '', component: RevisionComponent},
@@ -38,7 +39,8 @@ const router = RouterModule.forChild([
     TopBarComponent,
     BackButtonComponent,
     NzInputModule,
-    MatTabsModule
+    MatTabsModule,
+    NzTableModule
   ]
 })
 export class RevisionModule { }
