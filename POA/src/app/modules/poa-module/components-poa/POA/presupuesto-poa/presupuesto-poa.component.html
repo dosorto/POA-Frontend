@@ -1,7 +1,6 @@
 <top-bar></top-bar>
-
+<app-back-button [path]="['home']"></app-back-button>
 <body class="justify-content-center mt-5 w-100 ">
-
     <!-- Pantalla principal del modulo -->
     <div class=" d-flex align-items-center justify-content-center ">
         <!-- columna completa que agrupa todos los row -->
@@ -11,14 +10,9 @@
             <div>
                 <div class="w-100 row m-auto">
                     <div class="w-100 row m-auto mb-2">
+                        <div class="row text-center" style="font-size: 18px;"><span>Gestionar Poas de:</span></div>
                         <div class="row">
-                            <label for="id" class="row col-form-label">Seleccione una Unidad Ejecutora:</label>
-                            <select class="form-control" aria-label="Default select example" name="id"
-                                [(ngModel)]="UnidadEjecutoraSeleccionada" (ngModelChange)="selectUA()" required>
-                                <ng-container *ngFor="let x of UAListFromDb">
-                                    <option value="{{x.id}}" [selected]="x.id===idUESelect">{{x.name}}</option>
-                                </ng-container>
-                            </select>
+                            <span class=" text-center" style="font-size: 18px;">Unidad Ejecutora: <strong>{{user.empleado.ejecutora.name}} </strong> Institucion: <strong>{{user.empleado.ejecutora.Institucion.nombre}}</strong></span>
                         </div>
                     </div>
                     
@@ -50,22 +44,14 @@
                 <!-- tabla dinamica que muestra todas los Unidades ejecutoras -->
                 
                 <div>
-                    <div class="row row-cols-1 row-cols-md-4 g-4">
-                        <ng-container *ngFor="let x of presupuesto_unidadesEjecutorasFromDb | poaFiltro:filter|poaPaginacion:step:page; index as i">
-                            <li *ngIf="x.isActive===true">
+                    <div class="row row-cols-1 row-cols-md-4 g-4 m-auto">
+                        <ng-container *ngFor="let x of presupuesto_unidadesEjecutorasFromDb  ; index as i">
+                            <li >
                                 <div class="card  text-bg-primary mb-3" style="width: 20 rem;">
-                                    <!-- este contador no es id, solo es para enumerar -->
-                                    <ng-container *ngIf="page > 0; else elseNumeracion">
-                                        {{i + page + 1}}
-                                    </ng-container>
-                                    <ng-template #elseNumeracion>
-                                        {{i + 1}}
-                                    </ng-template>
-
+                                    
                                     <div class="card-body" style="width: 15rem;">
-                                        <h1 class="card-title">{{x.name}}</h1>
+                                        <h1 class="card-title" style="color:white;">Año: {{x.anio}}</h1>
                                         <p class="card-text" style="width: 11rem;">
-                                            Fecha: {{x.anio}}
                                             Fuente11: {{x.fuente11| currency: 'L'}}
                                             Fuente12: {{x.fuente12| currency: 'L'}}
                                             Fuente12B: {{x.fuente12B| currency: 'L'}}
@@ -77,9 +63,8 @@
                                     </div>
                                 </div>
                             </li>
-                            <li *ngIf="x.isActive===false">
+                            <!-- <li *ngIf="x.isActive===false">
                                 <div class="card  text-bg-secondary mb-3" style="width: 20 rem;">
-                                    <!-- este contador no es id, solo es para enumerar -->
                                     <ng-container *ngIf="page > 0; else elseNumeracion">
                                         {{i + page + 1}}
                                     </ng-container>
@@ -101,12 +86,12 @@
                                             (click)="toDetail(x.id)">Gestionar</button>
                                     </div>
                                 </div>
-                            </li>
+                            </li> -->
                         </ng-container>
                     </div>
                 </div>
 
-                <nav aria-label="Page navigation example">
+                <!-- <nav aria-label="Page navigation example">
                     <ul class="justify-content-star">Página {{actualpage}} de {{maxPages}}</ul>
                     <ul class="pagination justify-content-end">
                         <ng-container>
@@ -117,10 +102,9 @@
                             <li class="page-item"><a class="page-link " (click)="nextPage()">Siguiente</a></li>
                         </ng-container>
                     </ul>
-                </nav>
+                </nav> -->
             </div>
-            <ng-template #empty>
-                <app-empty></app-empty>
-            </ng-template>
+            <app-empty *ngIf="presupuesto_unidadesEjecutorasFromDb.length === 0"></app-empty>
+            
         </div>
     </div>

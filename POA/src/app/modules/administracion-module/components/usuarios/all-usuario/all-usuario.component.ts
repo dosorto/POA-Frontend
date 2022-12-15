@@ -33,7 +33,7 @@ toRoles() {
     this.getUserFromDB();
     this.getRolesFromDB();
     this.getEmpleadosFromDB();
-  }
+    }
   // miembros de clase
   public validateForm: any;
   public filter:string = '';
@@ -51,6 +51,7 @@ toRoles() {
   async getUserFromDB(){
     await this.service.getUsers().subscribe((response:Array<Usuario>)=>{
       this.usersFromDb = response;
+      console.log(response);
       return response;
     })
   }

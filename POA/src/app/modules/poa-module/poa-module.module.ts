@@ -23,6 +23,8 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatExpansionModule} from '@angular/material/expansion'; 
 import { NzPopoverModule } from 'ng-zorro-antd/popover';
+import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
+import { NzTableModule } from 'ng-zorro-antd/table';
 
 // --------------------------------
 
@@ -85,6 +87,8 @@ import { IndicadorPaginacionPipe } from './pipes-poa/indicador-paginacion.pipe';
 import { TabActividadesComponentsComponent } from './components-poa/actividades/tab-actividades-components/tab-actividades-components.component';
 import { DetailPresupuestoComponent } from './components-poa/tareas/detail-presupuesto/detail-presupuesto.component';
 import { PresupuestoPoaComponent } from './components-poa/POA/presupuesto-poa/presupuesto-poa.component';
+import {CreateUePresupuestoComponent} from './components-poa/POA/create-ue-presupuesto/create-ue-presupuesto.component';
+import {PoaDeptosComponent} from'./components-poa/POA/poa-deptos/poa-deptos.component'
 
 import { ResultadosFiltroPipe } from './pipes-poa/resultados-filtro.pipe';
 
@@ -95,10 +99,12 @@ const router = RouterModule.forChild([
 
 
   // rutas de poa
-  {path: 'poa/create/:idInsti/:idUE/:idDepto', component: CreatePoaComponent},
-  {path: 'poa/update/:id/:idInsti/:idUE/:idDepto', component: UpdatePoaComponent},
-  {path: 'poa/detail/:id/:idInsti/:idUE/:idDepto', component: DetailPoaComponent},
+  {path: 'poa/create/:idInsti/:idUE/:idDepto/:idPresupuesto/:anio', component: CreatePoaComponent},
+  {path: 'poa/update/:id/:idInsti/:idUE/:idDepto/:anio', component: UpdatePoaComponent},
+  {path: 'poa/detail/:id/:idInsti/:idUE/:idDepto/:idPresupuesto/:anio', component: DetailPoaComponent},
   {path: 'poa/list/:idInsti/:idUE/:idDepto', component: AllPoaComponent},
+  {path: 'ue_presupuesto/crear', component: CreateUePresupuestoComponent},
+  {path: 'poas/crear_poa_deptos/:id', component: PoaDeptosComponent},
   // rutas de actividades
   {path: 'actividad/create/:idPoa/:idInsti/:idDepto/:idUE', component: CreateActividadComponent},
   {path: 'actividad/update/:id/:idPoa/:idInsti/:idDepto/:idUE', component: UpdateActividadComponent},
@@ -170,6 +176,8 @@ const router = RouterModule.forChild([
     DetailPresupuestoComponent,
     ENTRYCOMPONENTS,
     PresupuestoPoaComponent,
+    CreateUePresupuestoComponent,
+    PoaDeptosComponent,
     ResultadosFiltroPipe
 
   ],
@@ -196,7 +204,9 @@ EmptyComponent,
 MatProgressBarModule,
 MatTabsModule,
 MatExpansionModule,
-NzPopoverModule
+NzPopoverModule,
+NzDatePickerModule,
+NzTableModule
 
   ],
   entryComponents: [ENTRYCOMPONENTS],

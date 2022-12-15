@@ -5,6 +5,7 @@ import { Poa } from "../../poa-module/interfaces-poa/poa.model";
 import { Depto } from "../../poa-module/interfaces-poa/depto.model";
 import { UnidadEjecutora } from "../../poa-module/interfaces-poa/unidad_ejecutora.model";
 import { Institucion } from "../../administracion-module/interfaces/institucion.model";
+import { UePresupuestoModel } from "../interfaces-poa/ue_presupuesto.model";
 
 import { map, Observable } from "rxjs";
 import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
@@ -15,39 +16,18 @@ import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 export class UePresupuesto {
   constructor(private callHttp: CallHttpService, private directHttp: HttpClient) { }
 
-  private _poa: Array<Poa> = [];
-  private _depto: Array<Depto> = [];
-  private _unidadejecutora: Array<UnidadEjecutora> = [];
-  private _institucion: Array<Institucion> = [];
 
-  get poa() {
-    return this._poa;
-  }
-  get depto() {
-    return this._depto;
-  }
-  get unidadejecutora() {
-    return this._unidadejecutora;
-  }
-
-  get institucion() {
-    return this._institucion;
-  }
-
-
-  public crearPOA(name: string, anio: string, fuente11: string, fuente12: string, fuente12B: string, idDepto: number, idUE: number, idInstitucion: number): any {
-    const url = environment.servidor + 'POA/new_POA';
+  public crearUePresupuesto(anio: string, fuente11: string, fuente12: string, fuente12B: string, idUE: number): any {
+    const url = environment.servidor + 'ue_presupuesto/create';
     const params = new HttpParams({
       fromObject: {
         grant_type: 'password',
-        name: name,
+        
         anio: anio,
         fuente11: fuente11,
         fuente12: fuente12,
         fuente12B: fuente12B,
-        idDepto: idDepto,
-        idUE: idUE,
-        idInstitucion: idInstitucion
+        idUnidadEjecutora: idUE,
 
       }
     });
@@ -91,42 +71,41 @@ export class UePresupuesto {
     })
   };
 
-  getPOA() {
-    return this.callHttp.httpGet<Array<Poa>>(`${environment.servidor}POA/get_POA`)
-      .pipe(map(response => {
-        this._poa = response;
-        return response;
-      }))
+
+
+  getAllUePresupuestos(IdUe: number):any {
+    return this.directHttp.get<Array<UePresupuestoModel>>(`${environment.servidor}ue_presupuesto/get_all/` + IdUe.toString());
   }
 
-  getPOA_Id(idPoa: number) {
-    return this.callHttp.httpGet<Poa>(`${environment.servidor}POA/get/` + idPoa.toString());
-  }
+ 
 
-  MisPOAS(IdEmpleado: number, idDepto: number) {
-    return this.callHttp.httpGet<Array<Poa>>(`${environment.servidor}POA/getMisPoas/` + IdEmpleado.toString() + `/` + idDepto.toString())
-      .pipe(map(response => {
-        this._poa = response;
-        return response;
-      }))
+  getdepartamentos(){
+    return this.directHttp.get<Array<Depto>>(`${environment.servidor}departamento/get_all`);
   }
+  getPresupuestoforUE(idUE:number,anio:string){
+    return this.directHttp.get(`${environment.servidor}ue_presupuesto/get_status/`+idUE+"/"+anio);
+  }
+  getrUE(idUE:number){
+    return this.directHttp.get(`${environment.servidor}ue_presupuesto/get/`+idUE);
+  }
+  getStatusOfDepto(idDepto: number, idUE:number, anio:string) {
+    const url = environment.servidor + 'ue_presupuesto/get_status_depto';
+    const params = new HttpParams({
+      fromObject: {
+        grant_type: 'password',
+        idDepto: idDepto,
+        idUnidadEjecutora: idUE,
+        anio: anio
+      }
+    });
 
-  MostrarPoa(idDepto: number) {
-    return this.callHttp.httpGet<Array<Poa>>(`${environment.servidor}POA/poaByIdDepto/` + idDepto.toString())
-      .pipe(map(response => {
-        this._poa = response;
-        return response;
-      }))
-  }
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/x-www-form-urlencoded'
+      })
+    };
+    return this.directHttp.post(url, params, httpOptions);
 
-  getdepartamentos() {
-    return this.callHttp.httpGet<Array<Depto>>(`${environment.servidor}departamento/get_all`)
-      .pipe(map(response => {
-        return response;
-      }))
-  }
-  getDepto_Id(idDepto: number) {
-    return this.callHttp.httpGet<Depto>(`${environment.servidor}departamento/get/` + idDepto.toString());
   }
   getInsti_Id(idInsti: number) {
     return this.callHttp.httpGet<Institucion>(`${environment.servidor}institucion/get/` + idInsti.toString());

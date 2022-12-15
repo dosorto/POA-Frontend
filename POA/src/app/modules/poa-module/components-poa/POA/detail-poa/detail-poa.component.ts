@@ -11,6 +11,7 @@ import { Institucion } from 'src/app/modules/administracion-module/interfaces/in
 import { firstValueFrom } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { UePresupuesto } from '../../../services-poa/ue_presupuesto.service';
 
 @Component({
   selector: 'app-detail-poa',
@@ -23,15 +24,19 @@ export class DetailPoaComponent implements OnInit {
   public idUE: number = Number(this._route.snapshot.paramMap.get('idUE'));
   public idInsti:number = Number(this._route.snapshot.paramMap.get('idInsti'));
   public id:number = Number(this._route.snapshot.paramMap.get('id'));
+  public anio:any = this._route.snapshot.paramMap.get('anio');
   public idObjetivo: number = Number(this._route.snapshot.paramMap.get('idObjetivo'));
+  public idPresupuesto: number = Number(this._route.snapshot.paramMap.get('idPresupuesto'));
   public poa:Poa | any = {};
   public depto:Depto | any = {};
   public insti:Institucion | any = {};
   public unidadejecutora:UnidadEjecutora | any = {};
+  public UePresupesto: any;
 
   constructor(private service:PoaService,
     private router:Router,private _route: ActivatedRoute,
-    private Storage:Storage) { }
+    private Storage:Storage,
+    private Ueservice:UePresupuesto) { }
 
   ngOnInit(): void {
     this.initData();
@@ -44,14 +49,17 @@ export class DetailPoaComponent implements OnInit {
     this.depto = await this.service.getDepto_Id(this.idDepto).subscribe((response: any) => {
       this.depto = response.all_deptos;
     })
+    this.UePresupesto = await this.Ueservice.getrUE(1).subscribe(
+      (response:any)=>{
+        this.UePresupesto = response})
   }
 
   onBack(): void {
-    this.router.navigate(['/gestion_poa/poa/list/',this.idInsti,this.idUE,this.idDepto]);
+    this.router.navigate(['/gestion_poa']);
   }
 
   toUpdate(){
-    this.router.navigate(['/gestion_poa/poa/update/',this.id,this.idInsti,this.idUE,this.idDepto]); //revisar
+    this.router.navigate(['/gestion_poa/poa/update/',this.id,this.idInsti,this.idUE,this.idDepto,this.anio]); //revisar
   }
 
   toActividad(){

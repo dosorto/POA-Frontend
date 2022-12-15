@@ -28,7 +28,8 @@ export class MenuComponent implements OnInit {
   }
 
   toPOA(){
-    this.router.navigate(['/gestion_poa/poa/list/1/1/1'])
+    //this.router.navigate(['/gestion_poa/poa/list/1/1/1']);
+    this.router.navigate(['/gestion_poa']);
   }
   toInstitucion(){
     this.router.navigate(['/admin/instituciones'])

@@ -1,5 +1,5 @@
 <top-bar></top-bar>
-<app-back-button [path]="['/gestion_poa']"></app-back-button>
+<app-back-button [path]="['/gestion_poa/poa/list/',this.idInsti,this.idUE,this.idDepto]"></app-back-button>
 <div class="justify-content-center abs-center mt-5 pt-5 abs-center">
 
     <div class="col-7">
@@ -13,8 +13,8 @@
                     <div class="row">
                         <div class="row text-center m-2 fs-6 ">
                             <span class="fs-5">
-                                <span class="-b-text-undexpanded"> Departamento: <a
-                                        class="text-primary">{{departamento.name}}</a></span>
+                                <span class="-b-text-undexpanded"> Unidad Ejecutora: <a
+                                        class="text-primary">{{user.empleado.ejecutora.name}}</a></span>
                             </span>
                         </div>
                         <div class="col-10 text-center">
@@ -27,30 +27,23 @@
                         </div>
                         <div class="d-grid gap-2 d-md-flex justify-content-center">
                             <form #Poa='ngForm'
-                                (ngSubmit)="crear_poa(Poa.value.name,Poa.value.anio,Poa.value.fuente11, Poa.value.fuente12, Poa.value.fuente12B)"
+                                (ngSubmit)="crear_poa(Poa.value.anio,Poa.value.fuente11, Poa.value.fuente12, Poa.value.fuente12B)"
                                 id="createPOA">
                                 <div class="w-100 row m-auto">
-                                    <!-- Campo para el nombre de POA -->
-                                    <div class="col-10">
-                                        <label for="name" class="row col-form-label">Nombre de POA:</label>
-                                        <div class="row">
-                                            <input type="text" class="form-control" name="name" ngModel required>
-                                        </div>
-                                    </div>
                                     <!-- Campo para la Año Inicial -->
                                     <div class="col-10 mb-3">
                                         <label for="anio" class="row col-form-label">Año:</label>
                                         <div class="row">
-                                            <input type="text" disabled [value]="anio" class="form-control" name="anio" >
+                                            <nz-date-picker  name="anio" nzMode="year" [(ngModel)]="date" (ngModelChange)="onChange($event)" [ngModelOptions]="{standalone:true}" ngModel required></nz-date-picker>
                                         </div>
                                     </div>
                                     <div class="col-10 mb-3">
                                         <label for="fuente11" class="row col-form-label">Fuente 11:</label>
                                         <div class="row">
-                                            <input type="number" class="form-control" name="fuente11" ondrop="return false;" onpaste="return false;" onkeypress="return event.charCode>=48 && event.charCode<=57"  min="0" [max]="UePresupesto.fuente11_restante"
+                                            <input type="number" class="form-control" name="fuente11" ondrop="return false;" onpaste="return false;" onkeypress="return event.charCode>=48 && event.charCode<=57"  min="0" max="" 
                                                 ngModel required>
-                                            <ng-container *ngIf="Poa.value.fuente11 < 0 || Poa.value.fuente11 > UePresupesto.fuente11_restante">
-                                                <span class="alert alert-danger">El valor excede lo disponible para este poa en esta fuente
+                                            <ng-container *ngIf="Poa.value.fuente11 < 0">
+                                                <span class="alert alert-danger">Revisa el valor ingresado
                                                 </span>
                                             </ng-container>
                                         </div>
@@ -60,8 +53,8 @@
                                         <div class="row">
                                             <input type="number" class="form-control" name="fuente12" ondrop="return false;" onpaste="return false;" onkeypress="return event.charCode>=48 && event.charCode<=57" min="0" max=""
                                                 ngModel required>
-                                            <ng-container *ngIf="Poa.value.fuente12 < 0|| Poa.value.fuente12 > UePresupesto.fuente12_restante">
-                                                <span class="alert alert-danger">El valor excede lo disponible para este poa en esta fuente
+                                            <ng-container *ngIf="Poa.value.fuente12 < 0">
+                                                <span class="alert alert-danger">Revisa el valor ingresado
                                                 </span>
                                             </ng-container>
                                         </div>
@@ -71,8 +64,8 @@
                                         <div class="row">
                                             <input type="number" class="form-control" name="fuente12B" ondrop="return false;" onpaste="return false;" onkeypress="return event.charCode>=48 && event.charCode<=57"  min="0" max=""
                                                 ngModel required>
-                                            <ng-container *ngIf="Poa.value.fuente12B < 0|| Poa.value.fuente12B > UePresupesto.fuente12B_restante">
-                                                <span class="alert alert-danger">El valor excede lo disponible para este poa en esta fuente
+                                            <ng-container *ngIf="Poa.value.fuente12B < 0">
+                                                <span class="alert alert-danger">Revisa el valor ingresado
                                                 </span>
                                             </ng-container>
                                         </div>
@@ -82,7 +75,7 @@
 
 
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" (click)="onBack()">Regresar</button>
+                                    <button type="button" class="btn btn-secondary" (click)="toList()">Regresar</button>
                                     <button type="submit" class="btn btn-warning m-2"
                                         [disabled]="Poa.invalid">Guardar</button>
                                 </div>

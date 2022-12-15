@@ -11,7 +11,8 @@ import { firstValueFrom } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import {ThemePalette} from '@angular/material/core';
-
+import { UePresupuesto } from '../../../services-poa/ue_presupuesto.service';
+import { UePresupuestoModel } from '../../../interfaces-poa/ue_presupuesto.model';
 
 @Component({
   selector: 'app-update-poa',
@@ -23,25 +24,29 @@ export class UpdatePoaComponent implements OnInit {
   color: ThemePalette = 'accent';
   checked = false;
   disabled = false;
+  user: any;
   
   constructor(private Storage: Storage,
+    private ueService: UePresupuesto,
     private service: PoaService,
     private router: Router,
     private poaService: PoaService,
     private _route: ActivatedRoute) { }
 
+  public UePresupesto:UePresupuestoModel | any;
   public idDepto: number = Number(this._route.snapshot.paramMap.get('idDepto'));
   public idInsti: number = Number(this._route.snapshot.paramMap.get('idInsti'));
   public idUE: number = Number(this._route.snapshot.paramMap.get('idUE'));
+  public anio_url: any = this._route.snapshot.paramMap.get('anio');
   public ue: UnidadEjecutora | any = {};
   public poa: Poa | any = {};
   public depto: Depto | any = {};
   public id: number = Number(this._route.snapshot.paramMap.get('id'));
   public name: string = '';
   public anio: string = '';
-  public fuente11: string = '';
-  public fuente12: string = '';
-  public fuente12B: string = '';
+  public fuente11: number = 0;
+  public fuente12: number = 0;
+  public fuente12B: number = 0;
   public isActive: boolean = true;
 
   ngOnInit(): void {
@@ -50,6 +55,8 @@ export class UpdatePoaComponent implements OnInit {
     this.depto = this.service.getDepto_Id(this.idDepto).subscribe((response: any) => {
       this.depto = response.all_deptos;
     })
+    this.user = this.Storage.get_storage('user');
+    
   }
 
   async initData() {
@@ -58,13 +65,21 @@ export class UpdatePoaComponent implements OnInit {
       this.isActive=response.poa.isActive;
       console.log(response);
     }
+    
     );
+    await this.ueService.getPresupuestoforUE(this.user.empleado.ejecutora.id,this.anio_url).subscribe(
+      (response:any)=>{
+        this.UePresupesto = response;
+        console.log(response)
+      }
+      
+    )
     console.log(this.poa)
   }
 
   toDetail(idPoa: number) {
     console.log(this.idDepto)
-    this.router.navigate(['/gestion_poa/poa/detail/', idPoa.toString(), this.idInsti, this.idUE, this.idDepto]);
+    this.router.navigate(['/gestion_poa']);
   }
 
   toList() {
@@ -133,13 +148,13 @@ export class UpdatePoaComponent implements OnInit {
     // validaciones
     if ((name === '')) { name = this.poa.name }
     if ((anio === '')) { anio = this.poa.anio }
-    if ((fuente11 === '')) { fuente11 = this.poa.fuente11 }
-    if ((fuente12 === '')) { fuente12 = this.poa.fuente12 }
-    if ((fuente12B === '')) { fuente12B = this.poa.fuente12B }
+    if ((fuente11 === 0)) { fuente11 = this.poa.fuente11 }
+    if ((fuente12 === 0)) { fuente12 = this.poa.fuente12 }
+    if ((fuente12B === 0)) { fuente12B = this.poa.fuente12B }
     
     console.log(":" + name + ":" + ":" + anio + ":" + fuente11 + ":" + fuente12 + ":" + fuente12B  + ":" + isActive);
     try {
-      this.service.updatePOA(name,anio,fuente11,fuente12,fuente12B,this.id,this.isActive,this.idInsti,this.idUE,this.idDepto).subscribe((res:any)=>{
+      this.service.updatePOA(name,anio,fuente11.toString(),fuente12.toString(),fuente12B.toString(),this.id,this.isActive,this.idInsti,this.idUE,this.idDepto).subscribe((res:any)=>{
         Swal.fire({
           icon: 'success',
           title: '¡Actualizado con éxito!',
