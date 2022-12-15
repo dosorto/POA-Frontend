@@ -34,7 +34,7 @@ export class MenuComponent implements OnInit {
     this.router.navigate(['/admin/instituciones'])
   }
   toMisPoas(){
-    this.router.navigate(['/mis_poas/1'])
+    this.router.navigate(['/mis_poas/1/1/1'])
   }
   toRevision(){
     this.router.navigate(['/revision'])
@@ -47,4 +47,7 @@ export class MenuComponent implements OnInit {
     this.router.navigate(['mipoa/list'])
   }
 
+  toSeguimiento(){
+    this.router.navigate(['seguimiento/1/1'])
+  }
 }

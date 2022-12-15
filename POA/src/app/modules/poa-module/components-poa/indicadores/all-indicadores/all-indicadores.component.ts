@@ -102,7 +102,7 @@ public enumPages:number[]=[]
     this.router.navigate(['/gestion_poa/indicadores/detail/',idIndicador.toString(),this.idActividad,this.idPoa,this.idDepto,this.idInsti]);
   }
   toSeguimiento(idIndicador:number){
-    this.router.navigate(['/gestion_poa/indicadores/seguimiento/',idIndicador.toString(),this.idActividad,this.idPoa,this.idDepto,this.idInsti]);
+    this.router.navigate(['/gestion_poa/indicadores/seguimiento/',idIndicador.toString(),this.idActividad]);
   }
   toCreate(){
     this.router.navigate(['/gestion_poa/indicadores/create/',this.idActividad.toString(),this.idPoa,this.idDepto,this.idInsti]);

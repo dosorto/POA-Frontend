@@ -9,25 +9,20 @@ import { Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { Institucion } from '../administracion-module/interfaces/institucion.model';
 import { Actividad } from '../poa-module/interfaces-poa/actividad.model';
-import { ActividadService } from '../poa-module/services-poa/actividad.service';
-import { TareasService } from '../poa-module/services-poa/tareas.service';
+import { Tareas } from '../poa-module/interfaces-poa/tareas.model';
+import { Indicadores } from '../poa-module/interfaces-poa/Indicadores.model';
 
 @Component({
-  selector: 'app-mis-poas-module',
-  templateUrl: './mis-poas-module.component.html',
-  styleUrls: ['./mis-poas-module.component.css']
+  selector: 'app-seguimiento',
+  templateUrl: './seguimiento.component.html',
+  styleUrls: ['./seguimiento.component.css']
 })
-export class MisPoasModuleComponent implements OnInit {
+export class SeguimientoComponent implements OnInit {
 
-  constructor(
-    private Storage: Storage,
+  constructor(private Storage: Storage,
     private service: PoaService,
-    private serviceActividad: ActividadService,
-    private serviceTarea: TareasService,
     private router: Router,
-    private _route: ActivatedRoute,
-   
-  ) { }
+    private _route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.initData();
@@ -43,6 +38,9 @@ export class MisPoasModuleComponent implements OnInit {
   private poa_example: Poa | any = {};
   rutaActual = "poa";
   public actividad: Actividad | any = {};
+  public tarea: Tareas | any = {};
+  public indicador: Indicadores | any = {};
+  public actividad1: Array<Actividad> = [];
   public poa: Array<Poa> = [];
   public DeptoList: Array<Depto> = [];
   public InstitucionesList: Array<Institucion> = [];
@@ -56,10 +54,8 @@ export class MisPoasModuleComponent implements OnInit {
   public data_update: Poa | any = this.poa_example; // define datos de un elemento a actualizar
   public poa_seleccionado: string = "";
   public poaSeleccionado: number = this.idPoa;
-
-  public POAFiltroPipe: Array <POAFiltroPipe>= []; 
-
-
+  public actividad_seleccionada: number = this.idActividad;
+  public ActividadListS: Array<Actividad> = []
   public page: number = 0;
   public actualpage: number = 1;
   public step: number = 40;
@@ -67,29 +63,38 @@ export class MisPoasModuleComponent implements OnInit {
   public enumPages: number[] = []
 
   async initData() {
-    const actividades = await firstValueFrom(this.serviceActividad.getActividades(this.idPoa));
+    const actividades = await firstValueFrom(this.service.MostrarAllActivities(this.idPoa));
     this.actividad = actividades;
-    this.poa = await firstValueFrom(this.service.MisPOAS(this.user.empleado.id,this.idDepto));
-    const departamentos = await firstValueFrom(this.service.getdepartamentos());
-    this.DeptoList = departamentos;
+    console.log("hola", this.actividad);
+    this.poa = await firstValueFrom(this.service.MisPOAS(this.user.empleado.id, this.idDepto));
+    const poas = await firstValueFrom(this.service.getPOA());
+    this.poa = poas;
     console.log(this.poa);
-  }
-  toDetail(idPoa: number) {
-    this.router.navigate(['/gestion_poa/actividad/tab/', idPoa.toString(), this.idInsti, this.idUE, this.idDepto,]);
-  }
-  toActividad(idPoa: number){
-    this.router.navigate(['/gestion_poa/actividad/list/', idPoa.toString(),this.idInsti,this.idDepto,this.idUE]); 
+
+    this.maxPages = Math.round(this.poa.length / this.step);
+    // sirve para generar los botones en paginacion
+    this.enumPages = Array(this.maxPages).fill(null).map((x, i) => i).slice(1, this.maxPages + 1);
   }
 
-  toHome() {
-    this.router.navigate(['/home']);
-  }
-  selectDepto() {
-    this.router.navigate(['/mis_poas/', this.idInsti,this.idUE,this.DeptoSeleccionado]);
+  selectPoa() {
+    this.router.navigate(['/seguimiento/', this.poaSeleccionado,this.idActividad]);
     setTimeout(function () {
       window.location.reload();
     }, 10)
   }
+
+  toSeguimiento(idIndicador: number) {
+    this.router.navigate(['/gestion_poa/indicadores/seguimiento/', idIndicador.toString(), this.idPoa,this.idActividad]);
+  }
+
+  selectActividad() {
+    this.router.navigate(['/seguimiento/', this.idPoa, this.actividad_seleccionada]);
+    setTimeout(function () {
+      window.location.reload();
+    }, 10)
+  }
+
+
   nextPage() {
     this.page = this.page + this.step;
     this.actualpage++;
@@ -101,6 +106,5 @@ export class MisPoasModuleComponent implements OnInit {
   selectPage(numPage: number) {
     this.page = numPage * this.step;
   }
-
 
 }

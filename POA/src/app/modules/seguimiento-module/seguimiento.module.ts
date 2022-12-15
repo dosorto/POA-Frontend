@@ -1,30 +1,27 @@
 import { NgModule } from '@angular/core';
-import { NgModel, FormControl, FormsModule} from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { MisPoasModuleComponent } from './mis-poas-module.component';
+import { SeguimientoComponent } from './seguimiento.component';
 import { RouterModule } from '@angular/router';
-import { POAFiltroPipe } from './poafiltro.pipe';
-import { POApaginacionPipe } from './poapaginacion.pipe';
+import { NgModel, FormControl, FormsModule} from '@angular/forms';
 
 import { TopBarComponent } from '../../_core/top-bar/top-bar.component'
 import { BackButtonComponent } from 'src/app/_core/back-button/back-button.component';
 
 const router = RouterModule.forChild([
-  { path: ':idInsti/:idUE/:idDepto', component: MisPoasModuleComponent },
-])
+  {path: ':idPoa/:idActividad', component: SeguimientoComponent}
+]
+)
 
 @NgModule({
   declarations: [
-    MisPoasModuleComponent,
-    POAFiltroPipe,POApaginacionPipe
+    SeguimientoComponent
   ],
   imports: [
     CommonModule,
     router,
     FormsModule,
     TopBarComponent,
-    BackButtonComponent
+    BackButtonComponent,
   ]
 })
-export class MisPoasModuleModule { 
-}
+export class SeguimientoModule { }

@@ -39,14 +39,15 @@ export class CreateActividadComponent implements OnInit {
 
     ngOnInit(): void {
       this.initData();
-    }async initData(){
+    }
+    async initData(){
       const poas = await firstValueFrom(this.service.getPoas());
       this.poaList = poas;
 
 
       this.PeiList = await firstValueFrom(this.peiService.MostrarPei(this.idInsti));
       console.log(this.PeiList);
-      this.resultadoList = await firstValueFrom(this.ResultadosService.MostrarResultado(this.idPei));
+      this.resultadoList = await firstValueFrom(this.ResultadosService.getResultado2());
       console.log(this.PeiList);
       
       console.log(this.resultadoList);
@@ -56,6 +57,12 @@ export class CreateActividadComponent implements OnInit {
       console.log(this.poaList)
       console.log(this.resultadoList)
       console.log("hola ", this.pei_seleccionado)
+
+
+      const tareasH = await firstValueFrom(this.ResultadosService.getResultado2())
+      this.listResultado = tareasH;
+       
+      
 
 
     }
@@ -78,6 +85,20 @@ export class CreateActividadComponent implements OnInit {
     public DeptoList: Array<Depto> = []; 
     public InstitucionesList: Array<Institucion> = [];
     public poaSeleccionado: number = this.idPoa;
+    public nombre:string=""; // para filtar la tabla
+    public tareass:Resultado | any = {};
+    public idPei1:any;
+    public listResultado: Array<Resultado>=[];
+
+  async mostrarObjeto2 (nombre:string) {
+    this.tareass = await this.ResultadosService.Probando(this.nombre).subscribe((response:any)=>{
+      this.tareass = response.resultado;
+      this.idPei1 = response?.resultado?.id;
+
+
+    })
+
+  }
 
 
     selectPoa() {
@@ -96,9 +117,10 @@ export class CreateActividadComponent implements OnInit {
     setTimeout(function () {
     }, 10)
   }
+
   async crearArea(nombre: string, descripcion: string, tipoActividad: string, categoria: string) {
     console.log(nombre.toString(), this.idPoa);
-    await this.service.crearActividad(nombre, descripcion, tipoActividad, categoria, this.idPoa,this.selectedEncargadosIds,this.resultado_seleccionado).subscribe((res: any) => {
+    await this.service.crearActividad(nombre, descripcion, tipoActividad, categoria, this.idPoa,this.selectedEncargadosIds,this.idPei1).subscribe((res: any) => {
       Swal.fire({
         icon: 'success',
         title: '¡Creado con éxito!',
@@ -115,7 +137,7 @@ export class CreateActividadComponent implements OnInit {
       })
     });
     setTimeout(function () {
-      window.location.reload();
+   //   window.location.reload();
     }, 1500);
   }
 }

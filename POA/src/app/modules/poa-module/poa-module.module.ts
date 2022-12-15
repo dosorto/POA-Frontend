@@ -86,7 +86,7 @@ import { TabActividadesComponentsComponent } from './components-poa/actividades/
 import { DetailPresupuestoComponent } from './components-poa/tareas/detail-presupuesto/detail-presupuesto.component';
 import { PresupuestoPoaComponent } from './components-poa/POA/presupuesto-poa/presupuesto-poa.component';
 
-
+import { ResultadosFiltroPipe } from './pipes-poa/resultados-filtro.pipe';
 
 // enrutamiento
 const router = RouterModule.forChild([
@@ -100,7 +100,7 @@ const router = RouterModule.forChild([
   {path: 'poa/detail/:id/:idInsti/:idUE/:idDepto', component: DetailPoaComponent},
   {path: 'poa/list/:idInsti/:idUE/:idDepto', component: AllPoaComponent},
   // rutas de actividades
-  {path: 'actividad/create/:idPoa/:idInsti/:idDepto/:idPei', component: CreateActividadComponent},
+  {path: 'actividad/create/:idPoa/:idInsti/:idDepto', component: CreateActividadComponent},
   {path: 'actividad/update/:id/:idPoa/:idInsti/:idDepto', component: UpdateActividadComponent},
   {path: 'actividad/detail/:id/:idPoa/:idInsti/:idDepto', component: DetailActividadComponent},
   {path: 'actividad/list/:idPoa/:idInsti/:idDepto/:idUE', component: AllActividadComponent},
@@ -116,7 +116,7 @@ const router = RouterModule.forChild([
   {path: 'indicadores/update/:id/:idActividad/:idPoa/:idDepto/:idInsti', component: UpdateIndicadoresComponent},
   {path: 'indicadores/detail/:id/:idActividad/:idPoa/:idDepto/:idInsti', component: DetailIndicadoresComponent},
   {path: 'indicadores/list/:idActividad/:idPoa/:idDepto/:idInsti', component: AllIndicadoresComponent},
-  {path: 'indicadores/seguimiento/:id/:idActividad/:idPoa/:idDepto/:idInsti', component: SeguimientoIndicadorComponent},
+  {path: 'indicadores/seguimiento/:id/:idPoa/:idActividad', component: SeguimientoIndicadorComponent},
 
   // rutas de planificacion
   {path: 'planificacion/create/:idPoa/:idActividad/:idInsti/:idDepto', component: CreatePlanificacionComponent},
@@ -169,7 +169,8 @@ const router = RouterModule.forChild([
     TabActividadesComponentsComponent,
     DetailPresupuestoComponent,
     ENTRYCOMPONENTS,
-    PresupuestoPoaComponent
+    PresupuestoPoaComponent,
+    ResultadosFiltroPipe
 
   ],
   imports: [
@@ -198,6 +199,9 @@ MatExpansionModule,
 NzPopoverModule
 
   ],
-  entryComponents: [ENTRYCOMPONENTS]
+  entryComponents: [ENTRYCOMPONENTS],
+  exports:[
+    AllActividadComponent
+  ]
 })
 export class PoaModuleModule { }

@@ -1,0 +1,76 @@
+<top-bar></top-bar>
+<app-back-button [path]="['/home']"></app-back-button>
+
+<body class="justify-content-center mt-5 pt-5">
+
+    <!-- Pantalla principal del modulo -->
+    <div class="container d-flex align-items-center justify-content-center ">
+        <!-- columna completa que agrupa todos los row -->
+        <div class="col-12 w-75">
+            <br>
+            <!-- espacio para el titulo, buscador y boton de agregar uno nuevo -->
+            <div class="container  rounded border border-dark" style="background-color: white;">
+                <div class="w-100 row m-auto">
+                    <div class="row text-center">
+                        <h2></h2>
+                        <h2 class="l-4">Seguimiento</h2>
+                    </div>
+
+                    <div class="w-75 row m-auto mb-2">
+                        <div class="row">
+                            <label for="id" class="row col-form-label">Seleccione un POA:</label>
+                            <select class="form-control" style="border-radius: 20px;"
+                                aria-label="Default select example" name="id" [(ngModel)]="poaSeleccionado"
+                                (ngModelChange)="selectPoa()" required>
+                                <ng-container *ngFor="let x of poa">
+                                    <option value="{{x.id}}" [selected]="x.id===idPoa">{{x.name}}</option>
+                                </ng-container>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <ng-container *ngIf="actividad.length > 0; ">
+                    <!-- tabla dinamica que muestra todas las Dimensión -->
+                    <div class="w-75 m-auto row ">
+                        <table class="table table-hover">
+                            <thead class="text-center">
+                                <tr>
+                                    <th class="table-secondary" scope="col">#</th>
+                                    <th class="table-secondary" scope="col">Actividad</th>
+                                    <th class="table-secondary" scope="col">Tareas</th>
+                                    <th class="table-secondary" scope="col">Indicador</th>
+                                    <th class="table-secondary" scope="col">Acción</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-center">
+                                <tr *ngFor="let x of actividad; index as i">
+                                    <script>
+                                        data = Object.values(actividad)
+                                    </script>
+                                    <!-- este contador no es id, solo es para enumerar -->
+                                    <td>
+                                        <ng-container *ngIf="page > 0; else elseNumeracion">
+                                            {{i + page + 1}}
+                                        </ng-container>
+                                        <ng-template #elseNumeracion>
+                                            {{i + 1}}
+                                        </ng-template>
+                                    </td>
+                                    <td>{{x.nombre}}</td>
+                                    <td><ng-container *ngFor="let j of x.tareas">{{j.nombre}}, </ng-container></td>
+                                    <td><ng-container *ngFor="let f of x.indicadoresPoas">{{f.nombre}}</ng-container></td>
+                                    <td>
+                                        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                            <button style="background-color: #FF7615; color: white;"
+                                                title="Seguimiento" type="button" class="btn"
+                                                (click)="toSeguimiento(x.id)"><i class="bi bi-card-checklist"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </ng-container>
+
+            </div>
+        </div>
