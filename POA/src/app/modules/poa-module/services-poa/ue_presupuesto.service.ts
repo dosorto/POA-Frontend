@@ -80,7 +80,7 @@ export class UePresupuesto {
  
 
   getdepartamentos(){
-    return this.directHttp.get<Array<Depto>>(`${environment.servidor}departamento/get_all`);
+    return this.directHttp.get<Array<Depto>>(`${environment.servidor}depto/get_all/1`);
   }
   getPresupuestoforUE(idUE:number,anio:string){
     return this.directHttp.get(`${environment.servidor}ue_presupuesto/get_status/`+idUE+"/"+anio);

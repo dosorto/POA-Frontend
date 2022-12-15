@@ -25,7 +25,7 @@ import { BackButtonComponent } from 'src/app/_core/back-button/back-button.compo
 import { EmptyComponent } from 'src/app/_core/empty/empty.component';
 import {InstiFilterPipe} from './pipes/insti-filter.pipe';
 import {AllUnidadEjecutoraComponent} from './components/UnidadEjecutora/all-ue/all-ue.component'
-
+import{EmpleadoFilterPipe} from './pipes/empleado-filter.pipe'
 import { CreateUsuarioComponent } from './components/usuarios/create-usuario/create-usuario.component';
 import { UpdateUsuarioComponent } from './components/usuarios/update-usuario/update-usuario.component';
 import { AllUsuarioComponent } from './components/usuarios/all-usuario/all-usuario.component';
@@ -35,11 +35,6 @@ import { DetailInstitucionComponent } from './components/institucion/detail-inst
 import { CreateInstitucionComponent } from './components/institucion/create-institucion/create-institucion.component';
 import { AllInstitucionComponent } from './components/institucion/all-institucion/all-institucion.component';
 import { UpdateInstitucionComponent } from './components/institucion/update-institucion/update-institucion.component';
-
-import { UpdateEmpleadoComponent } from './components/empleados/update-empleado/update-empleado.component';
-import { CreateEmpleadoComponent } from './components/empleados/create-empleado/create-empleado.component';
-import { AllEmpleadoComponent } from './components/empleados/all-empleado/all-empleado.component';
-import { DetailEmpleadoComponent } from './components/empleados/detail-empleado/detail-empleado.component';
 
 import { DetailRolComponent } from './components/roles/detail-rol/detail-rol.component';
 import { CreateRolComponent } from './components/roles/create-rol/create-rol.component';
@@ -77,10 +72,6 @@ const router = RouterModule.forChild([
     CreateInstitucionComponent,
     AllInstitucionComponent,
     UpdateInstitucionComponent,
-    UpdateEmpleadoComponent,
-    CreateEmpleadoComponent,
-    AllEmpleadoComponent,
-    DetailEmpleadoComponent,
     DetailRolComponent,
     CreateRolComponent,
     UpdateRolComponent,
@@ -94,7 +85,8 @@ const router = RouterModule.forChild([
     AllUnidadEjecutoraComponent,
     UeFilterPipe,
     AllDepartamentoComponent,
-    DeptoFilterPipe
+    DeptoFilterPipe,
+    EmpleadoFilterPipe
   ],
   imports: [
   

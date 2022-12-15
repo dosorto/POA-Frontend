@@ -62,7 +62,7 @@
           </div>
           <div class="d-grid gap-2 d-md-flex justify-content-end">
             <button type="button" class="btn btn-secondary" (click)="toDetail(poa.id)">Regresar</button>
-            <button type="submit" class="btn btn-warning" [disabled]="poa.invalid" (click)="Update()">Actualizar</button>
+            <button type="submit" class="btn btn-warning" [disabled]="poa.invalid || +fuente12 > UePresupesto?.fuente12_restante || +fuente12B > UePresupesto?.fuente12B_restante || +fuente11 > UePresupesto?.fuente11_restante" (click)="Update()">Actualizar</button>
           </div>
         </div>
 

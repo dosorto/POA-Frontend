@@ -120,7 +120,7 @@ export class PoaService {
   }
 
   getdepartamentos() {
-    return this.callHttp.httpGet<Array<Depto>>(`${environment.servidor}departamento/get_all`)
+    return this.callHttp.httpGet<Array<Depto>>(`${environment.servidor}depto/get_all/1`)
       .pipe(map(response => {
         return response;
       }))

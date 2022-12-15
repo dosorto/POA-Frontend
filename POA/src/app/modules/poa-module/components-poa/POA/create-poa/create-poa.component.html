@@ -99,7 +99,7 @@
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" (click)="onBack()">Regresar</button>
                                     <button type="submit" class="btn btn-warning m-2"
-                                        [disabled]="Poa.invalid">Guardar</button>
+                                        [disabled]="Poa.invalid || Poa.value.fuente12B > UePresupesto.fuente12B_restante ||Poa.value.fuente12 > UePresupesto.fuente12_restante ||Poa.value.fuente11 > UePresupesto.fuente11_restante">Guardar</button>
                                 </div>
                             </form>
                         </div>
