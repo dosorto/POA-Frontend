@@ -23,6 +23,8 @@ registerLocaleData(es);
 
 import { BackButtonComponent } from 'src/app/_core/back-button/back-button.component';
 import { EmptyComponent } from 'src/app/_core/empty/empty.component';
+import {InstiFilterPipe} from './pipes/insti-filter.pipe';
+import {AllUnidadEjecutoraComponent} from './components/UnidadEjecutora/all-ue/all-ue.component'
 
 import { CreateUsuarioComponent } from './components/usuarios/create-usuario/create-usuario.component';
 import { UpdateUsuarioComponent } from './components/usuarios/update-usuario/update-usuario.component';
@@ -50,7 +52,9 @@ import { UserFilterPipe } from './pipes/user-filter.pipe';
 import { RoleFilterPipe } from './pipes/role-filter.pipe';
 import { NamesOnlyPipe } from './pipes/names-only.pipe';
 import {PermisosFilterPipe} from './pipes/permisos-filter.pipe';
-
+import {UeFilterPipe} from './pipes/ue-filter.pipe'
+import { AllDepartamentoComponent } from './components/Departamentos/all-depto/all-depto.component';
+import {DeptoFilterPipe} from './pipes/depto-filter.pipe'
 // enrutamiento
 const router = RouterModule.forChild([
   // rutas principal
@@ -59,6 +63,8 @@ const router = RouterModule.forChild([
   {path: 'users', component: AllUsuarioComponent},
   {path: 'roles', component: AllRolComponent},
   {path: 'instituciones', component: AllInstitucionComponent},
+  {path: 'unidad_ejecutora/:id', component: AllUnidadEjecutoraComponent},
+  {path: 'departamentos/:id', component: AllDepartamentoComponent}
 ]);
 
 @NgModule({
@@ -83,10 +89,16 @@ const router = RouterModule.forChild([
     UserFilterPipe,
     RoleFilterPipe,
     NamesOnlyPipe,
-    PermisosFilterPipe
+    PermisosFilterPipe,
+    InstiFilterPipe,
+    AllUnidadEjecutoraComponent,
+    UeFilterPipe,
+    AllDepartamentoComponent,
+    DeptoFilterPipe
   ],
   imports: [
-  CommonModule,
+  
+CommonModule,
     router,
     FormsModule,
     TopBarComponent,
@@ -104,7 +116,7 @@ const router = RouterModule.forChild([
     NzAutocompleteModule,
     NzSelectModule,
     NzTransferModule,
-    NzModalModule
+    NzModalModule,
   ],
   providers: [
     { provide: NZ_I18N, useValue: es_ES }

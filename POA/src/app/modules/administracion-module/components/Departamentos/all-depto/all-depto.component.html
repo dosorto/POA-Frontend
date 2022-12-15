@@ -1,4 +1,4 @@
-<app-back-button [path]="['/home']"></app-back-button>
+<app-back-button [path]="['admin/unidad_ejecutora/1']"></app-back-button>
 <top-bar></top-bar>
 <div class="mt-5 pt-5 contenedor">
     <div>
@@ -6,11 +6,17 @@
             <nz-breadcrumb-item>
               <a [routerLink]="['../../home']">inicio</a>
             </nz-breadcrumb-item>
-            <nz-breadcrumb-item>Instituciones</nz-breadcrumb-item>
+            <nz-breadcrumb-item>
+                <a [routerLink]="['../../instituciones']">Instituciones</a>
+              </nz-breadcrumb-item>
+              <nz-breadcrumb-item>
+                <a [routerLink]="['../../unidad_ejecutora/1']">Unidades Ejecutoras</a>
+              </nz-breadcrumb-item>
+            <nz-breadcrumb-item>Departamentos</nz-breadcrumb-item>
         </nz-breadcrumb>
     </div>
     <div class="barra">
-        <span class="text-center text-dark fs-5">Gestión de Instituciones</span> <br>
+        <span class="text-center text-dark fs-5">Gestión de Departamentos</span> <br>
         <div id="busqueda" class="">
             <div class="input-group">
                 <input type="text" class="form-control" placeholder="Buscar por nombre" aria-label="Buscar"
@@ -32,7 +38,7 @@
 
         <!-- -------------------------------------- -->
         <div class="tabla">
-            <nz-table [nzData]="instiFromDb" nzSize="small">
+            <nz-table [nzData]="deptoFromDb" nzSize="small">
                 <thead class="text-center">
                     <tr>
                         <th class="table-secondary" scope="col">#</th>
@@ -42,13 +48,13 @@
                     </tr>
                 </thead>
                 <tbody class="tableBody">
-                    <tr class="fila" *ngFor="let x of instiFromDb|instiFilter:filter; index as i">
+                    <tr class="fila" *ngFor="let x of deptoFromDb|deptoFilter:filter; index as i">
                         <td>{{i + 1}}</td>
-                        <td>{{x.nombre}}</td>
+                        <td>{{x.name}}</td>
                         <td>{{x.descripcion}}</td>
                         <td>
-                            <button nz-button nzType="primary" [routerLink]="['../unidad_ejecutora/'+ x.id]" >
-                              Gestionar UE
+                            <button nz-button nzType="primary" (click)="setUpdate(x)">
+                              Gestionar Deptos
                             </button>
                             <button nz-button nzType="text" (click)="setUpdate(x)">
                                 <span nz-icon nzType="edit" nzTheme="outline"></span>Editar
@@ -65,9 +71,9 @@
     </main>
     <section class="createUser border rounded">
         <nz-tabset nzType="card" nzCentered>
-            <nz-tab  [nzTitle]="'Crear Institución'"*ngIf="!editMode">
+            <nz-tab  [nzTitle]="'Crear Unidad Ejecutora'"*ngIf="!editMode">
                 <form nz-form #UserCreate='ngForm' 
-                (ngSubmit)="crearInsti(UserCreate.value.nombre,UserCreate.value.descripcion)"
+                (ngSubmit)="crearDepto(UserCreate.value.nombre,UserCreate.value.descripcion)"
                     id="createDimension"
                     class="px-2">
                     <nz-form-item>
@@ -89,21 +95,21 @@
                       </nz-form-item>
                   </form>
             </nz-tab>
-            <nz-tab  [nzTitle]="'Editar Usuario'" *ngIf="editMode">
+            <nz-tab  [nzTitle]="'Editar Unidad Ejecutora'" *ngIf="editMode">
                 <form nz-form #UserCreate='ngForm' 
-                (ngSubmit)="updateInsti(UserCreate.value.nombre,UserCreate.value.descripcion)"
+                (ngSubmit)="updateDepto(UserCreate.value.nombre,UserCreate.value.descripcion)"
                     id="createDimension"
                     class="px-2">
                     <nz-form-item>
                       <nz-form-label [nzSpan]="6" nzFor="username">Nombre</nz-form-label>
                       <nz-form-control [nzSpan]="12">
-                        <input nz-input name="nombre" type="text" id="nombre" ngModel required minlength="4" [(ngModel)]="instiToUpdate.nombre">
+                        <input nz-input name="nombre" type="text" id="nombre" ngModel required minlength="4" [(ngModel)]="deptoToUpdate.name">
                       </nz-form-control>
                     </nz-form-item >
                     <nz-form-item>
                         <nz-form-label [nzSpan]="6" nzFor="descripcion">Descripción</nz-form-label>
                         <nz-form-control [nzSpan]="12">
-                          <input nz-input name="descripcion" type="text" id="descripcion" ngModel required minlength="4" [(ngModel)]="instiToUpdate.descripcion">
+                          <input nz-input name="descripcion" type="text" id="descripcion" ngModel required minlength="4" [(ngModel)]="deptoToUpdate.descripcion">
                         </nz-form-control>
                       </nz-form-item >
 
