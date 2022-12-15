@@ -27,7 +27,7 @@ import { Indicador } from '../gestion-pei-module/interfaces-pei/indicadores.mode
   styleUrls: ['./revision.component.css']
 })
 export class RevisionComponent implements OnInit {
-  public idActividad:number = 1
+  public idActividad=1
   public id:number = Number(this._route.snapshot.paramMap.get('id'));
   public actividad:Actividad|any={};
 
@@ -58,6 +58,7 @@ export class RevisionComponent implements OnInit {
     this.initData(this.idPoa,this.idDepto);
     this.getDeptos();
     this.selectdepto(this.idDepto);
+    this.tareas(this.idActividad)
   }
 
   public page: number = 0;
@@ -66,9 +67,10 @@ export class RevisionComponent implements OnInit {
   public maxPages: number = 1;
   public enumPages: number[] = []
 
+
   async initData(idPoa:number,idDepto:number) {
-    const tareas = await firstValueFrom(this.tareaservice.getTarea(this.idActividad))
-    this.listTareas = tareas;
+
+    
 
     // const tareas = await firstValueFrom(this.service.getPoa_id_iddepto(idPoa,idDepto))
     // this.listTareas = tareas;
@@ -87,6 +89,12 @@ export class RevisionComponent implements OnInit {
     this.actividad = this.tareaservice.getActividad_Id(this.idActividad).subscribe((response:any)=>{
       this.actividad = response.Actividad;
     });
+  }
+
+  async tareas(idActividad:number){ 
+    const tareas = await firstValueFrom(this.tareaservice.getTarea(idActividad))
+    this.listTareas = tareas;
+    console.log("aquiiii",tareas)
   }
 
   async getDeptos(){

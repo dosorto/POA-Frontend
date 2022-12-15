@@ -45,12 +45,11 @@
                             <label for="id" class="row col-form-label">Seleccione una Actividad:</label>
                             <select class="form-control shadow"
                                 aria-label="Default select example" name="id" [(ngModel)]="idActividad"
-                            >
+                                (ngModelChange)="tareas(idActividad)"
+                                >
                                 <option>Seleccione</option>
-                                <ng-container>
-                                    <option value=1>1</option>
-                                    <option value=2>2</option>
-                                    <option value=3>3</option>
+                                <ng-container *ngFor="let x of listActividades">
+                                    <option value={{x.id}}>{{x.nombre}}</option>
                                 </ng-container>
 
                             </select>
@@ -78,10 +77,53 @@
 
 
 
+{{idActividad}}
 
 
+<mat-tab-group preserveContent>
+    <mat-tab >
+      
+        <table class="table table-hover shadow rounded border">
+            <thead class="text-center">
+                <tr>
+                    <th class="table-secondary" scope="col">#</th>
+                    <th align="left" class="table-secondary" scope="col">Nombre</th>
+                    <th align="left" class="table-secondary" scope="col">Costo</th>
+                    <th class="table-secondary" scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody class="text-center">
+                <tr *ngFor="let x of listTareas  index as i">
+                    <td>
+                        <ng-container *ngIf="page > 0; else elseNumeracion">
+                            {{i + page + 1}}
+                        </ng-container>
+                        <ng-template #elseNumeracion>
+                            {{i + 1}}
+                        </ng-template>
+                    </td>
+                    <td align="center">{{x.nombre}}</td>
+                    <td align="center">{{x.presupuesto.total}}</td>
+                    <td>
+                        <div class="btn-group" role="group"
+                            aria-label="Basic mixed styles example">
+                            <button type="button" class="btn btn-secondary"
+                                (click)="RevisarTareas(x.id)">Revisar
+                                Tareas</button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
 
-
+      </table>
+      </mat-tab>
+    <mat-tab label="Tareas Aprobadas">
+        <app-tareas-aprobadas></app-tareas-aprobadas>
+        
+    </mat-tab>
+    <mat-tab label="Tercero">Note how the video from the previous tab is still playing.</mat-tab>
+    <mat-tab label="Cuarto">Note how the video from the previous tab is still playing.</mat-tab>
+  </mat-tab-group>
 
                 <div class="w-75 m-auto row ">
                     <div class="container-xl">
