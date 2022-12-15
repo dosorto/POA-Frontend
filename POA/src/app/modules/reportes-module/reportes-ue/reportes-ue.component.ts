@@ -54,7 +54,7 @@ export class ReportesUEComponent implements OnInit {
 
 
   openSnackBar() {
-    this._snackBar.open('Procesando descarga'+' '+this.PoaList.name, 'undo', {
+    this._snackBar.open('Procesando descarga POA Unificado'+' '+this.anio, 'undo', {
       horizontalPosition: 'start',
       verticalPosition: 'bottom',
       panelClass: ['mat-primary']
@@ -119,7 +119,7 @@ async initData(idUE:number,anio:string){
   // mostrar el techo pres
   // this.PoaList = await this.service.getPoa_Id(idPoa).subscribe((response:any)=>{
   //   this.PoaList = response.poa;
-    //this.saldo= +this.PoaList.fuente11 -this.gastosFuente11
+  //  // this.saldo= +this.PoaList.fuente11 -this.gastosFuente11
   // })
 
       // obtengo la lista de las tareas que tienen presupuesto
